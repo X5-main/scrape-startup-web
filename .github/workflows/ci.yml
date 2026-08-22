@@ -13,31 +13,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Syntax gate (compileall)
-        run: python3 -m compileall $(find . -name '*.py' -not -path './.git/*')
+        run: find . -name '*.py' -not -path './.git/*' -print0 | xargs -0 python3 -m compileall
 
       - name: Import smoke
-        run: |
-          set -e
-          for f in $(find . -name '*.py' -not -path './.git/*'); do
-            mod="$(echo "$f" | sed 's|^\./||; s|/|.|g; s|\.py$||')"
-            echo "--- importing ${mod} ---"
-            python3 -c "
-import sys
-sys.path.insert(0, '.')
-try:
-    __import__('${mod}')
-    print('  OK')
-except ImportError as e:
-    print(f'  ImportError (allowed): {e}')
-    sys.exit(0)
-except SyntaxError as e:
-    print(f'  FAIL (SyntaxError): {e}')
-    sys.exit(1)
-except NameError as e:
-    print(f'  FAIL (NameError): {e}')
-    sys.exit(1)
-"
-          done
+        run: python3 scripts/import_smoke.py
 
       - name: Serve replica smoke
         run: |
