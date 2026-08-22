@@ -43,8 +43,26 @@ startup-website library. Ordered by usefulness per effort.
 - X/Twitter: founders announce raises publicly (often before the tracker writeup). Search `site:x.com seed raised`.
 - LinkedIn: same, noisier. Both are citation sources, not systematic.
 
-## Verdict for this library
 
-Primary: **YC batch pages** (guaranteed funding recency, uniform data).
-Secondary: TechCrunch funding feed (non-YC breadth).
-Confirmations: Crunchbase + press articles when the primary source lacks an amount/date.
+## Practical playbook (learned building lemma/ and tsenta/)
+
+- **Screen for server-rendered HTML.** Before mirroring, fetch the homepage and
+  check that the marketing content (an `<h1>`, body copy) exists in the raw
+  response. A JS shell (`id="root"`, `__NEXT_DATA__`, only empty `<div>`s) means
+  `wget --mirror` returns near-empty. Quick probe:
+  `curl -s <url> | grep -c '<h1'` and grep for the shell markers.
+- **S26 aggregators.** Seen that round up current batches with sites:
+  Extruct.ai data-room tables and RankYC power rankings are excellent
+  complements to the YC directory for filtering by "has a public web presence".
+- **Framework fingerprints** hint at mirroring effort: `/_next/static/*` = Next.js
+  (server-rendered → fine), `data-astro-*` = Astro (static-friendly). All else equal,
+  prefer Astro/Jekyll/plain-HTML sites over Next.js App Router sites.
+ - **Verify sections by anchor, not fraction.** Animated hero counters, rotating
+   job-match cards, and randomized mock percentages re-render differently per load,
+   so two loads legitimately differ (and two worsely, scroll-fraction comparison
+   drifts when scrollHeight differs). Screenshot the same anchoring heading on both
+   pages and compare those frames; treat live-mockup values as non-deterministic.
+ - **JS-rendered asset URLs escape HTML rewriting.** Assets injected at runtime
+   (e.g. `/assets/brand-logos/{company}.webp` built in JS) keep their absolute
+   host even after the HTML mirror pass; fetch them from the live site into the
+   same path so the replica is offline-complete.

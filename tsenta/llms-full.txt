@@ -1,0 +1,223 @@
+# Tsenta
+
+> Tsenta is a Y Combinator-backed transparent agent that finds qualified roles, tailors your résumé per job, submits the application, and tracks the reply, across web, native iOS and Android apps, desktop, iMessage, WhatsApp, Chrome extension, and as an MCP server / CLI for any AI agent. Every change is shown to you before it goes out.
+
+- Website: https://tsenta.com
+- Mobile: https://tsenta.com/mobile
+- App Store: https://apps.apple.com/us/app/tsenta/id6760728258
+- Google Play: https://play.google.com/store/apps/details?id=com.tsenta.tsenta&hl=en_US
+- iMessage / WhatsApp signup: https://tsenta.com/messaging
+- Contact: founders@tsenta.com
+- LinkedIn: https://www.linkedin.com/company/tsenta/
+- Y Combinator: https://www.ycombinator.com/companies/tsenta
+
+---
+
+## Headline
+
+Be the first to apply to every job that fits you. Hands off.
+
+Tsenta watches 50,000+ company career pages and submits a tailored résumé the moment a fitting role goes up. Dozens of applications a week. Available on web, native iOS and Android apps, desktop, iMessage, WhatsApp, Chrome extension, and as an MCP / CLI for any AI agent.
+
+---
+
+## Who Tsenta is for
+
+Tsenta is built for active job seekers — software engineers, product managers, designers, and other professionals — running a high-volume search across multiple companies. It's especially useful for candidates who want to get ahead of the applicant flood that hits a posting 48 hours after it goes live, and for those applying to companies that use complex ATSes like Workday where manual form-filling takes 20–45 minutes per application.
+
+---
+
+## How it works
+
+The pipeline is four stages. One agent. Zero spreadsheets.
+
+### 1. Find — be the first qualified applicant on the job
+
+Tsenta watches 50,000+ company career pages. The moment a role drops that fits your résumé, you know, and you are already in the top 100 applicants.
+
+- 50,000+ career pages monitored 24/7
+- Matched to your résumé (not just keyword search)
+- Roles surface hours before LinkedIn or Indeed index them
+- Pinged on the channels you already use: web, iMessage, email, push
+
+### 2. Prep — a résumé and cover letter, rewritten per role
+
+Every application gets keyword-aligned, recruiter-readable, ATS-safe materials, generated from the actual job description.
+
+- Reads the JD: extracts must-haves, nice-to-haves, disqualifiers
+- Rewrites your bullets: generic line in, punchy outcome out, tone preserved
+- Passes ATS: typical score climb from 62 to 94, with a checklist of fixed flags
+- You approve before send: every change shown as a diff with approve / edit buttons
+
+### 3. Apply — Tsenta opens the form. Tsenta hits submit.
+
+19 ATSes covered: Workday, Greenhouse, Lever, Ashby, Rippling, iCIMS, BambooHR, Workable, JazzHR, Jobvite, BreezyHR, Oracle Cloud, SmartRecruiters, Paylocity, UltiPro, ADP, Dover, Gem, Zoho Recruit. Login, every field, the open-ended questions in your voice, the upload.
+
+- Auto login and signup handling
+- Smart form navigation across multi-page applications
+- Drafts open-ended answers in your voice (e.g., "Why this company?")
+- Document upload automation
+- Watch live in a window-in-the-corner overlay, or run headless and check the recording later
+
+### 4. Track — replies, interviews, rejections, auto-routed
+
+Recruiter emails land back on the right application. Status moves on its own. Your inbox stops being a graveyard and starts being a pipeline you can read.
+
+---
+
+## Platforms
+
+Tsenta runs anywhere you do. Pick the surface that fits your day.
+
+### Web
+
+Discovery feed, application queue, recruiter inbox. Every surface of Tsenta in one place, on any browser.
+
+### iOS
+
+Review matches, submit applications, and track replies from the native iPhone and iPad app. Download it from the App Store: https://apps.apple.com/us/app/tsenta/id6760728258.
+
+### Android
+
+Review matches, submit applications, and track replies from the native Android app. Download it from Google Play: https://play.google.com/store/apps/details?id=com.tsenta.tsenta&hl=en_US.
+
+### Desktop
+
+Native Tsenta apps are available for macOS, Windows, and Linux.
+
+### iMessage / WhatsApp
+
+Tsenta texts you when a match drops. Reply yes; the application happens in the background and you get the receipt. Sign up at https://tsenta.com/messaging.
+
+### Chrome extension
+
+Apply from any job page on the web; the extension recognizes the form and fills it.
+
+### MCP server / CLI
+
+A Tsenta MCP server and CLI for Claude Code, OpenClaw, and any agent that speaks tools. Your assistant applies on your behalf.
+
+---
+
+## Why Tsenta
+
+Built for you. Controlled by you. Owned by you. The only job application agent that prioritizes transparency, control, and privacy.
+
+### Transparent by default
+
+Every résumé edit, every cover letter draft, every form field is visible to you before anything goes out. You approve, or you edit, or you skip.
+
+### Speed without quality loss
+
+Dozens of applications a week, each tailored to the role. Match the volume of a careerless mass-applier with the quality of a single-job-at-a-time applicant.
+
+### Your channels, your pace
+
+Web or desktop for power users. iOS and Android for the on-the-go. MCP / CLI for the agent-savvy. Same agent, every way in.
+
+---
+
+## Frequently Asked Questions
+
+### How does Tsenta work?
+
+Tsenta watches company career pages, scores incoming roles against your résumé, drafts the résumé and cover letter per role, fills the application form, and tracks the reply. You see every change before it goes out and can pick which role to actually apply to.
+
+### How quickly can I get started?
+
+A few minutes. Sign up on the web at https://tsenta.com, download the mobile app at https://tsenta.com/mobile, or text our iMessage / WhatsApp number to start a conversation. Upload your résumé once and you are ready.
+
+### Which job platforms do you support?
+
+Nineteen ATSes today: Workday, Greenhouse, Lever, Ashby, Rippling, iCIMS, BambooHR, Workable, JazzHR, Jobvite, BreezyHR, Oracle Cloud, SmartRecruiters, Paylocity, UltiPro, ADP, Dover, Gem, and Zoho Recruit. We add more based on user demand.
+
+### Can I see what is happening during applications?
+
+Yes. Every résumé rewrite shows as a diff before send. Every form fill can be watched live in a window-in-the-corner overlay, or replayed later from a recording if you ran it headless.
+
+### Is Tsenta available as a native app?
+
+Yes. Tsenta has native apps for iOS, Android, macOS, Windows, and Linux. You can also use the web dashboard, iMessage, WhatsApp, Chrome extension, or MCP server / CLI. Applications run on Tsenta's cloud infrastructure, so no device needs to stay running.
+
+---
+
+## Comparisons
+
+Honest, side-by-side breakdowns of Tsenta against other auto-apply and job-search tools — pricing, application volume, ATS coverage, and product category.
+
+- [All comparisons](https://tsenta.com/blog) — Tsenta benchmarked against 20+ tools
+- [Tsenta vs every other auto-apply tool](https://tsenta.com/blog/tsenta-vs-competitors) — the master roundup (LazyApply, Simplify, Jobright, Huntr, Teal, JobCopilot, Massive, and more)
+- [Tsenta vs Simplify](https://tsenta.com/blog/tsenta-vs-simplify) — autofill extension vs a full apply agent
+- [Tsenta vs Jobright](https://tsenta.com/blog/tsenta-vs-jobright) — AI matching + autofill vs an agent that logs in and answers screeners
+- [Tsenta vs Sorce.jobs](https://tsenta.com/blog/tsenta-vs-sorce-jobs) — one product surface vs eight
+- [Tsenta vs AIApply](https://tsenta.com/blog/tsenta-vs-aiapply) — per-feature add-on pricing vs bundled tailoring
+- [Tsenta vs Massive](https://tsenta.com/blog/tsenta-vs-massive) — applications per dollar and onboarding length
+
+---
+
+## Job Board
+
+Browse curated job listings at https://tsenta.com/jobs. Search and filter jobs from supported platforms including Workday, Greenhouse, Lever, Ashby, Rippling, iCIMS, BambooHR, Workable, JazzHR, Jobvite, BreezyHR, Oracle Cloud, SmartRecruiters, Paylocity, UltiPro, ADP, Dover, Gem, and Zoho Recruit. Apply directly through Tsenta.
+
+---
+
+## Careers
+
+Tsenta is a Y Combinator-backed startup. View open positions and apply directly through Y Combinator.
+
+- [Open Positions](https://www.ycombinator.com/companies/tsenta/jobs)
+
+---
+
+## Contact
+
+- Email: founders@tsenta.com
+- LinkedIn: https://www.linkedin.com/company/tsenta/
+- Y Combinator: https://www.ycombinator.com/companies/tsenta
+
+---
+
+## Site Map
+
+- [Home](https://tsenta.com/)
+- [Mobile apps](https://tsenta.com/mobile)
+- [Messaging signup](https://tsenta.com/messaging)
+- [Job Board](https://tsenta.com/jobs)
+- [Comparisons](https://tsenta.com/blog)
+- [FAQ](https://tsenta.com/#faq)
+- [Careers](https://www.ycombinator.com/companies/tsenta/jobs)
+- [Workday jobs](https://tsenta.com/workday-api)
+- [Greenhouse jobs](https://tsenta.com/greenhouse-api)
+- [Lever jobs](https://tsenta.com/lever-api)
+- [Ashby jobs](https://tsenta.com/ashby-api)
+- [iCIMS jobs](https://tsenta.com/icims-api)
+- [SAP SuccessFactors jobs](https://tsenta.com/successfactors-api)
+- [SmartRecruiters jobs](https://tsenta.com/smartrecruiters-api)
+- [Workable jobs](https://tsenta.com/workable-api)
+- [BambooHR jobs](https://tsenta.com/bamboohr-api)
+- [JazzHR jobs](https://tsenta.com/jazzhr-api)
+- [Rippling jobs](https://tsenta.com/rippling-api)
+- [ADP jobs](https://tsenta.com/adp-api)
+- [Oracle Cloud jobs](https://tsenta.com/oraclecloud-api)
+- [Paylocity jobs](https://tsenta.com/paylocity-api)
+- [UKG (UltiPro) jobs](https://tsenta.com/ultipro-api)
+- [Dayforce jobs](https://tsenta.com/dayforce-api)
+- [BrassRing jobs](https://tsenta.com/brassring-api)
+- [Jobvite jobs](https://tsenta.com/jobvite-api)
+- [Recruitee jobs](https://tsenta.com/recruitee-api)
+- [Teamtailor jobs](https://tsenta.com/teamtailor-api)
+- [BreezyHR jobs](https://tsenta.com/breezyhr-api)
+- [Zoho Recruit jobs](https://tsenta.com/zohorecruit-api)
+- [Gem jobs](https://tsenta.com/gem-api)
+- [Dover jobs](https://tsenta.com/dover-api)
+- [Pinpoint jobs](https://tsenta.com/pinpoint-api)
+- [Phenom jobs](https://tsenta.com/phenom-api)
+- [Polymer jobs](https://tsenta.com/polymer-api)
+- [Join jobs](https://tsenta.com/join-api)
+- [Hireology jobs](https://tsenta.com/hireology-api)
+- [llms.txt](https://tsenta.com/llms.txt)
+- [llms-full.txt](https://tsenta.com/llms-full.txt)
+
+---
+
+(c) Tsenta 2026. All Rights Reserved.

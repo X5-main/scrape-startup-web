@@ -1,0 +1,103 @@
+# Tsenta
+
+> Tsenta is a Y Combinator-backed transparent agent that watches 50,000+ company career pages, tailors your résumé per role, and submits applications across 19 ATSes (Workday, Greenhouse, Lever, Ashby, Rippling, iCIMS, BambooHR, Workable, JazzHR, Jobvite, BreezyHR, Oracle Cloud, SmartRecruiters, Paylocity, UltiPro, ADP, Dover, Gem, Zoho Recruit). Available on web, native iOS and Android apps, desktop, iMessage, WhatsApp, Chrome extension, and as an MCP server / CLI for any AI agent.
+
+Every change Tsenta makes is shown to you before it goes out. You can watch each application happen, or run headless and check the recording later.
+
+## Who Tsenta is for
+
+Tsenta is built for active job seekers — software engineers, product managers, designers, and other professionals — running a high-volume search across multiple companies. It's especially useful for candidates who want to get ahead of the applicant flood that hits a posting 48 hours after it goes live, and for those applying to companies that use complex ATSes like Workday where manual form-filling takes 20–45 minutes per application.
+
+## Product
+
+- [Home](https://tsenta.com/): Landing page with the full find / prep / apply / track pipeline and an interactive dashboard demo
+- [Mobile apps](https://tsenta.com/mobile): Download Tsenta for iPhone, iPad, or Android
+- [Messaging](https://tsenta.com/messaging): Apply to jobs by texting back; Tsenta surfaces a match, you reply "apply", it submits
+- [Job Board](https://tsenta.com/jobs): Browse curated openings from supported ATSes
+
+## ATS integrations
+
+One page per applicant tracking system Tsenta submits to, covering what applying
+there involves and how Tsenta handles it.
+
+- [Workday](https://tsenta.com/workday-api) ([markdown](https://tsenta.com/workday-api.md)): Automate Workday applications with Tsenta. It handles the account step, the multi page form, and the resume parse that Workday runs on every posting.
+- [Greenhouse](https://tsenta.com/greenhouse-api) ([markdown](https://tsenta.com/greenhouse-api.md)): Automate Greenhouse applications with Tsenta, including custom screening questions, resume upload, and the demographic step on every posting.
+- [Lever](https://tsenta.com/lever-api) ([markdown](https://tsenta.com/lever-api.md)): Automate Lever applications with Tsenta. It handles resume upload, custom cards, and the URL fields Lever postings ask for on every application.
+- [Ashby](https://tsenta.com/ashby-api) ([markdown](https://tsenta.com/ashby-api.md)): Automate Ashby applications with Tsenta. It handles the structured question set and file uploads Ashby postings use on every role.
+- [iCIMS](https://tsenta.com/icims-api) ([markdown](https://tsenta.com/icims-api.md)): Automate iCIMS applications with Tsenta. It handles the account step, multi page flow, and per employer configuration iCIMS portals use.
+- [SAP SuccessFactors](https://tsenta.com/successfactors-api) ([markdown](https://tsenta.com/successfactors-api.md)): Automate SAP SuccessFactors applications with Tsenta. It handles account creation, verification codes, and the long form these portals require.
+- [SmartRecruiters](https://tsenta.com/smartrecruiters-api) ([markdown](https://tsenta.com/smartrecruiters-api.md)): Automate SmartRecruiters applications with Tsenta. It handles hosted careers pages and per posting question sets.
+- [Workable](https://tsenta.com/workable-api) ([markdown](https://tsenta.com/workable-api.md)): Automate Workable applications with Tsenta. It handles the resume and employer added questions on each posting.
+- [BambooHR](https://tsenta.com/bamboohr-api) ([markdown](https://tsenta.com/bamboohr-api.md)): Automate BambooHR applications with Tsenta. It handles the resume and employer added questions on each posting.
+- [JazzHR](https://tsenta.com/jazzhr-api) ([markdown](https://tsenta.com/jazzhr-api.md)): Automate JazzHR applications with Tsenta. It handles resume upload and the employer configured questions each board adds per role.
+- [Rippling](https://tsenta.com/rippling-api) ([markdown](https://tsenta.com/rippling-api.md)): Automate Rippling applications with Tsenta. It handles the resume upload and screening questions attached to each posting.
+- [ADP](https://tsenta.com/adp-api) ([markdown](https://tsenta.com/adp-api.md)): Automate ADP applications with Tsenta. It handles account creation, verification, and the compliance steps ADP portals include.
+- [Oracle Cloud](https://tsenta.com/oraclecloud-api) ([markdown](https://tsenta.com/oraclecloud-api.md)): Automate Oracle Cloud Recruiting applications with Tsenta. It handles the account step and multi section form these portals require.
+- [Paylocity](https://tsenta.com/paylocity-api) ([markdown](https://tsenta.com/paylocity-api.md)): Automate Paylocity applications with Tsenta. It handles the screening questions and structured fields Paylocity boards use.
+- [UKG (UltiPro)](https://tsenta.com/ultipro-api) ([markdown](https://tsenta.com/ultipro-api.md)): Automate UKG (UltiPro) applications with Tsenta. It handles the multi step portal and structured sections UKG career sites use.
+- [Dayforce](https://tsenta.com/dayforce-api) ([markdown](https://tsenta.com/dayforce-api.md)): Automate Dayforce applications with Tsenta. It handles the account step and structured sections Dayforce career sites require.
+- [BrassRing](https://tsenta.com/brassring-api) ([markdown](https://tsenta.com/brassring-api.md)): Automate BrassRing applications with Tsenta. It handles account creation, verification codes, and the long form BrassRing portals use.
+- [Jobvite](https://tsenta.com/jobvite-api) ([markdown](https://tsenta.com/jobvite-api.md)): Automate Jobvite applications with Tsenta. It handles resume upload and the employer configured questions each posting adds.
+- [Recruitee](https://tsenta.com/recruitee-api) ([markdown](https://tsenta.com/recruitee-api.md)): Automate Recruitee applications with Tsenta. It handles hosted careers pages and per posting questions.
+- [Teamtailor](https://tsenta.com/teamtailor-api) ([markdown](https://tsenta.com/teamtailor-api.md)): Automate Teamtailor applications with Tsenta. It handles branded careers sites and per posting questions.
+- [BreezyHR](https://tsenta.com/breezyhr-api) ([markdown](https://tsenta.com/breezyhr-api.md)): Automate BreezyHR applications with Tsenta. It handles the resume upload and custom questions each board attaches per role.
+- [Zoho Recruit](https://tsenta.com/zohorecruit-api) ([markdown](https://tsenta.com/zohorecruit-api.md)): Automate Zoho Recruit applications with Tsenta. It handles varied board layouts and employer configured custom fields.
+- [Gem](https://tsenta.com/gem-api) ([markdown](https://tsenta.com/gem-api.md)): Automate Gem applications with Tsenta. It handles the structured question sets Gem postings use for each role.
+- [Dover](https://tsenta.com/dover-api) ([markdown](https://tsenta.com/dover-api.md)): Automate Dover applications with Tsenta. It handles the short structured forms Dover job boards use for each posting.
+- [Pinpoint](https://tsenta.com/pinpoint-api) ([markdown](https://tsenta.com/pinpoint-api.md)): Automate Pinpoint applications with Tsenta. It handles hosted careers sites and per posting questions.
+- [Phenom](https://tsenta.com/phenom-api) ([markdown](https://tsenta.com/phenom-api.md)): Automate Phenom applications with Tsenta. It handles the personalized enterprise career sites Phenom builds for large employers.
+- [Polymer](https://tsenta.com/polymer-api) ([markdown](https://tsenta.com/polymer-api.md)): Automate Polymer applications with Tsenta. It handles the short structured forms Polymer job boards use.
+- [Join](https://tsenta.com/join-api) ([markdown](https://tsenta.com/join-api.md)): Automate Join applications with Tsenta. It handles the multi language boards and short forms Join employers use.
+- [Hireology](https://tsenta.com/hireology-api) ([markdown](https://tsenta.com/hireology-api.md)): Automate Hireology applications with Tsenta. It handles the screening questions Hireology employers use for high volume hiring.
+
+## How it works (four stages)
+
+- [Find](https://tsenta.com/#workflow): Tsenta watches 50,000+ company career pages. The moment a role drops that fits your résumé, you know, and you are already in the top 100 applicants. Roles surface hours before LinkedIn or Indeed index them.
+- [Prep](https://tsenta.com/#workflow): Per-role résumé and cover letter, generated from the actual job description, with keyword alignment, ATS-safe formatting, and every change shown to you before send.
+- [Apply](https://tsenta.com/#workflow): Tsenta opens the form. Tsenta hits submit. Workday, Greenhouse, Lever, Ashby and 15 more ATSes; login, every field, open-ended questions in your voice, document uploads. Watch it happen or run headless.
+- [Track](https://tsenta.com/#workflow): Recruiter emails land back on the right application. Status moves on its own; your inbox stops being a graveyard and starts being a pipeline.
+
+## Platforms
+
+- [Web](https://tsenta.com/#platforms): Discovery feed, application queue, recruiter inbox; every surface of Tsenta in one place, on any browser.
+- [iOS](https://apps.apple.com/us/app/tsenta/id6760728258): Native Tsenta app for iPhone and iPad.
+- [Android](https://play.google.com/store/apps/details?id=com.tsenta.tsenta&hl=en_US): Native Tsenta app from Google Play.
+- [iMessage / WhatsApp](https://tsenta.com/messaging): Tsenta texts you when a match drops; reply yes and the application happens in the background.
+- [Chrome extension](https://tsenta.com/#platforms): Apply from any job page on the web.
+- [MCP server / CLI](https://tsenta.com/#platforms): A Tsenta MCP server and CLI for Claude Code, OpenClaw, and any agent that speaks tools.
+
+## Comparisons
+
+How Tsenta compares to other auto-apply and job-search tools, with honest pricing and feature breakdowns.
+
+- [All comparisons](https://tsenta.com/blog): Tsenta benchmarked against 20+ auto-apply tools — where it wins and where it loses
+- [Tsenta vs every other auto-apply tool](https://tsenta.com/blog/tsenta-vs-competitors): The master roundup — Tsenta vs LazyApply, Simplify, Jobright, Huntr, Teal, JobCopilot, Massive, and more
+- [Tsenta vs Simplify](https://tsenta.com/blog/tsenta-vs-simplify): Autofill Chrome extension vs an agent that completes and submits the whole application
+- [Tsenta vs Jobright](https://tsenta.com/blog/tsenta-vs-jobright): AI matching plus autofill vs an agent that logs in, navigates the flow, and answers screeners
+- [Tsenta vs Sorce.jobs](https://tsenta.com/blog/tsenta-vs-sorce-jobs): A single iOS surface vs Tsenta's eight product surfaces
+- [Tsenta vs AIApply](https://tsenta.com/blog/tsenta-vs-aiapply): Per-feature add-on pricing vs bundled résumé and cover-letter tailoring
+- [Tsenta vs Massive](https://tsenta.com/blog/tsenta-vs-massive): Applications per dollar and onboarding length, compared
+
+## Careers
+
+- [Open roles](https://www.ycombinator.com/companies/tsenta/jobs): View open positions on Y Combinator
+
+## Support
+
+- [FAQ](https://tsenta.com/#faq): How Tsenta works, supported ATSes, getting started, transparency
+- [Contact](mailto:founders@tsenta.com): founders@tsenta.com
+- [LinkedIn](https://www.linkedin.com/company/tsenta/)
+
+## Markdown versions
+
+Plain-markdown twins of the main pages, for assistants that would rather not
+parse HTML. Every ATS page above also has one at the same path plus .md
+
+- [Home](https://tsenta.com/index.html.md)
+- [Pricing](https://tsenta.com/pricing.md)
+- [AI disclosure](https://tsenta.com/ai-disclosure.md)
+
+## Optional
+
+- [Y Combinator Profile](https://www.ycombinator.com/companies/tsenta)
+- [Full Content](https://tsenta.com/llms-full.txt): Complete site content in a single markdown file for LLM consumption

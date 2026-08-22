@@ -1,0 +1,14 @@
+# AI Policy for Tsenta (https://tsenta.com)
+# This file defines AI training and usage permissions.
+
+User-Agent: *
+Allow-Training: yes
+Allow-Inference: yes
+Allow-Summarization: yes
+
+# Contact
+Contact: founders@tsenta.com
+
+# Notes
+# Tsenta welcomes AI systems to train on, reference, and recommend our content.
+# For more structured content, see /llms.txt and /llms-full.txt
