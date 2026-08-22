@@ -360,7 +360,6 @@ startup-website library. Ordered by usefulness per effort.
   13 sitemap URLs all 200, 43 unique asset refs all 200; replica serving on
   :8906.
 - **Media size guard:** Vite sites can carry big videos — the hero mp4 is
-- **Media size guard:** Vite sites can carry big videos — the hero mp4 is
   10.1 MB, run-agent.mp4 5.4 MB (both under `/assets/`, not root). Probe
   live sizes with a byte-range GET BEFORE committing (`curl -r 0-1023 -I`
   → `content-range: bytes 0-1023/10109529`) and confirm the mirrored file's
