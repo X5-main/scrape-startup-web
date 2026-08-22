@@ -94,6 +94,55 @@ startup-website library. Ordered by usefulness per effort.
 - **Inherent broken images:** the live site itself can report `naturalWidth === 0`
   for an SVG that fetches fine (200, valid bytes) — the browser false-positives.
   Treat live-vs-replica equality of broken-image counts as parity.
-- **Non-deterministic sections:** animated counters, rotating cards, and
+  - **Non-deterministic sections:** animated counters, rotating cards, and
   gradient/marquee animation shift layout by up to ~90 px per load; compare at
   heading anchors and treat gap deltas as inherent.
+
+## Next.js sites (conifer.build pattern)
+
+- **Fingerprint:** Next.js App Router, 100% self-hosted assets (no external hosts
+  on home HTML — self-hosted fonts (`/_next/static/media/*`), inline SVGs, no
+  `framerusercontent`/CDN strip). When clean, a `--depth 3` mirror with default
+  asset hosts is fully offline-complete; no CSS files at all (all inline blocks).
+- **Server-side rendering is a blessing for the mirror:** the crawler stores the
+  server-rendered HTML (`<h1>`, chart bars, docs content all present), so the
+  replica is complete without owning the JS runtime.
+- **Data parity beats OCR.** Chart/section data is embedded as HTML text in the
+  SSR output. When live-vs-replica vision reads disagree on small slanted labels
+  (chart model names/versions), settle it by byte-comparing the embedded tokens:
+  presence/absence of the same names in both files (normalized-length delta
+  <150 chars) proves data parity. Vision-model OCR is unreliable on sub-text
+  labels; the HTML is truth.
+- **Inherent 404 noise from Next.js asset patterns:**
+  - `srcset` width-candidate paths (`/2400`, `/1260` in `image?url=/…`) — platform
+    builds paths the crawler does not resolve to existing files; they're absent
+    on disk but the stored HTML keeps the correct relative refs (verifier green).
+    Some are literal design artifacts (e.g. `docs/privacy/local-first/image/png`).
+  - Cloudflare email protection (`/cdn-cgi/l/email-protection`) — `mailto:` links
+    rewritten by Cloudflare; unreachable as files, not a replica bug.
+- **Webpack runtime chunk graph isn't statically import-scannable.** Next.js
+  loads webpack JSONP chunks via `u()`/`+`-concat strings the crawler's import
+  scanner skips; the mirror's SSRed pages don't need them (marketing content fully
+  server-rendered, JS is progressive enhancement). Verify client-only routes by
+  clicking through rather than scanning chunks.
+- **Page-height deltas (936 vs 1170) are hydration artifacts.** Screenshot timing
+  vs hydration changes rendered height ~20%; compare at anchors, not total height.
+- **Relay CDP targeting on this workstation (no browser tool in session):**
+  - `ws://127.0.0.1:9224/cdp` is a BROWSER-level endpoint: `Target.createTarget`,
+    `Target.attachToTarget {flatten:true}`, `Target.closeTarget`, `Page.*`,
+    `Runtime.evaluate` all work; `Target.getTargets` is NOT exposed; the HTTP
+    `/json/new` is 405/404 and `/json/list` exposes no per-target ws URLs.
+  - Deterministic computer-use capture: `Target.createTarget {url, newWindow:true}`
+    the URL, find the window via `desktop.windows()` title-match, then re-navigate
+    the same tab (`Page.navigate` on the saved session) between live and replica,
+    `desktop.screenshot()` before/after. Works even when window title is ambiguous.
+  - Click-through E2E on the replica: `Runtime.evaluate`
+    `document.querySelector('a[href*=…]').click()` inside the attached session;
+    assert `location.href`/`h1` after a 4 s settle. Observed replica H1s:
+    `/docs/` → "Start here", `/docs/cli/reference/` → "Command reference".
+- **Conifer (www.conifer.build) pick rationale:** YC S26; Next.js self-hosted;
+  zero external hosts; docs tree (`docs/cli/reference/` etc.) → high value as a
+  full-site mirror; home verifier green at `--depth 3` (43 HTML + 80 assets).
+  Chart data parity proven live-vs-replica token-for-token (GPT-5.5, DeepSeek V4,
+  Claude Opus 4.7 both present; both `snapshot Jul 2026`, 60 models, values
+  59.9/55.7/54.8/53.5/… identical).
