@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.Dh6celcD.mjs";function t(e,t){return{description:`Nex turns your GTM goals into complex GTM agents only the world's best GTM engineers know to build, across 1000+ integrations.`,favicon:`https://framerusercontent.com/assets/S4MFrgzEHrMuera73EotpC5ycm4.png`,robots:`max-image-preview:large`,socialImage:`https://framerusercontent.com/assets/yg1UeMeCcRUXujU8B588xrpOAk.png`,title:`Nex AI - Hire your first AI GTM Engineer`}}var n=e((()=>{}));export{t as n,n as t};
+//# sourceMappingURL=shared-lib.SItR07dV.mjs.map

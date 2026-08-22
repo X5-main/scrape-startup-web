@@ -3,12 +3,13 @@
 How to discover startups that raised money in the last 24 months, for the
 startup-website library. Ordered by usefulness per effort.
 
-## Method 1: Y Combinator batch pages (best signal)
-
-- YC publishes every funded company per batch: `https://www.ycombinator.com/companies?batch=F25` (or `W26`, `S26`).
-- Each company card lists amount raised, lead investor, and date. Sorted by batch date, the funding recency is already guaranteed.
-- Scrape the batch listing, filter to companies whose site is a modern Next.js/React build (server-rendered, so a replica is feasible), and mirror.
-- Lemma (`www.uselemma.ai`) was found here: YC Fall 2025, $2.3M pre-seed — comfortably inside the 24-month window.
+- **Programmatic batch dump:** the public API
+  `https://api.ycombinator.com/v0.1/companies?batch=S26&limit=50&page=N`
+  returns full batch membership (220 companies for S26) with name, yc id, and
+  `url` per company — paginate `page=1..n` until an empty page. Faster and more
+  complete than scraping the HTML directory; validated on S26 (Nex found here).
+- Batch codes: `F25`, `W26`, `S26`, `F26`; each cohort's Demo Day date is the
+  recency ceiling (batch acceptance always inside the 24-month window).
 
 ## Method 2: TechCrunch funding tracker
 
@@ -69,3 +70,30 @@ startup-website library. Ordered by usefulness per effort.
   (e.g. `/assets/brand-logos/{company}.webp` built in JS) keep their absolute
   host even after the HTML mirror pass; fetch them from the live site into the
   same path so the replica is offline-complete.
+## Framer sites (nex.ai pattern)
+
+- **Fingerprint:** fully server-rendered HTML with an inline `<style>` block
+  instead of a standalone CSS file, and a `<div id="main" data-framer-hydrate-v2=...>`
+  container. Assets live on `framerusercontent.com` (pass with `--asset-hosts`):
+  JS chunks under `sites/<site-id>/`, images with size-query filenames like
+  `foo.png?width=396&height=368` → mirrored as `foo__width-396-height-368.png`.
+- **Entity trap in rewriting:** `LinkFinder` (HTMLParser) decodes `&amp;` → `&`,
+  but the raw file text keeps `&amp;`, so a single `text.replace(raw, rel)` misses
+  every URL whose query has `&`. Replace BOTH spellings
+  (`raw` and `raw.replace("&","&amp;")` → same for the relative target).
+- **JS chunk graph:** Framer rolldown bundles import chunks with BOTH quote and
+  template-literal forms (`import("./x.mjs")` and `` import(`./x.mjs`) ``) —
+  the import regex must include backticks or chunks are silently skipped and the
+  runtime hits an error boundary (`GracefullyDegradingErrorBoundary` wipes `#main`).
+  Run the mirrorer's post-pass (`verify_no_missing_chunks`) to prove the chunk
+  graph is complete after every mirror.
+- **Timezone redirect:** the saved page root carries `<html data-redirect-timezone="1">`;
+  the Framer runtime redirects by browser timezone and wipes the DOM offline.
+  `mirror_site.py` strips the attribute at save time — verify `grep -l
+  'data-redirect-timezone' <out>` returns none.
+- **Inherent broken images:** the live site itself can report `naturalWidth === 0`
+  for an SVG that fetches fine (200, valid bytes) — the browser false-positives.
+  Treat live-vs-replica equality of broken-image counts as parity.
+- **Non-deterministic sections:** animated counters, rotating cards, and
+  gradient/marquee animation shift layout by up to ~90 px per load; compare at
+  heading anchors and treat gap deltas as inherent.
