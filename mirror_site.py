@@ -69,7 +69,13 @@ class LinkFinder(html.parser.HTMLParser):
 
 
 def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": DEFAULT_UA, "Accept": "*/*"})
+    req = urllib.request.Request(url, headers={
+        "User-Agent": DEFAULT_UA,
+        # image/webp first: Next.js image-optimizer responses must arrive as
+        # real WebP.  With */* the optimizer serves the source's original
+        # format (possibly PNG despite a .webp file name), whose bytes fail
+        # to decode when the static server labels them image/webp by extension.
+        "Accept": "image/webp,*/*"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return r.status, r.read()
 
@@ -82,6 +88,18 @@ def url_path_key(url):
       sanitized variant suffix so distinct size/crop variants never collide.
     """
     p = urllib.parse.urlparse(url)
+    if p.path.startswith("/_next/image"):
+        # Next.js image-optimizer URL: /_next/image?url=<asset>&w=..&q=..
+        # Decode to the real asset and store under ITS key so files keep
+        # their true extension (optimizer responses are image bytes), and
+        # sibling width variants collapse onto one shared file.
+        inner = (p.query or "").split("&")
+        for part in inner:
+            if part.startswith("url="):
+                decoded = urllib.parse.unquote(part[4:])
+                if decoded:
+                    return url_path_key(decoded)
+        # unparseable optimizer URL -> fall through to generic handling
     path = urllib.parse.unquote(p.path)
     if not path or path.endswith("/"):
         path += "index.html"
@@ -140,8 +158,27 @@ class Mirror:
             return False
         return True
 
-    def is_script_or_css(self, url):
-        return url_path_key(url).endswith((".js", ".mjs", ".css"))
+    def keep_live_chunk_ref(self, abs_url):
+        """Next.js/Turbopack runtime refs under /_next/static/ keep their
+        live URL form in the rewritten HTML instead of being rewritten to
+        the mirror's relative on-disk key. The Turbopack client derives
+        chunk keys from the element's src/href attribute (getAttribute)
+        and awaits the matching TURBOPACK_CHUNK_LISTS/_next entry; mangling
+        the attribute (NAME.js?dpl=X -> NAME__dpl-dpl-X.js) makes the key
+        never match, so Promise.all over otherChunks never resolves and
+        client-side hydration hangs. Files ARE still stored mangled on disk
+        (url_path_key appends the query suffix); serve_replica.py maps the
+        plain /_next/static/ request to the mangled file at serve time.
+        Applies to any /_next/static/ ref that (a) carries a query (chunks,
+        fonts, media — live form is root-absolute, so it resolves from any
+        docroot level), or (b) is a .js/.mjs/.css chunk ref (stored under
+        its exact URL path, absolute form works unchanged)."""
+        p = urllib.parse.urlparse(abs_url)
+        if not p.path.startswith("/_next/static/"):
+            return False
+        if p.query:
+            return True
+        return p.path.endswith((".js", ".mjs", ".css"))
 
     # ---- storage ------------------------------------------------------
     def save(self, url, body):
@@ -212,6 +249,12 @@ class Mirror:
         if status != 200:
             return
         self.save(url, body)
+        if not url_path_key(url).endswith(".html"):
+            # Raw bytes already stored by save(); only true HTML pages get
+            # link rewriting. Next.js optimizer responses (/_next/image?url=)
+            # decode to extensioned image keys — treating them as pages would
+            # corrupt image bytes via decode("utf-8", errors="replace").
+            return
 
         text = body.decode("utf-8", errors="replace")
         finder = LinkFinder()
@@ -240,9 +283,10 @@ class Mirror:
         # prefix-colliding raws (e.g. "./" also prefixes "./pricing", and a
         # candidate "X.png" is a substring of its own "X.png?w=2000" srcset
         # variant). srcset values are reparsed candidate-by-candidate instead.
-        # HTMLParser entity-decodes raw URLs, so the file may hold the &amp;
-        # spelling: replace BOTH the decoded and the escaped attribute value.
         for raw, attr, abs_url in rewrite:
+            if self.keep_live_chunk_ref(abs_url):
+                # Next.js/Turbopack assets stay in live form (see method doc)
+                continue
             rel = self.rel_to(abs_url, url)
             if attr == "srcset":
                 escaped = re.compile(

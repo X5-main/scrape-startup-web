@@ -142,9 +142,50 @@ startup-website library. Ordered by usefulness per effort.
     `document.querySelector('a[href*=…]').click()` inside the attached session;
     assert `location.href`/`h1` after a 4 s settle. Observed replica H1s:
     `/docs/` → "Start here", `/docs/cli/reference/` → "Command reference".
-- **Conifer (www.conifer.build) pick rationale:** YC S26; Next.js self-hosted;
-  zero external hosts; docs tree (`docs/cli/reference/` etc.) → high value as a
-  full-site mirror; home verifier green at `--depth 3` (43 HTML + 80 assets).
-  Chart data parity proven live-vs-replica token-for-token (GPT-5.5, DeepSeek V4,
-  Claude Opus 4.7 both present; both `snapshot Jul 2026`, 60 models, values
-  59.9/55.7/54.8/53.5/… identical).
+
+## Turbopack sites (twin1.ai pattern)
+
+- **Pick rationale:** raised a $20M seed (2026-08-20, out of stealth the day of
+  the raise), co-led by Bessemer Venture Partners, Tribeca Venture Partners, and
+  Aramco Ventures with a long institutional/tag-on list (EJF Ventures, Lakestar,
+  Notion Capital, F-Prime, Orrick strategic, others); founders are ex-Eigen
+  Technologies; early customers in legal/finance/energy. Announced via Business
+  Wire/FinSMEs coverage; the site itself banners the round. Inside the 24-month
+  window by two days at pick time.
+- **Fingerprint:** Next.js App Router with Turbopack build output — chunk refs
+  are `/_next/static/chunks/<hex>.js?dpl=<deployment-id>` (also fonts/media/
+  icons), fully self-hosted (Sanity image CDN is one external asset host),
+  inline SVG hero, animated scroll-triggered reveal + rotating "hub" ring.
+  Deep (several MB per chunk, ~25 chunks) but 100% deterministic assets.
+- **Turbopack chunk refs must keep their LIVE URL form in the served HTML.**
+  The Turbopack client builds chunk keys from the DOM attribute itself
+  (`getAttribute('src')`, stripping `/_next/`, re-appending `?dpl=`) and
+  `await Promise.all(otherChunks)` against `TURBOPACK_CHUNK_LISTS`-derived keys.
+  Rewriting the attributes to relative on-disk names (`NAME__dpl-dpl-X.js`)
+  makes the seeded keys never match → `otherChunks` never resolves → hydration
+  hangs (SSR markers render, then the error boundary swallows the DOM:
+  "Something went wrong", flight-marker count 0). `mirror_site.py` now skips
+  attribute rewriting for `/_next/static/` refs (any query-bearing ref, or
+  any `.js/.mjs/.css` chunk ref); files are still stored mangled on disk and
+  `serve_replica.py` maps plain `?dpl=` requests back to the mangled file at
+  serve time. Symptom-free check: replica loads → h1 == live h1, 33
+  `.motion-reveal` markers, `nextF` markers consumed (0 remaining), zero
+  resource-404s after full scroll.
+- **Turbopack lazy chunks hide in flight-payload strings.** Chunks referenced
+  only inside RSC `__next_f` JSON strings (not via `<script>` tags or JS
+  import() statements) are invisible to the mirror's scan. Discover them by
+  regexing the stored HTML + all stored chunks for `/_next/static/chunks/<hex>`
+  and diffing against on-disk files; fetch the missing with the `?dpl=` query
+  and store mangled. Only a clean-browser reload exposes the gap (lazy chunk
+  404 after scroll).
+- **JS-built asset URLs escape HTML rewriting twice over.** The hero hub ring
+  builds `/images/home/complete-control/hub/face-colleague-` + `key` in client
+  JS, so the mirror only stored the `d` variant while the JS also wants `b`.
+  Scan ALL stored chunks (not just the entry) with a regex for `/images/…`
+  (and any other asset root) and fetch every name absent on disk — the base
+  link is only verified to exist, not that every variant is stored.
+- **Verification:** hydrate then full-page scroll; `failures: []` — zero
+  resource 404s, all images loaded. Vision compare hero/mid/footer anchors —
+  rotating hub-ring labels ("Privacy: …", "Enterprise Privacy") and Twin-card
+  captions re-render per load/animation state; treat those as inherent variance,
+  not divergence.
