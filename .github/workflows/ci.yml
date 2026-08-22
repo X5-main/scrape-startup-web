@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax gate (compileall)
+        run: find . -name '*.py' -not -path './.git/*' -print0 | xargs -0 python3 -m compileall
+
+      - name: Import smoke
+        run: python3 scripts/import_smoke.py
+
+      - name: Serve replica smoke
+        run: |
+          python3 serve_replica.py 18899 &
+          PID=$!
+          sleep 1
+          code="$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:18899/)"
+          [ "$code" = "200" ] || { echo "FAIL: GET / returned ${code}"; exit 1; }
+          echo "GET / → 200 OK"
+          code="$(curl -s -X POST -o /dev/null -w '%{http_code}' http://127.0.0.1:18899/some-route)"
+          [ "$code" = "200" ] || { echo "FAIL: POST /some-route returned ${code}"; exit 1; }
+          echo "POST /some-route → 200 OK"
+          code="$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:18899/_next/image?url=%2Ficon0.svg&w=64&q=75')"
+          [ "$code" = "200" ] || { echo "FAIL: GET /_next/image returned ${code}"; exit 1; }
+          echo "GET /_next/image → 200 OK"
+          kill $PID 2>/dev/null || true
+
+      - name: Secrets hygiene
+        run: |
+          if grep -rPnI '(sk-[a-zA-Z0-9]{20,}|api[_-]?key\s*=\s*["\x27][^"\x27]{8,}|password\s*=\s*["\x27][^"\x27]{8,}|token\s*=\s*["\x27][^"\x27]{8,}|SECRET|BEGIN\s+(RSA|DSA|EC|OPENSSH)\s+PRIVATE)' . --exclude-dir=.github --include='*.py' --include='*.md' --include='*.yml' --include='*.yaml' --include='*.json' --include='*.sh'; then
+            echo "FAIL: secrets detected in repo"
+            exit 1
+          fi
+          echo "PASS: no secrets found"
