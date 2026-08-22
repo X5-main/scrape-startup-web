@@ -57,12 +57,15 @@ startup-website library. Ordered by usefulness per effort.
 - **Framework fingerprints** hint at mirroring effort: `/_next/static/*` = Next.js
   (server-rendered → fine), `data-astro-*` = Astro (static-friendly). All else equal,
   prefer Astro/Jekyll/plain-HTML sites over Next.js App Router sites.
- - **Verify sections by anchor, not fraction.** Animated hero counters, rotating
-   job-match cards, and randomized mock percentages re-render differently per load,
-   so two loads legitimately differ (and two worsely, scroll-fraction comparison
-   drifts when scrollHeight differs). Screenshot the same anchoring heading on both
-   pages and compare those frames; treat live-mockup values as non-deterministic.
- - **JS-rendered asset URLs escape HTML rewriting.** Assets injected at runtime
-   (e.g. `/assets/brand-logos/{company}.webp` built in JS) keep their absolute
-   host even after the HTML mirror pass; fetch them from the live site into the
-   same path so the replica is offline-complete.
+- **YC batches are the safest 24-month clock**: batch acceptance (e.g. Summer 2026)
+  always falls inside any rolling window at Demo Day time; amounts are public
+  (standard $500K deal).
+- **Verify sections by anchor, not fraction.** Animated hero counters, rotating
+  job-match cards, and randomized mock percentages re-render differently per load,
+  so two loads legitimately differ (and scroll-fraction comparison drifts when
+  scrollHeight differs). Screenshot the same anchoring heading on both pages and
+  compare those frames; treat live-mockup values as non-deterministic.
+- **JS-rendered asset URLs escape HTML rewriting.** Assets injected at runtime
+  (e.g. `/assets/brand-logos/{company}.webp` built in JS) keep their absolute
+  host even after the HTML mirror pass; fetch them from the live site into the
+  same path so the replica is offline-complete.
