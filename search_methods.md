@@ -365,7 +365,9 @@ startup-website library. Ordered by usefulness per effort.
   → `content-range: bytes 0-1023/10109529`) and confirm the mirrored file's
   exact byte count matches (10,109,529 / 5,422,062 on disk). 14.8 MB of video
   is fine for the repo; a 100 MB+ file would warrant serving from an external
-  host instead.## Framer fragment-ref bug (uplane.com pattern — 9th pick)
+  host instead.
+
+## Framer fragment-ref bug (uplane.com pattern — 9th pick)
 
 - **Pick:** Uplane (uplane.com), $4.5M seed Apr 2026 — Play Ventures + YC +
   others; founded Nov 2025, San Francisco (Business Insider / FinSMEs /
