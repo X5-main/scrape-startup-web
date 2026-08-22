@@ -354,9 +354,10 @@ startup-website library. Ordered by usefulness per effort.
   `document.body.innerText` substring counts on both URLs — it settles OCR
   vs drift in one call. Numbers inside low-contrast banners are unreliable
   OCR input.
-- **Mirror noise:** bundle chunk-names like `assets/@vercel/analytics/server`
-  and `assets/react-router/dom` flagged as MISSING REFERENCED FILES — these
-  are bare import specifiers inside the bundle, not disk refs; nothing in the
-  stored HTML requests them. Page count: 49 mirrored files, 14 HTML pages,
-  13 sitemap URLs all 200, 43 unique asset refs all 200; replica serving on
-  :8906.
+- **Media size guard:** Vite sites can carry big videos — the hero mp4 is
+  10.1 MB, run-agent.mp4 5.4 MB (both under `/assets/`, not root). Probe
+  live sizes with a byte-range GET BEFORE committing (`curl -r 0-1023 -I`
+  → `content-range: bytes 0-1023/10109529`) and confirm the mirrored file's
+  exact byte count matches (10,109,529 / 5,422,062 on disk). 14.8 MB of video
+  is fine for the repo; a 100 MB+ file would warrant serving from an external
+  host instead.
