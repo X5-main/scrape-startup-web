@@ -61,6 +61,12 @@ startup-website library. Ordered by usefulness per effort.
 - **YC batches are the safest 24-month clock**: batch acceptance (e.g. Summer 2026)
   always falls inside any rolling window at Demo Day time; amounts are public
   (standard $500K deal).
+- **Robots.txt & sitemap pre-probe.** Before choosing a Next.js candidate, fetch
+  both. A `robots.txt` with content-signal conditions can mean "no AI scrape" —
+  skip those (spirit-of-use, and they usually pair with anti-bot edge rules).
+  A `sitemap.xml` that returns an HTML app shell (SPA fallback) hides the real
+  page list; the clean ones enumerate every page (use them as the authoritative
+  page manifest — see the Multiplier section for a depth-2 gap it caught).
 - **Verify sections by anchor, not fraction.** Animated hero counters, rotating
   job-match cards, and randomized mock percentages re-render differently per load,
   so two loads legitimately differ (and scroll-fraction comparison drifts when
@@ -224,3 +230,65 @@ startup-website library. Ordered by usefulness per effort.
   live were byte-equal on every DOM figure (24 imgs, 24 loaded after scroll,
   0 broken, 2 videos, `failures: []` besides the external pixel) and vision
   casts matched verbatim on hero / mid / footer anchors.
+## Turbopack v2 sites (multiplier.ai pattern — 7th pick)
+
+- **Sourcing detour — funding wires, not YC API.** This round skipped the YC
+  batch dump and sourced from funding-wire coverage (FinSMEs / TechCrunch /
+  Business Wire) of the current week: seed and pre-seed announcements with
+  explicit dates make the ≤24-month check a byline scan. Two candidates
+  surfaced Aug 19–21 2026: **idler** ($9M seed, Paradigm-led) and **Multiplier**
+  ($6M seed, Lux Capital-led, Aug 21).
+- **Candidates pre-probed before mirroring:**
+  - idler.ai → **REJECTED**: `robots.txt` is restrictive (content-signal
+    conditions on every disallow — no-ai-scrape posture), and `sitemap.xml`
+    returns an HTML app shell (SPA fallback), so the real page manifest is
+    hidden. Also `data-dpl-id` Turbopack with `/_next/static/immutable/*`
+    hashes.
+  - multiplier.ai → **CHOSEN**: `robots.txt` allows everything (`Allow: /`,
+    clean `Sitemap:` line), valid XML sitemap with 8 URLs. SSR home: 75 KB,
+    h1 "AI for asset managers,", h2 "Backed by:"/"One command center",
+    `_next` refs with `?dpl=` queries.
+- **Pick rationale:** Multiplier (multiplier.ai, formerly "WithAI" branding —
+  footer reads "© 2026 WithAI Research, Inc.") — AI data platform for asset
+  managers; $6M seed led by Lux Capital, announced via FinSMEs Aug 21 2026;
+  NYC, YC participant; "Backed by:" strip proves GoAhead Ventures, Rebel Fund,
+  General Advance, Unpopular Ventures plus angels Pete Briger Jr (Fortress
+  Executive Chairman), Jasjeet Sekhon (Google DeepMind CSO), Sandeep Nailwal
+  (Polygon co-founder), Kaz Nejat — all on-site.
+- **Turbopack scheme identical to Twin1, zero infra changes.** Chunk refs are
+  `/_next/static/chunks/<hex>.js?dpl=dpl_AXuZhqQicNCyXzy8UyobSAjre82G`
+  (one deployment id across every ref) → the existing `keep_live_chunk_ref`
+  rewrite-skip + `serve_replica.py` `_dpl_alternatives` serve-mapping handled
+  it unchanged; 105 static refs across all pages, every one 200 through the
+  server. Fonts are `/_next/static/chunks/*.woff2` (Turbopack serves fonts
+  from the chunks dir, not `media/`).
+- **Sitemap-only pages escape a depth-2 mirror.** The 8-page sitemap includes
+  `/blog/multiplier-raises-6-million-to-make-investors-superhuman`, which is
+  NOT linked from the homepage HTML (only from the blog index, one hop deeper
+  than the mirror walked) → the crawler missed it. Fetch sitemap-missing pages
+  directly in mirror-style (same HTML store + per-page chunk ref sweep,
+  `?dpl=` chunks stored mangled). Always diff sitemap URLs against mirrored
+  pages; the sitemap is the authoritative manifest.
+- **Vercel Analytics stub is runtime-injected and must be vendored.** The
+  mirrored HTML contains no `_vercel` ref — Next.js injects
+  `<script src="/_vercel/insights/script.js">` at runtime when it detects the
+  Vercel edge. On the replica this 404s (one window `error` event). The live
+  asset is a 2,495-byte analytics loader at the same relative path — vendor it
+  (`multiplier/_vercel/insights/script.js`) and the error disappears. It is
+  infra-analytics (same class as the Turnstile exception) but cheap and
+  byte-identical, so vendor rather than document.
+- **Verification — byte-equal DOM, near-byte-equal pixels.** Clean Chrome CDP
+  audit: replica and live both report height 3321, h1 "AI for asset managers,
+  built with you", 140 imgs / 67 loaded after full scroll / 0 broken,
+  `failures: []`, `uncaught: []`. Pixel bands: bottom band md5-identical;
+  mid band 0.0026% differing bytes; hero band 1.04% differing bytes confined to
+  the right-edge viewport clip + animation frame (animated hero canvas) —
+  vision casts read both bands verbatim (identical nav/five backer rows, same
+  truncated right-edge "Kaz Nejat" card in both). Treat animation-frame diffs
+  ≤ ~1% of bytes as inherent; vision equality of anchors is the pass criteria.
+- **Mirror noise:** crawl logged `/2400`, `/800` and `'Multiplier — AI for
+  asset managers'` URL-control-character errors — same malformed og-meta
+  emissions seen on Forward (`/1200`, `/630`, spaced social-preview URLs);
+  nothing in stored HTML references them. The trailing `missing: …/,q=`
+  report line traces to no on-disk HTML ref — mirror-internal parse artifact
+  of a chunk string, no impact.
