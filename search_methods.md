@@ -365,4 +365,62 @@ startup-website library. Ordered by usefulness per effort.
   → `content-range: bytes 0-1023/10109529`) and confirm the mirrored file's
   exact byte count matches (10,109,529 / 5,422,062 on disk). 14.8 MB of video
   is fine for the repo; a 100 MB+ file would warrant serving from an external
-  host instead.
+  host instead.## Framer fragment-ref bug (uplane.com pattern — 9th pick)
+
+- **Pick:** Uplane (uplane.com), $4.5M seed Apr 2026 — Play Ventures + YC +
+  others; founded Nov 2025, San Francisco (Business Insider / FinSMEs /
+  TheSaaSnews). Framer site with `data-framer-hydrate-v2` routeId,
+  `framerusercontent.com` + `static.framer.com` asset hosts, robots
+  `Allow: /`, 12-URL sitemap (incl. junk `old/old-home-2` + `success-popup`).
+- **Framer inline SVG icon system runs on fragment refs.** Icons render via
+  `<use href="#svg-9..._660">`/`<use href="#svg-5..._197">` pointing at
+  `<symbol id="svg-...">` blocks embedded in the SAME document. Those fragment
+  URLs MUST survive the mirror verbatim — touching them breaks every icon
+  silently (no network request, no console error, no 404).
+- **URL-rewrite guard bug (fixed in `mirror_site.py`):** the HTML attr filter
+  only skipped `raw == "#"`, not all `raw.startswith("#")`. A `<use
+  href="#svg-...">` became `https://uplane.com/#svg-...` → parsed as an
+  HTML-like page → enqueued as a page → on recrawl the same bare fragment was
+  rewritten to `rel_to(abs_url, base)` = `index.html` (the fragment dropped
+  in both hops). Symptom: every `<use>` pointed at `href="index.html"`;
+  `#svg-...` symbols lost. Fix: single guard
+  `if raw.startswith(("#", "mailto:", "tel:", "data:", "javascript:")): continue`
+  before `abs_url = ...`. Check the loop header survived — one edit run
+  deleted the `for raw, attr in finder.urls:` line (verify with a fresh read,
+  never the diff).
+- **The reliable detection signal is window 'error' capture, not HTTP.**
+  Broken `<use>` refs emit NO Network.responseReceived >=400, NO Log.error,
+  NO Runtime.exception — the browser treats the fetch of `index.html` as a
+  normal document. Only a pre-navigation injected
+  `window.addEventListener('error')` recorder (reports tagName + href/src
+  attr) sees them (`/tmp/up_evtcap.mjs`: 8 x `use href="index.html"` on the
+  old mirror, zero after the fix). Same technique generalizes to any
+  resource-class failure that never hits the network layer.
+- **Paired audits must use the SAME mode on both sides.** First Uplane audit
+  ran `audit` (replica) vs `live` (live) — the replica SCROLLED count stuck
+  at 34 and looked like a lazy-load gap; rerunning replica with `audit` too
+  reached 50/50, byte-equal to live. Mixed modes produced a spurious delta.
+- **Node 22 undici WebSocket recipe:** `npm i ws` on a mac can resolve to a
+  bundless WS with no `.on` — use the Node 22 global `WebSocket` with
+  `ws.addEventListener('message', ...)` (register a second listener for a
+  second handler; `ws.onopen =`/`ws.onerror =` assignments do work).
+- **Sitemap junk pages merge:** sitemap lists `old/old-home-2` (junk) and
+  `success-popup` — fetch each via depth-1 mirrors into throwaway dirs and
+  `rsync -a --ignore-existing` the new files in (same procedure as the
+  sitemap-gap fix on Multiplier). Live site also carries a `carrees` typo in
+  blog pages — site-inherent, mirrored as-is.
+- **Verification (post-fix, byte-identical):** clean Chrome CDP audit, same
+  mode both sides — replica and live both height 6723, h1 "Full funnel AI
+  marketing automation platform", 4 h2, 50 imgs (34 eager → 50 loaded after
+  full scroll) / 0 broken, 1 hero video, `failures: []`, `uncaught: []`.
+  Relay-band vision (top/mid/footer in David's real Chrome, background tabs)
+  reads both sites verbatim — nav, hero, DB/Enpal/Aonic logo row, "AI
+  marketing automation for the entire funnel. End-to-end." features, diagram
+  nodes, footer columns + funding block (EXIST/EU), X + LinkedIn glyphs
+  solid — icon rendering is the Uplane pass criteria, and it passes.
+- **Nex retro-fix:** the same bug had mangled the 3rd pick's `<use
+  href="#svg-...">` refs to `index.html` (26 uses). Re-mirroring nex.ai with
+  the fixed script produced 259 files, zero `index.html` use-refs; CDP audit
+  byte-equal to live on every metric (height 7057, 40/40 imgs loaded, h1
+  "Hire your first") incl. the same vendor chatbot `b2bjsstore...js.gz` error
+  on BOTH sites — proven live-inherent, external-only ref.

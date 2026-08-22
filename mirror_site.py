@@ -262,7 +262,7 @@ class Mirror:
 
         rewrite = []
         for raw, attr in finder.urls:
-            if raw.startswith(("mailto:", "tel:", "data:", "javascript:")) or raw == "#":
+            if raw.startswith(("#", "mailto:", "tel:", "data:", "javascript:")):
                 continue
             abs_url = self.absolute(base, raw)
             if not self.allowed(abs_url):
