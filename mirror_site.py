@@ -167,6 +167,25 @@ class Mirror:
             url_path_key(abs_url), os.path.dirname(url_path_key(page_url))
         ).replace(os.sep, "/")
 
+    def _rewrite_srcset(self, m, page_url):
+        """Reparse one srcset="..." value, rewriting allowed candidates."""
+        q = '"' if m.group(2) is not None else "'"
+        val = m.group(2) if m.group(2) is not None else m.group(3)
+        out = []
+        for part in val.split(","):
+            s = part.strip()
+            if not s:
+                continue
+            toks = s.split()
+            cand = html.unescape(toks[0])
+            abs_c = self.absolute(page_url, cand)
+            if self.allowed(abs_c):
+                rest = " " + " ".join(toks[1:]) if len(toks) > 1 else ""
+                out.append(self.rel_to(abs_c, page_url) + rest)
+            else:
+                out.append(s)
+        return "srcset=" + q + ", ".join(out) + q
+
     # ---- asset discovery ----------------------------------------------
     def queue_css_refs(self, url, text):
         """CSS url() refs -> allowed assets."""
@@ -218,21 +237,25 @@ class Mirror:
 
         # rewrite HTML for offline browsing: href/src/srcset -> relative paths.
         # Attribute-context replacement ONLY: plain text.replace is unsafe with
-        # prefix-colliding raws (e.g. "./" also prefixes "./pricing"), which
-        # corrupted every relative link on Framer sites. Quoted forms cover both
-        # entity spellings (&amp; vs &) because HTMLParser unescapes.
+        # prefix-colliding raws (e.g. "./" also prefixes "./pricing", and a
+        # candidate "X.png" is a substring of its own "X.png?w=2000" srcset
+        # variant). srcset values are reparsed candidate-by-candidate instead.
+        # HTMLParser entity-decodes raw URLs, so the file may hold the &amp;
+        # spelling: replace BOTH the decoded and the escaped attribute value.
         for raw, attr, abs_url in rewrite:
             rel = self.rel_to(abs_url, url)
-            if attr in ("href", "src", "poster", "action", "data-src", "data-href"):
-                for q in ('"', "'"):
-                    text = text.replace(attr + "=" + q + raw + q, attr + "=" + q + rel + q)
+            if attr == "srcset":
+                escaped = re.compile(
+                    r"srcset\s*=\s*(\"([^\"]*)\"|'([^']*)')", re.S)
+                text = escaped.sub(
+                    lambda m: self._rewrite_srcset(m, url), text)
             else:
-                # srcset/meta: plain replacement, guarded against raws that are
-                # a path-prefix of another raw (longest first, no partial hits)
-                other = [r for r, _a, _u in rewrite if r != raw]
-                if not any(r.startswith(raw + "/") for r in other):
-                    text = text.replace(raw, rel)
-                    text = text.replace(raw.replace("&", "&amp;"), rel.replace("&", "&amp;"))
+                attr_name = "content" if attr == "meta" else attr
+                for q in ('"', "'"):
+                    for cand in ({raw, raw.replace("&", "&amp;")}):
+                        text = text.replace(
+                            attr_name + "=" + q + cand + q,
+                            attr_name + "=" + q + rel + q)
 
         # inline <style> blocks: rewrite url() refs to allowed assets
         for block in STYLE_BLOCK_RE.findall(text):
