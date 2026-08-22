@@ -127,11 +127,13 @@ startup-website library. Ordered by usefulness per effort.
   clicking through rather than scanning chunks.
 - **Page-height deltas (936 vs 1170) are hydration artifacts.** Screenshot timing
   vs hydration changes rendered height ~20%; compare at anchors, not total height.
-- **Relay CDP targeting on this workstation (no browser tool in session):**
-  - `ws://127.0.0.1:9224/cdp` is a BROWSER-level endpoint: `Target.createTarget`,
-    `Target.attachToTarget {flatten:true}`, `Target.closeTarget`, `Page.*`,
-    `Runtime.evaluate` all work; `Target.getTargets` is NOT exposed; the HTTP
-    `/json/new` is 405/404 and `/json/list` exposes no per-target ws URLs.
+  - But when the session DOES expose the browser device (`xd://browser`), the
+    relay is supported natively: `open {url, app:{relay:true}, name}` reuses the
+    relay daemon on 9224, and `run` with `tab.evaluate` asserts DOM (h1, broken
+    image count, external href leaks) — no raw CDP needed. Proof of parity:
+    replica home via browser device: 7 imgs / 0 broken / 0 external hrefs,
+    theme oklch(0.115 0.015 254), title+h1 exact ("Conifer · Run AI locally,
+    route the rest").
   - Deterministic computer-use capture: `Target.createTarget {url, newWindow:true}`
     the URL, find the window via `desktop.windows()` title-match, then re-navigate
     the same tab (`Page.navigate` on the saved session) between live and replica,
