@@ -269,14 +269,19 @@ startup-website library. Ordered by usefulness per effort.
   directly in mirror-style (same HTML store + per-page chunk ref sweep,
   `?dpl=` chunks stored mangled). Always diff sitemap URLs against mirrored
   pages; the sitemap is the authoritative manifest.
-- **Vercel Analytics stub is runtime-injected and must be vendored.** The
+- **Vercel Analytics stub is runtime-injected — vendor it as a NO-OP, not the live file.** The
   mirrored HTML contains no `_vercel` ref — Next.js injects
   `<script src="/_vercel/insights/script.js">` at runtime when it detects the
-  Vercel edge. On the replica this 404s (one window `error` event). The live
-  asset is a 2,495-byte analytics loader at the same relative path — vendor it
-  (`multiplier/_vercel/insights/script.js`) and the error disappears. It is
-  infra-analytics (same class as the Turnstile exception) but cheap and
-  byte-identical, so vendor rather than document.
+  Vercel edge. On the replica this 404s (one window `error` event). Two options,
+  and the stub wins: the live 2,495-byte asset is the Web Analytics / Insights
+  loader, which beacons `view/event/session` to `/_vercel/insights` keyed off
+  `location.href` — serving the replica phones home with replica page paths and
+  pollutes the company's real analytics. The runtime only requires the 200 load
+  (that's what suppresses the error), and Multiplier's own JS never references
+  the analytics object — so write a documented no-op of valid JS to the same
+  relative path. Git history preserves the live bytes for provenance. If the
+  live loader is absent, the raw HTML is untouched — the ref is entirely
+  runtime-injected.
 - **Verification — byte-equal DOM, near-byte-equal pixels.** Clean Chrome CDP
   audit: replica and live both report height 3321, h1 "AI for asset managers,
   built with you", 140 imgs / 67 loaded after full scroll / 0 broken,
