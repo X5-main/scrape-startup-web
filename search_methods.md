@@ -295,5 +295,68 @@ startup-website library. Ordered by usefulness per effort.
   asset managers'` URL-control-character errors — same malformed og-meta
   emissions seen on Forward (`/1200`, `/630`, spaced social-preview URLs);
   nothing in stored HTML references them. The trailing `missing: …/,q=`
-  report line traces to no on-disk HTML ref — mirror-internal parse artifact
-  of a chunk string, no impact.
+## Vite-built SPA sites (ellis.ai pattern — 8th pick)
+
+- **Sourcing — fresh funding wires again.** This round's wire scan
+  (TechCrunch / FinSMEs, late Jul 2026) surfaced Fish Audio ($52M seed),
+  **Ellis ($10M seed, Jul 31 2026)** and Smallest.ai ($13M voice). Ellis was
+  the freshest high-quality pick: AI agents for private credit managers,
+  founded by repeat founder Ryan Williams (ex-Cadre → Yieldstreet); investors
+  First Round, Khosla, Thrive, 645 Ventures, Harlem Capital. The site proves
+  the round itself — client-rendered top banner "Ellis launches with $10M+ …"
+  with a FUNDING tag, plus press page "Ellis Emerges From Stealth With $10M+".
+- **F26 funnel probes before the pick:** herdr.dev (200, clean robots), then
+  qokedas.com REJECTED (robots.txt carries content-signal conditions — same
+  no-ai-posture as idler), covera-agents.com / capveon.ai (Next.js, ok but
+  less fresh). Domain probe: ellisai.com dead, but **ellis.ai → www.ellis.ai**
+  live with 89 KB SSR, h1 "Run private credit on one trusted book."
+- **Robots posture respected:** `robots.txt` is `Allow: /` except
+  `/case-studies$` and `/security` — neither path is in the 13-URL sitemap,
+  but `/case-studies` IS linked from the nav, so the depth-2 crawler fetched
+  it; **delete the disallowed dirs after mirroring** (`rm -rf ellis/case-studies`).
+  `/security` was never linked → never fetched. Mirror = sitemap manifest
+  (13 URLs) + nav links, minus disallowed paths.
+- **Vite build signature — cleanest mirror class since Astro.** No Next.js,
+  no Turbopack: flat named files `/assets/index-DMz-lij0.js` +
+  `/assets/index-dc4S04U_.css`, `/fonts/berlingske-serif.css`, plain
+  root-relative refs, **no `?dpl=`/query-token scheme** → the crawler stores
+  files as-is and the stock server serves them; zero `keep_live_chunk_ref` /
+  `_dpl_alternatives` mapping. Data-ish assets are simply files too
+  (`3c22bde3c2.png`, `ellis-launch-r2-1080p-web-audio.mp4` hero video,
+  `ryan-williams-headshot-2.jpg`).
+- **Client-rendered content in the shipped bundle — mirror it as-is.** The h1
+  hero is SSR'd into the HTML, but the funding banner, section content
+  ("03 / RUN THE FUND"), tables and carousels render from a data payload in
+  the single bundle. Because the mirror stores that bundle verbatim, the
+  replica's client render is byte-identical — no HTML patching needed, and
+  content updates on the live side land in the bundle hash (not a fetch).
+- **@vercel/analytics is BUNDLED in this build (unlike Next.js runtime
+  injection).** The Vite bundle inlines the Vercel analytics injector
+  (`/assets/index-*.js` contains the script-tag emitter for
+  `/_vercel/insights/script.js` and beacon endpoints) — booting the replica
+  without the file yields a 404 + error event, like Multiplier. Pre-empt the
+  same way: write the no-op stub to `ellis/_vercel/insights/script.js`
+  (needed only as a 200; bundle code never touches the analytics object).
+- **Verification — byte-equal DOM; vision via relay captures.** Clean Chrome
+  CDP audit: replica and live both height 6380, h1 "Run private credit on one
+  trusted book.", 6 h2, 9 imgs / 9 loaded after full scroll / 0 broken, 1
+  hero video, `failures: []`, `uncaught: []`. Vision casts came from
+  **relay-tab screenshots in David's real Chrome** (background tab, no focus
+  theft — never `.raise()`/activate to capture) at identical window geometry,
+  top and 45%-scroll bands; both read verbatim: banner "…$10M+…", nav,
+  hero headline/sub/CTAs, sound-off toggle, section 3 bullets, table, agent
+  overlay. 
+- **Two vision misreads this round — check with a DOM text probe before
+  trusting casts.** (1) Both captures read the dark banner as "$18M+" when the
+  bundle + DOM say "$10M+" (OCR "1"→"8" on dark bg); (2) live cast read
+  "Valuations, forecasts" where both DOMs contain only "Reports, forecasts".
+  When vision and expectation disagree on a rendered text string, run
+  `document.body.innerText` substring counts on both URLs — it settles OCR
+  vs drift in one call. Numbers inside low-contrast banners are unreliable
+  OCR input.
+- **Mirror noise:** bundle chunk-names like `assets/@vercel/analytics/server`
+  and `assets/react-router/dom` flagged as MISSING REFERENCED FILES — these
+  are bare import specifiers inside the bundle, not disk refs; nothing in the
+  stored HTML requests them. Page count: 49 mirrored files, 14 HTML pages,
+  13 sitemap URLs all 200, 43 unique asset refs all 200; replica serving on
+  :8906.
