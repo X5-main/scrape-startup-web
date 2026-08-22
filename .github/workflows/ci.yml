@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Syntax gate (compileall)
         run: find . -name '*.py' -not -path './.git/*' -print0 | xargs -0 python3 -m compileall
