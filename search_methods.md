@@ -189,3 +189,38 @@ startup-website library. Ordered by usefulness per effort.
   rotating hub-ring labels ("Privacy: …", "Enterprise Privacy") and Twin-card
   captions re-render per load/animation state; treat those as inherent variance,
   not divergence.
+## Astro sites (useforward.co pattern — Forward)
+
+- **Pick:** Forward (useforward.co), YC F26 (Fall 2026), SF + Sydney/LA/NY;
+  AI-native private-credit origination ("Origination Made Easy"). Funding:
+  standard YC batch deal + pre-seed from NextGen Ventures, Startmate, Lyra
+  Capital (per company LinkedIn). F26 acceptance date ≪ 24 months today —
+  batch-membership funding evidence stands alone.
+- **Site is Astro** (`data-astro-*` attributes, `/_astro/*.css` hashed chunks,
+  no client JS of consequence: 1 external `<script>`, zero module scripts).
+  Server-rendered static — the easiest mirror class: no hydration, no
+  framework-runtime chunk-key logic. Every nav page (company, careers +
+  per-role pages, contact, privacy, terms) is a self-contained HTML file;
+  `--depth 2` mirrored all of them plus shared `_astro/` CSS, images, logos,
+  and `videos/hero.mp4` + `product-overview.mp4` in one pass.
+- **Astro quirk — images + media are plain relative refs** (`src="logos/…"`,
+  `poster` and `<video src>`), so the existing relative-link rewriting handles
+  them; no query-token or Turbopack-style URL scheme. `og:image` is a plain
+  relative `images/og/forward-og.png` — mirrored fine.
+- **Mirror noise to ignore:** crawl logged 404s for `/image/png`, `/1200`,
+  `/630` and "social preview" URLs containing spaces — these come from
+  og-meta content the site emits (malformed/never-served live too); nothing in
+  the page HTML references them. A `/_astro/%23n` missing ref traces to an
+  inline anchor-style URL — no HTML references it on disk.
+- **External-only refs (not vendorable, degrade gracefully):** Cloudflare
+  Turnstile captcha API (`challenges.cloudflare.com/turnstile/v0/api.js`) on
+  the demo-request form, and the `aplo-evnt.com` intent-pixel beacon. The
+  pixel hard-400s under a captive/origin-mismatched request (server-side
+  referrer check); zero effect on rendering (no uncaught errors, no layout
+  shift). Live and replica parse to byte-equal DOM numbers (same h1/h2/img
+  counts, identical scrollHeight 6626).
+- **Verification recipe that ported unchanged from Twin1:** clean Chrome CDP
+  pre-navigation failure hook → load → scroll-through → re-probe. Replica vs
+  live were byte-equal on every DOM figure (24 imgs, 24 loaded after scroll,
+  0 broken, 2 videos, `failures: []` besides the external pixel) and vision
+  casts matched verbatim on hero / mid / footer anchors.
