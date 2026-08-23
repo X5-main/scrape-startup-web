@@ -1,0 +1,9 @@
+verialabs.com — mirrored 2026-08-24 (D29) via mirror_site.py (depth 3, sitemap auto, asset host gravatar.com) into veria/. Site is Astro static (SSR HTML; assets under _astro/, no runtime fetch of content). Sitemap sitemap-index.xml -> sitemap-0.xml (19 URLs: 10 blog/research posts incl. hacking-a16z, pwning-pydantic-monty, porting-pydantic-sandbox-escape; /challenge/, /porsche/, /contact/). robots.txt allow-all. 33 HTML files, 4.2 MB, served via serve_replica.py on 8927.
+
+Externals / deviations:
+- Author gravatar avatars (gravatar.com) VENDORED to avatar/<hash>/index__size-256.html (256x256 PNG, broken-image dummy kept for hash-keyed misses).
+- 2 YouTube embeds (youtube-nocookie.com, blog/from-mcp-to-shell) stay EXTERNAL by policy (same class as fabraix Google Fonts).
+- posthog + Cloudflare Web Analytics scripts EXCLUDED (analytics only).
+- Live-404s replicated as-is: /privacy/, /api/logo?type=*, /api/challenge-interest, /safari-pinned-tab.svg (parity, not gaps).
+
+Ghost-cache incident (D29 lesson): first crawl vendored a stale Cloudflare-edge Next.js shell at /contact/ ("Intro | Veria Labs", 451 _next/static/chunks/ refs). All _next refs 404 on live too (fresh requests return true Astro page, identical for UA/Accept variants). Root cause = edge cache served an old build during the crawl window, not a live rewrite. Fixed by idempotent re-crawl; byte-length spot-check vs fresh live fetch is now standard post-crawl practice.
