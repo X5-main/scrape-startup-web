@@ -1,0 +1,612 @@
+<!DOCTYPE html><html lang="en"><head><script src="https://www.redditstatic.com/ads/pixel.js" async=""></script><script async="" src="../../b/4O7Z0HED5ZNX/4O7Z0HED5ZNX.js.gz"></script><script src="https://www.redditstatic.com/ads/pixel.js" async=""></script><script async="" src="../../b/4O7Z0HED5ZNX/4O7Z0HED5ZNX.js.gz"></script><script>!function(){if(!0!==navigator.globalPrivacyControl){var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-YRYYNKHQWW",document.head.appendChild(e),window.dataLayer=window.dataLayer||[],window.gtag=t,t("js",new Date),t("config","G-YRYYNKHQWW"),function(e){if(!window.reb2b){window.reb2b={loaded:!0};var t=document.createElement("script");t.async=!0,t.src="https://ddwl4m2hdecbv.cloudfront.net/b/"+e+"/"+e+".js.gz",document.getElementsByTagName("script")[0].parentNode.insertBefore(t,document.getElementsByTagName("script")[0])}}("4O7Z0HED5ZNX"),function(e,t){if(!e.rdt){var a=e.rdt=function(){a.sendEvent?a.sendEvent.apply(a,arguments):a.callQueue.push(arguments)};a.callQueue=[];var n=t.createElement("script");n.src="https://www.redditstatic.com/ads/pixel.js",n.async=!0;var r=t.getElementsByTagName("script")[0];r.parentNode.insertBefore(n,r)}}(window,document),rdt("init","a2_ieltihfxxnok"),rdt("track","PageVisit")}function t(){dataLayer.push(arguments)}}()</script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YRYYNKHQWW"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YRYYNKHQWW"></script><meta charset="utf-8"><link rel="icon" href="../../fabriq-logo.png"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="description" content="Agentic Fabriq - Plug in agents. Pass in tools. Built-in security."><link rel="apple-touch-icon" href="../../fabriq-logo.png"><link rel="manifest" href="../../manifest.json"><title>A Field Guide to Planning Algorithms for Agents — Agentic Fabriq</title><script defer="defer" src="../../static/js/main.a5e71cb8.js"></script><link href="../../static/css/main.b6f34751.css" rel="stylesheet"><link rel="canonical" href="https://www.agenticfabriq.com/"><meta property="og:type" content="website"><meta property="og:title" content="Agentic Fabriq — Identity and Permissioning for AI Agents"><meta property="og:description" content="Agentic Fabriq is the identity and permissioning layer for AI agents. Per-agent identity, least-privilege access, full audit logs, and one-click revocation across MCP, OAuth, and agent frameworks. Drop-in with Okta, Azure AD, and Google Workspace."><meta property="og:url" content="https://www.agenticfabriq.com/"><meta property="og:image" content="https://www.agenticfabriq.com/fabriq-logo.png"><meta property="og:site_name" content="Agentic Fabriq"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Agentic Fabriq — Identity and Permissioning for AI Agents"><meta name="twitter:description" content="Agentic Fabriq is the identity and permissioning layer for AI agents. Per-agent identity, least-privilege access, full audit logs, and one-click revocation across MCP, OAuth, and agent frameworks. Drop-in with Okta, Azure AD, and Google Workspace."><meta name="twitter:image" content="https://www.agenticfabriq.com/fabriq-logo.png"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"><div class="min-h-screen relative" style="background-color: rgb(249, 247, 244);"><div class="relative z-[2]"><svg class="absolute inset-0 pointer-events-none " width="814" height="616" viewBox="0 0 814 616" preserveAspectRatio="none" aria-hidden="true"><g stroke="rgba(0,0,0,0.0)" stroke-width="0.75" shape-rendering="crispEdges"><line x1="0" y1="0" x2="0" y2="616"></line><line x1="22" y1="0" x2="22" y2="616"></line><line x1="44" y1="0" x2="44" y2="616"></line><line x1="66" y1="0" x2="66" y2="616"></line><line x1="88" y1="0" x2="88" y2="616"></line><line x1="110" y1="0" x2="110" y2="616"></line><line x1="132" y1="0" x2="132" y2="616"></line><line x1="154" y1="0" x2="154" y2="616"></line><line x1="176" y1="0" x2="176" y2="616"></line><line x1="198" y1="0" x2="198" y2="616"></line><line x1="220" y1="0" x2="220" y2="616"></line><line x1="242" y1="0" x2="242" y2="616"></line><line x1="264" y1="0" x2="264" y2="616"></line><line x1="286" y1="0" x2="286" y2="616"></line><line x1="308" y1="0" x2="308" y2="616"></line><line x1="330" y1="0" x2="330" y2="616"></line><line x1="352" y1="0" x2="352" y2="616"></line><line x1="374" y1="0" x2="374" y2="616"></line><line x1="396" y1="0" x2="396" y2="616"></line><line x1="418" y1="0" x2="418" y2="616"></line><line x1="440" y1="0" x2="440" y2="616"></line><line x1="462" y1="0" x2="462" y2="616"></line><line x1="484" y1="0" x2="484" y2="616"></line><line x1="506" y1="0" x2="506" y2="616"></line><line x1="528" y1="0" x2="528" y2="616"></line><line x1="550" y1="0" x2="550" y2="616"></line><line x1="572" y1="0" x2="572" y2="616"></line><line x1="594" y1="0" x2="594" y2="616"></line><line x1="616" y1="0" x2="616" y2="616"></line><line x1="638" y1="0" x2="638" y2="616"></line><line x1="660" y1="0" x2="660" y2="616"></line><line x1="682" y1="0" x2="682" y2="616"></line><line x1="704" y1="0" x2="704" y2="616"></line><line x1="726" y1="0" x2="726" y2="616"></line><line x1="748" y1="0" x2="748" y2="616"></line><line x1="770" y1="0" x2="770" y2="616"></line><line x1="792" y1="0" x2="792" y2="616"></line><line x1="814" y1="0" x2="814" y2="616"></line><line x1="0" y1="0" x2="814" y2="0"></line><line x1="0" y1="22" x2="814" y2="22"></line><line x1="0" y1="44" x2="814" y2="44"></line><line x1="0" y1="66" x2="814" y2="66"></line><line x1="0" y1="88" x2="814" y2="88"></line><line x1="0" y1="110" x2="814" y2="110"></line><line x1="0" y1="132" x2="814" y2="132"></line><line x1="0" y1="154" x2="814" y2="154"></line><line x1="0" y1="176" x2="814" y2="176"></line><line x1="0" y1="198" x2="814" y2="198"></line><line x1="0" y1="220" x2="814" y2="220"></line><line x1="0" y1="242" x2="814" y2="242"></line><line x1="0" y1="264" x2="814" y2="264"></line><line x1="0" y1="286" x2="814" y2="286"></line><line x1="0" y1="308" x2="814" y2="308"></line><line x1="0" y1="330" x2="814" y2="330"></line><line x1="0" y1="352" x2="814" y2="352"></line><line x1="0" y1="374" x2="814" y2="374"></line><line x1="0" y1="396" x2="814" y2="396"></line><line x1="0" y1="418" x2="814" y2="418"></line><line x1="0" y1="440" x2="814" y2="440"></line><line x1="0" y1="462" x2="814" y2="462"></line><line x1="0" y1="484" x2="814" y2="484"></line><line x1="0" y1="506" x2="814" y2="506"></line><line x1="0" y1="528" x2="814" y2="528"></line><line x1="0" y1="550" x2="814" y2="550"></line><line x1="0" y1="572" x2="814" y2="572"></line><line x1="0" y1="594" x2="814" y2="594"></line><line x1="0" y1="616" x2="814" y2="616"></line></g></svg></div><nav class="fixed top-0 w-full z-50 border-b transition-shadow duration-300" style="background: rgba(255, 255, 255, 0.72); backdrop-filter: blur(12px); border-color: rgb(236, 238, 241); box-shadow: rgba(20, 28, 48, 0.04) 0px 1px 0px, rgba(20, 28, 48, 0.25) 0px 8px 24px -20px;"><div class="w-full px-5 sm:px-8"><div class="grid grid-cols-[1fr_auto_1fr] items-center h-16"><div class="flex items-center justify-start"><a class="flex items-center gap-2.5" href="../../index.html" data-discover="true"><img alt="Agentic Fabriq" class="w-7 h-7 object-contain" src="../../fabriq-logo-mark.png"><span class="hp-space font-semibold text-[16px] text-[#0A0A0A]">Agentic Fabriq</span></a></div><div class="hidden md:flex items-center justify-center gap-8"><a class="hp-navlink hp-sans text-[14.5px] font-medium " href="../../index.html" data-discover="true">Home</a><div class="relative"><button type="button" aria-expanded="false" aria-haspopup="menu" class="hp-navlink hp-sans inline-flex items-center gap-1 text-[14.5px] font-medium ">Product<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div><div class="relative"><a aria-expanded="false" aria-haspopup="menu" class="hp-navlink hp-sans inline-flex items-center gap-1 text-[14.5px] font-medium " href="../../solutions/index.html" data-discover="true">Solutions<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></a></div><a class="hp-navlink hp-sans text-[14.5px] font-medium " href="../../integrations/index.html" data-discover="true">Integrations</a><a class="hp-navlink hp-sans text-[14.5px] font-medium " href="../../pricing/index.html" data-discover="true">Pricing</a><a class="hp-navlink hp-sans text-[14.5px] font-medium " href="../index.html" data-discover="true">Blog</a></div><div class="hidden md:flex items-center justify-end gap-2.5"><a class="hp-btn-grad-border hp-mono text-[12.5px] font-medium tracking-[0.04em] text-[#0A0A0A] px-4 py-2" href="../../index.html" data-discover="true">Get a demo</a><a href="https://dashboard.agenticfabriq.com" class="hp-mono rounded-lg px-4 py-2 text-[12.5px] font-semibold tracking-[0.04em]" style="background: rgb(10, 10, 10); color: rgb(255, 255, 255); text-decoration: none;">Start now</a></div><div class="md:hidden col-start-3 flex justify-end"><button class="text-[#5A6072] hover:text-[#0A0A0A] focus:outline-none" aria-label="Toggle menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 12h16"></path><path d="M4 18h16"></path><path d="M4 6h16"></path></svg></button></div></div></div></nav><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A Field Guide to Planning Algorithms for Agents","description":"CoT, ToT, GoT, ReAct, PAL, and multi-stage planners — compared, stress-tested, and implemented.","url":"https://www.agenticfabriq.com/blog/planning-algorithms-for-agents","datePublished":"2026-04-16","dateModified":"2026-04-16","author":{"@type":"Person","name":"Paulina Xu"},"publisher":{"@type":"Organization","name":"Agentic Fabriq","logo":{"@type":"ImageObject","url":"https://www.agenticfabriq.com/fabriq-logo.png"}},"image":"https://www.agenticfabriq.com/fabriq-logo.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.agenticfabriq.com/blog/planning-algorithms-for-agents"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.agenticfabriq.com/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.agenticfabriq.com/blog"},{"@type":"ListItem","position":3,"name":"A Field Guide to Planning Algorithms for Agents","item":"https://www.agenticfabriq.com/blog/planning-algorithms-for-agents"}]}</script><div class="min-h-screen relative" style="background-color: rgb(251, 251, 250);"><div class="grain-overlay" style="position: absolute; inset: 0px; z-index: 0;"></div><svg class="absolute inset-0 pointer-events-none z-[1]" width="814" height="616" viewBox="0 0 814 616" preserveAspectRatio="none" aria-hidden="true"><g stroke="rgba(0,0,0,0.06)" stroke-width="0.75" shape-rendering="crispEdges"><line x1="0" y1="0" x2="0" y2="616"></line><line x1="22" y1="0" x2="22" y2="616"></line><line x1="44" y1="0" x2="44" y2="616"></line><line x1="66" y1="0" x2="66" y2="616"></line><line x1="88" y1="0" x2="88" y2="616"></line><line x1="110" y1="0" x2="110" y2="616"></line><line x1="132" y1="0" x2="132" y2="616"></line><line x1="154" y1="0" x2="154" y2="616"></line><line x1="176" y1="0" x2="176" y2="616"></line><line x1="198" y1="0" x2="198" y2="616"></line><line x1="220" y1="0" x2="220" y2="616"></line><line x1="242" y1="0" x2="242" y2="616"></line><line x1="264" y1="0" x2="264" y2="616"></line><line x1="286" y1="0" x2="286" y2="616"></line><line x1="308" y1="0" x2="308" y2="616"></line><line x1="330" y1="0" x2="330" y2="616"></line><line x1="352" y1="0" x2="352" y2="616"></line><line x1="374" y1="0" x2="374" y2="616"></line><line x1="396" y1="0" x2="396" y2="616"></line><line x1="418" y1="0" x2="418" y2="616"></line><line x1="440" y1="0" x2="440" y2="616"></line><line x1="462" y1="0" x2="462" y2="616"></line><line x1="484" y1="0" x2="484" y2="616"></line><line x1="506" y1="0" x2="506" y2="616"></line><line x1="528" y1="0" x2="528" y2="616"></line><line x1="550" y1="0" x2="550" y2="616"></line><line x1="572" y1="0" x2="572" y2="616"></line><line x1="594" y1="0" x2="594" y2="616"></line><line x1="616" y1="0" x2="616" y2="616"></line><line x1="638" y1="0" x2="638" y2="616"></line><line x1="660" y1="0" x2="660" y2="616"></line><line x1="682" y1="0" x2="682" y2="616"></line><line x1="704" y1="0" x2="704" y2="616"></line><line x1="726" y1="0" x2="726" y2="616"></line><line x1="748" y1="0" x2="748" y2="616"></line><line x1="770" y1="0" x2="770" y2="616"></line><line x1="792" y1="0" x2="792" y2="616"></line><line x1="814" y1="0" x2="814" y2="616"></line><line x1="0" y1="0" x2="814" y2="0"></line><line x1="0" y1="22" x2="814" y2="22"></line><line x1="0" y1="44" x2="814" y2="44"></line><line x1="0" y1="66" x2="814" y2="66"></line><line x1="0" y1="88" x2="814" y2="88"></line><line x1="0" y1="110" x2="814" y2="110"></line><line x1="0" y1="132" x2="814" y2="132"></line><line x1="0" y1="154" x2="814" y2="154"></line><line x1="0" y1="176" x2="814" y2="176"></line><line x1="0" y1="198" x2="814" y2="198"></line><line x1="0" y1="220" x2="814" y2="220"></line><line x1="0" y1="242" x2="814" y2="242"></line><line x1="0" y1="264" x2="814" y2="264"></line><line x1="0" y1="286" x2="814" y2="286"></line><line x1="0" y1="308" x2="814" y2="308"></line><line x1="0" y1="330" x2="814" y2="330"></line><line x1="0" y1="352" x2="814" y2="352"></line><line x1="0" y1="374" x2="814" y2="374"></line><line x1="0" y1="396" x2="814" y2="396"></line><line x1="0" y1="418" x2="814" y2="418"></line><line x1="0" y1="440" x2="814" y2="440"></line><line x1="0" y1="462" x2="814" y2="462"></line><line x1="0" y1="484" x2="814" y2="484"></line><line x1="0" y1="506" x2="814" y2="506"></line><line x1="0" y1="528" x2="814" y2="528"></line><line x1="0" y1="550" x2="814" y2="550"></line><line x1="0" y1="572" x2="814" y2="572"></line><line x1="0" y1="594" x2="814" y2="594"></line><line x1="0" y1="616" x2="814" y2="616"></line></g></svg><div class="relative z-10"><section class="relative pt-32 pb-16 overflow-hidden"><div class="absolute inset-0"><img alt="Adirondacks landscape by Winslow Homer" class="h-full w-full object-cover object-center opacity-60" src="../../blogs/planning-algorithms-for-agents/cover.jpg"><div class="absolute inset-0 bg-gradient-to-br from-black/70 via-black/60 to-transparent"></div></div><div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-white"><a class="text-sm font-medium text-white/70 hover:text-white" href="../index.html" data-discover="true">← Back to blog</a><p class="uppercase tracking-[0.35em] text-xs text-white/70 mt-6">Technical Guide</p><h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mt-6">A Field Guide to Planning Algorithms for Agents</h1><p class="text-lg sm:text-xl text-white/80 leading-relaxed mt-4">CoT, ToT, GoT, ReAct, PAL, and multi-stage planners — compared, stress-tested, and implemented.</p><div class="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/80"><span>Paulina Xu</span><span class="text-white/40">•</span><span>April 16, 2026</span><span class="text-white/40">•</span><span>22 min</span></div><div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full border border-white/40 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Architecture</span><span class="rounded-full border border-white/40 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Planning</span><span class="rounded-full border border-white/40 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Agents</span></div></div></section><section class="relative w-screen left-1/2 -ml-[50vw] bg-white pt-16 pb-20"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="lg:grid lg:grid-cols-[260px,minmax(0,1fr)] lg:gap-12"><aside class="hidden lg:block sticky top-32 self-start"><nav class="space-y-2 text-sm"><a href="#at-a-glance" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">At a Glance</a><a href="#cot" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Chain-of-Thought</a><a href="#tot" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Tree-of-Thought</a><a href="#got" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Graph-of-Thought</a><a href="#react" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">ReAct</a><a href="#pal" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">PAL</a><a href="#multi-stage" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Multi-Stage Planners</a><a href="#uncertainty" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Uncertainty</a><a href="#tool-failures" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Tool Failures</a><a href="#long-horizon" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Long-Horizon Tasks</a><a href="#benchmarks" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Benchmarks</a><a href="#choosing" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Choosing a Planner</a><a href="#implementation-guides" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Implementation Guides</a><a href="#code" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Turning Into Code</a><a href="#observability" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Observability</a><a href="#recommendations" class="block rounded-md px-3 py-2 font-medium text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900">Recommendations</a></nav></aside><div class="space-y-16 text-gray-700 leading-relaxed"><section class="scroll-mt-32"><p>Modern AI agents are only as reliable as their planners. Whether an agent is navigating the web, writing code, using tools, or orchestrating complex workflows, its planning algorithm determines how it reasons, explores, backtracks, and survives uncertainty.</p><p class="mt-6">And yet: developers often treat planning like “prompt engineering with extra steps.” It isn’t. Planning is an algorithmic choice — a topology — and different planning families behave radically differently once the world becomes messy, unpredictable, or tool-driven.</p><p class="mt-6">The distinction matters because the failure modes are structural, not stylistic. A linear planner cannot recover from a wrong first step no matter how good the model is, and a branching planner cannot avoid combinatorial cost no matter how clever the prompt. The shape of the reasoning process puts hard ceilings on what any underlying model can achieve. Picking the wrong topology is the kind of mistake no amount of prompt tuning will fix.</p><p class="mt-6">This field guide walks through the major planning paradigms — Chain-of-Thought (CoT), Tree-of-Thought (ToT), Graph-of-Thought (GoT), ReAct, PAL, and modern multi-stage planners — comparing how they perform under uncertainty, how they break, how they scale, and how to implement each one correctly.</p><p class="mt-6">It also integrates leading research from planning surveys, tool-use evaluations, hallucination studies, and long-horizon benchmarks including WebArena, SWE-Bench Pro, AgentBench, MINT, and PLANET-style suites.</p></section><section id="at-a-glance" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Planning Families at a Glance</h2><p>Every planning method corresponds to a different reasoning topology:</p><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li><strong>Chain-of-Thought (CoT)</strong> — a line</li><li><strong>Tree-of-Thought (ToT)</strong> — a branching tree</li><li><strong>Graph-of-Thought (GoT)</strong> — a general graph, can revisit states</li><li><strong>ReAct</strong> — a line with tool feedback loops</li><li><strong>PAL</strong> — a line guided by executable code</li><li><strong>Multi-stage planners</strong> — a full pipeline (plan, act, reflect, repair)</li></ul><p class="mt-6">This isn’t just conceptual — it changes everything about reliability. The topology determines two things that dominate real-world behavior: whether the planner can <em>recover</em> from a mistake, and whether it can <em>ground</em> its reasoning in feedback from the outside world. A line can do neither. A tree can recover but stays trapped inside the model’s own imagination. A loop with tool calls can ground but struggles to recover. Multi-stage planners are the first family that does both at once — which is exactly why they dominate the hardest benchmarks.</p></section><section id="cot" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Chain-of-Thought (CoT): Linear, Elegant, and Fatally Overconfident</h2><p>CoT is the simplest form of structured reasoning:</p><p class="mt-4">“Think step-by-step.”</p><p class="mt-4">The idea is deceptively powerful. By forcing the model to externalize its intermediate steps instead of jumping straight to an answer, CoT gives the model more tokens to compute over and a scaffold to keep its logic coherent. For a large class of single-shot reasoning problems, that scaffold is enough.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">What it looks like</h4><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code>prompt = f"""
+Solve the problem step by step.
+Question: {task}
+"""</code></pre><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Strengths</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Great for short math, logic, and tightly scoped reasoning</li><li>Extremely cheap — a single model call, no orchestration</li><li>Very interpretable — the reasoning trace is the audit log</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Behavior under uncertainty</h4><p class="mt-4">Terrible. CoT assumes every intermediate step is correct; if the model makes a wrong early assumption, the rest of the chain collapses. There is no mechanism for the planner to notice it went wrong, because the only thing it can observe is its own prior reasoning — and that reasoning already encoded the mistake.</p><p class="mt-4">This is why CoT often fails on WebArena, SWE-Bench Pro, and any environment where the agent must interact or get feedback. The model commits to a path before it has the information needed to know whether the path is correct, and then dutifully follows it off a cliff.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Failure modes</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Catastrophic cascade failures — one bad step poisons everything downstream</li><li>Hallucinated tool success (“Assuming the API call returned X…”)</li><li>No backtracking, no repair, no second opinion</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Use it for</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Math benchmarks (GSM8K, GSM-Hard)</li><li>Local reasoning that does not depend on external state</li><li>Preliminary plan sketching, before a more robust planner takes over</li></ul></section><section id="tot" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Tree-of-Thought (ToT): Branching Reasoning with Search</h2><p>ToT explores multiple possible reasoning paths — a crucial advantage when uncertainty is high. Instead of committing to a single chain, the planner generates several candidate continuations at each step, scores them, and keeps the most promising ones. Combined with a search strategy like breadth-first search, depth-first search, or beam search, this lets the model look ahead and backtrack rather than barreling down the first line that occurs to it.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">What it looks like</h4><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code>def expand_thoughts(node):
+    return llm.generate(f"Expand this partial plan:\n{node}")
+
+def evaluate(thought):
+    return llm.generate(f"Rate the promise of this idea (0-10):\n{thought}")
+
+# BFS or beam search over candidate thoughts</code></pre><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Strengths</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Can backtrack when a branch turns out to be a dead end</li><li>Can explore contradictory hypotheses in parallel</li><li>Reduces dependence on a single “perfect” CoT</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Behavior under uncertainty</h4><p class="mt-4">Better than CoT, because the model hedges by exploring alternatives instead of betting everything on one chain. But there is a catch worth stating plainly: ToT only hedges over <em>internal</em> uncertainty. The branches it explores all live inside the model’s head. If the real source of uncertainty is the state of the outside world — what an API actually returns, what a page actually contains — searching harder over imagined possibilities does not help.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Major failure modes</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Search over hallucinations — the model evaluates bad states as good, because the same model that generated the branch also scores it</li><li>Runaway branching costs — the number of model calls grows with branching factor times depth</li><li>Too many tool calls (catastrophic if tools affect real systems)</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Use it for</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Puzzles like Game of 24 and constraint satisfaction</li><li>Planning toy domains where the state space is fully internal</li><li>Tasks where “finding the right decomposition” matters more than executing it</li></ul></section><section id="got" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Graph-of-Thought (GoT): Generalized ToT With Merging and Revisiting</h2><p>GoT generalizes the tree into an arbitrary graph. Instead of each thought having exactly one parent, the planner can <em>merge</em> several lines of reasoning into a single synthesized state, reuse a sub-result computed earlier, or re-enter a previous “state” it had abandoned. Reasoning becomes a graph of interdependent steps rather than a strict hierarchy, which makes it strictly more expressive than ToT.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Strengths</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Reduces duplicated work by reusing previously computed sub-results</li><li>Better at revisiting and correcting earlier assumptions</li><li>More expressive than ToT — it can aggregate and refine, not just branch</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Failure modes</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Can wander indefinitely without a clear termination condition</li><li>Extremely costly without pruning and deduplication</li><li>Evaluation heuristics (LLM scoring) may be unstable under noise — the same scoring fragility as ToT, now spread across a larger frontier</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Use it for</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Large search spaces with reusable structure</li><li>Problems with reusable submodules, where caching a sub-result pays off</li><li>Multi-dependency reasoning (e.g., plans that feed into each other)</li></ul></section><section id="react" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">ReAct: Reasoning + Acting in a Single Loop</h2><p>ReAct changed the game by interleaving:</p><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li>Thought — the model reasons about what to do next</li><li>Action — the model calls a tool</li><li>Observation — the model reads back what actually happened</li></ul><p class="mt-6">This grounds reasoning in reality. The critical move is the observation step: after every action, the planner gets a fresh, external signal that it did not generate itself. That feedback is what breaks the closed loop of self-confirmation that dooms CoT and limits ToT. The model can reason to act, then act to reason — adjusting its plan based on what the world actually returned.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Example implementation</h4><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code>while not done:
+    thought = llm(f"Thought: {history}")
+    action = parse_action(thought)
+    observation = tools[action.name](action.args)
+    history.append((thought, action, observation))</code></pre><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Strengths</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Low hallucination compared to CoT, because claims get checked against observations</li><li>Great for web tasks, QA, and fact retrieval</li><li>Handles uncertainty better because it checks its inferences against the world</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Failure modes</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Infinite loops when no progress is being made</li><li>Misinterpreting observations and acting on the wrong reading</li><li>Thrashing between tools (A, then B, then A, then B again)</li><li>Tool-overcalling — issuing far more calls than the task requires</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Use it for</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Real-world tasks that touch external state</li><li>Web navigation (WebArena, VisualWebArena)</li><li>Tool-using agents of almost any kind — this is the sensible default</li></ul></section><section id="pal" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">PAL (Program-Aided Language Models): Code as the Plan</h2><p>Here the LLM writes programs that actually solve the problem. Instead of asking the model to perform arithmetic or symbolic manipulation in its head — where it is unreliable — PAL asks the model to express the solution as code and offloads the actual computation to an interpreter. The model handles the part it is good at (translating a problem into a procedure) and the interpreter handles the part it is good at (executing that procedure exactly).</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Example</h4><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># LLM output
+def solve():
+    x = compute_something()
+    return x + 10</code></pre><p class="mt-4">Then you run it in a sandbox.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Strengths</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Ideal for math, algorithms, and data transformations</li><li>Very reliable for symbolic tasks where exactness matters</li><li>Scales extremely well for computation — interpreters do not make arithmetic mistakes the way LLMs do</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Failure modes</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Code with side effects you did not intend</li><li>Infinite loops that hang the executor</li><li>Unsafe filesystem or network access — you must sandbox</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Use it for</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>GSM-HARD and other computation-heavy math</li><li>Algorithmic challenges</li><li>Data processing and transformation</li><li>Internal compute-heavy agents</li></ul></section><section id="multi-stage" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Multi-Stage Planners: The Current Best Pattern for Long-Horizon Tasks</h2><p>Multi-stage planners explicitly separate:</p><p class="mt-4"><strong>Plan, then act, then reflect, then repair.</strong></p><p class="mt-6">The insight is to stop asking one model in one loop to do everything. Planning, execution, and criticism are different cognitive jobs with different failure modes, so you give each one its own role, prompt, and sometimes its own model. The result is a system that can both ground itself in feedback (like ReAct) and recover from structural mistakes (like ToT) — the two properties no single-family planner combines.</p><p class="mt-6">Often implemented with:</p><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li>A planning model (large, reasoning-heavy)</li><li>An execution model (smaller, tool-aware, fast)</li><li>A critic / verifier model that can flag or veto bad steps</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Example architecture</h4><ol class="mt-4 space-y-3 list-decimal list-inside ml-4"><li><strong>Planner:</strong> break the task into subgoals</li><li><strong>Executor:</strong> ReAct-style execution per subgoal</li><li><strong>Reflector:</strong> find errors in what was produced</li><li><strong>Repair phase:</strong> rewrite subplans that failed</li><li>Repeat until the task is complete or a budget is exhausted</li></ol><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Strengths</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Strong results on WebArena</li><li>Strong results on SWE-Bench Pro relative to single-loop baselines</li><li>Most resilient to uncertainty</li><li>Supports memory, backtracking, and verification</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Failure modes</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>If the plan is wrong, the entire system confidently does the wrong thing</li><li>More difficult to orchestrate, debug, and reason about</li><li>Requires role separation and process-level design, not just a clever prompt</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Use it for</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Enterprise agents</li><li>Web agents</li><li>Code agents</li><li>Any agent expected to run more than 20 steps</li></ul></section><section id="uncertainty" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Comparative Behavior Under Uncertainty</h2><div class="overflow-x-auto"><table class="min-w-full text-left text-sm border border-gray-200"><thead class="bg-gray-50"><tr><th class="px-4 py-3 font-semibold text-gray-900 border-b border-gray-200">Planner</th><th class="px-4 py-3 font-semibold text-gray-900 border-b border-gray-200">Uncertainty Handling</th><th class="px-4 py-3 font-semibold text-gray-900 border-b border-gray-200">Notes</th></tr></thead><tbody><tr><td class="px-4 py-3 border-b border-gray-100">CoT</td><td class="px-4 py-3 border-b border-gray-100">Very poor</td><td class="px-4 py-3 border-b border-gray-100">No revision, no backtracking</td></tr><tr><td class="px-4 py-3 border-b border-gray-100">ToT/GoT</td><td class="px-4 py-3 border-b border-gray-100">Moderate</td><td class="px-4 py-3 border-b border-gray-100">Hedge via branching, but expensive and only over internal uncertainty</td></tr><tr><td class="px-4 py-3 border-b border-gray-100">ReAct</td><td class="px-4 py-3 border-b border-gray-100">Good</td><td class="px-4 py-3 border-b border-gray-100">Observations ground hallucinations</td></tr><tr><td class="px-4 py-3 border-b border-gray-100">PAL</td><td class="px-4 py-3 border-b border-gray-100">Excellent (numeric/symbolic)</td><td class="px-4 py-3 border-b border-gray-100">Interpreter handles uncertainty</td></tr><tr><td class="px-4 py-3">Multi-Stage</td><td class="px-4 py-3">Best</td><td class="px-4 py-3">Re-planning plus reflection equals robustness</td></tr></tbody></table></div><p class="mt-6">Uncertainty punishes overconfidence.</p><p class="mt-4">CoT is overconfident; ReAct, PAL, ToT, and multi-stage planners hedge. But notice they hedge against <em>different</em> kinds of uncertainty. ToT and GoT hedge against uncertainty in the model’s own reasoning. ReAct hedges against uncertainty about the state of the world. PAL eliminates uncertainty in computation entirely by delegating it to a deterministic interpreter. Multi-stage planners are the only family that addresses all three at once — which is precisely why they sit at the top of the column.</p></section><section id="tool-failures" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">When Planners Fail Catastrophically With Tools</h2><p>Tool use is where things get dangerous. Reasoning that stays inside the model is, at worst, wrong on paper. Reasoning that calls tools can delete a database, send an email, or charge a credit card. The cost of a planning mistake changes from “bad answer” to “bad action,” and each family fails in a characteristic way.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">CoT</h4><p class="mt-4">Catastrophic, because it assumes tool success without verifying. CoT will happily write “the record was deleted” into its reasoning and proceed as if it were true.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">ReAct</h4><p class="mt-4">Loops and misreads can cause endless tool calls or destructive API actions. The same feedback loop that grounds ReAct can, when misread, drive it to repeat a harmful action.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">ToT/GoT</h4><p class="mt-4">Search multiplies tool calls, so real-world side effects get multiplied along with them. Exploring ten branches that each write to a system means ten writes, not one.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">PAL</h4><p class="mt-4">Unsafe code can break sandboxes or hang indefinitely. The interpreter is exact, which is good for math and dangerous for anything with side effects.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">Multi-stage</h4><p class="mt-4">A single bad high-level plan leads to systematically harmful tool use, executed competently across every subgoal. The verifier role exists precisely to catch this before it happens.</p><p class="mt-6">The practical takeaway: separate read-only tools from side-effecting tools, and require explicit confirmation, a dry-run, or a critic sign-off before any action that mutates real state. Topology choice reduces the probability of a bad action; guardrails are what bound the blast radius when one slips through.</p></section><section id="long-horizon" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Scaling to Long-Horizon Tasks</h2><p>Benchmarks show the brutal truth:</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">SWE-Bench Pro</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Long-horizon software tasks remain hard — frontier models still resolve only a minority of issues, and well below their scores on the easier SWE-Bench Verified</li><li>Success requires long-term reasoning across many files, which is where multi-stage planning pulls ahead of single-shot approaches</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">WebArena / VisualWebArena</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Agents must perform UI workflows spanning many dozens of steps</li><li>ReAct-style and multi-stage planners currently lead</li><li>CoT collapses, because it has no grounding</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">AgentBench / AgentBoard</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Multi-phase and tool-grounded planning tend to outperform pure CoT/ToT on interactive, multi-step tasks</li></ul><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">General takeaway</h4><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li><strong>CoT:</strong> easy but fragile</li><li><strong>ToT:</strong> smart but expensive</li><li><strong>ReAct:</strong> good first choice</li><li><strong>PAL:</strong> best for computation</li><li><strong>Multi-stage:</strong> best for real agents in real systems</li></ul></section><section id="benchmarks" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Benchmarking Frameworks To Reference</h2><p>Useful benchmarks to evaluate against:</p><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li>WebArena / VisualWebArena — long-horizon web tasks</li><li>SWE-Bench / SWE-Bench Pro — software planning</li><li>PLANET / planning benchmark collections — multi-domain planning</li><li>AgentBench, AgentBoard, MINT — agent ecosystems</li><li>HotpotQA, FEVER, BOLAA — QA with grounding</li><li>GSM8K, GSM-HARD — math planning</li><li>Cleanlab hallucination benchmarks — planning plus trust scoring</li></ul><p class="mt-6">These benchmarks are designed to surface:</p><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li>Planning brittleness</li><li>Action loops</li><li>Tool overuse</li><li>Uncertainty handling</li><li>Reasoning drift</li></ul><p class="mt-6">One caution worth internalizing: a headline number on a leaderboard tells you almost nothing about whether a planner will work for <em>your</em> task. The benchmarks differ in horizon length, in how much they depend on tool feedback, and in whether the uncertainty is internal or environmental. Read the failure breakdowns, not just the top-line accuracy, and weight the benchmark whose structure most resembles your real workload.</p></section><section id="choosing" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Choosing a Planner: A Decision Framework</h2><p>The families are not competitors so much as answers to different questions. Before reaching for the most powerful pattern, work through four questions about the task itself. The answers usually point at exactly one family.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">1. Does the task touch external state?</h4><p class="mt-4">If the agent must read from or write to the outside world — search the web, query a database, call an API — you need grounding, which means ReAct or a multi-stage planner with a ReAct executor. Pure CoT and ToT are off the table the moment correctness depends on something the model cannot see.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">2. Is the hard part computation or decomposition?</h4><p class="mt-4">If the difficulty is exact calculation, symbolic manipulation, or data transformation, reach for PAL and let the interpreter do the work. If the difficulty is finding the right way to break the problem apart, that favors ToT, GoT, or the planning stage of a multi-stage system.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">3. How long is the horizon?</h4><p class="mt-4">Short, self-contained reasoning lives comfortably in CoT. Anything that runs past roughly twenty steps needs explicit memory, verification, and repair — the structural guarantees only a multi-stage planner provides. The longer the horizon, the more a single un-checked mistake compounds.</p><h4 class="text-xl font-semibold text-gray-900 mt-8 mb-4">4. What is the cost of being wrong?</h4><p class="mt-4">Low-stakes, reversible tasks tolerate cheap planners. High-stakes or irreversible actions justify the orchestration overhead of a critic and a repair loop. Match the robustness of the planner to the cost of the failure it is meant to prevent — over-engineering a throwaway task wastes money, and under-engineering a consequential one wastes trust.</p><p class="mt-6">A useful default progression: start with ReAct, add PAL as a tool when computation appears, and graduate to a multi-stage planner only once the horizon, stakes, or failure rate demand it. Reach for ToT or GoT when you have a genuinely search-shaped problem and the budget to pay for it.</p></section><section id="implementation-guides" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Implementation Guides for Each Planning Method</h2><h3 class="text-2xl font-bold text-gray-900 mb-4">CoT</h3><p><strong>Use when:</strong> you want interpretability and simplicity.</p><p class="mt-4"><strong>Implementation:</strong></p><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Provide 1–3 CoT examples</li><li>Add a “verify your answer” post-check</li><li>Avoid for tool use</li></ul><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">ToT</h3><p><strong>Implementation:</strong></p><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Implement BFS or beam search</li><li>Limit branching to 2–3 candidates</li><li>Use LLM heuristics to rate states</li><li>Add guards to avoid expanding hallucinated paths</li></ul><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">GoT</h3><p><strong>Implementation:</strong></p><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Store states in a graph</li><li>Compare new states via embeddings for deduplication</li><li>Add memory replay plus pruning heuristics</li></ul><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">ReAct</h3><p><strong>Implementation:</strong></p><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Wrap all observations in &lt;obs&gt; tags so the model never confuses them with its own output</li><li>Add a loop counter and a hard step budget</li><li>Include a “stop if repeating actions” rule to break thrashing</li><li>Add a <code class="px-1.5 py-0.5 rounded bg-gray-100 text-gray-800 text-sm">validate_action()</code> function before calling a tool</li></ul><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">PAL</h3><p><strong>Implementation:</strong></p><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Sandbox all code</li><li>Set timeouts</li><li>Use a pure-Python environment</li><li>Define allowed imports and safe APIs</li><li>Use unit tests to evaluate generated code</li></ul><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Multi-stage</h3><p><strong>Implementation:</strong></p><ul class="mt-4 space-y-3 list-disc list-inside ml-4"><li>Write three system prompts: Planner, Executor, Critic</li><li>Define a JSON schema for plans</li><li>Add a repair loop</li><li>Add trust scoring so the critic can veto steps</li><li>Maintain memory across subgoals</li><li>Add a global timeout plus a step budget</li></ul></section><section id="code" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Turning This Into Actual Code</h2><p>Nice, this is the fun part. Let’s turn those planning patterns into actual, useable code.</p><p class="mt-6">I’ll assume:</p><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li>Python 3.10+</li><li>A generic <code class="px-1.5 py-0.5 rounded bg-gray-100 text-gray-800 text-sm">call_llm(prompt: str, system: str | None = None) -&gt; str</code> you can wire to OpenAI, Anthropic, etc.</li><li>A tool registry pattern for ReAct and multi-stage.</li><li>No external deps beyond the standard library (you can layer your own framework on top).</li></ul><p class="mt-6">You can drop all of this into a single <code class="px-1.5 py-0.5 rounded bg-gray-100 text-gray-800 text-sm">planning.py</code> and adapt. The code is deliberately framework-agnostic: the same skeletons map cleanly onto LangChain, LangGraph, or a bespoke runtime once you decide where you want orchestration to live.</p><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">Shared LLM + Tool Abstractions</h3><p>First, a minimal abstraction layer so the rest of the code is clean:</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># planning_core.py
+from dataclasses import dataclass
+from typing import Any, Callable, Dict, List, Optional, Tuple
+import json
+import textwrap
+import traceback
+
+# ---------- LLM CLIENT HOOK ----------
+def call_llm(prompt: str, system: Optional[str] = None) -&gt; str:
+    """
+    Replace this with your actual LLM client.
+    For example, OpenAI, Anthropic, etc.
+    """
+    raise NotImplementedError("Wire this to your model provider.")
+
+# ---------- TOOL REGISTRY (for ReAct / multi-stage) ----------
+ToolFunc = Callable[[Dict[str, Any]], Any]
+
+@dataclass
+class Tool:
+    name: str
+    description: str
+    schema: Dict[str, Any]  # JSON-schema-like, or just a contract
+    func: ToolFunc
+
+TOOLS: Dict[str, Tool] = {}
+
+def register_tool(tool: Tool) -&gt; None:
+    TOOLS[tool.name] = tool
+
+def call_tool(name: str, args: Dict[str, Any]) -&gt; Any:
+    if name not in TOOLS:
+        raise ValueError(f"Unknown tool: {name}")
+    return TOOLS[name].func(args)</code></pre><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">1. Chain-of-Thought (CoT)</h3><p>Simple, linear “think step-by-step” reasoning.</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># cot_planner.py
+from typing import Optional
+from planning_core import call_llm
+import textwrap
+
+COT_SYSTEM_PROMPT = "You are a helpful assistant that solves problems step by step."
+
+def cot_solve(question: str,
+              few_shot_examples: Optional[str] = None,
+              verify: bool = True) -&gt; str:
+    """
+    Basic Chain-of-Thought planner.
+    - question: the user problem
+    - few_shot_examples: optional CoT examples to condition behavior
+    - verify: whether to ask the model to double-check its own answer
+    """
+    examples_block = few_shot_examples or ""
+
+    prompt = textwrap.dedent(f"""
+    {examples_block}
+
+    Now solve the following problem step by step.
+
+    Question:
+    {question}
+
+    Show your reasoning as 'Thought:' lines and provide a final answer as:
+    'Final Answer: &lt;answer here&gt;'
+    """)
+
+    raw = call_llm(prompt, system=COT_SYSTEM_PROMPT)
+
+    if not verify:
+        return raw
+
+    verify_prompt = textwrap.dedent(f"""
+    You previously produced this solution:
+
+    {raw}
+
+    Double-check whether the final answer is correct.
+    If you find an error, provide a corrected 'Final Answer' and updated reasoning.
+    Otherwise, confirm that the original final answer is correct.
+    """)
+
+    verified = call_llm(verify_prompt, system=COT_SYSTEM_PROMPT)
+    return verified</code></pre><p class="mt-4">Note that the optional verify pass is the cheapest reliability upgrade in this entire guide: a second self-check call catches a meaningful share of arithmetic and logic slips for the cost of one extra model call. It is not a substitute for grounding, but for pure-reasoning tasks it is almost always worth it.</p><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">2. Tree-of-Thought (ToT): Beam Search Over Reasoning Paths</h3><p>Minimal ToT implementation with beam search over candidate thoughts.</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># tot_planner.py
+from dataclasses import dataclass
+from typing import List
+from planning_core import call_llm
+import heapq
+import textwrap
+
+@dataclass
+class Thought:
+    text: str
+    score: float
+
+TOT_SYSTEM = "You are a deliberate problem solver that explores multiple reasoning paths."
+
+def expand_thought(question: str, partial: str, num_candidates: int = 3) -&gt; List[str]:
+    """
+    Ask the LLM to propose several next-step continuations.
+    """
+    prompt = textwrap.dedent(f"""
+    You are exploring ways to solve this problem:
+
+    Question:
+    {question}
+
+    Current partial reasoning:
+    {partial}
+
+    Propose {num_candidates} different next-step continuations of this reasoning.
+    Number them as:
+    1) ...
+    2) ...
+    etc.
+    """)
+    resp = call_llm(prompt, system=TOT_SYSTEM)
+
+    # naive parse: lines starting with "1)" / "2)" etc.
+    lines = [l.strip() for l in resp.splitlines() if l.strip()]
+    candidates: List[str] = []
+    for l in lines:
+        if l[0].isdigit() and ")" in l[:3]:
+            candidates.append(l.split(")", 1)[1].strip())
+    return candidates[:num_candidates]
+
+def score_thought(question: str, reasoning: str) -&gt; float:
+    """
+    Ask the LLM to rate how promising this partial reasoning is.
+    """
+    prompt = textwrap.dedent(f"""
+    Question:
+    {question}
+
+    Partial reasoning:
+    {reasoning}
+
+    Rate how promising this reasoning is for solving the problem.
+    Respond with a single number between 0 and 10.
+    """)
+    resp = call_llm(prompt, system=TOT_SYSTEM)
+    try:
+        return float(resp.strip().split()[0])
+    except Exception:
+        return 0.0
+
+def tot_solve(question: str,
+              max_depth: int = 5,
+              beam_width: int = 3) -&gt; str:
+    """
+    Simple Tree-of-Thought beam search.
+    - Keeps top-k (beam_width) partial reasoning paths at each depth
+    - At the end, asks the LLM to finalize the best reasoning into an answer
+    """
+    # Start with an empty thought
+    start = Thought(text="", score=0.0)
+    frontier: List[Thought] = [start]
+
+    for depth in range(max_depth):
+        new_frontier: List[Thought] = []
+        for t in frontier:
+            candidates = expand_thought(question, t.text)
+            for c in candidates:
+                combined = (t.text + "\n" + c).strip()
+                s = score_thought(question, combined)
+                new_frontier.append(Thought(text=combined, score=s))
+
+        # keep top beam_width by score
+        frontier = heapq.nlargest(beam_width, new_frontier, key=lambda x: x.score)
+        if not frontier:
+            break
+
+    # Use the best thought to produce final answer
+    best = max(frontier, key=lambda x: x.score)
+    final_prompt = textwrap.dedent(f"""
+    Question:
+    {question}
+
+    Use the following reasoning to produce a final answer:
+    {best.text}
+
+    Provide the final answer as:
+    'Final Answer: &lt;answer&gt;'
+    """)
+    final = call_llm(final_prompt, system=TOT_SYSTEM)
+    return final</code></pre><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">3. Graph-of-Thought (GoT): Reuse and Revisiting States</h3><p>A lightweight GoT implementation: it stores visited states and avoids recomputing similar ones. This is more of a template than a full research-grade system, but it shows the structure.</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># got_planner.py
+from dataclasses import dataclass
+from typing import Dict, List, Set
+from planning_core import call_llm
+import hashlib
+import textwrap
+
+@dataclass
+class Node:
+    reasoning: str
+    score: float
+
+GOT_SYSTEM = "You are a problem solver that can revisit and refine partial reasoning steps."
+
+def hash_state(reasoning: str) -&gt; str:
+    return hashlib.sha256(reasoning.encode("utf-8")).hexdigest()
+
+def got_expand(question: str, node: Node, num_candidates: int = 3) -&gt; List[Node]:
+    prompt = textwrap.dedent(f"""
+    Question:
+    {question}
+
+    Current reasoning:
+    {node.reasoning}
+
+    Propose {num_candidates} ways to extend or refine this reasoning.
+    Number them as 1), 2), etc.
+    """)
+    resp = call_llm(prompt, system=GOT_SYSTEM)
+
+    lines = [l.strip() for l in resp.splitlines() if l.strip()]
+    children: List[Node] = []
+    for l in lines:
+        if l[0].isdigit() and ")" in l[:3]:
+            reasoning = l.split(")", 1)[1].strip()
+            score_prompt = textwrap.dedent(f"""
+            Question:
+            {question}
+
+            Partial reasoning:
+            {reasoning}
+
+            Rate how promising this reasoning is (0-10). Only output the number.
+            """)
+            s_raw = call_llm(score_prompt, system=GOT_SYSTEM)
+            try:
+                s = float(s_raw.strip().split()[0])
+            except Exception:
+                s = 0.0
+            children.append(Node(reasoning=reasoning, score=s))
+    return children
+
+def got_solve(question: str,
+              iterations: int = 10,
+              max_open: int = 20) -&gt; str:
+    """
+    Simple Graph-of-Thought search:
+    - maintains an "open list" of promising nodes
+    - reuses visited reasoning states by hashing
+    - iteratively expands high-score nodes
+    """
+    start = Node(reasoning="", score=0.0)
+    open_list: List[Node] = [start]
+    visited: Set[str] = set()
+
+    for _ in range(iterations):
+        # sort open_list by score descending
+        open_list.sort(key=lambda n: n.score, reverse=True)
+        open_list = open_list[:max_open]
+        if not open_list:
+            break
+
+        node = open_list.pop(0)
+        state_id = hash_state(node.reasoning)
+        if state_id in visited:
+            continue
+        visited.add(state_id)
+
+        children = got_expand(question, node)
+        open_list.extend(children)
+
+    if not open_list:
+        best = start
+    else:
+        best = max(open_list, key=lambda n: n.score)
+
+    final_prompt = textwrap.dedent(f"""
+    Question:
+    {question}
+
+    Use the following reasoning (and refine it if needed) to produce a final answer:
+    {best.reasoning}
+
+    Provide the final answer as:
+    'Final Answer: &lt;answer&gt;'
+    """)
+    final = call_llm(final_prompt, system=GOT_SYSTEM)
+    return final</code></pre><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">4. ReAct: Thought → Action → Observation Loop</h3><p>This is a real skeleton you can drop into a tool-using agent.</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># react_planner.py
+import json
+from typing import Any, Dict, List, Tuple
+from planning_core import call_llm, call_tool, Tool, register_tool
+import textwrap
+
+REACT_SYSTEM = "You are an agent that reasons and acts using tools. Follow the Thought/Action/Observation format."
+
+def format_history(history: List[Tuple[str, str, str]]) -&gt; str:
+    """
+    History is a list of (thought, action, observation).
+    """
+    lines = []
+    for i, (thought, action, obs) in enumerate(history, start=1):
+        lines.append(f"Step {i}:")
+        lines.append(f"Thought: {thought}")
+        lines.append(f"Action: {action}")
+        lines.append(f"Observation: {obs}")
+        lines.append("")
+    return "\n".join(lines)
+
+def parse_action(line: str) -&gt; Tuple[str, Dict[str, Any]]:
+    """
+    Expect something like:
+        Action: search(query="python logging")
+    We'll parse the tool name and args via a crude parse; you will likely want
+    to tighten this with a structured format (e.g., JSON).
+    """
+    if not line.lower().startswith("action:"):
+        raise ValueError("No Action: prefix found.")
+    content = line.split(":", 1)[1].strip()
+    # e.g. search(query="python logging")
+    name, rest = content.split("(", 1)
+    name = name.strip()
+    args_str = rest.rsplit(")", 1)[0]
+    # naive parse: treat as JSON-ish
+    # Better: force the model to output JSON.
+    try:
+        args = json.loads(args_str)
+    except Exception:
+        args = {"raw": args_str}
+    return name, args
+
+def react_solve(question: str,
+                max_steps: int = 10) -&gt; str:
+    """
+    Core ReAct loop.
+    """
+    history: List[Tuple[str, str, str]] = []
+
+    for step in range(max_steps):
+        history_text = format_history(history)
+        prompt = textwrap.dedent(f"""
+        You are solving the following task:
+
+        Question:
+        {question}
+
+        You must follow this strict format:
+
+        Thought: &lt;your reasoning&gt;
+        Action: &lt;tool_name(args_as_JSON)&gt;
+
+        After each action, you will receive an Observation.
+        Continue until you have enough information, then output:
+
+        Thought: ...
+        Action: finish(answer="&lt;final answer here&gt;")
+
+        Here is the history so far:
+        {history_text}
+        """)
+        resp = call_llm(prompt, system=REACT_SYSTEM)
+
+        # find the last "Thought:" and "Action:" lines
+        thought_line = ""
+        action_line = ""
+        for line in resp.splitlines():
+            line = line.strip()
+            if line.lower().startswith("thought:"):
+                thought_line = line.split(":", 1)[1].strip()
+            elif line.lower().startswith("action:"):
+                action_line = line
+
+        if not action_line:
+            raise RuntimeError(f"No Action produced by LLM:\n{resp}")
+
+        tool_name, args = parse_action(action_line)
+
+        if tool_name == "finish":
+            answer = args.get("answer", "")
+            return answer
+
+        try:
+            raw_obs = call_tool(tool_name, args)
+            observation = str(raw_obs)
+        except Exception as e:
+            observation = f"Tool error: {e}"
+
+        history.append((thought_line, action_line, observation))
+
+    raise RuntimeError("Max ReAct steps reached without finish().")</code></pre><p class="mt-4">You can register tools like:</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># tools_example.py
+from planning_core import Tool, register_tool
+
+def search_tool(args):
+    query = args["query"]
+    # call your search API here
+    return f"[fake search results for: {query}]"
+
+register_tool(Tool(
+    name="search",
+    description="Search the web.",
+    schema={"type": "object", "properties": {"query": {"type": "string"}}},
+    func=search_tool,
+))</code></pre><p class="mt-4">The crude regex-style parser here is fine for a demo, but in production you should force the model to emit structured JSON for its actions — through native tool-calling or a constrained-decoding library — so that <code class="px-1.5 py-0.5 rounded bg-gray-100 text-gray-800 text-sm">parse_action</code> never has to guess. A malformed action that silently falls back to <code class="px-1.5 py-0.5 rounded bg-gray-100 text-gray-800 text-sm">{"raw": ...}</code> is a subtle bug waiting to happen.</p><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">5. PAL: Program-Aided Language Models (Python Sandbox)</h3><p>We let the LLM write a function and run it in a sandboxed namespace.</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># pal_planner.py
+from typing import Any, Dict
+from planning_core import call_llm
+import textwrap
+import traceback
+
+PAL_SYSTEM = "You write correct, pure Python functions to solve problems. Avoid side effects."
+
+def pal_generate_code(question: str) -&gt; str:
+    prompt = textwrap.dedent(f"""
+    You are a Python coding assistant.
+
+    Write a single Python function 'solve()' that returns the answer to the problem below.
+    The function should not read or write files or access the network.
+
+    Problem:
+    {question}
+
+    Only output valid Python code. Do not wrap it in backticks.
+    """)
+    code = call_llm(prompt, system=PAL_SYSTEM)
+    return code
+
+def pal_execute(code: str, timeout_sec: int = 5) -&gt; Any:
+    """
+    Execute generated code in a restricted namespace.
+    This is a minimal sandbox - tighten for production.
+    """
+    # Very minimal sandbox - in production, restrict builtins harder.
+    safe_globals: Dict[str, Any] = {
+        "__builtins__": {
+            "range": range,
+            "len": len,
+            "min": min,
+            "max": max,
+            "sum": sum,
+            "abs": abs,
+        }
+    }
+    local_vars: Dict[str, Any] = {}
+
+    try:
+        exec(code, safe_globals, local_vars)
+    except Exception:
+        raise RuntimeError(f"Error executing code:\n{traceback.format_exc()}")
+
+    if "solve" not in local_vars:
+        raise RuntimeError("No solve() function defined in code.")
+
+    solve_fn = local_vars["solve"]
+    # You can wrap this in a timeout via multiprocessing / threads if you want.
+    result = solve_fn()
+    return result
+
+def pal_solve(question: str) -&gt; Any:
+    code = pal_generate_code(question)
+    result = pal_execute(code)
+    return result</code></pre><p class="mt-4">Treat the restricted-builtins trick above as a speed bump, not a wall. A determined model can still reach dangerous capabilities through attribute traversal, and an infinite loop will hang the process regardless of which builtins you allow. For anything facing untrusted input, run generated code in a real isolation boundary — a separate process with a hard wall-clock timeout, a container, or a microVM — and never inside your main interpreter.</p><h3 class="text-2xl font-bold text-gray-900 mb-4 mt-10">6. Multi-Stage Planner: Plan → Execute (ReAct) → Critic → Repair</h3><p>Here’s a minimal but real multi-stage orchestration:</p><pre class="bg-gray-900 text-gray-100 rounded-lg p-4 overflow-x-auto text-sm my-6"><code># multistage_planner.py
+from dataclasses import dataclass
+from typing import Any, Dict, List
+from planning_core import call_llm, call_tool
+from react_planner import react_solve  # reuse ReAct for execution
+import json
+import textwrap
+
+PLANNER_SYSTEM = "You are a senior planner that breaks tasks into safe, coherent steps."
+CRITIC_SYSTEM = "You are a strict critic that finds flaws in plans or results."
+
+@dataclass
+class PlanStep:
+    id: int
+    description: str
+
+def make_plan(task: str, max_steps: int = 8) -&gt; List[PlanStep]:
+    prompt = textwrap.dedent(f"""
+    You are planning a solution for this task:
+
+    {task}
+
+    Break the solution into at most {max_steps} high-level steps.
+    Each step should be a short imperative phrase, like:
+    "Collect user requirements"
+    "Query the database"
+    "Summarize findings"
+
+    Respond as a JSON list of objects with fields:
+    - id: integer step number starting at 1
+    - description: string
+
+    Example:
+    [
+      {{"id": 1, "description": "Read the input data"}},
+      {{"id": 2, "description": "Filter invalid records"}},
+      ...
+    ]
+    """)
+    resp = call_llm(prompt, system=PLANNER_SYSTEM)
+    try:
+        data = json.loads(resp)
+    except Exception:
+        raise RuntimeError(f"Planner returned invalid JSON:\n{resp}")
+    return [PlanStep(id=s["id"], description=s["description"]) for s in data]
+
+def critic_review(task: str, plan: List[PlanStep], result: str) -&gt; str:
+    steps_text = "\n".join(f"{s.id}. {s.description}" for s in plan)
+    prompt = textwrap.dedent(f"""
+    Task:
+    {task}
+
+    Executed plan:
+    {steps_text}
+
+    Result:
+    {result}
+
+    As a critic, identify any flaws, safety issues, or missing steps.
+    Then answer in JSON with:
+    - "verdict": "ok" or "needs_repair"
+    - "comment": explanation
+    """)
+    resp = call_llm(prompt, system=CRITIC_SYSTEM)
+    return resp
+
+def repair_plan(task: str, plan: List[PlanStep], critic_resp: str) -&gt; List[PlanStep]:
+    steps_text = "\n".join(f"{s.id}. {s.description}" for s in plan)
+    prompt = textwrap.dedent(f"""
+    Task:
+    {task}
+
+    Current plan:
+    {steps_text}
+
+    Critic feedback:
+    {critic_resp}
+
+    Based on the critic's feedback, repair or improve the plan.
+    Respond with a new JSON list in the same format as before.
+    """)
+    resp = call_llm(prompt, system=PLANNER_SYSTEM)
+    data = json.loads(resp)
+    return [PlanStep(id=s["id"], description=s["description"]) for s in data]
+
+def multistage_solve(task: str,
+                     max_replans: int = 2) -&gt; str:
+    """
+    Multi-stage planner:
+    1. Plan
+    2. Execute (here: reuse react_solve per subtask)
+    3. Critic review
+    4. Optionally repair + re-execute
+    """
+    plan = make_plan(task)
+
+    for attempt in range(max_replans + 1):
+        # naive execution: join plan step descriptions into a single question for ReAct
+        # In a serious system, you'd execute each step individually and maintain state.
+        execution_prompt = textwrap.dedent(f"""
+        You must follow this plan:
+        {chr(10).join(f"{s.id}. {s.description}" for s in plan)}
+
+        Solve the overall task step by step using tools, then provide a final answer.
+        """)
+        result = react_solve(execution_prompt, max_steps=12)
+
+        critic_json = critic_review(task, plan, result)
+        try:
+            critic = json.loads(critic_json)
+        except Exception:
+            # If critic is broken, just return the result
+            return result
+
+        if critic.get("verdict") == "ok":
+            return result
+
+        # Otherwise, repair and retry
+        plan = repair_plan(task, plan, critic_json)
+
+    # If we exhaust re-plans, return the last result anyway (and log)
+    return result</code></pre><p class="mt-4">Two upgrades turn this skeleton into something production-grade. First, execute each subgoal individually and thread state between them, rather than collapsing the whole plan into one ReAct call — that is what lets the critic localize a failure to a specific step instead of the entire run. Second, give the critic real teeth: let it gate side-effecting actions, not just review the final result after the damage is done.</p></section><section id="observability" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Observability: Seeing What Your Planner Actually Did</h2><p>Every planner above produces a structured trace — thoughts, actions, observations, scores, verdicts. That trace is the single most valuable artifact for debugging an agent, and most teams throw it away. If you cannot reconstruct why the agent took a step, you cannot fix the planner that produced it.</p><p class="mt-6">The pragmatic move is to instrument each planning stage as a span in a tracing system, attaching the prompt, the raw model output, the parsed action, and the observation to each one. A vendor-neutral standard like OpenTelemetry works well here, and it is increasingly the substrate that agent-tracing tools build on. The payoff shows up the first time an agent fails in production: instead of squinting at a wall of logs, you open a trace and watch the exact branch where reasoning drifted, the tool call that returned garbage, or the critic verdict that was overruled.</p><p class="mt-6">What is worth capturing for every run:</p><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li>The full prompt and raw response at each step, not just the parsed result</li><li>Every tool call with its arguments, latency, and outcome — success, error, or timeout</li><li>Step counts and token spend, so runaway branching or looping is visible immediately</li><li>Critic verdicts and repair decisions, so you can audit when and why the plan changed</li></ul><p class="mt-6">Treat the trace as a first-class output. The planner is the skeleton; observability is the X-ray that tells you which bone broke.</p></section><section id="recommendations" class="scroll-mt-32"><h2 class="text-3xl font-bold text-gray-900 mb-6">Final Recommendations (Developer-Friendly)</h2><ul class="mt-6 space-y-3 list-disc list-inside ml-4"><li>Use <strong>CoT</strong> for quick, cheap, interpretable reasoning.</li><li>Use <strong>ReAct</strong> as your default for any tool-based agent.</li><li>Use <strong>PAL</strong> for math, data structures, transformations, and structured logic.</li><li>Use <strong>ToT/GoT</strong> when exploration matters more than speed.</li><li>Use <strong>multi-stage planning</strong> for anything serious:<ul class="mt-3 space-y-2 list-disc list-inside ml-6"><li>enterprise</li><li>workflow agents</li><li>autonomous data agents</li><li>coding agents</li><li>web automation</li><li>long-horizon tasks</li></ul></li></ul><p class="mt-6">And do not treat these as mutually exclusive. The strongest production agents are hybrids: a multi-stage planner whose executor runs ReAct, calls PAL as a tool when a subgoal turns numeric, and falls back to plain CoT for the trivial steps that do not deserve the overhead. Choose the topology per task, not per project.</p><div class="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 border border-blue-200"><p class="text-lg font-semibold text-gray-900">Because in the real world, planning isn’t just reasoning — it’s orchestration. And the planner you choose is the skeleton your entire agent stands on.</p></div></section></div></div></div></section></div></div><footer class="relative overflow-hidden" style="background: rgb(10, 10, 10);"><div aria-hidden="true" class="absolute inset-0 pointer-events-none opacity-50" style="background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0.9px, transparent 1.4px); background-size: 26px 26px;"></div><div aria-hidden="true" class="absolute pointer-events-none" style="left: 50%; top: 32%; transform: translate(-50%, -50%); width: 560px; height: 340px; border-radius: 50%; background: radial-gradient(rgba(240, 185, 140, 0.1), transparent 65%);"></div><div class="relative w-full px-5 sm:px-8 pt-12 pb-10"><div class="flex items-center justify-between gap-6 flex-wrap"><a class="inline-flex items-center gap-2.5" href="../../index.html" data-discover="true" style="text-decoration: none;"><img alt="" class="w-7 h-7 object-contain" src="../../fabriq-logo.png" style="filter: invert(1);"><span class="hp-space font-semibold text-[16px] text-white">Agentic Fabriq</span></a><a class="hp-mono text-[12px] font-medium tracking-[0.04em] px-5 py-2.5 rounded-full" href="../../index.html" data-discover="true" style="color: rgb(255, 255, 255); text-decoration: none; border: 1.5px solid transparent; background: linear-gradient(rgb(10, 10, 10), rgb(10, 10, 10)) padding-box padding-box, linear-gradient(135deg, rgb(195, 217, 160) 0%, rgb(224, 223, 147) 34%, rgb(240, 206, 134) 67%, rgb(240, 185, 140) 100%) border-box border-box;">Get a demo →</a></div><div style="display: contents;"><div style="margin:-8px 0 8px;">
+      <div style="position:relative;">
+        <svg viewBox="0 0 1200 240" width="100%" height="240" preserveAspectRatio="xMidYMid meet" style="display:block;overflow:visible;">
+          <g><path d="M70,36 C336,36 464,120 554,120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M142,127 C369,127 464,120 554,120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M214,105 C401,105 464,120 554,120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M286,144 C433,144 464,120 554,120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M358,160 C466,160 464,120 554,120" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M646,120 C736,120 864,67 1130,67" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M646,120 C736,120 831,115 1058,115" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M646,120 C736,120 799,192 986,192" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M646,120 C736,120 767,91 914,91" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path><path d="M646,120 C736,120 734,36 842,36" fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"></path></g>
+          <circle cx="70" cy="36" r="2.6" fill="#5B6270"></circle><circle cx="142" cy="127" r="2.6" fill="#5B6270"></circle><circle cx="214" cy="105" r="2.6" fill="#5B6270"></circle><circle cx="286" cy="144" r="2.6" fill="#5B6270"></circle><circle cx="358" cy="160" r="2.6" fill="#5B6270"></circle><circle cx="1130" cy="67" r="2.6" fill="#5B6270"></circle><circle cx="1058" cy="115" r="2.6" fill="#5B6270"></circle><circle cx="986" cy="192" r="2.6" fill="#5B6270"></circle><circle cx="914" cy="91" r="2.6" fill="#5B6270"></circle><circle cx="842" cy="36" r="2.6" fill="#5B6270"></circle>
+          
+  <circle cx="600" cy="120" r="40" fill="none" stroke="rgba(240,185,140,0.5)" stroke-width="1.4">
+    <animate attributeName="r" values="40;78" dur="3s" repeatCount="indefinite"></animate>
+    <animate attributeName="opacity" values="0.55;0" dur="3s" repeatCount="indefinite"></animate>
+  </circle>
+  <circle cx="600" cy="120" r="40" fill="none" stroke="rgba(157,190,106,0.45)" stroke-width="1.4">
+    <animate attributeName="r" values="40;78" dur="3s" begin="1.5s" repeatCount="indefinite"></animate>
+    <animate attributeName="opacity" values="0.5;0" dur="3s" begin="1.5s" repeatCount="indefinite"></animate>
+  </circle>
+          <circle cx="600" cy="120" r="40" fill="#0D0D0D" stroke="rgba(255,255,255,0.14)" stroke-width="1.5"></circle>
+          <circle r="3" fill="#C3D9A0"><animateMotion dur="2.80s" begin="0.00s" repeatCount="indefinite" path="M70,36 C336,36 464,120 554,120"></animateMotion></circle><circle r="3" fill="#F0CE86"><animateMotion dur="3.19s" begin="2.08s" repeatCount="indefinite" path="M142,127 C369,127 464,120 554,120"></animateMotion></circle><circle r="3" fill="#F0B98C"><animateMotion dur="4.38s" begin="0.92s" repeatCount="indefinite" path="M214,105 C401,105 464,120 554,120"></animateMotion></circle><circle r="3" fill="#C3D9A0"><animateMotion dur="3.17s" begin="2.34s" repeatCount="indefinite" path="M286,144 C433,144 464,120 554,120"></animateMotion></circle><circle r="3" fill="#F0CE86"><animateMotion dur="3.33s" begin="1.66s" repeatCount="indefinite" path="M358,160 C466,160 464,120 554,120"></animateMotion></circle><circle r="3" fill="#C3D9A0"><animateMotion dur="3.12s" begin="1.85s" repeatCount="indefinite" path="M646,120 C736,120 864,67 1130,67"></animateMotion></circle><circle r="3" fill="#F0CE86"><animateMotion dur="4.37s" begin="0.89s" repeatCount="indefinite" path="M646,120 C736,120 831,115 1058,115"></animateMotion></circle><circle r="3" fill="#F0B98C"><animateMotion dur="4.38s" begin="0.51s" repeatCount="indefinite" path="M646,120 C736,120 799,192 986,192"></animateMotion></circle><circle r="3" fill="#C3D9A0"><animateMotion dur="3.16s" begin="1.66s" repeatCount="indefinite" path="M646,120 C736,120 767,91 914,91"></animateMotion></circle><circle r="3" fill="#F0CE86"><animateMotion dur="3.06s" begin="0.69s" repeatCount="indefinite" path="M646,120 C736,120 734,36 842,36"></animateMotion></circle>
+        </svg>
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:54px;height:54px;display:flex;align-items:center;justify-content:center;pointer-events:none;">
+          <img src="../../fabriq-logo.png" alt="Fabriq" style="width:40px;height:40px;object-fit:contain;filter:invert(1);">
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:-34px;position:relative;z-index:2;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:0.04em;color:#C7CCD4;">Every call routed through <span style="background:linear-gradient(135deg,#C3D9A0 0%,#E0DF93 34%,#F0CE86 67%,#F0B98C 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;">Fabriq</span></div>
+      </div>
+      </div>
+      </div><div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-10 pt-12 mt-6 border-t" style="border-color: rgba(255, 255, 255, 0.1);"><div><p class="hp-mono flex items-center gap-2 text-[10.5px] tracking-[0.1em] uppercase mb-4" style="color: rgb(138, 144, 156);"><span aria-hidden="true" class="inline-block w-[6px] h-[6px] rounded-full shrink-0" style="background: linear-gradient(135deg, rgb(195, 217, 160) 0%, rgb(224, 223, 147) 34%, rgb(240, 206, 134) 67%, rgb(240, 185, 140) 100%);"></span>Connect</p><ul class="space-y-2.5 list-none m-0 p-0"><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/integration-hub/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Integration Hub</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../developers/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">For Developers</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/internal-agents/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Internal Agents</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/coding-agents/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Coding Agents</a></li></ul></div><div><p class="hp-mono flex items-center gap-2 text-[10.5px] tracking-[0.1em] uppercase mb-4" style="color: rgb(138, 144, 156);"><span aria-hidden="true" class="inline-block w-[6px] h-[6px] rounded-full shrink-0" style="background: linear-gradient(135deg, rgb(195, 217, 160) 0%, rgb(224, 223, 147) 34%, rgb(240, 206, 134) 67%, rgb(240, 185, 140) 100%);"></span>Control</p><ul class="space-y-2.5 list-none m-0 p-0"><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/agent-permissions/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Agent Permissions</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/credential-vault/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Credential Vault</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/enterprise-identity/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Enterprise Identity</a></li></ul></div><div><p class="hp-mono flex items-center gap-2 text-[10.5px] tracking-[0.1em] uppercase mb-4" style="color: rgb(138, 144, 156);"><span aria-hidden="true" class="inline-block w-[6px] h-[6px] rounded-full shrink-0" style="background: linear-gradient(135deg, rgb(195, 217, 160) 0%, rgb(224, 223, 147) 34%, rgb(240, 206, 134) 67%, rgb(240, 185, 140) 100%);"></span>Audit</p><ul class="space-y-2.5 list-none m-0 p-0"><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/audit-trail/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Audit Trail</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../product/shadow-ai/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Shadow AI</a></li></ul></div><div><p class="hp-mono flex items-center gap-2 text-[10.5px] tracking-[0.1em] uppercase mb-4" style="color: rgb(138, 144, 156);"><span aria-hidden="true" class="inline-block w-[6px] h-[6px] rounded-full shrink-0" style="background: linear-gradient(135deg, rgb(195, 217, 160) 0%, rgb(224, 223, 147) 34%, rgb(240, 206, 134) 67%, rgb(240, 185, 140) 100%);"></span>Solutions</p><ul class="space-y-2.5 list-none m-0 p-0"><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../solutions/ai-engineering/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">AI / Engineering</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../solutions/security/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Security</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../solutions/compliance/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Compliance / GRC</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../solutions/financial-services/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Financial Services</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../solutions/healthcare/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Healthcare</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../solutions/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">All solutions →</a></li></ul></div><div><p class="hp-mono flex items-center gap-2 text-[10.5px] tracking-[0.1em] uppercase mb-4" style="color: rgb(138, 144, 156);"><span aria-hidden="true" class="inline-block w-[6px] h-[6px] rounded-full shrink-0" style="background: linear-gradient(135deg, rgb(195, 217, 160) 0%, rgb(224, 223, 147) 34%, rgb(240, 206, 134) 67%, rgb(240, 185, 140) 100%);"></span>Company</p><ul class="space-y-2.5 list-none m-0 p-0"><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Blog</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../pricing/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Pricing</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../integrations/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Integrations</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../contact/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Contact us</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../support/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Support</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../terms/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Terms</a></li><li><a class="hp-mono text-[12px] transition-colors hover:text-white" href="../../privacy/index.html" data-discover="true" style="color: rgb(174, 180, 191); text-decoration: none;">Privacy Policy</a></li></ul></div></div><div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 pt-8 mt-12 border-t" style="border-color: rgba(255, 255, 255, 0.1);"><div class="flex items-center gap-3"><a href="https://www.linkedin.com/company/agentic-fabriq/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hp-mono flex items-center justify-center w-9 h-9 rounded-md border text-[13px] transition-colors hover:text-white hover:border-white/40" style="border-color: rgba(255, 255, 255, 0.2); color: rgb(174, 180, 191); text-decoration: none;">in</a><a href="https://x.com/agenticfabriq" target="_blank" rel="noopener noreferrer" aria-label="X" class="hp-mono flex items-center justify-center w-9 h-9 rounded-md border text-[13px] transition-colors hover:text-white hover:border-white/40" style="border-color: rgba(255, 255, 255, 0.2); color: rgb(174, 180, 191); text-decoration: none;">𝕏</a><a href="https://youtube.com/@agenticfabriq" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="hp-mono flex items-center justify-center w-9 h-9 rounded-md border text-[13px] transition-colors hover:text-white hover:border-white/40" style="border-color: rgba(255, 255, 255, 0.2); color: rgb(174, 180, 191); text-decoration: none;">▶</a></div><p class="hp-mono text-[11.5px] m-0" style="color: rgb(138, 144, 156);">© Agentic Fabriq 2026</p></div></div></footer></div></div></body></html>

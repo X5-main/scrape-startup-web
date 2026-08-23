@@ -1,0 +1,8 @@
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Granola">
+  <title>Granola</title>
+  <!-- Placeholder lettermark: Granola publishes no icon in the open icon sets,
+       so this is a neutral tile in the site palette rather than an imitation of
+       their brand mark. Swap in the official asset when there is one. -->
+  <rect x="0" y="0" width="24" height="24" rx="6" fill="#F0CE86" />
+  <text x="12" y="16.6" text-anchor="middle" font-family="'Space Grotesk', system-ui, sans-serif" font-size="13" font-weight="700" fill="#0A0A0A">G</text>
+</svg>

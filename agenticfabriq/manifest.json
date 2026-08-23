@@ -1,0 +1,25 @@
+{
+  "short_name": "Agentic Fabriq",
+  "name": "Agentic Fabriq - Plug in agents. Pass in tools. Built-in security.",
+  "icons": [
+    {
+      "src": "fabriq-logo.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "fabriq-logo.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "fabriq-logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

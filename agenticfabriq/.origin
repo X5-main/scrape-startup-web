@@ -1,0 +1,11 @@
+www.agenticfabriq.com — mirrored 2026-08-24 (D30) via mirror_site.py (depth 3, sitemap auto, asset host ddwl4m2hdecbv.cloudfront.net) into agenticfabriq/. Site is a Vercel React/Next-style SSR build (home shell served for ANY unknown route; real pages SSR full HTML; JS chunks under /b/<buildid>/). robots.txt allow-all with explicit AI-crawler allows (GPTBot/OAI-SearchBot/ClaudeBot/PerplexityBot/etc.). Sitemap sitemap.xml: 154 URLs (130+ = /integrations/* + /blog/* + /docs/* + /solutions/*). 335 files mirrored, 54 MB, served via serve_replica.py on 8928.
+
+Externals / deviations:
+- CloudFront asset host ddwl4m2hdecbv.cloudfront.net (b/<buildid> JS chunks + images) VENDORED locally under b/ and arc/ (the crawler rewrites the CF base to local; the /b/4O7Z0HED5ZNX/4O7Z0HED5ZNX.js.gz chunk is the real 9984 B gzip from crawl time — live CF now 403s the path for non-browser clients, so the vendored bytes are the last verified-good copy).
+- googletagmanager.com, redditstatic.com/ads/pixel.js, reb2b tracking EXCLUDED (analytics/tracking only).
+- Social/profile links (linkedin.com, x.com, youtube.com, ycombinator.com, dashboard.agenticfabriq.com) stay EXTERNAL (links, not in-page content).
+- One blog image with a space+parens in its filename ("s-l1200 (1).jpg", /blogs/token-refresh-101-how-oauth-refresh-tokens-work/) was missed by the crawler (unencoded-paren fetch failure); vendored manually from live (327,615 B, real 1200x852 JPEG) to close the residual. Sweep after vendoring: residual_uniq=0.
+
+Catch-all ghost pages: live serves the home HTML shell (141,355 B) for ANY unknown path incl. /#n, /gcp-app/home/, and the /blogs/token-refresh-... slug. Those are replicated as captured (mirror holds the same shell at the same paths — parity with live behavior, matching the D29 /contact/ ghost lesson in reverse: here the ghost IS the only thing live returns, so it's faithful).
+
+Ghost-cache audit (D29 rule): home/developers/integrations/contact/blog spot-checked live-fetch size vs vendored — all within the expected delta of URL-rewrite length (141355 vs 141607 = absolute->relative src/href shortening, verified by byte diff: only asset-path rewrites differ); no stale-build pollution survived the crawl. Live serves a stable 141,355 B home on repeated fetches.
