@@ -1,0 +1,2502 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e7f1ff" />
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon__v-1.png" />
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-ExtraLight.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Light.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Regular.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Medium.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-SemiBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Bold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-ExtraBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/IBMPlexSans-Regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/IBMPlexSans-SemiBold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+
+	
+
+	<title>Caution: Verifiable Compute Platform</title>
+	<link rel="stylesheet" href="assets/styles.css" />
+	<link rel="canonical" href="https://caution.co/" />
+	<link rel="alternate" type="application/atom+xml" title="Caution" href="feed.xml" />
+	<meta content="Caution" property="og:site_name" />
+
+	 
+	<meta content="Verifiable Compute Platform | Caution" property="og:title" />
+	<meta content="article" property="og:type" />
+	 
+	<meta content="Caution is the generalized verifiable compute platform. Deploy to TEEs in minutes and let anyone verify exactly what's running." property="og:description" />
+	<meta name="description" content="Caution is the generalized verifiable compute platform. Deploy to TEEs in minutes and let anyone verify exactly what's running." />
+	 
+	<meta content="https://caution.co/index.html" property="og:url" />
+	  
+	<meta content="https://caution.co/assets/imgs/opengraph/og-home.png" property="og:image" />
+	  
+
+	<meta name="twitter:card" content="summary_large_image" />
+
+	
+	<meta name="twitter:title" content="Verifiable Compute Platform | Caution" />
+	 
+	<meta name="twitter:url" content="https://caution.co/index.html" />
+	 
+	<meta name="twitter:description" content="Caution is the generalized verifiable compute platform. Deploy to TEEs in minutes and let anyone verify exactly what's running." />
+	 
+	<meta name="twitter:image:src" content="https://caution.co/assets/imgs/opengraph/og-home.png" />
+	 
+
+	<script src="assets/js/main.js" defer></script>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "Caution",
+	"url": "https://caution.co",
+	"logo": "https://caution.co/assets/favicons/caution-icon.svg",
+	"description": "The first generalized verifiable compute platform. Deploy to TEEs in minutes and let anyone verify exactly what&#39;s running.",
+	"contactPoint": {
+		"@type": "ContactPoint",
+		"email": "team@caution.co",
+		"contactType": "sales"
+	},
+	"sameAs": [
+		"https://git.distrust.co/public",
+		"https://matrix.to/#/#caution:matrix.org"
+	]
+}
+</script>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "SoftwareApplication",
+	"name": "Caution",
+	"applicationCategory": "SecurityApplication",
+		"operatingSystem": "Linux, macOS",
+	"description": "The first generalized verifiable compute platform. Deploy to TEEs in minutes and let anyone verify exactly what&#39;s running.",
+	"url": "https://caution.co",
+	"offers": {
+		"@type": "Offer",
+		"url": "https://caution.co/pricing.html"
+	}
+}
+</script>
+
+
+
+
+
+
+
+
+
+<!-- "Really, there is nothing interesting to see here. It is a static website. -->
+	<!-- Here is the terraform code that deployed it, and here is the site source repo. -->
+	<!-- If you find anything interesting or want to talk to us, reach out via our /contact page!" -->
+	<!-- https://git.distrust.co/public/stack -->
+	<!-- https://git.distrust.co/public/website -->
+</head>
+<body class="landing">
+		<div class="page-wrapper"><script>
+	(function () {
+		try {
+			if (window.localStorage.getItem("caution-y-combinator-announcement-dismissed") === "true") {
+				document.documentElement.classList.add("site-announcement-dismissed");
+			}
+		} catch (error) {
+			// Keep the announcement visible if localStorage is unavailable.
+		}
+	})();
+</script>
+
+<div class="site-announcement" data-site-announcement role="region" aria-label="Y Combinator announcement">
+	<div class="site-announcement__inner">
+		<p class="site-announcement__copy">
+			Caution is backed by Y Combinator. <span class="site-announcement__mobile-break" aria-hidden="true"></span><a href="https://www.ycombinator.com/launches/SIq-caution-hosting-platform-for-software-you-can-t-afford-to-have-hacked" class="site-announcement__link" target="_blank" rel="noopener noreferrer" aria-label="Learn more about Caution on Y Combinator">Learn more</a>.
+		</p>
+		<button class="site-announcement__dismiss" type="button" aria-label="Dismiss announcement" data-site-announcement-dismiss>
+			<svg class="site-announcement__dismiss-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"></path>
+				<path d="m6 6 12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<header class="header-navbar">
+	<div class="nav-top-bar">
+		<a href="index.html" class="nav-logo">
+			<img src="assets/base/caution-logo/caution.svg" alt="Caution logo" width="781" height="137" />
+		</a>
+
+		<nav class="nav-desktop">
+			<div class="nav-center">
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Platform
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="platform-tour.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/><circle cx="12" cy="12" r="10"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Platform tour</span>
+										<span class="nav-dropdown__desc">Watch Caution in action</span>
+									</span>
+								</a>
+								<a href="cloud/aws.html" class="nav-dropdown__item">
+									<span class="nav-dropdown__icon">
+										<img src="assets/base/aws.png" alt="" width="640" height="640" class="nav-dropdown__icon-img" />
+									</span>
+									<span>
+										<span class="nav-dropdown__title">AWS Nitro</span>
+										<span class="nav-dropdown__desc">Deploy on AWS Nitro Enclaves</span>
+									</span>
+								</a>
+								<a href="faq.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+									<span>
+										<span class="nav-dropdown__title">FAQ</span>
+										<span class="nav-dropdown__desc">Common questions answered</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Resources
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="https://docs.caution.co/" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Documentation</span>
+										<span class="nav-dropdown__desc">Technical guides and API reference</span>
+									</span>
+								</a>
+								<a href="blog.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Blog</span>
+										<span class="nav-dropdown__desc">Engineering insights and updates</span>
+									</span>
+								</a>
+								<a href="security-controls.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Security</span>
+										<span class="nav-dropdown__desc">Trust model, evidence, and framework alignment</span>
+									</span>
+								</a>
+								<a href="https://matrix.to/#/#caution:matrix.org" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Community</span>
+										<span class="nav-dropdown__desc">Join us on Matrix</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="about.html" class="nav-link">About</a>
+				<a href="pricing.html" class="nav-link">Pricing</a>
+			</div>
+			<div class="nav-right">
+				<a href="https://dashboard.caution.co/" class="nav-link">Log in</a>
+				<a href="contact.html" class="nav-cta">
+					Book a live demo
+				</a>
+			</div>
+		</nav>
+
+		<button
+			class="mobile-menu-button"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-label="Toggle menu"
+		>
+			<span class="hamburger">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</span>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-nav">
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Platform <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="platform-tour.html" class="mobile-menu-link">Platform tour</a>
+							<a href="cloud/aws.html" class="mobile-menu-link">AWS Nitro</a>
+							<a href="faq.html" class="mobile-menu-link">FAQ</a>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Resources <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="https://docs.caution.co/" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Documentation</a>
+							<a href="blog.html" class="mobile-menu-link">Blog</a>
+							<a href="security-controls.html" class="mobile-menu-link">Security</a>
+							<a href="https://matrix.to/#/#caution:matrix.org" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Community</a>
+							<a href="legal.html" class="mobile-menu-link">Legal</a>
+						</div>
+					</div>
+				</div>
+				<a href="about.html" class="mobile-menu-link">About</a>
+				<a href="pricing.html" class="mobile-menu-link">Pricing</a>
+			</div>
+			<div class="mobile-menu-footer">
+				<a href="contact.html" class="mobile-menu-cta">
+					Book a live demo
+				</a>
+				<a href="platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const announcement = document.querySelector("[data-site-announcement]");
+		const dismissButton = document.querySelector("[data-site-announcement-dismiss]");
+		const root = document.documentElement;
+		const dismissedClass = "site-announcement-dismissed";
+		const storageKey = "caution-y-combinator-announcement-dismissed";
+
+		function isDismissed() {
+			return root.classList.contains(dismissedClass);
+		}
+
+		function setAnnouncementOffset() {
+			if (!announcement || isDismissed()) {
+				root.style.setProperty("--site-announcement-offset", "0px");
+				return;
+			}
+
+			const offset = Math.max(0, announcement.offsetHeight - (window.scrollY || window.pageYOffset));
+			root.style.setProperty("--site-announcement-offset", `${offset}px`);
+		}
+
+		if (dismissButton) {
+			dismissButton.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				try {
+					window.localStorage.setItem(storageKey, "true");
+				} catch (error) {
+					// Dismiss for this page view even if persistence is unavailable.
+				}
+
+				root.classList.add(dismissedClass);
+				setAnnouncementOffset();
+			});
+		}
+
+		setAnnouncementOffset();
+		window.addEventListener("scroll", setAnnouncementOffset, { passive: true });
+		window.addEventListener("resize", setAnnouncementOffset);
+	});
+
+	// Desktop dropdown toggle (click-based)
+	document.addEventListener("DOMContentLoaded", function() {
+		const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+		dropdowns.forEach(dropdown => {
+			const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+			if (!trigger) return;
+
+			trigger.addEventListener("click", function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const isOpen = dropdown.classList.contains("is-open");
+
+				// Close all dropdowns first
+				dropdowns.forEach(d => {
+					d.classList.remove("is-open");
+					const t = d.querySelector(".nav-dropdown__trigger");
+					if (t) t.setAttribute("aria-expanded", "false");
+				});
+
+				// Toggle current dropdown
+				if (!isOpen) {
+					dropdown.classList.add("is-open");
+					trigger.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", function(e) {
+			if (!e.target.closest(".nav-dropdown")) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+
+		// Close dropdown on Escape key
+		document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+	});
+
+	// Detect dark sections and update navbar styling
+	function updateNavbarForDarkSections() {
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		// Get navbar position (use a point near the top of the navbar)
+		const navbarRect = navbar.getBoundingClientRect();
+		const checkPoint = navbarRect.top + navbarRect.height / 2;
+
+		// Find all dark sections on the page
+		function getDarkSections() {
+			var selector = '.problem-section, [class*="dark-bg"], [class*="bg-dark"]';
+			return document.querySelectorAll(selector);
+		}
+
+		let isOverDark = false;
+
+		getDarkSections().forEach(section => {
+			const sectionRect = section.getBoundingClientRect();
+			// Check if navbar overlaps with this dark section
+			if (checkPoint >= sectionRect.top && checkPoint <= sectionRect.bottom) {
+				isOverDark = true;
+			}
+		});
+
+		if (isOverDark) {
+			navbar.classList.add("navbar--on-dark");
+		} else {
+			navbar.classList.remove("navbar--on-dark");
+		}
+	}
+
+	// Run on scroll and load
+	document.addEventListener("DOMContentLoaded", function() {
+		updateNavbarForDarkSections();
+		window.addEventListener("scroll", updateNavbarForDarkSections, { passive: true });
+	});
+
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", function () {
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerNavbar = document.querySelector(".header-navbar");
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", () => {
+				const isExpanded =
+					mobileMenuButton.getAttribute("aria-expanded") === "true";
+				mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+				mobileMenu.classList.toggle("active");
+				// Toggle dark background on header when menu is open
+				if (headerNavbar) {
+					headerNavbar.classList.toggle("mobile-menu-open");
+				}
+				// Prevent body scroll when menu is open
+				document.documentElement.classList.toggle("mobile-menu-active");
+				document.body.classList.toggle("mobile-menu-active");
+			});
+		}
+
+		// Mobile menu accordion toggle
+		const accordionLabels = document.querySelectorAll(".mobile-menu-label");
+		accordionLabels.forEach(label => {
+			const content = label.nextElementSibling;
+			if (!content) return;
+
+			label.addEventListener("click", () => {
+				const isExpanded = label.getAttribute("aria-expanded") === "true";
+				label.setAttribute("aria-expanded", !isExpanded);
+				content.classList.toggle("is-expanded", !isExpanded);
+			});
+
+			// Set initial state (expanded)
+			if (label.getAttribute("aria-expanded") === "true") {
+				content.classList.add("is-expanded");
+			}
+		});
+
+		// Intent-based auto-hiding navbar
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let isNavbarVisible = true;
+
+		// Thresholds for scroll behavior
+		const SCROLL_THRESHOLD = 5; // Minimum scroll distance to trigger hide/show (prevents jitter)
+		const SHOW_THRESHOLD = 10; // Pixels to scroll up before showing navbar
+		const TOP_THRESHOLD = 100; // Distance from top where navbar always shows
+
+		function getNavbarHideStartY() {
+			if (!document.body.classList.contains("landing")) {
+				return TOP_THRESHOLD;
+			}
+
+			const differentiatorSection = document.querySelector("[data-differentiator-section]");
+			if (!differentiatorSection) {
+				return TOP_THRESHOLD;
+			}
+
+			const sectionRect = differentiatorSection.getBoundingClientRect();
+			const sectionBottomY = sectionRect.bottom + window.scrollY;
+			const navbarHeight = navbar.offsetHeight || 0;
+
+			return Math.max(TOP_THRESHOLD, sectionBottomY - navbarHeight);
+		}
+
+		// Debounced scroll handler for performance
+		function handleScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateNavbarVisibility();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		// Intent detection: show navbar when scrolling up, hide when scrolling down
+		function updateNavbarVisibility() {
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			// Toggle scrolled state for blur effect
+			if (currentScrollY > 50) {
+				navbar.classList.add("navbar--scrolled");
+			} else {
+				navbar.classList.remove("navbar--scrolled");
+			}
+
+			// On landing, keep the navbar visible through the differentiator section.
+			if (currentScrollY < getNavbarHideStartY()) {
+				showNavbar();
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			// Check scroll direction and apply threshold to prevent jitter
+			if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
+				if (scrollDelta > 0) {
+					// Scrolling down - hide navbar
+					hideNavbar();
+				} else if (Math.abs(scrollDelta) > SHOW_THRESHOLD) {
+					// Scrolling up with intent - show navbar
+					showNavbar();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function hideNavbar() {
+			if (isNavbarVisible) {
+				navbar.classList.add("navbar--hidden");
+				isNavbarVisible = false;
+			}
+		}
+
+		function showNavbar() {
+			if (!isNavbarVisible) {
+				navbar.classList.remove("navbar--hidden");
+				isNavbarVisible = true;
+			}
+		}
+
+		// Attach scroll listener
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		// Cleanup on page unload (prevents memory leaks)
+		window.addEventListener("beforeunload", () => {
+			window.removeEventListener("scroll", handleScroll);
+		});
+	});
+</script>
+<main>
+				<div class="hero-section">
+					<section class="hero">
+						<div class="hero-content container">
+							<div class="hero-copy">
+								<div class="hero-copy__heading">
+									<span class="hero-eyebrow eyebrow">Verifiable compute</span>
+									<h1 class="hero-title">Know what runs on a server</h1>
+								</div>
+								<div class="hero-copy__aside">
+									<p class="hero-copy__description">
+										Deploy sensitive workloads to secure enclaves in minutes, with cryptographic proof that production matches the reviewed source.
+									</p>
+									<div class="cta-group">
+										<a href="contact.html" class="cta-btn" aria-label="Book a live demo">Book a live demo</a>
+										<a href="platform-tour.html" class="cta-link">
+											Watch the 3-minute tour
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+												<path d="M5 12h14"></path>
+												<path d="m12 5 7 7-7 7"></path>
+											</svg>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="hero-caution-anchor" data-caution-card-start aria-hidden="true">
+								<div class="hero-caution-anchor__visual differentiator-card__visual">
+									<ul class="differentiator-stack differentiator-stack--verified" aria-label="Verified stack">
+										<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Application</li>
+										<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Runtime</li>
+										<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>OS / Kernel</li>
+										<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Compiler / Toolchain</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<div class="caution-travel-card" data-caution-travel-card aria-hidden="true">
+						<div class="differentiator-card__visual differentiator-card__visual--travel">
+							<ul class="differentiator-stack differentiator-stack--verified" aria-label="Verified stack">
+								<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Application</li>
+								<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Runtime</li>
+								<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>OS / Kernel</li>
+								<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Compiler / Toolchain</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="contact-carousel contact-carousel--between-hero">
+						<div class="contact-carousel__inner">
+							<p class="contact-carousel__title">From engineers trusted by industry leaders</p>
+							<div class="contact-carousel__track"><div class="logo-slider">
+	<!-- First set of logos -->
+	<img loading="lazy" src="assets/base/logo-carousel/coinbase.svg" alt="Coinbase" width="1406" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/etherfi.svg" alt="Ether.fi" width="906" height="274" style="height: 26px" />
+	<img loading="lazy" src="assets/base/logo-carousel/exodus.svg" alt="Exodus" width="1219" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/ledn.svg" alt="Ledn" width="826" height="234" />
+	<img loading="lazy" src="assets/base/logo-carousel/sidero.svg" alt="Sidero Labs" width="1118" height="296" />
+	<img loading="lazy" src="assets/base/logo-carousel/fitbit.svg" alt="Fitbit" width="638" height="234" />
+	<img loading="lazy" src="assets/base/logo-carousel/zcash.svg" alt="Zcash" width="1336" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/hashicorp.svg" alt="HashiCorp" width="987" height="206" style="height: 20px" />
+	<img loading="lazy" src="assets/base/logo-carousel/ankr.svg" alt="Ankr" width="735" height="200" />
+	<img loading="lazy" src="assets/base/logo-carousel/turnkey.svg" alt="Turnkey" width="1141" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/bishopfox.svg" alt="Bishop Fox" width="1505" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/bitgo.svg" alt="BitGo" width="928" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/falconx.svg" alt="FalconX" width="1562" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/mystenlabs.svg" alt="Mysten Labs" width="1901" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/optimism.svg" alt="Optimism" width="1428" height="250" />
+
+	<!-- Duplicate set for seamless infinite scroll -->
+	<img loading="lazy" src="assets/base/logo-carousel/coinbase.svg" alt="Coinbase" width="1406" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/etherfi.svg" alt="Ether.fi" width="906" height="274" aria-hidden="true" style="height: 26px" />
+	<img loading="lazy" src="assets/base/logo-carousel/exodus.svg" alt="Exodus" width="1219" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/ledn.svg" alt="Ledn" width="826" height="234" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/sidero.svg" alt="Sidero Labs" width="1118" height="296" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/fitbit.svg" alt="Fitbit" width="638" height="234" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/zcash.svg" alt="Zcash" width="1336" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/hashicorp.svg" alt="HashiCorp" width="987" height="206" aria-hidden="true" style="height: 20px" />
+	<img loading="lazy" src="assets/base/logo-carousel/ankr.svg" alt="Ankr" width="735" height="200" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/turnkey.svg" alt="Turnkey" width="1141" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/bishopfox.svg" alt="Bishop Fox" width="1505" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/bitgo.svg" alt="BitGo" width="928" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/falconx.svg" alt="FalconX" width="1562" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/mystenlabs.svg" alt="Mysten Labs" width="1901" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/optimism.svg" alt="Optimism" width="1428" height="250" aria-hidden="true" />
+</div>
+</div>
+						</div>
+					</div>
+
+						<section class="differentiator-section" aria-labelledby="differentiator-heading" data-differentiator-section>
+								<div class="container">
+									<div class="differentiator-section__heading">
+										<h2 id="differentiator-heading" class="landing-section-title differentiator-section__title">
+											<span class="differentiator-section__title-word" data-differentiator-heading-word data-differentiator-heading-group="action">Verify</span>
+										<span class="differentiator-section__title-word" data-differentiator-heading-word data-differentiator-heading-group="action">the</span>
+										<span class="differentiator-section__title-word" data-differentiator-heading-word data-differentiator-heading-group="action">layers</span>
+										<span class="differentiator-section__title-word" data-differentiator-heading-word data-differentiator-heading-group="subject">confidential</span>
+										<span class="differentiator-section__title-word" data-differentiator-heading-word data-differentiator-heading-group="subject">compute</span>
+										<span class="differentiator-section__title-word differentiator-section__title-muted" data-differentiator-heading-word data-differentiator-heading-group="muted">leaves</span>
+										<span class="differentiator-section__title-word differentiator-section__title-muted" data-differentiator-heading-word data-differentiator-heading-group="muted">opaque</span>
+									</h2>
+								</div>
+								<div class="differentiator-grid">
+								<article class="differentiator-card differentiator-card--cloud">
+									<div class="differentiator-card__header">
+										<h3 class="differentiator-card__title">Regular cloud</h3>
+										<p class="differentiator-card__description">
+											Trust the operator. Production stays a black box.
+										</p>
+									</div>
+									<div class="differentiator-card__visual differentiator-card__visual--dark"></div>
+								</article>
+
+								<article class="differentiator-card differentiator-card--confidential">
+									<div class="differentiator-card__header">
+										<h3 class="differentiator-card__title">Confidential compute</h3>
+										<p class="differentiator-card__description">
+											Trust the hardware. The software stack still stays opaque.
+										</p>
+									</div>
+									<div class="differentiator-card__visual">
+										<ul class="differentiator-stack differentiator-stack--partial" aria-label="Partially visible stack">
+											<li><span class="differentiator-stack__dot"></span>Application</li>
+											<li><span>Runtime</span></li>
+											<li><span>OS / Kernel</span></li>
+											<li><span>Hardware / TEE</span></li>
+											<li><span>Compiler / Toolchain</span></li>
+										</ul>
+									</div>
+								</article>
+
+								<article class="differentiator-card differentiator-card--caution">
+									<div class="differentiator-card__header">
+										<h3 class="differentiator-card__title differentiator-card__title--brand">
+											<img class="differentiator-card__title-icon" src="assets/favicons/caution-icon.svg" alt="" aria-hidden="true">
+											<span>Verifiable compute</span>
+										</h3>
+										<p class="differentiator-card__description">
+											Don't trust. Verify every layer yourself, down to the compiler.
+										</p>
+									</div>
+									<div class="differentiator-card__visual differentiator-card__visual--caution-target" data-caution-card-destination>
+										<ul class="differentiator-stack differentiator-stack--verified" aria-label="Verified stack">
+											<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Application</li>
+											<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Runtime</li>
+											<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>OS / Kernel</li>
+											<li><span class="differentiator-stack__check"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-icon lucide-check"><path d="M20 6 9 17l-5-5"/></svg></span>Compiler / Toolchain</li>
+										</ul>
+									</div>
+								</article>
+							</div>
+						</div>
+					</section>
+
+					</div>
+
+					<div class="contact-carousel contact-carousel--post-differentiator">
+						<div class="contact-carousel__inner">
+							<p class="contact-carousel__title">From engineers trusted by industry leaders</p>
+							<div class="contact-carousel__track"><div class="logo-slider">
+	<!-- First set of logos -->
+	<img loading="lazy" src="assets/base/logo-carousel/coinbase.svg" alt="Coinbase" width="1406" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/etherfi.svg" alt="Ether.fi" width="906" height="274" style="height: 26px" />
+	<img loading="lazy" src="assets/base/logo-carousel/exodus.svg" alt="Exodus" width="1219" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/ledn.svg" alt="Ledn" width="826" height="234" />
+	<img loading="lazy" src="assets/base/logo-carousel/sidero.svg" alt="Sidero Labs" width="1118" height="296" />
+	<img loading="lazy" src="assets/base/logo-carousel/fitbit.svg" alt="Fitbit" width="638" height="234" />
+	<img loading="lazy" src="assets/base/logo-carousel/zcash.svg" alt="Zcash" width="1336" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/hashicorp.svg" alt="HashiCorp" width="987" height="206" style="height: 20px" />
+	<img loading="lazy" src="assets/base/logo-carousel/ankr.svg" alt="Ankr" width="735" height="200" />
+	<img loading="lazy" src="assets/base/logo-carousel/turnkey.svg" alt="Turnkey" width="1141" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/bishopfox.svg" alt="Bishop Fox" width="1505" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/bitgo.svg" alt="BitGo" width="928" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/falconx.svg" alt="FalconX" width="1562" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/mystenlabs.svg" alt="Mysten Labs" width="1901" height="250" />
+	<img loading="lazy" src="assets/base/logo-carousel/optimism.svg" alt="Optimism" width="1428" height="250" />
+
+	<!-- Duplicate set for seamless infinite scroll -->
+	<img loading="lazy" src="assets/base/logo-carousel/coinbase.svg" alt="Coinbase" width="1406" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/etherfi.svg" alt="Ether.fi" width="906" height="274" aria-hidden="true" style="height: 26px" />
+	<img loading="lazy" src="assets/base/logo-carousel/exodus.svg" alt="Exodus" width="1219" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/ledn.svg" alt="Ledn" width="826" height="234" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/sidero.svg" alt="Sidero Labs" width="1118" height="296" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/fitbit.svg" alt="Fitbit" width="638" height="234" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/zcash.svg" alt="Zcash" width="1336" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/hashicorp.svg" alt="HashiCorp" width="987" height="206" aria-hidden="true" style="height: 20px" />
+	<img loading="lazy" src="assets/base/logo-carousel/ankr.svg" alt="Ankr" width="735" height="200" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/turnkey.svg" alt="Turnkey" width="1141" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/bishopfox.svg" alt="Bishop Fox" width="1505" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/bitgo.svg" alt="BitGo" width="928" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/falconx.svg" alt="FalconX" width="1562" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/mystenlabs.svg" alt="Mysten Labs" width="1901" height="250" aria-hidden="true" />
+	<img loading="lazy" src="assets/base/logo-carousel/optimism.svg" alt="Optimism" width="1428" height="250" aria-hidden="true" />
+</div>
+</div>
+					</div>
+				</div><section class="what-is-caution">
+	<div class="container">
+		<div class="what-is-caution__header">
+			<span class="eyebrow">What Caution does</span>
+			<h2 class="landing-section-title">Stronger integrity guarantees</h2>
+			<p class="page-description page-description--center">
+				Caution is a verifiable confidential compute platform that gives you cryptographic proof your enclaves run the exact code you reviewed.
+			</p>
+		</div>
+
+		<!-- Desktop: tabbed interface -->
+		<div class="what-is-caution__frame">
+			<div class="what-is-caution__tabs">
+				<button type="button" class="what-is-caution__tab is-active" data-tab="0">Prove what was deployed</button>
+				<button type="button" class="what-is-caution__tab" data-tab="1">Detect tampering early</button>
+				<button type="button" class="what-is-caution__tab" data-tab="2">Deploy to enclaves in minutes</button>
+				<button type="button" class="what-is-caution__tab" data-tab="3">Keep your workflows</button>
+			</div>
+
+			<div class="what-is-caution__panels">
+				<div class="what-is-caution__panel is-active" data-panel="0">
+					<div class="what-is-caution__panel-visual"><svg class="prove-dots" viewBox="-11 0 189 178" xmlns="http://www.w3.org/2000/svg">
+	<!-- Corner: top-left -->
+	<rect class="edot pdot-r0" x="-11" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="2" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="15" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="28" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r1" x="-11" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r1" x="2" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r2" x="-11" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r3" x="-11" y="41" width="7" height="7" rx="1"/>
+	<!-- Corner: top-right -->
+	<rect class="edot pdot-r0" x="132" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="145" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="158" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="171" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r1" x="158" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r1" x="171" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r2" x="171" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r3" x="171" y="41" width="7" height="7" rx="1"/>
+	<!-- Corner: bottom-left -->
+	<rect class="edot pdot-r10" x="-11" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r11" x="-11" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r12" x="-11" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r12" x="2" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="-11" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="2" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="15" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="28" y="171" width="7" height="7" rx="1"/>
+	<!-- Corner: bottom-right -->
+	<rect class="edot pdot-r10" x="171" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r11" x="171" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r12" x="158" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r12" x="171" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="132" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="145" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="158" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="171" y="171" width="7" height="7" rx="1"/>
+	<!-- Long stroke top -->
+	<rect class="edot pdot-r4" x="119" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r4" x="132" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r4" x="145" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r5" x="106" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r5" x="119" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r5" x="132" y="67" width="7" height="7" rx="1"/>
+	<!-- Short stroke + long stroke mid -->
+	<rect class="edot pdot-r6" x="28" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="41" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="54" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="93" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="106" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="119" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="41" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="54" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="67" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="80" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="93" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="106" y="93" width="7" height="7" rx="1"/>
+	<!-- Merge area -->
+	<rect class="edot pdot-r8" x="54" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r8" x="67" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r8" x="80" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r8" x="93" y="106" width="7" height="7" rx="1"/>
+	<!-- Vertex -->
+	<rect class="edot pdot-r9" x="54" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r9" x="67" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r9" x="80" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r10" x="67" y="132" width="7" height="7" rx="1"/>
+</svg>
+</div>
+					<div class="what-is-caution__panel-body">
+						<h3 class="what-is-caution__panel-title">Prove what was deployed</h3>
+						<p>Cryptographically link the code running in your enclave to the reviewed source code, build, and configuration that produced it.</p>
+						<p>Verify the entire stack down to the kernel, not just the application layer, with full-source bootstrapping and  <a href="https://docs.caution.co/concepts/reproducibility/" target="_blank" rel="noopener noreferrer">reproducibility</a>.</p>
+					</div>
+				</div>
+				<div class="what-is-caution__panel" data-panel="1">
+					<div class="what-is-caution__panel-visual"><svg class="detect-dots" viewBox="-11 0 189 178" xmlns="http://www.w3.org/2000/svg">
+	<!-- Top bracket -->
+	<rect class="edot pdot-d0" x="-11" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d1" x="2" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d2" x="15" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d3" x="28" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d4" x="41" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d5" x="54" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d6" x="67" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d7" x="80" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d8" x="93" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d9" x="106" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d10" x="119" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d11" x="132" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d12" x="145" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d13" x="158" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d14" x="171" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d1" x="-11" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d15" x="171" y="15" width="7" height="7" rx="1"/>
+	<!-- Eyelashes: vertical -->
+	<rect class="edot pdot-d7" x="54" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d9" x="80" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d11" x="106" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d8" x="54" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d10" x="80" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d12" x="106" y="41" width="7" height="7" rx="1"/>
+	<!-- Eye: top lid -->
+	<rect class="edot pdot-d9" x="54" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d10" x="67" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d11" x="80" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d12" x="93" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d13" x="106" y="54" width="7" height="7" rx="1"/>
+	<!-- Eye: upper curve -->
+	<rect class="edot pdot-d8" x="28" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d9" x="41" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d15" x="119" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d16" x="132" y="67" width="7" height="7" rx="1"/>
+	<!-- Eye: wide + iris top -->
+	<rect class="edot pdot-d8" x="15" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d9" x="28" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d12" x="67" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d13" x="80" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d14" x="93" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d17" x="132" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d18" x="145" y="80" width="7" height="7" rx="1"/>
+	<!-- Eye: widest + iris mid -->
+	<rect class="edot pdot-d8" x="2" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d9" x="15" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d13" x="67" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d14" x="80" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d15" x="93" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d19" x="145" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d20" x="158" y="93" width="7" height="7" rx="1"/>
+	<!-- Eye: narrowing + iris bottom -->
+	<rect class="edot pdot-d10" x="15" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d11" x="28" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d14" x="67" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d15" x="80" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d16" x="93" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d19" x="132" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d20" x="145" y="106" width="7" height="7" rx="1"/>
+	<!-- Eye: lower curve -->
+	<rect class="edot pdot-d12" x="28" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d13" x="41" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d19" x="119" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d20" x="132" y="119" width="7" height="7" rx="1"/>
+	<!-- Eye: bottom lid -->
+	<rect class="edot pdot-d15" x="54" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d16" x="67" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d17" x="80" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d18" x="93" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d19" x="106" y="132" width="7" height="7" rx="1"/>
+	<!-- Bottom bracket -->
+	<rect class="edot pdot-d12" x="-11" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d26" x="171" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d13" x="-11" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d14" x="2" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d15" x="15" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d16" x="28" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d17" x="41" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d18" x="54" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d19" x="67" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d20" x="80" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d21" x="93" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d22" x="106" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d23" x="119" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d24" x="132" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d25" x="145" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d26" x="158" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-d27" x="171" y="171" width="7" height="7" rx="1"/>
+</svg>
+</div>
+					<div class="what-is-caution__panel-body">
+						<h3 class="what-is-caution__panel-title">Detect tampering early</h3>
+						<p>Surface unauthorised changes before they reach production. If a binary doesn't match the expected source, you'll know immediately.</p>
+					</div>
+				</div>
+				<div class="what-is-caution__panel" data-panel="2">
+					<div class="what-is-caution__panel-visual"><svg class="deploy-dots" viewBox="-11 0 189 178" xmlns="http://www.w3.org/2000/svg">
+	<!-- Upper arm: top edge -->
+	<rect class="edot pdot-r0" x="106" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="119" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="132" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="145" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="158" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r0" x="171" y="2" width="7" height="7" rx="1"/>
+	<!-- Upper arm: row 1 -->
+	<rect class="edot pdot-r1" x="93" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r1" x="106" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r1" x="145" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r1" x="158" y="15" width="7" height="7" rx="1"/>
+	<!-- Upper arm: row 2 -->
+	<rect class="edot pdot-r2" x="80" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r2" x="93" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r2" x="132" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r2" x="145" y="28" width="7" height="7" rx="1"/>
+	<!-- Upper arm: row 3 -->
+	<rect class="edot pdot-r3" x="67" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r3" x="80" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r3" x="119" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r3" x="132" y="41" width="7" height="7" rx="1"/>
+	<!-- Upper arm: row 4 -->
+	<rect class="edot pdot-r4" x="54" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r4" x="67" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r4" x="106" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r4" x="119" y="54" width="7" height="7" rx="1"/>
+	<!-- Upper arm: row 5 -->
+	<rect class="edot pdot-r5" x="41" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r5" x="54" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r5" x="93" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r5" x="106" y="67" width="7" height="7" rx="1"/>
+	<!-- Upper arm: bottom edge -->
+	<rect class="edot pdot-r6" x="28" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="41" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="54" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="67" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="80" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r6" x="93" y="80" width="7" height="7" rx="1"/>
+	<!-- Lower arm: top edge -->
+	<rect class="edot pdot-r7" x="67" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="80" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="93" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="106" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r7" x="119" y="93" width="7" height="7" rx="1"/>
+	<!-- Lower arm: row 8 -->
+	<rect class="edot pdot-r8" x="54" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r8" x="67" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r8" x="106" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r8" x="119" y="106" width="7" height="7" rx="1"/>
+	<!-- Lower arm: row 9 -->
+	<rect class="edot pdot-r9" x="41" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r9" x="54" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r9" x="93" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r9" x="106" y="119" width="7" height="7" rx="1"/>
+	<!-- Lower arm: row 10 -->
+	<rect class="edot pdot-r10" x="28" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r10" x="41" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r10" x="80" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r10" x="93" y="132" width="7" height="7" rx="1"/>
+	<!-- Lower arm: row 11 -->
+	<rect class="edot pdot-r11" x="15" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r11" x="28" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r11" x="67" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r11" x="80" y="145" width="7" height="7" rx="1"/>
+	<!-- Lower arm: row 12 -->
+	<rect class="edot pdot-r12" x="2" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r12" x="15" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r12" x="54" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r12" x="67" y="158" width="7" height="7" rx="1"/>
+	<!-- Lower arm: bottom edge -->
+	<rect class="edot pdot-r13" x="-11" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="2" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="15" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="28" y="171" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-r13" x="41" y="171" width="7" height="7" rx="1"/>
+</svg>
+</div>
+					<div class="what-is-caution__panel-body">
+						<h3 class="what-is-caution__panel-title">Deploy to enclaves in minutes</h3>
+						<p>Replace weeks of custom infrastructure and security engineering with one unified workflow that runs in minutes. Deploying to a Nitro Enclave has never been this fast.</p>
+					</div>
+				</div>
+				<div class="what-is-caution__panel" data-panel="3">
+					<div class="what-is-caution__panel-visual"><svg class="keep-dots" viewBox="-11 0 189 178" xmlns="http://www.w3.org/2000/svg">
+	<!-- Extra left column -->
+	<rect class="edot pdot-c3" x="28" y="2" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c3" x="28" y="171" width="7" height="7" rx="1"/>
+	<!-- Play icon: solid right-pointing triangle -->
+	<rect class="edot pdot-c4" x="41" y="2" width="7" height="7" rx="1"/>
+	<!-- Row 1 -->
+	<rect class="edot pdot-c4" x="41" y="15" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="15" width="7" height="7" rx="1"/>
+	<!-- Row 2 -->
+	<rect class="edot pdot-c4" x="41" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="28" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="28" width="7" height="7" rx="1"/>
+	<!-- Row 3 -->
+	<rect class="edot pdot-c4" x="41" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="41" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="41" width="7" height="7" rx="1"/>
+	<!-- Row 4 -->
+	<rect class="edot pdot-c4" x="41" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="54" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c8" x="93" y="54" width="7" height="7" rx="1"/>
+	<!-- Row 5 -->
+	<rect class="edot pdot-c4" x="41" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c8" x="93" y="67" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c9" x="106" y="67" width="7" height="7" rx="1"/>
+	<!-- Row 6: widest (point of triangle) -->
+	<rect class="edot pdot-c4" x="41" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c8" x="93" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c9" x="106" y="80" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c10" x="119" y="80" width="7" height="7" rx="1"/>
+	<!-- Row 7: widest -->
+	<rect class="edot pdot-c4" x="41" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c8" x="93" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c9" x="106" y="93" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c10" x="119" y="93" width="7" height="7" rx="1"/>
+	<!-- Row 8 -->
+	<rect class="edot pdot-c4" x="41" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c8" x="93" y="106" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c9" x="106" y="106" width="7" height="7" rx="1"/>
+	<!-- Row 9 -->
+	<rect class="edot pdot-c4" x="41" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="119" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c8" x="93" y="119" width="7" height="7" rx="1"/>
+	<!-- Row 10 -->
+	<rect class="edot pdot-c4" x="41" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="132" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c7" x="80" y="132" width="7" height="7" rx="1"/>
+	<!-- Row 11 -->
+	<rect class="edot pdot-c4" x="41" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="145" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c6" x="67" y="145" width="7" height="7" rx="1"/>
+	<!-- Row 12 -->
+	<rect class="edot pdot-c4" x="41" y="158" width="7" height="7" rx="1"/>
+	<rect class="edot pdot-c5" x="54" y="158" width="7" height="7" rx="1"/>
+	<!-- Row 13 -->
+	<rect class="edot pdot-c4" x="41" y="171" width="7" height="7" rx="1"/>
+</svg>
+</div>
+					<div class="what-is-caution__panel-body">
+						<h3 class="what-is-caution__panel-title">Keep your workflows</h3>
+						<p>Integrate with your existing CI/CD, infrastructure-as-code, and deployment tooling. Caution fits into what you already use rather than replacing it.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Mobile: accordion interface -->
+		<div class="what-is-caution__accordion">
+			<div class="wic-accordion__item">
+				<button class="wic-accordion__question" aria-expanded="false">
+					<span>Prove what was deployed</span>
+					<svg class="wic-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+				<div class="wic-accordion__answer">
+					<p>Cryptographically link the code running in your enclave to the reviewed source code, build, and configuration that produced it.</p>
+					<p>Verify the entire stack down to the kernel, not just the application layer, with full-source bootstrapping and <a href="https://docs.caution.co/concepts/reproducibility/" target="_blank" rel="noopener noreferrer">reproducibility</a>.</p>
+				</div>
+			</div>
+			<div class="wic-accordion__item">
+				<button class="wic-accordion__question" aria-expanded="false">
+					<span>Detect tampering early</span>
+					<svg class="wic-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+				<div class="wic-accordion__answer">
+					<p>Surface unauthorised changes before they reach production. If a binary doesn't match the expected source, you'll know immediately.</p>
+				</div>
+			</div>
+			<div class="wic-accordion__item">
+				<button class="wic-accordion__question" aria-expanded="false">
+					<span>Deploy to enclaves in minutes</span>
+					<svg class="wic-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+				<div class="wic-accordion__answer">
+					<p>Replace weeks of custom infrastructure and security engineering with one unified workflow that runs in minutes. Deploying to a Nitro Enclave has never been this fast.</p>
+				</div>
+			</div>
+			<div class="wic-accordion__item">
+				<button class="wic-accordion__question" aria-expanded="false">
+					<span>Keep your workflows</span>
+					<svg class="wic-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="12" y1="5" x2="12" y2="19"></line>
+						<line x1="5" y1="12" x2="19" y2="12"></line>
+					</svg>
+				</button>
+				<div class="wic-accordion__answer">
+					<p>Integrate with your existing CI/CD, infrastructure-as-code, and deployment tooling. Caution fits into what you already use rather than replacing it.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- CTA shown below accordion on ≤950px -->
+		<div class="what-is-caution__cta">
+			<div class="cta-group">
+				<a href="contact.html" class="cta-btn">Book a live demo</a>
+				<a href="platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// Desktop: tabbed interface
+			var tabs = document.querySelectorAll(".what-is-caution__tab");
+			var panels = document.querySelectorAll(".what-is-caution__panel");
+
+			function activateTab(index) {
+				tabs.forEach(function (t) { t.classList.remove("is-active"); });
+				panels.forEach(function (p) { p.classList.remove("is-active"); });
+				tabs[index].classList.add("is-active");
+				panels[index].classList.add("is-active");
+			}
+
+			tabs.forEach(function (tab) {
+				tab.addEventListener("click", function () {
+					var index = parseInt(this.getAttribute("data-tab"));
+					activateTab(index);
+				});
+			});
+
+			// Mobile: accordion
+			var accordionItems = document.querySelectorAll(".wic-accordion__item");
+			accordionItems.forEach(function (item) {
+				var btn = item.querySelector(".wic-accordion__question");
+				btn.addEventListener("click", function () {
+					var isActive = item.classList.contains("is-active");
+					// Close all
+					accordionItems.forEach(function (i) {
+						i.classList.remove("is-active");
+						i.querySelector(".wic-accordion__question").setAttribute("aria-expanded", "false");
+					});
+					// Toggle clicked
+					if (!isActive) {
+						item.classList.add("is-active");
+						btn.setAttribute("aria-expanded", "true");
+					}
+				});
+			});
+		});
+	</script>
+</section>
+<section id="who-benefits" class="who-benefits">
+	<div class="aws-ticker" aria-hidden="true">
+		<div class="aws-ticker__inner">
+			<span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span><span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span>
+		</div>
+	</div>
+	<div class="container">
+		<div class="who-benefits__content">
+			<div class="who-benefits__left">
+				<div class="aws-marquee" aria-hidden="true">
+					<div class="aws-marquee__column aws-marquee__column--up" style="--marquee-duration: 110s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+						</div>
+					</div>
+					<div class="aws-marquee__column aws-marquee__column--down" style="--marquee-duration: 125s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Key Management</span>
+						</div>
+					</div>
+					<div class="aws-marquee__column aws-marquee__column--up" style="--marquee-duration: 95s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+						</div>
+					</div>
+					<div class="aws-marquee__column aws-marquee__column--down" style="--marquee-duration: 115s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="who-benefits__right">
+				<span class="eyebrow">Who it's for</span>
+				<h2 class="who-benefits__title">Works everywhere it matters</h2>
+				<p class="who-benefits__paragraph">
+					Caution works across industries and workload types. It is most useful for high-assurance workloads where integrity failures would be costly or catastrophic. 
+				</p>
+				
+				<a href="#use-cases" class="cta-link">
+					See how teams use Caution
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+				
+			</div>
+		</div>
+	</div>
+	<div class="aws-ticker aws-ticker--bottom" aria-hidden="true">
+		<div class="aws-ticker__inner">
+			<span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span><span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span>
+		</div>
+	</div>
+</section>
+<section id="use-cases" class="landing-uc-cards">
+	<div class="container">
+		<span class="eyebrow">Use cases</span>
+		<h2 class="landing-section-title" style="text-align: left; margin: var(--spacing4) 0; margin-left: 0;">How teams use Caution</h2>
+		<p class="page-description page-description landing-uc-cards__description">
+			Explore common workloads teams deploy with verifiable builds and cryptographic proof.
+		</p>
+		<div class="landing-uc-cards__carousel">
+			<div class="landing-uc-cards__track">
+				<!-- First set of cards -->
+				<div class="landing-uc-cards__card">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable LLM inference over sensitive data</h3>
+						<span class="landing-uc-cards__badge">AI</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Serve LLMs and other models in verifiable environments so users can confirm the exact models and runtime that handled their prompts and data.</p>
+				</div>
+				<div class="landing-uc-cards__card">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable oracles & data feeds</h3>
+						<span class="landing-uc-cards__badge">Fintech</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Run oracle and pricing services in verifiable enclaves to demonstrate the integrity of each price feed, signal, and the code that produces it.</p>
+				</div>
+				<div class="landing-uc-cards__card">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable confidential AI for PHI</h3>
+						<span class="landing-uc-cards__badge">Healthcare</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Prove that patient data never leaves a verified enclave, meeting HIPAA requirements with cryptographic evidence.</p>
+				</div>
+				<div class="landing-uc-cards__card">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable model training pipelines</h3>
+						<span class="landing-uc-cards__badge">AI</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Ensure training runs execute approved code on approved data, with attestation evidence for audit and compliance.</p>
+				</div>
+				<div class="landing-uc-cards__card">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable custody & signing operations</h3>
+						<span class="landing-uc-cards__badge">Fintech</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Show regulators and customers that key management and transaction signing happen only in attested, source-verified environments.</p>
+				</div>
+				<div class="landing-uc-cards__card">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable nodes</h3>
+						<span class="landing-uc-cards__badge">Blockchain</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Expose cryptographic proof that your full node binary matches the reviewed source and configuration.</p>
+				</div>
+				<div class="landing-uc-cards__card">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable staking infrastructure</h3>
+						<span class="landing-uc-cards__badge">Blockchain</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Give delegators and protocols independent proof that staking infrastructure is not forked, modified, or tampered with.</p>
+				</div>
+				<!-- Duplicate set for infinite loop -->
+				<div class="landing-uc-cards__card" aria-hidden="true">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable LLM inference over sensitive data</h3>
+						<span class="landing-uc-cards__badge">AI</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Serve LLMs and other models in verifiable environments so users can confirm the exact models and runtime that handled their prompts and data.</p>
+				</div>
+				<div class="landing-uc-cards__card" aria-hidden="true">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable oracles & data feeds</h3>
+						<span class="landing-uc-cards__badge">Fintech</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Run oracle and pricing services in verifiable enclaves to demonstrate the integrity of each price feed, signal, and the code that produces it.</p>
+				</div>
+				<div class="landing-uc-cards__card" aria-hidden="true">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable confidential AI for PHI</h3>
+						<span class="landing-uc-cards__badge">Healthcare</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Prove that patient data never leaves a verified enclave, meeting HIPAA requirements with cryptographic evidence.</p>
+				</div>
+				<div class="landing-uc-cards__card" aria-hidden="true">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable model training pipelines</h3>
+						<span class="landing-uc-cards__badge">AI</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Ensure training runs execute approved code on approved data, with attestation evidence for audit and compliance.</p>
+				</div>
+				<div class="landing-uc-cards__card" aria-hidden="true">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable custody & signing operations</h3>
+						<span class="landing-uc-cards__badge">Fintech</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Show regulators and customers that key management and transaction signing happen only in attested, source-verified environments.</p>
+				</div>
+				<div class="landing-uc-cards__card" aria-hidden="true">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable nodes</h3>
+						<span class="landing-uc-cards__badge">Blockchain</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Expose cryptographic proof that your full node binary matches the reviewed source and configuration.</p>
+				</div>
+				<div class="landing-uc-cards__card" aria-hidden="true">
+					<div class="landing-uc-cards__card-header">
+						<h3 class="landing-uc-cards__card-title">Verifiable staking infrastructure</h3>
+						<span class="landing-uc-cards__badge">Blockchain</span>
+					</div>
+					<p class="landing-uc-cards__card-description">Give delegators and protocols independent proof that staking infrastructure is not forked, modified, or tampered with.</p>
+				</div>
+			</div>
+		</div>
+		<div class="landing-uc-cards__arrows">
+			<button class="landing-uc-cards__arrow landing-uc-cards__arrow--prev" aria-label="Previous use case">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+			</button>
+			<button class="landing-uc-cards__arrow landing-uc-cards__arrow--next" aria-label="Next use case">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+			</button>
+		</div>
+	</div>
+</section>
+
+<script>
+	(function () {
+		var carousel = document.querySelector(".landing-uc-cards__carousel");
+		if (!carousel) return;
+
+		var isDragging = false;
+		var startX = 0;
+		var scrollStart = 0;
+
+		carousel.addEventListener("mousedown", function (e) {
+			isDragging = true;
+			startX = e.clientX;
+			scrollStart = carousel.scrollLeft;
+			carousel.classList.add("is-dragging");
+		});
+
+		window.addEventListener("mousemove", function (e) {
+			if (!isDragging) return;
+			var dx = e.clientX - startX;
+			carousel.scrollLeft = scrollStart - dx;
+		});
+
+		window.addEventListener("mouseup", function () {
+			if (!isDragging) return;
+			isDragging = false;
+			carousel.classList.remove("is-dragging");
+		});
+
+		// Prevent link clicks after dragging
+		carousel.addEventListener("click", function (e) {
+			if (Math.abs(carousel.scrollLeft - scrollStart) > 5) {
+				e.preventDefault();
+			}
+		}, true);
+
+		// Arrow navigation (snap-friendly, no scroll-event loop)
+		var prevBtn = document.querySelector(".landing-uc-cards__arrow--prev");
+		var nextBtn = document.querySelector(".landing-uc-cards__arrow--next");
+		var cards = carousel.querySelectorAll(".landing-uc-cards__card");
+		var origCount = cards.length / 2;
+		var trackGap = parseInt(getComputedStyle(carousel.querySelector(".landing-uc-cards__track")).gap);
+		var cardW = cards[0].offsetWidth + trackGap;
+		var halfScroll = cardW * origCount;
+
+		if (prevBtn && nextBtn) {
+			prevBtn.addEventListener("click", function () {
+				if (carousel.scrollLeft < cardW) {
+					carousel.style.scrollSnapType = "none";
+					carousel.scrollLeft += halfScroll;
+					void carousel.offsetHeight;
+					carousel.style.scrollSnapType = "";
+				}
+				carousel.scrollBy({ left: -cardW, behavior: "smooth" });
+			});
+			nextBtn.addEventListener("click", function () {
+				if (carousel.scrollLeft >= halfScroll - cardW) {
+					carousel.style.scrollSnapType = "none";
+					carousel.scrollLeft -= halfScroll;
+					void carousel.offsetHeight;
+					carousel.style.scrollSnapType = "";
+				}
+				carousel.scrollBy({ left: cardW, behavior: "smooth" });
+			});
+		}
+	})();
+</script>
+<section class="tee-support">
+	<div class="container">
+		<div class="tee-support__content landing-two-col">
+			<div class="tee-support__left">
+				<h2 class="landing-section-title" style="text-transform: none; text-align: left; margin-left: 0; margin-right: 0; color: white; font-weight: 600; max-width: 29rem;">
+					One workflow for secure enclaves
+				</h2>
+				<p class="page-description tee-support__text">
+					Caution runs across AWS Nitro today, with Intel TDX, AMD SEV-SNP, and
+					TPM 2.0 attestations coming in 2026.
+				</p>
+				<div class="cta-group">
+					<a href="contact.html" class="cta-btn">
+						Book a live demo
+					</a>
+					<a
+						href="https://distrust.co/blog/enclaveos.html#the-problem-with-single-layer-attestation"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="cta-link"
+					>
+						Learn more
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M5 12h14"></path>
+							<path d="m12 5 7 7-7 7"></path>
+						</svg>
+					</a>
+				</div>
+			</div>
+			<div class="tee-support__right">
+				<div class="tee-support__logos">
+					<img
+						loading="lazy"
+						src="assets/imgs/tee/aws.jpg"
+						alt="AWS Nitro"
+						width="1024"
+						height="1024"
+						class="tee-support__logo"
+					/>
+					<img
+						loading="lazy"
+						src="assets/imgs/tee/intel.jpg"
+						alt="Intel TDX"
+						width="1024"
+						height="1024"
+						class="tee-support__logo tee-support__logo--dimmed"
+					/>
+					<img
+						loading="lazy"
+						src="assets/imgs/tee/amd.jpg"
+						alt="AMD SEV-SNP"
+						width="1024"
+						height="1024"
+						class="tee-support__logo tee-support__logo--dimmed"
+					/>
+					<img
+						loading="lazy"
+						src="assets/imgs/tee/tmo2.jpg"
+						alt="TPM 2.0"
+						width="1024"
+						height="1024"
+						class="tee-support__logo tee-support__logo--dimmed"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="how-it-works">
+	<div class="container">
+		<span class="eyebrow">How it works</span>
+		<h1
+			class="landing-section-title"
+			style="text-transform: none"
+		>
+			Deploy in minutes
+		</h1>
+		<p class="page-description page-description--center landing-section-subtext">
+			From source to a verifiable enclave in minutes. <a href="platform-tour.html" class="how-it-works__overview-link">Watch this video</a> for a full platform walkthrough.
+		</p>
+
+		<div class="how-it-works__cards">
+			<div class="how-it-works__card">
+				<span class="how-it-works__number">1</span>
+				<h2 class="how-it-works__heading">Initialize</h2>
+				<p class="how-it-works__description">
+					Run <code>caution init</code> to create a Procfile and other data required for the application.
+				</p>
+				<div class="terminal-card terminal-card--linux" data-terminal-typing>
+					<div class="terminal-card__titlebar">
+						<div class="terminal-card__titlebar-left"></div>
+						<div class="terminal-card__titlebar-buttons">
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--minimize"
+								aria-label="Minimize"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="currentColor"
+								>
+									<rect x="2" y="5" width="8" height="2" />
+								</svg>
+							</button>
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--maximize"
+								aria-label="Maximize"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+								>
+									<rect x="2" y="2" width="8" height="8" />
+								</svg>
+							</button>
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--close"
+								aria-label="Close"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="currentColor"
+								>
+									<path
+										d="M2.5 1.5l8 8M10.5 1.5l-8 8"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div class="terminal-card__content">
+						<div class="terminal-line">
+							<span class="terminal-prompt">$</span>
+							<span class="terminal-command">caution init</span>
+						</div>
+						<div class="terminal-line">
+							<span class="terminal-output">Initializing the app...</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="how-it-works__card">
+				<span class="how-it-works__number">2</span>
+				<h2 class="how-it-works__heading">Deploy</h2>
+				<p class="how-it-works__description">
+					Push with <code>git push caution main</code>. Caution builds a reproducible
+					enclave image and provisions the TEE.
+				</p>
+				<div
+					class="terminal-card terminal-card--linux"
+					data-terminal-typing
+					data-terminal-delay-scale="0.45"
+				>
+					<div class="terminal-card__titlebar">
+						<div class="terminal-card__titlebar-left"></div>
+						<div class="terminal-card__titlebar-buttons">
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--minimize"
+								aria-label="Minimize"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="currentColor"
+								>
+									<rect x="2" y="5" width="8" height="2" />
+								</svg>
+							</button>
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--maximize"
+								aria-label="Maximize"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+								>
+									<rect x="2" y="2" width="8" height="8" />
+								</svg>
+							</button>
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--close"
+								aria-label="Close"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="currentColor"
+								>
+									<path
+										d="M2.5 1.5l8 8M10.5 1.5l-8 8"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div class="terminal-card__content">
+						<div class="terminal-line">
+							<span class="terminal-prompt">$</span>
+							<span class="terminal-command">git push caution main</span>
+						</div>
+						<div class="terminal-line">
+							<span class="terminal-output">Building enclave image...</span>
+						</div>
+
+						<div class="terminal-line">
+							<span class="terminal-output terminal-output--success"
+								>Deployed to enclave</span
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="how-it-works__card">
+				<span class="how-it-works__number">3</span>
+				<h2 class="how-it-works__heading">Verify</h2>
+				<p class="how-it-works__description">
+					Run <code>caution verify</code> to rebuild the image, compare hashes,
+					and confirm exactly what the enclave is running.
+				</p>
+				<div
+					class="terminal-card terminal-card--linux"
+					data-terminal-typing
+					data-terminal-delay-scale="0.30"
+				>
+					<div class="terminal-card__titlebar">
+						<div class="terminal-card__titlebar-left"></div>
+						<div class="terminal-card__titlebar-buttons">
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--minimize"
+								aria-label="Minimize"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="currentColor"
+								>
+									<rect x="2" y="5" width="8" height="2" />
+								</svg>
+							</button>
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--maximize"
+								aria-label="Maximize"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.5"
+								>
+									<rect x="2" y="2" width="8" height="8" />
+								</svg>
+							</button>
+							<button
+								class="terminal-card__titlebar-btn terminal-card__titlebar-btn--close"
+								aria-label="Close"
+							>
+								<svg
+									width="12"
+									height="12"
+									viewBox="0 0 12 12"
+									fill="currentColor"
+								>
+									<path
+										d="M2.5 1.5l8 8M10.5 1.5l-8 8"
+										stroke="currentColor"
+										stroke-width="1.5"
+										stroke-linecap="round"
+									/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<div class="terminal-card__content">
+						<div class="terminal-line">
+							<span class="terminal-prompt">$</span>
+							<span class="terminal-command">caution verify</span>
+						</div>
+						<div class="terminal-line">
+							<span class="terminal-output">Collecting source code...</span>
+						</div>
+						<div class="terminal-line">
+							<span class="terminal-output">Rebuilding image...</span>
+						</div>
+						<div class="terminal-line">
+							<span class="terminal-output">Comparing hashes...</span>
+						</div>
+						<div class="terminal-line">
+							<span class="terminal-output terminal-output--success"
+								>Attestation verification PASSED</span
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="landing-faq-section">
+				<div class="container">
+					<span class="eyebrow">FAQs</span>
+					<h2 class="landing-faq-main-title">Frequently asked questions</h2>
+					<div class="landing-faq-content">
+						<div class="landing-faq-items">
+							<div class="landing-faq-item">
+								<button class="landing-faq-question" aria-expanded="false">
+									<span>What is Caution?</span>
+									<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<line x1="12" y1="5" x2="12" y2="19"></line>
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+									</svg>
+								</button>
+								<div class="landing-faq-answer">
+									<div>
+									<p>Caution is a verifiable compute platform that adds an extra layer of integrity guarantees on top of confidential compute. It cryptographically links the code running inside an enclave back to the reviewed source code, build inputs, and configuration that produced the enclave image, so anyone can verify what is running in production.</p>
+									<p>Caution currently supports deployments on AWS Nitro Enclaves, with additional attestation backends in active development.</p>
+									</div>
+								</div>
+							</div>
+							<div class="landing-faq-item">
+								<button class="landing-faq-question" aria-expanded="false">
+									<span>Does Caution replace AWS Nitro Enclaves?</span>
+									<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<line x1="12" y1="5" x2="12" y2="19"></line>
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+									</svg>
+								</button>
+								<div class="landing-faq-answer">
+									<div>
+									<p>No. Caution builds on top of AWS Nitro Enclaves, not instead of them. Nitro provides hardware-level isolation and attestation. Caution extends those guarantees by linking enclave measurements back to auditable source code and reproducible builds.</p>
+									</div>
+								</div>
+							</div>
+							<div class="landing-faq-item">
+								<button class="landing-faq-question" aria-expanded="false">
+									<span>What do I need to get started?</span>
+									<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<line x1="12" y1="5" x2="12" y2="19"></line>
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+									</svg>
+								</button>
+								<div class="landing-faq-answer">
+									<div>
+									<p><a href="contact.html">Book 20 minutes</a> with one of our engineers. We’ll discuss your goals, answer technical questions, and help you get ready to deploy with Caution.</p>
+									</div>
+								</div>
+							</div>
+							<div class="landing-faq-item">
+								<button class="landing-faq-question" aria-expanded="false">
+									<span>Which deployment options are available?</span>
+									<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+										<line x1="12" y1="5" x2="12" y2="19"></line>
+										<line x1="5" y1="12" x2="19" y2="12"></line>
+									</svg>
+								</button>
+								<div class="landing-faq-answer">
+									<div>
+										<p>Caution offers bring-your-own-compute and fully managed deployment options. Because Caution is open source, teams can also self-host it if they want to operate deployments independently.</p>
+										<p>Compare the options in the <a href="https://docs.caution.co/reference/deployment-models/" target="_blank" rel="noopener noreferrer">deployment models</a> reference.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+				<script>
+					document.addEventListener("DOMContentLoaded", function () {
+					const travelCard = document.querySelector("[data-caution-travel-card]");
+					const startSlot = document.querySelector("[data-caution-card-start]");
+					const destinationSlot = document.querySelector("[data-caution-card-destination]");
+					const differentiatorSection = document.querySelector("[data-differentiator-section]");
+						const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+						const desktopView = window.matchMedia("(min-width: 851px)");
+						const stackedCardsView = window.matchMedia("(max-width: 820px)");
+						const stackedCards = Array.prototype.slice.call(document.querySelectorAll(".differentiator-grid .differentiator-card"));
+						const headingWords = Array.prototype.slice.call(document.querySelectorAll("[data-differentiator-heading-word]"));
+						const headingWordGroups = {
+							action: headingWords.filter(function (word) { return word.dataset.differentiatorHeadingGroup === "action"; }),
+							subject: headingWords.filter(function (word) { return word.dataset.differentiatorHeadingGroup === "subject"; }),
+							muted: headingWords.filter(function (word) { return word.dataset.differentiatorHeadingGroup === "muted"; }),
+						};
+						const headingGroupStarts = {
+							action: 0.36,
+							subject: 0.43,
+							muted: 0.54,
+						};
+						const headingWordRevealEnd = 1;
+						const headingWordStagger = 0.035;
+						const cautionFinalRevealStart = 0.58;
+					let startRect;
+					let destinationRect;
+					let animationEnd = 1;
+					let travelBaseLeft = 0;
+					let travelBaseTop = 0;
+					let travelWidth = 1;
+					let travelHeight = 1;
+					let frameRequested = false;
+					let isActive = false;
+					let hasRevealedDifferentiatorCopy = false;
+					let stackedCardObserver;
+
+					function clamp(value, min, max) {
+						return Math.min(Math.max(value, min), max);
+					}
+
+					function lerp(start, end, progress) {
+						return start + (end - start) * progress;
+					}
+
+					function cubicBezier(start, controlA, controlB, end, progress) {
+						const inverseProgress = 1 - progress;
+
+						return (
+							inverseProgress * inverseProgress * inverseProgress * start +
+							3 * inverseProgress * inverseProgress * progress * controlA +
+							3 * inverseProgress * progress * progress * controlB +
+							progress * progress * progress * end
+						);
+					}
+
+					function smoothstep(progress) {
+						return progress * progress * (3 - 2 * progress);
+					}
+
+					function easeOutCubic(progress) {
+						return 1 - Math.pow(1 - progress, 3);
+					}
+
+					function easeInOutCubic(progress) {
+						return progress < 0.5
+							? 4 * progress * progress * progress
+							: 1 - Math.pow(-2 * progress + 2, 3) / 2;
+					}
+
+					function progressBetween(progress, start, end) {
+						return smoothstep(clamp((progress - start) / (end - start), 0, 1));
+					}
+
+					function getDocumentRect(element) {
+						const rect = element.getBoundingClientRect();
+						const scrollX = window.scrollX || window.pageXOffset;
+						const scrollY = window.scrollY || window.pageYOffset;
+
+						return {
+							left: rect.left + scrollX,
+							top: rect.top + scrollY,
+							width: rect.width,
+							height: rect.height,
+						};
+					}
+
+					function shouldAnimate() {
+						return Boolean(travelCard && startSlot && destinationSlot && differentiatorSection && desktopView.matches && !reduceMotion.matches);
+					}
+
+					function measureCautionTravel() {
+						const grid = differentiatorSection.querySelector(".differentiator-grid");
+						const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+
+						startRect = getDocumentRect(startSlot);
+						destinationRect = getDocumentRect(destinationSlot);
+						const gridRect = getDocumentRect(grid || differentiatorSection);
+						travelBaseLeft = startRect.left;
+						travelBaseTop = startRect.top;
+						travelWidth = Math.max(1, startRect.width);
+						travelHeight = Math.max(1, startRect.height);
+						animationEnd = Math.max(1, Math.ceil(gridRect.top - viewportHeight * 0.5));
+
+						travelCard.style.left = `${travelBaseLeft}px`;
+						travelCard.style.top = `${travelBaseTop}px`;
+						travelCard.style.width = `${travelWidth}px`;
+						travelCard.style.height = `${travelHeight}px`;
+					}
+
+					function removeCautionTravelProperties() {
+						document.body.style.removeProperty("--caution-section-heading-opacity");
+						document.body.style.removeProperty("--caution-section-heading-offset");
+						document.body.style.removeProperty("--caution-grid-opacity");
+						document.body.style.removeProperty("--caution-grid-offset");
+						document.body.style.removeProperty("--caution-dock-opacity");
+						document.body.classList.remove("is-caution-copy-revealed");
+						hasRevealedDifferentiatorCopy = false;
+						clearDifferentiatorHeadingWords();
+					}
+
+					function clearDifferentiatorHeadingWords() {
+						if (!headingWords.length) {
+							return;
+						}
+
+						headingWords.forEach(function (word) {
+							word.style.opacity = "";
+							word.style.transform = "";
+						});
+					}
+
+					function prepareDifferentiatorHeadingWords() {
+						if (!headingWords.length) {
+							return;
+						}
+
+						headingWords.forEach(function (word) {
+							word.style.opacity = "0";
+							word.style.transform = "translate3d(0, 14px, 0)";
+						});
+					}
+
+					function getDifferentiatorHeadingWordStart(word) {
+						const group = word.dataset.differentiatorHeadingGroup;
+						const groupWords = headingWordGroups[group] || [];
+						const groupStart = headingGroupStarts[group] || headingGroupStarts.action;
+						const index = Math.max(0, groupWords.indexOf(word));
+
+						return groupStart + index * headingWordStagger;
+					}
+
+					function renderDifferentiatorHeadingWords(rawProgress) {
+						if (!headingWords.length) {
+							return;
+						}
+
+						headingWords.forEach(function (word) {
+							const wordStart = getDifferentiatorHeadingWordStart(word);
+							const wordProgress = clamp((rawProgress - wordStart) / (headingWordRevealEnd - wordStart), 0, 1);
+							const easedProgress = easeOutCubic(wordProgress);
+
+							word.style.opacity = easedProgress;
+							word.style.transform = `translate3d(0, ${(1 - easedProgress) * 14}px, 0)`;
+						});
+					}
+
+					function renderCautionTravel() {
+						frameRequested = false;
+
+						if (!isActive) {
+							return;
+						}
+
+						const scrollY = window.scrollY || window.pageYOffset;
+						const scrollX = window.scrollX || window.pageXOffset;
+						const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+						const rawProgress = clamp(scrollY / animationEnd, 0, 1);
+						const travelProgress = easeInOutCubic(clamp(rawProgress / 0.62, 0, 1));
+						const scaleProgress = easeOutCubic(clamp(rawProgress / 0.58, 0, 1));
+						const sectionHeadingProgress = progressBetween(rawProgress, 0.22, 0.42);
+						const gridProgress = progressBetween(rawProgress, 0.2, 0.44);
+						const settleProgress = progressBetween(rawProgress, 0.56, 0.72);
+						const travelArc = Math.sin(travelProgress * Math.PI) * -10;
+						const settleOffset = Math.sin(settleProgress * Math.PI) * 2;
+						const startViewport = {
+							left: startRect.left - scrollX,
+							top: startRect.top - scrollY,
+							width: startRect.width,
+							height: startRect.height,
+						};
+						const destinationViewport = {
+							left: destinationRect.left - scrollX,
+							top: destinationRect.top - scrollY,
+							width: destinationRect.width,
+							height: destinationRect.height,
+						};
+
+						const visibleWidth = lerp(startViewport.width, destinationViewport.width, scaleProgress);
+						const visibleHeight = lerp(startViewport.height, destinationViewport.height, scaleProgress);
+						const viewportPadding = 32;
+						const maxVisibleTop = Math.max(viewportPadding, viewportHeight - visibleHeight - viewportPadding);
+						const rawFinalProgress = progressBetween(rawProgress, cautionFinalRevealStart, 1);
+						const destinationAlignmentProgress = 1 - clamp((destinationViewport.top - maxVisibleTop) / 24, 0, 1);
+						const finalProgress = rawFinalProgress * destinationAlignmentProgress;
+						const isCautionCardDocked = finalProgress >= 0.995;
+						const safeStartTop = clamp(startViewport.top, viewportPadding, maxVisibleTop);
+						const safeDestinationTop = clamp(destinationViewport.top, viewportPadding, maxVisibleTop);
+						const horizontalDistance = destinationViewport.left - startViewport.left;
+						const verticalDistance = safeDestinationTop - safeStartTop;
+						const bend = Math.min(42, Math.max(16, Math.abs(verticalDistance) * 0.12));
+						const controlA = {
+							left: startViewport.left + horizontalDistance * 0.22,
+							top: clamp(safeStartTop + verticalDistance * 0.16 - bend, viewportPadding, maxVisibleTop),
+						};
+						const controlB = {
+							left: startViewport.left + horizontalDistance * 0.78,
+							top: clamp(safeStartTop + verticalDistance * 0.84 + settleOffset, viewportPadding, maxVisibleTop),
+						};
+						const left = cubicBezier(startViewport.left, controlA.left, controlB.left, destinationViewport.left, travelProgress);
+						const top = cubicBezier(safeStartTop, controlA.top, controlB.top, safeDestinationTop, travelProgress) + travelArc * 0.35;
+
+						travelCard.style.width = `${visibleWidth}px`;
+						travelCard.style.height = `${visibleHeight}px`;
+						travelCard.style.transform = `translate3d(${left - travelBaseLeft}px, ${top - travelBaseTop}px, 0)`;
+						travelCard.style.opacity = isCautionCardDocked ? "0" : "1";
+						destinationSlot.style.opacity = isCautionCardDocked ? "1" : "0";
+						if (!hasRevealedDifferentiatorCopy && isCautionCardDocked) {
+							hasRevealedDifferentiatorCopy = true;
+							document.body.classList.add("is-caution-copy-revealed");
+						}
+						document.body.style.setProperty("--caution-section-heading-opacity", sectionHeadingProgress);
+						document.body.style.setProperty("--caution-section-heading-offset", `${(1 - sectionHeadingProgress) * 18}px`);
+						document.body.style.setProperty("--caution-grid-opacity", gridProgress);
+						document.body.style.setProperty("--caution-grid-offset", `${(1 - gridProgress) * 18}px`);
+						document.body.style.setProperty("--caution-dock-opacity", isCautionCardDocked ? "1" : "0");
+						renderDifferentiatorHeadingWords(rawProgress);
+					}
+
+					function requestCautionTravelRender() {
+						if (!frameRequested) {
+							frameRequested = true;
+							window.requestAnimationFrame(renderCautionTravel);
+						}
+					}
+
+					function handleCautionScroll() {
+						requestCautionTravelRender();
+					}
+
+					function disconnectStackedCardObserver() {
+						if (stackedCardObserver) {
+							stackedCardObserver.disconnect();
+							stackedCardObserver = null;
+						}
+					}
+
+					function enableStackedCardReveal() {
+						disconnectStackedCardObserver();
+
+						if (!stackedCards.length || !stackedCardsView.matches || reduceMotion.matches || !("IntersectionObserver" in window)) {
+							document.body.classList.remove("is-stacked-card-reveal-ready");
+							return;
+						}
+
+						document.body.classList.add("is-stacked-card-reveal-ready");
+						const observer = new IntersectionObserver(function (entries) {
+							entries.forEach(function (entry) {
+								if (!entry.isIntersecting) {
+									return;
+								}
+
+								entry.target.classList.add("is-stacked-card-revealed");
+								observer.unobserve(entry.target);
+							});
+						}, {
+							rootMargin: "0px 0px -12% 0px",
+							threshold: 0.18,
+						});
+						stackedCardObserver = observer;
+
+						stackedCards.forEach(function (card, index) {
+							card.style.setProperty("--stacked-card-reveal-delay", `${index * 90}ms`);
+
+							if (!card.classList.contains("is-stacked-card-revealed")) {
+								stackedCardObserver.observe(card);
+							}
+						});
+					}
+
+					function enableCautionTravel() {
+						if (!shouldAnimate()) {
+							document.body.classList.remove("is-caution-travel-ready");
+							travelCard.removeAttribute("style");
+							destinationSlot.style.opacity = "";
+							removeCautionTravelProperties();
+							isActive = false;
+							return;
+						}
+
+						isActive = true;
+						prepareDifferentiatorHeadingWords();
+						if (!hasRevealedDifferentiatorCopy) {
+							document.body.classList.remove("is-caution-copy-revealed");
+						}
+						document.body.classList.add("is-caution-travel-ready");
+						measureCautionTravel();
+						requestCautionTravelRender();
+					}
+
+					if (travelCard && startSlot && destinationSlot) {
+						enableCautionTravel();
+						enableStackedCardReveal();
+						window.addEventListener("scroll", handleCautionScroll, { passive: true });
+						window.addEventListener("resize", enableCautionTravel);
+
+						if (typeof reduceMotion.addEventListener === "function") {
+							reduceMotion.addEventListener("change", enableCautionTravel);
+							reduceMotion.addEventListener("change", enableStackedCardReveal);
+							desktopView.addEventListener("change", enableCautionTravel);
+							stackedCardsView.addEventListener("change", enableStackedCardReveal);
+						}
+
+						if (document.fonts && typeof document.fonts.ready.then === "function") {
+							document.fonts.ready.then(enableCautionTravel);
+						}
+					}
+
+					const faqQuestions = document.querySelectorAll(".landing-faq-question");
+
+					faqQuestions.forEach(function (question) {
+						question.addEventListener("click", function () {
+							const faqItem = this.parentElement;
+							const isExpanded = this.getAttribute("aria-expanded") === "true";
+
+							faqQuestions.forEach(function (otherQuestion) {
+								if (otherQuestion !== question) {
+									otherQuestion.setAttribute("aria-expanded", "false");
+									otherQuestion.parentElement.classList.remove("is-active");
+								}
+							});
+
+							this.setAttribute("aria-expanded", !isExpanded);
+							faqItem.classList.toggle("is-active");
+						});
+					});
+				});
+			</script><section class="cta-section-block">
+	<div class="container">
+		<div class="cta-section-block__inner">
+			<div class="cta-section-block__left">
+				<h2 class="cta-section-block__title">Get started</h2>
+				<div class="cta-group">
+					<a href="contact.html" class="cta-btn">Book a live demo</a>
+					
+					<a href="platform-tour.html" class="cta-link">
+						Watch the tour
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M5 12h14"></path>
+							<path d="m12 5 7 7-7 7"></path>
+						</svg>
+					</a>
+					
+				</div>
+			</div>
+			<div class="cta-section-block__right">
+				<p class="cta-section-block__description">Deploy confidential compute in minutes. Prove exactly what is running in production, from source code to live enclave.</p>
+			</div>
+		</div>
+	</div>
+</section>
+</main>
+		</div><footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-inner container">
+			<div class="footer-content">
+				<div class="footer-brand">
+					<a href="index.html" class="footer-logo">
+						<img
+							src="assets/base/caution-logo/caution.svg"
+							alt="Caution logo"
+							width="781"
+							height="137"
+						/>
+					</a>
+					<p class="footer-description">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--tablet">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--mobile">
+						Confidential compute you can verify.
+					</p>
+					</div>
+
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3 class="footer-column-title">Platform</h3>
+						<a href="https://dashboard.caution.co/" class="footer-link">Dashboard</a>
+						<a href="platform-tour.html" class="footer-link">Platform tour</a>
+						<a href="cloud/aws.html" class="footer-link">AWS Nitro</a>
+						<a href="faq.html" class="footer-link">FAQ</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Resources</h3>
+						<a
+							href="https://docs.caution.co/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Documentation</a
+						>
+						<a href="pricing.html" class="footer-link">Pricing</a>
+						<a href="blog.html" class="footer-link">Blog</a>
+						<a href="security-controls.html" class="footer-link">Security</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Company</h3>
+						<a href="about.html" class="footer-link">About</a>
+						<a href="contact.html" class="footer-link">Contact</a>
+						<a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer" class="footer-link">Community</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 Caution SEZC. All rights reserved.
+				</p>
+				<nav class="footer-legal-links">
+					<a href="privacy.html" class="footer-legal-link">Privacy</a>
+					<a href="terms.html" class="footer-legal-link">Terms</a>
+					<a href="legal/refunds.html" class="footer-legal-link">Refunds</a>
+				</nav>
+				<div class="footer-social">
+					<a
+						href="https://codeberg.org/Caution/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Git"
+						title="Access source code and documentation"
+						class="footer-social-link"
+					>
+						<img src="assets/base/social/git-logo-white.svg" alt="Git" width="92" height="92" />
+					</a>
+					<a
+						href="https://mstdn.social/@caution"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Mastodon"
+						title="Follow us on Mastodon"
+						class="footer-social-link"
+					>
+						<img src="assets/base/social/Mastodon-logo.svg" alt="Mastodon" width="17" height="20" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

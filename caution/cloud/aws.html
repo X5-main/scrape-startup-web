@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e7f1ff" />
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon__v-1.png" />
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraLight.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Light.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Regular.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Medium.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-SemiBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Bold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-Regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-SemiBold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+
+	
+
+	<title>Caution on AWS: Verifiable Compute on Nitro Enclaves</title>
+	<link rel="stylesheet" href="../assets/styles.css" />
+	<link rel="canonical" href="https://caution.co/cloud/aws.html" />
+	<link rel="alternate" type="application/atom+xml" title="Caution" href="../feed.xml" />
+	<meta content="Caution" property="og:site_name" />
+
+	 
+	<meta content="Verifiable Compute on AWS Nitro Enclaves" property="og:title" />
+	<meta content="article" property="og:type" />
+	 
+	<meta content="Deploy to AWS Nitro Enclaves faster, with stronger integrity guarantees. Use familiar pipelines while gaining cryptographic proof that each enclave runs the intended source code." property="og:description" />
+	<meta name="description" content="Deploy to AWS Nitro Enclaves faster, with stronger integrity guarantees. Use familiar pipelines while gaining cryptographic proof that each enclave runs the intended source code." />
+	 
+	<meta content="https://caution.co/cloud/aws.html" property="og:url" />
+	  
+	<meta content="https://caution.co/assets/imgs/opengraph/og-aws.png" property="og:image" />
+	  
+
+	<meta name="twitter:card" content="summary_large_image" />
+
+	
+	<meta name="twitter:title" content="Verifiable Compute on AWS Nitro Enclaves" />
+	 
+	<meta name="twitter:url" content="https://caution.co/cloud/aws.html" />
+	 
+	<meta name="twitter:description" content="Deploy to AWS Nitro Enclaves faster, with stronger integrity guarantees. Use familiar pipelines while gaining cryptographic proof that each enclave runs the intended source code." />
+	 
+	<meta name="twitter:image:src" content="https://caution.co/assets/imgs/opengraph/og-aws.png" />
+	 
+
+	<script src="../assets/js/main.js" defer></script>
+
+
+
+
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": "https://caution.co/"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Cloud",
+			"item": "https://caution.co/cloud.html"
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"name": "AWS"
+		}
+	]
+}
+</script>
+
+
+
+
+
+<!-- "Really, there is nothing interesting to see here. It is a static website. -->
+	<!-- Here is the terraform code that deployed it, and here is the site source repo. -->
+	<!-- If you find anything interesting or want to talk to us, reach out via our /contact page!" -->
+	<!-- https://git.distrust.co/public/stack -->
+	<!-- https://git.distrust.co/public/website -->
+</head>
+<body class="cloud-aws-page-body"><script>
+	(function () {
+		try {
+			if (window.localStorage.getItem("caution-y-combinator-announcement-dismissed") === "true") {
+				document.documentElement.classList.add("site-announcement-dismissed");
+			}
+		} catch (error) {
+			// Keep the announcement visible if localStorage is unavailable.
+		}
+	})();
+</script>
+
+<div class="site-announcement" data-site-announcement role="region" aria-label="Y Combinator announcement">
+	<div class="site-announcement__inner">
+		<p class="site-announcement__copy">
+			Caution is backed by Y Combinator. <span class="site-announcement__mobile-break" aria-hidden="true"></span><a href="https://www.ycombinator.com/launches/SIq-caution-hosting-platform-for-software-you-can-t-afford-to-have-hacked" class="site-announcement__link" target="_blank" rel="noopener noreferrer" aria-label="Learn more about Caution on Y Combinator">Learn more</a>.
+		</p>
+		<button class="site-announcement__dismiss" type="button" aria-label="Dismiss announcement" data-site-announcement-dismiss>
+			<svg class="site-announcement__dismiss-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"></path>
+				<path d="m6 6 12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<header class="header-navbar">
+	<div class="nav-top-bar">
+		<a href="../index.html" class="nav-logo">
+			<img src="../assets/base/caution-logo/caution.svg" alt="Caution logo" width="781" height="137" />
+		</a>
+
+		<nav class="nav-desktop">
+			<div class="nav-center">
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Platform
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="../platform-tour.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/><circle cx="12" cy="12" r="10"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Platform tour</span>
+										<span class="nav-dropdown__desc">Watch Caution in action</span>
+									</span>
+								</a>
+								<a href="aws.html" class="nav-dropdown__item">
+									<span class="nav-dropdown__icon">
+										<img src="../assets/base/aws.png" alt="" width="640" height="640" class="nav-dropdown__icon-img" />
+									</span>
+									<span>
+										<span class="nav-dropdown__title">AWS Nitro</span>
+										<span class="nav-dropdown__desc">Deploy on AWS Nitro Enclaves</span>
+									</span>
+								</a>
+								<a href="../faq.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+									<span>
+										<span class="nav-dropdown__title">FAQ</span>
+										<span class="nav-dropdown__desc">Common questions answered</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Resources
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="https://docs.caution.co/" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Documentation</span>
+										<span class="nav-dropdown__desc">Technical guides and API reference</span>
+									</span>
+								</a>
+								<a href="../blog.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Blog</span>
+										<span class="nav-dropdown__desc">Engineering insights and updates</span>
+									</span>
+								</a>
+								<a href="../security-controls.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Security</span>
+										<span class="nav-dropdown__desc">Trust model, evidence, and framework alignment</span>
+									</span>
+								</a>
+								<a href="https://matrix.to/#/#caution:matrix.org" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Community</span>
+										<span class="nav-dropdown__desc">Join us on Matrix</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="nav-link">About</a>
+				<a href="../pricing.html" class="nav-link">Pricing</a>
+			</div>
+			<div class="nav-right">
+				<a href="https://dashboard.caution.co/" class="nav-link">Log in</a>
+				<a href="../contact.html" class="nav-cta">
+					Book a live demo
+				</a>
+			</div>
+		</nav>
+
+		<button
+			class="mobile-menu-button"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-label="Toggle menu"
+		>
+			<span class="hamburger">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</span>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-nav">
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Platform <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="../platform-tour.html" class="mobile-menu-link">Platform tour</a>
+							<a href="aws.html" class="mobile-menu-link">AWS Nitro</a>
+							<a href="../faq.html" class="mobile-menu-link">FAQ</a>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Resources <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="https://docs.caution.co/" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Documentation</a>
+							<a href="../blog.html" class="mobile-menu-link">Blog</a>
+							<a href="../security-controls.html" class="mobile-menu-link">Security</a>
+							<a href="https://matrix.to/#/#caution:matrix.org" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Community</a>
+							<a href="../legal.html" class="mobile-menu-link">Legal</a>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="mobile-menu-link">About</a>
+				<a href="../pricing.html" class="mobile-menu-link">Pricing</a>
+			</div>
+			<div class="mobile-menu-footer">
+				<a href="../contact.html" class="mobile-menu-cta">
+					Book a live demo
+				</a>
+				<a href="../platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const announcement = document.querySelector("[data-site-announcement]");
+		const dismissButton = document.querySelector("[data-site-announcement-dismiss]");
+		const root = document.documentElement;
+		const dismissedClass = "site-announcement-dismissed";
+		const storageKey = "caution-y-combinator-announcement-dismissed";
+
+		function isDismissed() {
+			return root.classList.contains(dismissedClass);
+		}
+
+		function setAnnouncementOffset() {
+			if (!announcement || isDismissed()) {
+				root.style.setProperty("--site-announcement-offset", "0px");
+				return;
+			}
+
+			const offset = Math.max(0, announcement.offsetHeight - (window.scrollY || window.pageYOffset));
+			root.style.setProperty("--site-announcement-offset", `${offset}px`);
+		}
+
+		if (dismissButton) {
+			dismissButton.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				try {
+					window.localStorage.setItem(storageKey, "true");
+				} catch (error) {
+					// Dismiss for this page view even if persistence is unavailable.
+				}
+
+				root.classList.add(dismissedClass);
+				setAnnouncementOffset();
+			});
+		}
+
+		setAnnouncementOffset();
+		window.addEventListener("scroll", setAnnouncementOffset, { passive: true });
+		window.addEventListener("resize", setAnnouncementOffset);
+	});
+
+	// Desktop dropdown toggle (click-based)
+	document.addEventListener("DOMContentLoaded", function() {
+		const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+		dropdowns.forEach(dropdown => {
+			const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+			if (!trigger) return;
+
+			trigger.addEventListener("click", function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const isOpen = dropdown.classList.contains("is-open");
+
+				// Close all dropdowns first
+				dropdowns.forEach(d => {
+					d.classList.remove("is-open");
+					const t = d.querySelector(".nav-dropdown__trigger");
+					if (t) t.setAttribute("aria-expanded", "false");
+				});
+
+				// Toggle current dropdown
+				if (!isOpen) {
+					dropdown.classList.add("is-open");
+					trigger.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", function(e) {
+			if (!e.target.closest(".nav-dropdown")) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+
+		// Close dropdown on Escape key
+		document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+	});
+
+	// Detect dark sections and update navbar styling
+	function updateNavbarForDarkSections() {
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		// Get navbar position (use a point near the top of the navbar)
+		const navbarRect = navbar.getBoundingClientRect();
+		const checkPoint = navbarRect.top + navbarRect.height / 2;
+
+		// Find all dark sections on the page
+		function getDarkSections() {
+			var selector = '.problem-section, [class*="dark-bg"], [class*="bg-dark"]';
+			return document.querySelectorAll(selector);
+		}
+
+		let isOverDark = false;
+
+		getDarkSections().forEach(section => {
+			const sectionRect = section.getBoundingClientRect();
+			// Check if navbar overlaps with this dark section
+			if (checkPoint >= sectionRect.top && checkPoint <= sectionRect.bottom) {
+				isOverDark = true;
+			}
+		});
+
+		if (isOverDark) {
+			navbar.classList.add("navbar--on-dark");
+		} else {
+			navbar.classList.remove("navbar--on-dark");
+		}
+	}
+
+	// Run on scroll and load
+	document.addEventListener("DOMContentLoaded", function() {
+		updateNavbarForDarkSections();
+		window.addEventListener("scroll", updateNavbarForDarkSections, { passive: true });
+	});
+
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", function () {
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerNavbar = document.querySelector(".header-navbar");
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", () => {
+				const isExpanded =
+					mobileMenuButton.getAttribute("aria-expanded") === "true";
+				mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+				mobileMenu.classList.toggle("active");
+				// Toggle dark background on header when menu is open
+				if (headerNavbar) {
+					headerNavbar.classList.toggle("mobile-menu-open");
+				}
+				// Prevent body scroll when menu is open
+				document.documentElement.classList.toggle("mobile-menu-active");
+				document.body.classList.toggle("mobile-menu-active");
+			});
+		}
+
+		// Mobile menu accordion toggle
+		const accordionLabels = document.querySelectorAll(".mobile-menu-label");
+		accordionLabels.forEach(label => {
+			const content = label.nextElementSibling;
+			if (!content) return;
+
+			label.addEventListener("click", () => {
+				const isExpanded = label.getAttribute("aria-expanded") === "true";
+				label.setAttribute("aria-expanded", !isExpanded);
+				content.classList.toggle("is-expanded", !isExpanded);
+			});
+
+			// Set initial state (expanded)
+			if (label.getAttribute("aria-expanded") === "true") {
+				content.classList.add("is-expanded");
+			}
+		});
+
+		// Intent-based auto-hiding navbar
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let isNavbarVisible = true;
+
+		// Thresholds for scroll behavior
+		const SCROLL_THRESHOLD = 5; // Minimum scroll distance to trigger hide/show (prevents jitter)
+		const SHOW_THRESHOLD = 10; // Pixels to scroll up before showing navbar
+		const TOP_THRESHOLD = 100; // Distance from top where navbar always shows
+
+		function getNavbarHideStartY() {
+			if (!document.body.classList.contains("landing")) {
+				return TOP_THRESHOLD;
+			}
+
+			const differentiatorSection = document.querySelector("[data-differentiator-section]");
+			if (!differentiatorSection) {
+				return TOP_THRESHOLD;
+			}
+
+			const sectionRect = differentiatorSection.getBoundingClientRect();
+			const sectionBottomY = sectionRect.bottom + window.scrollY;
+			const navbarHeight = navbar.offsetHeight || 0;
+
+			return Math.max(TOP_THRESHOLD, sectionBottomY - navbarHeight);
+		}
+
+		// Debounced scroll handler for performance
+		function handleScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateNavbarVisibility();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		// Intent detection: show navbar when scrolling up, hide when scrolling down
+		function updateNavbarVisibility() {
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			// Toggle scrolled state for blur effect
+			if (currentScrollY > 50) {
+				navbar.classList.add("navbar--scrolled");
+			} else {
+				navbar.classList.remove("navbar--scrolled");
+			}
+
+			// On landing, keep the navbar visible through the differentiator section.
+			if (currentScrollY < getNavbarHideStartY()) {
+				showNavbar();
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			// Check scroll direction and apply threshold to prevent jitter
+			if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
+				if (scrollDelta > 0) {
+					// Scrolling down - hide navbar
+					hideNavbar();
+				} else if (Math.abs(scrollDelta) > SHOW_THRESHOLD) {
+					// Scrolling up with intent - show navbar
+					showNavbar();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function hideNavbar() {
+			if (isNavbarVisible) {
+				navbar.classList.add("navbar--hidden");
+				isNavbarVisible = false;
+			}
+		}
+
+		function showNavbar() {
+			if (!isNavbarVisible) {
+				navbar.classList.remove("navbar--hidden");
+				isNavbarVisible = true;
+			}
+		}
+
+		// Attach scroll listener
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		// Cleanup on page unload (prevents memory leaks)
+		window.addEventListener("beforeunload", () => {
+			window.removeEventListener("scroll", handleScroll);
+		});
+	});
+</script>
+<div class="page-wrapper">
+			<main>
+				<!-- Hero Section (dark background) -->
+				<section class="aws-hero dark-bg">
+					<div class="container">
+							<!-- Hero Content: Two-column -->
+						<div class="aws-hero__content">
+							<div class="aws-hero__left">
+								<h1 class="aws-hero__title">Know what runs in your AWS enclaves</h1>
+							</div>
+							<div class="aws-hero__right">
+								<p class="aws-hero__description">
+									Deploy to AWS Nitro Enclaves faster. Gain stronger integrity guarantees with cryptographic proof that each enclave runs the intended source code.
+								</p>
+								<a href="#aws-highlights" class="cta-link aws-hero__scroll-cta">
+									Learn more
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M5 12h14"></path>
+										<path d="m12 5 7 7-7 7"></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<!-- Logo Carousel -->
+					<div class="aws-hero__carousel">
+						<div class="aws-hero__carousel-inner">
+							<p class="aws-hero__carousel-title">From engineers trusted by industry leaders</p>
+							<div class="aws-hero__carousel-track"><div class="logo-slider">
+	<!-- First set of logos -->
+	<img loading="lazy" src="../assets/base/logo-carousel/coinbase.svg" alt="Coinbase" width="1406" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/etherfi.svg" alt="Ether.fi" width="906" height="274" style="height: 26px" />
+	<img loading="lazy" src="../assets/base/logo-carousel/exodus.svg" alt="Exodus" width="1219" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/ledn.svg" alt="Ledn" width="826" height="234" />
+	<img loading="lazy" src="../assets/base/logo-carousel/sidero.svg" alt="Sidero Labs" width="1118" height="296" />
+	<img loading="lazy" src="../assets/base/logo-carousel/fitbit.svg" alt="Fitbit" width="638" height="234" />
+	<img loading="lazy" src="../assets/base/logo-carousel/zcash.svg" alt="Zcash" width="1336" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/hashicorp.svg" alt="HashiCorp" width="987" height="206" style="height: 20px" />
+	<img loading="lazy" src="../assets/base/logo-carousel/ankr.svg" alt="Ankr" width="735" height="200" />
+	<img loading="lazy" src="../assets/base/logo-carousel/turnkey.svg" alt="Turnkey" width="1141" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/bishopfox.svg" alt="Bishop Fox" width="1505" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/bitgo.svg" alt="BitGo" width="928" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/falconx.svg" alt="FalconX" width="1562" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/mystenlabs.svg" alt="Mysten Labs" width="1901" height="250" />
+	<img loading="lazy" src="../assets/base/logo-carousel/optimism.svg" alt="Optimism" width="1428" height="250" />
+
+	<!-- Duplicate set for seamless infinite scroll -->
+	<img loading="lazy" src="../assets/base/logo-carousel/coinbase.svg" alt="Coinbase" width="1406" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/etherfi.svg" alt="Ether.fi" width="906" height="274" aria-hidden="true" style="height: 26px" />
+	<img loading="lazy" src="../assets/base/logo-carousel/exodus.svg" alt="Exodus" width="1219" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/ledn.svg" alt="Ledn" width="826" height="234" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/sidero.svg" alt="Sidero Labs" width="1118" height="296" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/fitbit.svg" alt="Fitbit" width="638" height="234" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/zcash.svg" alt="Zcash" width="1336" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/hashicorp.svg" alt="HashiCorp" width="987" height="206" aria-hidden="true" style="height: 20px" />
+	<img loading="lazy" src="../assets/base/logo-carousel/ankr.svg" alt="Ankr" width="735" height="200" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/turnkey.svg" alt="Turnkey" width="1141" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/bishopfox.svg" alt="Bishop Fox" width="1505" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/bitgo.svg" alt="BitGo" width="928" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/falconx.svg" alt="FalconX" width="1562" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/mystenlabs.svg" alt="Mysten Labs" width="1901" height="250" aria-hidden="true" />
+	<img loading="lazy" src="../assets/base/logo-carousel/optimism.svg" alt="Optimism" width="1428" height="250" aria-hidden="true" />
+</div>
+</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Sticky TOC Bar -->
+				<nav class="aws-toc" id="aws-toc">
+					<div class="aws-toc__inner">
+						<a href="#aws-highlights" class="aws-toc__link is-active">TL;DR</a>
+						<a href="#why-verification" class="aws-toc__link">Why verification</a>
+						<a href="#what-caution-adds" class="aws-toc__link">What Caution adds</a>
+						<a href="#who-benefits" class="aws-toc__link">Who benefits</a>
+						<a href="#use-cases" class="aws-toc__link">Use cases</a>
+						<a href="#how-it-works" class="aws-toc__link">How it works</a>
+						<a href="#aws-sellers" class="aws-toc__link">AWS sellers</a>
+						<a href="#faq" class="aws-toc__link">FAQ</a>
+					</div>
+				</nav>
+
+				<!-- At a Glance Section -->
+				<section id="aws-highlights" class="aws-highlights">
+					<div class="container">
+						<div class="aws-highlights__grid">
+							<div class="aws-highlights__item">
+								<h3 class="aws-highlights__label">What Caution is</h3>
+								<p class="aws-highlights__text">Verifiable compute platform that adds an extra layer of integrity guarantees on top of AWS Nitro Enclaves.</p>
+							</div>
+							<div class="aws-highlights__item">
+								<h3 class="aws-highlights__label">AWS value</h3>
+								<p class="aws-highlights__text">Faster adoption of confidential compute on AWS Nitro Enclaves, with independent verification of enclave workloads.</p>
+							</div>
+							<div class="aws-highlights__item">
+								<h3 class="aws-highlights__label">Who it's for</h3>
+								<p class="aws-highlights__text">Teams running sensitive AI, financial, healthcare, Web3, and other workloads on AWS that need stronger end‑to‑end security and assurance.</p>
+							</div>
+							<div class="aws-highlights__item">
+								<h3 class="aws-highlights__label">How it runs</h3>
+								<p class="aws-highlights__text">Integrates with existing AWS accounts and CI/CD pipelines, with flexible deployment options.</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<div class="aws-body">
+			<!-- Why Verification Section -->
+				<section id="why-verification" class="cloud-page-section">
+					<div class="container">
+						<div class="cloud-page-section__content">
+							<div class="cloud-page-section__left">
+								<span class="eyebrow">Why verification</span>
+								<h2 class="cloud-page-section__title">Independent verification for Nitro Enclaves</h2>
+								<p class="cloud-page-section__paragraph">
+									AWS Nitro Enclaves provide strong guarantees about hardware isolation and integrity. Verification extends those guarantees by linking the binaries running in the enclave back to the source code they came from.
+								</p>
+								<a href="https://docs.caution.co/concepts/verifiability/" class="cta-link" target="_blank" rel="noopener noreferrer">
+									Learn about verifiability
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M5 12h14"></path>
+										<path d="m12 5 7 7-7 7"></path>
+									</svg>
+								</a>
+							</div>
+							<div class="cloud-page-section__right">
+								<p class="cloud-page-section__paragraph" style="margin-top: 0; margin-bottom: 1.5rem; font-weight: 500;">Without verification:</p>
+								<div class="aws-steps">
+									<div class="aws-steps__item">
+										<p class="aws-steps__description">Backdoored or swapped binaries can appear legitimate without independent verification.</p>
+									</div>
+									<div class="aws-steps__item">
+										<p class="aws-steps__description">Supply-chain issues can slip through when only enclave measurements are verified.</p>
+									</div>
+									<div class="aws-steps__item">
+										<p class="aws-steps__description">Teams must rely on operator assurances instead of independent verification.</p>
+									</div>
+								</div>
+							</div>
+							<a href="https://docs.caution.co/concepts/verifiability/" class="cta-link cloud-page-section__cta-mobile" target="_blank" rel="noopener noreferrer">
+								Learn about verifiability
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M5 12h14"></path>
+									<path d="m12 5 7 7-7 7"></path>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</section>
+
+				<!-- What Caution Adds Section -->
+				<section id="what-caution-adds" class="cloud-page-section">
+					<div class="container">
+						<div class="cloud-page-section__content">
+							<div class="cloud-page-section__left">
+								<span class="eyebrow">What Caution adds</span>
+								<h2 class="cloud-page-section__title">What Caution adds to AWS Nitro Enclaves</h2>
+								<p class="cloud-page-section__paragraph">
+									Caution links Nitro Enclaves back to the source, build, and deployment pipeline so every enclave run is independently provable.
+								</p>
+								<div class="cta-group">
+									<a href="../platform-tour.html" class="cta-btn">Watch the 3-minute tour</a>
+									<a href="https://docs.caution.co/what-is-caution/" class="cta-link" target="_blank" rel="noopener noreferrer">
+										View docs
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M5 12h14"></path>
+											<path d="m12 5 7 7-7 7"></path>
+										</svg>
+									</a>
+								</div>
+							</div>
+							<div class="cloud-page-section__right">
+								<div class="aws-accordion">
+									<div class="aws-accordion__item">
+										<button class="aws-accordion__question" aria-expanded="false">
+											<span>Prove what was deployed</span>
+											<svg class="aws-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+												<line x1="12" y1="5" x2="12" y2="19"></line>
+												<line x1="5" y1="12" x2="19" y2="12"></line>
+											</svg>
+										</button>
+										<div class="aws-accordion__answer">
+											<p>Cryptographically link the code running in your AWS Nitro Enclave to the reviewed source code, build, and configuration that produced it.</p>
+											 <p>Caution leverages full-source bootstrapping and reproducibility all the way down to the kernel, via <a href="https://stagex.tools/" target="_blank" rel="noopener noreferrer">StageX</a> and <a href="https://distrust.co/blog/enclaveos.html" target="_blank" rel="noopener noreferrer">EnclaveOS</a>, so you can verify the entire stack, not just the application layer.
+											</p>
+										</div>
+									</div>
+									<div class="aws-accordion__item">
+										<button class="aws-accordion__question" aria-expanded="false">
+											<span>Detect tampering early</span>
+											<svg class="aws-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+												<line x1="12" y1="5" x2="12" y2="19"></line>
+												<line x1="5" y1="12" x2="19" y2="12"></line>
+											</svg>
+										</button>
+										<div class="aws-accordion__answer">
+											<p>Surface unauthorised changes before they reach production. If a binary doesn't match the expected source, you'll know immediately.</p>
+										</div>
+									</div>
+									<div class="aws-accordion__item">
+										<button class="aws-accordion__question" aria-expanded="false">
+											<span>Deploy to enclaves in minutes</span>
+											<svg class="aws-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+												<line x1="12" y1="5" x2="12" y2="19"></line>
+												<line x1="5" y1="12" x2="19" y2="12"></line>
+											</svg>
+										</button>
+										<div class="aws-accordion__answer">
+											<p>Replace weeks of custom infrastructure and security engineering with one unified workflow that runs in minutes. Deploying to a Nitro Enclave has never been this fast.</p>
+										</div>
+									</div>
+									<div class="aws-accordion__item">
+										<button class="aws-accordion__question" aria-expanded="false">
+											<span>Keep your workflows</span>
+											<svg class="aws-accordion__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+												<line x1="12" y1="5" x2="12" y2="19"></line>
+												<line x1="5" y1="12" x2="19" y2="12"></line>
+											</svg>
+										</button>
+										<div class="aws-accordion__answer">
+											<p>Integrate with your existing CI/CD, infrastructure-as-code, and deployment tooling. Caution fits into what you already use rather than replacing it.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="cta-group cloud-page-section__cta-mobile">
+								<a href="../platform-tour.html" class="cta-btn">Watch the 3-minute tour</a>
+								<a href="https://docs.caution.co/what-is-caution/" class="cta-link" target="_blank" rel="noopener noreferrer">
+									View docs
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M5 12h14"></path>
+										<path d="m12 5 7 7-7 7"></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Who Benefits Section --><section id="who-benefits" class="who-benefits">
+	<div class="aws-ticker" aria-hidden="true">
+		<div class="aws-ticker__inner">
+			<span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span><span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span>
+		</div>
+	</div>
+	<div class="container">
+		<div class="who-benefits__content">
+			<div class="who-benefits__left">
+				<div class="aws-marquee" aria-hidden="true">
+					<div class="aws-marquee__column aws-marquee__column--up" style="--marquee-duration: 110s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+						</div>
+					</div>
+					<div class="aws-marquee__column aws-marquee__column--down" style="--marquee-duration: 125s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Key Management</span>
+						</div>
+					</div>
+					<div class="aws-marquee__column aws-marquee__column--up" style="--marquee-duration: 95s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+						</div>
+					</div>
+					<div class="aws-marquee__column aws-marquee__column--down" style="--marquee-duration: 115s">
+						<div class="aws-marquee__inner">
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+							<span class="aws-marquee__item">Identity and Auth</span>
+							<span class="aws-marquee__item">Healthcare</span>
+							<span class="aws-marquee__item">Blockchain</span>
+							<span class="aws-marquee__item">Key Management</span>
+							<span class="aws-marquee__item">Data Collaboration</span>
+							<span class="aws-marquee__item">Government</span>
+							<span class="aws-marquee__item">Fintech</span>
+							<span class="aws-marquee__item">Fraud and AML</span>
+							<span class="aws-marquee__item">Biotech</span>
+							<span class="aws-marquee__item">AI / ML</span>
+							<span class="aws-marquee__item">Custody</span>
+							<span class="aws-marquee__item">Public Sector</span>
+							<span class="aws-marquee__item">Digital Assets</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="who-benefits__right">
+				<span class="eyebrow">Who benefits</span>
+				<h2 class="who-benefits__title">Which AWS customers benefit<span class="who-benefits__emphasis"> most</span></h2>
+				<p class="who-benefits__paragraph">
+					Caution works across industries and workload types. It is most useful for high-assurance workloads on AWS where integrity failures would be costly or catastrophic.
+				</p>
+				
+				<a href="#use-cases" class="cta-link">
+					See how teams use Caution
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+				
+			</div>
+		</div>
+	</div>
+	<div class="aws-ticker aws-ticker--bottom" aria-hidden="true">
+		<div class="aws-ticker__inner">
+			<span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span><span>Fintech</span><span class="aws-ticker__dot">&bull;</span><span>Healthcare</span><span class="aws-ticker__dot">&bull;</span><span>Biotech</span><span class="aws-ticker__dot">&bull;</span><span>Government</span><span class="aws-ticker__dot">&bull;</span><span>Public Sector</span><span class="aws-ticker__dot">&bull;</span><span>AI / ML</span><span class="aws-ticker__dot">&bull;</span><span>Blockchain</span><span class="aws-ticker__dot">&bull;</span><span>Digital Assets</span><span class="aws-ticker__dot">&bull;</span><span>Custody</span><span class="aws-ticker__dot">&bull;</span><span>Key Management</span><span class="aws-ticker__dot">&bull;</span><span>Identity and Auth</span><span class="aws-ticker__dot">&bull;</span><span>Fraud and AML</span><span class="aws-ticker__dot">&bull;</span><span>Data Collaboration</span><span class="aws-ticker__dot">&bull;</span>
+		</div>
+	</div>
+</section>
+<!-- Example Use Cases Carousel Section -->
+				<section id="use-cases" class="aws-use-cases">
+					<div class="container">
+						<span class="eyebrow">Use cases</span>
+						<h2 class="aws-use-cases__title">How teams use Caution on AWS</h2>
+						<p class="aws-use-cases__description">
+							Explore common workloads teams deploy on AWS Nitro Enclaves with verifiable builds.
+						</p>
+					<div class="aws-use-cases__carousel">
+						<div class="aws-use-cases__track">
+							<!-- First set of cards -->
+							<div class="aws-use-cases__card">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable LLM inference over sensitive data</h3>
+									<span class="aws-use-cases__badge">AI</span>
+								</div>
+								<p class="aws-use-cases__card-description">Serve LLMs and other models in verifiable Nitro Enclaves so users can confirm the exact models and runtime that handled their prompts and data.</p>
+							</div>
+							<div class="aws-use-cases__card">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable oracles & data feeds</h3>
+									<span class="aws-use-cases__badge">FINTECH</span>
+								</div>
+								<p class="aws-use-cases__card-description">Run oracle and pricing services in verifiable Nitro Enclaves to demonstrate the integrity of each price feed, signal, and the code that produces it.</p>
+							</div>
+							<div class="aws-use-cases__card">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable confidential AI for PHI</h3>
+									<span class="aws-use-cases__badge">HEALTHCARE</span>
+								</div>
+								<p class="aws-use-cases__card-description">Prove that patient data never leaves a verified enclave, meeting HIPAA requirements with cryptographic evidence.</p>
+							</div>
+							<div class="aws-use-cases__card">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable model training pipelines</h3>
+									<span class="aws-use-cases__badge">AI</span>
+								</div>
+								<p class="aws-use-cases__card-description">Ensure training runs execute approved code on approved data, with attestation evidence for audit and compliance.</p>
+							</div>
+							<div class="aws-use-cases__card">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable custody & signing operations</h3>
+									<span class="aws-use-cases__badge">FINTECH</span>
+								</div>
+								<p class="aws-use-cases__card-description">Show regulators and customers that key management and transaction signing happen only in attested, source-verified enclaves.</p>
+							</div>
+							<div class="aws-use-cases__card">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable nodes</h3>
+									<span class="aws-use-cases__badge">blockchain</span>
+								</div>
+								<p class="aws-use-cases__card-description">Expose cryptographic proof that your full node binary matches the reviewed source and configuration.</p>
+							</div>
+							<div class="aws-use-cases__card">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable staking infrastructure</h3>
+									<span class="aws-use-cases__badge">blockchain</span>
+								</div>
+								<p class="aws-use-cases__card-description">Give delegators and protocols independent proof that staking infrastructure is not forked, modified, or tampered with.</p>
+							</div>
+							<!-- Duplicate set for infinite loop -->
+							<div class="aws-use-cases__card" aria-hidden="true">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable LLM inference over sensitive data</h3>
+									<span class="aws-use-cases__badge">AI</span>
+								</div>
+								<p class="aws-use-cases__card-description">Serve LLMs and other models in verifiable Nitro Enclaves so users can confirm the exact models and runtime that handled their prompts and data.</p>
+							</div>
+							<div class="aws-use-cases__card" aria-hidden="true">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable oracles & data feeds</h3>
+									<span class="aws-use-cases__badge">FINTECH</span>
+								</div>
+								<p class="aws-use-cases__card-description">Run oracle and pricing services in verifiable Nitro Enclaves to demonstrate the integrity of each price feed, signal, and the code that produces it.</p>
+							</div>
+							<div class="aws-use-cases__card" aria-hidden="true">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable confidential AI for PHI</h3>
+									<span class="aws-use-cases__badge">HEALTHCARE</span>
+								</div>
+								<p class="aws-use-cases__card-description">Prove that patient data never leaves a verified enclave, meeting HIPAA requirements with cryptographic evidence.</p>
+							</div>
+							<div class="aws-use-cases__card" aria-hidden="true">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable model training pipelines</h3>
+									<span class="aws-use-cases__badge">AI</span>
+								</div>
+								<p class="aws-use-cases__card-description">Ensure training runs execute approved code on approved data, with attestation evidence for audit and compliance.</p>
+							</div>
+							<div class="aws-use-cases__card" aria-hidden="true">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable custody & signing operations</h3>
+									<span class="aws-use-cases__badge">FINTECH</span>
+								</div>
+								<p class="aws-use-cases__card-description">Show regulators and customers that key management and transaction signing happen only in attested, source-verified enclaves.</p>
+							</div>
+							<div class="aws-use-cases__card" aria-hidden="true">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable nodes</h3>
+									<span class="aws-use-cases__badge">blockchain</span>
+								</div>
+								<p class="aws-use-cases__card-description">Expose cryptographic proof that your full node binary matches the reviewed source and configuration.</p>
+							</div>
+							<div class="aws-use-cases__card" aria-hidden="true">
+								<div class="aws-use-cases__card-header">
+									<h3 class="aws-use-cases__card-title">Verifiable staking infrastructure</h3>
+									<span class="aws-use-cases__badge">blockchain</span>
+								</div>
+								<p class="aws-use-cases__card-description">Give delegators and protocols independent proof that staking infrastructure is not forked, modified, or tampered with.</p>
+							</div>
+						</div>
+					</div>
+					<div class="aws-use-cases__arrows">
+						<button class="aws-use-cases__arrow aws-use-cases__arrow--prev" aria-label="Previous use case">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+						</button>
+						<button class="aws-use-cases__arrow aws-use-cases__arrow--next" aria-label="Next use case">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+						</button>
+					</div>
+					</div>
+				</section>
+
+				<!-- How Caution Fits Section -->
+				<section id="how-it-works" class="cloud-page-section">
+					<div class="container">
+						<div class="cloud-page-section__content">
+							<div class="cloud-page-section__left">
+								<span class="eyebrow">How it works</span>
+								<h2 class="cloud-page-section__title">Deploy to AWS Nitro Enclaves in minutes</h2>
+								<p class="cloud-page-section__paragraph">
+									Caution integrates with existing AWS accounts and CI/CD pipelines, collapsing what is often a complex, custom Nitro deployment into a repeatable workflow that completes in minutes.
+								</p>
+								<div class="cta-group">
+									<a href="../contact.html" class="cta-btn">Book a live demo</a>
+									<a href="https://docs.caution.co/what-is-caution/" class="cta-link" target="_blank" rel="noopener noreferrer">
+										View docs
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+											<path d="M5 12h14"></path>
+											<path d="m12 5 7 7-7 7"></path>
+										</svg>
+									</a>
+								</div>
+							</div>
+							<div class="cloud-page-section__right">
+								<div
+									class="terminal-card terminal-card--linux"
+									data-terminal-typing
+									data-terminal-delay-scale="0.45"
+								>
+									<div class="terminal-card__titlebar">
+										<div class="terminal-card__titlebar-left"></div>
+										<div class="terminal-card__titlebar-buttons">
+											<button class="terminal-card__titlebar-btn terminal-card__titlebar-btn--minimize" aria-label="Minimize">
+												<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><rect x="2" y="5" width="8" height="2" /></svg>
+											</button>
+											<button class="terminal-card__titlebar-btn terminal-card__titlebar-btn--maximize" aria-label="Maximize">
+												<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="8" height="8" /></svg>
+											</button>
+											<button class="terminal-card__titlebar-btn terminal-card__titlebar-btn--close" aria-label="Close">
+												<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M2.5 1.5l8 8M10.5 1.5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+											</button>
+										</div>
+									</div>
+									<div class="terminal-card__content">
+										<div class="terminal-line">
+											<span class="terminal-prompt">$</span>
+											<span class="terminal-command">caution init</span>
+										</div>
+										<div class="terminal-line">
+											<span class="terminal-output">Initializing the app...</span>
+										</div>
+										<div class="terminal-line">
+											<span class="terminal-prompt">$</span>
+											<span class="terminal-command">git push caution main</span>
+										</div>
+										<div class="terminal-line">
+											<span class="terminal-prompt">$</span>
+											<span class="terminal-command">caution verify</span>
+										</div>
+										<div class="terminal-line">
+											<span class="terminal-output terminal-output--success">Attestation verification PASSED</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="cta-group cloud-page-section__cta-mobile">
+								<a href="../contact.html" class="cta-btn">Book a live demo</a>
+								<a href="https://docs.caution.co/what-is-caution/" class="cta-link" target="_blank" rel="noopener noreferrer">
+									View docs
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M5 12h14"></path>
+										<path d="m12 5 7 7-7 7"></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+
+
+				<!-- For AWS Sellers Section -->
+				<section id="aws-sellers" class="cloud-page-section">
+					<div class="container">
+						<div class="cloud-page-section__content">
+							<div class="cloud-page-section__left">
+								<span class="eyebrow">AWS sellers</span>
+								<h2 class="cloud-page-section__title">Positioning Caution in Nitro opportunities</h2>
+								<p class="cloud-page-section__paragraph">
+									Position Caution when Nitro adoption is blocked by integrity, security, or expertise gaps.
+									<a href="../contact.html">Talk with our engineers</a> about the customer’s deployment and next steps.
+								</p>
+								<a href="../pricing.html" class="cta-link">
+									View deployment options
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+										<path d="M5 12h14"></path>
+										<path d="m12 5 7 7-7 7"></path>
+									</svg>
+								</a>
+							</div>
+							<div class="cloud-page-section__right">
+								<p class="cloud-page-section__paragraph" style="margin-top: 0; margin-bottom: 1.5rem; font-weight: 500;">Use Caution when:</p>
+								<div class="aws-steps">
+									<div class="aws-steps__item">
+										<p class="aws-steps__description">Customer asks, "How do we prove what runs inside the enclave?"</p>
+									</div>
+									<div class="aws-steps__item">
+										<p class="aws-steps__description">Security or compliance blocks Nitro due to lack of code-to-enclave proof.</p>
+									</div>
+									<div class="aws-steps__item">
+										<p class="aws-steps__description">Customer lacks in-house enclave expertise or time.</p>
+									</div>
+								</div>
+							</div>
+							<a href="../pricing.html" class="cta-link cloud-page-section__cta-mobile">
+								View deployment options
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M5 12h14"></path>
+									<path d="m12 5 7 7-7 7"></path>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</section>
+			</div>
+
+				<!-- FAQ Section -->
+				<section id="faq" class="landing-faq-section">
+					<div class="container">
+						<span class="eyebrow">FAQs</span>
+						<h2 class="landing-faq-main-title">Frequently asked questions</h2>
+						<div class="landing-faq-content">
+							<div class="landing-faq-items">
+								<div class="landing-faq-item">
+									<button class="landing-faq-question" aria-expanded="false">
+										<span>What is Caution?</span>
+										<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<line x1="12" y1="5" x2="12" y2="19"></line>
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+										</svg>
+									</button>
+									<div class="landing-faq-answer">
+										<div>
+											<p>Caution is a verifiable compute platform that adds an extra layer of integrity guarantees on top of AWS Nitro Enclaves. It cryptographically links the code running inside an enclave back to the reviewed source code, build inputs, and configuration that produced the enclave image, so anyone can verify what is running in production.</p>
+											<p>Additional attestation backends are in active development.</p>
+										</div>
+									</div>
+								</div>
+								<div class="landing-faq-item">
+									<button class="landing-faq-question" aria-expanded="false">
+										<span>Does Caution replace AWS Nitro Enclaves?</span>
+										<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<line x1="12" y1="5" x2="12" y2="19"></line>
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+										</svg>
+									</button>
+									<div class="landing-faq-answer">
+										<div>
+										<p>No. Caution builds on top of AWS Nitro Enclaves, not instead of them. Nitro provides hardware-level isolation and attestation. Caution extends those guarantees by linking enclave measurements back to auditable source code and reproducible builds.</p>
+										</div>
+									</div>
+								</div>
+								<div class="landing-faq-item">
+									<button class="landing-faq-question" aria-expanded="false">
+										<span>What do I need to get started?</span>
+										<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<line x1="12" y1="5" x2="12" y2="19"></line>
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+										</svg>
+									</button>
+									<div class="landing-faq-answer">
+										<div>
+										<p><a href="../contact.html">Book 20 minutes</a> with one of our engineers. We’ll discuss your goals, answer technical questions, and help you get ready to deploy with Caution.</p>
+										</div>
+									</div>
+								</div>
+								<div class="landing-faq-item">
+									<button class="landing-faq-question" aria-expanded="false">
+										<span>Which deployment options are available?</span>
+										<svg class="landing-faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+											<line x1="12" y1="5" x2="12" y2="19"></line>
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+										</svg>
+									</button>
+									<div class="landing-faq-answer">
+										<div>
+											<p>Caution offers bring-your-own-compute and fully managed deployment options. Because Caution is open source, teams can also self-host it if they want to operate deployments independently.</p>
+											<p>Compare the options in the <a href="https://docs.caution.co/reference/deployment-models/" target="_blank" rel="noopener noreferrer">deployment models</a> reference.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			</main>
+		</div>
+		<!-- CTA Section -->
+		<section class="cta-section-block">
+			<div class="container">
+				<div class="cta-section-block__inner">
+					<div class="cta-section-block__left">
+						<h2 class="cta-section-block__title">Get started</h2>
+						<div class="cta-group">
+							<a href="../contact.html" class="cta-btn">Book a live demo</a>
+							<a href="../platform-tour.html" class="cta-link">
+								Watch the tour
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M5 12h14"></path>
+									<path d="m12 5 7 7-7 7"></path>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div class="cta-section-block__right">
+						<p class="cta-section-block__description">Get verifiable compute running on AWS Nitro in minutes with fully managed or bring your own compute deployment options.</p>
+					</div>
+				</div>
+			</div>
+		</section><footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-inner container">
+			<div class="footer-content">
+				<div class="footer-brand">
+					<a href="../index.html" class="footer-logo">
+						<img
+							src="../assets/base/caution-logo/caution.svg"
+							alt="Caution logo"
+							width="781"
+							height="137"
+						/>
+					</a>
+					<p class="footer-description">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--tablet">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--mobile">
+						Confidential compute you can verify.
+					</p>
+					</div>
+
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3 class="footer-column-title">Platform</h3>
+						<a href="https://dashboard.caution.co/" class="footer-link">Dashboard</a>
+						<a href="../platform-tour.html" class="footer-link">Platform tour</a>
+						<a href="aws.html" class="footer-link">AWS Nitro</a>
+						<a href="../faq.html" class="footer-link">FAQ</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Resources</h3>
+						<a
+							href="https://docs.caution.co/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Documentation</a
+						>
+						<a href="../pricing.html" class="footer-link">Pricing</a>
+						<a href="../blog.html" class="footer-link">Blog</a>
+						<a href="../security-controls.html" class="footer-link">Security</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Company</h3>
+						<a href="../about.html" class="footer-link">About</a>
+						<a href="../contact.html" class="footer-link">Contact</a>
+						<a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer" class="footer-link">Community</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 Caution SEZC. All rights reserved.
+				</p>
+				<nav class="footer-legal-links">
+					<a href="../privacy.html" class="footer-legal-link">Privacy</a>
+					<a href="../terms.html" class="footer-legal-link">Terms</a>
+					<a href="../legal/refunds.html" class="footer-legal-link">Refunds</a>
+				</nav>
+				<div class="footer-social">
+					<a
+						href="https://codeberg.org/Caution/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Git"
+						title="Access source code and documentation"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/git-logo-white.svg" alt="Git" width="92" height="92" />
+					</a>
+					<a
+						href="https://mstdn.social/@caution"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Mastodon"
+						title="Follow us on Mastodon"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/Mastodon-logo.svg" alt="Mastodon" width="17" height="20" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				// FAQ accordion
+				const faqQuestions = document.querySelectorAll(".aws-accordion__question, .landing-faq-question");
+
+				faqQuestions.forEach(function (question) {
+					question.addEventListener("click", function () {
+						const faqItem = this.parentElement;
+						const isExpanded = this.getAttribute("aria-expanded") === "true";
+
+						faqQuestions.forEach(function (otherQuestion) {
+							if (otherQuestion !== question) {
+								otherQuestion.setAttribute("aria-expanded", "false");
+								otherQuestion.parentElement.classList.remove("is-active");
+							}
+						});
+
+						this.setAttribute("aria-expanded", !isExpanded);
+						faqItem.classList.toggle("is-active");
+					});
+				});
+
+				// Use-cases carousel: drag to scroll
+				var carousel = document.querySelector(".aws-use-cases__carousel");
+				if (carousel) {
+					var isDragging = false;
+					var startX = 0;
+					var scrollStart = 0;
+
+					carousel.addEventListener("mousedown", function (e) {
+						isDragging = true;
+						startX = e.clientX;
+						scrollStart = carousel.scrollLeft;
+						carousel.classList.add("is-dragging");
+					});
+
+					window.addEventListener("mousemove", function (e) {
+						if (!isDragging) return;
+						var dx = e.clientX - startX;
+						carousel.scrollLeft = scrollStart - dx;
+					});
+
+					window.addEventListener("mouseup", function () {
+						if (!isDragging) return;
+						isDragging = false;
+						carousel.classList.remove("is-dragging");
+					});
+
+					// Prevent link clicks after dragging
+					carousel.addEventListener("click", function (e) {
+						if (Math.abs(carousel.scrollLeft - scrollStart) > 5) {
+							e.preventDefault();
+						}
+					}, true);
+
+					// Arrow navigation (snap-friendly, no scroll-event loop)
+					var prevBtn = document.querySelector(".aws-use-cases__arrow--prev");
+					var nextBtn = document.querySelector(".aws-use-cases__arrow--next");
+					var cards = carousel.querySelectorAll(".aws-use-cases__card");
+					var origCount = cards.length / 2;
+					var trackGap = parseInt(getComputedStyle(carousel.querySelector(".aws-use-cases__track")).gap);
+					var cardW = cards[0].offsetWidth + trackGap;
+					var halfScroll = cardW * origCount;
+
+					if (prevBtn && nextBtn) {
+						prevBtn.addEventListener("click", function () {
+							if (carousel.scrollLeft < cardW) {
+								carousel.style.scrollSnapType = "none";
+								carousel.scrollLeft += halfScroll;
+								void carousel.offsetHeight;
+								carousel.style.scrollSnapType = "";
+							}
+							carousel.scrollBy({ left: -cardW, behavior: "smooth" });
+						});
+						nextBtn.addEventListener("click", function () {
+							if (carousel.scrollLeft >= halfScroll - cardW) {
+								carousel.style.scrollSnapType = "none";
+								carousel.scrollLeft -= halfScroll;
+								void carousel.offsetHeight;
+								carousel.style.scrollSnapType = "";
+							}
+							carousel.scrollBy({ left: cardW, behavior: "smooth" });
+						});
+					}
+				}
+
+				// Sticky TOC: active link tracking + shadow
+				var toc = document.getElementById("aws-toc");
+				var tocLinks = toc ? toc.querySelectorAll(".aws-toc__link") : [];
+				var sectionIds = [];
+				tocLinks.forEach(function (link) {
+					sectionIds.push(link.getAttribute("href").slice(1));
+				});
+
+				if (toc && sectionIds.length) {
+					// Add shadow when stuck
+					var tocTop = toc.offsetTop;
+					function checkStuck() {
+						if (window.scrollY >= tocTop) {
+							toc.classList.add("is-stuck");
+						} else {
+							toc.classList.remove("is-stuck");
+						}
+					}
+
+					// Track which section is in view
+					var currentActive = sectionIds[0];
+					var observer = new IntersectionObserver(function (entries) {
+						entries.forEach(function (entry) {
+							if (entry.isIntersecting) {
+								currentActive = entry.target.id;
+								tocLinks.forEach(function (link) {
+									if (link.getAttribute("href") === "#" + currentActive) {
+										link.classList.add("is-active");
+									} else {
+										link.classList.remove("is-active");
+									}
+								});
+							}
+						});
+					}, {
+						rootMargin: "-20% 0px -60% 0px",
+						threshold: 0
+					});
+
+					sectionIds.forEach(function (id) {
+						var el = document.getElementById(id);
+						if (el) observer.observe(el);
+					});
+
+					// Parallax scroll: hero + TOC stay while highlights scrolls behind,
+					// then hero slides away and TOC sticks at the top.
+					var hero = document.querySelector(".aws-hero");
+					var header = document.querySelector(".header-navbar");
+					var highlights = document.querySelector(".aws-highlights");
+					var tocH = toc.offsetHeight;
+
+					window.addEventListener("resize", function () {
+						tocH = toc.offsetHeight;
+						updateTocTop();
+					});
+
+					function updateTocTop() {
+						if (window.innerWidth <= 960) return;
+
+						var heroH = hero ? hero.offsetHeight : 0;
+						var hlBottom = highlights ? highlights.getBoundingClientRect().bottom : Infinity;
+
+						if (hlBottom > heroH + tocH) {
+							// Phase 1 – parallax: hero pinned, TOC below hero
+							hero.style.top = "0";
+							toc.style.top = window.scrollY > 0 ? heroH + "px" : "";
+							toc.style.transform = "";
+							toc.classList.remove("toc-hidden");
+						} else if (hlBottom > tocH) {
+							// Phase 2 – transition: hero slides up, TOC follows
+							hero.style.top = (hlBottom - heroH - tocH) + "px";
+							toc.style.top = (hlBottom - tocH) + "px";
+							toc.style.transform = "";
+							toc.classList.remove("toc-hidden");
+						} else {
+							// Phase 3 – post-parallax: hero off-screen, TOC at top
+							hero.style.top = -heroH + "px";
+							toc.style.top = "0";
+							toc.style.transform = "";
+							// Hide TOC when navbar slides into view
+							if (header && !header.classList.contains("nav-hidden") && window.scrollY > 20) {
+								toc.classList.add("toc-hidden");
+							} else {
+								toc.classList.remove("toc-hidden");
+							}
+						}
+					}
+
+					function onScroll() {
+						checkStuck();
+						updateTocTop();
+					}
+
+					window.addEventListener("scroll", onScroll, { passive: true });
+					checkStuck();
+					updateTocTop();
+
+					// Smooth scroll on click
+					tocLinks.forEach(function (link) {
+						link.addEventListener("click", function (e) {
+							e.preventDefault();
+							var targetId = this.getAttribute("href").slice(1);
+							var target = document.getElementById(targetId);
+							if (target) {
+								// Use TOC's current computed top + its height as the offset
+								var tocTop = parseFloat(toc.style.top) || 0;
+								var tocHeight = toc.offsetHeight;
+								var top = target.getBoundingClientRect().top + window.scrollY - tocTop - tocHeight - 24;
+								window.scrollTo({ top: top, behavior: "smooth" });
+							}
+						});
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

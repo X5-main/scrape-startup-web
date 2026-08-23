@@ -34,8 +34,16 @@ Each subfolder is a complete, standalone snapshot of that startup's website at t
 
 ## Startups in the library (current)
 
-| Startup | Folder | Notes |
-|---|---|---|
+| Lemma | `lemma/` | Next.js app-router exception: byte-identical HTML + full API-path mapping via `mirror_site.py`, served via `serve_replica.py`. |
+| Tsenta | `tsenta/` | |
+| Nex | `nex/` | Framer site; see `search_methods.md` Framer pattern. |
+| Conifer | `conifer/` | Next.js site; hydration/mirror patterns in `search_methods.md`. |
+| Twin1 | `twin1/` | Turbopack site. |
+| Forward | `forward/` | Astro site (useforward.co pattern). |
+| Multiplier | `multiplier/` | Vite/Turbopack v2 site. |
+| Ellis | `ellis/` | Vite-built SPA (ellis.ai pattern). |
+| Uplane | `uplane/` | Framer site; SVG `<use>` fragment-URL rewrite fix. |
 | OneCLI | `onecli/` | React App Router site, mirrored via `mirror_site.py` (220 files), served via `serve_replica.py` serve-time ref restoration. Full-page parity with live: identical height (7348px), nav 25/25 links, byte-identical SSR DOM modulo intended rewrites, `uncaught:[]` (React #418 eliminated), 0 broken images, videos streamed from origin. |
+| Caution | `caution/` | Hand-rolled static SSR site (caution.co, YC S26, verifiable compute): 507/507 internal refs return HTTP 200 through the replica, byte-identical DOM in clean-room CDP audit (h1/h2=10/imgs=70/broken=0/height 7517), 36/36 headings match in David's Chrome, vision-verified hero/nav/workflow parity, video plays locally (webm 1920×1080, mp4 18.6 MB). |
 
 See `search_methods.md` for the mirroring replay log and verification recipes.

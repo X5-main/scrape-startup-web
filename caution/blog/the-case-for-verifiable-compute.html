@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e7f1ff" />
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon__v-1.png" />
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraLight.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Light.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Regular.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Medium.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-SemiBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Bold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-Regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-SemiBold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+
+	
+
+	<title>The case for verifiable compute</title>
+	<link rel="stylesheet" href="../assets/styles.css" />
+	<link rel="canonical" href="https://caution.co/blog/the-case-for-verifiable-compute.html" />
+	<link rel="alternate" type="application/atom+xml" title="Caution" href="../feed.xml" />
+	<meta content="Caution" property="og:site_name" />
+
+	 
+	<meta content="The case for verifiable compute" property="og:title" />
+	<meta content="article" property="og:type" />
+	 
+	<meta content="Reproducible builds, secure enclaves, and cryptographic remote attestation form the building blocks for verifiable compute, allowing software to be verified end-to-end." property="og:description" />
+	<meta name="description" content="Reproducible builds, secure enclaves, and cryptographic remote attestation form the building blocks for verifiable compute, allowing software to be verified end-to-end." />
+	 
+	<meta content="https://caution.co/blog/the-case-for-verifiable-compute.html" property="og:url" />
+	 
+	<meta
+		content="2025-09-29T00:00:00+00:00"
+		property="article:published_time"
+	/>
+	<meta content="https://caution.co/about/" property="article:author" />
+	 
+	<meta content="https://caution.co/assets/imgs/opengraph/og-blog/og-post-case.png" property="og:image" />
+	     
+	<meta content="insight" property="article:tag" />
+	 
+
+	<meta name="twitter:card" content="summary_large_image" />
+
+	
+	<meta name="twitter:title" content="The case for verifiable compute" />
+	 
+	<meta name="twitter:url" content="https://caution.co/blog/the-case-for-verifiable-compute.html" />
+	 
+	<meta name="twitter:description" content="Reproducible builds, secure enclaves, and cryptographic remote attestation form the building blocks for verifiable compute, allowing software to be verified end-to-end." />
+	 
+	<meta name="twitter:image:src" content="https://caution.co/assets/imgs/opengraph/og-blog/og-post-case.png" />
+	 
+
+	<script src="../assets/js/main.js" defer></script>
+
+
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": "https://caution.co/"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Blog",
+			"item": "https://caution.co/blog.html"
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"name": "The case for verifiable compute"
+		}
+	]
+}
+</script>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"headline": "The case for verifiable compute",
+	"description": "Reproducible builds, secure enclaves, and cryptographic remote attestation form the building blocks for verifiable compute, allowing software to be verified end-to-end.",
+	"url": "https://caution.co/blog/the-case-for-verifiable-compute.html",
+	"datePublished": "2025-09-29T00:00:00+00:00",
+	"image": "https://caution.co/assets/imgs/opengraph/og-blog/og-post-case.png",
+	"author": {
+		"@type": "Organization",
+		"name": "Caution",
+		"url": "https://caution.co"
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "Caution",
+		"url": "https://caution.co",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://caution.co/assets/favicons/caution-icon.svg"
+		}
+	}
+}
+</script>
+
+
+
+
+
+
+
+<!-- "Really, there is nothing interesting to see here. It is a static website. -->
+	<!-- Here is the terraform code that deployed it, and here is the site source repo. -->
+	<!-- If you find anything interesting or want to talk to us, reach out via our /contact page!" -->
+	<!-- https://git.distrust.co/public/stack -->
+	<!-- https://git.distrust.co/public/website -->
+</head>
+<body class="post-page-body blog-post-body">
+		<div class="page-wrapper"><script>
+	(function () {
+		try {
+			if (window.localStorage.getItem("caution-y-combinator-announcement-dismissed") === "true") {
+				document.documentElement.classList.add("site-announcement-dismissed");
+			}
+		} catch (error) {
+			// Keep the announcement visible if localStorage is unavailable.
+		}
+	})();
+</script>
+
+<div class="site-announcement" data-site-announcement role="region" aria-label="Y Combinator announcement">
+	<div class="site-announcement__inner">
+		<p class="site-announcement__copy">
+			Caution is backed by Y Combinator. <span class="site-announcement__mobile-break" aria-hidden="true"></span><a href="https://www.ycombinator.com/launches/SIq-caution-hosting-platform-for-software-you-can-t-afford-to-have-hacked" class="site-announcement__link" target="_blank" rel="noopener noreferrer" aria-label="Learn more about Caution on Y Combinator">Learn more</a>.
+		</p>
+		<button class="site-announcement__dismiss" type="button" aria-label="Dismiss announcement" data-site-announcement-dismiss>
+			<svg class="site-announcement__dismiss-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"></path>
+				<path d="m6 6 12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<header class="header-navbar">
+	<div class="nav-top-bar">
+		<a href="../index.html" class="nav-logo">
+			<img src="../assets/base/caution-logo/caution.svg" alt="Caution logo" width="781" height="137" />
+		</a>
+
+		<nav class="nav-desktop">
+			<div class="nav-center">
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Platform
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="../platform-tour.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/><circle cx="12" cy="12" r="10"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Platform tour</span>
+										<span class="nav-dropdown__desc">Watch Caution in action</span>
+									</span>
+								</a>
+								<a href="../cloud/aws.html" class="nav-dropdown__item">
+									<span class="nav-dropdown__icon">
+										<img src="../assets/base/aws.png" alt="" width="640" height="640" class="nav-dropdown__icon-img" />
+									</span>
+									<span>
+										<span class="nav-dropdown__title">AWS Nitro</span>
+										<span class="nav-dropdown__desc">Deploy on AWS Nitro Enclaves</span>
+									</span>
+								</a>
+								<a href="../faq.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+									<span>
+										<span class="nav-dropdown__title">FAQ</span>
+										<span class="nav-dropdown__desc">Common questions answered</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Resources
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="https://docs.caution.co/" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Documentation</span>
+										<span class="nav-dropdown__desc">Technical guides and API reference</span>
+									</span>
+								</a>
+								<a href="../blog.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Blog</span>
+										<span class="nav-dropdown__desc">Engineering insights and updates</span>
+									</span>
+								</a>
+								<a href="../security-controls.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Security</span>
+										<span class="nav-dropdown__desc">Trust model, evidence, and framework alignment</span>
+									</span>
+								</a>
+								<a href="https://matrix.to/#/#caution:matrix.org" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Community</span>
+										<span class="nav-dropdown__desc">Join us on Matrix</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="nav-link">About</a>
+				<a href="../pricing.html" class="nav-link">Pricing</a>
+			</div>
+			<div class="nav-right">
+				<a href="https://dashboard.caution.co/" class="nav-link">Log in</a>
+				<a href="../contact.html" class="nav-cta">
+					Book a live demo
+				</a>
+			</div>
+		</nav>
+
+		<button
+			class="mobile-menu-button"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-label="Toggle menu"
+		>
+			<span class="hamburger">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</span>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-nav">
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Platform <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="../platform-tour.html" class="mobile-menu-link">Platform tour</a>
+							<a href="../cloud/aws.html" class="mobile-menu-link">AWS Nitro</a>
+							<a href="../faq.html" class="mobile-menu-link">FAQ</a>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Resources <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="https://docs.caution.co/" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Documentation</a>
+							<a href="../blog.html" class="mobile-menu-link">Blog</a>
+							<a href="../security-controls.html" class="mobile-menu-link">Security</a>
+							<a href="https://matrix.to/#/#caution:matrix.org" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Community</a>
+							<a href="../legal.html" class="mobile-menu-link">Legal</a>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="mobile-menu-link">About</a>
+				<a href="../pricing.html" class="mobile-menu-link">Pricing</a>
+			</div>
+			<div class="mobile-menu-footer">
+				<a href="../contact.html" class="mobile-menu-cta">
+					Book a live demo
+				</a>
+				<a href="../platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const announcement = document.querySelector("[data-site-announcement]");
+		const dismissButton = document.querySelector("[data-site-announcement-dismiss]");
+		const root = document.documentElement;
+		const dismissedClass = "site-announcement-dismissed";
+		const storageKey = "caution-y-combinator-announcement-dismissed";
+
+		function isDismissed() {
+			return root.classList.contains(dismissedClass);
+		}
+
+		function setAnnouncementOffset() {
+			if (!announcement || isDismissed()) {
+				root.style.setProperty("--site-announcement-offset", "0px");
+				return;
+			}
+
+			const offset = Math.max(0, announcement.offsetHeight - (window.scrollY || window.pageYOffset));
+			root.style.setProperty("--site-announcement-offset", `${offset}px`);
+		}
+
+		if (dismissButton) {
+			dismissButton.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				try {
+					window.localStorage.setItem(storageKey, "true");
+				} catch (error) {
+					// Dismiss for this page view even if persistence is unavailable.
+				}
+
+				root.classList.add(dismissedClass);
+				setAnnouncementOffset();
+			});
+		}
+
+		setAnnouncementOffset();
+		window.addEventListener("scroll", setAnnouncementOffset, { passive: true });
+		window.addEventListener("resize", setAnnouncementOffset);
+	});
+
+	// Desktop dropdown toggle (click-based)
+	document.addEventListener("DOMContentLoaded", function() {
+		const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+		dropdowns.forEach(dropdown => {
+			const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+			if (!trigger) return;
+
+			trigger.addEventListener("click", function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const isOpen = dropdown.classList.contains("is-open");
+
+				// Close all dropdowns first
+				dropdowns.forEach(d => {
+					d.classList.remove("is-open");
+					const t = d.querySelector(".nav-dropdown__trigger");
+					if (t) t.setAttribute("aria-expanded", "false");
+				});
+
+				// Toggle current dropdown
+				if (!isOpen) {
+					dropdown.classList.add("is-open");
+					trigger.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", function(e) {
+			if (!e.target.closest(".nav-dropdown")) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+
+		// Close dropdown on Escape key
+		document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+	});
+
+	// Detect dark sections and update navbar styling
+	function updateNavbarForDarkSections() {
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		// Get navbar position (use a point near the top of the navbar)
+		const navbarRect = navbar.getBoundingClientRect();
+		const checkPoint = navbarRect.top + navbarRect.height / 2;
+
+		// Find all dark sections on the page
+		function getDarkSections() {
+			var selector = '.problem-section, [class*="dark-bg"], [class*="bg-dark"]';
+			return document.querySelectorAll(selector);
+		}
+
+		let isOverDark = false;
+
+		getDarkSections().forEach(section => {
+			const sectionRect = section.getBoundingClientRect();
+			// Check if navbar overlaps with this dark section
+			if (checkPoint >= sectionRect.top && checkPoint <= sectionRect.bottom) {
+				isOverDark = true;
+			}
+		});
+
+		if (isOverDark) {
+			navbar.classList.add("navbar--on-dark");
+		} else {
+			navbar.classList.remove("navbar--on-dark");
+		}
+	}
+
+	// Run on scroll and load
+	document.addEventListener("DOMContentLoaded", function() {
+		updateNavbarForDarkSections();
+		window.addEventListener("scroll", updateNavbarForDarkSections, { passive: true });
+	});
+
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", function () {
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerNavbar = document.querySelector(".header-navbar");
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", () => {
+				const isExpanded =
+					mobileMenuButton.getAttribute("aria-expanded") === "true";
+				mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+				mobileMenu.classList.toggle("active");
+				// Toggle dark background on header when menu is open
+				if (headerNavbar) {
+					headerNavbar.classList.toggle("mobile-menu-open");
+				}
+				// Prevent body scroll when menu is open
+				document.documentElement.classList.toggle("mobile-menu-active");
+				document.body.classList.toggle("mobile-menu-active");
+			});
+		}
+
+		// Mobile menu accordion toggle
+		const accordionLabels = document.querySelectorAll(".mobile-menu-label");
+		accordionLabels.forEach(label => {
+			const content = label.nextElementSibling;
+			if (!content) return;
+
+			label.addEventListener("click", () => {
+				const isExpanded = label.getAttribute("aria-expanded") === "true";
+				label.setAttribute("aria-expanded", !isExpanded);
+				content.classList.toggle("is-expanded", !isExpanded);
+			});
+
+			// Set initial state (expanded)
+			if (label.getAttribute("aria-expanded") === "true") {
+				content.classList.add("is-expanded");
+			}
+		});
+
+		// Intent-based auto-hiding navbar
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let isNavbarVisible = true;
+
+		// Thresholds for scroll behavior
+		const SCROLL_THRESHOLD = 5; // Minimum scroll distance to trigger hide/show (prevents jitter)
+		const SHOW_THRESHOLD = 10; // Pixels to scroll up before showing navbar
+		const TOP_THRESHOLD = 100; // Distance from top where navbar always shows
+
+		function getNavbarHideStartY() {
+			if (!document.body.classList.contains("landing")) {
+				return TOP_THRESHOLD;
+			}
+
+			const differentiatorSection = document.querySelector("[data-differentiator-section]");
+			if (!differentiatorSection) {
+				return TOP_THRESHOLD;
+			}
+
+			const sectionRect = differentiatorSection.getBoundingClientRect();
+			const sectionBottomY = sectionRect.bottom + window.scrollY;
+			const navbarHeight = navbar.offsetHeight || 0;
+
+			return Math.max(TOP_THRESHOLD, sectionBottomY - navbarHeight);
+		}
+
+		// Debounced scroll handler for performance
+		function handleScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateNavbarVisibility();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		// Intent detection: show navbar when scrolling up, hide when scrolling down
+		function updateNavbarVisibility() {
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			// Toggle scrolled state for blur effect
+			if (currentScrollY > 50) {
+				navbar.classList.add("navbar--scrolled");
+			} else {
+				navbar.classList.remove("navbar--scrolled");
+			}
+
+			// On landing, keep the navbar visible through the differentiator section.
+			if (currentScrollY < getNavbarHideStartY()) {
+				showNavbar();
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			// Check scroll direction and apply threshold to prevent jitter
+			if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
+				if (scrollDelta > 0) {
+					// Scrolling down - hide navbar
+					hideNavbar();
+				} else if (Math.abs(scrollDelta) > SHOW_THRESHOLD) {
+					// Scrolling up with intent - show navbar
+					showNavbar();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function hideNavbar() {
+			if (isNavbarVisible) {
+				navbar.classList.add("navbar--hidden");
+				isNavbarVisible = false;
+			}
+		}
+
+		function showNavbar() {
+			if (!isNavbarVisible) {
+				navbar.classList.remove("navbar--hidden");
+				isNavbarVisible = true;
+			}
+		}
+
+		// Attach scroll listener
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		// Cleanup on page unload (prevents memory leaks)
+		window.addEventListener("beforeunload", () => {
+			window.removeEventListener("scroll", handleScroll);
+		});
+	});
+</script>
+<div class="container post-container">
+				<main class="post-page"><div class="post-header">
+						<a href="../blog.html" class="post-back-link">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+							All posts
+						</a><div class="post-header-meta"><div class="post-meta">
+						<div class="post-meta-date">Sep 29, 2025</div>
+						<div class="post-meta-read-time">4 min read</div>
+					</div></div>
+					</div>
+					<div class="post-layout">
+						<aside class="post-toc-sidebar">
+							<h2 class="post-toc-title">The case for verifiable compute</h2>
+							<span class="post-toc-date">Sep 29, 2025</span>
+							<nav class="post-toc-nav" id="toc-nav">
+								<!-- TOC will be moved here via JS -->
+							</nav>
+						</aside>
+						<aside class="post-meta-aside">
+							<div class="post-meta">
+						<div class="post-meta-date">Sep 29, 2025</div>
+						<div class="post-meta-read-time">4 min read</div>
+					</div>
+							<div class="post-author">
+						<img src="../assets/team/anton.svg" alt="Anton Livaja" class="post-author-image" width="80" height="80" loading="lazy" />
+						<div class="post-author-info">
+							<span class="post-author-name">Anton Livaja</span>
+							<span class="post-author-title">Co-founder & CEO</span>
+						</div>
+					</div>
+						</aside>
+						<div class="post-main">
+							<h1>The case for verifiable compute</h1>
+							<article class="post">
+								<div class="post-entry"><div class="tldr-callout">
+
+  <p>What if the software running your systems isn’t what you think? If you had to prove what software is on a system, how would you do it?</p>
+
+</div>
+
+<p><span class="section-label toc-label">Table of contents</span></p>
+
+<!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#the-real-world-risk-of-unverifiability" id="markdown-toc-the-real-world-risk-of-unverifiability">The real-world risk of unverifiability</a></li>
+  <li><a href="#the-building-blocks-of-true-verifiability" id="markdown-toc-the-building-blocks-of-true-verifiability">The building blocks of true verifiability</a></li>
+  <li><a href="#why-existing-platforms-fall-short" id="markdown-toc-why-existing-platforms-fall-short">Why existing platforms fall short</a></li>
+  <li><a href="#cautiously-building-the-next-generation-of-verifiable-compute" id="markdown-toc-cautiously-building-the-next-generation-of-verifiable-compute">“Cautiously” building the next generation of verifiable compute</a></li>
+</ol>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Most of today’s technologies are black boxes. From firmware and operating systems to compilers and cloud platforms, opacity is the default. Users can send requests to an API or server, but they cannot verify what software, or whose software, they are really interacting with. The issue impacts organisations internally as well, where system managers can’t verify whether the code they think they deployed is actually what’s running on the server. This is not just a usability issue, it is a systemic design failure and the result is software stacks riddled with blind spots, where compromise can occur at any stage and remain invisible.</p>
+
+<p>Years of working with high-risk clients and analysing different technologies have led us to realise that the pieces needed for verifiable systems already exist. They remain underutilized because they are misunderstood and difficult to use, a problem we need to solve.</p>
+
+<p>Reproducible builds, secure enclaves, and cryptographic remote attestation each solve parts of the problem. Taken together, they form the building blocks for <strong>verifiable compute</strong>, which allows software to be verified. Our work is focused on creating the next generation of cloud hosting platform centered around verifiability and elimination of single points of failure present in current market solutions.</p>
+
+<p>Like “zero trust” before it, the term verifiable compute is already being hijacked by marketing teams. Companies throw it around to describe partial solutions, usually just proving a binary hash hasn’t changed. We take a stricter view: verifiable compute means the entire supply chain can be checked. Anything less is <strong>not</strong> verifiable compute.</p>
+
+<h2 id="the-real-world-risk-of-unverifiability">The real-world risk of unverifiability</h2>
+
+<p>The risks of unverifiable systems are not theoretical; they’ve already caused some of the most damaging security incidents of the past decade.</p>
+
+<p><strong><a href="https://thehackernews.com/2025/09/solarwinds-releases-hotfix-for-critical.html" target="_blank" rel="noopener noreferrer" title="View article on thehackernews.com">SolarWinds (2020)</a></strong> showed how a compromised software supply chain can cascade globally. Attackers injected malicious code into SolarWinds’ Orion updates, which were then shipped to thousands of companies and U.S. government agencies. Because customers had no way to verify what software they were actually running, the backdoor spread silently through trusted update channels.</p>
+
+<p>This is one of the many breaches which demonstrate that without verifiability across the entire stack, organisations have no reliable way to prove the integrity of the systems they depend on.</p>
+
+<h2 id="the-building-blocks-of-true-verifiability">The building blocks of true verifiability</h2>
+
+<p>Three core technologies make end-to-end software verifiability possible:</p>
+
+<ul>
+  <li>
+    <p><strong>Reproducible builds.</strong> Reproducible builds force software to be bit-for-bit identical when built from the same source code, and eliminate certain categories of supply chain attacks and would have prevented incidents like SolarWinds. It allows for integrity verification, without which software is opaque and difficult to verify.</p>
+  </li>
+  <li>
+    <p><strong>Secure enclaves.</strong> Hardware-isolated execution (e.g., IOMMU-backed enclaves) prevents external processes — even privileged ones — from tampering with sensitive workloads. Enclaves give us strong isolation, but isolation alone doesn’t prove what is running.</p>
+  </li>
+  <li>
+    <p><strong>Remote attestation.</strong> Remote hardware attestation (TPM2, Intel TDX, AMD SEV, AWS Nitro, and others) measures the state of a machine and provides cryptographic proof of what software is running. Attestation anchors trust at the hardware layer, but on its own it doesn’t guarantee the software’s provenance or build integrity.</p>
+  </li>
+</ul>
+
+<p>Together, they form the foundation of true verifiable compute: the ability to verify software integrity from the toolchain it’s built with to the hardware it runs on.</p>
+
+<h2 id="why-existing-platforms-fall-short">Why existing platforms fall short</h2>
+
+<p>Current offerings from the major cloud providers (AWS, Azure, GCP, etc.) are demanding in terms of both expertise and time to set up. They lock users into a single vendor’s ecosystem and force reliance and trust in one type of hardware or firmware. For example, AWS requires implicit trust in its proprietary Nitro Card, a black-box technology that customers cannot independently verify.</p>
+
+<p>New players are building wrappers around enclave and attestation technologies, but most remain focused on narrow use cases such as digital asset wallets or running LLMs. While promising, they provide only surface-level verification, proving that a binary’s hash hasn’t changed without offering full visibility into what is actually running on the server.</p>
+
+<p>In short, there are currently no solutions offering full transparency and elimination of single points of failure in the market.</p>
+
+<h2 id="cautiously-building-the-next-generation-of-verifiable-compute">“Cautiously” building the next generation of verifiable compute</h2>
+
+<p>Our team has chosen a no-compromise approach to solving this problem by building a cloud hosting platform, <strong>Caution</strong>, that:</p>
+
+<ul>
+  <li>
+    <p>Is full-source bootstrapped and reproducible.</p>
+  </li>
+  <li>
+    <p>Is portable across environments across major cloud platforms or bare metal.</p>
+  </li>
+  <li>
+    <p>Uses multiple hardware attestations.</p>
+  </li>
+  <li>
+    <p>Uses quorum authentication as a core primitive.</p>
+  </li>
+  <li>
+    <p>Is fully open source.</p>
+  </li>
+</ul>
+
+<p>Caution is the next generation cloud hosting platform launching in 2026. We believe this marks the beginning of a new era of infrastructure: verifiable, open, and resilient by default.</p>
+
+<p>We’re building Caution in the open. If you’d like to use it, contribute, or partner with us, <strong><a href="../contact.html">get in touch</a></strong>.</p>
+</div>
+							</article><div class="post-author-end">
+								<div class="post-author">
+						<img src="../assets/team/anton.svg" alt="Anton Livaja" class="post-author-image" width="80" height="80" loading="lazy" />
+						<div class="post-author-info">
+							<span class="post-author-name">Anton Livaja</span>
+							<span class="post-author-title">Co-founder & CEO</span>
+						</div>
+					</div>
+								<span class="post-author-end-date">Sep 29, 2025</span>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div><footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-inner container">
+			<div class="footer-content">
+				<div class="footer-brand">
+					<a href="../index.html" class="footer-logo">
+						<img
+							src="../assets/base/caution-logo/caution.svg"
+							alt="Caution logo"
+							width="781"
+							height="137"
+						/>
+					</a>
+					<p class="footer-description">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--tablet">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--mobile">
+						Confidential compute you can verify.
+					</p>
+					</div>
+
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3 class="footer-column-title">Platform</h3>
+						<a href="https://dashboard.caution.co/" class="footer-link">Dashboard</a>
+						<a href="../platform-tour.html" class="footer-link">Platform tour</a>
+						<a href="../cloud/aws.html" class="footer-link">AWS Nitro</a>
+						<a href="../faq.html" class="footer-link">FAQ</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Resources</h3>
+						<a
+							href="https://docs.caution.co/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Documentation</a
+						>
+						<a href="../pricing.html" class="footer-link">Pricing</a>
+						<a href="../blog.html" class="footer-link">Blog</a>
+						<a href="../security-controls.html" class="footer-link">Security</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Company</h3>
+						<a href="../about.html" class="footer-link">About</a>
+						<a href="../contact.html" class="footer-link">Contact</a>
+						<a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer" class="footer-link">Community</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 Caution SEZC. All rights reserved.
+				</p>
+				<nav class="footer-legal-links">
+					<a href="../privacy.html" class="footer-legal-link">Privacy</a>
+					<a href="../terms.html" class="footer-legal-link">Terms</a>
+					<a href="../legal/refunds.html" class="footer-legal-link">Refunds</a>
+				</nav>
+				<div class="footer-social">
+					<a
+						href="https://codeberg.org/Caution/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Git"
+						title="Access source code and documentation"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/git-logo-white.svg" alt="Git" width="92" height="92" />
+					</a>
+					<a
+						href="https://mstdn.social/@caution"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Mastodon"
+						title="Follow us on Mastodon"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/Mastodon-logo.svg" alt="Mastodon" width="17" height="20" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<script>
+			// Move TOC to sidebar and add scroll-spy
+			document.addEventListener("DOMContentLoaded", function () {
+				const toc = document.getElementById("markdown-toc");
+				const tocNav = document.getElementById("toc-nav");
+				if (toc && tocNav) {
+					// Clone TOC to sidebar
+					const tocClone = toc.cloneNode(true);
+					tocClone.id = "sidebar-toc";
+					tocNav.appendChild(tocClone);
+
+					// Function to update visibility based on screen width
+					function updateTocVisibility() {
+						const isWideScreen = window.innerWidth > 1100;
+						toc.style.display = isWideScreen ? "none" : "";
+					}
+
+					// Initial check
+					updateTocVisibility();
+
+					// Update on resize
+					window.addEventListener("resize", updateTocVisibility);
+
+					// Scroll-spy: highlight current section in TOC
+					const tocLinks = tocClone.querySelectorAll("a");
+					const headings = [];
+
+					tocLinks.forEach((link) => {
+						const id = link.getAttribute("href").substring(1);
+						const heading = document.getElementById(id);
+						if (heading) headings.push({ id, heading, link });
+					});
+
+					function updateActiveLink() {
+						const scrollPos = window.scrollY + 120;
+
+						let currentId = "";
+						for (const { id, heading } of headings) {
+							if (heading.offsetTop <= scrollPos) {
+								currentId = id;
+							}
+						}
+
+						tocLinks.forEach((link) => {
+							link.classList.remove("active");
+							if (link.getAttribute("href") === "#" + currentId) {
+								link.classList.add("active");
+							}
+						});
+					}
+
+					window.addEventListener("scroll", updateActiveLink);
+					updateActiveLink();
+
+					// Dynamic TOC centering - center vertically but don't go above original position
+					const tocSidebar = document.querySelector(".post-toc-sidebar");
+					const postLayout = document.querySelector(".post-layout");
+					let lastTop = null;
+					let ticking = false;
+
+					function updateTocPosition() {
+						if (!tocSidebar || !postLayout) return;
+
+						const layoutRect = postLayout.getBoundingClientRect();
+						const tocHeight = tocSidebar.offsetHeight;
+						const viewportHeight = window.innerHeight;
+						const centeredTop = (viewportHeight - tocHeight) / 2;
+						const minTop = 100; // minimum distance from viewport top
+
+						// Calculate how far we've scrolled past the post-layout start
+						const scrolledPastStart = -layoutRect.top;
+
+						let newTop;
+						if (scrolledPastStart < centeredTop - minTop) {
+							// Near the top - use minimum top value
+							newTop = minTop;
+						} else {
+							// Scrolled enough - center the TOC
+							newTop = Math.max(minTop, centeredTop);
+						}
+
+						// Calculate padding for TOC links based on position
+						// Interpolate from 4px (at top) to 10px (when centered)
+						const minPadding = 4;
+						const maxPadding = 10;
+						const transitionDistance = centeredTop - minTop;
+						const progress = Math.min(
+							1,
+							Math.max(0, scrolledPastStart / transitionDistance)
+						);
+						const currentPadding =
+							minPadding + (maxPadding - minPadding) * progress;
+
+						// Apply padding to TOC links
+						const tocLinks = tocSidebar.querySelectorAll("#sidebar-toc a");
+						tocLinks.forEach((link) => {
+							link.style.paddingBottom = currentPadding + "px";
+						});
+
+						// Only update if value changed to avoid unnecessary reflows
+						if (lastTop !== newTop) {
+							tocSidebar.style.top = newTop + "px";
+							lastTop = newTop;
+						}
+
+						// Add scrolled class when TOC has moved from initial position
+						if (progress > 0.1) {
+							tocSidebar.classList.add("scrolled");
+						} else {
+							tocSidebar.classList.remove("scrolled");
+						}
+
+						ticking = false;
+					}
+
+					function onScroll() {
+						if (!ticking) {
+							requestAnimationFrame(updateTocPosition);
+							ticking = true;
+						}
+					}
+
+					window.addEventListener("scroll", onScroll, { passive: true });
+					window.addEventListener("resize", updateTocPosition);
+					updateTocPosition();
+				}
+
+				// Desktop navbar visibility control for blog posts
+				// Navbar only visible at scrollY === 0, hidden otherwise
+				if (window.innerWidth > 768) {
+					const navbar = document.querySelector(".header-navbar");
+
+					function updateBlogNavbar() {
+						if (window.scrollY === 0) {
+							navbar.classList.remove("blog-navbar-hidden");
+						} else {
+							navbar.classList.add("blog-navbar-hidden");
+						}
+					}
+
+					window.addEventListener("scroll", updateBlogNavbar, {
+						passive: true,
+					});
+					updateBlogNavbar();
+				}
+
+				// Add anchor links to h2 headings with copy functionality
+				const article = document.querySelector(".post .post-entry");
+				if (article) {
+					const headings = article.querySelectorAll("h2[id]");
+					headings.forEach((heading) => {
+						const anchor = document.createElement("a");
+						anchor.className = "heading-anchor";
+						anchor.href = "#" + heading.id;
+						anchor.innerHTML =
+							'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+						anchor.setAttribute("aria-label", "Copy link to this section");
+						anchor.addEventListener("click", function (e) {
+							e.preventDefault();
+							const url =
+								window.location.origin +
+								window.location.pathname +
+								"#" +
+								heading.id;
+							navigator.clipboard.writeText(url).then(() => {
+								anchor.style.color = "var(--color-pink)";
+								setTimeout(() => (anchor.style.color = ""), 1000);
+							});
+						});
+						// Wrap last word + anchor in a nowrap span so the icon never orphans
+						const lastTextNode = [...heading.childNodes].reverse().find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+						if (lastTextNode) {
+							const text = lastTextNode.textContent;
+							const lastSpace = text.lastIndexOf(" ");
+							const nowrap = document.createElement("span");
+							nowrap.style.whiteSpace = "nowrap";
+							if (lastSpace !== -1) {
+								lastTextNode.textContent = text.slice(0, lastSpace + 1);
+								nowrap.appendChild(document.createTextNode(text.slice(lastSpace + 1)));
+							} else {
+								lastTextNode.textContent = "";
+								nowrap.appendChild(document.createTextNode(text));
+							}
+							nowrap.appendChild(anchor);
+							heading.appendChild(nowrap);
+						} else {
+							heading.appendChild(anchor);
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

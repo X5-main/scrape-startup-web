@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e7f1ff" />
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon__v-1.png" />
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-ExtraLight.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Light.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Regular.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Medium.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-SemiBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Bold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-ExtraBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/IBMPlexSans-Regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/IBMPlexSans-SemiBold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+
+	
+
+	<title>Security Evidence for Sensitive Services | Caution</title>
+	<link rel="stylesheet" href="assets/styles.css" />
+	<link rel="canonical" href="https://caution.co/security-controls.html" />
+	<link rel="alternate" type="application/atom+xml" title="Caution" href="feed.xml" />
+	<meta content="Caution" property="og:site_name" />
+
+	 
+	<meta content="Replace Operator Assurances with Verifiable Evidence" property="og:title" />
+	<meta content="article" property="og:type" />
+	 
+	<meta content="Give security teams independent evidence about the software handling sensitive data, protect data to the verified workload, and release secrets only to approved workload identities." property="og:description" />
+	<meta name="description" content="Give security teams independent evidence about the software handling sensitive data, protect data to the verified workload, and release secrets only to approved workload identities." />
+	 
+	<meta content="https://caution.co/security-controls.html" property="og:url" />
+	  
+	<meta content="https://caution.co/assets/imgs/opengraph/og-home.png" property="og:image" />
+	  
+
+	<meta name="twitter:card" content="summary_large_image" />
+
+	
+	<meta name="twitter:title" content="Replace Operator Assurances with Verifiable Evidence" />
+	 
+	<meta name="twitter:url" content="https://caution.co/security-controls.html" />
+	 
+	<meta name="twitter:description" content="Give security teams independent evidence about the software handling sensitive data, protect data to the verified workload, and release secrets only to approved workload identities." />
+	 
+	<meta name="twitter:image:src" content="https://caution.co/assets/imgs/opengraph/og-home.png" />
+	 
+
+	<script src="assets/js/main.js" defer></script>
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": "https://caution.co/"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Security",
+			"item": "https://caution.co/security-controls.html"
+		}
+	]
+}
+</script>
+
+
+
+<!-- "Really, there is nothing interesting to see here. It is a static website. -->
+	<!-- Here is the terraform code that deployed it, and here is the site source repo. -->
+	<!-- If you find anything interesting or want to talk to us, reach out via our /contact page!" -->
+	<!-- https://git.distrust.co/public/stack -->
+	<!-- https://git.distrust.co/public/website -->
+</head>
+<body class="security-controls-body"><script>
+	(function () {
+		try {
+			if (window.localStorage.getItem("caution-y-combinator-announcement-dismissed") === "true") {
+				document.documentElement.classList.add("site-announcement-dismissed");
+			}
+		} catch (error) {
+			// Keep the announcement visible if localStorage is unavailable.
+		}
+	})();
+</script>
+
+<div class="site-announcement" data-site-announcement role="region" aria-label="Y Combinator announcement">
+	<div class="site-announcement__inner">
+		<p class="site-announcement__copy">
+			Caution is backed by Y Combinator. <span class="site-announcement__mobile-break" aria-hidden="true"></span><a href="https://www.ycombinator.com/launches/SIq-caution-hosting-platform-for-software-you-can-t-afford-to-have-hacked" class="site-announcement__link" target="_blank" rel="noopener noreferrer" aria-label="Learn more about Caution on Y Combinator">Learn more</a>.
+		</p>
+		<button class="site-announcement__dismiss" type="button" aria-label="Dismiss announcement" data-site-announcement-dismiss>
+			<svg class="site-announcement__dismiss-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"></path>
+				<path d="m6 6 12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<header class="header-navbar">
+	<div class="nav-top-bar">
+		<a href="index.html" class="nav-logo">
+			<img src="assets/base/caution-logo/caution.svg" alt="Caution logo" width="781" height="137" />
+		</a>
+
+		<nav class="nav-desktop">
+			<div class="nav-center">
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Platform
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="platform-tour.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/><circle cx="12" cy="12" r="10"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Platform tour</span>
+										<span class="nav-dropdown__desc">Watch Caution in action</span>
+									</span>
+								</a>
+								<a href="cloud/aws.html" class="nav-dropdown__item">
+									<span class="nav-dropdown__icon">
+										<img src="assets/base/aws.png" alt="" width="640" height="640" class="nav-dropdown__icon-img" />
+									</span>
+									<span>
+										<span class="nav-dropdown__title">AWS Nitro</span>
+										<span class="nav-dropdown__desc">Deploy on AWS Nitro Enclaves</span>
+									</span>
+								</a>
+								<a href="faq.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+									<span>
+										<span class="nav-dropdown__title">FAQ</span>
+										<span class="nav-dropdown__desc">Common questions answered</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Resources
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="https://docs.caution.co/" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Documentation</span>
+										<span class="nav-dropdown__desc">Technical guides and API reference</span>
+									</span>
+								</a>
+								<a href="blog.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Blog</span>
+										<span class="nav-dropdown__desc">Engineering insights and updates</span>
+									</span>
+								</a>
+								<a href="security-controls.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Security</span>
+										<span class="nav-dropdown__desc">Trust model, evidence, and framework alignment</span>
+									</span>
+								</a>
+								<a href="https://matrix.to/#/#caution:matrix.org" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Community</span>
+										<span class="nav-dropdown__desc">Join us on Matrix</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="about.html" class="nav-link">About</a>
+				<a href="pricing.html" class="nav-link">Pricing</a>
+			</div>
+			<div class="nav-right">
+				<a href="https://dashboard.caution.co/" class="nav-link">Log in</a>
+				<a href="contact.html" class="nav-cta">
+					Book a live demo
+				</a>
+			</div>
+		</nav>
+
+		<button
+			class="mobile-menu-button"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-label="Toggle menu"
+		>
+			<span class="hamburger">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</span>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-nav">
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Platform <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="platform-tour.html" class="mobile-menu-link">Platform tour</a>
+							<a href="cloud/aws.html" class="mobile-menu-link">AWS Nitro</a>
+							<a href="faq.html" class="mobile-menu-link">FAQ</a>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Resources <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="https://docs.caution.co/" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Documentation</a>
+							<a href="blog.html" class="mobile-menu-link">Blog</a>
+							<a href="security-controls.html" class="mobile-menu-link">Security</a>
+							<a href="https://matrix.to/#/#caution:matrix.org" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Community</a>
+							<a href="legal.html" class="mobile-menu-link">Legal</a>
+						</div>
+					</div>
+				</div>
+				<a href="about.html" class="mobile-menu-link">About</a>
+				<a href="pricing.html" class="mobile-menu-link">Pricing</a>
+			</div>
+			<div class="mobile-menu-footer">
+				<a href="contact.html" class="mobile-menu-cta">
+					Book a live demo
+				</a>
+				<a href="platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const announcement = document.querySelector("[data-site-announcement]");
+		const dismissButton = document.querySelector("[data-site-announcement-dismiss]");
+		const root = document.documentElement;
+		const dismissedClass = "site-announcement-dismissed";
+		const storageKey = "caution-y-combinator-announcement-dismissed";
+
+		function isDismissed() {
+			return root.classList.contains(dismissedClass);
+		}
+
+		function setAnnouncementOffset() {
+			if (!announcement || isDismissed()) {
+				root.style.setProperty("--site-announcement-offset", "0px");
+				return;
+			}
+
+			const offset = Math.max(0, announcement.offsetHeight - (window.scrollY || window.pageYOffset));
+			root.style.setProperty("--site-announcement-offset", `${offset}px`);
+		}
+
+		if (dismissButton) {
+			dismissButton.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				try {
+					window.localStorage.setItem(storageKey, "true");
+				} catch (error) {
+					// Dismiss for this page view even if persistence is unavailable.
+				}
+
+				root.classList.add(dismissedClass);
+				setAnnouncementOffset();
+			});
+		}
+
+		setAnnouncementOffset();
+		window.addEventListener("scroll", setAnnouncementOffset, { passive: true });
+		window.addEventListener("resize", setAnnouncementOffset);
+	});
+
+	// Desktop dropdown toggle (click-based)
+	document.addEventListener("DOMContentLoaded", function() {
+		const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+		dropdowns.forEach(dropdown => {
+			const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+			if (!trigger) return;
+
+			trigger.addEventListener("click", function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const isOpen = dropdown.classList.contains("is-open");
+
+				// Close all dropdowns first
+				dropdowns.forEach(d => {
+					d.classList.remove("is-open");
+					const t = d.querySelector(".nav-dropdown__trigger");
+					if (t) t.setAttribute("aria-expanded", "false");
+				});
+
+				// Toggle current dropdown
+				if (!isOpen) {
+					dropdown.classList.add("is-open");
+					trigger.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", function(e) {
+			if (!e.target.closest(".nav-dropdown")) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+
+		// Close dropdown on Escape key
+		document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+	});
+
+	// Detect dark sections and update navbar styling
+	function updateNavbarForDarkSections() {
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		// Get navbar position (use a point near the top of the navbar)
+		const navbarRect = navbar.getBoundingClientRect();
+		const checkPoint = navbarRect.top + navbarRect.height / 2;
+
+		// Find all dark sections on the page
+		function getDarkSections() {
+			var selector = '.problem-section, [class*="dark-bg"], [class*="bg-dark"]';
+			return document.querySelectorAll(selector);
+		}
+
+		let isOverDark = false;
+
+		getDarkSections().forEach(section => {
+			const sectionRect = section.getBoundingClientRect();
+			// Check if navbar overlaps with this dark section
+			if (checkPoint >= sectionRect.top && checkPoint <= sectionRect.bottom) {
+				isOverDark = true;
+			}
+		});
+
+		if (isOverDark) {
+			navbar.classList.add("navbar--on-dark");
+		} else {
+			navbar.classList.remove("navbar--on-dark");
+		}
+	}
+
+	// Run on scroll and load
+	document.addEventListener("DOMContentLoaded", function() {
+		updateNavbarForDarkSections();
+		window.addEventListener("scroll", updateNavbarForDarkSections, { passive: true });
+	});
+
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", function () {
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerNavbar = document.querySelector(".header-navbar");
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", () => {
+				const isExpanded =
+					mobileMenuButton.getAttribute("aria-expanded") === "true";
+				mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+				mobileMenu.classList.toggle("active");
+				// Toggle dark background on header when menu is open
+				if (headerNavbar) {
+					headerNavbar.classList.toggle("mobile-menu-open");
+				}
+				// Prevent body scroll when menu is open
+				document.documentElement.classList.toggle("mobile-menu-active");
+				document.body.classList.toggle("mobile-menu-active");
+			});
+		}
+
+		// Mobile menu accordion toggle
+		const accordionLabels = document.querySelectorAll(".mobile-menu-label");
+		accordionLabels.forEach(label => {
+			const content = label.nextElementSibling;
+			if (!content) return;
+
+			label.addEventListener("click", () => {
+				const isExpanded = label.getAttribute("aria-expanded") === "true";
+				label.setAttribute("aria-expanded", !isExpanded);
+				content.classList.toggle("is-expanded", !isExpanded);
+			});
+
+			// Set initial state (expanded)
+			if (label.getAttribute("aria-expanded") === "true") {
+				content.classList.add("is-expanded");
+			}
+		});
+
+		// Intent-based auto-hiding navbar
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let isNavbarVisible = true;
+
+		// Thresholds for scroll behavior
+		const SCROLL_THRESHOLD = 5; // Minimum scroll distance to trigger hide/show (prevents jitter)
+		const SHOW_THRESHOLD = 10; // Pixels to scroll up before showing navbar
+		const TOP_THRESHOLD = 100; // Distance from top where navbar always shows
+
+		function getNavbarHideStartY() {
+			if (!document.body.classList.contains("landing")) {
+				return TOP_THRESHOLD;
+			}
+
+			const differentiatorSection = document.querySelector("[data-differentiator-section]");
+			if (!differentiatorSection) {
+				return TOP_THRESHOLD;
+			}
+
+			const sectionRect = differentiatorSection.getBoundingClientRect();
+			const sectionBottomY = sectionRect.bottom + window.scrollY;
+			const navbarHeight = navbar.offsetHeight || 0;
+
+			return Math.max(TOP_THRESHOLD, sectionBottomY - navbarHeight);
+		}
+
+		// Debounced scroll handler for performance
+		function handleScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateNavbarVisibility();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		// Intent detection: show navbar when scrolling up, hide when scrolling down
+		function updateNavbarVisibility() {
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			// Toggle scrolled state for blur effect
+			if (currentScrollY > 50) {
+				navbar.classList.add("navbar--scrolled");
+			} else {
+				navbar.classList.remove("navbar--scrolled");
+			}
+
+			// On landing, keep the navbar visible through the differentiator section.
+			if (currentScrollY < getNavbarHideStartY()) {
+				showNavbar();
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			// Check scroll direction and apply threshold to prevent jitter
+			if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
+				if (scrollDelta > 0) {
+					// Scrolling down - hide navbar
+					hideNavbar();
+				} else if (Math.abs(scrollDelta) > SHOW_THRESHOLD) {
+					// Scrolling up with intent - show navbar
+					showNavbar();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function hideNavbar() {
+			if (isNavbarVisible) {
+				navbar.classList.add("navbar--hidden");
+				isNavbarVisible = false;
+			}
+		}
+
+		function showNavbar() {
+			if (!isNavbarVisible) {
+				navbar.classList.remove("navbar--hidden");
+				isNavbarVisible = true;
+			}
+		}
+
+		// Attach scroll listener
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		// Cleanup on page unload (prevents memory leaks)
+		window.addEventListener("beforeunload", () => {
+			window.removeEventListener("scroll", handleScroll);
+		});
+	});
+</script>
+<div class="page-wrapper">
+			<main>
+				<section class="security-controls-hero">
+					<div class="container">
+						<div class="security-controls-hero__grid">
+							<div class="security-controls-hero__copy">
+								<span class="eyebrow">For CISOs and security leaders</span>
+								<h1 class="security-controls-hero__title">Replace operator assurances with verifiable evidence.</h1>
+								<p class="security-controls-hero__description">
+									The Caution platform helps security teams verify the software handling sensitive data, protect data all the way into a verified workload, and release secrets only to approved workload identities.
+								</p>
+								<div class="security-controls-hero__actions">
+									<a class="cta-btn" href="contact.html">Talk to our team</a>
+									<a href="files/caution-security-brief.pdf" class="cta-link">
+										Download the Caution Security Brief
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+											<path d="M12 3v12"></path>
+											<path d="m7 10 5 5 5-5"></path>
+											<path d="M5 21h14"></path>
+										</svg>
+									</a>
+								</div>
+							</div>
+
+							<aside class="security-controls-trust-model" aria-label="What your security team can substantiate">
+								<div class="security-controls-trust-model__top">
+									<span>What your team can substantiate</span>
+									<span>Caution</span>
+								</div>
+								<div class="security-controls-trust-model__rows">
+									<div class="security-controls-trust-model__row">
+										<span>Software identity</span>
+										<strong>Reviewed source and build inputs correspond to the live workload</strong>
+									</div>
+									<div class="security-controls-trust-model__row">
+										<span>Protected data path</span>
+										<strong>Sensitive payloads stay encrypted until they reach the verified workload</strong>
+									</div>
+									<div class="security-controls-trust-model__row">
+										<span>Policy-controlled access</span>
+										<strong>Secret delivery can depend on an approved workload identity</strong>
+									</div>
+								</div>
+								<p class="security-controls-trust-model__note">Evidence can be reviewed independently by security teams, customers, auditors, and downstream systems.</p>
+							</aside>
+						</div>
+					</div>
+				</section>
+
+				<nav class="security-controls-roadmap" aria-label="Security controls page overview">
+					<div class="container">
+						<ol>
+							<li>
+								<a href="#security-outcomes">
+									<span>01</span>
+									<strong>What you can verify</strong>
+								</a>
+							</li>
+							<li>
+								<a href="#verification-flow">
+									<span>02</span>
+									<strong>How verification works</strong>
+								</a>
+							</li>
+							<li>
+								<a href="#controls-evidence">
+									<span>03</span>
+									<strong>Controls and evidence</strong>
+								</a>
+							</li>
+							<li>
+								<a href="#frameworks">
+									<span>04</span>
+									<strong>How it supports assurance</strong>
+								</a>
+							</li>
+						</ol>
+					</div>
+				</nav>
+
+				<section id="security-outcomes" class="security-controls-section security-controls-section--blue" aria-labelledby="security-outcomes-heading">
+					<div class="container">
+						<div class="security-controls-section__heading">
+							<span class="eyebrow">Security outcomes</span>
+							<h2 id="security-outcomes-heading" class="security-controls-section__title">What your security team can verify and enforce</h2>
+							<p class="security-controls-section__intro">The Caution platform turns claims that normally depend on an operator into evidence and policy decisions your team can review independently.</p>
+						</div>
+						<div class="security-controls-outcome-grid">
+							<article class="security-controls-outcome-card">
+								<span>01</span>
+								<h3>Know what software is running</h3>
+								<p>Connect an approved release to a live workload identity using reviewed source, controlled build inputs, and independently reproducible evidence.</p>
+							</article>
+							<article class="security-controls-outcome-card">
+								<span>02</span>
+								<h3>Release secrets only to approved workloads</h3>
+								<p>Make secret delivery depend on workload approval so an unexpected or changed runtime can be denied access to protected material.</p>
+							</article>
+							<article class="security-controls-outcome-card">
+								<span>03</span>
+								<h3>Protect data all the way into the workload</h3>
+								<p>Use an end-to-end encrypted application path so sensitive payloads remain protected until they reach the verified workload.</p>
+							</article>
+							<article class="security-controls-outcome-card">
+								<span>04</span>
+								<h3>Give customers and auditors independent verification</h3>
+								<p>Let authorized reviewers inspect the evidence with open tooling instead of relying only on Caution or the service operator.</p>
+							</article>
+							<article class="security-controls-outcome-card">
+								<span>05</span>
+								<h3>Choose where the service runs</h3>
+								<p>Apply the same verification model across fully managed, customer-cloud, and self-hosted deployment boundaries.</p>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section id="verification-flow" class="security-controls-section" aria-labelledby="verification-flow-heading">
+					<div class="container">
+						<div class="security-controls-section__heading">
+							<span class="eyebrow">Independent verification</span>
+							<h2 id="verification-flow-heading" class="security-controls-section__title">Turn an approved release into a verifiable production identity</h2>
+							<p class="security-controls-section__intro">Your team defines what it trusts, independently checks the running service, and uses the result in the control processes that matter to the business.</p>
+						</div>
+						<ol class="security-controls-step-grid">
+							<li class="security-controls-step-card">
+								<span>01</span>
+								<h3>Define what is approved</h3>
+								<p>Establish the reviewed software, build inputs, configuration, and release identity your organization is prepared to trust.</p>
+							</li>
+							<li class="security-controls-step-card">
+								<span>02</span>
+								<h3>Verify what is running</h3>
+								<p>Use independent tooling to compare the live workload identity with the approved release and detect unexpected change.</p>
+							</li>
+							<li class="security-controls-step-card">
+								<span>03</span>
+								<h3>Use the result</h3>
+								<p>Feed the verification decision into release gates, monitoring, customer assurance, and secret-delivery policies.</p>
+							</li>
+						</ol>
+						<aside class="security-controls-verification-example" aria-label="Example: stop a modified transaction builder from reaching the signing flow">
+							<strong>Example: Stop a modified transaction builder from reaching the signing flow</strong>
+							<p>Your security team approves the service that prepares blockchain transactions for users to sign. The wallet accepts transaction payloads only from that verified workload. An attacker compromises the deployment pipeline and replaces the service with code that redirects assets or inserts malicious contract calls. The modified service has a different workload identity, so verification fails and the wallet refuses to present its transaction for signing.</p>
+						</aside>
+						<a href="https://docs.caution.co/concepts/verifiability/" class="security-controls-doc-link">Read how Caution verification works</a>
+					</div>
+				</section>
+
+				<section id="controls-evidence" class="security-controls-section security-controls-section--dark" aria-labelledby="controls-evidence-heading">
+					<div class="container">
+						<div class="security-controls-section__heading">
+							<span class="eyebrow">Controls and evidence</span>
+							<h2 id="controls-evidence-heading" class="security-controls-section__title">Turn verification into enforceable controls and usable evidence</h2>
+							<p class="security-controls-section__intro">Once a workload matches the approved release, that decision can protect data paths, gate secret delivery, and produce evidence your security team can retain and use.</p>
+						</div>
+						<div class="security-controls-control-evidence-list">
+							<article class="security-controls-control-evidence-card">
+								<h3>Verify the deployed software</h3>
+								<dl>
+									<div>
+										<dt>Runtime control</dt>
+										<dd>Compare the live workload identity with the release your organization approved.</dd>
+									</div>
+									<div>
+										<dt>Evidence retained</dt>
+										<dd>Approved source and build inputs, the expected and reproduced workload identity, the live verification result, and a deliberate mismatch test.</dd>
+									</div>
+									<div>
+										<dt>Security use</dt>
+										<dd>Release approval, change control, supplier diligence, and investigation of unexpected software state.</dd>
+									</div>
+								</dl>
+							</article>
+							<article class="security-controls-control-evidence-card">
+								<h3>Protect sensitive data paths</h3>
+								<dl>
+									<div>
+										<dt>Runtime control</dt>
+										<dd>When protected transport is enabled, sensitive data remains encrypted until it reaches the verified workload.</dd>
+									</div>
+									<div>
+										<dt>Evidence retained</dt>
+										<dd>Where application encryption begins and ends, which infrastructure can observe plaintext, and how the production path behaves when verification fails.</dd>
+									</div>
+									<div>
+										<dt>Security use</dt>
+										<dd>Confidentiality architecture, privacy and data-protection review, and regression testing after network or application changes.</dd>
+									</div>
+								</dl>
+								<a href="https://docs.caution.co/concepts/encryption/" class="cta-link">How Caution implements end-to-end encryption</a>
+							</article>
+							<article class="security-controls-control-evidence-card">
+								<h3>Gate production secrets</h3>
+								<dl>
+									<div>
+										<dt>Runtime control</dt>
+										<dd>Release protected material only when the live workload identity matches an approved baseline and the configured authorization policy is satisfied.</dd>
+									</div>
+									<div>
+										<dt>Evidence retained</dt>
+										<dd>The approved workload identity, authorization policy, participants, and successful or denied outcome of each release decision.</dd>
+									</div>
+									<div>
+										<dt>Security use</dt>
+										<dd>Policy enforcement, separation of duties, failed-release testing, recovery readiness, and controlled access to protected material.</dd>
+									</div>
+								</dl>
+								<a href="https://docs.caution.co/concepts/key-services/" class="cta-link">How verified secret delivery works</a>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section id="use-cases" class="security-controls-section security-controls-section--blue" aria-labelledby="use-cases-heading">
+					<div class="container">
+						<div class="security-controls-section__heading">
+							<span class="eyebrow">High-assurance workloads</span>
+							<h2 id="use-cases-heading" class="security-controls-section__title">Where verifiable software changes the risk model</h2>
+							<p class="security-controls-section__intro">The Caution platform is designed for services where an operator, administrator, or compromised deployment pipeline could otherwise exercise sensitive authority or access valuable data.</p>
+						</div>
+						<div class="security-controls-use-case-grid">
+							<article class="security-controls-use-case-card">
+								<h3>Private AI and sensitive data processing</h3>
+								<p>Give customers evidence about the software handling private prompts, models, records, or other classified inputs.</p>
+								<span class="security-controls-use-case-card__industries">Relevant industries</span>
+								<ul aria-label="Relevant industries">
+									<li>AI providers</li>
+									<li>Healthcare</li>
+									<li>Financial services</li>
+								</ul>
+							</article>
+							<article class="security-controls-use-case-card">
+								<h3>Signing, authorization, and key systems</h3>
+								<p>Verify which software can receive keys, approve transactions, issue credentials, or exercise cryptographic authority.</p>
+								<span class="security-controls-use-case-card__industries">Relevant industries</span>
+								<ul aria-label="Relevant industries">
+									<li>Financial infrastructure</li>
+									<li>Digital assets</li>
+									<li>Identity</li>
+								</ul>
+							</article>
+							<article class="security-controls-use-case-card">
+								<h3>Policy engines, oracles, and trusted data feeds</h3>
+								<p>Make the implementation behind a high-impact decision or published data feed independently inspectable.</p>
+								<span class="security-controls-use-case-card__industries">Relevant industries</span>
+								<ul aria-label="Relevant industries">
+									<li>Fintech</li>
+									<li>Critical infrastructure</li>
+									<li>Automated markets</li>
+								</ul>
+							</article>
+							<article class="security-controls-use-case-card">
+								<h3>Verifiable SaaS and regulated processing</h3>
+								<p>Support customer diligence when sensitive workflows run outside the customer's direct operational control.</p>
+								<span class="security-controls-use-case-card__industries">Relevant industries</span>
+								<ul aria-label="Relevant industries">
+									<li>Enterprise SaaS</li>
+									<li>Public sector</li>
+									<li>Regulated data</li>
+								</ul>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section id="deployment" class="security-controls-section" aria-labelledby="deployment-heading">
+					<div class="container">
+						<div class="security-controls-section__heading">
+							<span class="eyebrow">Deployment control</span>
+							<h2 id="deployment-heading" class="security-controls-section__title">Choose your deployment boundary</h2>
+							<p class="security-controls-section__intro">Match infrastructure ownership, operational responsibility, and evidence collection to the service you are protecting.</p>
+						</div>
+						<div class="security-controls-deployment-grid">
+							<article class="security-controls-deployment-card">
+								<span>Fully managed</span>
+								<h3>Use Caution-operated infrastructure</h3>
+								<p>Adopt the deployment and verification workflow while Caution manages the underlying infrastructure and workload lifecycle.</p>
+								<a href="https://docs.caution.co/reference/fully-managed/" class="security-controls-doc-link">Review the fully managed model</a>
+							</article>
+							<article class="security-controls-deployment-card">
+								<span>Bring your own compute</span>
+								<h3>Run in your cloud account</h3>
+								<p>Customer-cloud deployments are currently available in AWS accounts, keeping workloads, data, billing, and network boundaries in your environment.</p>
+								<a href="https://docs.caution.co/reference/byoc/" class="security-controls-doc-link">Review bring your own compute</a>
+							</article>
+							<article class="security-controls-deployment-card">
+								<span>Self-hosted</span>
+								<h3>Operate the platform independently</h3>
+								<p>Inspect and operate the open-source platform when your threat model or control environment requires direct platform ownership.</p>
+								<a href="https://docs.caution.co/reference/deployment-models/#self-host" class="security-controls-doc-link">Review the self-hosted model</a>
+							</article>
+						</div>
+					</div>
+				</section>
+
+				<section id="frameworks" class="security-controls-section security-controls-section--frameworks" aria-labelledby="framework-summary-heading">
+					<div class="container">
+						<div class="security-controls-section__heading">
+							<span class="eyebrow">Framework alignment</span>
+							<h2 id="framework-summary-heading" class="security-controls-section__title">Use technical evidence in the security programs you already rely on</h2>
+							<p class="security-controls-section__intro">Give security and assurance teams technical evidence they can use in architecture review, supplier diligence, control testing, and audit preparation. A focused review maps Caution-generated evidence to NIST CSF 2.0, ISO/IEC 27001, SOC 2, and NIS2.</p>
+						</div>
+						<div class="security-controls-mapping-footprint" aria-label="Framework mapping footprint">
+							<strong>21</strong>
+							<span>Relevant technical evidence relationships across four security programs</span>
+							<ul class="security-controls-mapping-footprint__breakdown" aria-label="Evidence relationship summary">
+								<li><b>2</b> direct</li>
+								<li><b>4</b> configuration-dependent</li>
+								<li><b>15</b> supporting</li>
+							</ul>
+							<p>This is a targeted mapping of Caution-generated evidence—not a measure of framework coverage, certification, or controls satisfied.</p>
+						</div>
+						<div class="security-controls-table-wrap">
+							<table class="security-controls-table">
+								<thead>
+									<tr>
+										<th scope="col">Security program</th>
+										<th scope="col">Where Caution helps</th>
+										<th scope="col">Evidence available</th>
+										<th scope="col">What your organization operationalizes</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td data-label="Security program">NIST CSF 2.0</td>
+										<td data-label="Where Caution helps">Software authenticity and integrity, data confidentiality in use, protected data paths, supplier assurance, and configuration integrity.</td>
+										<td data-label="Evidence available"><b>Six relevant outcomes:</b> 2 direct, 1 configuration-dependent, and 3 supporting relationships.</td>
+										<td data-label="What your organization operationalizes">Approve the expected workload identity, enable the required data path, and operate monitoring, response, and recovery.</td>
+									</tr>
+									<tr>
+										<td data-label="Security program">ISO/IEC 27001:2022 + Amd 1:2024</td>
+										<td data-label="Where Caution helps">ICT supply-chain assurance, cloud-service evaluation, privileged access reduction, configuration integrity, cryptography, secure development, and change integrity.</td>
+										<td data-label="Evidence available"><b>Seven relevant Annex A controls:</b> 1 configuration-dependent and 6 supporting relationships.</td>
+										<td data-label="What your organization operationalizes">Maintain the ISMS, risk treatment, Statement of Applicability, control operation, and certification process.</td>
+									</tr>
+									<tr>
+										<td data-label="Security program">SOC 2 — 2017 TSC, revised points of focus 2022</td>
+										<td data-label="Where Caution helps">Logical-access boundaries, protected system boundaries, encrypted information flows, and deployed configuration integrity.</td>
+										<td data-label="Evidence available"><b>Four relevant criteria:</b> 1 configuration-dependent and 3 supporting relationships.</td>
+										<td data-label="What your organization operationalizes">Define commitments, design and operate controls, retain period evidence, and let the auditor evaluate suitability.</td>
+									</tr>
+									<tr>
+										<td data-label="Security program">NIS2 Article 21</td>
+										<td data-label="Where Caution helps">Supply-chain assurance, secure development and maintenance, control-effectiveness testing, and cryptographic safeguards.</td>
+										<td data-label="Evidence available"><b>Four relevant measures:</b> 1 configuration-dependent and 3 supporting relationships.</td>
+										<td data-label="What your organization operationalizes">Determine applicability, proportionality, governance, reporting, continuity, and management accountability.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="security-controls-framework-note">The Caution Security Brief documents each relevant reference, the evidence your team can use, and the configuration or organizational process required to operationalize it.</p>
+					</div>
+				</section>
+
+				<section class="security-controls-section" aria-labelledby="questions-heading">
+					<div class="container">
+						<div class="security-controls-section__heading">
+							<span class="eyebrow">Common security questions</span>
+							<h2 id="questions-heading" class="security-controls-section__title">Answers for security review</h2>
+						</div>
+						<dl class="security-controls-questions">
+							<div>
+								<dt>Which infrastructure and trust roots are supported today?</dt>
+								<dd>Current Caution deployments use AWS Nitro Enclaves for isolation and attestation. Additional attestation backends are in active development, including Intel TDX, AMD SEV-SNP, and TPM 2.0.</dd>
+							</div>
+							<div>
+								<dt>Does independent verification require public source code?</dt>
+								<dd>No. Public source enables open third-party verification, while proprietary applications can be reviewed privately by authorized customers or auditors with access to the source and expected workload identity.</dd>
+							</div>
+							<div>
+								<dt>What happens when the workload identity changes?</dt>
+								<dd>The live identity no longer matches the approved baseline, so verification fails. Where policy-controlled secret delivery is configured, access can remain denied until the new state is reviewed and approved.</dd>
+							</div>
+							<div>
+								<dt>Does Caution certify compliance?</dt>
+								<dd>No. The Caution platform provides technical controls and evidence that may support a security or assurance program. The customer and its assessor remain responsible for scope, control design, operation, legal interpretation, and certification decisions.</dd>
+							</div>
+							<div>
+								<dt>What does Caution verify—and what remains to be assessed about application security?</dt>
+								<dd>The platform can connect a live workload identity to approved source and build inputs. Your team still assesses whether that source is secure through threat modeling, code review, dependency management, vulnerability testing, remediation, and application-specific assurance.</dd>
+							</div>
+							<div>
+								<dt>How do upgrades, patches, and emergency changes affect verification and secret delivery?</dt>
+								<dd>Any change that affects the measured workload produces a new identity. Review and approve the new baseline before relying on verification or allowing identity-bound policies to release protected material; govern emergency changes through the same evidence and exception process.</dd>
+							</div>
+							<div>
+								<dt>What evidence can customers retain for audit, incident response, and customer assurance?</dt>
+								<dd>Customers can retain approved software identities, verification results, source and build provenance, protected data-path tests, and secret-delivery decisions. Collection frequency, storage, retention, alerting, and review ownership remain part of the customer's control design.</dd>
+							</div>
+						</dl>
+					</div>
+				</section>
+
+				<section class="security-controls-assumptions" aria-labelledby="assumptions-heading">
+					<div class="container">
+						<div class="security-controls-assumptions__inner">
+							<div>
+								<span class="eyebrow">Explicit trust model</span>
+								<h2 id="assumptions-heading">Designed for explicit trust, not hidden assumptions</h2>
+							</div>
+							<div>
+								<p>The strongest assurance requires access to reviewed source or an approved workload identity, reproducible application builds, production configuration, a trusted verifier, acceptance of the current platform trust root, and end-to-end encryption where infrastructure must not observe application plaintext. Application security, governance, monitoring, incident response, resilience, and compliance remain customer-owned.</p>
+								<a href="https://docs.caution.co/concepts/security-assumptions/" class="cta-link">Review Caution's security assumptions</a>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="security-controls-cta" aria-labelledby="security-controls-cta-heading">
+					<div class="container">
+						<div class="security-controls-cta__inner">
+							<div>
+								<span class="eyebrow">Enterprise evaluation</span>
+								<h2 id="security-controls-cta-heading">Review a high-assurance workload with us</h2>
+							<p>Bring the workload, threat model, and evidence requirements. We will help your security and platform teams evaluate how the Caution platform fits the service.</p>
+							</div>
+							<div class="security-controls-cta__actions">
+								<a class="cta-btn" href="contact.html">Talk to our team</a>
+								<a href="files/caution-security-brief.pdf" class="cta-link">
+									Download the Caution Security Brief
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+										<path d="M12 3v12"></path>
+										<path d="m7 10 5 5 5-5"></path>
+										<path d="M5 21h14"></path>
+									</svg>
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div><footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-inner container">
+			<div class="footer-content">
+				<div class="footer-brand">
+					<a href="index.html" class="footer-logo">
+						<img
+							src="assets/base/caution-logo/caution.svg"
+							alt="Caution logo"
+							width="781"
+							height="137"
+						/>
+					</a>
+					<p class="footer-description">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--tablet">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--mobile">
+						Confidential compute you can verify.
+					</p>
+					</div>
+
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3 class="footer-column-title">Platform</h3>
+						<a href="https://dashboard.caution.co/" class="footer-link">Dashboard</a>
+						<a href="platform-tour.html" class="footer-link">Platform tour</a>
+						<a href="cloud/aws.html" class="footer-link">AWS Nitro</a>
+						<a href="faq.html" class="footer-link">FAQ</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Resources</h3>
+						<a
+							href="https://docs.caution.co/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Documentation</a
+						>
+						<a href="pricing.html" class="footer-link">Pricing</a>
+						<a href="blog.html" class="footer-link">Blog</a>
+						<a href="security-controls.html" class="footer-link">Security</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Company</h3>
+						<a href="about.html" class="footer-link">About</a>
+						<a href="contact.html" class="footer-link">Contact</a>
+						<a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer" class="footer-link">Community</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 Caution SEZC. All rights reserved.
+				</p>
+				<nav class="footer-legal-links">
+					<a href="privacy.html" class="footer-legal-link">Privacy</a>
+					<a href="terms.html" class="footer-legal-link">Terms</a>
+					<a href="legal/refunds.html" class="footer-legal-link">Refunds</a>
+				</nav>
+				<div class="footer-social">
+					<a
+						href="https://codeberg.org/Caution/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Git"
+						title="Access source code and documentation"
+						class="footer-social-link"
+					>
+						<img src="assets/base/social/git-logo-white.svg" alt="Git" width="92" height="92" />
+					</a>
+					<a
+						href="https://mstdn.social/@caution"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Mastodon"
+						title="Follow us on Mastodon"
+						class="footer-social-link"
+					>
+						<img src="assets/base/social/Mastodon-logo.svg" alt="Mastodon" width="17" height="20" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

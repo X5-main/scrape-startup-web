@@ -59,7 +59,9 @@ def _restore_ref(url):
     if m:
         # group('dir') already carries the leading '/' (dir + stem = absu path).
         return "%s%s?dpl=dpl_%s" % (m.group("dir") or "/", m.group("stem") + m.group("ext"), m.group("tok"))
-    if base.endswith(".mp4"):
+    # The onecli replica keeps live-origin mp4 refs (React flight payload parity);
+    # every other site serves its mirrored mp4 from the replica itself.
+    if base.endswith(".mp4") and "onecli.sh" in ORIGIN:
         return ORIGIN + absu if ORIGIN else absu
     if re.match(r"^onecli-full-logo(-dark)?\.png$", base):
         tok = "dpl_FDFXHVrLEJVFDWvwEtkNAZFRP8Gj"

@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e7f1ff" />
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon__v-1.png" />
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraLight.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Light.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Regular.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Medium.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-SemiBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Bold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-Regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-SemiBold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+
+	
+
+	<title>Verify, don't trust</title>
+	<link rel="stylesheet" href="../assets/styles.css" />
+	<link rel="canonical" href="https://caution.co/blog/on-transparency.html" />
+	<link rel="alternate" type="application/atom+xml" title="Caution" href="../feed.xml" />
+	<meta content="Caution" property="og:site_name" />
+
+	 
+	<meta content="Verify, don't trust" property="og:title" />
+	<meta content="article" property="og:type" />
+	 
+	<meta content="We've built an entire digital world on blind trust. That's not a security model, it's the absence of one." property="og:description" />
+	<meta name="description" content="We've built an entire digital world on blind trust. That's not a security model, it's the absence of one." />
+	 
+	<meta content="https://caution.co/blog/on-transparency.html" property="og:url" />
+	 
+	<meta
+		content="2026-03-10T00:00:00+00:00"
+		property="article:published_time"
+	/>
+	<meta content="https://caution.co/about/" property="article:author" />
+	 
+	<meta content="https://caution.co/assets/imgs/opengraph/og-blog/og-post-verify.png" property="og:image" />
+	     
+	<meta content="insight" property="article:tag" />
+	 
+
+	<meta name="twitter:card" content="summary_large_image" />
+
+	
+	<meta name="twitter:title" content="Verify, don't trust" />
+	 
+	<meta name="twitter:url" content="https://caution.co/blog/on-transparency.html" />
+	 
+	<meta name="twitter:description" content="We've built an entire digital world on blind trust. That's not a security model, it's the absence of one." />
+	 
+	<meta name="twitter:image:src" content="https://caution.co/assets/imgs/opengraph/og-blog/og-post-verify.png" />
+	 
+
+	<script src="../assets/js/main.js" defer></script>
+
+
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": "https://caution.co/"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Blog",
+			"item": "https://caution.co/blog.html"
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"name": "Verify, don&#39;t trust"
+		}
+	]
+}
+</script>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"headline": "Verify, don&#39;t trust",
+	"description": "We&#39;ve built an entire digital world on blind trust. That&#39;s not a security model, it&#39;s the absence of one.",
+	"url": "https://caution.co/blog/on-transparency.html",
+	"datePublished": "2026-03-10T00:00:00+00:00",
+	"image": "https://caution.co/assets/imgs/opengraph/og-blog/og-post-verify.png",
+	"author": {
+		"@type": "Organization",
+		"name": "Caution",
+		"url": "https://caution.co"
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "Caution",
+		"url": "https://caution.co",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://caution.co/assets/favicons/caution-icon.svg"
+		}
+	}
+}
+</script>
+
+
+
+
+
+
+
+<!-- "Really, there is nothing interesting to see here. It is a static website. -->
+	<!-- Here is the terraform code that deployed it, and here is the site source repo. -->
+	<!-- If you find anything interesting or want to talk to us, reach out via our /contact page!" -->
+	<!-- https://git.distrust.co/public/stack -->
+	<!-- https://git.distrust.co/public/website -->
+</head>
+<body class="post-page-body blog-post-body">
+		<div class="page-wrapper"><script>
+	(function () {
+		try {
+			if (window.localStorage.getItem("caution-y-combinator-announcement-dismissed") === "true") {
+				document.documentElement.classList.add("site-announcement-dismissed");
+			}
+		} catch (error) {
+			// Keep the announcement visible if localStorage is unavailable.
+		}
+	})();
+</script>
+
+<div class="site-announcement" data-site-announcement role="region" aria-label="Y Combinator announcement">
+	<div class="site-announcement__inner">
+		<p class="site-announcement__copy">
+			Caution is backed by Y Combinator. <span class="site-announcement__mobile-break" aria-hidden="true"></span><a href="https://www.ycombinator.com/launches/SIq-caution-hosting-platform-for-software-you-can-t-afford-to-have-hacked" class="site-announcement__link" target="_blank" rel="noopener noreferrer" aria-label="Learn more about Caution on Y Combinator">Learn more</a>.
+		</p>
+		<button class="site-announcement__dismiss" type="button" aria-label="Dismiss announcement" data-site-announcement-dismiss>
+			<svg class="site-announcement__dismiss-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"></path>
+				<path d="m6 6 12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<header class="header-navbar">
+	<div class="nav-top-bar">
+		<a href="../index.html" class="nav-logo">
+			<img src="../assets/base/caution-logo/caution.svg" alt="Caution logo" width="781" height="137" />
+		</a>
+
+		<nav class="nav-desktop">
+			<div class="nav-center">
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Platform
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="../platform-tour.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/><circle cx="12" cy="12" r="10"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Platform tour</span>
+										<span class="nav-dropdown__desc">Watch Caution in action</span>
+									</span>
+								</a>
+								<a href="../cloud/aws.html" class="nav-dropdown__item">
+									<span class="nav-dropdown__icon">
+										<img src="../assets/base/aws.png" alt="" width="640" height="640" class="nav-dropdown__icon-img" />
+									</span>
+									<span>
+										<span class="nav-dropdown__title">AWS Nitro</span>
+										<span class="nav-dropdown__desc">Deploy on AWS Nitro Enclaves</span>
+									</span>
+								</a>
+								<a href="../faq.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+									<span>
+										<span class="nav-dropdown__title">FAQ</span>
+										<span class="nav-dropdown__desc">Common questions answered</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Resources
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="https://docs.caution.co/" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Documentation</span>
+										<span class="nav-dropdown__desc">Technical guides and API reference</span>
+									</span>
+								</a>
+								<a href="../blog.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Blog</span>
+										<span class="nav-dropdown__desc">Engineering insights and updates</span>
+									</span>
+								</a>
+								<a href="../security-controls.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Security</span>
+										<span class="nav-dropdown__desc">Trust model, evidence, and framework alignment</span>
+									</span>
+								</a>
+								<a href="https://matrix.to/#/#caution:matrix.org" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Community</span>
+										<span class="nav-dropdown__desc">Join us on Matrix</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="nav-link">About</a>
+				<a href="../pricing.html" class="nav-link">Pricing</a>
+			</div>
+			<div class="nav-right">
+				<a href="https://dashboard.caution.co/" class="nav-link">Log in</a>
+				<a href="../contact.html" class="nav-cta">
+					Book a live demo
+				</a>
+			</div>
+		</nav>
+
+		<button
+			class="mobile-menu-button"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-label="Toggle menu"
+		>
+			<span class="hamburger">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</span>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-nav">
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Platform <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="../platform-tour.html" class="mobile-menu-link">Platform tour</a>
+							<a href="../cloud/aws.html" class="mobile-menu-link">AWS Nitro</a>
+							<a href="../faq.html" class="mobile-menu-link">FAQ</a>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Resources <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="https://docs.caution.co/" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Documentation</a>
+							<a href="../blog.html" class="mobile-menu-link">Blog</a>
+							<a href="../security-controls.html" class="mobile-menu-link">Security</a>
+							<a href="https://matrix.to/#/#caution:matrix.org" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Community</a>
+							<a href="../legal.html" class="mobile-menu-link">Legal</a>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="mobile-menu-link">About</a>
+				<a href="../pricing.html" class="mobile-menu-link">Pricing</a>
+			</div>
+			<div class="mobile-menu-footer">
+				<a href="../contact.html" class="mobile-menu-cta">
+					Book a live demo
+				</a>
+				<a href="../platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const announcement = document.querySelector("[data-site-announcement]");
+		const dismissButton = document.querySelector("[data-site-announcement-dismiss]");
+		const root = document.documentElement;
+		const dismissedClass = "site-announcement-dismissed";
+		const storageKey = "caution-y-combinator-announcement-dismissed";
+
+		function isDismissed() {
+			return root.classList.contains(dismissedClass);
+		}
+
+		function setAnnouncementOffset() {
+			if (!announcement || isDismissed()) {
+				root.style.setProperty("--site-announcement-offset", "0px");
+				return;
+			}
+
+			const offset = Math.max(0, announcement.offsetHeight - (window.scrollY || window.pageYOffset));
+			root.style.setProperty("--site-announcement-offset", `${offset}px`);
+		}
+
+		if (dismissButton) {
+			dismissButton.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				try {
+					window.localStorage.setItem(storageKey, "true");
+				} catch (error) {
+					// Dismiss for this page view even if persistence is unavailable.
+				}
+
+				root.classList.add(dismissedClass);
+				setAnnouncementOffset();
+			});
+		}
+
+		setAnnouncementOffset();
+		window.addEventListener("scroll", setAnnouncementOffset, { passive: true });
+		window.addEventListener("resize", setAnnouncementOffset);
+	});
+
+	// Desktop dropdown toggle (click-based)
+	document.addEventListener("DOMContentLoaded", function() {
+		const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+		dropdowns.forEach(dropdown => {
+			const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+			if (!trigger) return;
+
+			trigger.addEventListener("click", function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const isOpen = dropdown.classList.contains("is-open");
+
+				// Close all dropdowns first
+				dropdowns.forEach(d => {
+					d.classList.remove("is-open");
+					const t = d.querySelector(".nav-dropdown__trigger");
+					if (t) t.setAttribute("aria-expanded", "false");
+				});
+
+				// Toggle current dropdown
+				if (!isOpen) {
+					dropdown.classList.add("is-open");
+					trigger.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", function(e) {
+			if (!e.target.closest(".nav-dropdown")) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+
+		// Close dropdown on Escape key
+		document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+	});
+
+	// Detect dark sections and update navbar styling
+	function updateNavbarForDarkSections() {
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		// Get navbar position (use a point near the top of the navbar)
+		const navbarRect = navbar.getBoundingClientRect();
+		const checkPoint = navbarRect.top + navbarRect.height / 2;
+
+		// Find all dark sections on the page
+		function getDarkSections() {
+			var selector = '.problem-section, [class*="dark-bg"], [class*="bg-dark"]';
+			return document.querySelectorAll(selector);
+		}
+
+		let isOverDark = false;
+
+		getDarkSections().forEach(section => {
+			const sectionRect = section.getBoundingClientRect();
+			// Check if navbar overlaps with this dark section
+			if (checkPoint >= sectionRect.top && checkPoint <= sectionRect.bottom) {
+				isOverDark = true;
+			}
+		});
+
+		if (isOverDark) {
+			navbar.classList.add("navbar--on-dark");
+		} else {
+			navbar.classList.remove("navbar--on-dark");
+		}
+	}
+
+	// Run on scroll and load
+	document.addEventListener("DOMContentLoaded", function() {
+		updateNavbarForDarkSections();
+		window.addEventListener("scroll", updateNavbarForDarkSections, { passive: true });
+	});
+
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", function () {
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerNavbar = document.querySelector(".header-navbar");
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", () => {
+				const isExpanded =
+					mobileMenuButton.getAttribute("aria-expanded") === "true";
+				mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+				mobileMenu.classList.toggle("active");
+				// Toggle dark background on header when menu is open
+				if (headerNavbar) {
+					headerNavbar.classList.toggle("mobile-menu-open");
+				}
+				// Prevent body scroll when menu is open
+				document.documentElement.classList.toggle("mobile-menu-active");
+				document.body.classList.toggle("mobile-menu-active");
+			});
+		}
+
+		// Mobile menu accordion toggle
+		const accordionLabels = document.querySelectorAll(".mobile-menu-label");
+		accordionLabels.forEach(label => {
+			const content = label.nextElementSibling;
+			if (!content) return;
+
+			label.addEventListener("click", () => {
+				const isExpanded = label.getAttribute("aria-expanded") === "true";
+				label.setAttribute("aria-expanded", !isExpanded);
+				content.classList.toggle("is-expanded", !isExpanded);
+			});
+
+			// Set initial state (expanded)
+			if (label.getAttribute("aria-expanded") === "true") {
+				content.classList.add("is-expanded");
+			}
+		});
+
+		// Intent-based auto-hiding navbar
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let isNavbarVisible = true;
+
+		// Thresholds for scroll behavior
+		const SCROLL_THRESHOLD = 5; // Minimum scroll distance to trigger hide/show (prevents jitter)
+		const SHOW_THRESHOLD = 10; // Pixels to scroll up before showing navbar
+		const TOP_THRESHOLD = 100; // Distance from top where navbar always shows
+
+		function getNavbarHideStartY() {
+			if (!document.body.classList.contains("landing")) {
+				return TOP_THRESHOLD;
+			}
+
+			const differentiatorSection = document.querySelector("[data-differentiator-section]");
+			if (!differentiatorSection) {
+				return TOP_THRESHOLD;
+			}
+
+			const sectionRect = differentiatorSection.getBoundingClientRect();
+			const sectionBottomY = sectionRect.bottom + window.scrollY;
+			const navbarHeight = navbar.offsetHeight || 0;
+
+			return Math.max(TOP_THRESHOLD, sectionBottomY - navbarHeight);
+		}
+
+		// Debounced scroll handler for performance
+		function handleScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateNavbarVisibility();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		// Intent detection: show navbar when scrolling up, hide when scrolling down
+		function updateNavbarVisibility() {
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			// Toggle scrolled state for blur effect
+			if (currentScrollY > 50) {
+				navbar.classList.add("navbar--scrolled");
+			} else {
+				navbar.classList.remove("navbar--scrolled");
+			}
+
+			// On landing, keep the navbar visible through the differentiator section.
+			if (currentScrollY < getNavbarHideStartY()) {
+				showNavbar();
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			// Check scroll direction and apply threshold to prevent jitter
+			if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
+				if (scrollDelta > 0) {
+					// Scrolling down - hide navbar
+					hideNavbar();
+				} else if (Math.abs(scrollDelta) > SHOW_THRESHOLD) {
+					// Scrolling up with intent - show navbar
+					showNavbar();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function hideNavbar() {
+			if (isNavbarVisible) {
+				navbar.classList.add("navbar--hidden");
+				isNavbarVisible = false;
+			}
+		}
+
+		function showNavbar() {
+			if (!isNavbarVisible) {
+				navbar.classList.remove("navbar--hidden");
+				isNavbarVisible = true;
+			}
+		}
+
+		// Attach scroll listener
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		// Cleanup on page unload (prevents memory leaks)
+		window.addEventListener("beforeunload", () => {
+			window.removeEventListener("scroll", handleScroll);
+		});
+	});
+</script>
+<div class="container post-container">
+				<main class="post-page"><div class="post-header">
+						<a href="../blog.html" class="post-back-link">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+							All posts
+						</a><div class="post-header-meta"><div class="post-meta">
+						<div class="post-meta-date">Mar 10, 2026</div>
+						<div class="post-meta-read-time">7 min read</div>
+					</div></div>
+					</div>
+					<div class="post-layout">
+						<aside class="post-toc-sidebar">
+							<h2 class="post-toc-title">Verify, don't trust</h2>
+							<span class="post-toc-date">Mar 10, 2026</span>
+							<nav class="post-toc-nav" id="toc-nav">
+								<!-- TOC will be moved here via JS -->
+							</nav>
+						</aside>
+						<aside class="post-meta-aside">
+							<div class="post-meta">
+						<div class="post-meta-date">Mar 10, 2026</div>
+						<div class="post-meta-read-time">7 min read</div>
+					</div>
+							<div class="post-author">
+						<img src="../assets/team/anton.svg" alt="Anton Livaja" class="post-author-image" width="80" height="80" loading="lazy" />
+						<div class="post-author-info">
+							<span class="post-author-name">Anton Livaja</span>
+							<span class="post-author-title">Co-founder & CEO</span>
+						</div>
+					</div>
+						</aside>
+						<div class="post-main">
+							<h1>Verify, don't trust</h1>
+							<article class="post">
+								<div class="post-entry"><div class="tldr-callout">
+
+  <div class="tldr-callout__header">
+<span class="tldr-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+</span>
+<span class="tldr-callout__title">TL;DR</span>
+</div>
+
+  <p>We’ve built the digital economy on blind trust: trusting vendors, contracts, and terms of service instead of verifying what software actually does. Trust is not a security property. Verifiable compute changes that: you can get cryptographic proof that the code running on a server matches its auditable source. With major regulatory deadlines arriving in 2026, this technology is more relevant than ever.</p>
+
+</div>
+
+<p><span class="section-label toc-label">Table of contents</span></p>
+
+<!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#the-question-no-one-asks" id="markdown-toc-the-question-no-one-asks">The question no one asks</a></li>
+  <li><a href="#we-delegate-trust-constantly" id="markdown-toc-we-delegate-trust-constantly">We delegate trust constantly</a></li>
+  <li><a href="#we-hand-over-data-and-hope-for-the-best" id="markdown-toc-we-hand-over-data-and-hope-for-the-best">We hand over data and hope for the best</a></li>
+  <li><a href="#trust-is-not-security" id="markdown-toc-trust-is-not-security">Trust is not security</a></li>
+  <li><a href="#what-transparency-actually-means" id="markdown-toc-what-transparency-actually-means">What transparency actually means</a></li>
+  <li><a href="#confidential-compute-changes-the-game" id="markdown-toc-confidential-compute-changes-the-game">Confidential compute changes the game</a></li>
+  <li><a href="#why-this-matters-beyond-security" id="markdown-toc-why-this-matters-beyond-security">Why this matters beyond security</a></li>
+</ol>
+
+<h2 id="the-question-no-one-asks">The question no one asks</h2>
+
+<p>When was the last time you actually verified that a piece of software does what it claims? Not read the terms of service. Not taken a vendor’s word for it. Actually verified it.</p>
+
+<p>For most people the answer is never. And that’s the problem.</p>
+
+<h2 id="we-delegate-trust-constantly">We delegate trust constantly</h2>
+
+<p>The default model for security today is delegation. You buy cybersecurity insurance. You pay for proprietary tools. You sign contracts with vendors. In every case, you’re paying someone else to make the problem go away.</p>
+
+<p>This works until it doesn’t. And it often doesn’t.</p>
+
+<p><a href="https://web.archive.org/web/20260311035352/https://attack.mitre.org/campaigns/C0024/" target="_blank">SolarWinds</a> was supposed to be the company that kept others secure. They were the leading security and IT management vendor, trusted by Fortune 500 companies and U.S. government agencies alike. Then in 2020, attackers injected a backdoor into SolarWinds’ own software updates. Because none of their customers could verify what code they were actually running, the compromise spread silently through trusted update channels to thousands of organisations. The company whose entire job was security became the attack vector.</p>
+
+<p>This isn’t an isolated case. It’s the natural consequence of a system built on blind trust.</p>
+
+<h2 id="we-hand-over-data-and-hope-for-the-best">We hand over data and hope for the best</h2>
+
+<p>Think about how many times a day you send data to services you can’t inspect.</p>
+
+<p>You type a prompt into a chatbot. What happens to that data? Is it logged? Used for training? Shared with third parties? You have no way to know. The terms of service say one thing, but terms of service are a legal obligation, not a technical constraint. They describe what a company promises to do, not what the software actually does.</p>
+
+<p>You send a message to a friend over a chat platform. Once you hit send, all you know is that your message went to some server at some IP address. You have no idea how it’s stored, who can read it, or whether the encryption the company advertises is real.</p>
+
+<p>You store files in the cloud. You use a password manager. You submit medical information through a health portal. In each case, you’re trusting that the software behind the interface behaves the way someone told you it would. You have no way to check.</p>
+
+<p>The same problem exists at every scale. A financial institution deploys an AI model to analyse client data. What code is actually running on that server? Is it the model they audited? Has it been modified since deployment? The vendor’s documentation says one thing, but documentation is a promise, not a proof.</p>
+
+<p>We’ve gotten used to this because it’s been the only option. Software services are black boxes. Some people try to protect themselves with privacy-preserving tools like VPNs or Tor. Others just trust blindly because they have no alternative. Neither group can actually verify what the services they depend on are doing with their data.</p>
+
+<h2 id="trust-is-not-security">Trust is not security</h2>
+
+<p>There’s a widespread belief that well-funded proprietary tools are inherently more secure than open alternatives. This is a failure to reason clearly. While funding can help with resources required to do security well, it doesn’t produce security by default.</p>
+
+<p>If you can’t inspect it, you can’t verify it. If you can’t verify it, you’re just trusting. And trust is not a security property. It’s the absence of one. Verifiability is a pre-requisite for a reasonable level of security.</p>
+
+<p>Legal frameworks help, but they’re reactive. They punish breaches after they happen. They don’t prevent them. A contract that says “we won’t misuse your data” does very little in practical terms to stop software from misusing your data. Only the technical controls in the system can do that.</p>
+
+<h2 id="what-transparency-actually-means">What transparency actually means</h2>
+
+<p>Real transparency means being able to verify what software is running on a server, what it’s capable of, and what it does with data you send it. Not by reading a blog post or a privacy policy, but by inspecting the actual code and proving it matches what’s deployed.</p>
+
+<p>Almost no system works this way today. When you interact with a web service, you’re interacting with a black box. You send a request and get a response. Everything in between is invisible to you.</p>
+
+<p>Public blockchains got this right in one narrow domain: every transaction is verifiable, every state change is auditable. But blockchains are impractical for most software. The question is whether we can bring a similar level of verifiability to general-purpose computing. It turns out we can.</p>
+
+<h2 id="confidential-compute-changes-the-game">Confidential compute changes the game</h2>
+
+<p>Confidential compute hardware, specifically secure enclaves combined with remote attestation, makes it possible to provide cryptographic proof of what software is running behind a given domain or IP. Combined with full-source bootstrapping and reproducible builds, this means anyone can independently verify exactly what code a server is executing.</p>
+
+<p>This isn’t theoretical. It’s how <a href="../index.html">Caution</a> works today. Deploy software to an enclave, and anyone can rebuild the image from source, compare it against the live attestation, and get cryptographic proof that the running code matches the auditable source.</p>
+
+<p>The shift is fundamental: from “trust us” to “verify it yourself.” Users no longer have to hope that companies are telling the truth about how their data is handled. Companies don’t have to cross their fingers that the code they hope is running in their mission critical systems is actually what they expect it to be.</p>
+
+<p>Regulatory deadlines are making this urgent. Multiple major compliance frameworks are reaching enforcement milestones simultaneously. The <a href="https://web.archive.org/web/20260214205014/https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act" target="_blank">EU AI Act’s</a> obligations for most high-risk AI systems take effect August 2, 2026, imposing strict risk management, logging, documentation, and transparency requirements so organisations can evidence how these systems function and are controlled, not just claim they are secure.</p>
+
+<p>In parallel, the proposed <a href="https://web.archive.org/web/20260309064525/https://www.hhs.gov/hipaa/for-professionals/security/hipaa-security-rule-nprm/factsheet/index.html" target="_blank">HIPAA Security Rule</a> overhaul (expected to be finalised in 2026, pending regulatory approval) would introduce significantly more prescriptive cybersecurity controls and documentation requirements for covered entities and their business associates, including structured risk analyses, mandatory technical safeguards like encryption and MFA (with limited exceptions), and defined security testing cadences. Organisations across multiple verticals now face hard deadlines with real enforcement consequences. Verifiable compute is no longer a nice-to-have. It is an essential tool to help meet these emerging evidence and control requirements.</p>
+
+<div class="note-callout">
+  <div class="note-callout__header">
+<span class="note-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+</span>
+<span class="note-callout__title">Regulatory deadlines</span>
+</div>
+
+  <p><strong><a href="https://web.archive.org/web/20260214205014/https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act" target="_blank">EU AI Act’s (high‑risk AI)</a></strong> obligations apply from 2 August 2026. Risk management, logging, documentation, and transparency are mandatory for high‑risk systems.</p>
+
+  <div style="margin-top: 0.5em;"></div>
+
+  <p><strong><a href="https://web.archive.org/web/20260309064525/https://www.hhs.gov/hipaa/for-professionals/security/hipaa-security-rule-nprm/factsheet/index.html" target="_blank">HIPAA Security Rule (proposed)</a></strong> overhaul is expected in 2026. It makes cybersecurity expectations more prescriptive with structured risk analysis, required safeguards (encryption, MFA), and defined security testing.</p>
+
+</div>
+
+<h2 id="why-this-matters-beyond-security">Why this matters beyond security</h2>
+
+<p>Verifiability is a missing building block. Not just for security, but for individual freedom and the entire digital economy.</p>
+
+<p>The ability to verify what software does is a prerequisite for trust in a digital world. Without it, even the most carefully architected systems are incomplete. You can choose your own tools, control your own data, build on open standards, but the moment you interact with a service you can’t inspect, you’re back to trusting someone else. Verifiable compute closes that gap. It gives any system the one thing that’s been missing: a way to prove that remote software respects the rules it claims to follow.</p>
+
+<p>This is also why the technology has to be truly open source. Not open core with the important parts behind a paywall. Fully open, and  auditable by anyone. If the goal is to remove the need for blind trust, the tool that does it can’t require blind trust either. Anything less would be a contradiction.</p>
+
+<p>We think of this as infrastructure for the open internet. The same way public key cryptography gave individuals the power to communicate privately, verifiable compute gives them the power to interact with services confidently. It’s a primitive that makes other freedoms possible.</p>
+
+<p style="color: #777; font-style: italic; font-size: 0.85em;">This article shares our perspective on emerging security and compliance trends and is not legal advice; organisations should consult their own counsel for specific obligations.</p>
+</div>
+							</article><div class="post-author-end">
+								<div class="post-author">
+						<img src="../assets/team/anton.svg" alt="Anton Livaja" class="post-author-image" width="80" height="80" loading="lazy" />
+						<div class="post-author-info">
+							<span class="post-author-name">Anton Livaja</span>
+							<span class="post-author-title">Co-founder & CEO</span>
+						</div>
+					</div>
+								<span class="post-author-end-date">Mar 10, 2026</span>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div><footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-inner container">
+			<div class="footer-content">
+				<div class="footer-brand">
+					<a href="../index.html" class="footer-logo">
+						<img
+							src="../assets/base/caution-logo/caution.svg"
+							alt="Caution logo"
+							width="781"
+							height="137"
+						/>
+					</a>
+					<p class="footer-description">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--tablet">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--mobile">
+						Confidential compute you can verify.
+					</p>
+					</div>
+
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3 class="footer-column-title">Platform</h3>
+						<a href="https://dashboard.caution.co/" class="footer-link">Dashboard</a>
+						<a href="../platform-tour.html" class="footer-link">Platform tour</a>
+						<a href="../cloud/aws.html" class="footer-link">AWS Nitro</a>
+						<a href="../faq.html" class="footer-link">FAQ</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Resources</h3>
+						<a
+							href="https://docs.caution.co/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Documentation</a
+						>
+						<a href="../pricing.html" class="footer-link">Pricing</a>
+						<a href="../blog.html" class="footer-link">Blog</a>
+						<a href="../security-controls.html" class="footer-link">Security</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Company</h3>
+						<a href="../about.html" class="footer-link">About</a>
+						<a href="../contact.html" class="footer-link">Contact</a>
+						<a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer" class="footer-link">Community</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 Caution SEZC. All rights reserved.
+				</p>
+				<nav class="footer-legal-links">
+					<a href="../privacy.html" class="footer-legal-link">Privacy</a>
+					<a href="../terms.html" class="footer-legal-link">Terms</a>
+					<a href="../legal/refunds.html" class="footer-legal-link">Refunds</a>
+				</nav>
+				<div class="footer-social">
+					<a
+						href="https://codeberg.org/Caution/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Git"
+						title="Access source code and documentation"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/git-logo-white.svg" alt="Git" width="92" height="92" />
+					</a>
+					<a
+						href="https://mstdn.social/@caution"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Mastodon"
+						title="Follow us on Mastodon"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/Mastodon-logo.svg" alt="Mastodon" width="17" height="20" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<script>
+			// Move TOC to sidebar and add scroll-spy
+			document.addEventListener("DOMContentLoaded", function () {
+				const toc = document.getElementById("markdown-toc");
+				const tocNav = document.getElementById("toc-nav");
+				if (toc && tocNav) {
+					// Clone TOC to sidebar
+					const tocClone = toc.cloneNode(true);
+					tocClone.id = "sidebar-toc";
+					tocNav.appendChild(tocClone);
+
+					// Function to update visibility based on screen width
+					function updateTocVisibility() {
+						const isWideScreen = window.innerWidth > 1100;
+						toc.style.display = isWideScreen ? "none" : "";
+					}
+
+					// Initial check
+					updateTocVisibility();
+
+					// Update on resize
+					window.addEventListener("resize", updateTocVisibility);
+
+					// Scroll-spy: highlight current section in TOC
+					const tocLinks = tocClone.querySelectorAll("a");
+					const headings = [];
+
+					tocLinks.forEach((link) => {
+						const id = link.getAttribute("href").substring(1);
+						const heading = document.getElementById(id);
+						if (heading) headings.push({ id, heading, link });
+					});
+
+					function updateActiveLink() {
+						const scrollPos = window.scrollY + 120;
+
+						let currentId = "";
+						for (const { id, heading } of headings) {
+							if (heading.offsetTop <= scrollPos) {
+								currentId = id;
+							}
+						}
+
+						tocLinks.forEach((link) => {
+							link.classList.remove("active");
+							if (link.getAttribute("href") === "#" + currentId) {
+								link.classList.add("active");
+							}
+						});
+					}
+
+					window.addEventListener("scroll", updateActiveLink);
+					updateActiveLink();
+
+					// Dynamic TOC centering - center vertically but don't go above original position
+					const tocSidebar = document.querySelector(".post-toc-sidebar");
+					const postLayout = document.querySelector(".post-layout");
+					let lastTop = null;
+					let ticking = false;
+
+					function updateTocPosition() {
+						if (!tocSidebar || !postLayout) return;
+
+						const layoutRect = postLayout.getBoundingClientRect();
+						const tocHeight = tocSidebar.offsetHeight;
+						const viewportHeight = window.innerHeight;
+						const centeredTop = (viewportHeight - tocHeight) / 2;
+						const minTop = 100; // minimum distance from viewport top
+
+						// Calculate how far we've scrolled past the post-layout start
+						const scrolledPastStart = -layoutRect.top;
+
+						let newTop;
+						if (scrolledPastStart < centeredTop - minTop) {
+							// Near the top - use minimum top value
+							newTop = minTop;
+						} else {
+							// Scrolled enough - center the TOC
+							newTop = Math.max(minTop, centeredTop);
+						}
+
+						// Calculate padding for TOC links based on position
+						// Interpolate from 4px (at top) to 10px (when centered)
+						const minPadding = 4;
+						const maxPadding = 10;
+						const transitionDistance = centeredTop - minTop;
+						const progress = Math.min(
+							1,
+							Math.max(0, scrolledPastStart / transitionDistance)
+						);
+						const currentPadding =
+							minPadding + (maxPadding - minPadding) * progress;
+
+						// Apply padding to TOC links
+						const tocLinks = tocSidebar.querySelectorAll("#sidebar-toc a");
+						tocLinks.forEach((link) => {
+							link.style.paddingBottom = currentPadding + "px";
+						});
+
+						// Only update if value changed to avoid unnecessary reflows
+						if (lastTop !== newTop) {
+							tocSidebar.style.top = newTop + "px";
+							lastTop = newTop;
+						}
+
+						// Add scrolled class when TOC has moved from initial position
+						if (progress > 0.1) {
+							tocSidebar.classList.add("scrolled");
+						} else {
+							tocSidebar.classList.remove("scrolled");
+						}
+
+						ticking = false;
+					}
+
+					function onScroll() {
+						if (!ticking) {
+							requestAnimationFrame(updateTocPosition);
+							ticking = true;
+						}
+					}
+
+					window.addEventListener("scroll", onScroll, { passive: true });
+					window.addEventListener("resize", updateTocPosition);
+					updateTocPosition();
+				}
+
+				// Desktop navbar visibility control for blog posts
+				// Navbar only visible at scrollY === 0, hidden otherwise
+				if (window.innerWidth > 768) {
+					const navbar = document.querySelector(".header-navbar");
+
+					function updateBlogNavbar() {
+						if (window.scrollY === 0) {
+							navbar.classList.remove("blog-navbar-hidden");
+						} else {
+							navbar.classList.add("blog-navbar-hidden");
+						}
+					}
+
+					window.addEventListener("scroll", updateBlogNavbar, {
+						passive: true,
+					});
+					updateBlogNavbar();
+				}
+
+				// Add anchor links to h2 headings with copy functionality
+				const article = document.querySelector(".post .post-entry");
+				if (article) {
+					const headings = article.querySelectorAll("h2[id]");
+					headings.forEach((heading) => {
+						const anchor = document.createElement("a");
+						anchor.className = "heading-anchor";
+						anchor.href = "#" + heading.id;
+						anchor.innerHTML =
+							'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+						anchor.setAttribute("aria-label", "Copy link to this section");
+						anchor.addEventListener("click", function (e) {
+							e.preventDefault();
+							const url =
+								window.location.origin +
+								window.location.pathname +
+								"#" +
+								heading.id;
+							navigator.clipboard.writeText(url).then(() => {
+								anchor.style.color = "var(--color-pink)";
+								setTimeout(() => (anchor.style.color = ""), 1000);
+							});
+						});
+						// Wrap last word + anchor in a nowrap span so the icon never orphans
+						const lastTextNode = [...heading.childNodes].reverse().find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+						if (lastTextNode) {
+							const text = lastTextNode.textContent;
+							const lastSpace = text.lastIndexOf(" ");
+							const nowrap = document.createElement("span");
+							nowrap.style.whiteSpace = "nowrap";
+							if (lastSpace !== -1) {
+								lastTextNode.textContent = text.slice(0, lastSpace + 1);
+								nowrap.appendChild(document.createTextNode(text.slice(lastSpace + 1)));
+							} else {
+								lastTextNode.textContent = "";
+								nowrap.appendChild(document.createTextNode(text));
+							}
+							nowrap.appendChild(anchor);
+							heading.appendChild(nowrap);
+						} else {
+							heading.appendChild(anchor);
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e7f1ff" />
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon__v-1.png" />
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-ExtraLight.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Light.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Regular.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Medium.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-SemiBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-Bold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/PlusJakartaSans-ExtraBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/IBMPlexSans-Regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="assets/fonts/IBMPlexSans-SemiBold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+
+	
+
+	<title>Caution FAQ: Verifiable Compute Questions</title>
+	<link rel="stylesheet" href="assets/styles.css" />
+	<link rel="canonical" href="https://caution.co/faq.html" />
+	<link rel="alternate" type="application/atom+xml" title="Caution" href="feed.xml" />
+	<meta content="Caution" property="og:site_name" />
+
+	 
+	<meta content="Verifiable Compute FAQ | Caution" property="og:title" />
+	<meta content="article" property="og:type" />
+	 
+	<meta content="Frequently asked questions about Caution, verifiable compute, and confidential computing." property="og:description" />
+	<meta name="description" content="Frequently asked questions about Caution, verifiable compute, and confidential computing." />
+	 
+	<meta content="https://caution.co/faq.html" property="og:url" />
+	  
+	<meta content="https://caution.co/assets/imgs/opengraph/og-faq.png" property="og:image" />
+	  
+
+	<meta name="twitter:card" content="summary_large_image" />
+
+	
+	<meta name="twitter:title" content="Verifiable Compute FAQ | Caution" />
+	 
+	<meta name="twitter:url" content="https://caution.co/faq.html" />
+	 
+	<meta name="twitter:description" content="Frequently asked questions about Caution, verifiable compute, and confidential computing." />
+	 
+	<meta name="twitter:image:src" content="https://caution.co/assets/imgs/opengraph/og-faq.png" />
+	 
+
+	<script src="assets/js/main.js" defer></script>
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": [
+		
+		
+			
+		{
+			"@type": "Question",
+			"name": "What is Caution?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Caution is a verifiable compute platform that adds an extra layer of integrity guarantees on top of confidential compute. It cryptographically links the code running inside an enclave back to the reviewed source code, build inputs, and configuration that produced the enclave image, so anyone can verify what is running in production. Caution currently supports deployments on AWS Nitro Enclaves, with additional attestation backends in active development."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "What does Caution support today?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Caution supports reproducible enclave deployments on AWS Nitro, including verified deployments and a CLI-first workflow for Linux and macOS. We work closely with customers as we continue expanding the platform."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "What is verifiable compute?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Verifiable compute is a method of using confidential compute / TEE workloads in a way as to give them the ability to prove exactly what software is running on a server using cryptography and hardware. Instead of trusting that a system behaved as intended, you get cryptographic evidence of the code, configuration, dependencies, and kernel that were actually used during execution. It turns opaque infrastructure into something you can inspect, reproduce, and verify. No black boxes. No guesswork. No relying on a provider's promises. Learn more about verifiability in the docs."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "What problems does verifiable compute solve?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Verifiable compute solves the fundamental problem of trust in remote systems. When you run code on infrastructure you don't physically control, you're trusting that the operator hasn't modified the software, that the system hasn't been compromised, and that what's running matches what was deployed. With verifiable compute, you eliminate this trust requirement. You get cryptographic proof of exactly what's running, allowing third parties to independently verify your claims, customers to trust your security posture, and auditors to confirm compliance without taking your word for it."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "Does Caution replace AWS Nitro Enclaves?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "No. Caution builds on top of AWS Nitro Enclaves, not instead of them. Nitro provides hardware-level isolation and attestation. Caution extends those guarantees by linking enclave measurements back to auditable source code and reproducible builds."
+			}
+		}
+				
+			
+		
+			
+		,{
+			"@type": "Question",
+			"name": "Why is verifiability important if I already use confidential compute?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Confidential compute protects data while it's being processed, but it doesn't tell anyone what code is doing the processing. An enclave could be running malicious software or a backdoored version of your application, and confidential compute alone wouldn't reveal that. Verifiability completes the picture. It lets external parties confirm not just that data is protected, but that the right software is protecting it. Without verifiability, you're asking people to trust your word about what's running inside the enclave. Learn more about verifiability."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "What can verifiable compute prove and what can it not prove?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Verifiable compute can prove: exactly what code was used to build the software running in an enclave. It ties together the source code, which can be reviewed as a result, and the code that's running on a server (in an enclave). It cannot prove: that the code itself is free of bugs or vulnerabilities, that the logic does what you intend, that the hardware and firmware implementation is secure, or that external dependencies behave correctly. Verifiable compute proves what's running, not that what's running is correct."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "How is verifiable compute different from zero knowledge proofs?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Zero knowledge proof (ZKP) technology lets you prove that a computation was done correctly without revealing the inputs or intermediate steps. They're powerful for privacy-preserving verification, and pre-computing but they're computationally expensive and only prove the math was right &mdash; not what software actually ran. Verifiable compute proves what code executed, how it was built, and where it ran. It gives you full-stack transparency: the source, the build, the dependencies, the kernel, and the runtime environment. You're not just verifying a result &mdash; you're verifying the entire system that produced it. In other words, these technologies are complementary. ZKP technologies running on top of verifiable compute have better trust guarantees. Without verifiable compute, ZKPs can be tampered with."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "Do I need special hardware to use verifiable compute?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Yes, verifiable compute relies on confidential compute and TEE hardware. This is what provides the hardware \"trust anchors\" for the system. These technologies span AWS Nitro, AMD SEV, Intel TDX, TPM2. Learn more about hardware attestations."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "How do I verify what is running after deployment?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Without rebuilding from source, you're trusting whoever built the image. Caution solves this with two verification modes: reproduce (full verification) and PCR (quick verification). Reproduce mode is the gold standard. It rebuilds the enclave image from source and compares it against the live attestation, giving you the strongest possible guarantee that the runtime matches the code you can audit. PCR mode is faster. If you've already done a reproduce verification (or trust someone who has), you can verify future attestations against known PCR values without rebuilding. This requires trusting the source of the PCR file, making it useful for quick checks but not true verification. Follow the Verify an app guide for the full workflow."
+			}
+		}
+				
+			
+		
+			
+		,{
+			"@type": "Question",
+			"name": "Which deployment options are available?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Caution offers bring-your-own-compute and fully managed deployment options. Because Caution is open source, teams can also self-host it if they want to operate deployments independently. Compare the options in the deployment models reference."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "Which deployment option is right for my team?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Self-hosted is for teams that want full control over their infrastructure and deployment; you run Caution on your own stack under AGPLv3 and keep the enclave lifecycle in-house. To self-host Caution without the AGPLv3 obligations, contact us for commercial licence. Bring your own compute fits teams that want to run Caution enclaves in their own cloud account, starting with AWS, while Caution manages the enclave infrastructure and verifiable deployments. Fully managed is for teams that want the fastest path to production, with Caution hosting and managing deployments end to end. Compare the options in the deployment models reference."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "Can I run Caution entirely on my own infrastructure?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Yes. You can deploy Caution on your infrastructure under AGPLv3 or a commercial licence. Alternatively, you can host in your own AWS account with Caution-managed provisioning and deployment. Compare the options in the deployment models reference."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "Does verifiable compute slow down my workloads?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "The overhead is minimal and typically negligible. Verifiable compute adds transparency, not overhead. The verification and attestation processes run alongside your workload and don't affect its runtime performance. Once a workload begins executing, it runs at native speed. The attestation endpoint exists alongside the workload."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "How do I get started with Caution?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Book 20 minutes with one of our engineers. We’ll discuss your goals, answer technical questions, and help you get ready to deploy with Caution."
+			}
+		}
+				
+			
+		
+			
+		,{
+			"@type": "Question",
+			"name": "What threats does Caution protect against?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Caution protects against tampering with deployed software, unauthorised modifications by cloud providers or administrators, supply chain attacks where build artifacts are swapped, and situations where operators claim to run one thing but actually run another. It provides cryptographic proof that what's running matches what was built from a specific source."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "What threats are outside the model?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Verifiable compute does not protect against bugs or vulnerabilities in the code itself, flaws in the hardware TEE implementation, compromised source repositories, or denial of service attacks. It also doesn't verify the correctness of business logic. The security guarantees are about what code runs, not whether that code is secure or correct."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "What happens if an attestation fails?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "A failed attestation means the running enclave doesn't match what you expected. This could indicate tampering, a deployment error, or a version mismatch. You should treat it as a serious security event: stop interacting with the enclave, investigate the cause, and redeploy from known source if necessary. The appropriate response depends on your threat model and operational procedures. The Verify an app guide covers verification failure handling."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "Do I need to trust Caution to use verifiable compute?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "No. Every deployment is verifiable: enclave images are reproducible (rebuild it yourself and check the hashes), all components are open source, and the CLI runs locally with verification happening on your machine. Even if Caution's infrastructure were completely compromised, an attacker couldn't deploy malicious code without it being detectable via reproduce verification."
+			}
+		}
+				
+			
+		,{
+			"@type": "Question",
+			"name": "Is Caution open source?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Yes. Caution is fully open source, which is essential for verifiable compute. You can't ask people to trust a verification system they can't inspect. Open source means you can audit the build process, verify our tooling does what we claim, and even run the entire system yourself if you prefer."
+			}
+		}
+				
+			
+		
+	]
+}
+</script>
+
+<!-- "Really, there is nothing interesting to see here. It is a static website. -->
+	<!-- Here is the terraform code that deployed it, and here is the site source repo. -->
+	<!-- If you find anything interesting or want to talk to us, reach out via our /contact page!" -->
+	<!-- https://git.distrust.co/public/stack -->
+	<!-- https://git.distrust.co/public/website -->
+</head>
+<body class="faq-page-body">
+		<div class="page-wrapper"><script>
+	(function () {
+		try {
+			if (window.localStorage.getItem("caution-y-combinator-announcement-dismissed") === "true") {
+				document.documentElement.classList.add("site-announcement-dismissed");
+			}
+		} catch (error) {
+			// Keep the announcement visible if localStorage is unavailable.
+		}
+	})();
+</script>
+
+<div class="site-announcement" data-site-announcement role="region" aria-label="Y Combinator announcement">
+	<div class="site-announcement__inner">
+		<p class="site-announcement__copy">
+			Caution is backed by Y Combinator. <span class="site-announcement__mobile-break" aria-hidden="true"></span><a href="https://www.ycombinator.com/launches/SIq-caution-hosting-platform-for-software-you-can-t-afford-to-have-hacked" class="site-announcement__link" target="_blank" rel="noopener noreferrer" aria-label="Learn more about Caution on Y Combinator">Learn more</a>.
+		</p>
+		<button class="site-announcement__dismiss" type="button" aria-label="Dismiss announcement" data-site-announcement-dismiss>
+			<svg class="site-announcement__dismiss-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"></path>
+				<path d="m6 6 12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<header class="header-navbar">
+	<div class="nav-top-bar">
+		<a href="index.html" class="nav-logo">
+			<img src="assets/base/caution-logo/caution.svg" alt="Caution logo" width="781" height="137" />
+		</a>
+
+		<nav class="nav-desktop">
+			<div class="nav-center">
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Platform
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="platform-tour.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/><circle cx="12" cy="12" r="10"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Platform tour</span>
+										<span class="nav-dropdown__desc">Watch Caution in action</span>
+									</span>
+								</a>
+								<a href="cloud/aws.html" class="nav-dropdown__item">
+									<span class="nav-dropdown__icon">
+										<img src="assets/base/aws.png" alt="" width="640" height="640" class="nav-dropdown__icon-img" />
+									</span>
+									<span>
+										<span class="nav-dropdown__title">AWS Nitro</span>
+										<span class="nav-dropdown__desc">Deploy on AWS Nitro Enclaves</span>
+									</span>
+								</a>
+								<a href="faq.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+									<span>
+										<span class="nav-dropdown__title">FAQ</span>
+										<span class="nav-dropdown__desc">Common questions answered</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Resources
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="https://docs.caution.co/" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Documentation</span>
+										<span class="nav-dropdown__desc">Technical guides and API reference</span>
+									</span>
+								</a>
+								<a href="blog.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Blog</span>
+										<span class="nav-dropdown__desc">Engineering insights and updates</span>
+									</span>
+								</a>
+								<a href="security-controls.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Security</span>
+										<span class="nav-dropdown__desc">Trust model, evidence, and framework alignment</span>
+									</span>
+								</a>
+								<a href="https://matrix.to/#/#caution:matrix.org" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Community</span>
+										<span class="nav-dropdown__desc">Join us on Matrix</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="about.html" class="nav-link">About</a>
+				<a href="pricing.html" class="nav-link">Pricing</a>
+			</div>
+			<div class="nav-right">
+				<a href="https://dashboard.caution.co/" class="nav-link">Log in</a>
+				<a href="contact.html" class="nav-cta">
+					Book a live demo
+				</a>
+			</div>
+		</nav>
+
+		<button
+			class="mobile-menu-button"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-label="Toggle menu"
+		>
+			<span class="hamburger">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</span>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-nav">
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Platform <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="platform-tour.html" class="mobile-menu-link">Platform tour</a>
+							<a href="cloud/aws.html" class="mobile-menu-link">AWS Nitro</a>
+							<a href="faq.html" class="mobile-menu-link">FAQ</a>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Resources <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="https://docs.caution.co/" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Documentation</a>
+							<a href="blog.html" class="mobile-menu-link">Blog</a>
+							<a href="security-controls.html" class="mobile-menu-link">Security</a>
+							<a href="https://matrix.to/#/#caution:matrix.org" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Community</a>
+							<a href="legal.html" class="mobile-menu-link">Legal</a>
+						</div>
+					</div>
+				</div>
+				<a href="about.html" class="mobile-menu-link">About</a>
+				<a href="pricing.html" class="mobile-menu-link">Pricing</a>
+			</div>
+			<div class="mobile-menu-footer">
+				<a href="contact.html" class="mobile-menu-cta">
+					Book a live demo
+				</a>
+				<a href="platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const announcement = document.querySelector("[data-site-announcement]");
+		const dismissButton = document.querySelector("[data-site-announcement-dismiss]");
+		const root = document.documentElement;
+		const dismissedClass = "site-announcement-dismissed";
+		const storageKey = "caution-y-combinator-announcement-dismissed";
+
+		function isDismissed() {
+			return root.classList.contains(dismissedClass);
+		}
+
+		function setAnnouncementOffset() {
+			if (!announcement || isDismissed()) {
+				root.style.setProperty("--site-announcement-offset", "0px");
+				return;
+			}
+
+			const offset = Math.max(0, announcement.offsetHeight - (window.scrollY || window.pageYOffset));
+			root.style.setProperty("--site-announcement-offset", `${offset}px`);
+		}
+
+		if (dismissButton) {
+			dismissButton.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				try {
+					window.localStorage.setItem(storageKey, "true");
+				} catch (error) {
+					// Dismiss for this page view even if persistence is unavailable.
+				}
+
+				root.classList.add(dismissedClass);
+				setAnnouncementOffset();
+			});
+		}
+
+		setAnnouncementOffset();
+		window.addEventListener("scroll", setAnnouncementOffset, { passive: true });
+		window.addEventListener("resize", setAnnouncementOffset);
+	});
+
+	// Desktop dropdown toggle (click-based)
+	document.addEventListener("DOMContentLoaded", function() {
+		const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+		dropdowns.forEach(dropdown => {
+			const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+			if (!trigger) return;
+
+			trigger.addEventListener("click", function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const isOpen = dropdown.classList.contains("is-open");
+
+				// Close all dropdowns first
+				dropdowns.forEach(d => {
+					d.classList.remove("is-open");
+					const t = d.querySelector(".nav-dropdown__trigger");
+					if (t) t.setAttribute("aria-expanded", "false");
+				});
+
+				// Toggle current dropdown
+				if (!isOpen) {
+					dropdown.classList.add("is-open");
+					trigger.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", function(e) {
+			if (!e.target.closest(".nav-dropdown")) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+
+		// Close dropdown on Escape key
+		document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+	});
+
+	// Detect dark sections and update navbar styling
+	function updateNavbarForDarkSections() {
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		// Get navbar position (use a point near the top of the navbar)
+		const navbarRect = navbar.getBoundingClientRect();
+		const checkPoint = navbarRect.top + navbarRect.height / 2;
+
+		// Find all dark sections on the page
+		function getDarkSections() {
+			var selector = '.problem-section, [class*="dark-bg"], [class*="bg-dark"]';
+			return document.querySelectorAll(selector);
+		}
+
+		let isOverDark = false;
+
+		getDarkSections().forEach(section => {
+			const sectionRect = section.getBoundingClientRect();
+			// Check if navbar overlaps with this dark section
+			if (checkPoint >= sectionRect.top && checkPoint <= sectionRect.bottom) {
+				isOverDark = true;
+			}
+		});
+
+		if (isOverDark) {
+			navbar.classList.add("navbar--on-dark");
+		} else {
+			navbar.classList.remove("navbar--on-dark");
+		}
+	}
+
+	// Run on scroll and load
+	document.addEventListener("DOMContentLoaded", function() {
+		updateNavbarForDarkSections();
+		window.addEventListener("scroll", updateNavbarForDarkSections, { passive: true });
+	});
+
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", function () {
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerNavbar = document.querySelector(".header-navbar");
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", () => {
+				const isExpanded =
+					mobileMenuButton.getAttribute("aria-expanded") === "true";
+				mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+				mobileMenu.classList.toggle("active");
+				// Toggle dark background on header when menu is open
+				if (headerNavbar) {
+					headerNavbar.classList.toggle("mobile-menu-open");
+				}
+				// Prevent body scroll when menu is open
+				document.documentElement.classList.toggle("mobile-menu-active");
+				document.body.classList.toggle("mobile-menu-active");
+			});
+		}
+
+		// Mobile menu accordion toggle
+		const accordionLabels = document.querySelectorAll(".mobile-menu-label");
+		accordionLabels.forEach(label => {
+			const content = label.nextElementSibling;
+			if (!content) return;
+
+			label.addEventListener("click", () => {
+				const isExpanded = label.getAttribute("aria-expanded") === "true";
+				label.setAttribute("aria-expanded", !isExpanded);
+				content.classList.toggle("is-expanded", !isExpanded);
+			});
+
+			// Set initial state (expanded)
+			if (label.getAttribute("aria-expanded") === "true") {
+				content.classList.add("is-expanded");
+			}
+		});
+
+		// Intent-based auto-hiding navbar
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let isNavbarVisible = true;
+
+		// Thresholds for scroll behavior
+		const SCROLL_THRESHOLD = 5; // Minimum scroll distance to trigger hide/show (prevents jitter)
+		const SHOW_THRESHOLD = 10; // Pixels to scroll up before showing navbar
+		const TOP_THRESHOLD = 100; // Distance from top where navbar always shows
+
+		function getNavbarHideStartY() {
+			if (!document.body.classList.contains("landing")) {
+				return TOP_THRESHOLD;
+			}
+
+			const differentiatorSection = document.querySelector("[data-differentiator-section]");
+			if (!differentiatorSection) {
+				return TOP_THRESHOLD;
+			}
+
+			const sectionRect = differentiatorSection.getBoundingClientRect();
+			const sectionBottomY = sectionRect.bottom + window.scrollY;
+			const navbarHeight = navbar.offsetHeight || 0;
+
+			return Math.max(TOP_THRESHOLD, sectionBottomY - navbarHeight);
+		}
+
+		// Debounced scroll handler for performance
+		function handleScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateNavbarVisibility();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		// Intent detection: show navbar when scrolling up, hide when scrolling down
+		function updateNavbarVisibility() {
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			// Toggle scrolled state for blur effect
+			if (currentScrollY > 50) {
+				navbar.classList.add("navbar--scrolled");
+			} else {
+				navbar.classList.remove("navbar--scrolled");
+			}
+
+			// On landing, keep the navbar visible through the differentiator section.
+			if (currentScrollY < getNavbarHideStartY()) {
+				showNavbar();
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			// Check scroll direction and apply threshold to prevent jitter
+			if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
+				if (scrollDelta > 0) {
+					// Scrolling down - hide navbar
+					hideNavbar();
+				} else if (Math.abs(scrollDelta) > SHOW_THRESHOLD) {
+					// Scrolling up with intent - show navbar
+					showNavbar();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function hideNavbar() {
+			if (isNavbarVisible) {
+				navbar.classList.add("navbar--hidden");
+				isNavbarVisible = false;
+			}
+		}
+
+		function showNavbar() {
+			if (!isNavbarVisible) {
+				navbar.classList.remove("navbar--hidden");
+				isNavbarVisible = true;
+			}
+		}
+
+		// Attach scroll listener
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		// Cleanup on page unload (prevents memory leaks)
+		window.addEventListener("beforeunload", () => {
+			window.removeEventListener("scroll", handleScroll);
+		});
+	});
+</script>
+<main><section class="faq-section">
+	<div class="container">
+		<h2 class="faq-main-title">Frequently asked questions</h2>
+
+		<div class="faq-content">
+			
+			<div class="faq-subsection">
+				<h3 class="faq-subsection-title">Product overview</h3>
+
+				<div class="faq-items">
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What is Caution?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>Caution is a verifiable compute platform that adds an extra layer of integrity guarantees on top of confidential compute. It cryptographically links the code running inside an enclave back to the reviewed source code, build inputs, and configuration that produced the enclave image, so anyone can verify what is running in production.</p>
+<p>Caution currently supports deployments on AWS Nitro Enclaves, with additional attestation backends in active development.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What does Caution support today?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Caution supports reproducible enclave deployments on AWS Nitro, including verified deployments and a CLI-first workflow for Linux and macOS. We work closely with customers as we continue expanding the platform.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What is verifiable compute?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Verifiable compute is a method of using confidential compute /
+  TEE workloads in a way as to give them the ability to prove
+  exactly what software is running on a server using cryptography
+  and hardware. Instead of trusting that a system behaved as
+  intended, you get cryptographic evidence of the code,
+  configuration, dependencies, and kernel that were actually used
+  during execution.
+</p>
+<p>
+  It turns opaque infrastructure into something you can inspect,
+  reproduce, and verify. No black boxes. No guesswork. No relying
+  on a provider's promises.
+</p>
+<p>Learn more about <a href="https://docs.caution.co/concepts/verifiability/" target="_blank" rel="noopener noreferrer">verifiability</a> in the docs.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What problems does verifiable compute solve?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Verifiable compute solves the fundamental problem of trust in
+  remote systems. When you run code on infrastructure you don't
+  physically control, you're trusting that the operator hasn't
+  modified the software, that the system hasn't been compromised,
+  and that what's running matches what was deployed.
+</p>
+<p>
+  With verifiable compute, you eliminate this trust requirement.
+  You get cryptographic proof of exactly what's running, allowing
+  third parties to independently verify your claims, customers to
+  trust your security posture, and auditors to confirm compliance
+  without taking your word for it.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Does Caution replace AWS Nitro Enclaves?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>No. Caution builds on top of AWS Nitro Enclaves, not instead of them. Nitro provides hardware-level isolation and attestation. Caution extends those guarantees by linking enclave measurements back to auditable source code and reproducible builds.</p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="faq-subsection">
+				<h3 class="faq-subsection-title">Verifiability</h3>
+
+				<div class="faq-items">
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Why is verifiability important if I already use confidential compute?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Confidential compute protects data while it's being processed,
+  but it doesn't tell anyone what code is doing the processing. An
+  enclave could be running malicious software or a backdoored
+  version of your application, and confidential compute alone
+  wouldn't reveal that.
+</p>
+<p>
+  Verifiability completes the picture. It lets external parties
+  confirm not just that data is protected, but that the right
+  software is protecting it. Without verifiability, you're asking
+  people to trust your word about what's running inside the
+  enclave.
+</p>
+<p>Learn more about <a href="https://docs.caution.co/concepts/verifiability/" target="_blank" rel="noopener noreferrer">verifiability</a>.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What can verifiable compute prove and what can it not prove?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Verifiable compute can prove: exactly what code was used to
+  build the software running in an enclave. It ties together the
+  source code, which can be reviewed as a result, and the code
+  that's running on a server (in an enclave).
+</p>
+<p>
+  It cannot prove: that the code itself is free of bugs or
+  vulnerabilities, that the logic does what you intend, that the
+  hardware and firmware implementation is secure, or that external
+  dependencies behave correctly. Verifiable compute proves what's
+  running, not that what's running is correct.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>How is verifiable compute different from zero knowledge proofs?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Zero knowledge proof (ZKP) technology lets you prove that a
+  computation was done correctly without revealing the inputs or
+  intermediate steps. They're powerful for privacy-preserving
+  verification, and pre-computing but they're computationally
+  expensive and only prove the math was right &mdash; not what software
+  actually ran.
+</p>
+<p>
+  Verifiable compute proves what code executed, how it was built,
+  and where it ran. It gives you full-stack transparency: the
+  source, the build, the dependencies, the kernel, and the runtime
+  environment. You're not just verifying a result &mdash; you're
+  verifying the entire system that produced it.
+</p>
+<p>
+  In other words, these technologies are complementary. ZKP
+  technologies running on top of verifiable compute have better
+  trust guarantees. Without verifiable compute, ZKPs can be
+  tampered with.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Do I need special hardware to use verifiable compute?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Yes, verifiable compute relies on confidential compute and TEE
+  hardware. This is what provides the hardware "trust anchors" for
+  the system. These technologies span AWS Nitro, AMD SEV, Intel
+  TDX, TPM2.
+</p>
+<p>Learn more about <a href="https://docs.caution.co/concepts/attestation/" target="_blank" rel="noopener noreferrer">hardware attestations</a>.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>How do I verify what is running after deployment?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Without rebuilding from source, you're trusting whoever built
+  the image. Caution solves this with two verification modes:
+  reproduce (full verification) and PCR (quick verification).
+</p>
+<p>
+  <strong>Reproduce mode</strong> is the gold standard. It
+  rebuilds the enclave image from source and compares it against
+  the live attestation, giving you the strongest possible
+  guarantee that the runtime matches the code you can audit.
+</p>
+<p>
+  <strong>PCR mode</strong> is faster. If you've already done a
+  reproduce verification (or trust someone who has), you can
+  verify future attestations against known PCR values without
+  rebuilding. This requires trusting the source of the PCR file,
+  making it useful for quick checks but not true verification.
+</p>
+<p>Follow the <a href="https://docs.caution.co/guides/verify-an-app/" target="_blank" rel="noopener noreferrer">Verify an app</a> guide for the full workflow.</p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="faq-subsection">
+				<h3 class="faq-subsection-title">Deployment options</h3>
+
+				<div class="faq-items">
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Which deployment options are available?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>Caution offers bring-your-own-compute and fully managed deployment options. Because Caution is open source, teams can also self-host it if they want to operate deployments independently.</p>
+<p>Compare the options in the <a href="https://docs.caution.co/reference/deployment-models/" target="_blank" rel="noopener noreferrer">deployment models</a> reference.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Which deployment option is right for my team?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  <strong>Self-hosted</strong> is for teams that want full control over their infrastructure and deployment; you run Caution on your own stack under <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank" rel="noopener noreferrer">AGPLv3</a> and keep the enclave lifecycle in-house. To self-host Caution without the AGPLv3 obligations, <a href="contact.html">contact us</a> for commercial licence.
+</p>
+<p>
+  <strong>Bring your own compute</strong> fits teams that want to run Caution enclaves in their own cloud account, starting with AWS, while Caution manages the enclave infrastructure and verifiable deployments.
+</p>
+<p>
+  <strong>Fully managed</strong> is for teams that want the fastest path to production, with Caution hosting and managing deployments end to end.
+</p>
+<p>Compare the options in the <a href="https://docs.caution.co/reference/deployment-models/" target="_blank" rel="noopener noreferrer">deployment models</a> reference.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Can I run Caution entirely on my own infrastructure?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>Yes.
+  You can deploy Caution on your infrastructure under <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPLv3</a> or a commercial licence.
+</p>
+<p>
+  Alternatively, you can host in your own AWS account with Caution-managed provisioning and deployment.
+</p>
+<p>Compare the options in the <a href="https://docs.caution.co/reference/deployment-models/" target="_blank" rel="noopener noreferrer">deployment models</a> reference.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Does verifiable compute slow down my workloads?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  The overhead is minimal and typically negligible. Verifiable compute adds
+  transparency, not overhead. The verification and attestation
+  processes run alongside your workload and don't affect its
+  runtime performance. Once a workload begins executing, it runs
+  at native speed. The attestation endpoint exists alongside the
+  workload.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>How do I get started with Caution?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p><a href="contact.html">Book 20 minutes</a> with one of our engineers. We’ll discuss your goals, answer technical questions, and help you get ready to deploy with Caution.</p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="faq-subsection">
+				<h3 class="faq-subsection-title">Security and trust</h3>
+
+				<div class="faq-items">
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What threats does Caution protect against?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Caution protects against tampering with deployed software,
+  unauthorised modifications by cloud providers or administrators,
+  supply chain attacks where build artifacts are swapped, and
+  situations where operators claim to run one thing but actually
+  run another. It provides cryptographic proof that what's running
+  matches what was built from a specific source.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What threats are outside the model?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Verifiable compute does not protect against bugs or
+  vulnerabilities in the code itself, flaws in the hardware TEE
+  implementation, compromised source repositories, or denial of
+  service attacks. It also doesn't verify the correctness of
+  business logic. The security guarantees are about what code
+  runs, not whether that code is secure or correct.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>What happens if an attestation fails?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  A failed attestation means the running enclave doesn't match
+  what you expected. This could indicate tampering, a deployment
+  error, or a version mismatch. You should treat it as a serious
+  security event: stop interacting with the enclave, investigate
+  the cause, and redeploy from known source if necessary. The
+  appropriate response depends on your threat model and
+  operational procedures.
+</p>
+<p>The <a href="https://docs.caution.co/guides/verify-an-app/" target="_blank" rel="noopener noreferrer">Verify an app</a> guide covers verification failure handling.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Do I need to trust Caution to use verifiable compute?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  No. Every deployment is verifiable: enclave images are
+  reproducible (rebuild it yourself and check the hashes), all
+  components are open source, and the CLI runs locally with
+  verification happening on your machine.
+</p>
+<p>
+  Even if Caution's infrastructure were completely compromised, an
+  attacker couldn't deploy malicious code without it being
+  detectable via reproduce verification.
+</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="faq-item">
+						<button class="faq-question" aria-expanded="false">
+							<span>Is Caution open source?</span>
+							<svg
+								class="faq-icon"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<line x1="12" y1="5" x2="12" y2="19"></line>
+								<line x1="5" y1="12" x2="19" y2="12"></line>
+							</svg>
+						</button>
+						<div class="faq-answer">
+							<div>
+								<p>
+  Yes. Caution is fully open source, which is essential for
+  verifiable compute. You can't ask people to trust a verification
+  system they can't inspect. Open source means you can audit the
+  build process, verify our tooling does what we claim, and even
+  run the entire system yourself if you prefer.
+</p>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const faqQuestions = document.querySelectorAll(".faq-question");
+
+		faqQuestions.forEach(function (question) {
+			question.addEventListener("click", function () {
+				const faqItem = this.parentElement;
+				const isExpanded = this.getAttribute("aria-expanded") === "true";
+
+				// Close all other FAQ items
+				faqQuestions.forEach(function (otherQuestion) {
+					if (otherQuestion !== question) {
+						otherQuestion.setAttribute("aria-expanded", "false");
+						otherQuestion.parentElement.classList.remove("is-active");
+					}
+				});
+
+				// Toggle current FAQ item
+				this.setAttribute("aria-expanded", !isExpanded);
+				faqItem.classList.toggle("is-active");
+			});
+		});
+	});
+</script>
+<section class="cta-section-block">
+	<div class="container">
+		<div class="cta-section-block__inner">
+			<div class="cta-section-block__left">
+				<h2 class="cta-section-block__title">Get started</h2>
+				<div class="cta-group">
+					<a href="contact.html" class="cta-btn">Book a live demo</a>
+					
+					<a href="platform-tour.html" class="cta-link">
+						Watch the tour
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="M5 12h14"></path>
+							<path d="m12 5 7 7-7 7"></path>
+						</svg>
+					</a>
+					
+				</div>
+			</div>
+			<div class="cta-section-block__right">
+				<p class="cta-section-block__description">Deploy confidential compute in minutes. Prove exactly what is running in production, from source code to live enclave.</p>
+			</div>
+		</div>
+	</div>
+</section>
+</main>
+		</div><footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-inner container">
+			<div class="footer-content">
+				<div class="footer-brand">
+					<a href="index.html" class="footer-logo">
+						<img
+							src="assets/base/caution-logo/caution.svg"
+							alt="Caution logo"
+							width="781"
+							height="137"
+						/>
+					</a>
+					<p class="footer-description">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--tablet">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--mobile">
+						Confidential compute you can verify.
+					</p>
+					</div>
+
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3 class="footer-column-title">Platform</h3>
+						<a href="https://dashboard.caution.co/" class="footer-link">Dashboard</a>
+						<a href="platform-tour.html" class="footer-link">Platform tour</a>
+						<a href="cloud/aws.html" class="footer-link">AWS Nitro</a>
+						<a href="faq.html" class="footer-link">FAQ</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Resources</h3>
+						<a
+							href="https://docs.caution.co/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Documentation</a
+						>
+						<a href="pricing.html" class="footer-link">Pricing</a>
+						<a href="blog.html" class="footer-link">Blog</a>
+						<a href="security-controls.html" class="footer-link">Security</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Company</h3>
+						<a href="about.html" class="footer-link">About</a>
+						<a href="contact.html" class="footer-link">Contact</a>
+						<a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer" class="footer-link">Community</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 Caution SEZC. All rights reserved.
+				</p>
+				<nav class="footer-legal-links">
+					<a href="privacy.html" class="footer-legal-link">Privacy</a>
+					<a href="terms.html" class="footer-legal-link">Terms</a>
+					<a href="legal/refunds.html" class="footer-legal-link">Refunds</a>
+				</nav>
+				<div class="footer-social">
+					<a
+						href="https://codeberg.org/Caution/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Git"
+						title="Access source code and documentation"
+						class="footer-social-link"
+					>
+						<img src="assets/base/social/git-logo-white.svg" alt="Git" width="92" height="92" />
+					</a>
+					<a
+						href="https://mstdn.social/@caution"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Mastodon"
+						title="Follow us on Mastodon"
+						class="footer-social-link"
+					>
+						<img src="assets/base/social/Mastodon-logo.svg" alt="Mastodon" width="17" height="20" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://caution.co/feed.xml" rel="self" type="application/atom+xml" /><link href="https://caution.co/" rel="alternate" type="text/html" /><updated>2026-08-18T21:13:09+00:00</updated><id>https://caution.co/feed.xml</id><title type="html">Caution</title><subtitle>The first generalized verifiable compute platform. Deploy to TEEs in minutes and let anyone verify exactly what&apos;s running.</subtitle><entry><title type="html">Post-Mythos security: the case for confidential compute</title><link href="https://caution.co/blog/post-mythos-security-confidential-compute.html" rel="alternate" type="text/html" title="Post-Mythos security: the case for confidential compute" /><published>2026-08-12T00:00:00+00:00</published><updated>2026-08-12T00:00:00+00:00</updated><id>https://caution.co/blog/post-mythos-security-confidential-compute</id><content type="html" xml:base="https://caution.co/blog/post-mythos-security-confidential-compute.html"><![CDATA[<div class="tldr-callout">
+
+  <div class="tldr-callout__header">
+<span class="tldr-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+</span>
+<span class="tldr-callout__title">TL;DR</span>
+</div>
+
+  <p>Mythos-class models have made sophisticated vulnerability discovery and exploit development cheaper, faster, and easier to scale. Organisations should assume that weaknesses in widely deployed software will be found and exploited quickly, making rigorous defence in depth a baseline for critical workloads.</p>
+
+  <p>Confidential computing should be part of that baseline. Hardware-backed trusted execution environments isolate workloads from hosts and infrastructure administrators, while remote attestation and reproducible builds can make supply-chain compromise, workload substitution, host compromise, and unauthorised access to data or secrets detectable or less damaging. The precise guarantees depend on the TEE and deployment architecture.</p>
+
+  <p>Caution packages these protections into a practical platform: workloads run inside secure enclaves, traffic can remain encrypted until it reaches the enclave, and fresh hardware-backed attestations can be verified against deterministic builds from source. Caution reproducibly builds the toolchain, platform, operating system, and application when the application and its inputs are reproducible. For critical systems, omitting comparable protections should require an explicit security justification.</p>
+
+</div>
+
+<div class="post-toc-inline">
+
+  <p><span class="section-label toc-label">Table of contents</span></p>
+
+  <!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#post-mythos-security-changes-the-infrastructure-threat-model" id="markdown-toc-post-mythos-security-changes-the-infrastructure-threat-model">Post-Mythos security changes the infrastructure threat model</a></li>
+  <li><a href="#confidential-computing-should-be-a-security-baseline" id="markdown-toc-confidential-computing-should-be-a-security-baseline">Confidential computing should be a security baseline</a></li>
+  <li><a href="#from-remote-attestation-to-verifiable-compute" id="markdown-toc-from-remote-attestation-to-verifiable-compute">From remote attestation to verifiable compute</a></li>
+  <li><a href="#source-to-runtime-software-supply-chain-security" id="markdown-toc-source-to-runtime-software-supply-chain-security">Source-to-runtime software supply chain security</a></li>
+  <li><a href="#a-responsible-adoption-path" id="markdown-toc-a-responsible-adoption-path">A responsible adoption path</a></li>
+  <li><a href="#the-burden-of-justification-has-shifted" id="markdown-toc-the-burden-of-justification-has-shifted">The burden of justification has shifted</a></li>
+</ol>
+
+</div>
+
+<h2 id="post-mythos-security-changes-the-infrastructure-threat-model">Post-Mythos security changes the infrastructure threat model</h2>
+
+<p>Anthropic describes Claude Mythos Preview as a pivotal moment for cybersecurity. In testing, Mythos developed exploit primitives, combined them into end-to-end attack chains, and found and exploited vulnerabilities across major operating systems and browsers. Engineers without formal security training were able to ask it to find remote code execution vulnerabilities overnight and return to working exploits.</p>
+
+<p>The permanent shift in what this means for securing systems is significant. Expertise, funds and time once constrained sophisticated attacks; organisations can no longer treat that scarcity as an implicit security control. The cost of some forms of vulnerability discovery and exploit development is falling sharply, and as the cost of tokens for LLM usage becomes even lower, the problem will be exacerbated.</p>
+
+<p>There is also an emerging asymmetry in who has access to these capabilities. OpenAI limits access to GPT-5.5-Cyber through Daybreak to verified defenders, while Anthropic limits Mythos 5 to a small group of vetted partners. At the same time, increasingly capable open-weight models are becoming broadly available. Moonshot’s Kimi K3 is a recent example, with publicly released model weights and strong capabilities across coding, reasoning, and agentic tasks. An adversary can self-host and adapt an open-weight model without depending on continued access from a model provider that’s gating capabilities. Defenders that rely on gated frontier models may not have equivalent access. As open-weight models continue to improve, organisations should assume that sophisticated offensive capabilities will diffuse broadly, regardless of whether the most capable proprietary systems remain restricted. Defenders should make sure they have access to capable models too, including open-weight models where appropriate.</p>
+
+<p>Defenders gain powerful tools too. Models can accelerate code review, triage, patch development, and migration away from unsafe components. But an attacker needs one exploitable path, while a defender must protect the whole system and deploy every fix. Post-Mythos security therefore has to combine faster defensive work with infrastructure designed so that compromise of one layer does not automatically compromise the entire system.</p>
+
+<p>Traditional security controls remain essential, but cannot by themselves protect a workload when a vulnerability is exploited before a fix exists, a build or deployment system substitutes different code, or a compromised host, privileged administrator, or cloud operator gains access to a workload’s memory and credentials.</p>
+
+<p>Software supply chain security has to cover the full path from source and build tools to the platform, operating system, deployment, and live runtime. Policies, access controls, software bills of materials, scanners, and signed artefacts all help, but none independently proves that a remote service is isolated from its operator or matches inspectable source.</p>
+
+<p>For low-impact services, organisations may accept that gap. For systems that hold signing keys, process sensitive data, control customer assets, or give AI agents production credentials, isolation and independent verification should be the default, not capabilities omitted because they were too difficult to deploy.</p>
+
+<h2 id="confidential-computing-should-be-a-security-baseline">Confidential computing should be a security baseline</h2>
+
+<p>Confidential computing protects data in use by running software inside a hardware-backed trusted execution environment, or TEE. The TEE creates a boundary that the surrounding host cannot ordinarily inspect or modify, even with administrator access. Depending on the hardware and deployment model, it can reduce the trust placed in the host operating system, hypervisor, cloud operator, and other surrounding infrastructure.</p>
+
+<p>That boundary addresses several important attack classes:</p>
+
+<ul>
+  <li><strong>Host, administrator, and cloud operator compromise.</strong> Access to the surrounding infrastructure does not automatically grant access to memory, code, data, or keys inside the protected workload.</li>
+  <li><strong>Data-in-use and secret exposure.</strong> Sensitive data is processed inside hardware-isolated memory, and credentials can be released only to an approved environment.</li>
+  <li><strong>Workload substitution.</strong> Remote attestation supplies signed measurements that verifiers and key-management policies can compare with an approved identity.</li>
+  <li><strong>Infrastructure-level lateral movement.</strong> A compromised host does not have to expose every sensitive workload protected by a hardware isolation boundary.</li>
+</ul>
+
+<p>Major cloud platforms and standards bodies increasingly treat confidential computing and remote attestation as core cloud security components. Continuing to place high-value workloads directly inside infrastructure that administrators or compromised hosts can inspect is an avoidable concentration of risk. This is especially important for AI agents, which execute generated code, process untrusted inputs, and often hold powerful credentials. Confidential computing can add a hardware-enforced boundary around an agent and its secrets as well as components surrounding it. Of course, this does not replace application sandboxing, least privilege, capability restrictions, or network controls.</p>
+
+<p>Confidential computing does not prove that application logic is correct or prevent every side channel, denial-of-service attack, or vulnerability inside the protected workload. It changes the trust boundary and can prevent a failure elsewhere in the infrastructure from automatically exposing a critical workload.</p>
+
+<h2 id="from-remote-attestation-to-verifiable-compute">From remote attestation to verifiable compute</h2>
+
+<p>Isolation answers whether the surrounding infrastructure can read or alter a workload. Remote attestation uses hardware-backed cryptography to provide signed evidence about the measured software environment running on a server.</p>
+
+<p>A code measurement is only a hash. If a verifier cannot reproduce it from auditable source, the attested image remains an opaque binary. Attestation alone does not establish the provenance of the compiler, operating system, libraries, platform services, and application inside the image.</p>
+
+<p>Verifiable compute closes that gap by connecting the live hardware measurement to the source and build process that produced it. Doing this properly requires more than a reproducible application: the toolchain, platform, and operating system are part of the trusted computing base too.</p>
+
+<p>Caution supplies both layers. It deploys hardware-isolated workloads with remote attestation and support for end-to-end encrypted application traffic that terminates inside of the TEE. Its build process uses StageX, a toolchain built through a full-source bootstrap, combines the application with a minimal EnclaveOS environment, and produces a deterministic enclave image.</p>
+
+<p>For a reproducible deployment, verification then follows a simple path:</p>
+
+<ol>
+  <li>Caution reproducibly builds the platform, operating system, and application and runs the result inside a secure enclave.</li>
+  <li>The live workload returns a fresh, hardware-signed attestation containing its measurement.</li>
+  <li>A verifier rebuilds the environment from source and compares the expected measurement with the live one. Alternatively, the verifier uses separately approved expected measurements.</li>
+  <li>A match provides cryptographic evidence that the isolated runtime was launched from the measured image built from the source and configuration that were reviewed.</li>
+</ol>
+
+<p>For network services, the request, encrypted channel, or secret release must also be bound to the attested enclave so that a valid attestation cannot be presented while traffic is routed to a different workload.</p>
+
+<h2 id="source-to-runtime-software-supply-chain-security">Source-to-runtime software supply chain security</h2>
+
+<p>Connecting source to an isolated runtime makes deployment integrity measurable:</p>
+
+<ul>
+  <li>Security teams can verify that a reviewed release, rather than a stale or substituted image, is serving production traffic.</li>
+  <li>Unauthorised changes to measured code or configuration produce a different result and fail verification.</li>
+  <li>Customers, auditors, and partners can verify a deployment without relying only on policies, screenshots, or a vendor-controlled dashboard.</li>
+</ul>
+
+<p>Reproducibility does not prove that the source is vulnerability-free; compromised source will reproduce compromised software. Its value is concrete: unauthorised changes can no longer hide in an opaque build or deployment process, while confidential computing protects the verified workload from its host.</p>
+
+<h2 id="a-responsible-adoption-path">A responsible adoption path</h2>
+
+<p>Not every service has the same risk, and an entire estate need not move at once. Start where host access, silent code changes, or supply chain compromise would have the highest cost:</p>
+
+<ul>
+  <li>Signing, authorisation, custody, and payment services</li>
+  <li>AI agents with production credentials or authority to take external actions or access sensitive data</li>
+  <li>Inference endpoints processing private or regulated data</li>
+  <li>Identity, key-management, and secret-handling systems</li>
+  <li>Software build, verification, and release infrastructure</li>
+  <li>Systems managing confidential and sensitive data</li>
+</ul>
+
+<p>For those systems, architecture reviews should ask whether data is protected while in use, whether administrators can access it, whether secrets are released only to approved workloads, whether the measured software environment can be reproduced from source, and whether production matches that approved build.</p>
+
+<p>Caution integrates these controls into a practical deployment workflow, so teams can adopt verifiable compute without assembling a specialist confidential-computing team or replacing every CI/CD and change-management process.</p>
+
+<p>Point-in-time verification should ultimately become continuous attestation monitoring. We have built Canary to request fresh attestations on an ongoing basis, compare them with approved reproducible releases, and alert when a deployment changes, becomes unverifiable, or stops responding.</p>
+
+<h2 id="the-burden-of-justification-has-shifted">The burden of justification has shifted</h2>
+
+<p>As exploitation becomes cheaper and more scalable, security architectures can no longer depend on every layer of the infrastructure remaining uncompromised. Critical services need smaller trust boundaries, hardware isolation, and independently verifiable deployments.</p>
+
+<p>Confidential computing provides the isolation and remote attestation. Caution makes those protections practical to use and completes the chain with a reproducible, full-source build process. In the post-Mythos era, enterprises should have to explain why their most critical workloads are safe without these protections, not why they need them.</p>
+
+<p>Supply-chain attacks such as SolarWinds could have been detected—and prevented from reaching customers if reproducible verification had been enforced as a release gate.</p>
+
+<p>If you are evaluating confidential computing, software supply chain security, or verifiable infrastructure for critical workloads, <a href="/contact.html#book">talk to a Caution engineer</a> for a free consultation.</p>]]></content><author><name>Anton Livaja</name></author><category term="analysis" /><summary type="html"><![CDATA[Mythos-class models have made sophisticated vulnerability discovery and exploit development cheaper, faster, and easier to scale.]]></summary></entry><entry><title type="html">TEE.fail does not make confidential computing security theatre</title><link href="https://caution.co/blog/tee-fail-security-theatre.html" rel="alternate" type="text/html" title="TEE.fail does not make confidential computing security theatre" /><published>2026-08-06T00:00:00+00:00</published><updated>2026-08-06T00:00:00+00:00</updated><id>https://caution.co/blog/tee-fail-security-theatre</id><content type="html" xml:base="https://caution.co/blog/tee-fail-security-theatre.html"><![CDATA[<div class="tldr-callout">
+
+  <div class="tldr-callout__header">
+<span class="tldr-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+</span>
+<span class="tldr-callout__title">TL;DR</span>
+</div>
+
+  <p><a href="https://tee.fail/">TEE.fail</a> and related research demonstrate several practical physical attacks against confidential-computing hardware. Depending on the platform, researchers have extracted workload keys, recovered attestation keys, forged measurements, replayed protected memory, and composed a CPU compromise into a false GPU attestation. Those results should change how some systems are designed and how the technology is marketed. They do not make confidential computing security theater. Confidential compute can still remove powerful software actors, including a compromised host, hypervisor, or cloud administrator, from the trust boundary. A control can provide meaningful security without defeating every attacker.</p>
+
+</div>
+
+<div class="post-toc-inline">
+
+  <p><span class="section-label toc-label">Table of contents</span></p>
+
+  <!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#what-the-physical-attacks-proved" id="markdown-toc-what-the-physical-attacks-proved">What the physical attacks proved</a></li>
+  <li><a href="#what-the-attacks-did-not-prove" id="markdown-toc-what-the-attacks-did-not-prove">What the attacks did not prove</a></li>
+  <li><a href="#where-the-criticism-is-justified" id="markdown-toc-where-the-criticism-is-justified">Where the criticism is justified</a></li>
+  <li><a href="#nitro-makes-a-different-trade-off" id="markdown-toc-nitro-makes-a-different-trade-off">Nitro makes a different trade-off</a></li>
+  <li><a href="#why-caution-is-designed-for-hardware-diversity" id="markdown-toc-why-caution-is-designed-for-hardware-diversity">Why Caution is designed for hardware diversity</a></li>
+  <li><a href="#security-theater-is-the-wrong-conclusion" id="markdown-toc-security-theater-is-the-wrong-conclusion">Security theater is the wrong conclusion</a></li>
+  <li><a href="#further-reading" id="markdown-toc-further-reading">Further reading</a></li>
+</ol>
+
+</div>
+
+<h2 id="what-the-physical-attacks-proved">What the physical attacks proved</h2>
+
+<p>TEE.fail is an ongoing security research effort, not one generic key-extraction exploit. It builds on a line of physical memory attacks whose methods and consequences depend on the hardware:</p>
+
+<ul>
+  <li><a href="https://wiretap.fail/">WireTap</a> passively observed DDR4 memory traffic and used Intel’s deterministic memory encryption to recover an SGX attestation key. Its main result was a confidentiality failure that became an attestation failure.</li>
+  <li><a href="https://batteringram.eu/">Battering RAM</a> used an active interposer costing less than $50 to create dynamic memory aliases. On Intel SGX, it enabled plaintext reads and writes through ciphertext replay. On AMD SEV-SNP, it replayed a valid launch measurement so a modified VM could be attested as genuine.</li>
+  <li><a href="https://tee.fail/">TEE.fail</a> brought passive bus observation to DDR5 systems with equipment costing less than $1,000, then followed different exploit paths on each platform. On Intel SGX and TDX, the researchers extracted a provisioning certification key and forged attestations. On AMD SEV-SNP with Ciphertext Hiding enabled, they extracted an OpenSSL ECDSA workload key. For Nvidia confidential computing, they exploited its dependence on the CPU trust domain to present a genuine GPU attestation while running the workload without TEE protection.</li>
+</ul>
+
+<p>The application-level consequences were different again. The researchers extracted configuration secrets and demonstrated undetectable front-running against BuilderNet, directly recovered a Secret Network node’s ECDH key without attacking its quoting enclave, and showed TDX and GPU-attested applications running outside TEE protection.</p>
+
+<p>These attacks share a requirement for access to the physical memory path, but they do not all break the same component or security property. Depending on the platform and system design, physical access became memory disclosure, memory modification, workload-key theft, attestation-key theft, forged measurements, or misuse of a neighboring hardware trust chain. The variety is the point.</p>
+
+<p>The equipment was built from readily available parts and ranged from less than $50 to less than $1,000. That price matters. Describing all physical attacks as prohibitively sophisticated is no longer credible. At the same time, some attacks do require more expensive equipment such as electron microscopes.</p>
+
+<p>There is also a genuine disagreement about scope. Intel and AMD classify this kind of physical interposition as outside their threat models and recommend physical security rather than a firmware mitigation. Yet the Confidential Computing Consortium’s <a href="https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_Updated_November_2022.pdf">technical analysis</a> lists bus monitoring among the basic physical attacks considered in scope, while excluding more invasive techniques such as chip scraping and electron-microscope probing.</p>
+
+<p>TEE.fail therefore exposed more than a clever attack. It exposed a gap between what users may reasonably understand confidential computing to protect and what particular hardware vendors actually promise. That gap deserves direct language, not marketing evasions.</p>
+
+<h2 id="what-the-attacks-did-not-prove">What the attacks did not prove</h2>
+
+<p>These attacks did not show that a remote attacker, a malicious hypervisor, or a cloud administrator can simply read a confidential workload’s memory. They did not erase the isolation that confidential compute provides against those actors. They showed several ways an attacker who can reach the correct physical machine and instrument its memory path can cross that boundary on the tested platforms.</p>
+
+<p>Those are different threat models.</p>
+
+<p>Confidential computing exists primarily because conventional cloud security gives privileged infrastructure software and its operators enormous power. Confidential compute can prevent the host operating system, hypervisor, and administrators from inspecting or silently modifying a workload. Remote attestation can let a user verify the measured environment before releasing data or keys. Neither property becomes imaginary because a separate physical attack exists.</p>
+
+<p>Calling the entire field security theatre makes the perfect the enemy of the materially safer. TLS does not become theatre because a compromised endpoint can read plaintext. Full-disk encryption does not become theatre because it cannot protect a machine after it has been unlocked. Security controls are evaluated against specific attackers, not against omnipotence or a cherry-picked set of conditions under which they fail.</p>
+
+<p>The honest claim is not that confidential compute makes a remote machine trustless. It is that confidential compute can drastically reduce whom and what must be trusted. TEE.fail, WireTap, and Battering RAM tell us that physical custody of affected Intel and AMD servers remains in that reduced trust boundary.</p>
+
+<h2 id="where-the-criticism-is-justified">Where the criticism is justified</h2>
+
+<p>The physical-access limitation matters differently in different deployments. A workload running in a tightly controlled hyperscale data center has independent physical safeguards between an attacker and a specific server. A machine deployed at an untrusted edge location does not. A permissionless network that assumes the operator may be actively malicious should not quietly assume that the operator will decline to open the case.</p>
+
+<p>The criticism is also justified when a single confidential compute server, one long-lived secret, or one attestation path can authorize an irreversible, high-value action. In that design, extracting a workload key, forging an attestation, or replaying a trusted measurement can become a systemic failure. Physical access may be harder than a remote exploit, but a large enough reward changes the economics.</p>
+
+<p>Systems with those risks need more than simply hitting things with confidential compute: explicit physical-security assumptions, short-lived secrets, limited blast radius, monitoring and recovery paths, and independent machines, providers, or hardware roots that must agree. Attestation proves something about a measured environment; it should not be mistaken for a complete system architecture.</p>
+
+<h2 id="nitro-makes-a-different-trade-off">Nitro makes a different trade-off</h2>
+
+<p>AWS Nitro Enclaves deserve separate treatment. Nitro is in some ways a weaker and less open trust model than CPU-vendor TEEs. Its isolation depends on AWS’s Nitro system and hypervisor, its attestations depend on the AWS Nitro PKI, and customers cannot buy an equivalent attestation-capable platform to inspect and operate independently. You must trust AWS more.</p>
+
+<p>That centralization also has something going for it. A production-capable Nitro platform is not commodity hardware an attacker can easily buy and operate outside AWS, and production machines are held inside AWS data centers. An attack requiring hardware access must therefore cross a substantial physical and operational boundary before its low component cost becomes relevant. Nitro’s public guarantees focus on isolation from the parent instance, not defense against an attacker who has opened the physical server. This is not cryptographic resistance to a memory-bus attack. It is a practical increase in the cost and detectability of getting close enough to attempt one.</p>
+
+<p>Nitro’s <a href="https://docs.aws.amazon.com/enclaves/latest/user/verify-root.html">attestation format</a> adds useful provenance as well. AWS-signed attestation documents include a module ID and enclave measurements, while <a href="https://docs.aws.amazon.com/enclaves/latest/user/set-up-attestation.html">PCR4 contains a hash of the parent EC2 instance ID</a>. A verifier or KMS policy can therefore restrict trust to an enclave running on a particular EC2 instance, rather than accepting any machine that presents the expected code measurement.</p>
+
+<p>That is an EC2 instance identity, not an immutable physical server identity, and AWS remains the authority asserting it. Still, the combination of controlled hardware availability, data-center custody, and AWS-signed instance provenance makes the operational threat meaningfully different from a permissionless network of commodity TDX or SEV-SNP machines. Nitro gives up openness and vendor independence in exchange for a more controlled deployment perimeter. Whether that is a good trade depends on whom the system is trying not to trust. Every confidential compute solution has very real security tradeoffs and there is unfortunately no one solution to fit all threat models.</p>
+
+<h2 id="why-caution-is-designed-for-hardware-diversity">Why Caution is designed for hardware diversity</h2>
+
+<p>These differences are why Caution is not treating every type of confidential compute as interchangeable or forcing every workload onto one hardware root. Caution supports AWS Nitro Enclaves today. Support for Intel TDX, AMD SEV-SNP, TPM 2.0, Nvidia CC and additional cloud backends, and bare-metal deployments is in active development.</p>
+
+<p>The goal is a common source-to-runtime verification workflow across those environments. A team should be able to choose Nitro when AWS’s controlled operational perimeter fits its threat model, a CPU-vendor TEE when memory encryption or independence from the cloud provider matters more, or bare metal when it needs direct control of physical custody. The hardware should be a deployment and security decision, not a permanent platform constraint. We also want to make it easy to move between solutions as you go from development to production, or start taking on higher risk users.</p>
+
+<p>Hardware diversity also enables stronger compositions. The same reviewed source, release, and security policy can be built for and attested by different hardware roots. A system may accept any one approved backend, a single backend to be attested to by multiple-hardware or require independent deployments on different providers or hardware families to agree before authorizing a high-value action. The resulting measurements will not necessarily be identical across architectures; what can be verified is that each measured workload corresponds to the same approved source and policy.</p>
+
+<p>This does not eliminate shared vulnerabilities, and diversity only helps when the trust roots and failure modes are genuinely independent. It does mean that a compromise of one vendor, attestation service, or physical environment does not automatically have to compromise the whole system. TEE.fail is a strong argument for making that choice available.</p>
+
+<h2 id="security-theater-is-the-wrong-conclusion">Security theater is the wrong conclusion</h2>
+
+<p>Security theater is a control that creates reassurance without meaningfully changing an attacker’s capabilities. Confidential computing does change them. It can turn a compromised host or a curious administrator from an all-powerful observer into an actor blocked by a hardware boundary. That is a substantial improvement even when the boundary is not absolute.</p>
+
+<p>The right response to TEE.fail is to state the residual trust precisely. Do not claim protection against an attacker with invasive access to the server when the hardware does not provide it.</p>
+
+<p>TEE.fail makes the case for better threat modelling, stronger and more diverse hardware, and defence in depth. It does not make the case for returning sensitive workloads to ordinary servers where every privileged software layer can already read them.</p>
+
+<p>Those asserting that Confidential Compute is useless because it does not stop all possible attacks could just as easily assert that basic sanitation in hospitals is useless because it does not stop all infections.</p>
+
+<p>Confidential computing is a critical component of any organizational security strategy.</p>
+
+<h2 id="further-reading">Further reading</h2>
+
+<ul>
+  <li>TEE.fail researchers, <a href="https://tee.fail/">TEE.fail: Breaking Trusted Execution Environments via DDR5 Memory Bus Interposition</a></li>
+  <li>WireTap researchers, <a href="https://wiretap.fail/">WireTap: Breaking Server SGX via DRAM Bus Interposition</a></li>
+  <li>Battering RAM researchers, <a href="https://batteringram.eu/">Battering RAM: Low-Cost Interposer Attacks on Confidential Computing</a></li>
+  <li>Confidential Computing Consortium, <a href="https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_Updated_November_2022.pdf">A Technical Analysis of Confidential Computing</a></li>
+  <li>Intel, <a href="https://www.intel.com/content/www/us/en/security-center/announcement/intel-security-announcement-2025-10-28-001.html">TEE.fail security announcement</a></li>
+  <li>AMD, <a href="https://www.amd.com/en/resources/product-security/bulletin/amd-sb-3040.html">Compromising Trusted Execution Environments through DDR5 Memory Bus Interposition</a></li>
+  <li>AWS, <a href="https://docs.aws.amazon.com/enclaves/latest/user/verify-root.html">Verifying the Nitro Enclaves root of trust</a></li>
+</ul>]]></content><author><name>Anton Livaja</name></author><category term="analysis" /><summary type="html"><![CDATA[TEE.fail and related research demonstrate several practical physical attacks against confidential-computing hardware.]]></summary></entry><entry><title type="html">The Taiko bridge exploit is a trust-model failure, not a TEE failure</title><link href="https://caution.co/blog/taiko-bridge-exploit.html" rel="alternate" type="text/html" title="The Taiko bridge exploit is a trust-model failure, not a TEE failure" /><published>2026-06-30T00:00:00+00:00</published><updated>2026-06-30T00:00:00+00:00</updated><id>https://caution.co/blog/taiko-bridge-exploit</id><content type="html" xml:base="https://caution.co/blog/taiko-bridge-exploit.html"><![CDATA[<div class="post-toc-inline">
+
+  <p><span class="section-label toc-label">Table of contents</span></p>
+
+  <!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#what-actually-happened" id="markdown-toc-what-actually-happened">What actually happened</a></li>
+  <li><a href="#the-pattern-app-keys-as-roots-of-trust" id="markdown-toc-the-pattern-app-keys-as-roots-of-trust">The pattern: app keys as roots of trust</a></li>
+  <li><a href="#the-fix-anchor-trust-in-the-build" id="markdown-toc-the-fix-anchor-trust-in-the-build">The fix: anchor trust in the build</a></li>
+  <li><a href="#what-a-verifiable-deployment-design-changes" id="markdown-toc-what-a-verifiable-deployment-design-changes">What a verifiable-deployment design changes</a></li>
+  <li><a href="#practical-guidance-even-if-you-never-touch-caution" id="markdown-toc-practical-guidance-even-if-you-never-touch-caution">Practical guidance, even if you never touch Caution</a></li>
+  <li><a href="#where-caution-fits" id="markdown-toc-where-caution-fits">Where Caution fits</a></li>
+  <li><a href="#references" id="markdown-toc-references">References</a></li>
+</ol>
+
+</div>
+
+<p>On June 22, an attacker drained roughly $1.7M from Taiko’s L1 bridge and ERC20 vault. There is no evidence of an Intel SGX break in this incident; the hardware appears to have behaved as specified. The failure was architectural. Taiko had made a single application signing key the root of trust for its SGX prover path, and that key was sitting in a public GitHub repository long enough for an attacker to find and use it.</p>
+
+<p>The lesson most people will take from the headline is “TEEs got hacked.” They didn’t. A team made one key the deciding authority on which provers counted as real, then leaked it. The same mistake is just as possible on other TEEs. The hardware is not the variable that matters here. The real lesson is narrower and older than TEEs: where possible, avoid making a single private key or signature your only anchor of trust. The durable fix is to anchor trust in what the code provably is, not in who signed it.</p>
+
+<p>A note on sourcing before we start: Taiko has not yet published a full post-mortem, and has said in a <a href="https://x.com/taikoxyz/status/2069508717201297746?s=20">June 23rd update</a> that full technical detail will follow in that report. The account below is assembled from the firms that analysed the incident in real time, and we have tried to separate confirmed facts from reasonable inference.</p>
+
+<h2 id="what-actually-happened">What actually happened</h2>
+
+<p>The forensics are consistent across the firms that looked at it. <a href="https://x.com/blockaid_/status/2068832536642326566">Blockaid</a> detected the attack as it happened. BlockSec, through its Phalcon arm, <a href="https://decrypt.co/371769/ethereum-layer-2-taiko-withdraw-bridge-funds-security-breach">traced the likely root cause</a> to the exposed key and named the specific entry point (<code class="language-plaintext highlighter-rouge">SgxVerifier.registerInstance</code>). Independent estimates put the loss at approximately $1.7M. Ledger CTO Charles Guillemet gave <a href="https://incrypted.com/en/ledger-cto-private-key-leak-caused-taiko-hack/">the cleanest architectural read</a> of why it worked.</p>
+
+<p>The chain of events, reconstructed in technical breakdowns by <a href="https://thedefiant.io/news/hacks/taiko-bridge-exploit-sgx-signing-key-github-1-7m">The Defiant</a> and <a href="https://blog.thirdweb.com/taiko-bridge-exploit-explained-how-a-leaked-key-led-to-1-7m-in-forged-withdrawals/">thirdweb</a>:</p>
+
+<ol>
+  <li>Taiko’s Raiko proving stack uses Intel SGX enclaves to generate attestations that Taiko’s L1 bridge contracts accept as proof that L2 state transitions are valid.</li>
+  <li>An RSA-3072 private key, committed as a file called <code class="language-plaintext highlighter-rouge">enclave-key.pem</code>, was left publicly readable in the <code class="language-plaintext highlighter-rouge">taikoxyz/raiko</code> repository on GitHub. It was downloadable by anyone with a GitHub account, and it sat there long enough for an attacker to find and use it.</li>
+  <li>With that key, the attacker registered their own SGX prover. Taiko’s contracts accepted it because their <code class="language-plaintext highlighter-rouge">MRSIGNER</code> check derived from the same public key.</li>
+  <li>The attacker’s prover signed forged attestations for fake L2 state. The forged proofs let <code class="language-plaintext highlighter-rouge">processMessage()</code> mark fraudulent withdrawals as <code class="language-plaintext highlighter-rouge">RETRIABLE</code>, and the follow-up <code class="language-plaintext highlighter-rouge">retryMessage()</code> calls released funds from the L1 Bridge and the ERC20Vault with minimal additional checks.</li>
+</ol>
+
+<p>Taiko’s response was fast. They caught and froze the incident within hours, activated its Security Council multisig to pause the bridge, halted block production, and has said in a <a href="https://x.com/taikoxyz/status/2069828265385300282?s=20">June 24th update</a> that no user will lose funds and that they will fully recollateralise the bridge so every balance is backed 1:1 before reopening. The containment was fast and the damage was bounded. The architectural lesson stands regardless.</p>
+
+<p>The mechanism here is simple: in SGX, <a href="https://www.techtimes.com/articles/318886/20260623/ethereum-l2-bridge-exploit-drains-17m-leaked-sgx-key-defeats-taiko-trust-model.htm">MRSIGNER is a hash of the signing key’s public part</a>, so trusting a given <code class="language-plaintext highlighter-rouge">MRSIGNER</code> identity means trusting whoever holds the corresponding private key. Once that key is public, anyone can stand up their own hardware and present it as a certified, trusted prover, and the verifier has no way to tell it apart from a legitimate one.</p>
+
+<h2 id="the-pattern-app-keys-as-roots-of-trust">The pattern: app keys as roots of trust</h2>
+
+<p>Taiko’s version was extreme, but the underlying mistake is common. A team stands up a TEE-based component (a prover, oracle, sequencer, or bridge verifier), generates an enclave signing key, and writes logic that says “if it is signed by this key or matches this identity, trust it.” That user-controlled key becomes the de facto root of trust.</p>
+
+<p>From that point on, every nice property of the TEE is downstream of one artifact the team created. Git history, CI logs, misconfigured storage, an insider: any of these collapses the entire trust structure. Guillemet made the same point about the Taiko incident, that the underlying problem is any architecture that rests on a single privileged key. Leave a way to shoot yourself in the foot, and given a long enough time horizon, someone eventually will.</p>
+
+<p>The same mistake shows up in two subtler forms:</p>
+
+<p><strong>Equating “hardware attested” and “signed by a key” with “correct code is running”.</strong> Attestation tells you “this is an enclave on vendor X” and “it was signed by this key”. It does not, on its own, tell you the binary inside is the code you reviewed. If the attested measurement is not tied back to a verifiable build from an inspectable source, you have left room for swapped binaries and loader games that still produce clean attestation. For the most technical audience: this is exactly akin to writing an attestation condition that only checks <code class="language-plaintext highlighter-rouge">PCR8</code> (the developer’s signing certificate) while completely ignoring <code class="language-plaintext highlighter-rouge">PCR0</code>, <code class="language-plaintext highlighter-rouge">PCR1</code>, and <code class="language-plaintext highlighter-rouge">PCR2</code> (the actual code, kernel, and application hashes).</p>
+
+<p><strong>Centralising trust in one path.</strong> If one prover, one enclave flavour, or one vendor can unilaterally authorise a withdrawal, then compromising that one path is enough. This is the part of the Taiko story that usually gets glossed over.</p>
+
+<h2 id="the-fix-anchor-trust-in-the-build">The fix: anchor trust in the build</h2>
+
+<p>The way we go about using TEEs at Caution is different. When TEEs are used to secure bridges, custody, and other high-value infrastructure, the root of trust cannot be “a particular signing key controlled by a team”. We anchor it in hardware-backed attestation plus a fully verifiable build.</p>
+
+<p>In this model, enclave identity comes from the build itself. The code is built from source using a reproducible, full-source toolchain (<a href="https://stagex.tools">StageX</a> and <a href="https://distrust.co/blog/enclaveos.html">EnclaveOS</a>) that produces deterministic software. When an enclave produces an attestation, <a href="https://docs.caution.co/concepts/attestation/">verifiers check that its measurement matches an allowed build manifest</a>, recomputed from source, rather than asking whether it was signed by a particular key. Tamper with the build, and the measurement changes and verification fails. Anyone, not just the operator, can rebuild the image from a published source and confirm the measurement they see in production matches what they computed locally.</p>
+
+<p><strong>Under this model, the same incident plays out very differently:</strong> There is no application signing key to leak. The entity interacting with the node does not decide which code to trust by checking who signed it. It checks the measurement: a hash of the deterministic build. An attacker can stand up their own enclave, but it produces a different measurement, so it matches no approved build and the attestation is rejected.</p>
+
+<p>The astute reader will notice that we are still trusting the AWS CA in this case, something we are actively working towards mitigating via multi-hardware attestation. To be precise about scope: Caution <a href="https://docs.caution.co/concepts/attestation/">runs on AWS Nitro Enclaves today</a>, with multi-hardware support for Intel TDX, AMD SEV-SNP, and TPM 2.0 in active development.</p>
+
+<h2 id="what-a-verifiable-deployment-design-changes">What a verifiable-deployment design changes</h2>
+
+<p>Picture the same prover stack built around verifiable deployments instead of a blessed signing key:</p>
+
+<ul>
+  <li>Registering a prover requires a published build manifest tying a measurement to a specific source commit and configuration. The verifier only accepts attestations whose measurements match those manifests.</li>
+  <li>A leaked signing key would no longer be enough on its own. The attacker’s forged enclave would not match any trusted measurement, so its attestations would be rejected.</li>
+  <li>Malicious changes become visible. Any change to the prover code or build that affects behaviour changes the measurement, and independent verifiers can detect that production no longer matches what they expect, even without controlling the infrastructure.</li>
+</ul>
+
+<p>The failure mode shifts from “a key leaked in a Git repo, game over” to “someone has to ship a malicious build and get it explicitly trusted”, a much higher bar that is harder to clear without being noticed.</p>
+
+<h2 id="practical-guidance-even-if-you-never-touch-caution">Practical guidance, even if you never touch Caution</h2>
+
+<p>There are concrete lessons here for anyone running TEEs in production, especially in bridges, rollups, oracles, and custody:</p>
+
+<p><strong>Do not make a team-generated key your ultimate arbiter of trust.</strong> An enclave signing key used for signing <code class="language-plaintext highlighter-rouge">MRSIGNER</code> or <code class="language-plaintext highlighter-rouge">PCR8</code> can leak. Where possible, design your system to rely on code integrity rather than a user-controlled signing key.</p>
+
+<p><strong>Keep your TCB small and your interfaces tight.</strong> Minimise what runs inside the enclave. Larger trusted computing bases and complex trust boundaries are harder to reason about and audit, a point that recurs across the TEE security literature, including a <a href="https://www.sciencedirect.com/science/article/pii/S0167404823000901">survey of TEE (in)security</a> and a study of <a href="https://arxiv.org/abs/2203.12724">TEE pitfalls specific to blockchain applications</a>.</p>
+
+<p><strong>Make redundancy conjunctive.</strong> Multiple provers or vendors only help if no single one can unilaterally authorise.</p>
+
+<p><strong>Make verification possible for others, not just for you.</strong> Publish enough (build manifests, measurement lists, source) that users, partners, and auditors can verify your claims instead of taking your word for it.</p>
+
+<h2 id="where-caution-fits">Where Caution fits</h2>
+
+<p>We built Caution because we kept seeing TEEs marketed as confidential compute but deployed as opaque black boxes, where everyone trusts the operator, an opaque binary, or a handful of poorly managed keys. Our answer is to make verifiable compute the default: a reproducible full-source stack down to the kernel (and in fact the compiler), attestations checked against builds anyone can reproduce, so that trust rests on the build itself rather than on the operator or a signing key.</p>
+
+<p>That does not prevent every bug or attack, but it does essentially remove an entire class of supply chain attacks that target modifying the code before or after it has made it into its final destination where it is meant to be running. If you are running TEEs today in a context where a single mistake is not tolerable, the question to ask is whether your root of trust is a reproducible build that others can check, or one more key you are hoping stays secret.</p>
+
+<h2 id="references">References</h2>
+
+<p>Incident reporting and analysis:</p>
+
+<ul>
+  <li>Blockaid, real-time detection of the attack: <a href="https://x.com/blockaid_/status/2068832536642326566">post on X</a></li>
+  <li>BlockSec Phalcon, root-cause analysis (quoted, including <code class="language-plaintext highlighter-rouge">SgxVerifier.registerInstance</code>): <a href="https://decrypt.co/371769/ethereum-layer-2-taiko-withdraw-bridge-funds-security-breach">Decrypt</a></li>
+  <li>PeckShield, loss estimate: <a href="https://x.com/PeckShieldAlert/status/2068868035805638670">post on X</a></li>
+  <li>Charles Guillemet (Ledger CTO), single-key critique and validity-proofs alternative: <a href="https://incrypted.com/en/ledger-cto-private-key-leak-caused-taiko-hack/">Incrypted</a></li>
+  <li>Technical breakdown of the <code class="language-plaintext highlighter-rouge">enclave-key.pem</code> leak and the forged-proof path: <a href="https://thedefiant.io/news/hacks/taiko-bridge-exploit-sgx-signing-key-github-1-7m">The Defiant</a>, <a href="https://blog.thirdweb.com/taiko-bridge-exploit-explained-how-a-leaked-key-led-to-1-7m-in-forged-withdrawals/">thirdweb</a></li>
+  <li><code class="language-plaintext highlighter-rouge">MRSIGNER</code> as a hash of the signing key’s public half: <a href="https://www.techtimes.com/articles/318886/20260623/ethereum-l2-bridge-exploit-drains-17m-leaked-sgx-key-defeats-taiko-trust-model.htm">TechTimes</a></li>
+</ul>
+
+<p>Background on TEE security:</p>
+
+<ul>
+  <li>M. Muñoz et al., a survey on the (in)security of trusted execution environments: <a href="https://www.sciencedirect.com/science/article/pii/S0167404823000901">Computers &amp; Security, 2023</a></li>
+  <li>Lessons learned from blockchain applications of TEEs: <a href="https://arxiv.org/abs/2203.12724">arXiv:2203.12724</a></li>
+</ul>
+
+<p>Caution and the verifiable-deployment stack:</p>
+
+<ul>
+  <li>How Caution verifies attestations against reproducible builds: <a href="https://docs.caution.co/concepts/attestation/">Attestations</a>, <a href="https://docs.caution.co/concepts/verifiability/">Verifiability</a></li>
+  <li><a href="https://stagex.tools">StageX</a> (full-source bootstrapped, reproducible toolchain) and <a href="https://distrust.co/blog/enclaveos.html">EnclaveOS</a></li>
+</ul>]]></content><author><name>Anton Livaja</name></author><category term="analysis" /><summary type="html"><![CDATA[The Taiko bridge exploit was not a failure of Intel SGX. It was an architectural failure caused by making a leaked application signing key the root of trust.]]></summary></entry><entry><title type="html">Verify, don’t trust</title><link href="https://caution.co/blog/on-transparency.html" rel="alternate" type="text/html" title="Verify, don’t trust" /><published>2026-03-10T00:00:00+00:00</published><updated>2026-03-10T00:00:00+00:00</updated><id>https://caution.co/blog/on-transparency</id><content type="html" xml:base="https://caution.co/blog/on-transparency.html"><![CDATA[<div class="tldr-callout">
+
+  <div class="tldr-callout__header">
+<span class="tldr-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+</span>
+<span class="tldr-callout__title">TL;DR</span>
+</div>
+
+  <p>We’ve built the digital economy on blind trust: trusting vendors, contracts, and terms of service instead of verifying what software actually does. Trust is not a security property. Verifiable compute changes that: you can get cryptographic proof that the code running on a server matches its auditable source. With major regulatory deadlines arriving in 2026, this technology is more relevant than ever.</p>
+
+</div>
+
+<p><span class="section-label toc-label">Table of contents</span></p>
+
+<!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#the-question-no-one-asks" id="markdown-toc-the-question-no-one-asks">The question no one asks</a></li>
+  <li><a href="#we-delegate-trust-constantly" id="markdown-toc-we-delegate-trust-constantly">We delegate trust constantly</a></li>
+  <li><a href="#we-hand-over-data-and-hope-for-the-best" id="markdown-toc-we-hand-over-data-and-hope-for-the-best">We hand over data and hope for the best</a></li>
+  <li><a href="#trust-is-not-security" id="markdown-toc-trust-is-not-security">Trust is not security</a></li>
+  <li><a href="#what-transparency-actually-means" id="markdown-toc-what-transparency-actually-means">What transparency actually means</a></li>
+  <li><a href="#confidential-compute-changes-the-game" id="markdown-toc-confidential-compute-changes-the-game">Confidential compute changes the game</a></li>
+  <li><a href="#why-this-matters-beyond-security" id="markdown-toc-why-this-matters-beyond-security">Why this matters beyond security</a></li>
+</ol>
+
+<h2 id="the-question-no-one-asks">The question no one asks</h2>
+
+<p>When was the last time you actually verified that a piece of software does what it claims? Not read the terms of service. Not taken a vendor’s word for it. Actually verified it.</p>
+
+<p>For most people the answer is never. And that’s the problem.</p>
+
+<h2 id="we-delegate-trust-constantly">We delegate trust constantly</h2>
+
+<p>The default model for security today is delegation. You buy cybersecurity insurance. You pay for proprietary tools. You sign contracts with vendors. In every case, you’re paying someone else to make the problem go away.</p>
+
+<p>This works until it doesn’t. And it often doesn’t.</p>
+
+<p><a href="https://web.archive.org/web/20260311035352/https://attack.mitre.org/campaigns/C0024/" target="_blank">SolarWinds</a> was supposed to be the company that kept others secure. They were the leading security and IT management vendor, trusted by Fortune 500 companies and U.S. government agencies alike. Then in 2020, attackers injected a backdoor into SolarWinds’ own software updates. Because none of their customers could verify what code they were actually running, the compromise spread silently through trusted update channels to thousands of organisations. The company whose entire job was security became the attack vector.</p>
+
+<p>This isn’t an isolated case. It’s the natural consequence of a system built on blind trust.</p>
+
+<h2 id="we-hand-over-data-and-hope-for-the-best">We hand over data and hope for the best</h2>
+
+<p>Think about how many times a day you send data to services you can’t inspect.</p>
+
+<p>You type a prompt into a chatbot. What happens to that data? Is it logged? Used for training? Shared with third parties? You have no way to know. The terms of service say one thing, but terms of service are a legal obligation, not a technical constraint. They describe what a company promises to do, not what the software actually does.</p>
+
+<p>You send a message to a friend over a chat platform. Once you hit send, all you know is that your message went to some server at some IP address. You have no idea how it’s stored, who can read it, or whether the encryption the company advertises is real.</p>
+
+<p>You store files in the cloud. You use a password manager. You submit medical information through a health portal. In each case, you’re trusting that the software behind the interface behaves the way someone told you it would. You have no way to check.</p>
+
+<p>The same problem exists at every scale. A financial institution deploys an AI model to analyse client data. What code is actually running on that server? Is it the model they audited? Has it been modified since deployment? The vendor’s documentation says one thing, but documentation is a promise, not a proof.</p>
+
+<p>We’ve gotten used to this because it’s been the only option. Software services are black boxes. Some people try to protect themselves with privacy-preserving tools like VPNs or Tor. Others just trust blindly because they have no alternative. Neither group can actually verify what the services they depend on are doing with their data.</p>
+
+<h2 id="trust-is-not-security">Trust is not security</h2>
+
+<p>There’s a widespread belief that well-funded proprietary tools are inherently more secure than open alternatives. This is a failure to reason clearly. While funding can help with resources required to do security well, it doesn’t produce security by default.</p>
+
+<p>If you can’t inspect it, you can’t verify it. If you can’t verify it, you’re just trusting. And trust is not a security property. It’s the absence of one. Verifiability is a pre-requisite for a reasonable level of security.</p>
+
+<p>Legal frameworks help, but they’re reactive. They punish breaches after they happen. They don’t prevent them. A contract that says “we won’t misuse your data” does very little in practical terms to stop software from misusing your data. Only the technical controls in the system can do that.</p>
+
+<h2 id="what-transparency-actually-means">What transparency actually means</h2>
+
+<p>Real transparency means being able to verify what software is running on a server, what it’s capable of, and what it does with data you send it. Not by reading a blog post or a privacy policy, but by inspecting the actual code and proving it matches what’s deployed.</p>
+
+<p>Almost no system works this way today. When you interact with a web service, you’re interacting with a black box. You send a request and get a response. Everything in between is invisible to you.</p>
+
+<p>Public blockchains got this right in one narrow domain: every transaction is verifiable, every state change is auditable. But blockchains are impractical for most software. The question is whether we can bring a similar level of verifiability to general-purpose computing. It turns out we can.</p>
+
+<h2 id="confidential-compute-changes-the-game">Confidential compute changes the game</h2>
+
+<p>Confidential compute hardware, specifically secure enclaves combined with remote attestation, makes it possible to provide cryptographic proof of what software is running behind a given domain or IP. Combined with full-source bootstrapping and reproducible builds, this means anyone can independently verify exactly what code a server is executing.</p>
+
+<p>This isn’t theoretical. It’s how <a href="/">Caution</a> works today. Deploy software to an enclave, and anyone can rebuild the image from source, compare it against the live attestation, and get cryptographic proof that the running code matches the auditable source.</p>
+
+<p>The shift is fundamental: from “trust us” to “verify it yourself.” Users no longer have to hope that companies are telling the truth about how their data is handled. Companies don’t have to cross their fingers that the code they hope is running in their mission critical systems is actually what they expect it to be.</p>
+
+<p>Regulatory deadlines are making this urgent. Multiple major compliance frameworks are reaching enforcement milestones simultaneously. The <a href="https://web.archive.org/web/20260214205014/https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act" target="_blank">EU AI Act’s</a> obligations for most high-risk AI systems take effect August 2, 2026, imposing strict risk management, logging, documentation, and transparency requirements so organisations can evidence how these systems function and are controlled, not just claim they are secure.</p>
+
+<p>In parallel, the proposed <a href="https://web.archive.org/web/20260309064525/https://www.hhs.gov/hipaa/for-professionals/security/hipaa-security-rule-nprm/factsheet/index.html" target="_blank">HIPAA Security Rule</a> overhaul (expected to be finalised in 2026, pending regulatory approval) would introduce significantly more prescriptive cybersecurity controls and documentation requirements for covered entities and their business associates, including structured risk analyses, mandatory technical safeguards like encryption and MFA (with limited exceptions), and defined security testing cadences. Organisations across multiple verticals now face hard deadlines with real enforcement consequences. Verifiable compute is no longer a nice-to-have. It is an essential tool to help meet these emerging evidence and control requirements.</p>
+
+<div class="note-callout">
+  <div class="note-callout__header">
+<span class="note-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+</span>
+<span class="note-callout__title">Regulatory deadlines</span>
+</div>
+
+  <p><strong><a href="https://web.archive.org/web/20260214205014/https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act" target="_blank">EU AI Act’s (high‑risk AI)</a></strong> obligations apply from 2 August 2026. Risk management, logging, documentation, and transparency are mandatory for high‑risk systems.</p>
+
+  <div style="margin-top: 0.5em;"></div>
+
+  <p><strong><a href="https://web.archive.org/web/20260309064525/https://www.hhs.gov/hipaa/for-professionals/security/hipaa-security-rule-nprm/factsheet/index.html" target="_blank">HIPAA Security Rule (proposed)</a></strong> overhaul is expected in 2026. It makes cybersecurity expectations more prescriptive with structured risk analysis, required safeguards (encryption, MFA), and defined security testing.</p>
+
+</div>
+
+<h2 id="why-this-matters-beyond-security">Why this matters beyond security</h2>
+
+<p>Verifiability is a missing building block. Not just for security, but for individual freedom and the entire digital economy.</p>
+
+<p>The ability to verify what software does is a prerequisite for trust in a digital world. Without it, even the most carefully architected systems are incomplete. You can choose your own tools, control your own data, build on open standards, but the moment you interact with a service you can’t inspect, you’re back to trusting someone else. Verifiable compute closes that gap. It gives any system the one thing that’s been missing: a way to prove that remote software respects the rules it claims to follow.</p>
+
+<p>This is also why the technology has to be truly open source. Not open core with the important parts behind a paywall. Fully open, and  auditable by anyone. If the goal is to remove the need for blind trust, the tool that does it can’t require blind trust either. Anything less would be a contradiction.</p>
+
+<p>We think of this as infrastructure for the open internet. The same way public key cryptography gave individuals the power to communicate privately, verifiable compute gives them the power to interact with services confidently. It’s a primitive that makes other freedoms possible.</p>
+
+<p style="color: #777; font-style: italic; font-size: 0.85em;">This article shares our perspective on emerging security and compliance trends and is not legal advice; organisations should consult their own counsel for specific obligations.</p>]]></content><author><name>Anton Livaja</name></author><category term="insight" /><summary type="html"><![CDATA[We've built an entire digital world on blind trust. That's not a security model, it's the absence of one.]]></summary></entry><entry><title type="html">First fully verifiable AI/LLM deployment</title><link href="https://caution.co/blog/verifiable-llms.html" rel="alternate" type="text/html" title="First fully verifiable AI/LLM deployment" /><published>2026-02-04T00:00:00+00:00</published><updated>2026-02-04T00:00:00+00:00</updated><id>https://caution.co/blog/verifiable-llms</id><content type="html" xml:base="https://caution.co/blog/verifiable-llms.html"><![CDATA[<div class="tldr-callout">
+
+  <div class="tldr-callout__header">
+<span class="tldr-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+</span>
+<span class="tldr-callout__title">TL;DR</span>
+</div>
+
+  <p>We deployed an LLM to a secure enclave and verified exactly what code is running: an industry first for full source bootstrapped, deterministic, fully verifiable, and end-to-end encrypted AI inference.</p>
+
+  <p><a href="https://chat.caution.dev" target="_blank" class="cta-link">Try the live demo <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a></p>
+
+</div>
+
+<p><span class="section-label toc-label">Table of contents</span></p>
+
+<!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#the-problem-with-ai-privacy" id="markdown-toc-the-problem-with-ai-privacy">The problem with AI privacy</a></li>
+  <li><a href="#current-approaches-fall-short" id="markdown-toc-current-approaches-fall-short">Current approaches fall short</a></li>
+  <li><a href="#what-if-you-could-verify-everything" id="markdown-toc-what-if-you-could-verify-everything">What if you could verify everything?</a></li>
+  <li><a href="#the-deployment" id="markdown-toc-the-deployment">The deployment</a></li>
+  <li><a href="#inspecting-the-build" id="markdown-toc-inspecting-the-build">Inspecting the build</a></li>
+  <li><a href="#what-this-proves" id="markdown-toc-what-this-proves">What this proves</a></li>
+  <li><a href="#true-end-to-end-encryption-with-steve" id="markdown-toc-true-end-to-end-encryption-with-steve">True end-to-end encryption with STEVE</a></li>
+  <li><a href="#available-now" id="markdown-toc-available-now">Available now</a></li>
+  <li><a href="#whats-next" id="markdown-toc-whats-next">What’s next</a></li>
+  <li><a href="#helpful-resources" id="markdown-toc-helpful-resources">Helpful resources</a></li>
+</ol>
+
+<h2 id="the-problem-with-ai-privacy">The problem with AI privacy</h2>
+
+<p>Large Language Models have transformed nearly every industry, but a fundamental problem remains: <strong>how does one use an LLM without exposing sensitive data to third parties?</strong></p>
+
+<p>Tech companies, and AI companies in particular, have a poor track record with user data. Prompts may be logged, used for training, shared with contractors, or retained indefinitely. Alternatively, the LLM may be biased by the hosts, via hidden prompts. Privacy policies can also change at any time. When data leaves your control, there is no way to verify how it’s handled.</p>
+
+<h2 id="current-approaches-fall-short">Current approaches fall short</h2>
+
+<p>There is significant demand for AI applications that better protect user data privacy. Some attempts use Trusted Execution Environments (TEEs) to isolate data, providing remote attestation as proof. But these solutions fall short: their “proofs” only demonstrate that the deployed code hasn’t changed, not what that code actually is.</p>
+
+<p>Without <a href="https://caution.co/blog/the-case-for-verifiable-compute.html">full verifiability</a>, the trust still lies with the operator alone. But promises are not good enough; we need a concrete way to verify the safety of data sent into third party servers.</p>
+
+<p>Additionally, many confidential compute solutions today terminate TLS outside of the enclave, leaving the data exposed on the host within which the enclave runs. This defeats the entire point of enclaves as the data is exposed to an untrusted system, outside of the secure enclave. To mitigate this, the data has to be encrypted until it reaches inside of the enclave.</p>
+
+<p>We cover how the approach Caution takes mitigates both of these risks.</p>
+
+<h2 id="what-if-you-could-verify-everything">What if you could verify everything?</h2>
+
+<p>Imagine being able to inspect the exact code powering an online service, and being able to prove it can’t mishandle your data: no logging, no saving, no undesirable behaviour.</p>
+
+<p>In <a href="https://chat.caution.dev/" target="_blank">this demo</a>, Caution deploys a verifiable AI inference app, letting you prove precisely what code runs inside a secure enclave.</p>
+
+<div class="note-callout">
+
+  <div class="note-callout__header">
+<span class="note-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+</span>
+<span class="note-callout__title">Performance note</span>
+</div>
+
+  <p>The  <a href="https://chat.caution.dev" target="_blank">verifiable AI inference demo</a> runs a CPU-based LLM and is not optimised for performance. The goal is to demonstrate the verification workflow, not production inference efficiency. Full GPU-backed inference is planned once <a href="https://git.distrust.co/public/enclaveos" target="_blank" rel="noopener noreferrer">EnclaveOS V2</a> is production-ready. With the right partners, we could accelerate this. If you’re interested, please <a href="/contact.html">reach out</a>.</p>
+
+</div>
+
+<h2 id="the-deployment">The deployment</h2>
+
+<p>LLM applications must be deterministic for verification to work. Our prior enclave experiments with LLMs made this straightforward.</p>
+
+<p>The deployment uses the standard Caution platform workflow:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>caution init
+git push caution main
+caution verify
+</code></pre></div></div>
+
+<h3 id="build-and-deploy-output">Build and deploy output</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ git push caution test-enclave
+...
+
+Deployment successful!
+Application: http://&lt;redacted&gt;:8080
+Attestation: http://&lt;redacted&gt;:5000/attestation
+
+Run 'caution verify' to verify the application attestation.
+</code></pre></div></div>
+
+<h3 id="verification-output">Verification output</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ caution verify
+Verifying enclave attestation...
+
+Challenge nonce (sent): dc695fd5e10b2f0887a0ec163520127b40455defaa31686c4dcee77884c1177c
+Requesting attestation...
+
+Verifying attestation...
+✓ Certificate chain verified against AWS Nitro root CA
+✓ All certificates are within validity period
+✓ COSE signature verification passed
+✓ Nonce verified (prevents replay attacks)
+Challenge nonce (received): dc695fd5e10b2f0887a0ec163520127b40455defaa31686c4dcee77884c1177c
+✓ Attestation verified successfully
+
+Remote PCR values (from deployed enclave):
+  PCR0: 267a49a97b94b57e11ef1fe59c798415d61157c68563d6b2901ef17a48c0c4b82f66c45fc0a156bcf014b742b75a277f
+  PCR1: 267a49a97b94b57e11ef1fe59c798415d61157c68563d6b2901ef17a48c0c4b82f66c45fc0a156bcf014b742b75a277f
+  PCR2: 21b9efbc184807662e966d34f390821309eeac6802309798826296bf3e8bec7c10edb30948c90ba67310f7b964fc500a
+
+Manifest information:
+  App source: https://git.distrust.co/public/llmshell/archive/bd4d093ae51663e21ed29ab2607324080a8704d5.tar.gz (git archive)
+  Enclave source: https://git.distrust.co/public/enclaveos/archive/attestation_service.tar.gz (git archive)
+
+Reproducing build from current directory...
+
+Build artifacts available at: /home/user/.cache/caution/build/.tmp802BZp/eif-stage
+You can review everything that went into building this enclave:
+  • Containerfile.eif - The complete build recipe
+  • app/ - Your application files
+  • enclave/ - EnclaveOS source (attestation-service, init)
+  • run.sh - Generated startup script
+  • manifest.json - Build provenance information
+
+Expected PCR values:
+  PCR0: 267a49a97b94b57e11ef1fe59c798415d61157c68563d6b2901ef17a48c0c4b82f66c45fc0a156bcf014b742b75a277f
+  PCR1: 267a49a97b94b57e11ef1fe59c798415d61157c68563d6b2901ef17a48c0c4b82f66c45fc0a156bcf014b742b75a277f
+  PCR2: 21b9efbc184807662e966d34f390821309eeac6802309798826296bf3e8bec7c10edb30948c90ba67310f7b964fc500a
+
+Comparing PCR values...
+
+✓ Attestation verification PASSED
+The deployed enclave matches the expected PCRs.
+This means the code running in the enclave is exactly what you expect.
+
+Powered by: Caution (https://caution.co)
+</code></pre></div></div>
+
+<h2 id="inspecting-the-build">Inspecting the build</h2>
+
+<p>The files for local reproduction are stored in the cache directory, containing every line of code used to build the software:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>❯ tree -I app /home/user/.cache/caution/build/.tmp802BZp/eif-stage/
+
+/home/user/.cache/caution/build/.tmp802BZp/eif-stage/
+├── app
+│   ├── &lt;omitted full app file system...&gt;
+├── build.log
+├── Containerfile.eif
+├── enclave
+│   ├── attestation-service
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── main.rs
+│   ├── Cargo.lock
+│   ├── Cargo.toml
+│   ├── Containerfile
+│   ├── init.sh
+│   ├── LICENSE.md
+│   ├── Makefile
+│   ├── README.md
+│   ├── src
+│   │   ├── aws
+│   │   │   ├── Cargo.toml
+│   │   │   └── src
+│   │   │       └── lib.rs
+│   │   ├── init
+│   │   │   ├── Cargo.lock
+│   │   │   ├── Cargo.toml
+│   │   │   └── init.rs
+│   │   └── system
+│   │       ├── Cargo.toml
+│   │       └── src
+│   │           └── lib.rs
+│   └── udhcpc-script.sh
+├── manifest.json
+├── output
+│   ├── enclave.eif
+│   ├── enclave.pcrs
+│   └── rootfs.cpio.gz
+└── run.sh
+
+69 directories, 1432 files
+</code></pre></div></div>
+
+<h2 id="what-this-proves">What this proves</h2>
+
+<p>With Caution platform, you can:</p>
+
+<ul>
+  <li><strong>Deploy an LLM to a hardware-isolated enclave,</strong> ensuring your data never leaves the secure environment</li>
+  <li><strong>Reproduce the exact deployment locally:</strong> rebuilding the enclave image from source, all the way down to the kernel. In other words the entire tech stack.</li>
+  <li><strong>Verify the running code matches</strong> via cryptographic proof through PCR comparison</li>
+</ul>
+
+<p>This enables the first fully verifiable LLM deployment. No trust required: full verification covers every line of code down to the kernel, proving the LLM can’t perform undesirable actions with your data.</p>
+
+<h2 id="true-end-to-end-encryption-with-steve">True end-to-end encryption with STEVE</h2>
+
+<p>Verifiability solves a major problem: knowing exactly what code is running inside of a secure enclave. But there’s a second problem that is often not addressed adequately: <strong>TLS termination</strong>.</p>
+
+<p>In typical enclave deployments, TLS terminates at a reverse proxy or load balancer outside the enclave. The traffic is then forwarded to the enclave in plaintext. This means the host system within which the secure enclave runs, the very thing the enclave is supposed to protect against, can read every request and response.</p>
+
+<div class="diagram">
+
+Typical enclave deployment:
+
+  Client --TLS--&gt; Host (proxy) --plaintext--&gt; Enclave
+                       ↑
+              Host sees all traffic
+</div>
+
+<p>While enclave remote attestation without end to end encryption still preserves integrity and prevents things like inferance manipulation by advertizers, it is useless for confidentiality (in spite of what some marketing teams might imply). A compromised host, a malicious cloud operator, or an attacker with infrastructure access can intercept all data before it ever reaches the protected environment.</p>
+
+<p>Caution solves this with <a href="https://distrust.co/blog/steve.html">STEVE</a> (Secure Transport Encryption Via Enclave), a freely licensed open source solution which adds a second encryption layer that terminates exclusively inside the enclave.</p>
+
+<div class="diagram">
+
+Caution deployment with STEVE:
+
+  Client ==E2E====================================&gt; Enclave
+         --TLS--&gt; Host (proxy) -- encrypted-------&gt;
+                                     ↑
+              Host sees only encrypted payload
+</div>
+
+<p>STEVE uses X25519 key exchange with Ed25519 signatures bound to the enclave’s attestation. Clients verify they’re communicating with the attested enclave before establishing an encrypted channel. The host never sees plaintext application data.</p>
+
+<p>What makes this powerful is that the E2E leverages the hardware backed keys only accessible inside of the secure enclave. In other words it’s hardware backed keys provided by confidential compute components that is backing the security of this setup.</p>
+
+<p>For client side applications, a service worker handles encryption transparently, requiring no application changes. For this LLM deployment, prompts and responses are encrypted from the browser all the way into the enclave.</p>
+
+<p>This combination of <strong>full verifiability</strong> and <strong>true end-to-end encryption</strong> is what sets Caution apart from other confidential compute solutions.</p>
+
+<h2 id="available-now">Available now</h2>
+
+<p>Teams can deploy reproducible workloads on AWS Nitro Enclaves today using Caution’s bring your own compute or fully managed deployment options. Because Caution is open source, teams can also self-host it.</p>
+
+<p><strong><a href="/contact.html#book">Book 20 minutes</a> with one of our engineers. We’ll discuss your goals, answer technical questions, and help you get ready to deploy with Caution.</strong></p>
+
+<h2 id="whats-next">What’s next</h2>
+
+<p>We are developing <a href="https://git.distrust.co/public/enclaveos">EnclaveOS</a> for broader attestation hardware support and superior isolation beyond AWS Nitro. Here’s what’s coming in 2026:</p>
+
+<ul>
+  <li>Multi-hardware attestation (TPM 2.0, Intel TDX, AMD SEV-SNP)</li>
+  <li>Support for additional cloud backends and bare metal</li>
+  <li>Multi-cloud deployments from a single configuration</li>
+</ul>
+
+<p>We invite developers building and operating verifiable compute to <a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer">join our open Community space on Matrix</a> to ask questions, share ideas, and help us shape the future of verifiable compute.</p>
+
+<h2 id="helpful-resources">Helpful resources</h2>
+
+<ul>
+  <li><strong><a href="https://caution.co/blog/introducing-caution.html">Introduction to the Caution platform</a> (blog)</strong></li>
+  <li><strong>Caution platform</strong>: <a href="https://codeberg.org/caution">codeberg.org/caution</a></li>
+  <li><strong>AI inference app</strong>: <a href="https://codeberg.org/caution/demo-ai-inference">codeberg.org/caution/demo-ai-inference</a></li>
+  <li><strong>EnclaveOS</strong>: <a href="https://git.distrust.co/public/enclaveos" target="\_blank">git.distrust.co/public/enclaveos</a></li>
+  <li><strong>STEVE</strong>: <a href="https://git.distrust.co/public/steve">git.distrust.co/public/steve</a></li>
+</ul>]]></content><author><name>Anton Livaja</name></author><category term="demo" /><summary type="html"><![CDATA[We deployed an LLM to a secure enclave and verified exactly what code is running: an industry first for fully verifiable, end-to-end encrypted AI inference.]]></summary></entry><entry><title type="html">Caution: Verifiable compute made simple</title><link href="https://caution.co/blog/introducing-caution.html" rel="alternate" type="text/html" title="Caution: Verifiable compute made simple" /><published>2025-12-01T00:00:00+00:00</published><updated>2025-12-01T00:00:00+00:00</updated><id>https://caution.co/blog/introducing-caution</id><content type="html" xml:base="https://caution.co/blog/introducing-caution.html"><![CDATA[<div class="tldr-callout">
+
+  <div class="tldr-callout__header">
+<span class="tldr-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+</span>
+<span class="tldr-callout__title">TL;DR</span>
+</div>
+
+  <p>Attestation without reproducible builds is still a black box because there’s no way to prove that the code in the enclave matches your source. Existing TEE solutions also rely on a single hardware root of trust like TDX, SEV, or Nitro, creating a single point of failure.</p>
+
+  <p>Two key innovations that solve these problems:</p>
+
+  <ul>
+    <li>Independently reproduce a deployed enclave image locally from source code and verify that’s exactly what’s running in an enclave.</li>
+    <li>Use multi-hardware attestation, where multiple vendors attest to the same thing to eliminate reliance on any single hardware.</li>
+  </ul>
+
+  <p>Caution automates this end to end, making verifiable enclaves dramatically easier to deploy.</p>
+
+</div>
+
+<p><span class="section-label toc-label">Table of contents</span></p>
+
+<!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#why-verifiable-compute-isnt-mainstream" id="markdown-toc-why-verifiable-compute-isnt-mainstream">Why verifiable compute isn’t mainstream</a></li>
+  <li><a href="#what-is-caution" id="markdown-toc-what-is-caution">What is Caution?</a></li>
+  <li><a href="#how-caution-works" id="markdown-toc-how-caution-works">How Caution works</a></li>
+  <li><a href="#verification-the-key-innovation" id="markdown-toc-verification-the-key-innovation">Verification: The key innovation</a></li>
+  <li><a href="#platform-architecture" id="markdown-toc-platform-architecture">Platform architecture</a></li>
+  <li><a href="#enclaveos-as-the-runtime-foundation" id="markdown-toc-enclaveos-as-the-runtime-foundation">EnclaveOS as the runtime foundation</a></li>
+  <li><a href="#security-model" id="markdown-toc-security-model">Security model</a></li>
+  <li><a href="#open-source-not-open-core" id="markdown-toc-open-source-not-open-core">Open source, not open core</a></li>
+  <li><a href="#licensing" id="markdown-toc-licensing">Licensing</a></li>
+  <li><a href="#available-now" id="markdown-toc-available-now">Available now</a></li>
+  <li><a href="#whats-next" id="markdown-toc-whats-next">What’s next</a></li>
+  <li><a href="#helpful-resources" id="markdown-toc-helpful-resources">Helpful resources</a></li>
+</ol>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Secure enclaves are currently very underutilized, and most of the ways they are used today are often security theater still giving a single sysadmin the power to control or modify them at any time. Enclaves can isolate code at runtime, and prove that the code has not changed, but not what that code actually is. Attestation engines supported by most enclave platforms prove that software running inside of an enclave hashes to a specific value called a PCR, but unless that PCR can be independently reproduced from source code, there is no way to confirm what code the enclave is truly running.</p>
+
+<p>Additionally, all enclave solutions today rely on only one type of attestation by a single vendor, exposing their systems to insider, supply chain, and side channel risks during periods when that one engine has a known flaw, which happens from time to time.</p>
+
+<p>This is the core gap in today’s confidential compute stack. Isolation and attestation without reproducibility and platform diversity is insufficient for high security applications.</p>
+
+<p>Caution solves this problem by providing a cloud hosting platform which leverages EnclaveOS at its core, and offers verifiable compute across multiple enclave platforms, each with attestation by at least two different methods.</p>
+
+<p>This post walks through why this matters, why current tooling falls short, and how Caution makes verifiable compute practical.</p>
+
+<h2 id="why-verifiable-compute-isnt-mainstream">Why verifiable compute isn’t mainstream</h2>
+
+<p>Deploying verifiable workloads should be straightforward. In practice, it’s a nightmare.</p>
+
+<p><strong>The tooling is fragmented and incomplete.</strong> Each enclave platform (AWS Nitro, Intel TDX, AMD SEV) has its own SDK, its own attestation format, its own deployment quirks, and non-deterministic in most cases which blocks useful verification. There’s no unified abstraction, so teams end up building custom integrations from scratch and being forced to pick a single platform to support.</p>
+
+<p><strong>Reproducibility is an afterthought.</strong> Most enclave deployments can’t actually prove what code is running. Attestations give you a hash, but if you can’t reproduce that hash from source code, you’re trusting whoever built the binary. This is a major shortcoming that essentially all enclave players are exposed to today.</p>
+
+<p><strong>It requires expensive specialists.</strong> Companies end up having to hire 3+ security engineers at $300k+ to build and maintain custom enclave infrastructure that avoids trusting a single engineer. Even then, the result is usually a brittle system that’s hard to audit and painful to update.</p>
+
+<p><strong>Vendor lock-in is the norm.</strong> Once you’ve built your deployment pipeline for one cloud’s native offering, migrating to another is often a rewrite.</p>
+
+<p>The result: high security verifiable compute remains inaccessible to most teams, and even well-resourced organisations struggle to get it right.</p>
+
+<h2 id="what-is-caution">What is Caution?</h2>
+
+<p>Caution is the generalized verifiable compute platform. It solves the core problems that make truly verifiable compute inaccessible today.</p>
+
+<p>For the developer, Caution provides a single, consistent, and easy way to deploy to Trusted Execution Environments. It turns months of custom infrastructure work and expensive security engineering into one git-driven unified workflow that runs in minutes.</p>
+
+<p>Caution builds a reproducible enclave image, provisions infrastructure, and exposes application and attestation endpoints. Once an enclave is live, anyone can verify exactly what is running inside. Cryptographic proof becomes part of the runtime itself rather than an afterthought, and verifiable compute becomes something real teams can adopt without friction.
+<strong>This is an industry first: no other platform provides end-to-end reproducible verification out of the box.</strong></p>
+
+<p>Caution is designed for portability across clouds and hardware, which strengthens trust minimization by removing dependence on any single vendor. It supports AWS Nitro Enclaves today, with Intel TDX, AMD SEV-SNP, and TPM 2.0 attestation in active development through our modular architecture.</p>
+
+<p>This is a fundamentally better way to run software because it replaces blind trust with verifiable proof, and from multiple different types of enclave and attesation hardware simultanously, and as such removes major single points of failure.</p>
+
+<p>Our mission is to make verifiable compute as much of an industry standard for network services as TLS. The technology primitives were invented for DRM to remove freedom from users, however we intend to flip the script and use the same primitives to upgrade freedom, security, and privacy for everyone.</p>
+
+<h2 id="how-caution-works">How Caution works</h2>
+
+<p>Three commands take you from code to verified enclave: initialize your app, deploy to an enclave, and verify the deployment matches your source.</p>
+
+<h3 id="step-1-initialize">Step 1: Initialize</h3>
+
+<p>Configure your project for Caution by running:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Initialize an app and generate a Procfile</span>
+<span class="nv">$ </span>caution init
+</code></pre></div></div>
+
+<p>This creates a <code class="language-plaintext highlighter-rouge">.caution/deployment.json</code> config file and generates a <code class="language-plaintext highlighter-rouge">Procfile</code> that defines how your application is built and run.</p>
+
+<p>You may need to adjust the generated <code class="language-plaintext highlighter-rouge">Procfile</code> depending on your project structure. The <code class="language-plaintext highlighter-rouge">Procfile</code> supports the following fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">build</code></td>
+      <td>Yes</td>
+      <td>Command to build the application (e.g., <code class="language-plaintext highlighter-rouge">docker build</code>)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">run</code></td>
+      <td>Yes</td>
+      <td>The binary that will be run inside the enclave</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">oci-tarball</code></td>
+      <td>No</td>
+      <td>Path where the OCI image data is exported</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">source</code></td>
+      <td>No</td>
+      <td>URL to a source archive (defaults to git origin + latest commit hash)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cpus</code></td>
+      <td>No</td>
+      <td>Number of CPUs (default: 2)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">memory_mb</code></td>
+      <td>No</td>
+      <td>RAM allocation in MB (default: 512)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata</code></td>
+      <td>No</td>
+      <td>Arbitrary metadata added to the attestation endpoint manifest</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="step-2-deploy">Step 2: Deploy</h3>
+
+<p>Push your code to trigger a build and <span class="tooltip" data-tooltip="Currently, Caution supports AWS Nitro enclaves. Support for Intel TDX, AMD SEV-SNP, and TPM 2.0 attestation is under active development and planned for 2026.">deploy it into a Nitro enclave</span>.</p>
+
+<p>Caution pulls your application, combines it with EnclaveOS to create a reproducible enclave image, provisions infrastructure in your AWS account, and starts the enclave. Build time varies based on application size and compilation requirements.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Deploy to a Nitro enclave</span>
+<span class="nv">$ </span>git push caution main
+</code></pre></div></div>
+
+<p>After this command, Caution:</p>
+
+<ol>
+  <li>Authenticates you via SSH key.</li>
+  <li>Pulls your application code.</li>
+  <li>Downloads the pinned version of <a href="https://git.distrust.co/public/enclaveos" target="\_blank">EnclaveOS</a>.</li>
+  <li>Builds a reproducible Enclave Image File (EIF) using EnclaveOS and your application.</li>
+  <li>Provisions a Nitro-enabled EC2 instance in your AWS account.</li>
+  <li>Deploys the enclave and starts your application.</li>
+  <li>Exposes an application endpoint and an attestation endpoint for verification.</li>
+</ol>
+
+<h3 id="step-3-verify">Step 3: Verify</h3>
+
+<p>Verify that the deployed enclave matches the source you can audit.</p>
+
+<p>The CLI rebuilds the enclave image locally, sends a challenge to the attestation endpoint and gets a fresh attestation from the running enclave, then compares the resulting hashes and verifies all signatures. A match gives you cryptographic proof of the exact code and configuration running inside the enclave.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Verify the deployment matches the source</span>
+<span class="nv">$ </span>caution verify <span class="nt">--attestation-url</span> &lt;url&gt;
+</code></pre></div></div>
+
+<h2 id="verification-the-key-innovation">Verification: The key innovation</h2>
+
+<p>Attestation without reproducibility is theater. A Nitro attestation tells you the hash of the enclave image, but if you can’t independently produce that same hash from auditable source code, you’re just trusting whoever built the image.</p>
+
+<p>Caution solves this with two verification modes: reproduce (full verification) and <span class="tooltip" data-tooltip="Platform Configuration Register">PCR</span> (quick verification).</p>
+
+<p>Note: Full verification requires your source code to be available to users. We recommend FOSS licenses for this, but any license works as long as users can access the code.</p>
+
+<h3 id="reproduce-mode-full-verification">Reproduce mode (full verification)</h3>
+
+<p>Reproduce mode is the full verification path and the gold standard. It rebuilds the enclave image from source and compares it against the live attestation, giving you the strongest possible guarantee that the runtime matches the code you can audit.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>caution verify <span class="nt">--attestation-url</span> &lt;url&gt;
+</code></pre></div></div>
+
+<p>During this process, the CLI:</p>
+
+<ol>
+  <li>Generates a random 32-byte nonce that’s used as a challenge with the attestation endpoint (prevents replay attacks).</li>
+  <li>Requests a fresh attestation from the running enclave.</li>
+  <li>Verifies the certificate chain back to AWS’s Nitro Root CA.</li>
+  <li>Verifies the COSE signature (ECDSA P-384).</li>
+  <li>Verifies the return nonce matches (proves attestation is fresh).</li>
+  <li>Fetches the build manifest from the enclave.</li>
+  <li><strong>Rebuilds the entire enclave image locally</strong> using the same EnclaveOS version and your application source. This code can be reviewed and audited as desired, and is located in <code class="language-plaintext highlighter-rouge">~/.cache/caution/reproductions/local/&lt;unique-id&gt;/eif-stage</code>.</li>
+  <li>Compares local PCR values against remote PCR values.</li>
+</ol>
+
+<p>If they match, you have cryptographic proof that:</p>
+
+<ul>
+  <li>The enclave is running on real Nitro hardware.</li>
+  <li>The code running matches the source code you can inspect.</li>
+  <li>No one has tampered with the deployment.</li>
+</ul>
+
+<h3 id="pcr-mode-partial-verification">PCR mode (partial verification)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>caution verify <span class="nt">--pcrs</span> known-good-pcrs.txt
+</code></pre></div></div>
+
+<p>If you’ve already done a reproduce verification (or trust someone who has), you can verify future attestations against known-good PCR values without rebuilding:</p>
+
+<ol>
+  <li>Generate nonce and fetch fresh attestation.</li>
+  <li>Verify certificate chain and signature.</li>
+  <li>Compare PCR values against the provided file.</li>
+</ol>
+
+<p>This is faster but requires you to trust the source of the PCR file. It’s useful for applications that lack public source code, but this means they are also not truly verifiable.</p>
+
+<h3 id="what-the-pcrs-represent">What the PCRs represent</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>PCR</th>
+      <th>Contents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PCR0</td>
+      <td>Hash of the entire Enclave Image File</td>
+    </tr>
+    <tr>
+      <td>PCR1</td>
+      <td>Hash of the Linux kernel and boot configuration</td>
+    </tr>
+    <tr>
+      <td>PCR2</td>
+      <td>Hash of the application code</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If any of these don’t match expected values, either the code has changed or something is wrong.</p>
+
+<h2 id="platform-architecture">Platform architecture</h2>
+
+<p>Caution’s architecture combines a local CLI, a lightweight control plane, and EnclaveOS inside the enclaves. Each part has a narrow, well-defined role so the path from source code to verified runtime stays simple, auditable, and reproducible. The core components are:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Purpose</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CLI</strong></td>
+      <td>Local tool for managing deployments and verification</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>Gateway</strong></td>
+      <td>Authentication (FIDO2 passkeys or SSH) and request routing</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>API Backend</strong></td>
+      <td>Manages state, users, organisations, and orchestrates deployments</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>Enclave Builder</strong></td>
+      <td>Combines your application with EnclaveOS to produce reproducible enclave images</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>EnclaveOS</strong></td>
+      <td>Minimal, immutable, deterministic Linux OS that runs inside the enclave</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Together, these components form a reproducible pipeline: your code is built locally or in the builder, combined with EnclaveOS, stored as an enclave image, provisioned into a Nitro enclave, and verified by your local CLI. Every step is transparent and independently auditable.</p>
+
+<h2 id="enclaveos-as-the-runtime-foundation">EnclaveOS as the runtime foundation</h2>
+
+<p>Under the hood, Caution uses <a href="https://git.distrust.co/public/enclaveos" target="\_blank">EnclaveOS</a>: a minimal, immutable, deterministic operating system designed for high-security enclave deployments.</p>
+
+<p>EnclaveOS is in active development, with most new work happening in repositories it will later import. It supports AWS Nitro Enclaves today, and organisations are already using forks in the wild. We are continuing to develop the bootproof engine, nested VM architecture, and multi-hardware support for threat models that cannot fully trust a single cloud provider.</p>
+
+<p>EnclaveOS provides:</p>
+
+<ul>
+  <li><strong>Minimal attack surface</strong>: Small footprint, unnecessary kernel features disabled</li>
+  <li><strong>Immutable root filesystem</strong>: Boots from a RAM disk, no persistent state</li>
+  <li><strong>Deterministic builds</strong>: Byte-for-byte reproducible images regardless of build environment</li>
+  <li><strong>Air-gapped architecture</strong>: Network-isolated enclave communicates only via vsock</li>
+</ul>
+
+<p>Caution serves as the deployment and orchestration layer on top of EnclaveOS. As EnclaveOS adds support for more attestation backends, Caution will enable seamless multi-cloud deployment: same <code class="language-plaintext highlighter-rouge">git push</code> workflow, different cloud targets.</p>
+
+<h2 id="security-model">Security model</h2>
+
+<h3 id="what-you-dont-have-to-trust">What you <u>DON'T</u> have to trust</h3>
+
+<p>You don’t have to trust Caution. Every deployment is verifiable:</p>
+
+<ul>
+  <li>The enclave image is reproducible. Rebuild it yourself and compare the hashes.</li>
+  <li>All components are open source and auditable.</li>
+  <li>Attestations are rooted in hardware.</li>
+  <li>The CLI is open source, compiles locally, and runs entirely on your machine. For advanced users, we intend to provide a guide to verify everything with raw shell commands.</li>
+</ul>
+
+<p>Even if Caution’s infrastructure were completely compromised, an attacker couldn’t deploy malicious code without it being detectable via <code class="language-plaintext highlighter-rouge">caution verify --url &lt;&gt;</code>.</p>
+
+<h3 id="what-you-do-have-to-trust">What you <u>DO</u> have to trust</h3>
+
+<ul>
+  <li><strong>Attestation hardware</strong>: The attestation chain for AWS Nitro deployments is rooted in AWS’s Nitro Security Module. If AWS is compromised or lying, attestations are meaningless. EnclaveOS multi-hardware attestation is intended to address this risk.</li>
+  <li><strong>Your application code</strong>: We verify the platform, not your business logic.</li>
+  <li><strong>The cryptographic primitives</strong>: ECDSA P-384, SHA-384, standard stuff.</li>
+</ul>
+
+<h2 id="open-source-not-open-core">Open source, not open core</h2>
+
+<p>Caution is 100% freely licensed open source software, not “open core” with paid features hidden behind enterprise tiers. You get the entire platform with nothing held back:</p>
+
+<ul>
+  <li>Self-host the entire stack if you want</li>
+  <li>No feature gating</li>
+  <li>Everything is auditable by anyone</li>
+</ul>
+
+<p>We hope many teams choose our hosted platform or support services so we can continue this work long term, but the software itself is open because the mission is larger than us. Anyone should be able to build, verify, and run secure workloads without artificial barriers.</p>
+
+<p>Our goal is an ecosystem where organisations with sensitive workloads can run enclaves across multiple providers, avoiding walled gardens and reducing single points of failure.</p>
+
+<h2 id="licensing">Licensing</h2>
+
+<p>Caution is dual-licensed under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="\_blank">GNU Affero General Public License version 3</a> (GNU AGPLv3) and a commercial licence. The GNU AGPLv3 allows free use, modification, and distribution as long as derivative works remain freely licensed open source software.</p>
+
+<p>For organisations that want to extend a fork of the Caution platform internally with proprietary code, a commercial licence can be purchased upon request to bypass AGPL limitations.</p>
+
+<p><strong><a href="/contact.html">Reach out to us</a> for commercial licensing.</strong></p>
+
+<h2 id="available-now">Available now</h2>
+
+<p>Teams can start deploying verifiable compute today. The platform supports:</p>
+
+<ul>
+  <li>AWS Nitro Enclave deployment</li>
+  <li>Reproducible builds with EnclaveOS</li>
+  <li>Full verification via <code class="language-plaintext highlighter-rouge">--attestation-url</code> and <code class="language-plaintext highlighter-rouge">--pcrs</code></li>
+  <li>FIDO2 and SSH authentication</li>
+  <li>Bring your own compute and fully managed deployment options</li>
+  <li>Self-hostable platform</li>
+</ul>
+
+<p><strong><a href="/contact.html#book">Book 20 minutes</a> with one of our engineers. We’ll discuss your goals, answer technical questions, and help you get ready to deploy with Caution.</strong></p>
+
+<h2 id="whats-next">What’s next</h2>
+
+<p>Caution is continuing to evolve toward a fully portable, multi-enclave platform. Here’s what’s coming in 2026:</p>
+
+<ul>
+  <li>Multi-hardware attestation (TPM 2.0, Intel TDX, AMD SEV-SNP)</li>
+  <li>Support for additional cloud backends and bare metal</li>
+  <li>Multi-cloud deployments from a single configuration</li>
+</ul>
+
+<h2 id="helpful-resources">Helpful resources</h2>
+
+<ul>
+  <li><strong>Caution platform repository</strong>: <a href="https://codeberg.org/Caution/" target="\_blank">codeberg.org/Caution</a></li>
+  <li><strong>EnclaveOS</strong>: <a href="https://git.distrust.co/public/enclaveos" target="\_blank">git.distrust.co/public/enclaveos</a></li>
+  <li><strong>Distrust</strong>: <a href="https://distrust.co" target="\_blank">distrust.co</a></li>
+</ul>]]></content><author><name>Anton Livaja</name></author><category term="announcement" /><summary type="html"><![CDATA[Caution is the generalized verifiable compute platform. Deploy enclaves with two commands and let anyone independently verify exactly what's running.]]></summary></entry><entry><title type="html">The case for verifiable compute</title><link href="https://caution.co/blog/the-case-for-verifiable-compute.html" rel="alternate" type="text/html" title="The case for verifiable compute" /><published>2025-09-29T00:00:00+00:00</published><updated>2025-09-29T00:00:00+00:00</updated><id>https://caution.co/blog/verifiable-compute</id><content type="html" xml:base="https://caution.co/blog/the-case-for-verifiable-compute.html"><![CDATA[<div class="tldr-callout">
+
+  <p>What if the software running your systems isn’t what you think? If you had to prove what software is on a system, how would you do it?</p>
+
+</div>
+
+<p><span class="section-label toc-label">Table of contents</span></p>
+
+<!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#the-real-world-risk-of-unverifiability" id="markdown-toc-the-real-world-risk-of-unverifiability">The real-world risk of unverifiability</a></li>
+  <li><a href="#the-building-blocks-of-true-verifiability" id="markdown-toc-the-building-blocks-of-true-verifiability">The building blocks of true verifiability</a></li>
+  <li><a href="#why-existing-platforms-fall-short" id="markdown-toc-why-existing-platforms-fall-short">Why existing platforms fall short</a></li>
+  <li><a href="#cautiously-building-the-next-generation-of-verifiable-compute" id="markdown-toc-cautiously-building-the-next-generation-of-verifiable-compute">“Cautiously” building the next generation of verifiable compute</a></li>
+</ol>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Most of today’s technologies are black boxes. From firmware and operating systems to compilers and cloud platforms, opacity is the default. Users can send requests to an API or server, but they cannot verify what software, or whose software, they are really interacting with. The issue impacts organisations internally as well, where system managers can’t verify whether the code they think they deployed is actually what’s running on the server. This is not just a usability issue, it is a systemic design failure and the result is software stacks riddled with blind spots, where compromise can occur at any stage and remain invisible.</p>
+
+<p>Years of working with high-risk clients and analysing different technologies have led us to realise that the pieces needed for verifiable systems already exist. They remain underutilized because they are misunderstood and difficult to use, a problem we need to solve.</p>
+
+<p>Reproducible builds, secure enclaves, and cryptographic remote attestation each solve parts of the problem. Taken together, they form the building blocks for <strong>verifiable compute</strong>, which allows software to be verified. Our work is focused on creating the next generation of cloud hosting platform centered around verifiability and elimination of single points of failure present in current market solutions.</p>
+
+<p>Like “zero trust” before it, the term verifiable compute is already being hijacked by marketing teams. Companies throw it around to describe partial solutions, usually just proving a binary hash hasn’t changed. We take a stricter view: verifiable compute means the entire supply chain can be checked. Anything less is <strong>not</strong> verifiable compute.</p>
+
+<h2 id="the-real-world-risk-of-unverifiability">The real-world risk of unverifiability</h2>
+
+<p>The risks of unverifiable systems are not theoretical; they’ve already caused some of the most damaging security incidents of the past decade.</p>
+
+<p><strong><a href="https://thehackernews.com/2025/09/solarwinds-releases-hotfix-for-critical.html" target="_blank" rel="noopener noreferrer" title="View article on thehackernews.com">SolarWinds (2020)</a></strong> showed how a compromised software supply chain can cascade globally. Attackers injected malicious code into SolarWinds’ Orion updates, which were then shipped to thousands of companies and U.S. government agencies. Because customers had no way to verify what software they were actually running, the backdoor spread silently through trusted update channels.</p>
+
+<p>This is one of the many breaches which demonstrate that without verifiability across the entire stack, organisations have no reliable way to prove the integrity of the systems they depend on.</p>
+
+<h2 id="the-building-blocks-of-true-verifiability">The building blocks of true verifiability</h2>
+
+<p>Three core technologies make end-to-end software verifiability possible:</p>
+
+<ul>
+  <li>
+    <p><strong>Reproducible builds.</strong> Reproducible builds force software to be bit-for-bit identical when built from the same source code, and eliminate certain categories of supply chain attacks and would have prevented incidents like SolarWinds. It allows for integrity verification, without which software is opaque and difficult to verify.</p>
+  </li>
+  <li>
+    <p><strong>Secure enclaves.</strong> Hardware-isolated execution (e.g., IOMMU-backed enclaves) prevents external processes — even privileged ones — from tampering with sensitive workloads. Enclaves give us strong isolation, but isolation alone doesn’t prove what is running.</p>
+  </li>
+  <li>
+    <p><strong>Remote attestation.</strong> Remote hardware attestation (TPM2, Intel TDX, AMD SEV, AWS Nitro, and others) measures the state of a machine and provides cryptographic proof of what software is running. Attestation anchors trust at the hardware layer, but on its own it doesn’t guarantee the software’s provenance or build integrity.</p>
+  </li>
+</ul>
+
+<p>Together, they form the foundation of true verifiable compute: the ability to verify software integrity from the toolchain it’s built with to the hardware it runs on.</p>
+
+<h2 id="why-existing-platforms-fall-short">Why existing platforms fall short</h2>
+
+<p>Current offerings from the major cloud providers (AWS, Azure, GCP, etc.) are demanding in terms of both expertise and time to set up. They lock users into a single vendor’s ecosystem and force reliance and trust in one type of hardware or firmware. For example, AWS requires implicit trust in its proprietary Nitro Card, a black-box technology that customers cannot independently verify.</p>
+
+<p>New players are building wrappers around enclave and attestation technologies, but most remain focused on narrow use cases such as digital asset wallets or running LLMs. While promising, they provide only surface-level verification, proving that a binary’s hash hasn’t changed without offering full visibility into what is actually running on the server.</p>
+
+<p>In short, there are currently no solutions offering full transparency and elimination of single points of failure in the market.</p>
+
+<h2 id="cautiously-building-the-next-generation-of-verifiable-compute">“Cautiously” building the next generation of verifiable compute</h2>
+
+<p>Our team has chosen a no-compromise approach to solving this problem by building a cloud hosting platform, <strong>Caution</strong>, that:</p>
+
+<ul>
+  <li>
+    <p>Is full-source bootstrapped and reproducible.</p>
+  </li>
+  <li>
+    <p>Is portable across environments across major cloud platforms or bare metal.</p>
+  </li>
+  <li>
+    <p>Uses multiple hardware attestations.</p>
+  </li>
+  <li>
+    <p>Uses quorum authentication as a core primitive.</p>
+  </li>
+  <li>
+    <p>Is fully open source.</p>
+  </li>
+</ul>
+
+<p>Caution is the next generation cloud hosting platform launching in 2026. We believe this marks the beginning of a new era of infrastructure: verifiable, open, and resilient by default.</p>
+
+<p>We’re building Caution in the open. If you’d like to use it, contribute, or partner with us, <strong><a href="/contact.html">get in touch</a></strong>.</p>]]></content><author><name>Anton Livaja</name></author><category term="insight" /><summary type="html"><![CDATA[Reproducible builds, secure enclaves, and cryptographic remote attestation form the building blocks for verifiable compute, allowing software to be verified end-to-end.]]></summary></entry></feed>

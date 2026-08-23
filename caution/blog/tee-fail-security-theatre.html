@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="theme-color" content="#e7f1ff" />
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicons/favicon__v-1.png" />
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraLight.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Light.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Regular.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Medium.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-SemiBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-Bold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/PlusJakartaSans-ExtraBold.otf"
+		as="font"
+		type="font/otf"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-Regular.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+	<link
+		rel="preload"
+		href="../assets/fonts/IBMPlexSans-SemiBold.woff2"
+		as="font"
+		type="font/woff2"
+		crossorigin
+	/>
+
+	
+
+	<title>TEE.fail does not make confidential computing security theatre</title>
+	<link rel="stylesheet" href="../assets/styles.css" />
+	<link rel="canonical" href="https://caution.co/blog/tee-fail-security-theatre.html" />
+	<link rel="alternate" type="application/atom+xml" title="Caution" href="../feed.xml" />
+	<meta content="Caution" property="og:site_name" />
+
+	 
+	<meta content="TEE.fail does not make confidential computing security theatre" property="og:title" />
+	<meta content="article" property="og:type" />
+	 
+	<meta content="TEE.fail and related research demonstrate several practical physical attacks against confidential-computing hardware." property="og:description" />
+	<meta name="description" content="TEE.fail and related research demonstrate several practical physical attacks against confidential-computing hardware." />
+	 
+	<meta content="https://caution.co/blog/tee-fail-security-theatre.html" property="og:url" />
+	 
+	<meta
+		content="2026-08-06T00:00:00+00:00"
+		property="article:published_time"
+	/>
+	<meta content="https://caution.co/about/" property="article:author" />
+	 
+	<meta content="https://caution.co/assets/imgs/opengraph/og-blog/og-post-tee-fail-security-theatre.png" property="og:image" />
+	     
+	<meta content="analysis" property="article:tag" />
+	 
+
+	<meta name="twitter:card" content="summary_large_image" />
+
+	
+	<meta name="twitter:title" content="TEE.fail does not make confidential computing security theatre" />
+	 
+	<meta name="twitter:url" content="https://caution.co/blog/tee-fail-security-theatre.html" />
+	 
+	<meta name="twitter:description" content="TEE.fail and related research demonstrate several practical physical attacks against confidential-computing hardware." />
+	 
+	<meta name="twitter:image:src" content="https://caution.co/assets/imgs/opengraph/og-blog/og-post-tee-fail-security-theatre.png" />
+	 
+
+	<script src="../assets/js/main.js" defer></script>
+
+
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": "https://caution.co/"
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Blog",
+			"item": "https://caution.co/blog.html"
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"name": "TEE.fail does not make confidential computing security theatre"
+		}
+	]
+}
+</script>
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "Article",
+	"headline": "TEE.fail does not make confidential computing security theatre",
+	"description": "TEE.fail and related research demonstrate several practical physical attacks against confidential-computing hardware.",
+	"url": "https://caution.co/blog/tee-fail-security-theatre.html",
+	"datePublished": "2026-08-06T00:00:00+00:00",
+	"image": "https://caution.co/assets/imgs/opengraph/og-blog/og-post-tee-fail-security-theatre.png",
+	"author": {
+		"@type": "Organization",
+		"name": "Caution",
+		"url": "https://caution.co"
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": "Caution",
+		"url": "https://caution.co",
+		"logo": {
+			"@type": "ImageObject",
+			"url": "https://caution.co/assets/favicons/caution-icon.svg"
+		}
+	}
+}
+</script>
+
+
+
+
+
+
+
+<!-- "Really, there is nothing interesting to see here. It is a static website. -->
+	<!-- Here is the terraform code that deployed it, and here is the site source repo. -->
+	<!-- If you find anything interesting or want to talk to us, reach out via our /contact page!" -->
+	<!-- https://git.distrust.co/public/stack -->
+	<!-- https://git.distrust.co/public/website -->
+</head>
+<body class="post-page-body blog-post-body">
+		<div class="page-wrapper"><script>
+	(function () {
+		try {
+			if (window.localStorage.getItem("caution-y-combinator-announcement-dismissed") === "true") {
+				document.documentElement.classList.add("site-announcement-dismissed");
+			}
+		} catch (error) {
+			// Keep the announcement visible if localStorage is unavailable.
+		}
+	})();
+</script>
+
+<div class="site-announcement" data-site-announcement role="region" aria-label="Y Combinator announcement">
+	<div class="site-announcement__inner">
+		<p class="site-announcement__copy">
+			Caution is backed by Y Combinator. <span class="site-announcement__mobile-break" aria-hidden="true"></span><a href="https://www.ycombinator.com/launches/SIq-caution-hosting-platform-for-software-you-can-t-afford-to-have-hacked" class="site-announcement__link" target="_blank" rel="noopener noreferrer" aria-label="Learn more about Caution on Y Combinator">Learn more</a>.
+		</p>
+		<button class="site-announcement__dismiss" type="button" aria-label="Dismiss announcement" data-site-announcement-dismiss>
+			<svg class="site-announcement__dismiss-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M18 6 6 18"></path>
+				<path d="m6 6 12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<header class="header-navbar">
+	<div class="nav-top-bar">
+		<a href="../index.html" class="nav-logo">
+			<img src="../assets/base/caution-logo/caution.svg" alt="Caution logo" width="781" height="137" />
+		</a>
+
+		<nav class="nav-desktop">
+			<div class="nav-center">
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Platform
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="../platform-tour.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/><circle cx="12" cy="12" r="10"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Platform tour</span>
+										<span class="nav-dropdown__desc">Watch Caution in action</span>
+									</span>
+								</a>
+								<a href="../cloud/aws.html" class="nav-dropdown__item">
+									<span class="nav-dropdown__icon">
+										<img src="../assets/base/aws.png" alt="" width="640" height="640" class="nav-dropdown__icon-img" />
+									</span>
+									<span>
+										<span class="nav-dropdown__title">AWS Nitro</span>
+										<span class="nav-dropdown__desc">Deploy on AWS Nitro Enclaves</span>
+									</span>
+								</a>
+								<a href="../faq.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+									<span>
+										<span class="nav-dropdown__title">FAQ</span>
+										<span class="nav-dropdown__desc">Common questions answered</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-dropdown">
+					<button class="nav-link nav-dropdown__trigger" aria-expanded="false" aria-haspopup="true">
+						Resources
+						<svg class="nav-dropdown__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<path d="m6 9 6 6 6-6"/>
+						</svg>
+					</button>
+					<div class="nav-dropdown__menu">
+						<div class="nav-dropdown__section">
+							<div class="nav-dropdown__grid">
+								<a href="https://docs.caution.co/" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Documentation</span>
+										<span class="nav-dropdown__desc">Technical guides and API reference</span>
+									</span>
+								</a>
+								<a href="../blog.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Blog</span>
+										<span class="nav-dropdown__desc">Engineering insights and updates</span>
+									</span>
+								</a>
+								<a href="../security-controls.html" class="nav-dropdown__item">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Security</span>
+										<span class="nav-dropdown__desc">Trust model, evidence, and framework alignment</span>
+									</span>
+								</a>
+								<a href="https://matrix.to/#/#caution:matrix.org" class="nav-dropdown__item" target="_blank" rel="noopener noreferrer">
+									<svg class="nav-dropdown__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a8 8 0 0 0-16 0"/><circle cx="10" cy="8" r="5"/><path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3"/></svg>
+									<span>
+										<span class="nav-dropdown__title">Community</span>
+										<span class="nav-dropdown__desc">Join us on Matrix</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="nav-link">About</a>
+				<a href="../pricing.html" class="nav-link">Pricing</a>
+			</div>
+			<div class="nav-right">
+				<a href="https://dashboard.caution.co/" class="nav-link">Log in</a>
+				<a href="../contact.html" class="nav-cta">
+					Book a live demo
+				</a>
+			</div>
+		</nav>
+
+		<button
+			class="mobile-menu-button"
+			id="mobile-menu-button"
+			aria-expanded="false"
+			aria-label="Toggle menu"
+		>
+			<span class="hamburger">
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+				<span class="hamburger-line"></span>
+			</span>
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu">
+		<div class="mobile-menu-content">
+			<div class="mobile-menu-nav">
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Platform <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="../platform-tour.html" class="mobile-menu-link">Platform tour</a>
+							<a href="../cloud/aws.html" class="mobile-menu-link">AWS Nitro</a>
+							<a href="../faq.html" class="mobile-menu-link">FAQ</a>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-menu-section">
+					<button class="mobile-menu-label" aria-expanded="false">
+						<span class="mobile-menu-label__text">Resources <svg xmlns="http://www.w3.org/2000/svg" class="mobile-menu-label__arrow lucide lucide-chevron-down-icon lucide-chevron-down" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+					</button>
+					<div class="mobile-menu-section__content">
+						<div class="mobile-menu-section__inner">
+							<a href="https://docs.caution.co/" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Documentation</a>
+							<a href="../blog.html" class="mobile-menu-link">Blog</a>
+							<a href="../security-controls.html" class="mobile-menu-link">Security</a>
+							<a href="https://matrix.to/#/#caution:matrix.org" class="mobile-menu-link" target="_blank" rel="noopener noreferrer">Community</a>
+							<a href="../legal.html" class="mobile-menu-link">Legal</a>
+						</div>
+					</div>
+				</div>
+				<a href="../about.html" class="mobile-menu-link">About</a>
+				<a href="../pricing.html" class="mobile-menu-link">Pricing</a>
+			</div>
+			<div class="mobile-menu-footer">
+				<a href="../contact.html" class="mobile-menu-cta">
+					Book a live demo
+				</a>
+				<a href="../platform-tour.html" class="cta-link">
+					Watch the 3-minute tour
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M5 12h14"></path>
+						<path d="m12 5 7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		const announcement = document.querySelector("[data-site-announcement]");
+		const dismissButton = document.querySelector("[data-site-announcement-dismiss]");
+		const root = document.documentElement;
+		const dismissedClass = "site-announcement-dismissed";
+		const storageKey = "caution-y-combinator-announcement-dismissed";
+
+		function isDismissed() {
+			return root.classList.contains(dismissedClass);
+		}
+
+		function setAnnouncementOffset() {
+			if (!announcement || isDismissed()) {
+				root.style.setProperty("--site-announcement-offset", "0px");
+				return;
+			}
+
+			const offset = Math.max(0, announcement.offsetHeight - (window.scrollY || window.pageYOffset));
+			root.style.setProperty("--site-announcement-offset", `${offset}px`);
+		}
+
+		if (dismissButton) {
+			dismissButton.addEventListener("click", function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+
+				try {
+					window.localStorage.setItem(storageKey, "true");
+				} catch (error) {
+					// Dismiss for this page view even if persistence is unavailable.
+				}
+
+				root.classList.add(dismissedClass);
+				setAnnouncementOffset();
+			});
+		}
+
+		setAnnouncementOffset();
+		window.addEventListener("scroll", setAnnouncementOffset, { passive: true });
+		window.addEventListener("resize", setAnnouncementOffset);
+	});
+
+	// Desktop dropdown toggle (click-based)
+	document.addEventListener("DOMContentLoaded", function() {
+		const dropdowns = document.querySelectorAll(".nav-dropdown");
+
+		dropdowns.forEach(dropdown => {
+			const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+			if (!trigger) return;
+
+			trigger.addEventListener("click", function(e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				const isOpen = dropdown.classList.contains("is-open");
+
+				// Close all dropdowns first
+				dropdowns.forEach(d => {
+					d.classList.remove("is-open");
+					const t = d.querySelector(".nav-dropdown__trigger");
+					if (t) t.setAttribute("aria-expanded", "false");
+				});
+
+				// Toggle current dropdown
+				if (!isOpen) {
+					dropdown.classList.add("is-open");
+					trigger.setAttribute("aria-expanded", "true");
+				}
+			});
+		});
+
+		// Close dropdown when clicking outside
+		document.addEventListener("click", function(e) {
+			if (!e.target.closest(".nav-dropdown")) {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+
+		// Close dropdown on Escape key
+		document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape") {
+				dropdowns.forEach(dropdown => {
+					dropdown.classList.remove("is-open");
+					const trigger = dropdown.querySelector(".nav-dropdown__trigger");
+					if (trigger) trigger.setAttribute("aria-expanded", "false");
+				});
+			}
+		});
+	});
+
+	// Detect dark sections and update navbar styling
+	function updateNavbarForDarkSections() {
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		// Get navbar position (use a point near the top of the navbar)
+		const navbarRect = navbar.getBoundingClientRect();
+		const checkPoint = navbarRect.top + navbarRect.height / 2;
+
+		// Find all dark sections on the page
+		function getDarkSections() {
+			var selector = '.problem-section, [class*="dark-bg"], [class*="bg-dark"]';
+			return document.querySelectorAll(selector);
+		}
+
+		let isOverDark = false;
+
+		getDarkSections().forEach(section => {
+			const sectionRect = section.getBoundingClientRect();
+			// Check if navbar overlaps with this dark section
+			if (checkPoint >= sectionRect.top && checkPoint <= sectionRect.bottom) {
+				isOverDark = true;
+			}
+		});
+
+		if (isOverDark) {
+			navbar.classList.add("navbar--on-dark");
+		} else {
+			navbar.classList.remove("navbar--on-dark");
+		}
+	}
+
+	// Run on scroll and load
+	document.addEventListener("DOMContentLoaded", function() {
+		updateNavbarForDarkSections();
+		window.addEventListener("scroll", updateNavbarForDarkSections, { passive: true });
+	});
+
+	// Mobile menu toggle
+	document.addEventListener("DOMContentLoaded", function () {
+		const mobileMenuButton = document.getElementById("mobile-menu-button");
+		const mobileMenu = document.getElementById("mobile-menu");
+		const headerNavbar = document.querySelector(".header-navbar");
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener("click", () => {
+				const isExpanded =
+					mobileMenuButton.getAttribute("aria-expanded") === "true";
+				mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+				mobileMenu.classList.toggle("active");
+				// Toggle dark background on header when menu is open
+				if (headerNavbar) {
+					headerNavbar.classList.toggle("mobile-menu-open");
+				}
+				// Prevent body scroll when menu is open
+				document.documentElement.classList.toggle("mobile-menu-active");
+				document.body.classList.toggle("mobile-menu-active");
+			});
+		}
+
+		// Mobile menu accordion toggle
+		const accordionLabels = document.querySelectorAll(".mobile-menu-label");
+		accordionLabels.forEach(label => {
+			const content = label.nextElementSibling;
+			if (!content) return;
+
+			label.addEventListener("click", () => {
+				const isExpanded = label.getAttribute("aria-expanded") === "true";
+				label.setAttribute("aria-expanded", !isExpanded);
+				content.classList.toggle("is-expanded", !isExpanded);
+			});
+
+			// Set initial state (expanded)
+			if (label.getAttribute("aria-expanded") === "true") {
+				content.classList.add("is-expanded");
+			}
+		});
+
+		// Intent-based auto-hiding navbar
+		const navbar = document.querySelector(".header-navbar");
+		if (!navbar) return;
+
+		let lastScrollY = window.scrollY;
+		let ticking = false;
+		let isNavbarVisible = true;
+
+		// Thresholds for scroll behavior
+		const SCROLL_THRESHOLD = 5; // Minimum scroll distance to trigger hide/show (prevents jitter)
+		const SHOW_THRESHOLD = 10; // Pixels to scroll up before showing navbar
+		const TOP_THRESHOLD = 100; // Distance from top where navbar always shows
+
+		function getNavbarHideStartY() {
+			if (!document.body.classList.contains("landing")) {
+				return TOP_THRESHOLD;
+			}
+
+			const differentiatorSection = document.querySelector("[data-differentiator-section]");
+			if (!differentiatorSection) {
+				return TOP_THRESHOLD;
+			}
+
+			const sectionRect = differentiatorSection.getBoundingClientRect();
+			const sectionBottomY = sectionRect.bottom + window.scrollY;
+			const navbarHeight = navbar.offsetHeight || 0;
+
+			return Math.max(TOP_THRESHOLD, sectionBottomY - navbarHeight);
+		}
+
+		// Debounced scroll handler for performance
+		function handleScroll() {
+			if (!ticking) {
+				window.requestAnimationFrame(() => {
+					updateNavbarVisibility();
+					ticking = false;
+				});
+				ticking = true;
+			}
+		}
+
+		// Intent detection: show navbar when scrolling up, hide when scrolling down
+		function updateNavbarVisibility() {
+			const currentScrollY = window.scrollY;
+			const scrollDelta = currentScrollY - lastScrollY;
+
+			// Toggle scrolled state for blur effect
+			if (currentScrollY > 50) {
+				navbar.classList.add("navbar--scrolled");
+			} else {
+				navbar.classList.remove("navbar--scrolled");
+			}
+
+			// On landing, keep the navbar visible through the differentiator section.
+			if (currentScrollY < getNavbarHideStartY()) {
+				showNavbar();
+				lastScrollY = currentScrollY;
+				return;
+			}
+
+			// Check scroll direction and apply threshold to prevent jitter
+			if (Math.abs(scrollDelta) > SCROLL_THRESHOLD) {
+				if (scrollDelta > 0) {
+					// Scrolling down - hide navbar
+					hideNavbar();
+				} else if (Math.abs(scrollDelta) > SHOW_THRESHOLD) {
+					// Scrolling up with intent - show navbar
+					showNavbar();
+				}
+			}
+
+			lastScrollY = currentScrollY;
+		}
+
+		function hideNavbar() {
+			if (isNavbarVisible) {
+				navbar.classList.add("navbar--hidden");
+				isNavbarVisible = false;
+			}
+		}
+
+		function showNavbar() {
+			if (!isNavbarVisible) {
+				navbar.classList.remove("navbar--hidden");
+				isNavbarVisible = true;
+			}
+		}
+
+		// Attach scroll listener
+		window.addEventListener("scroll", handleScroll, { passive: true });
+
+		// Cleanup on page unload (prevents memory leaks)
+		window.addEventListener("beforeunload", () => {
+			window.removeEventListener("scroll", handleScroll);
+		});
+	});
+</script>
+<div class="container post-container">
+				<main class="post-page"><div class="post-header">
+						<a href="../blog.html" class="post-back-link">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+							All posts
+						</a><div class="post-header-meta"><div class="post-meta">
+						<div class="post-meta-date">Aug  6, 2026</div>
+						<div class="post-meta-read-time">9 min read</div>
+					</div></div>
+					</div>
+					<div class="post-layout">
+						<aside class="post-toc-sidebar">
+							<h2 class="post-toc-title">TEE.fail does not make confidential computing security theatre</h2>
+							<span class="post-toc-date">Aug 6, 2026</span>
+							<nav class="post-toc-nav" id="toc-nav">
+								<!-- TOC will be moved here via JS -->
+							</nav>
+						</aside>
+						<aside class="post-meta-aside">
+							<div class="post-meta">
+						<div class="post-meta-date">Aug  6, 2026</div>
+						<div class="post-meta-read-time">9 min read</div>
+					</div>
+							<div class="post-author">
+						<img src="../assets/team/anton.svg" alt="Anton Livaja" class="post-author-image" width="80" height="80" loading="lazy" />
+						<div class="post-author-info">
+							<span class="post-author-name">Anton Livaja</span>
+							<span class="post-author-title">Co-founder & CEO</span>
+						</div>
+					</div>
+						</aside>
+						<div class="post-main">
+							<h1>TEE.fail does not make confidential computing security theatre</h1>
+							<article class="post">
+								<div class="post-entry"><div class="tldr-callout">
+
+  <div class="tldr-callout__header">
+<span class="tldr-callout__icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z" /></svg>
+</span>
+<span class="tldr-callout__title">TL;DR</span>
+</div>
+
+  <p><a href="https://tee.fail/">TEE.fail</a> and related research demonstrate several practical physical attacks against confidential-computing hardware. Depending on the platform, researchers have extracted workload keys, recovered attestation keys, forged measurements, replayed protected memory, and composed a CPU compromise into a false GPU attestation. Those results should change how some systems are designed and how the technology is marketed. They do not make confidential computing security theater. Confidential compute can still remove powerful software actors, including a compromised host, hypervisor, or cloud administrator, from the trust boundary. A control can provide meaningful security without defeating every attacker.</p>
+
+</div>
+
+<div class="post-toc-inline">
+
+  <p><span class="section-label toc-label">Table of contents</span></p>
+
+  <!-- prettier-ignore -->
+<ol id="markdown-toc">
+  <li><a href="#what-the-physical-attacks-proved" id="markdown-toc-what-the-physical-attacks-proved">What the physical attacks proved</a></li>
+  <li><a href="#what-the-attacks-did-not-prove" id="markdown-toc-what-the-attacks-did-not-prove">What the attacks did not prove</a></li>
+  <li><a href="#where-the-criticism-is-justified" id="markdown-toc-where-the-criticism-is-justified">Where the criticism is justified</a></li>
+  <li><a href="#nitro-makes-a-different-trade-off" id="markdown-toc-nitro-makes-a-different-trade-off">Nitro makes a different trade-off</a></li>
+  <li><a href="#why-caution-is-designed-for-hardware-diversity" id="markdown-toc-why-caution-is-designed-for-hardware-diversity">Why Caution is designed for hardware diversity</a></li>
+  <li><a href="#security-theater-is-the-wrong-conclusion" id="markdown-toc-security-theater-is-the-wrong-conclusion">Security theater is the wrong conclusion</a></li>
+  <li><a href="#further-reading" id="markdown-toc-further-reading">Further reading</a></li>
+</ol>
+
+</div>
+
+<h2 id="what-the-physical-attacks-proved">What the physical attacks proved</h2>
+
+<p>TEE.fail is an ongoing security research effort, not one generic key-extraction exploit. It builds on a line of physical memory attacks whose methods and consequences depend on the hardware:</p>
+
+<ul>
+  <li><a href="https://wiretap.fail/">WireTap</a> passively observed DDR4 memory traffic and used Intel’s deterministic memory encryption to recover an SGX attestation key. Its main result was a confidentiality failure that became an attestation failure.</li>
+  <li><a href="https://batteringram.eu/">Battering RAM</a> used an active interposer costing less than $50 to create dynamic memory aliases. On Intel SGX, it enabled plaintext reads and writes through ciphertext replay. On AMD SEV-SNP, it replayed a valid launch measurement so a modified VM could be attested as genuine.</li>
+  <li><a href="https://tee.fail/">TEE.fail</a> brought passive bus observation to DDR5 systems with equipment costing less than $1,000, then followed different exploit paths on each platform. On Intel SGX and TDX, the researchers extracted a provisioning certification key and forged attestations. On AMD SEV-SNP with Ciphertext Hiding enabled, they extracted an OpenSSL ECDSA workload key. For Nvidia confidential computing, they exploited its dependence on the CPU trust domain to present a genuine GPU attestation while running the workload without TEE protection.</li>
+</ul>
+
+<p>The application-level consequences were different again. The researchers extracted configuration secrets and demonstrated undetectable front-running against BuilderNet, directly recovered a Secret Network node’s ECDH key without attacking its quoting enclave, and showed TDX and GPU-attested applications running outside TEE protection.</p>
+
+<p>These attacks share a requirement for access to the physical memory path, but they do not all break the same component or security property. Depending on the platform and system design, physical access became memory disclosure, memory modification, workload-key theft, attestation-key theft, forged measurements, or misuse of a neighboring hardware trust chain. The variety is the point.</p>
+
+<p>The equipment was built from readily available parts and ranged from less than $50 to less than $1,000. That price matters. Describing all physical attacks as prohibitively sophisticated is no longer credible. At the same time, some attacks do require more expensive equipment such as electron microscopes.</p>
+
+<p>There is also a genuine disagreement about scope. Intel and AMD classify this kind of physical interposition as outside their threat models and recommend physical security rather than a firmware mitigation. Yet the Confidential Computing Consortium’s <a href="https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_Updated_November_2022.pdf">technical analysis</a> lists bus monitoring among the basic physical attacks considered in scope, while excluding more invasive techniques such as chip scraping and electron-microscope probing.</p>
+
+<p>TEE.fail therefore exposed more than a clever attack. It exposed a gap between what users may reasonably understand confidential computing to protect and what particular hardware vendors actually promise. That gap deserves direct language, not marketing evasions.</p>
+
+<h2 id="what-the-attacks-did-not-prove">What the attacks did not prove</h2>
+
+<p>These attacks did not show that a remote attacker, a malicious hypervisor, or a cloud administrator can simply read a confidential workload’s memory. They did not erase the isolation that confidential compute provides against those actors. They showed several ways an attacker who can reach the correct physical machine and instrument its memory path can cross that boundary on the tested platforms.</p>
+
+<p>Those are different threat models.</p>
+
+<p>Confidential computing exists primarily because conventional cloud security gives privileged infrastructure software and its operators enormous power. Confidential compute can prevent the host operating system, hypervisor, and administrators from inspecting or silently modifying a workload. Remote attestation can let a user verify the measured environment before releasing data or keys. Neither property becomes imaginary because a separate physical attack exists.</p>
+
+<p>Calling the entire field security theatre makes the perfect the enemy of the materially safer. TLS does not become theatre because a compromised endpoint can read plaintext. Full-disk encryption does not become theatre because it cannot protect a machine after it has been unlocked. Security controls are evaluated against specific attackers, not against omnipotence or a cherry-picked set of conditions under which they fail.</p>
+
+<p>The honest claim is not that confidential compute makes a remote machine trustless. It is that confidential compute can drastically reduce whom and what must be trusted. TEE.fail, WireTap, and Battering RAM tell us that physical custody of affected Intel and AMD servers remains in that reduced trust boundary.</p>
+
+<h2 id="where-the-criticism-is-justified">Where the criticism is justified</h2>
+
+<p>The physical-access limitation matters differently in different deployments. A workload running in a tightly controlled hyperscale data center has independent physical safeguards between an attacker and a specific server. A machine deployed at an untrusted edge location does not. A permissionless network that assumes the operator may be actively malicious should not quietly assume that the operator will decline to open the case.</p>
+
+<p>The criticism is also justified when a single confidential compute server, one long-lived secret, or one attestation path can authorize an irreversible, high-value action. In that design, extracting a workload key, forging an attestation, or replaying a trusted measurement can become a systemic failure. Physical access may be harder than a remote exploit, but a large enough reward changes the economics.</p>
+
+<p>Systems with those risks need more than simply hitting things with confidential compute: explicit physical-security assumptions, short-lived secrets, limited blast radius, monitoring and recovery paths, and independent machines, providers, or hardware roots that must agree. Attestation proves something about a measured environment; it should not be mistaken for a complete system architecture.</p>
+
+<h2 id="nitro-makes-a-different-trade-off">Nitro makes a different trade-off</h2>
+
+<p>AWS Nitro Enclaves deserve separate treatment. Nitro is in some ways a weaker and less open trust model than CPU-vendor TEEs. Its isolation depends on AWS’s Nitro system and hypervisor, its attestations depend on the AWS Nitro PKI, and customers cannot buy an equivalent attestation-capable platform to inspect and operate independently. You must trust AWS more.</p>
+
+<p>That centralization also has something going for it. A production-capable Nitro platform is not commodity hardware an attacker can easily buy and operate outside AWS, and production machines are held inside AWS data centers. An attack requiring hardware access must therefore cross a substantial physical and operational boundary before its low component cost becomes relevant. Nitro’s public guarantees focus on isolation from the parent instance, not defense against an attacker who has opened the physical server. This is not cryptographic resistance to a memory-bus attack. It is a practical increase in the cost and detectability of getting close enough to attempt one.</p>
+
+<p>Nitro’s <a href="https://docs.aws.amazon.com/enclaves/latest/user/verify-root.html">attestation format</a> adds useful provenance as well. AWS-signed attestation documents include a module ID and enclave measurements, while <a href="https://docs.aws.amazon.com/enclaves/latest/user/set-up-attestation.html">PCR4 contains a hash of the parent EC2 instance ID</a>. A verifier or KMS policy can therefore restrict trust to an enclave running on a particular EC2 instance, rather than accepting any machine that presents the expected code measurement.</p>
+
+<p>That is an EC2 instance identity, not an immutable physical server identity, and AWS remains the authority asserting it. Still, the combination of controlled hardware availability, data-center custody, and AWS-signed instance provenance makes the operational threat meaningfully different from a permissionless network of commodity TDX or SEV-SNP machines. Nitro gives up openness and vendor independence in exchange for a more controlled deployment perimeter. Whether that is a good trade depends on whom the system is trying not to trust. Every confidential compute solution has very real security tradeoffs and there is unfortunately no one solution to fit all threat models.</p>
+
+<h2 id="why-caution-is-designed-for-hardware-diversity">Why Caution is designed for hardware diversity</h2>
+
+<p>These differences are why Caution is not treating every type of confidential compute as interchangeable or forcing every workload onto one hardware root. Caution supports AWS Nitro Enclaves today. Support for Intel TDX, AMD SEV-SNP, TPM 2.0, Nvidia CC and additional cloud backends, and bare-metal deployments is in active development.</p>
+
+<p>The goal is a common source-to-runtime verification workflow across those environments. A team should be able to choose Nitro when AWS’s controlled operational perimeter fits its threat model, a CPU-vendor TEE when memory encryption or independence from the cloud provider matters more, or bare metal when it needs direct control of physical custody. The hardware should be a deployment and security decision, not a permanent platform constraint. We also want to make it easy to move between solutions as you go from development to production, or start taking on higher risk users.</p>
+
+<p>Hardware diversity also enables stronger compositions. The same reviewed source, release, and security policy can be built for and attested by different hardware roots. A system may accept any one approved backend, a single backend to be attested to by multiple-hardware or require independent deployments on different providers or hardware families to agree before authorizing a high-value action. The resulting measurements will not necessarily be identical across architectures; what can be verified is that each measured workload corresponds to the same approved source and policy.</p>
+
+<p>This does not eliminate shared vulnerabilities, and diversity only helps when the trust roots and failure modes are genuinely independent. It does mean that a compromise of one vendor, attestation service, or physical environment does not automatically have to compromise the whole system. TEE.fail is a strong argument for making that choice available.</p>
+
+<h2 id="security-theater-is-the-wrong-conclusion">Security theater is the wrong conclusion</h2>
+
+<p>Security theater is a control that creates reassurance without meaningfully changing an attacker’s capabilities. Confidential computing does change them. It can turn a compromised host or a curious administrator from an all-powerful observer into an actor blocked by a hardware boundary. That is a substantial improvement even when the boundary is not absolute.</p>
+
+<p>The right response to TEE.fail is to state the residual trust precisely. Do not claim protection against an attacker with invasive access to the server when the hardware does not provide it.</p>
+
+<p>TEE.fail makes the case for better threat modelling, stronger and more diverse hardware, and defence in depth. It does not make the case for returning sensitive workloads to ordinary servers where every privileged software layer can already read them.</p>
+
+<p>Those asserting that Confidential Compute is useless because it does not stop all possible attacks could just as easily assert that basic sanitation in hospitals is useless because it does not stop all infections.</p>
+
+<p>Confidential computing is a critical component of any organizational security strategy.</p>
+
+<h2 id="further-reading">Further reading</h2>
+
+<ul>
+  <li>TEE.fail researchers, <a href="https://tee.fail/">TEE.fail: Breaking Trusted Execution Environments via DDR5 Memory Bus Interposition</a></li>
+  <li>WireTap researchers, <a href="https://wiretap.fail/">WireTap: Breaking Server SGX via DRAM Bus Interposition</a></li>
+  <li>Battering RAM researchers, <a href="https://batteringram.eu/">Battering RAM: Low-Cost Interposer Attacks on Confidential Computing</a></li>
+  <li>Confidential Computing Consortium, <a href="https://confidentialcomputing.io/wp-content/uploads/sites/10/2023/03/CCC-A-Technical-Analysis-of-Confidential-Computing-v1.3_Updated_November_2022.pdf">A Technical Analysis of Confidential Computing</a></li>
+  <li>Intel, <a href="https://www.intel.com/content/www/us/en/security-center/announcement/intel-security-announcement-2025-10-28-001.html">TEE.fail security announcement</a></li>
+  <li>AMD, <a href="https://www.amd.com/en/resources/product-security/bulletin/amd-sb-3040.html">Compromising Trusted Execution Environments through DDR5 Memory Bus Interposition</a></li>
+  <li>AWS, <a href="https://docs.aws.amazon.com/enclaves/latest/user/verify-root.html">Verifying the Nitro Enclaves root of trust</a></li>
+</ul>
+</div>
+							</article><div class="post-author-end">
+								<div class="post-author">
+						<img src="../assets/team/anton.svg" alt="Anton Livaja" class="post-author-image" width="80" height="80" loading="lazy" />
+						<div class="post-author-info">
+							<span class="post-author-name">Anton Livaja</span>
+							<span class="post-author-title">Co-founder & CEO</span>
+						</div>
+					</div>
+								<span class="post-author-end-date">Aug  6, 2026</span>
+							</div>
+						</div>
+					</div>
+				</main>
+			</div>
+		</div><footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-inner container">
+			<div class="footer-content">
+				<div class="footer-brand">
+					<a href="../index.html" class="footer-logo">
+						<img
+							src="../assets/base/caution-logo/caution.svg"
+							alt="Caution logo"
+							width="781"
+							height="137"
+						/>
+					</a>
+					<p class="footer-description">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--tablet">
+						Confidential compute you can verify, not trust.
+					</p>
+					<p class="footer-description footer-description--mobile">
+						Confidential compute you can verify.
+					</p>
+					</div>
+
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3 class="footer-column-title">Platform</h3>
+						<a href="https://dashboard.caution.co/" class="footer-link">Dashboard</a>
+						<a href="../platform-tour.html" class="footer-link">Platform tour</a>
+						<a href="../cloud/aws.html" class="footer-link">AWS Nitro</a>
+						<a href="../faq.html" class="footer-link">FAQ</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Resources</h3>
+						<a
+							href="https://docs.caution.co/"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="footer-link"
+							>Documentation</a
+						>
+						<a href="../pricing.html" class="footer-link">Pricing</a>
+						<a href="../blog.html" class="footer-link">Blog</a>
+						<a href="../security-controls.html" class="footer-link">Security</a>
+					</div>
+
+					<div class="footer-column">
+						<h3 class="footer-column-title">Company</h3>
+						<a href="../about.html" class="footer-link">About</a>
+						<a href="../contact.html" class="footer-link">Contact</a>
+						<a href="https://matrix.to/#/#caution:matrix.org" target="_blank" rel="noopener noreferrer" class="footer-link">Community</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 Caution SEZC. All rights reserved.
+				</p>
+				<nav class="footer-legal-links">
+					<a href="../privacy.html" class="footer-legal-link">Privacy</a>
+					<a href="../terms.html" class="footer-legal-link">Terms</a>
+					<a href="../legal/refunds.html" class="footer-legal-link">Refunds</a>
+				</nav>
+				<div class="footer-social">
+					<a
+						href="https://codeberg.org/Caution/"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Git"
+						title="Access source code and documentation"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/git-logo-white.svg" alt="Git" width="92" height="92" />
+					</a>
+					<a
+						href="https://mstdn.social/@caution"
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label="Mastodon"
+						title="Follow us on Mastodon"
+						class="footer-social-link"
+					>
+						<img src="../assets/base/social/Mastodon-logo.svg" alt="Mastodon" width="17" height="20" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+<script>
+			// Move TOC to sidebar and add scroll-spy
+			document.addEventListener("DOMContentLoaded", function () {
+				const toc = document.getElementById("markdown-toc");
+				const tocNav = document.getElementById("toc-nav");
+				if (toc && tocNav) {
+					// Clone TOC to sidebar
+					const tocClone = toc.cloneNode(true);
+					tocClone.id = "sidebar-toc";
+					tocNav.appendChild(tocClone);
+
+					// Function to update visibility based on screen width
+					function updateTocVisibility() {
+						const isWideScreen = window.innerWidth > 1100;
+						toc.style.display = isWideScreen ? "none" : "";
+					}
+
+					// Initial check
+					updateTocVisibility();
+
+					// Update on resize
+					window.addEventListener("resize", updateTocVisibility);
+
+					// Scroll-spy: highlight current section in TOC
+					const tocLinks = tocClone.querySelectorAll("a");
+					const headings = [];
+
+					tocLinks.forEach((link) => {
+						const id = link.getAttribute("href").substring(1);
+						const heading = document.getElementById(id);
+						if (heading) headings.push({ id, heading, link });
+					});
+
+					function updateActiveLink() {
+						const scrollPos = window.scrollY + 120;
+
+						let currentId = "";
+						for (const { id, heading } of headings) {
+							if (heading.offsetTop <= scrollPos) {
+								currentId = id;
+							}
+						}
+
+						tocLinks.forEach((link) => {
+							link.classList.remove("active");
+							if (link.getAttribute("href") === "#" + currentId) {
+								link.classList.add("active");
+							}
+						});
+					}
+
+					window.addEventListener("scroll", updateActiveLink);
+					updateActiveLink();
+
+					// Dynamic TOC centering - center vertically but don't go above original position
+					const tocSidebar = document.querySelector(".post-toc-sidebar");
+					const postLayout = document.querySelector(".post-layout");
+					let lastTop = null;
+					let ticking = false;
+
+					function updateTocPosition() {
+						if (!tocSidebar || !postLayout) return;
+
+						const layoutRect = postLayout.getBoundingClientRect();
+						const tocHeight = tocSidebar.offsetHeight;
+						const viewportHeight = window.innerHeight;
+						const centeredTop = (viewportHeight - tocHeight) / 2;
+						const minTop = 100; // minimum distance from viewport top
+
+						// Calculate how far we've scrolled past the post-layout start
+						const scrolledPastStart = -layoutRect.top;
+
+						let newTop;
+						if (scrolledPastStart < centeredTop - minTop) {
+							// Near the top - use minimum top value
+							newTop = minTop;
+						} else {
+							// Scrolled enough - center the TOC
+							newTop = Math.max(minTop, centeredTop);
+						}
+
+						// Calculate padding for TOC links based on position
+						// Interpolate from 4px (at top) to 10px (when centered)
+						const minPadding = 4;
+						const maxPadding = 10;
+						const transitionDistance = centeredTop - minTop;
+						const progress = Math.min(
+							1,
+							Math.max(0, scrolledPastStart / transitionDistance)
+						);
+						const currentPadding =
+							minPadding + (maxPadding - minPadding) * progress;
+
+						// Apply padding to TOC links
+						const tocLinks = tocSidebar.querySelectorAll("#sidebar-toc a");
+						tocLinks.forEach((link) => {
+							link.style.paddingBottom = currentPadding + "px";
+						});
+
+						// Only update if value changed to avoid unnecessary reflows
+						if (lastTop !== newTop) {
+							tocSidebar.style.top = newTop + "px";
+							lastTop = newTop;
+						}
+
+						// Add scrolled class when TOC has moved from initial position
+						if (progress > 0.1) {
+							tocSidebar.classList.add("scrolled");
+						} else {
+							tocSidebar.classList.remove("scrolled");
+						}
+
+						ticking = false;
+					}
+
+					function onScroll() {
+						if (!ticking) {
+							requestAnimationFrame(updateTocPosition);
+							ticking = true;
+						}
+					}
+
+					window.addEventListener("scroll", onScroll, { passive: true });
+					window.addEventListener("resize", updateTocPosition);
+					updateTocPosition();
+				}
+
+				// Desktop navbar visibility control for blog posts
+				// Navbar only visible at scrollY === 0, hidden otherwise
+				if (window.innerWidth > 768) {
+					const navbar = document.querySelector(".header-navbar");
+
+					function updateBlogNavbar() {
+						if (window.scrollY === 0) {
+							navbar.classList.remove("blog-navbar-hidden");
+						} else {
+							navbar.classList.add("blog-navbar-hidden");
+						}
+					}
+
+					window.addEventListener("scroll", updateBlogNavbar, {
+						passive: true,
+					});
+					updateBlogNavbar();
+				}
+
+				// Add anchor links to h2 headings with copy functionality
+				const article = document.querySelector(".post .post-entry");
+				if (article) {
+					const headings = article.querySelectorAll("h2[id]");
+					headings.forEach((heading) => {
+						const anchor = document.createElement("a");
+						anchor.className = "heading-anchor";
+						anchor.href = "#" + heading.id;
+						anchor.innerHTML =
+							'<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>';
+						anchor.setAttribute("aria-label", "Copy link to this section");
+						anchor.addEventListener("click", function (e) {
+							e.preventDefault();
+							const url =
+								window.location.origin +
+								window.location.pathname +
+								"#" +
+								heading.id;
+							navigator.clipboard.writeText(url).then(() => {
+								anchor.style.color = "var(--color-pink)";
+								setTimeout(() => (anchor.style.color = ""), 1000);
+							});
+						});
+						// Wrap last word + anchor in a nowrap span so the icon never orphans
+						const lastTextNode = [...heading.childNodes].reverse().find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+						if (lastTextNode) {
+							const text = lastTextNode.textContent;
+							const lastSpace = text.lastIndexOf(" ");
+							const nowrap = document.createElement("span");
+							nowrap.style.whiteSpace = "nowrap";
+							if (lastSpace !== -1) {
+								lastTextNode.textContent = text.slice(0, lastSpace + 1);
+								nowrap.appendChild(document.createTextNode(text.slice(lastSpace + 1)));
+							} else {
+								lastTextNode.textContent = "";
+								nowrap.appendChild(document.createTextNode(text));
+							}
+							nowrap.appendChild(anchor);
+							heading.appendChild(nowrap);
+						} else {
+							heading.appendChild(anchor);
+						}
+					});
+				}
+			});
+		</script>
+	</body>
+</html>
