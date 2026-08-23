@@ -1,0 +1,8 @@
+ndea.com — mirrored 2026-08-24 (D32) via mirror_site.py (depth 6) into ndea/. Site is a hand-rolled static Jekyll build ("Building AGI that can innovate.", YC W26, AI research lab, teamSize 15). robots.txt: none (fetch-all). 7 served HTML pages (/, /about, /jobs, /jobs/symbolic-reasoning-open, /contact, /podcast + one more), ~26 files on disk, served via serve_replica.py on 8930.
+
+Pages mirrored: index.html (home), about/index.html, contact/index.html, jobs/index.html, jobs/symbolic-reasoning-open/index.html, podcast/index.html, plus media/ tree (css/global.css, js/illustrations.js + scripts.js, images/ndea-founders.jpg + ndea-og-image.jpg, fonts/type.css).
+
+Externals / deviations:
+- All assets self-hosted — media/ tree vendored byte-identical (SHA-256 == live: illustrations.js, scripts.js, global.css, ndea-founders.jpg, ndea-og-image.jpg, type.css).
+- No third-party runtimes, no analytics, no external fonts (Typekit-style self-hosted font stack). X/Twitter + LinkedIn + YouTube social links kept external (links only).
+- illustrations.js = rAF particle-field canvas generator (cycleLength 3000, 300 particles, per-load random seed) + IntersectionObserver-driven .fade-in: headings fade via CSS transition only after `.visible` is added. In hidden/backgrounded tabs Chrome freezes frame production, so the fade freezes at an arbitrary phase per load (observed 0 / 0.025 / 1 — including two loads of the LIVE site itself). Pixel variance in the h1 + canvas bands between any two loads is per-load randomness, not mirror drift: live-vs-live self-diff (44.7% rows identical, Δ 47.8-49.1) statistically equals live-vs-replica (44.4%, Δ 48-53); a fresh synchronized pair rendered the top band 2160/2160 rows byte-identical.
