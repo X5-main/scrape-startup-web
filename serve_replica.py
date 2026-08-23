@@ -98,6 +98,16 @@ _SRCSET_RE = re.compile(rb'\bsrcSet=("[^"]*"|\'[^\']*\')')
 def _restore_live_html(body, pagedir="/"):
     """Rewrite mirrored relative refs to live absolute form in an HTML body."""
 
+    # The mirror rewrites url()/src refs inside stored CSS/JS, which invalidates
+    # the SRI integrity hashes crawled from the live page; the browser then
+    # blocks the whole stylesheet/script (starcloud 2026-08-23: fonts dead,
+    # layout 45744px). Integrity/CORS are meaningless offline — drop both.
+    body = re.sub(
+        rb'\s+(?:integrity|crossorigin)="[^"]*"',
+        b"",
+        body,
+    )
+
     def _repl(m):
         attr = m.group(1)
         quote = m.group(2)[:1].decode("ascii")

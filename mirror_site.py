@@ -48,7 +48,26 @@ def _looks_like_css(text_or_bytes):
 # Backticks: Framer rolldown bundles use template-literal chunk imports.
 JS_IMPORT_RE = re.compile(r"""(?:import(?:\(|\s+[^;'"]*?\s+from)?\s*["'`]([^"'`]+)["'`])""")
 STYLE_BLOCK_RE = re.compile(r"<style[^>]*>(.*?)</style>", re.S)
-INLINE_STYLE_RE = re.compile(r'style="([^"]*)"')
+# A srcset candidate is `URL [descriptor]`. The URL may contain literal
+# spaces (Webflow/Cloudinary upload filenames like "Rapid Deployment - …
+# -p-500.webp"), so the trailing width/DPR descriptor is anchored at the end
+# and whitespace inside filenames is never treated as a token boundary.
+SRCSET_DESC_RE = re.compile(r"^(.*?)\s+(\d+[wW]|[\d.]+[xX])\s*$", re.S)
+
+
+def srcset_candidates(val):
+    """Parse a srcset attribute into (url, suffix) pairs."""
+    out = []
+    for part in val.split(","):
+        s = part.strip()
+        if not s:
+            continue
+        m = SRCSET_DESC_RE.match(s)
+        if m:
+            out.append((m.group(1).strip(), " " + m.group(2)))
+        else:
+            out.append((s, ""))
+    return out
 
 
 class LinkFinder(html.parser.HTMLParser):
@@ -74,11 +93,11 @@ class LinkFinder(html.parser.HTMLParser):
             if not v:
                 continue
             if k == "srcset":
-                for part in v.split(","):
-                    url = part.strip().split(" ")[0]
+                for url, _suffix in srcset_candidates(v):
                     if url:
                         self.urls.append((url, "srcset"))
-            elif k == "href" and tag == "link" and any(
+                continue
+            if k == "href" and tag == "link" and any(
                     r == "canonical" for r in
                     dict(attrs).get("rel", "").split()):
                 # canonical keeps its ABSOLUTE live form: the served replica
@@ -237,18 +256,12 @@ class Mirror:
         q = '"' if m.group(2) is not None else "'"
         val = m.group(2) if m.group(2) is not None else m.group(3)
         out = []
-        for part in val.split(","):
-            s = part.strip()
-            if not s:
-                continue
-            toks = s.split()
-            cand = html.unescape(toks[0])
-            abs_c = self.absolute(page_url, cand)
+        for cand, suffix in srcset_candidates(val):
+            abs_c = self.absolute(page_url, html.unescape(cand))
             if self.allowed(abs_c):
-                rest = " " + " ".join(toks[1:]) if len(toks) > 1 else ""
-                out.append(self.rel_to(abs_c, page_url) + rest)
+                out.append(self.rel_to(abs_c, page_url) + suffix)
             else:
-                out.append(s)
+                out.append(cand + suffix)
         return "srcset=" + q + ", ".join(out) + q
 
     # ---- asset discovery ----------------------------------------------

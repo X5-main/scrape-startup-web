@@ -699,3 +699,70 @@ startup-website library. Ordered by usefulness per effort.
 Helper scripts: `.tmp_tools/corma_sweep.py`, `.tmp_tools/corma_parity.py` (mirror the veeda
 recipes, port :8919).
 
+## Webflow site with SRI stylesheet + space-in-filename srcset hazard (starcloud.com pattern — 22nd pick)
+
+**Starcloud** — Webflow site (starcloud.com, space-born AI data centers; $250M Series A
+extension at $2.3B valuation, announced to team Aug 2026; lift-off "2027" per careers page).
+Mirror `starcloud/`, port **8920**.
+
+1. **Funding lane**: Series A extension $250M @ $2.3B valuation (Aug 2026), 547M total raised,
+   a16z + NVIDIA + Y Combinator, led by Founders Fund (FT/Reuters + TechCrunch + PitchBook
+   verified); careers page product signals: "swarm of satellites", "2027" lift-off, "tens of GW
+   of AI compute", permitting-in-20-years claim ("MDS" auction), CTO = ex-OpenAI employee #1.
+2. **Crawl**: `--sitemap auto` with BFS seed override `--extra-start` for shop ports; **189
+   fetches → 178 unique files** (11 dup overwrites) — crawler counts per save and does no asset
+   dedupe; stone.io blog articles were etag-cache misses costing 405 (crawl loops) but assets
+   landed complete. 13 pages: home index.html + starcloud-1..4, team, careers, blog +
+   3 post pages, video, wp. `.origin` set. gsap 3.15.0 vendored under `starcloud/gsap/`.
+3. **Webflow asset-host recipe**: like wispr — the two project CDN prefixes (`66c1eabc58c4c392a9fba788`
+   + `66c1eabc58c4c392a9fba7ac`, 164 asset files) stored under URL path; `--asset-hosts` host-only
+   (`cdn.prod.website-files.com`).
+4. **SRI serve-strip (durable fix in `serve_replica.py::_restore_live_html`)**:
+   `re.sub(rb'\s+(?:integrity|crossorigin)="[^"]*"', b"", body)` — Webflow ships
+   `integrity="sha512-…" crossorigin="use-credentials"` on its own stylesheet link; on a local
+   origin the cross-origin SRI check fails → stylesheet dropped → unstyled page. Stripping at
+   serve time fixes every Webflow/any-SRI mirror without re-touching stored HTML. Verified:
+   computed `document.styleSheets` length 2 == live, bgcolor matches.
+5. **Preconnect rewrite is cosmetic**: `preconnect` link to asset CDN resolved+rewritten to pagedir
+   relative by crawler (no `crossorigin` attr → no SRI issue) — keep, zero runtime cost.
+6. **Sweep**: `starcloud_sweep.py` — `pages=13 refs=793 residual_uniq=1`; the 1 residual = a
+   placeholder `<img src>` that is a **faithful live-404** (live serves it 404 too, UA-checked) →
+   zero serve defects; visible-text parity MATCH on all 13 pages.
+7. **Screenshot parity protocol (reusable)**: fresh tabs restore per-origin scroll — NEVER compare
+   captures without forcing equal feature rect: attach by targetId (no new tabs),
+   `history.scrollRestoration='manual'`, `swiper.slideTo(0,0)` + autoplay stop, scroll to
+   `photo().getBoundingClientRect().top + scrollY`, settle 10s, capture. Pre-fix: both tabs'
+   slides were at the same abs position but different autoplay phases → vision reads listed
+   different slide content (woman+phone vs Earth) — a capture-timing artifact, NOT a replica
+   defect (computed styles + layout identical, hero image bytes sha256-identical).
+8. **srcset space-filename crawler bug (real defect, the smoking gun — fixed durably)**:
+   pre-fix `_rewrite_srcset` did `toks = s.split()` — Webflow upload filenames contain literal
+   spaces ("Rapid Deployment - Avoiding restrictive permitting constraints"), so the candidate
+   URL truncated at the first space, the extensionless remainder got `/index.html` injected via
+   `url_path_key`, and the rest re-joined raw →
+   `66c1…/673f…_Rapid/index.html Deployment - Avoiding restrictive permitting constraints-p-500.webp 500w`.
+   Negative candidates 404 → browser fell back to the raw 8192px `src` (naturalWidth 8192 vs
+   live 1919 on the same slide = reliable low-level detector of srcset failure). Same
+   whitespace-split bug in `LinkFinder.collect` discovery (`part.split()[0]`). Fixed by a shared
+   module-level `srcset_candidates(val)` + `SRCSET_DESC_RE` anchored on the trailing
+   `(\d+[wW]|[\d.]+[xX])` descriptor — URL may contain literal spaces, descriptor never split;
+   used by both discovery and rewrite. Scope of damage: **61 mangled candidates across 8 HTML
+   files**; all `<sha24_Word>-p-…` variant files exist on disk with space-containing names; zero
+   junk dirs (13 `index.html` = 13 real pages). **Durable-crawler + targeted repair**: mirror
+   fixed in place by `.tmp_tools/starcloud_srcset_repair.py` (reparse srcset attrs, drop the
+   injected `/index.html ` token, verify every candidate against on-disk file, drop dead ones) —
+   68 attrs rewritten / 178 candidates kept / 0 dropped; post-check: 178/178 candidates resolve,
+   0 mangled. **Verified fix in-browser**: replica active-slide img now loads
+   `-p-2000.webp` (was base 8192), naturalWidth 1919-class matching live.
+9. **Hero pixel-parity (final pinned capture)**: both tabs pinned to slide 0, photo proggress
+   abs-top 2074, y=0 — live renders base `img_benefits_1.webp` (natW 1920), replica renders the
+   `-p-2000.webp` variant (natW 1920): same content, different encode; raw per-pixel diff 86% is
+   the encode delta, not a defect (the live site itself re-encodes per variant). Content-level
+   parity decisive: 24 horizontal band means Δ ≤ 0.30/255 across the full page; downscaled
+   per-pixel mean Δ 1.31 (p50 1.18, p90 2.38, max 7.33), zero pixels > 12/441 — layout, photo
+   subject/lighting, and text identical; vision model reads identical scene + nav on both
+   captures.
+10. **Tab hygiene**: all 16 spawned starcloud CDP tabs closed (relay 9224 has zero starcloud
+    targets; headless browser's live/rep tabs closed after final capture).
+Helper scripts: `.tmp_tools/starcloud_sweep.py`, `.tmp_tools/starcloud_srcset_repair.py` (port
+:8920; sweep form `python3 serve_replica.py 8920 starcloud`).
