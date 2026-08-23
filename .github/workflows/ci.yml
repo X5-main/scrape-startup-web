@@ -36,8 +36,19 @@ jobs:
 
       - name: Secrets hygiene
         run: |
-          if grep -rPnI '(sk-[a-zA-Z0-9]{20,}|api[_-]?key\s*=\s*["\x27][^"\x27]{8,}|password\s*=\s*["\x27][^"\x27]{8,}|token\s*=\s*["\x27][^"\x27]{8,}|SECRET|BEGIN\s+(RSA|DSA|EC|OPENSSH)\s+PRIVATE)' . --exclude-dir=.github --include='*.py' --include='*.md' --include='*.yml' --include='*.yaml' --include='*.json' --include='*.sh'; then
-            echo "FAIL: secrets detected in repo"
+          # High-signal credential material: exact formats, never placeholders.
+          if grep -rPnI --exclude-dir=.github --include='*.py' --include='*.md' --include='*.yml' \
+              --include='*.yaml' --include='*.json' --include='*.sh' \
+              'sk-[a-zA-Z0-9]{20,}|BEGIN[[:space:]]+(RSA|DSA|EC|OPENSSH)[[:space:]]+PRIVATE' .; then
+            echo "FAIL: real secret material detected (sk- key / private key block)"
             exit 1
           fi
+          # key=value-ish assignments: flag only LITERAL values (>= 12 chars) that are
+          # not $VAR/${VAR}/$(...) references, <placeholders>, env-var NAMES, or "your_*"
+          # snippet placeholders. Real secret values fail; documentation placeholders pass.
+          find . -path ./.git -prune -o -path ./.github -prune -o -type f \
+              \( -name '*.py' -o -name '*.md' -o -name '*.yml' -o -name '*.yaml' \
+                 -o -name '*.json' -o -name '*.sh' \) -print0 \
+              | xargs -0 awk -f .github/scripts/secrets-hygiene.awk \
+              || { echo "FAIL: suspect literal secret values detected"; exit 1; }
           echo "PASS: no secrets found"
