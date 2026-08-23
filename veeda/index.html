@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Veeda AI — World models that simulate physical reality</title>
+<meta name="description" content="Veeda AI builds multimodal foundation world models: scalable simulations of physical reality where embodied agents learn through interaction.">
+<meta name="theme-color" content="#f5f4ef">
+<link rel="canonical" href="https://veeda.ai/">
+
+<meta property="og:title" content="Veeda AI">
+<meta property="og:description" content="Veeda AI builds multimodal foundation world models: scalable simulations of physical reality where embodied agents learn through interaction.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Veeda AI">
+<meta property="og:url" content="https://veeda.ai/">
+<meta property="og:image" content="https://veeda.ai/og.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Veeda AI — Scaling Physical AI through Interactive Learning in Simulated Reality">
+
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="icon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://veeda.ai/#organization",
+      "name": "Veeda AI",
+      "url": "https://veeda.ai/",
+      "description": "Veeda AI builds multimodal foundation world models: scalable simulations of physical reality where embodied agents learn through interaction.",
+      "logo": "https://veeda.ai/icon-512.png",
+      "image": "https://veeda.ai/og.png",
+      "email": "contact@veeda.ai",
+      "sameAs": [
+        "https://x.com/veedaai",
+        "https://www.linkedin.com/company/veedaai/"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "press",
+          "email": "press@veeda.ai"
+        }
+      ],
+      "location": [
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Toronto",
+            "addressRegion": "ON",
+            "addressCountry": "CA"
+          }
+        },
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Zurich",
+            "addressCountry": "CH"
+          }
+        },
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bay Area",
+            "addressRegion": "CA",
+            "addressCountry": "US"
+          }
+        },
+        {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Singapore",
+            "addressCountry": "SG"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://veeda.ai/#website",
+      "url": "https://veeda.ai/",
+      "name": "Veeda AI",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://veeda.ai/#organization" }
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="index.html">
+<link rel="preconnect" href="index.html" crossorigin>
+<link rel="stylesheet" href="css2/index__family-Playfair-Display-wght-400-700-family-Source-Sans-3-wght-300-600-family-IB.css">
+<style>
+  :root {
+    /* Contrast against --paper: text tokens clear WCAG AA (4.5:1), --faint is
+       for non-text decoration only and clears the 3:1 UI-component floor. */
+    --paper:   #f5f4ef;
+    --ink:     #000000;   /* 19.07:1 */
+    --body:    #26251f;   /* 13.95:1 */
+    --muted:   #6e6e69;   /*  4.65:1 — secondary text */
+    --rule:    #dddcd2;   /*  hairlines */
+    --faint:   #8b8a80;   /*  3.15:1 — link underlines, separators; never text */
+    --accent:  #d8ae3c;
+
+    --serif: "Playfair Display", ui-serif, Georgia, "Times New Roman", serif;
+    --sans:  "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono:  "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --gutter: 9.5rem;
+    --pad: clamp(1.5rem, 5vw, 5rem);
+    --measure: 34rem;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--body);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.002em;
+    text-wrap: pretty;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  .page {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 0 var(--pad);
+  }
+
+  /* ---------- header ---------- */
+
+  .bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.25rem 2rem;
+    flex-wrap: wrap;
+    padding: 2.25rem 0 1.5rem;
+  }
+
+  .mark {
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .bar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .bar nav a {
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  .bar nav a:hover,
+  .bar nav a:focus-visible { color: var(--ink); }
+
+  /* ---------- rules ---------- */
+
+  hr {
+    border: 0;
+    border-top: 2px solid var(--rule);
+    margin: 0;
+  }
+
+  /* ---------- hero ---------- */
+
+  .hero {
+    padding: clamp(4rem, 12vh, 8rem) 0 clamp(3.5rem, 8vh, 5.5rem);
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    line-height: 1.04;
+    letter-spacing: 0;
+    color: var(--ink);
+    margin: 0;
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+
+  .lede {
+    max-width: 41rem;
+    margin: clamp(2rem, 4vw, 2.75rem) 0 0;
+    font-size: clamp(1.0625rem, 1.35vw, 1.1875rem);
+    line-height: 1.58;
+    color: var(--body);
+  }
+
+  /* ---------- gutter-label sections ---------- */
+
+  .row {
+    display: grid;
+    grid-template-columns: var(--gutter) minmax(0, 1fr);
+    gap: 0 2.5rem;
+    padding: clamp(3rem, 6.5vh, 4.5rem) 0;
+  }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 0.71875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--body);
+    padding-top: 0.5rem;
+  }
+
+  .row .col { max-width: var(--measure); }
+  .row p { margin: 0 0 1.35em; }
+  .row p:last-child { margin-bottom: 0; }
+
+  strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ---------- statement ---------- */
+
+  .statement {
+    padding: clamp(0.5rem, 1.5vh, 1rem) 0;
+  }
+
+  .statement p {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 4.1vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.016em;
+    color: var(--ink);
+    max-width: 30ch;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .statement p:first-child {
+    max-width: none;
+  }
+
+  .statement-copy {
+    padding-left: 1.5rem;
+    border-left: 2px solid rgba(216, 174, 60, 0.55);
+  }
+
+  .statement .attrib {
+    font-family: var(--sans);
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0.002em;
+    color: var(--body);
+    margin: 0.5rem 0 0;
+    max-width: none;
+    line-height: 1.58;
+    text-wrap: wrap;
+  }
+
+  /* ---------- numbered sequence ---------- */
+
+  ol.seq {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: s;
+  }
+
+  ol.seq li {
+    counter-increment: s;
+    position: relative;
+    padding-left: 2.4rem;
+    margin-bottom: 1.35em;
+  }
+
+  ol.seq li:last-child { margin-bottom: 0; }
+
+  .row p.after-seq { margin-top: 1.35em; }
+
+  ol.seq li::before {
+    content: counter(s);
+    position: absolute;
+    left: 0;
+    top: 0.06em;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  /* ---------- meta rows ---------- */
+
+  .meta {
+    margin: 0;
+    border-top: 1px solid var(--rule);
+    max-width: var(--measure);
+  }
+
+  .meta > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 1.5rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .meta dt {
+    flex: 0 0 6.5rem;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .meta dd {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    color: var(--ink);
+  }
+
+  .meta a {
+    text-decoration: none;
+    border-bottom: 1px solid var(--faint);
+    padding-bottom: 1px;
+    transition: border-color 0.18s ease, color 0.18s ease;
+  }
+
+  .meta a:hover,
+  .meta a:focus-visible { border-bottom-color: var(--accent); }
+
+  .arrow {
+    font-family: var(--mono);
+    font-size: 0.78em;
+    color: var(--muted);
+    margin-left: 0.3em;
+  }
+
+  .places {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.15rem 0.55rem;
+  }
+
+  .meta .sep { color: var(--faint); }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding: 2rem 0 2.75rem;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  footer a {
+    text-decoration: none;
+    transition: color 0.18s ease;
+  }
+
+  footer a:hover,
+  footer a:focus-visible { color: var(--ink); }
+
+  /* ---------- narrow ---------- */
+
+  @media (max-width: 46rem) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+    }
+    .label { padding-top: 0; }
+    .meta dt { flex-basis: 100%; }
+    .bar nav { gap: 1.15rem; }
+    .statement p { max-width: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="bar">
+    <a class="mark" href="index.html">Veeda&nbsp;AI</a>
+    <nav aria-label="Primary">
+      <a href="#mission">Mission</a>
+      <a href="#approach">Approach</a>
+      <a href="#team">Team</a>
+      <a href="https://jobs.ashbyhq.com/veeda-ai" target="_blank" rel="noopener noreferrer">Careers</a>
+    </nav>
+  </header>
+
+  <hr>
+
+  <main id="content">
+    <section class="hero">
+      <h1>World models that simulate physical reality.</h1>
+      <p class="lede">
+        Veeda AI builds multimodal foundation world models that simulate physical reality,
+        creating infinitely scalable environments where embodied agents can learn through
+        interaction. Our mission is to unlock the scaling moment for Physical AI.
+      </p>
+    </section>
+
+    <hr>
+
+    <section class="row" id="mission">
+      <div class="label">Mission</div>
+      <div class="col">
+        <p>
+          We started Veeda because we believe robotics will reshape the world &mdash; changing
+          how we move people and goods, how we manufacture and build, and how we operate in
+          the physical world. That future can be safer and more productive, and it opens up
+          possibilities for humanity that we can only begin to imagine today.
+        </p>
+        <p>
+          We also firmly believe that embodied intelligence will not emerge from imitation
+          learning alone. Just as humans learn from interaction with the world by trying,
+          failing and trying again, until we succeed, robots will need to learn through
+          interaction as well. And just as LLMs unlocked new capabilities by moving beyond
+          passive training on vast amounts of internet text to learning through interactive
+          tasks and feedback, we believe the breakthrough moment for Physical AI will come
+          through interactive learning.
+        </p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="row" id="approach">
+      <div class="label">Approach</div>
+      <div class="col">
+        <p>
+          For Physical AI, the central challenge is making interactive learning possible at
+          scale. The real world is simply not a practical training ground for robots to learn
+          through trial and error:
+        </p>
+        <ol class="seq">
+          <li>It is <strong>unsafe</strong> &mdash; every mistake can carry a real physical cost.</li>
+          <li>It is <strong>expensive</strong> &mdash; hardware, facilities, and operators do not scale like compute.</li>
+          <li>It is <strong>slow</strong> &mdash; real-world experience cannot be accelerated or parallelized at the scale required for learning.</li>
+        </ol>
+        <p class="after-seq">
+          To scale interactive learning, robots will need to learn in simulated reality. This
+          means building “the Matrix” for Physical AI, where, through a virtual embodiment,
+          robot intelligence can interact with an entirely virtual world in a million possible
+          ways, learning from its own mistakes. World models are the foundational technology
+          that can make this possible. These generative models learn from massive amounts of
+          sensor and physical-world data to reach the quality, diversity, and physical realism
+          of the simulated reality that robots require.
+        </p>
+      </div>
+    </section>
+
+    <section class="statement">
+      <div class="statement-copy">
+        <p>We are building "the Matrix" for Physical AI.</p>
+        <p class="attrib">Physical world models that provide infinitely scalable environments where embodied agents can learn by interaction.</p>
+      </div>
+    </section>
+
+    <section class="row" id="team">
+      <div class="label">Team</div>
+      <div class="col">
+        <p>
+          Veeda is an extraordinary team of engineers and researchers who have spent years
+          tackling some of the hardest problems across simulation, generative AI, 3D,
+          robotics, and embodied intelligence. We are a small, deeply technical team, and we
+          are hiring across all four of our locations.
+        </p>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="row" id="connect">
+      <div class="label">Connect</div>
+      <div class="col">
+        <dl class="meta">
+          <div>
+            <dt>Careers</dt>
+            <dd>
+              <a href="https://jobs.ashbyhq.com/veeda-ai" target="_blank" rel="noopener noreferrer">Open
+                roles<span class="arrow" aria-hidden="true">&#8599;</span></a>
+            </dd>
+          </div>
+          <div>
+            <dt>Contact</dt>
+            <dd><a href="mailto:contact@veeda.ai">contact@veeda.ai</a></dd>
+          </div>
+          <div>
+            <dt>Press</dt>
+            <dd><a href="mailto:press@veeda.ai">press@veeda.ai</a></dd>
+          </div>
+          <div>
+            <dt>Locations</dt>
+            <dd>
+              <span class="places">
+                <span>Toronto</span>
+                <span class="sep" aria-hidden="true">&middot;</span>
+                <span>Zurich</span>
+                <span class="sep" aria-hidden="true">&middot;</span>
+                <span>Bay Area</span>
+                <span class="sep" aria-hidden="true">&middot;</span>
+                <span>Singapore</span>
+              </span>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <hr>
+
+  <footer>
+    <span>Veeda AI &copy; 2026</span>
+    <nav aria-label="Footer">
+      <a href="mailto:contact@veeda.ai">Contact</a>
+      <a href="mailto:press@veeda.ai">Press</a>
+      <a href="https://jobs.ashbyhq.com/veeda-ai" target="_blank" rel="noopener noreferrer">Hiring</a>
+    </nav>
+  </footer>
+
+</div>
+
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'},{'ap':'cpsh-oh'},{'server':'p3plzcpnl505258'},{'dcenter':'p3'},{'cp_id':'11000049'},{'cp_cl':'8'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/traffic-assets/js/tccl.min.js'></script></html>

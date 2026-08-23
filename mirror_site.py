@@ -30,6 +30,20 @@ import urllib.request
 DEFAULT_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 
 CSS_URL_RE = re.compile(r"url\((['\"]?)([^)'\"]+)\1\)")
+def _looks_like_css(text_or_bytes):
+    """Sniff whether a fetched body is CSS, regardless of its URL extension.
+
+    fonts.googleapis.com/css2 responses carry no extension yet are CSS; their
+    stored key ends `__…html`, so extension-based asset gating loses both
+    discovery (inner woff2 refs) and verification.
+    """
+    head = (text_or_bytes[:256].decode("utf-8", errors="replace")
+            if isinstance(text_or_bytes, bytes) else text_or_bytes[:256])
+    h = head.lstrip()
+    return (h.startswith(("/*", "@charset", "@font-face", "@import",
+                          "@media", "@keyframes", "@supports", ":root"))
+            or ("url(" in h and "<" not in h[:128]))
+
 # import "./x" | import x from "./x" | import("./x") | import(`./x`)
 # Backticks: Framer rolldown bundles use template-literal chunk imports.
 JS_IMPORT_RE = re.compile(r"""(?:import(?:\(|\s+[^;'"]*?\s+from)?\s*["'`]([^"'`]+)["'`])""")
@@ -367,6 +381,7 @@ class Mirror:
         with open(dest, "w", encoding="utf-8") as f:
             f.write(text)
 
+
     def crawl_asset(self, url):
         try:
             status, body = fetch(url)
@@ -375,20 +390,38 @@ class Mirror:
         if status != 200:
             return
         self.save(url, body)
-        if url_path_key(url).endswith(".css"):
-            text = body.decode("utf-8", errors="replace")
-            self.queue_css_refs(url, text)
-        elif url_path_key(url).endswith((".js", ".mjs")):
+        key = url_path_key(url)
+        if key.endswith((".js", ".mjs")):
             text = body.decode("utf-8", errors="replace")
             self.queue_js_imports(url, text)
+        elif key.endswith(".css") or _looks_like_css(body):
+            text = body.decode("utf-8", errors="replace")
+            self.queue_css_refs(url, text)
+            # Rewrite fetchable url() refs to relative paths so the stored
+            # stylesheet is offline-complete (onecli convention). This also
+            # covers extensionless external CSS such as fonts.googleapis.com
+            # css2, whose stored key ends `__…html` and would otherwise slip
+            # past the .css/.js/.mjs asset gates entirely.
+            rewrite = False
+            for m in CSS_URL_RE.finditer(text):
+                ref = m.group(2).strip("'\"")
+                if not ref or ref.startswith(("#", "data:", "blob:", "about:")):
+                    continue
+                abs_url = self.absolute(url, ref)
+                if self.allowed(abs_url):
+                    text = text.replace(m.group(0),
+                                        "url('" + self.rel_to(abs_url, url) + "')")
+                    rewrite = True
+            if rewrite:
+                with open(os.path.join(self.out, key), "w",
+                          encoding="utf-8") as f:
+                    f.write(text)
 
     def verify_no_missing_chunks(self):
         """Every relative JS/CSS ref in a stored asset must exist on disk."""
         missing = set()
         for root, _dirs, files in os.walk(self.out):
             for name in files:
-                if not name.endswith((".js", ".mjs", ".css")):
-                    continue
                 path = os.path.join(root, name)
                 key = os.path.relpath(path, self.out).replace(os.sep, "/")
                 base = self.src_for.get(key)
@@ -398,32 +431,51 @@ class Mirror:
                     text = open(path, encoding="utf-8", errors="replace").read()
                 except OSError:
                     continue
-                for m in JS_IMPORT_RE.finditer(text):
-                    ref = m.group(1)
-                    nxt = text[m.end():m.end() + 1]
-                    if "+" in ref or "${" in ref or nxt == "+":
-                        # runtime-interpolated template (e.g. `+locationHref+`): not
-                        # a static chunk path, cannot resolve
-                        continue
-                    abs_url = self.absolute(base, ref)
-                    if self.allowed(abs_url):
-                        dest = os.path.join(self.out, url_path_key(abs_url))
-                        if not os.path.exists(dest):
-                            missing.add(abs_url)
-                if not name.endswith(".css"):
+                is_js = name.endswith((".js", ".mjs"))
+                # css-sniffed files also cover extensionless external
+                # stylesheets (fonts.googleapis.com css2 stored as `…html`),
+                # which never pass an extension gate alone
+                is_css = name.endswith(".css") or (not is_js
+                                                   and _looks_like_css(text))
+                if not (is_js or is_css):
                     continue
-                text = open(path, encoding="utf-8", errors="replace").read()
-                for m in CSS_URL_RE.finditer(text):
-                    ref = m.group(2)
-                    if ref.startswith("#"):
-                        # fragment identifier (e.g. url(#gradientId) SVG sprite ref):
-                        # same-document, not a fetchable asset
-                        continue
-                    abs_url = self.absolute(base, ref)
-                    if self.allowed(abs_url):
-                        dest = os.path.join(self.out, url_path_key(abs_url))
-                        if not os.path.exists(dest):
-                            missing.add(abs_url)
+                if is_js:
+                    for m in JS_IMPORT_RE.finditer(text):
+                        ref = m.group(1)
+                        nxt = text[m.end():m.end() + 1]
+                        if "+" in ref or "${" in ref or nxt == "+":
+                            # runtime-interpolated template (e.g.
+                            # `+locationHref+`): not a static chunk path,
+                            # cannot resolve
+                            continue
+                        abs_url = self.absolute(base, ref)
+                        if self.allowed(abs_url):
+                            dest = os.path.join(self.out, url_path_key(abs_url))
+                            if not os.path.exists(dest):
+                                missing.add(abs_url)
+                if is_css:
+                    for m in CSS_URL_RE.finditer(text):
+                        ref = m.group(2).strip("'\"")
+                        if not ref or ref.startswith(("#", "data:", "blob:", "about:")):
+                            # fragment identifier (e.g. url(#gradientId) SVG
+                            # sprite ref): same-document, not a fetchable asset
+                            continue
+                        if "://" in ref and not self.allowed(self.absolute(base, ref)):
+                            # external stylesheet URL kept live (cross-host
+                            # asset not fetched): browser fetches it live
+                            continue
+                        rel = ref.split("?")[0].split("#")[0]
+                        if "://" in ref or rel.startswith("/"):
+                            abs_url = self.absolute(base, ref)
+                            dest = os.path.join(self.out, url_path_key(abs_url))
+                            if not os.path.exists(dest):
+                                missing.add(abs_url)
+                        else:
+                            target = os.path.normpath(
+                                os.path.join(os.path.dirname(path), rel))
+                            if not os.path.exists(target):
+                                missing.add(
+                                    os.path.join(os.path.dirname(path), ref))
         if missing:
             print("  !! MISSING REFERENCED FILES:")
             for u in sorted(missing):

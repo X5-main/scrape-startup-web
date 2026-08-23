@@ -147,6 +147,11 @@ def _v_alternatives(relpath, ver):
     return cand if os.path.isfile(cand) else None
 
 
+def _sniffs_as_css(body):
+    """Tight sniff: no mark-up at the head and an @font-face rule inside."""
+    return b"<" not in body[:128] and b"@font-face" in body[:1024]
+
+
 class ReplicaHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         # keep SimpleHTTPRequestHandler's traversal-safe resolution against DOCROOT
@@ -224,6 +229,17 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
                     body = fh.read()
             except OSError:
                 return super().do_GET()
+            # Extensionless external CSS (fonts.googleapis.com css2) is stored
+            # under a .html key (url_path_key treats extensionless paths as pages).
+            # Chrome refuses to apply a stylesheet served as text/html -- sniff so
+            # it reaches the browser as text/css without the HTML munging below.
+            if _sniffs_as_css(body):
+                self.send_response(200)
+                self.send_header("Content-Type", "text/css; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
             rel_dir = os.path.relpath(os.path.dirname(full), DOCROOT)
             pagedir = "/" + rel_dir.replace(os.sep, "/") if rel_dir != "." else "/"
             body = _restore_live_html(body, pagedir)
