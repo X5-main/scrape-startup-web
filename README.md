@@ -17,6 +17,7 @@ The goal is a durable, versioned archive: as startups launch, pivot, or shut dow
 ## Selecting and capturing startups
 
 - **Prefer mostly static marketing sites.** Client-side-rendered apps (React/SPA) render little in initial HTML and are expensive to mirror faithfully. YC batch pages are a good source of simple launch sites; see `search_methods.md` for funding-discovery feeds.
+- **Screen "expensive-look" on flushed full-page captures, not HTML size/framework** (D26 lesson): judge any serious contender with a scroll-sweep-flushed fullPage screenshot on a fixed prompt — a single-shot fullPage on a backgrounded tab systematically under-scores lazy-load sites (Parameter graded 3/10 unflushed, 9/10 flushed).
 - **Static sites:** capture with `wget --mirror --page-requisites --convert-links --adjust-extension -e robots=off`, then rewrite asset URLs to relative paths so the subfolder browses offline with no server.
 - **Respect robots/ToS posture:** check `robots.txt` and terms before mirroring; prefer sites that permit fetching.
 - **Exception (Lemma):** JS-heavy app-router sites need a byte-identical HTML + full API-path mapping; `lemma/` uses `serve_replica.py` (see its header) because `wget` would come back near-empty.
