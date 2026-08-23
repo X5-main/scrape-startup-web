@@ -1,0 +1,1544 @@
+<!DOCTYPE html><!-- Last Published: Sat Aug 22 2026 07:17:08 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="wisprflow.ai" data-wf-page="683c3fff7feb6e95642e1bfc" data-wf-site="682f84b3838c89f8ff7667db" lang="en"><head><meta charset="utf-8"/><link href="../index.html" rel="preconnect" crossorigin="anonymous"/><title>Flow for Students | Wispr Flow</title><meta content="Your academic glow-up starts with Flow, the fastest and most accurate voice dictation sidekick that works in any application. Work at the speed you think!" name="description"/><meta content="Flow for Students | Wispr Flow" property="og:title"/><meta content="Your academic glow-up starts with Flow, the fastest and most accurate voice dictation sidekick that works in any application. Work at the speed you think!" property="og:description"/><meta content="https://cdn.prod.website-files.com/682f84b3838c89f8ff7667db/686e92d41246b60c446b7274_og-students-v2-min.jpg" property="og:image"/><meta content="Flow for Students | Wispr Flow" name="twitter:title"/><meta content="Your academic glow-up starts with Flow, the fastest and most accurate voice dictation sidekick that works in any application. Work at the speed you think!" name="twitter:description"/><meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="nB5ZhzlaRY-zASqKlMYFlebzNc0mGhssolT9qcS3nms" name="google-site-verification"/><link href="../682f84b3838c89f8ff7667db/css/flowsite-dev.webflow.shared.f1751100a.min.css" rel="stylesheet" type="text/css" integrity="sha384-8XURAKSC0HHrJSBJoq4R9XOU0u6fkbdrX5nJG6mRpOLfPMExpuISM261bI5qS4Hb" crossorigin="anonymous"/><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="../682f84b3838c89f8ff7667db/6a8406645defe8dfdb19c7f3_flow-favicon.png" rel="shortcut icon" type="image/x-icon"/><link href="../682f84b3838c89f8ff7667db/6a840664d12190f8ec4ab592_flow-favicon.png" rel="icon" type="image/png" sizes="48x48"/><link href="../682f84b3838c89f8ff7667db/68d27d1a8a10f417b5644527_flow-wc-v2.png" rel="apple-touch-icon"/><link href="https://wisprflow.ai/students" rel="canonical"/><!--UTM capture: persist UTM params to localStorage on any page load-->
+<script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) {
+      var v = params.get(k);
+      if (v) localStorage.setItem('wf_' + k, v);
+    });
+  })();
+</script>
+
+<!--Download button text - OS detection (site-wide)-->
+<script>
+  (function () {
+    // Promo variant lives in the home page's per-page head and owns the CTAs
+    // when ?promo_code= is present. Yield to it.
+    if (new URLSearchParams(window.location.search).has('promo_code')) return;
+
+    const getOSText = (platform) => {
+      switch (platform) {
+        case 'mac_m1':
+        case 'mac_intel':
+        case 'mac_unknown':
+          return 'Get started on macOS';
+        case 'Windows':
+        case 'win_unknown':
+          return 'Get started on Windows';
+        case 'iOS':
+          return 'Get started on iPhone';
+        case 'Android':
+          return 'Get started on Android';
+        default:
+          return null;
+      }
+    };
+
+    const run = () => {
+      if (window.promoActive) return;
+      if (!window.userPlatform) {
+        setTimeout(run, 1);
+        return;
+      }
+
+      const platform = window.userPlatform;
+      const osText = getOSText(platform);
+
+      // Linux, ChromeOS, or unknown — leave default button text untouched.
+      if (!osText) return;
+
+      const buttons = document.querySelectorAll('[app-download]:not([no-change])');
+      if (buttons.length === 0) {
+        setTimeout(run, 1);
+        return;
+      }
+
+      const appleIcon = document.querySelector('[apple-icon]');
+      const windowsIcon = document.querySelector('[windows-icon]');
+      const androidIcon = document.querySelector('[android-icon]');
+
+      const applyToButton = (btn) => {
+        btn.textContent = osText;
+        if ((platform === 'mac_m1' || platform === 'mac_intel' || platform === 'mac_unknown' || platform === 'iOS') && appleIcon) {
+          btn.prepend(appleIcon.cloneNode(true));
+        } else if ((platform === 'Windows' || platform === 'win_unknown') && windowsIcon) {
+          btn.prepend(windowsIcon.cloneNode(true));
+        } else if (platform === 'Android' && androidIcon) {
+          btn.prepend(androidIcon.cloneNode(true));
+        }
+      };
+
+      buttons.forEach(applyToButton);
+
+      const navContainer = document.querySelector('.nav_container-v2');
+      if (navContainer) {
+        if (platform === 'mac_m1' || platform === 'mac_intel' || platform === 'mac_unknown') {
+          navContainer.classList.add('macos-button-fit');
+        } else if (platform === 'Windows' || platform === 'win_unknown') {
+          navContainer.classList.add('windows-button-fit');
+        }
+      }
+
+      document.querySelector('.nav_big-button')?.classList.add('smaller');
+
+      const setupAnims = () => {
+        if (typeof setupButtonAnimations === 'function') {
+          setupButtonAnimations('.button:not([no-animations="true"])');
+        } else {
+          setTimeout(setupAnims, 50);
+        }
+      };
+      setupAnims();
+
+      // Late-binding safety: re-apply if the button was re-rendered after we set it.
+      const reapply = () => {
+        if (window.promoActive) return;
+        document.querySelectorAll('[app-download]:not([no-change])').forEach((btn) => {
+          if (!btn.textContent.includes(osText)) applyToButton(btn);
+        });
+      };
+      setTimeout(reapply, 200);
+      setTimeout(reapply, 600);
+    };
+
+    run();
+  })();
+</script>
+
+<style>
+  #usercentrics-cmp-ui {
+    position: relative;
+    z-index: 99;
+  }
+</style>
+
+<script>
+  window.addEventListener('UC_UI_VIEW_CHANGED', (event) => {
+    const layer = event.detail?.view;
+    const ucEl = document.querySelector('#usercentrics-cmp-ui');
+    if (!ucEl) return;
+    if (layer === 'FIRST_LAYER' || layer === 'SECOND_LAYER') {
+      ucEl.style.zIndex = '999999';
+    } else {
+      ucEl.style.zIndex = '99';
+    }
+  });
+</script>
+
+<!--Safari smart app banner-->
+<meta name="apple-itunes-app" content="app-id=6497229487, app-argument=https://wisprflow.ai" />
+
+<!--Usercentrics CMP DRAFT script
+<script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-draft="true" data-settings-id="OJkJpCiDSYCcgG" async></script>-->
+
+<!--Usercentrics CMP LIVE script
+<script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
+<script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="OJkJpCiDSYCcgG" async></script>-->
+
+<!--load cmp on staging homepage only
+<script>
+  if (window.location.hostname === 'flowsite-dev.webflow.io' && window.location.pathname === '/') {
+    var s2 = document.createElement('script');
+    s2.src = 'https://web.cmp.usercentrics.eu/ui/loader.js';
+    s2.id = 'usercentrics-cmp';
+    s2.setAttribute('data-settings-id', 'OJkJpCiDSYCcgG');
+    s2.async = true;
+    document.head.prepend(s2);
+  }
+</script>-->
+
+<!--Bottom bar-->
+<style>
+  .nav_bottom {
+    transform: translateY(100%);
+  }
+</style>
+
+<!--Preloading above the fold fonts-->
+<link rel="preload" href="../682f84b3838c89f8ff7667db/682fbe57a719a4ebf1fb56d5_EBGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="preload" href="../682f84b3838c89f8ff7667db/68d3db1d34da60ddf73ff544_683b1349ca0a0ddd3d6a7cd3_EBGaramond-Italic.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="preload" href="../682f84b3838c89f8ff7667db/682fbd6763ee33a2be0ffd05_Figtree-Medium.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="preload" href="../682f84b3838c89f8ff7667db/682fbd676708c4fa3708edc8_Figtree-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- GSC Verification -->
+<meta name="google-site-verification" content="P6GGpe_kog7Zac5lr_zc-Riq4UO4NNedDoVSLBu2-C4" />
+<!-- End of GSC Verification -->
+
+<!-- Persistent anonymous visitor ID for Meta CAPI matching -->
+<script>
+  (function () {
+    if (!localStorage.getItem('wispr_visitor_id')) {
+      localStorage.setItem('wispr_visitor_id', crypto.randomUUID());
+    }
+  })();
+</script>
+
+<!--No consent in GTM by default-->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 2000,
+  });
+</script>
+
+<!-- Google Tag Manager -->
+<script>
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-N8JTW8TQ');
+</script>
+<!-- End Google Tag Manager -->
+
+<!--Verbiflow
+<script type="text/plain" data-usercentrics="Verbiflow">
+  !function(){
+    // Don't load Verbiflow on /get-started page
+    if (window.location.pathname === '/get-started') {
+      return;
+    }
+    
+    window.__VERBIFLOW_API_KEY__ = "fb7e1058-28fd-466d-86da-d1114ed68ffd";
+    var verbiflowScript = document.createElement("script");
+    verbiflowScript.async = true;
+    verbiflowScript.setAttribute("src", "https://verbiflow-customer-assets.s3.us-east-1.amazonaws.com/deanonymization.js");
+    verbiflowScript.setAttribute("id", "verbiflowtag");
+    (document.body || document.head).appendChild(verbiflowScript);
+  }();
+</script>-->
+
+<!--Unify
+<script type="text/plain" data-usercentrics="Unify">!function(){var e=["identify","page","startAutoPage","stopAutoPage","startAutoIdentify","stopAutoIdentify"];function t(o){return Object.assign([],e.reduce(function(r,n){return r[n]=function(){return o.push([n,[].slice.call(arguments)]),o},r},{}))}window.unify||(window.unify=t(window.unify)),window.unifyBrowser||(window.unifyBrowser=t(window.unifyBrowser));var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://tag.unifyintent.com/v1/6pSdUHMfwsfTM4drx7hLnj/script.js"),n.setAttribute("data-api-key","wk_SutNNYTR_A5ygcgBTbiAx1Bvf6Wb8HBvubDQLJBm6"),n.setAttribute("id","unifytag"),(document.body||document.head).appendChild(n)}();</script>-->
+
+<!-- Save referral code and promo code in cookies-->
+<script>
+  (function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const referral = urlParams.get('referral');
+    const promoCode = urlParams.get('promo_code');
+
+    if (referral) {
+      const sanitizedReferral = encodeURIComponent(referral);
+      const expiryDate = new Date();
+      expiryDate.setTime(expiryDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+
+      // Dynamic domain logic (matching your global code)
+      const { hostname } = window.location;
+      const domain = hostname.includes('wisprflow.ai') ? '.wisprflow.ai' : hostname;
+
+      document.cookie = `referral=${sanitizedReferral};expires=${expiryDate.toUTCString()};path=/;domain=${domain};Secure;`;
+    }
+
+    if (promoCode) {
+      const sanitizedPromoCode = encodeURIComponent(promoCode);
+      const expiryDate = new Date();
+      expiryDate.setTime(expiryDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+
+      // Dynamic domain logic (matching your global code)
+      const { hostname } = window.location;
+      const domain = hostname.includes('wisprflow.ai') ? '.wisprflow.ai' : hostname;
+
+      document.cookie = `promo_code=${sanitizedPromoCode};expires=${expiryDate.toUTCString()};path=/;domain=${domain};Secure;`;
+    }
+  })();
+</script>
+
+<!-- Analytics-->
+<script>
+  // Posthog
+  !(function (t, e) {
+    var o, n, p, r;
+    e.__SV ||
+      ((window.posthog = e),
+      (e._i = []),
+      (e.init = function (i, s, a) {
+        function g(t, e) {
+          var o = e.split('.');
+          (2 == o.length && ((t = t[o[0]]), (e = o[1])),
+            (t[e] = function () {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+            }));
+        }
+        (((p = t.createElement('script')).type = 'text/javascript'), (p.async = !0), (p.src = s.api_host + '/static/array.js'), (r = t.getElementsByTagName('script')[0]).parentNode.insertBefore(p, r));
+        var u = e;
+        for (
+          void 0 !== a ? (u = e[a] = []) : (a = 'posthog'),
+            u.people = u.people || [],
+            u.toString = function (t) {
+              var e = 'posthog';
+              return ('posthog' !== a && (e += '.' + a), t || (e += ' (stub)'), e);
+            },
+            u.people.toString = function () {
+              return u.toString(1) + '.people (stub)';
+            },
+            o = 'capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep'.split(' '),
+            n = 0;
+          n < o.length;
+          n++
+        )
+          g(u, o[n]);
+        e._i.push([i, s, a]);
+      }),
+      (e.__SV = 1));
+  })(document, window.posthog || []);
+
+  window.posthog.init('phc_yV8yhSiAUoblWb3L5ju54QEk6Y3u2rA3xV4Dep1yIDC', {
+    api_host: 'https://ph.wisprflow.ai',
+    ui_host: 'https://us.posthog.com',
+  });
+</script>
+
+<!--Dub
+<script type="text/plain" data-usercentrics="Dub.co" src="https://www.dubcdn.com/analytics/script.js" defer></script>-->
+
+<!-- Ahrefs Analytics
+
+<script type="text/plain" data-usercentrics="Ahrefs" src="https://analytics.ahrefs.com/analytics.js" data-key="5nR81NV35qF6wRFgDb3Tjg" async></script>-->
+
+<!-- End of Ahrefs Analytics -->
+
+<!--new [data-localize]
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.5.5/dist/global.js"></script>-->
+
+<!--posthog if check
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.5.12/dist/global.js"></script>-->
+
+<!--meta capi improvements
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.5.17/dist/global.js"></script>-->
+
+<!--chromebook support-->
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.6.1/dist/global.js"></script>
+
+<!-- <script defer src="http://localhost:3000/global.js"></script> -->
+
+<style>
+  .fs-rangeslider_handle:focus-visible {
+    outline: 0rem solid transparent !important;
+  }
+</style><style>
+.splide__sr {
+	display: none !important;
+}
+</style>
+
+<style>
+	[data-element='wave'] {
+	  opacity: 0;
+	}
+  
+  [promo-wrap] {
+		display: none;
+	}
+</style>
+
+<!--Promo wrap UI with button text changes-->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const promoCode = urlParams.get('promo_code');
+  if (promoCode) {
+    const waitAndApplyPromo = () => {
+      if (!window.userPlatform) {
+        setTimeout(waitAndApplyPromo, 1);
+        return;
+      }
+      const platform = window.userPlatform;
+      // Always show promo elements
+      document.querySelectorAll('[promo-wrap]').forEach(el => {
+        el.style.display = 'flex';
+      });
+      const promoTextElement = document.querySelector('[promo-text]');
+      if (platform === 'iOS') {
+        // Promo text (ALL CAPS version) - fixed: use textContent instead of innerHTML
+        if (promoTextElement && promoCode) {
+          const partnerNameAllCaps = promoCode.toUpperCase();
+          const strong = document.createElement('strong');
+          strong.textContent = partnerNameAllCaps;
+          promoTextElement.textContent = 'Use "';
+          promoTextElement.appendChild(strong);
+          promoTextElement.append('" at desktop checkout for a free month');
+        }
+        // No button text changes for iOS
+      } else {
+        // Non-iOS → button text is promo CTA
+        const buttons = document.querySelectorAll('[app-download]:not([no-change])');
+        buttons.forEach(button => {
+          button.textContent = 'Claim Free Month 🎁';
+        });
+        // Promo text (original style) - fixed: use textContent instead of innerHTML
+        if (promoTextElement && promoCode) {
+          const formatPartnerName = (code) => {
+            return code
+              .split('-')
+              .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+              .join(' ');
+          };
+          const partnerName = formatPartnerName(promoCode);
+          const strong = document.createElement('strong');
+          strong.textContent = partnerName;
+          promoTextElement.textContent = 'Exclusive invite from ';
+          promoTextElement.appendChild(strong);
+          promoTextElement.append(' → Free month unlocked');
+        }
+      }
+      // Setup button animations if available
+      if (typeof setupButtonAnimations === 'function') {
+        setupButtonAnimations('[app-download]:not([no-change])');
+      }
+    };
+    waitAndApplyPromo();
+  }
+});
+</script>
+
+<!-- Finsweet Attributes -->
+<script async type="module"
+src="https://cdn.jsdelivr.net/npm/@finsweet/attributes@2/attributes.js"
+fs-list
+></script>
+
+<script async src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+<!-- marquee-->
+<style>
+/* alter underline width based on breakpoint */
+/* Desktop (default) */
+#heading-underline {
+  stroke-width: 8 !important;
+}
+
+/* Mobile Landscape and smaller */
+@media (max-width: 1024px) {
+  #heading-underline {
+    stroke-width: 12 !important;
+  }
+}
+
+/* Mobile Portrait and smaller */
+@media (max-width: 768px) {
+  #heading-underline {
+    stroke-width: 12 !important;
+    ;
+  }
+}
+</style><script src="../682f84b3838c89f8ff7667db/6544eda5f000985a163a8687/68c93c62c7911406d96f138f/finsweetcomponentsconfig-1.0.0.js" type="module" async="" siteId="682f84b3838c89f8ff7667db" finsweet="components"></script></head><body><div class="page-wrapper"><div class="global-styles w-embed"><style>
+  /* Make text look crisper and more legible in all browsers */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus state style for keyboard navigation for the focusable elements */
+  *[tabindex]:focus-visible,
+  input[type='file']:focus-visible {
+    outline: 0.125rem solid #4d65ff;
+    outline-offset: 0.125rem;
+  }
+
+  /* Set color style to inherit */
+  .inherit-color * {
+    color: inherit;
+  }
+
+  /* Get rid of top margin on first element in any rich text element */
+  .w-richtext > :not(div):first-child,
+  .w-richtext > div:first-child > :first-child {
+    margin-top: 0 !important;
+  }
+
+  /* Get rid of bottom margin on last element in any rich text element */
+  .w-richtext > :last-child,
+  .w-richtext ol li:last-child,
+  .w-richtext ul li:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Make sure containers never lose their center alignment */
+  .container-medium,
+  .container-small,
+  .container-large {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  /* 
+Make the following elements inherit typography styles from the parent and not have hardcoded values. 
+Important: You will not be able to style for example "All Links" in Designer with this CSS applied.
+Uncomment this CSS to use it in the project. Leave this message for future hand-off.
+*/
+  /*
+a,
+.w-input,
+.w-select,
+.w-tab-link,
+.w-nav-link,
+.w-dropdown-btn,
+.w-dropdown-toggle,
+.w-dropdown-link {
+  color: inherit;
+  text-decoration: inherit;
+  font-size: inherit;
+}
+*/
+
+  /* Apply "..." after 3 lines of text */
+  .text-style-3lines {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Apply "..." after 2 lines of text */
+  .text-style-2lines {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  /* These classes are never overwritten */
+  .hide {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 991px) {
+    .hide,
+    .hide-tablet {
+      display: none !important;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .hide-mobile-landscape {
+      display: none !important;
+    }
+  }
+  @media screen and (max-width: 479px) {
+    .hide-mobile {
+      display: none !important;
+    }
+  }
+
+  .margin-0 {
+    margin: 0rem !important;
+  }
+
+  .padding-0 {
+    padding: 0rem !important;
+  }
+
+  .spacing-clean {
+    padding: 0rem !important;
+    margin: 0rem !important;
+  }
+
+  .margin-top {
+    margin-right: 0rem !important;
+    margin-bottom: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-top {
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .margin-right {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-right {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .margin-bottom {
+    margin-top: 0rem !important;
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-bottom {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .margin-left {
+    margin-top: 0rem !important;
+    margin-right: 0rem !important;
+    margin-bottom: 0rem !important;
+  }
+
+  .padding-left {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+  }
+
+  .margin-horizontal {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+  }
+
+  .padding-horizontal {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+  }
+
+  .margin-vertical {
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-vertical {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .text-wrap-balance {
+    text-wrap: balance !important;
+  }
+</style>
+
+<style>
+  .footer_link-block .icon-embed-xxsmall {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 300ms;
+  }
+
+  .footer_link-block:hover .icon-embed-xxsmall {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<style>
+  .w-nav-overlay {
+    margin-top: -10px !important;
+    z-index: 1;
+  }
+</style>
+
+<style>
+  @media screen and (max-width: 992px) {
+    .w-dropdown-toggle.w--open .nav_menu-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  .dropdown1_border-radius-wrap,
+  .dropdown-border-right-overlay {
+    opacity: 0;
+  }
+
+  .dropdown-link:hover .dropdown-link-text {
+    color: #034f46;
+  }
+
+  @media (min-width: 992px) {
+    .nav_component:has([apple-icon]),
+    .nav_component:has([windows-icon]) {
+      max-width: 66rem;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .nav_container-v2:has(.nav_button.w--open),
+    .nav_container-v3:has(.nav_button.w--open) {
+      border-bottom-color: transparent;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .nav_container-v2:has(.nav_button.w--open) .nav_left-line,
+    .nav_container-v3:has(.nav_button.w--open) .nav_left-line,
+    .nav_container-v2:has(.nav_button.w--open) .nav_right-line,
+    .nav_container-v3:has(.nav_button.w--open) .nav_right-line {
+      opacity: 1;
+    }
+  }
+
+  /*.text-link:hover .text-link-arrow {
+    transform: translateX(100%);
+  }*/
+
+  /* nav v2 */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    [nav-dropdown='resources'] .dropdown-link {
+      min-width: 13rem !important;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .nav-link-wrap.research {
+      padding-left: 0.5rem;
+      align-items: center;
+      /* gap: 3.5rem; */
+      gap: 2.25rem;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .nav_mobile-btn:has([android-icon]) {
+      font-size: 0.75rem;
+    }
+
+    .nav_mobile-btn [android-icon] {
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+    }
+  }
+
+  .nav_menu-dropdown-toggle-v2.force-reset,
+  .nav_menu-dropdown-toggle-v2.force-reset:hover {
+    background-color: rgba(228, 228, 208, 0) !important;
+  }
+
+  .blog-v2-item h2,
+  .blog-v2-item h3 {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 3px;
+    transition: text-decoration-color 0.25s ease;
+  }
+
+  .blog-v2-item:hover h2,
+  .blog-v2-item:hover h3 {
+    text-decoration-color: currentColor;
+  }
+
+  .testi_card-bottom-card:has(.testi_card-bottom-card-bg.is-green) {
+    color: #ffffeb;
+  }
+
+  .testi_card:has(.testi_card-bg-color.is-dark-green) {
+    color: #ffffeb;
+  }
+
+  @media (max-width: 767px) {
+    .testi_card:has(.testi_card-bg-color.is-dark-green) .testi_card-stats-grid {
+      color: #ffffeb;
+    }
+  }
+</style></div><div class="nav-spacer"></div><div class="form_wrap"><div data-w-id="d6450b95-4cbe-aac3-1fa6-fbb218a932d8" class="form_overlay"></div><div class="form_container"><div class="form_embed w-embed w-iframe"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeDLICXB_cnzmERZlyIDJOqvc6TlE2jJYnOeoiMBSxyVquJtA/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div></div></div><div class="nav_fixed"><div data-wf--navbar--variant="base" data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="nav_component-v2 w-nav"><div class="hide"><img apple-icon="" src="../6838259bd246e848c14f0840/683829796f346a9a6f931363_apple.png" alt="" class="download_button-icon homepage"/><img windows-icon="" src="../682f84b3838c89f8ff7667db/686d4881d944a4b80f7d047e_windows.svg" alt="" class="download_button-icon homepage"/><img android-icon="" src="../682f84b3838c89f8ff7667db/69935aa16ba22091f2d8c927_Android.svg" alt="" class="download_button-icon homepage"/></div><div class="nav_container-v3"><div class="nav_container-v3-left"><a href="../index.html" class="nav_brand w-nav-brand"><img loading="eager" src="../682f84b3838c89f8ff7667db/683215c6f233131a07d8bafc_navbar_logo.svg" alt="Flow Logo" class="nav_logo"/></a><div class="nav_tab-wrap"><a nav-link="dictation" href="../index.html" class="nav_tab w-inline-block"><div>Dictation</div></a><img src="../682f84b3838c89f8ff7667db/6a719965013c961a2a7caa58_navbar-divider.svg" loading="eager" alt="" class="nav_divider"/><a nav-link="notetaker" href="../notetaker/index.html" class="nav_tab w-inline-block"><div>Notetaker</div></a></div></div><div class="nav_mobile-cta"><a id="nav-mobile-download" cta="" cta_location="nav_mobile" cta_type="download_for_free" app-download="" href="../get-started/index.html" class="nav_mobile-btn w-button">Download for free</a></div><nav role="navigation" class="nav_menu v3 w-nav-menu"><div class="nav_menu-wrapper grid v3"><div class="show-tablet"><a href="../index.html" class="nav_menu-link-v2">Dictation</a><a href="../notetaker/index.html" class="nav_menu-link-v2">Notetaker</a></div><a nav-link="teams" href="../business/index.html" class="nav_menu-link-v2">Business</a><a nav-link="pricing" href="../pricing/index.html" class="nav_menu-link-v2">Pricing</a><a nav-link="lab" href="../lab/index.html" class="nav_menu-link-v2">Lab</a><a id="nav-download" cta="" cta_location="navbar" cta_type="download_for_free" app-download="" nav-link="download" href="../get-started/index.html" class="nav_big-button button w-node-eacbc97b-ceb5-27cd-3c54-32407e106f40-63dfdea9 w-inline-block"><div>Download for free</div></a></div></nav><div class="nav_button v2 w-nav-button"><div class="hamburger_12_wrap"><div class="hamburger_12_line"></div><div class="hamburger_embed w-embed"><style>
+.hamburger_12_wrap {
+	--thickness: 0.125rem;
+	--gap: 0.375rem;
+	--rotate: 45;
+  --width: 100%;
+}
+.hamburger_12_wrap:hover .hamburger_12_line {
+	width: 65%;
+}
+.hamburger_12_wrap:hover .hamburger_12_line:first-child {
+	width: 85%;
+}
+.hamburger_12_wrap:hover .hamburger_12_line:last-child {
+	width: 100%;
+}
+.w--open .hamburger_12_line {
+	width: 100% !important;
+	transform: scaleX(0);
+}
+.w--open .hamburger_12_line:first-child {
+	transform: translateY(calc(var(--thickness) + var(--gap))) rotate(calc(var(--rotate) * 3 * 1deg));
+}
+.w--open .hamburger_12_line:last-child {
+	transform: translateY(calc(var(--thickness) * -1 + var(--gap) * -1)) rotate(calc(var(--rotate) * 1deg));
+}
+</style></div><div class="hamburger_12_line"></div><div class="hamburger_12_line"></div></div></div><div class="nav_left-line"></div><div class="nav_right-line"></div></div></div></div><div class="main-wrapper"><div class="wave-svg-wrapper students hide-tablet"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3264 648" fill="none" class="wave-svg scale-1-01"><path d="M3258.63 35.5497C2775.34 791.845 2354.84 -396.046 1411.84 545.953C1248.84 708.776 987.726 696.825 733.546 251.381C604.915 25.9567 513.329 -28.3373 350.447 25.9567C187.565 80.2506 52.7349 245.847 5.68018 321.859" stroke="#FFBCF2" stroke-width="12" data-element="wave"></path></svg></div><section class="section_student-hero"><div class="padding-global"><div class="container-large"><div class="spacer-huge"></div><div class="spacer-small"></div><div promo-wrap="" class="promo-wrap homepage"><div class="promo-div homepage"><div promo-text="">Promo</div></div></div><div class="students-hero_grid"><div><div><h1 class="tag font-body">Flow for Students</h1></div><div class="spacer-medium"></div><div><h2 class="heading-style-h1">For late nights and big ideas.</h2></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-medium"></div><div><div class="max-width-medium-plus"><p class="text-size-large">Introducing Flow, the fastest and most accurate voice dictation sidekick that works in any application. Work at the speed you think!</p></div><div class="spacer-medium"></div><div><a app-download="" cta="" cta_location="students_hero_section" cta_type="download_flow_today" href="../get-started/index.html" class="button w-button">Download Flow today</a></div></div></div><div id="w-node-d5cf0416-f540-322f-1e69-504440df9e9d-642e1bfc" class="students-hero_graphic-wrap"><img loading="eager" src="../682f84b3838c89f8ff7667db/683c409dbd270c474eff1034_student-graphic.avif" alt="Wispr Flow for students feature" class="students-hero_graphic"/></div></div><div class="spacer-small"></div><div class="spacer-huge"></div></div></div></section><div class="section_app-integrations"><div class="padding-global"><div class="container-large"><div class="spacer-huge"></div><div class="spacer-small"></div><div class="team_integrations-flex"><div class="team_integrations-content-top"><div class="hide w-embed"><style>
+	.team_integrations-content-top .home_integrations_chips-div {
+		justify-content: flex-start;
+	}
+</style></div><div data-wf--integrations-light-color--variant="base" class="home_integrations_chips-div"><div class="home_integrations_chip"><img src="../682f84b3838c89f8ff7667db/6832323f127062351dc681c7_apple_symobl.svg" loading="lazy" alt="" class="home_integrations_chip-logo apple"/><div class="text-color-alternate text-weight-bold">Mac</div></div><div class="home_integrations_chip"><img src="../682f84b3838c89f8ff7667db/699480cd4c1378b9a098e893_windows_symbol.svg" loading="lazy" alt="" class="home_integrations_chip-logo"/><div class="text-color-alternate text-weight-bold">Windows</div></div><div class="home_integrations_chip"><img src="../682f84b3838c89f8ff7667db/6832323f127062351dc681c7_apple_symobl.svg" loading="lazy" alt="" class="home_integrations_chip-logo apple"/><div class="text-color-alternate text-weight-bold">iPhone</div></div><div class="home_integrations_chip"><img loading="lazy" src="../682f84b3838c89f8ff7667db/699480e01019ae253eeecfed_android-51 1 (1).svg" alt="" class="home_integrations_chip-logo android"/><div class="text-color-alternate text-weight-bold">Android</div></div></div><div class="max-width-medium-plus"><h2 class="text-color-secondary">Flow through finals like the genius you are.</h2></div><div class="max-width-medium"><p class="text-size-large text-wrap-balance">Seamless speech-to-text in every application on your computer and phone.</p><div class="spacer-medium"></div><a app-download="" cta="" cta_location="students_section2" cta_type="get_started" href="../get-started/index.html" class="button is-secondary w-button">Get started</a></div></div><div class="icon_svg-wrapper is-teams"><div class="w-dyn-list"><div role="list" class="icon-list w-dyn-items"><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa162192facb6a666750e_66f905a8e9e4ff2af1fa60b9_66f68e1766846fa7ed88fa56_x.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa161e3fbcf9d836fd6b3_66f905aafd2ca9b6dddd0edf_66f68e17102667380d0d8865_whatsapp.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa16150b4ca6070d1ce33_66f905a81c37f36fc8f52a6e_66f68e188b921eea06d1aa3e_todolist.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa161435d03cee7af1c72_66f905a86b111f07521d2e54_66f68e17a239e3a98d6f0780_vscode.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa161053862bf16064f4e_66f905a8e29ddb03b9efbe0c_66f68e1721bc1fbd02c88e3c_things.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa1612deb88ce9dde9aa2_66f905a85ab822134a859404_66f68e18f25aff2304af72d7_telegram.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa161746ade96181abaf8_66f905a7dbb551f6de41f176_66f68e17d61b7dc3541ab787_superhuman.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa1612b39359a238c5b7f_66f905a817c8c744badff37e_66f68e17eebe9ae404993b2c_teams.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa160b4d05a8880c2c407_66f905a631bbec4cdf4801e7_66f68e17cf1e00e686504c6e_snap.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa160b1b777333c5342fa_66f905a6cf9938934f4f5c4d_66f68e18773e1391d4059ca9_signal.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa160df8f792cb8c01c58_66f905a6bb0f45ece8cca30d_66f68e173a4a571f65edcb07_slack.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15fdf2782e8df1e5cbc_66f905a61c37f36fc8f52932_66f68e1716301fe5fbcaf935_replit.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15f1b52c91cb9a50f16_66f905a5580abe1aff89d677_66f68e173a4a571f65edcb13_raycast.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15fef4d27826a8e9381_66f905a51fcb54901686c2e9_66f68e1703a2e69ac58dc962_obsidian.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15fa5f115e2d084687e_66f905a617c8c744badff0ee_66f68e17aa17c8a36735da81_outlook.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15e07bd6278b0483e31_66f905a5044c5c83e11ab6e5_66f68e17a503a81a1bf73236_messenger.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15e74b9d5cdb7979532_66f905a5580abe1aff89d634_66f68e17eebe9ae404993b0e_notion.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15e1335b859677a339d_66f905a535c53060338eb899_66f68e178c917a819475d8c1_perplexity.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15d435d03cee7af19ca_66f905a435c53060338eb7e4_66f68e17f4ab7655beb551d1_linear.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15db1b777333c5341db_66f905a4cf9938934f4f5a54_66f68e17f4ab7655beb551db_mail.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15d727b1a32763bda69_66f905a31c37f36fc8f52728_66f68e174a382e4768a0b863_insta.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15c01329017a6cd4207_66f905a314a3d22ffc79f5bb_66f68e17c9064d5bd54f9b70_figma.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15c41f1171f872a854c_67ff6ac9e463fd7e256c772e_evernote.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15c3d0d2af87f3144c3_66f905a355f7927357ab3fe5_66f68e173a4a571f65edcae0_gmail.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15c2119568f9b39a7b9_66f905a3cf9938934f4f59c1_66f68e17dc93ecbd8015d769_imessage.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15c435d03cee7af192d_66f905a3e29ddb03b9efbb9a_66f68e1757b01079e67f1e54_github.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15c64062ea5ed7ac37f_66f905a3dbb551f6de41ecfa_66f68e175dc32d8b4026221f_docs.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15be5861424f5a1781c_66f905a26976f830c4f09ce7_66f68e1748e85e5cd5ad4836_cursor-ide.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15adc306ab5bf96b30e_67ff6a871792c333db148107_zoom.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/684074ed827018860db775ff_claude.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15acc46e85b4628dac4_66f905a26976f830c4f09ce0_66f68e1716301fe5fbcaf913_arc.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15acc46e85b4628dac1_66f905a25ab822134a859213_66f68e17b6934a352ca2aeeb_applenotes.webp" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/6840755f6a81b45af532d07d_chatgpt.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15945a409e0dfc4c199_67ff6a747935a6d5b45ae7ab_classroom.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa159637a35511b194ad6_67ff6a9a1f19ba3fe88cc9f2_google%20keep.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa159df8f792cb8c017f8_67ff6a26fb1a6b441e444234_grammarly.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa15990e2182bed29afc5_67ff6a595c7f5fa0543ac014_canva.avif" alt="" class="image"/></div><div role="listitem" class="icon-item w-dyn-item"><img src="../682fa12727f78b943ed45584/682fa1581dfebe56a045dcb4_67ff6aafed300ca598592862_onenote.avif" alt="" class="image"/></div></div></div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3570 1125" fill="none" class="icon_svg-teams hide-mobile-landscape"><path d="M0.629639 1.15771C82.9263 189.969 357.34 608.012 796.621 769.692C1235.9 931.372 1567.15 773.202 1711.79 678.175C1891.9 559.839 2155.65 289.609 2443.93 327.36C2732.2 365.111 3187.5 563.779 3568.82 1124.32" id="icon-path-web"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 3572 438" fill="none" class="icon_svg show-mobile-landscape"><path d="M0.411621 1.27466H1191.81C1219.24 74.606 1310.71 236.967 1457.14 299.761C1603.56 362.555 1713.98 301.125 1762.19 264.217C1822.23 218.258 1910.15 113.305 2006.24 127.967C2102.33 142.628 2254.1 219.788 2381.2 437.493H3571.73" id="icon-path-mobile"></path></svg></div><div class="team_integrations-content-bottom"><div class="team_integrations-grid-content"><img alt="" src="../682f84b3838c89f8ff7667db/6836d307507eb89dfb2e0996_values-icon-1.svg" class="icon-height-large"/><h3 class="heading-style-h4 lineheight-0-95">4X faster than typing</h3><p class="text-size-small">Save hours on notes and essays by using your voice to type.</p></div><div class="team_integrations-grid-content"><img alt="" src="../682f84b3838c89f8ff7667db/6836d3078278e50f0894d737_values-icon-2.svg" class="icon-height-large"/><h3 class="heading-style-h4 lineheight-0-95">Sounds like<span class="display-block display-inline-tablet"> </span>you</h3><p class="text-size-small">Set casual or formal tone in any app.</p></div><div class="team_integrations-grid-content"><img alt="Wispr Flow window" src="../682f84b3838c89f8ff7667db/683c44dce2b053f76221a7c6_window.avif" class="icon-height-large"/><h3 class="heading-style-h4 lineheight-0-95">Works everywhere<span class="display-block"> </span>(+ mobile)</h3><p class="text-size-small">Flow works in Docs, Apps, and notes—no new software to learn.</p></div><div class="team_integrations-grid-content"><img alt="Wispr Flow AI feature" src="../682f84b3838c89f8ff7667db/683c44ef28992d23188214c3_ai.avif" class="icon-height-large"/><h3 class="heading-style-h4 lineheight-0-95">Command mode<span class="display-block display-inline-tablet"> </span>with AI</h3><p class="text-size-small">Fine-tune and edit your writing with AI to sound your very best.</p></div></div></div><div class="spacer-small"></div><div class="spacer-huge"></div></div></div></div><div class="spacer-xhuge"></div><div class="hide-tablet"><div class="spacer-xhuge"></div></div><section class="section_student-pricing"><div class="padding-global"><div class="container-large"><div class="student-pricing_grid"><div><div class="spacer-xxlarge"></div><h2 class="heading-style-h1">Get 3 months <span class="text-color-tertiary">free</span> for finals</h2><div class="spacer-large"></div><div><p class="text-size-xlarge">Auto renews at 50% off. Cancel anytime.</p></div><div class="spacer-large"></div><div><h3 class="heading-style-h4 text-color-tertiary">How to sign up</h3><div class="spacer-small"></div><div><div class="hide-tablet"><div class="student-pricing_step"><div class="text-size-large text-weight-medium">1. Sign Up</div><p class="text-size-regular">Click “<a href="../get-started/index.html" cta_type="start_today_text_link" app-download="" cta="" cta_location="students_green_section">Start Today for free</a>” and sign in to create an account.</p></div><div class="student-pricing_step"><div class="text-size-large text-weight-medium">2. Download the App</div><p class="text-size-regular">Choose where you want to Flow: now available on MacOS, Windows, and iOS.</p></div><div class="student-pricing_step last"><div class="text-size-large text-weight-medium">3. Get Verified</div><p class="text-size-regular">Sign in to the app with your edu email—we’ll auto-activate your student offer: 3 months free, then <span data-localize="symbol">$</span><span data-localize="student-monthly">6</span>/month (50% off). Cancel anytime.</p><div class="pricing_info-extra-info"><div class="pricing_info-icon2 w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ph" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88m16-40a8 8 0 0 1-8 8a16 16 0 0 1-16-16v-40a8 8 0 0 1 0-16a16 16 0 0 1 16 16v40a8 8 0 0 1 8 8m-32-92a12 12 0 1 1 12 12a12 12 0 0 1-12-12"></path></svg></div><div>3-month trial is for new subscribers only</div></div></div></div><div class="show-tablet"><p>Sign up for the app with your .edu email and we&#x27;ll auto-activate your student offer: 3 months free, then $6/month (50% off). Cancel anytime.<br/><br/>If you don&#x27;t have a .edu email address, reach out to <a href="../support/index.html">Support</a> to get the discount added.</p></div></div></div></div><div class="student-pricing_right"><img alt="Wispr Flow productivity feature" src="../682f84b3838c89f8ff7667db/683c457b78bfb92194d72753_money-juggle.avif" class="student-pricing_image"/><div class="student-pricing_card"><div><div class="text-size-xlarge text-color-tertiary text-weight-medium">Flow Pro for Students</div><div class="spacer-small"></div><div><div class="student-pricing_price"><span data-localize="symbol">$</span><span data-localize="student-monthly">6</span>/mo</div><div><div class="spacer-xsmall"></div><div billing-annually="" class="text-weight-medium text-style-muted">billed annually</div></div><div class="spacer-medium"></div><div><div class="text-size-large">50% off, just for students</div></div></div></div><div class="spacer-medium"></div><div class="spacer-xsmall"></div><div class="align-center"><div data-wf--pricing-list-item--variant="big-text" class="pricing_checkbox w-variant-9dda74bb-c061-8f7b-49fc-4fe8f05784b4"><img src="../682f84b3838c89f8ff7667db/68362f7851f3f2f337041c12_handdrawn-check.svg" alt="" class="pricing_checkmark"/><div class="pricing_text-wrap"><div class="display-inline">Use all of our features on our Pro Plan</div></div></div></div><div class="spacer-medium"></div><a app-download="" cta="" cta_location="green_card" cta_type="start_for_free" href="../get-started/index.html" class="button w-button">Start your free 3 months today</a></div></div></div><div class="spacer-huge"></div><div class="spacer-small"></div></div></div></section><section class="section_features"><div class="padding-global"><div class="padding-vertical"><div class="spacer-huge"></div><div class="spacer-small"></div><div class="container-large"><div class="features_grid-top text-align-left"><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384a6-642e1bfc" class="features_content-left"><img alt="Wispr Flow enterprise screenshot" src="../682f84b3838c89f8ff7667db/683c46d5870f2478d12b619e_es-img.avif" class="features_content-bg-image"/></div><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384a8-642e1bfc" class="features_content-right"><h2>Turn thoughts into action</h2><div class="spacer-medium"></div><p class="text-size-large">Flow is perfect for quickly capturing raw ideas and getting started outlining papers. Just speak your thoughts and Flow will organize them, ensuring nothing is missed.</p></div></div><div class="spacer-huge hide-mobile-landscape"></div><div class="spacer-small"></div><div class="spacer-small"></div><div class="spacer-huge"></div><div class="features_grid-bottom text-align-left"><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384bb-642e1bfc" class="features_content-right"><h2>Write with precision</h2><div class="spacer-medium"></div><p class="text-size-large">Be the best version of yourself</p><div class="spacer-medium"></div><div><p class="text-size-regular">Flow understands that academic writing often involves complex terminology and precise language. Whether you&#x27;re crafting essays, research papers, or presentations, Flow’s context-aware dictation ensures accuracy with tricky words and specialized terms.<br/><br/>Say goodbye to the frustration of typos and hello to polished writing. Flow will help you sound like the best version of you!</p></div></div><div class="features_content-left"><img alt="Wispr Flow docs integration" src="../682f84b3838c89f8ff7667db/683c47b1ac2fe38f7e02aa01_docs-img-v2.avif" class="features_content-bg-image"/></div></div><div class="spacer-huge hide-mobile-landscape"></div><div class="spacer-small"></div><div class="spacer-small"></div><div class="spacer-huge"></div><div class="features_grid-top text-align-left"><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384cc-642e1bfc" class="features_content-left"><img alt="Wispr Flow AI help feature" src="../682f84b3838c89f8ff7667db/683dc588a40530a2963f11b8_ai-help.avif" class="features_content-bg-image"/></div><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384ce-642e1bfc" class="features_content-right"><h2>AI that helps you get that A+</h2><div class="spacer-medium"></div><p class="text-size-large">Flow’s Command Mode supports editing and formatting of your content so it’s fit for purpose:</p><div class="spacer-medium"></div><ul role="list" class="features_list"><li>Shorten, lengthen, or edit your writing to take something from good to great.</li><li>Provide more context when writing prompts for tools like ChatGPT to get more relevant and refined results.</li><li>Ask Flow for more context about anything.</li></ul><div class="spacer-medium"></div><div class="button-group"><a app-download="" cta="" cta_location="students_feature" cta_type="get_started" href="../get-started/index.html" class="button is-secondary w-button">Learn more</a></div></div></div><div class="spacer-huge hide-mobile-landscape"></div><div class="spacer-small"></div><div class="spacer-small"></div><div class="spacer-huge"></div><div class="features_grid-bottom text-align-left"><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384e2-642e1bfc" class="features_content-right"><h2>Effortless, never awkward</h2><div class="spacer-medium"></div><p class="text-size-large">Group projects? Randomized teams? That weird panic when you have to message someone you’ve never talked to before?</p><div class="spacer-medium"></div><div><p class="text-size-medium">Flow helps you get the words out before overthinking kicks in. Whether you’re:</p><div class="spacer-xsmall"></div><ul role="list" class="features_list"><li>Breaking the ice in a new group;</li><li>Messaging a professor without rewriting it over and again; or</li><li>Sending updates without staring at a blinking cursor</li></ul></div></div><div class="features_content-left"><img alt="Wispr Flow email integration" src="../682f84b3838c89f8ff7667db/683c46d5870f2478d12b61af_email-img.avif" class="features_content-bg-image"/></div></div><div class="spacer-huge hide-mobile-landscape"></div><div class="spacer-small"></div><div class="spacer-small"></div><div class="spacer-huge"></div><div class="features_grid-top text-align-left"><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384f8-642e1bfc" class="features_content-left"><img alt="Wispr Flow code editor integration" src="../682f84b3838c89f8ff7667db/683c46d5870f2478d12b61b7_code-img.avif" class="features_content-bg-image"/></div><div id="w-node-b53b3692-0d0c-bb1e-b39b-5615624384fa-642e1bfc" class="features_content-right"><h2>Talk it out.<br/>Ship it faster.</h2><div class="spacer-medium"></div><p class="text-size-large">Flow is your voice-to-dev pipeline—speak your logic, and it writes clean, structured text for code, docs, or AI prompts.</p><div class="spacer-medium"></div><div><p class="text-size-medium">Whether you&#x27;re:</p><div class="spacer-xsmall"></div><ul role="list" class="features_list"><li>Spitballing algorithm logic before opening your IDE</li><li>Penning down a quick function</li><li>Drafting prompts for Cursor, Copilot, or ChatGPT</li><li>Or just rubber ducking your way through a gnarly problem</li></ul></div></div></div></div><div class="spacer-huge hide-mobile-landscape"></div><div class="spacer-small"></div></div></div></section><section class="section_campus"><div class="padding-global"><div class="container-large"><div class="spacer-huge"></div><div class="spacer-small"></div><div><h2 class="heading-style-h1"><div class="heading_text">We took Flow to </div><div class="heading_text-wrapper"><div>campus</div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 387 16" fill="none" height="auto" class="heading_border"><path d="M4.23059 11.782C50.3846 10.1795 96.5723 10.4079 142.653 7.76456C202.017 4.3592 322.467 1.92554 382.231 11.7818" stroke="#F0D7FF" stroke-width="8" stroke-linecap="round" id="heading-underline" preserveAspectRatio="none"></path></svg></div></h2></div><div class="spacer-xxlarge"></div><div class="campus_video-wrap"><div class="w-embed w-iframe"><div data-video-id="49001" style="aspect-ratio: 1.77777778; overflow: hidden;">
+
+<iframe width="100%" height="100%" src="https://app.vidzflow.com/v/PNYo7dmKRU?dq=1080&ap=false&muted=false&loop=false&ctp=true&bv=false&piv=false&playsinline=false&bc=%234E5FFD&controls=play-large%2Cplay%2Cprogress%2Ccurrent-time%2Cmute%2Cvolume%2Csettings%2Cfullscreen" title="Wispr Flow For Students" style="aspect-ratio: 1.77777778; overflow: hidden;" frameborder="0" scrolling="no" allow="fullscreen"></iframe></div></div></div><div class="spacer-xxlarge"></div><div class="spacer-xxlarge"></div></div></div></section><section class="section_testimonials"><div class="padding-global"><div class="padding-top padding-section-medium"><div class="container-small"><div class="testimonials_header"><h2 class="testimonials_heading">Love letters <br/>to Flow</h2><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 785 525" fill="none" class="testimonials_svg"><path d="M383 2V102" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M546 101C546 75.8565 559.025 53.3813 563 29" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M634 138C644.156 128.056 655.728 119.802 666.185 110.183C669.924 106.743 675.729 103.675 678 99" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M706 253C716.647 253 728.358 246.026 737.807 242C748.683 237.366 759.454 233.08 770.029 227.877C773.23 226.301 781.482 222.987 783 220" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M722 381C742.831 381.982 794.123 420.282 779.376 405.688" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M583 401V458" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M411 418C411 449.023 410.603 479.983 410 511" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M250 438C229.974 458.141 212.54 480.596 192.138 500.5C186.12 506.371 173.245 523 163 523" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M77 386C52.0274 393.096 27.0333 400.106 2 407" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M113 273C88.7129 260.066 68.3931 241.333 45.9359 225.722C35.4663 218.445 24.885 211.318 14.2052 204.344C11.5236 202.594 8.69889 201.52 7 199" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path><path d="M226 128C219.65 120.591 213.451 109.47 210.933 99.8586C210.17 96.9432 210.384 87.264 208 86" stroke="#034F46" stroke-width="4" stroke-linecap="round"></path></svg></div></div></div></div><div class="testimonials_cards-wrap splide"><div class="testimonials_list-wrapper marquee-scroll splide__track w-dyn-list"><div role="list" class="testimonials_list marquee-track splide__list w-dyn-items"><div role="listitem" class="testimonials_list-item marquee-item splide__slide w-dyn-item"><img src="../682fa12727f78b943ed45584/683c5df699511cf0aecb1ebd_aryaman.avif" loading="lazy" alt="" class="testimonials_dp"/><div class="text-size-large">Flow’s basically my brain dumb button. I dump all my chaotic thoughts—half ideas, random 2am brain sparks—and it just keeps up. Later, I go back and realize some of it’s actually usable. Like, real essay material. Who knew.</div><div class="w-embed"><div class="text-size-small"><b>Aryaman Sharma,</b> NYU Courant</div></div></div><div role="listitem" class="testimonials_list-item marquee-item splide__slide w-dyn-item"><img src="../682fa12727f78b943ed45584/683c5dcccd8fe3c5ba68d8b4_yash.avif" loading="lazy" alt="" class="testimonials_dp"/><div class="text-size-large">What makes it really magical is that it&#x27;s just so natural. With any products that I try, I have to think about how I can get it to do what I wanted to do. But with flow there&#x27;s none of that. Whatever I think- about what I want to write is whatever ends up getting written, which is an unbelievably cool experience.</div><div class="w-embed"><div class="text-size-small"><b>Yash Mishra,</b> Student at University of Washington</div></div></div><div role="listitem" class="testimonials_list-item marquee-item splide__slide w-dyn-item"><img src="../682fa12727f78b943ed45584/683c5da17125a673fdc8604a_ibrahim (1).avif" loading="lazy" alt="" class="testimonials_dp"/><div class="text-size-large">I used to second-guess every sentence when writing to someone new—especially in work settings. Flow fixes that. It’s like having someone gently tap you on the shoulder and say, “Hey, you’re good. Hit send.”</div><div class="w-embed"><div class="text-size-small"><b>Ibrahim Khursheed,</b> University of Sydney</div></div></div><div role="listitem" class="testimonials_list-item marquee-item splide__slide w-dyn-item"><img src="../682fa12727f78b943ed45584/683c5d6b49cab39a500ad6bd_ahmet.avif" loading="lazy" alt="" class="testimonials_dp"/><div class="text-size-large">I’ve been using Flow for a while now and absolutely love it. Whether it’s for emails, ChatGPT, or coding, it has doubled my productivity and speed. I can even use it within my favorite IDE to vibe code!! Thanks, Flow!</div><div class="w-embed"><div class="text-size-small"><b>Ahmet Dedeler,</b> High School Student</div></div></div></div></div></div><div class="spacer-huge"></div><div class="spacer-small"></div></section><div class="section_faq"><div class="padding-global"><div class="container-large"><div class="spacer-huge"></div><div class="spacer-small"></div><div><h2>Frequently asked questions</h2><div class="spacer-xlarge"></div><div class="faq_grid"><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">Do I qualify for a student discount even if I don’t have a .edu email?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>Yes! We accept alternate forms of student verification like a student ID, enrollment confirmation, fee receipt, or a screenshot of your student dashboard. If you&#x27;re studying at a university without .edu emails or are attending online programs, you&#x27;re still eligible.</p><p>Fill out the form here: <a href="https://airtable.com/appXnY9MO11WjC7N6/pag1066U4ZWSeKPS6/form" target="_blank">Enable the Education Discount for your Flow account</a></p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">What languages does Flow support? Can I use it if I write in multiple languages?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>Yes! Flow supports 100+ languages for dictation. A lot of students use it to write in multiple languages—like English and Spanish or French and Arabic. You can switch between them easily, and Flow auto-detects as you go.</p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">What do I get when I refer a friend?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>You and your friend both get a free month of Flow Pro when they hit 2,000 words or upgrade to Pro. Just share your referral link with your friend — you can find it in your desktop app under “Refer a Friend” on the home screen.</p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">Can I use headphones with Flow?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>Yes, you can! But for the best results, we recommend using your device’s built-in mic or a wired one instead of a bluetooth connection.</p><p>Read more <a href="https://wispr.notion.site/How-do-I-use-headphones-with-Flow-1a12ebdc733480408146fd6f066b4066" target="_blank">here.</a></p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">What can I run Flow on—mobile, desktop, both?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>Flow works on MacOS, Windows and iOS for now!</p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">Is Flow accessible for students with disabilities?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>Absolutely. Flow is designed with accessibility in mind and supports a wide range of needs and learning styles. Many students who face barriers to traditional input methods have found Flow to be a powerful tool for expressing their thoughts.</p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">Can educators or non-profit staff also apply for a discount?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>Yes! If you&#x27;re a teacher, researcher, or work with a non-profit, you can apply for our educator/non-profit discount using your .edu email.</p><p>If you don’t have one, just fill <a href="https://airtable.com/appXnY9MO11WjC7N6/pag1066U4ZWSeKPS6/form" target="_blank">this form</a> to get access.</p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">Can I use Flow to transcribe audio or video files like lecture recordings?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>Not right now—we don’t support file uploads for transcription just yet.</p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div><div data-w-id="795ed4c2-7c6e-8f9a-eff9-bb352d53ae9f" class="accordion_item"><div class="accordion_trigger"><h3 class="accordion_question">I’m on a tight budget. Is there any way to get Flow for free or at a lower cost?</h3><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M8 10L11.6464 13.6464C11.8417 13.8417 12.1583 13.8417 12.3536 13.6464L16 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="accordion_content"><div class="faq_rich-text w-richtext"><p>We offer a sweet student discount, and in special cases (like accessibility needs or financial hardship), we&#x27;re always happy to work with you. One of the easiest ways to get Flow for free is by referring a friend — once you both hit 2000 words, you&#x27;ll both get a free month!</p></div><div class="spacer-small hide-mobile-landscape"></div><div class="spacer-small"></div></div></div></div></div><div class="spacer-huge"></div><div class="spacer-small"></div></div></div></div><section data-wf--pre-cta--variant="base" class="section_startflowing"><img src="../682f84b3838c89f8ff7667db/683c4ae87d79944cfd5f4029_stu-cta-bg.avif" alt="" class="cta_bg"/><div class="padding-global"><div class="spacer-xhuge"></div><div class="spacer-medium"></div><div class="spacer-small"></div><div class="cta_content-wrap"><div class="cta_content"><div class="text-wrapper"><h2 class="heading-style-h1">Start flowing</h2></div><div class="spacer-xlarge"></div><div class="cta_content-wrap-inside"><p class="text-size-large text-wrap-balance">Effortless voice dictation in every application.</p><div class="spacer-medium"></div><div class="button-group stretch-mobile"><a app-download="" cta="" cta_location="bottom_cta_section" cta_type="download" href="https://wisprflow.onelink.me/PguH/lw5h199m" class="button w-button">Download for free</a><a web-demo-open="" cta="" cta_location="bottom_cta_section" cta_type="try_flow" href="../demo/index.html" class="button is-icon is-secondary w-inline-block"><img src="../682f84b3838c89f8ff7667db/68335d5ca4a30e3a678bf92d_mic-icon.svg" loading="lazy" alt="" class="icon-1x1-small"/><div web-demo-text="">Try Flow</div></a></div><div class="cta-byline-wrap"><div class="spacer-medium"></div><div class="text-size-small text-weight-medium">Available on Mac, Windows, iPhone, and Android.</div></div></div></div></div><div class="spacer-small"></div><div class="spacer-medium"></div><div class="spacer-xhuge"></div></div></section></div><div data-wf--footer-combined--variant="base" class="section_footer-wrapper"><footer class="section_footer"><div class="padding-global"><div class="container-large"><div class="footer_v2-top"><div class="products_mega-wrap"><div class="tag is-small text-color-black50">Products</div><div class="products_grid"><div class="product_card"><div class="product_card-graphic-wrap"><img src="../682f84b3838c89f8ff7667db/6a4f5ff3f6da81ba30f2416b_Flowbar.svg" alt="" class="product_card-graphic"/></div><div class="product-card-content"><div class="product_card-heading-wrap"><div class="text-size-regular text-weight-semibold">Wispr Flow Dictation</div></div><div><p class="text-size-regular text-color-black70 size-small-mobile">The voice-to-text AI that turns speech into clear, polished writing in every app.</p></div><div><div class="spacer-xxsmall hide-mobile-landscape"></div><div class="button-group is-left"><div class="z-index-2"><a no-change="" cta="" cta_location="notetaker_page" cta_type="download_flow" app-download="" href="../get-started/index.html" class="text-link size-small-mobile w-inline-block"><div class="text-link-text text-weight-semibold">Download free</div><div class="text-link-arrow-wrap"><div class="text-link-arrow before w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div><div class="text-link-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div></div></a></div></div></div></div><a href="../index.html" class="product_card-overlay w-inline-block"></a></div><div class="product_card"><div class="product_card-graphic-wrap is-notetaker"><img src="../682f84b3838c89f8ff7667db/6a69c8b43e0590af4f0af523_transcript-new.png" alt="" class="product_card-graphic"/></div><div class="product-card-content"><div class="product_card-heading-wrap"><div class="text-size-regular text-weight-semibold">Wispr Flow Notetaker</div><div class="products_nt-tag">New</div></div><div><p class="text-size-regular text-color-black70 size-small-mobile">Meeting notes that are accurate enough to action on. Works in all meetings.</p></div><div><div class="spacer-xxsmall hide-mobile-landscape"></div><div class="button-group is-left"><div class="z-index-2"><a no-change="" cta="" cta_location="notetaker_page" cta_type="download_flow" app-download="" href="../get-started/index.html" class="text-link size-small-mobile w-inline-block"><div class="text-link-text text-weight-semibold">Download free</div><div class="text-link-arrow-wrap"><div class="text-link-arrow before w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div><div class="text-link-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div></div></a></div></div></div></div><a href="../notetaker/index.html" class="product_card-overlay w-inline-block"></a></div></div></div><div class="footer_links-grid"><div class="footer_link-column"><div class="footer_link-heading">Get started</div><div class="footer_link-list"><a href="../pricing/index.html" class="footer_link-block w-inline-block"><div>Pricing</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../privacy/index.html" class="footer_link-block w-inline-block"><div>Privacy &amp; Security</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../demo/index.html" class="footer_link-block w-inline-block"><div>Web demo</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../why-flow/index.html" class="footer_link-block w-inline-block"><div>Why Flow vs. Built-in Dictation</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../microphones/index.html" class="footer_link-block w-inline-block"><div>Microphone guide</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div><div class="footer_link-column"><div class="footer_link-heading">Professionals</div><div class="footer_link-list"><a href="../leaders/index.html" class="footer_link-block w-inline-block"><div>Leaders</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../developers/index.html" class="footer_link-block w-inline-block"><div>Developers</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../content-creators/index.html" class="footer_link-block w-inline-block"><div>Creators</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../customer-support/index.html" class="footer_link-block w-inline-block"><div>Customer Support</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="index.html" aria-current="page" class="footer_link-block w-inline-block w--current"><div>Students</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../lawyers/index.html" class="footer_link-block w-inline-block"><div>Lawyers</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../accessibility/index.html" class="footer_link-block w-inline-block"><div>Accessibility</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../sales/index.html" class="footer_link-block w-inline-block"><div>Sales</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div><div class="footer_link-column"><div class="footer_link-heading">Resources</div><div class="footer_link-list"><a href="../case-studies/index.html" class="footer_link-block w-inline-block"><div>Case studies</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../blog/index.html" class="footer_link-block w-inline-block"><div>Blog</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../ai-prompting-guide/index.html" class="footer_link-block w-inline-block"><div>AI prompting guide</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../workflows/index.html" class="footer_link-block w-inline-block"><div>Workflows</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../whats-new/index.html" class="footer_link-block w-inline-block"><div>What&#x27;s new</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../vibe-coding/index.html" class="footer_link-block w-inline-block"><div>Vibe coding</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../bug-bounty/index.html" class="footer_link-block w-inline-block"><div>Bug bounty</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../support/index.html" class="footer_link-block w-inline-block"><div>Talk to support</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../talk-to-sales/index.html" class="footer_link-block w-inline-block"><div>Talk to sales</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="https://docs.wisprflow.ai/" target="_blank" class="footer_link-block w-inline-block"><div>Help center</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div><div class="footer_link-column"><div class="footer_link-heading">Company</div><div class="footer_link-list"><a href="../about/index.html" class="footer_link-block w-inline-block"><div>About</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../careers/index.html" class="footer_link-block w-inline-block"><div>Careers</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="https://trust.wispr.ai/" target="_blank" class="footer_link-block w-inline-block"><div>Trust Center</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="https://partners.dub.co/flow" target="_blank" class="footer_link-block w-inline-block"><div>Become an affiliate</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../media-kit/index.html" class="footer_link-block w-inline-block"><div>Media Kit</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div></div></div><div data-w-id="a13f4943-95a2-60d3-e20e-e12854af9d42" class="footer_logo"><div><div id="w-node-_6ca0a8ce-bad4-f0ae-d8d7-e6c3a8dc1b2e-9cb12a35" data-is-ix2-target="1" class="footer_lottie" data-w-id="6ca0a8ce-bad4-f0ae-d8d7-e6c3a8dc1b2e" data-animation-type="lottie" data-src="../682f84b3838c89f8ff7667db/683a875030ccb710048ea251_Flow - Footer icon.lottie" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-duration="0" data-loading="eager" data-ix2-initial-state="0"></div></div><img src="../682f84b3838c89f8ff7667db/683b9b328bdb48594a3514e5_Flow New.svg" alt="" class="footer_logo-text"/></div><div class="footer_copyright-div"><div footer-legal-links=""><div class="footer_copyright-content"><div class="text-block">© Wispr Flow <span year="">year</span></div><div class="footer_copyright-links-wrap"><a href="../terms-of-service/index.html" class="footer_link-block is-legal w-inline-block"><div>Terms</div></a><a href="../privacy-policy/index.html" class="footer_link-block is-legal w-inline-block"><div>Privacy</div></a><a href="../data-controls/index.html" class="footer_link-block is-legal w-inline-block"><div>Data Controls</div></a></div></div></div><div class="footer_socials-content"><a rel="noopener noreferrer" href="https://www.youtube.com/channel/UCzaXlOt3J2_rYQT1aEJMMFQ/videos?sub_confirmation=1" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M21.0657 4.77345C22.0134 5.02692 22.7526 5.76903 23.0089 6.71673C23.6792 9.42042 23.6356 14.5321 23.023 17.278C22.7695 18.2257 22.0274 18.965 21.0797 19.2213C18.4042 19.8831 6.42063 19.8015 3.90001 19.2213C2.95231 18.9678 2.21302 18.2257 1.95673 17.278C1.32446 14.7011 1.36811 9.25144 1.94265 6.73081C2.19612 5.78311 2.93823 5.04382 3.88593 4.78753C7.46268 4.0412 19.7927 4.282 21.0657 4.77345ZM10.3639 8.70227L16.1093 11.9974L10.3639 15.2925V8.70227Z" fill="currentColor"/>
+</svg></div></a><a rel="noopener noreferrer" href="https://www.crunchbase.com/organization/wispr-ai" target="_blank" class="footer_social-link w-inline-block"><div class="icon-embed-custom w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<g clip-path="url(#clip0_7503_2610)">
+<mask id="mask0_7503_2610" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="25">
+<path d="M24.4971 0.5H0.49707V24.5H24.4971V0.5Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_7503_2610)">
+<path d="M22.0971 0.5H2.89707C2.26136 0.502632 1.65244 0.756334 1.20292 1.20585C0.753404 1.65537 0.499703 2.26429 0.49707 2.9V22.1C0.499703 22.7357 0.753404 23.3446 1.20292 23.7941C1.65244 24.2437 2.26136 24.4974 2.89707 24.5H22.0971C22.7328 24.4974 23.3417 24.2437 23.7912 23.7941C24.2408 23.3446 24.4945 22.7357 24.4971 22.1V2.9C24.4945 2.26429 24.2408 1.65537 23.7912 1.20585C23.3417 0.756334 22.7328 0.502632 22.0971 0.5ZM7.54207 14.965C8.05129 15.1971 8.63183 15.2173 9.15599 15.0214C9.68016 14.8254 10.105 14.4292 10.3371 13.92H11.9971C11.7831 14.7966 11.2554 15.5644 10.5136 16.0783C9.77186 16.5921 8.86754 16.8164 7.97166 16.7086C7.07578 16.6008 6.25043 16.1686 5.65169 15.4935C5.05295 14.8184 4.72231 13.9473 4.72231 13.045C4.72231 12.1427 5.05295 11.2716 5.65169 10.5965C6.25043 9.92145 7.07578 9.48916 7.97166 9.38141C8.86754 9.27365 9.77186 9.49789 10.5136 10.0117C11.2554 10.5256 11.7831 11.2934 11.9971 12.17H10.3371C10.1958 11.8599 9.98146 11.5887 9.71247 11.3795C9.44349 11.1702 9.12784 11.0293 8.79252 10.9686C8.45719 10.908 8.11216 10.9295 7.78695 11.0312C7.46173 11.133 7.166 11.312 6.92504 11.553C6.68408 11.7939 6.50507 12.0897 6.40331 12.4149C6.30155 12.7401 6.28007 13.0851 6.34071 13.4204C6.40135 13.7558 6.54231 14.0714 6.75152 14.3404C6.96074 14.6094 7.23198 14.8237 7.54207 14.965ZM18.8871 15.81C18.5732 16.0802 18.2145 16.2934 17.8271 16.44C17.2733 16.655 16.6757 16.7327 16.0854 16.6665C15.4951 16.6003 14.9295 16.3922 14.4371 16.06V16.44H12.9271V5.87H14.4271V9.98C14.9626 9.61798 15.5827 9.40093 16.2271 9.35H16.4971C17.2479 9.34883 17.981 9.57797 18.5975 10.0065C19.2141 10.4351 19.6843 11.0424 19.9448 11.7466C20.2053 12.4507 20.2436 13.2179 20.0545 13.9445C19.8653 14.6711 19.4579 15.3222 18.8871 15.81ZM18.6641 13.044C18.6702 13.3241 18.6203 13.6026 18.5173 13.8631C18.4144 14.1237 18.2604 14.3611 18.0645 14.5613C17.8685 14.7616 17.6346 14.9207 17.3763 15.0293C17.1181 15.1379 16.8408 15.1939 16.5606 15.1939C16.2804 15.1939 16.0031 15.1379 15.7449 15.0293C15.4866 14.9207 15.2527 14.7616 15.0567 14.5613C14.8608 14.3611 14.7068 14.1237 14.6039 13.8631C14.5009 13.6026 14.451 13.3241 14.4571 13.044C14.4691 12.4941 14.696 11.9707 15.0892 11.586C15.4823 11.2013 16.0105 10.9859 16.5606 10.9859C17.1107 10.9859 17.6389 11.2013 18.032 11.586C18.4252 11.9707 18.6521 12.4941 18.6641 13.044Z" fill="currentColor"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_7503_2610">
+<rect width="24" height="25" fill="white" transform="translate(0.49707)"/>
+</clipPath>
+</defs>
+</svg></div></a><a rel="noopener noreferrer" href="https://www.instagram.com/wisprflow/" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4971 3H8.49707C5.73565 3 3.49707 5.23858 3.49707 8V16C3.49707 18.7614 5.73565 21 8.49707 21H16.4971C19.2585 21 21.4971 18.7614 21.4971 16V8C21.4971 5.23858 19.2585 3 16.4971 3ZM19.7471 16C19.7416 17.7926 18.2897 19.2445 16.4971 19.25H8.49707C6.70442 19.2445 5.25256 17.7926 5.24707 16V8C5.25256 6.20735 6.70442 4.75549 8.49707 4.75H16.4971C18.2897 4.75549 19.7416 6.20735 19.7471 8V16ZM17.2471 8.25C17.7994 8.25 18.2471 7.80228 18.2471 7.25C18.2471 6.69772 17.7994 6.25 17.2471 6.25C16.6948 6.25 16.2471 6.69772 16.2471 7.25C16.2471 7.80228 16.6948 8.25 17.2471 8.25ZM12.4971 7.5C10.0118 7.5 7.99707 9.51472 7.99707 12C7.99707 14.4853 10.0118 16.5 12.4971 16.5C14.9824 16.5 16.9971 14.4853 16.9971 12C16.9998 10.8057 16.5265 9.65957 15.682 8.81508C14.8375 7.97059 13.6914 7.49734 12.4971 7.5ZM9.74707 12C9.74707 13.5188 10.9783 14.75 12.4971 14.75C14.0159 14.75 15.2471 13.5188 15.2471 12C15.2471 10.4812 14.0159 9.25 12.4971 9.25C10.9783 9.25 9.74707 10.4812 9.74707 12Z" fill="currentColor"/>
+</svg></div></a><a rel="noopener noreferrer" href="https://x.com/wisprflow" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M17.6732 4H20.4333L14.4032 10.7774L21.4971 20H15.9427L11.5922 14.4066L6.6143 20H3.85251L10.3022 12.7508L3.49707 4H9.19252L13.125 9.11262L17.6732 4ZM16.7044 18.3754H18.2339L8.36148 5.53928H6.72027L16.7044 18.3754Z" fill="currentColor"/>
+</svg></div></a><a rel="noopener noreferrer" href="https://www.linkedin.com/company/wisprflow" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.99707 3C4.16864 3 3.49707 3.67157 3.49707 4.5V19.5C3.49707 20.3284 4.16864 21 4.99707 21H19.9971C20.8255 21 21.4971 20.3284 21.4971 19.5V4.5C21.4971 3.67157 20.8255 3 19.9971 3H4.99707ZM9.01783 7.00272C9.02346 7.95897 8.30768 8.54819 7.4583 8.54397C6.65814 8.53975 5.96064 7.90272 5.96486 7.00413C5.96908 6.15897 6.63705 5.47975 7.50471 5.49944C8.38502 5.51913 9.02346 6.1646 9.01783 7.00272ZM12.7768 9.76176H10.2568H10.2554V18.3216H12.9188V18.1219C12.9188 17.742 12.9185 17.362 12.9182 16.9819C12.9174 15.9681 12.9165 14.9532 12.9217 13.9397C12.9231 13.6936 12.9343 13.4377 12.9976 13.2028C13.2352 12.3253 14.0242 11.7586 14.9045 11.8979C15.4698 11.9864 15.8438 12.3141 16.0013 12.8471C16.0984 13.1803 16.142 13.5389 16.1462 13.8863C16.1576 14.9339 16.156 15.9815 16.1544 17.0292C16.1538 17.399 16.1532 17.769 16.1532 18.1388V18.3202H18.8251V18.1149C18.8251 17.6629 18.8249 17.211 18.8246 16.7591C18.8241 15.6296 18.8235 14.5001 18.8265 13.3702C18.8279 12.8597 18.7731 12.3563 18.6479 11.8627C18.4609 11.1286 18.0742 10.5211 17.4456 10.0824C16.9998 9.77019 16.5104 9.5691 15.9634 9.5466C15.9011 9.54401 15.8383 9.54062 15.7752 9.53721C15.4955 9.52209 15.2112 9.50673 14.9438 9.56066C14.1788 9.71394 13.5067 10.0641 12.999 10.6814C12.94 10.7522 12.8823 10.8241 12.7962 10.9314L12.7768 10.9557V9.76176ZM6.17871 18.3244H8.82949V9.76733H6.17871V18.3244Z" fill="currentColor"/>
+</svg></div></a></div></div></div></div></footer><div class="nav_bottom"><div bottom-bar2="" class="bb-v2_wrap"><div class="bb-v2_div"><div class="bb-v2_left"><img src="../682f84b3838c89f8ff7667db/69d91e631c2edb2851e6565b_close.svg" alt="" data-w-id="5573d0a0-36a5-6871-41d3-3df73ac9edae" class="bb-v2_close-btn"/><img src="../682f84b3838c89f8ff7667db/69d91e94a9c949c8dbd78faa_App Icon.png" alt="Wispr Flow app icon" class="bb-v2_logo"/><div><div bb-heading="" class="text-weight-semibold text-size-small">Wispr Flow</div><div class="spacer-xxsmall"></div><div bb-subtext="" class="text-size-tiny">Talk 4x faster</div><div class="spacer-xxsmall"></div><div class="text-size-tiny text-weight-medium">FREE</div></div></div><a bb-button="" cta="" cta_location="bottom_bar" cta_type="download_flow" app-download="" no-change="" href="../get-started/index.html" class="bb_btn bb-v2 w-button">Get app</a></div></div></div></div></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=682f84b3838c89f8ff7667db" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="../682f84b3838c89f8ff7667db/js/webflow.schunk.f2efb3c5440a81cf.js" type="text/javascript" integrity="sha384-VK02VJvMib7ytrF5M2joPWNtDQs366FZgEQ5B+Iwnjx0WBnwQXfootyziSYxdrmS" crossorigin="anonymous"></script><script src="../682f84b3838c89f8ff7667db/js/webflow.schunk.b7b72544d8957638.js" type="text/javascript" integrity="sha384-tWpxFzH2DN14o9RY6aovn4liKTzcYNGediOpB5lrtyTXyDPZG0qTmmvRJS8zxS4L" crossorigin="anonymous"></script><script src="../682f84b3838c89f8ff7667db/js/webflow.schunk.41628626f89d3adb.js" type="text/javascript" integrity="sha384-K7o8PNfoMNNhpL1Un04/6z6VpAs9sKtgbNh10IPIFKv0d4q1RnouPJrg53wPJIWR" crossorigin="anonymous"></script><script src="../682f84b3838c89f8ff7667db/js/webflow.57bff308.51d48ae957b97fa9.js" type="text/javascript" integrity="sha384-UuiGKmSJiPhcZADuZwL9XOHxFDvN9c/w8i2bfqPM/eYxq6n4p78yzzs9VCDPpd+9" crossorigin="anonymous"></script><script src="../gsap/3.15.0/gsap.min.js" type="text/javascript"></script><script src="../gsap/3.15.0/MotionPathPlugin.min.js" type="text/javascript"></script><script src="../gsap/3.15.0/SplitText.min.js" type="text/javascript"></script><script src="../gsap/3.15.0/DrawSVGPlugin.min.js" type="text/javascript"></script><script src="../gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript"></script><script src="../gsap/3.15.0/MotionPathHelper.min.js" type="text/javascript"></script><script src="../gsap/3.15.0/ScrollToPlugin.min.js" type="text/javascript"></script><script type="text/javascript">gsap.registerPlugin(MotionPathPlugin,SplitText,DrawSVGPlugin,ScrollTrigger,MotionPathHelper,ScrollToPlugin);</script><!--Show divider in navbar-->
+<script>
+  const hiddenPaths = ['/', '/notetaker', '/wip/notetaker', '/wip/flow'];
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+
+  if (!hiddenPaths.includes(currentPath)) {
+    document.querySelectorAll('.nav_divider').forEach((divider) => {
+      divider.style.display = 'block';
+    });
+  }
+</script>
+
+<!--Direct 0.1% users to start.wisprflow.ai when they click download button - desktop only
+<script>
+  (function () {
+    // ============ KNOBS ============
+    var TREATMENT_RATE = 0.05; // 0.001 = 0.1%. Change to ramp: 0.01 = 1%, 0.5 = 50%, 0 = no new treatments.
+    var DISABLE_ALL = false; // Set to true for an instant hard-stop (no one gets redirected, even existing treatment cookies).
+    // ================================
+
+    var COOKIE = 'web_onboarding_canary';
+
+    function readCookie(name) {
+      var m = document.cookie.split('; ').find(function (c) {
+        return c.indexOf(name + '=') === 0;
+      });
+      return m ? m.split('=')[1] : null;
+    }
+
+    function writeCookie(name, value) {
+      var domain = window.location.hostname.indexOf('wisprflow.ai') !== -1 ? '.wisprflow.ai' : window.location.hostname;
+      document.cookie = name + '=' + value + '; path=/; domain=' + domain + '; max-age=' + 60 * 60 * 24 * 30 + '; SameSite=Lax';
+    }
+
+    function assignOrRead() {
+      var existing = readCookie(COOKIE);
+      if (existing) return existing;
+      var variant = Math.random() < TREATMENT_RATE ? 'treatment' : 'control';
+      writeCookie(COOKIE, variant);
+      return variant;
+    }
+
+    // QA override — ?variant=treatment (or =control) writes the cookie so a
+    // shared link puts the recipient into that variant persistently.
+    var forced = new URLSearchParams(window.location.search).get('variant');
+    if (forced === 'treatment' || forced === 'control') {
+      writeCookie(COOKIE, forced);
+    }
+
+    // Inline script runs before <head defer> scripts execute, so global.js has
+    // NOT yet attached its click listener. Mine registers first → fires first on
+    // click. preventDefault stops the default navigation regardless of order.
+    document.querySelectorAll('[app-download]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        // Desktop only per George's spec — checked at click time so a browser
+        // resize between page load and click is honored.
+        if (window.innerWidth < 992) return;
+
+        var variant = assignOrRead();
+
+        if (window.posthog && typeof window.posthog.capture === 'function') {
+          window.posthog.capture('web_onboarding_canary_exposed', {
+            variant: variant,
+            device_type: window.userPlatform,
+            source: el.getAttribute('cta_location') || el.id || 'unknown',
+            width: window.innerWidth,
+          });
+        }
+
+        if (variant === 'treatment' && !DISABLE_ALL) {
+          e.preventDefault();
+          // Forward query string (UTMs, ref, etc.) so SPA's attribution capture
+          // sees them. Strip our QA-only `variant` param — it's ours, not theirs.
+          var params = new URLSearchParams(window.location.search);
+          params.delete('variant');
+          var query = params.toString();
+          window.location.href = 'https://start.wisprflow.ai' + (query ? '?' + query : '');
+        }
+      });
+    });
+  })();
+</script>-->
+
+<!--Adding no opener and no referrer to external links-->
+<script>
+  document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
+    a.setAttribute('rel', 'noopener noreferrer');
+  });
+</script>
+
+<!--Navbar dropdown click closes dropdown but not toggle bg color - fix -->
+<script>
+  document.querySelectorAll('.nav_menu-dropdown-toggle-v2').forEach((wrapper) => {
+    const toggle = wrapper.querySelector('.dropdown1_toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      if (window.innerWidth < 992) return;
+      if (toggle.classList.contains('w--open')) {
+        requestAnimationFrame(() => wrapper.classList.add('force-reset'));
+      } else {
+        wrapper.classList.remove('force-reset');
+      }
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      wrapper.classList.remove('force-reset');
+    });
+  });
+</script>
+
+<!--Remove rogue quotes-->
+<script>
+  // Function to remove rogue quotes
+  function removeRogueQuotes() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        if (node.parentElement?.closest('.page-wrapper')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        const text = node.textContent;
+        if (/[""]/.test(text) && /^[""\s]+$/.test(text)) {
+          return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      },
+    });
+
+    const nodesToRemove = [];
+    while (walker.nextNode()) {
+      nodesToRemove.push(walker.currentNode);
+    }
+
+    nodesToRemove.forEach((node) => node.remove());
+  }
+
+  // Run immediately
+  removeRogueQuotes();
+
+  // Run after DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', removeRogueQuotes);
+
+  // Run after everything including external scripts
+  window.addEventListener('load', removeRogueQuotes);
+
+  // Watch for changes (in case plugin adds them dynamically)
+  const observer = new MutationObserver(() => {
+    removeRogueQuotes();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+</script>
+
+<!--Navbar scroll animation-->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const navbar = document.querySelector('.nav_fixed');
+
+  if (navbar && window.matchMedia('(max-width: 991px)').matches) {
+    // Create the hide animation (from visible to hidden)
+    const hideAnim = gsap.fromTo(navbar, { yPercent: 0 }, { yPercent: -100, duration: 0.5, ease: 'power2.inOut', paused: true });
+
+    let lastScrollY = 0;
+    let ticking = false;
+
+    ScrollTrigger.create({
+      start: 'top top',
+      end: 'max',
+      onUpdate: (self) => {
+        const currentScrollY = self.scroll();
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (currentScrollY > lastScrollY && currentScrollY > 50) {
+              // Scrolling down - hide navbar
+              hideAnim.play();
+            } else if (currentScrollY < lastScrollY) {
+              // Scrolling up - show navbar
+              hideAnim.reverse();
+            }
+            lastScrollY = currentScrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+    });
+  }
+</script>
+
+<!-- Bottom Sticky Nav -->
+<script>
+  if (window.matchMedia('(max-width: 991px)').matches) {
+    window.addEventListener('load', () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const bottomBar = document.querySelector('.nav_bottom');
+      if (bottomBar && window.matchMedia('(max-width: 991px)').matches) {
+        const showAnim = gsap.fromTo(
+          bottomBar,
+          { y: '100%' },
+          {
+            y: 0,
+            duration: 0.5,
+            ease: 'power2.inOut',
+            paused: true,
+          },
+        );
+
+        let lastScrollY = 0;
+        let ticking = false;
+
+        ScrollTrigger.create({
+          start: 'top top',
+          end: 'max',
+          onUpdate: (self) => {
+            const currentScrollY = self.scroll();
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                  showAnim.play();
+                } else if (currentScrollY < lastScrollY) {
+                  showAnim.reverse();
+                }
+                lastScrollY = currentScrollY;
+                ticking = false;
+              });
+              ticking = true;
+            }
+          },
+        });
+
+        // Hide bottom nav when footer is in view
+        ScrollTrigger.create({
+          trigger: '.section_footer',
+          start: 'top 80%',
+          end: 'bottom bottom',
+          onEnter: () => {
+            gsap.to(bottomBar, {
+              opacity: 0,
+              pointerEvents: 'none',
+              duration: 0.3,
+            });
+          },
+          onLeaveBack: () => {
+            gsap.to(bottomBar, {
+              opacity: 1,
+              pointerEvents: 'auto',
+              duration: 0.3,
+            });
+          },
+        });
+      }
+    });
+  }
+</script>
+
+<!--Script to show typeform on button clicks
+<script src="//embed.typeform.com/next/embed.js"></script>-->
+
+<!--[typeform-open] href change-->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const triggers = document.querySelectorAll('[typeform-open]');
+
+    triggers.forEach(function (trigger) {
+      trigger.setAttribute('href', '/talk-to-sales');
+    });
+  });
+</script>
+
+<!--Open typeform popup
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('click', function(e) {
+        const trigger = e.target.closest('[typeform-open]');
+        
+        if (trigger) {
+            e.preventDefault();
+            
+            const typeformButton = document.querySelector('[data-tf-live] button');
+            
+            if (typeformButton) {
+                typeformButton.click();
+            } else {
+                console.warn('Typeform button not found. Make sure the hidden div is loaded.');
+            }
+        }
+    });
+});
+</script>-->
+
+<!--Nav dropdown flicker issue code-->
+<script>
+  $('.nav_menu-dropdown-toggle-v2')
+    .on('mouseenter', function () {
+      const hoveredDropdown = $(this);
+
+      $('.dropdown-border-overlay').not(hoveredDropdown.find('.dropdown-border-overlay')).css('opacity', '0');
+
+      const allDropdowns = $('.nav_menu-dropdown-toggle-v2');
+      const currentIndex = allDropdowns.index(this);
+      const nextDropdown = allDropdowns.eq(currentIndex + 1);
+
+      if (nextDropdown.length) {
+        const lastHoveredIndex = allDropdowns.data('lastHoveredIndex') || -1;
+        const isSecondToFirst = lastHoveredIndex === 1 && currentIndex === 0;
+
+        if (isSecondToFirst) {
+          setTimeout(() => {
+            nextDropdown.find('.dropdown1_border-radius-wrap').css('opacity', '0');
+          }, 200);
+        } else {
+          nextDropdown.find('.dropdown1_border-radius-wrap').css('opacity', '0');
+        }
+      }
+
+      allDropdowns.data('lastHoveredIndex', currentIndex);
+    })
+    .on('mouseleave', function () {
+      $('.dropdown-border-overlay').css('opacity', '');
+
+      const allDropdowns = $('.nav_menu-dropdown-toggle-v2');
+      const currentIndex = allDropdowns.index(this);
+      const nextDropdown = allDropdowns.eq(currentIndex + 1);
+
+      if (nextDropdown.length) {
+        nextDropdown.find('.dropdown1_border-radius-wrap').css('opacity', '');
+      }
+    });
+</script>
+
+<!--Close nav dropdown when you scroll down and dropdown is open-->
+<script>
+  $(window).scroll(function () {
+    const navbarStyle = $('.nav_fixed').attr('style');
+
+    if (navbarStyle && /transform:\s*translate(3d)?\(0(px|%),\s*-/.test(navbarStyle)) {
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        $('.nav_menu-dropdown-toggle, .nav_menu-dropdown-toggle-v2').has('.w--open').find('.w--open').removeClass('w--open');
+      } else {
+        $('.nav_menu-dropdown-toggle, .nav_menu-dropdown-toggle-v2').has('.w--open').click();
+        $('.nav_button.w--open').click();
+      }
+    }
+  });
+</script>
+
+<!--Button hover animation-->
+<script>
+  function setupButtonAnimations(selector = '.button', targetSelector = null) {
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll(selector).forEach((element) => {
+        const animationTarget = targetSelector ? element.querySelector(targetSelector) : element;
+
+        if (animationTarget) {
+          const split = new SplitText(animationTarget, {
+            type: 'words,chars',
+          });
+          const chars = split.chars;
+          let waveTimeline;
+
+          element.addEventListener('mouseenter', () => {
+            if (waveTimeline) waveTimeline.kill();
+            waveTimeline = gsap.timeline();
+            chars.forEach((char, i) => {
+              waveTimeline.to(
+                char,
+                {
+                  keyframes: [
+                    {
+                      yPercent: -20,
+                      rotation: -5,
+                    },
+                    {
+                      yPercent: 20,
+                      rotation: 5,
+                    },
+                    {
+                      yPercent: 0,
+                      rotation: 0,
+                    },
+                  ],
+                  duration: 1,
+                  ease: 'none',
+                  yoyo: true,
+                },
+                i * 0.06,
+              );
+            });
+          });
+
+          element.addEventListener('mouseleave', () => {
+            if (waveTimeline) {
+              waveTimeline.kill();
+              gsap.to(chars, {
+                yPercent: 0,
+                rotation: 0,
+                duration: 0.2,
+                ease: 'none',
+              });
+            }
+          });
+        }
+      });
+    }
+  }
+
+  // Usage:
+  // [app-download] excluded — the site-wide head's OS-detection script owns text+icon+animation for those buttons to avoid a double-setup race.
+  setupButtonAnimations('.button:not([no-animations="true"]):not([app-download])');
+  setupButtonAnimations('.nav_menu-link'); // navbar links
+  setupButtonAnimations('.nav_menu-link-v2'); // navbar links [notetaker page]
+  setupButtonAnimations('.nav_tab'); // [notetaker page]
+  setupButtonAnimations('.dropdown-link', '.dropdown-link-text'); // Dropdown links
+  setupButtonAnimations('.blog-v2-item', '.text-link-text');
+  setupButtonAnimations('.text-link', '.text-link-text');
+</script>
+
+<!-- 5) CTA dots moving on a path [Footer] -->
+<script>
+  function initCtaDots() {
+    const ctaCount = 100;
+    const ctaDuration = 20;
+    const pathOpts = {
+      path: '#curve-cta',
+      align: '#curve-cta',
+      alignOrigin: [0.5, 0.5],
+    };
+
+    const curveElement = document.querySelector('#curve-cta');
+    if (!curveElement) {
+      return;
+    }
+
+    const svgWrapper = curveElement.closest('svg').parentNode;
+    svgWrapper.style.position = 'relative';
+
+    for (let i = 0; i < ctaCount; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('cta_dot');
+      gsap.set(dot, { position: 'absolute' });
+      svgWrapper.appendChild(dot);
+
+      const tween = gsap.to(dot, {
+        duration: ctaDuration,
+        repeat: -1,
+        ease: 'none',
+        motionPath: pathOpts,
+        immediateRender: false,
+      });
+      tween.progress(i / ctaCount);
+    }
+  }
+
+  // create a GSAP matchMedia instance
+  const mm = gsap.matchMedia();
+
+  // add a rule for screens ≥768px
+  mm.add('(min-width: 768px)', () => {
+    // when this rule first matches, wait for load + a frame then init
+    window.addEventListener('load', () => {
+      requestAnimationFrame(initCtaDots);
+    });
+
+    // return a cleanup function to remove the listener if rule no longer matches
+    return () => {
+      window.removeEventListener('load', initCtaDots);
+    };
+  });
+</script>
+
+<script>
+  // Find all elements with the attribute 'year'
+  const elements = document.querySelectorAll('[year]');
+
+  // Get the current year
+  const currentYear = new Date().getFullYear();
+
+  // Loop through all elements and set their text content to the current year
+  elements.forEach((element) => {
+    element.textContent = currentYear;
+  });
+</script>
+
+<!--Nextplay Adapta and Terra code-->
+<script>
+  function setCookie(name, value, daysToExpire, domain) {
+    const date = new Date();
+    date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
+    const expires = 'expires=' + date.toUTCString();
+    document.cookie = name + '=' + value + ';' + expires + ';path=/;domain=' + domain + ';secure;samesite=lax';
+  }
+
+  function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  const trialPromo = getQueryParam('trial_promo');
+  if (trialPromo === '3mo' || trialPromo === '2mo') {
+    setCookie('trial_promo', trialPromo, 30, '.wisprflow.ai');
+  }
+</script>
+
+<!--bear AI code
+<script type="text/plain" data-usercentrics="Bear AI" src="https://yqagkqabd5.us-east-2.awsapprunner.com/pixel.js" data-project-id="eed39acc-d24c-4129-a771-db2bcea87cf8"></script>-->
+
+<!--No new tab opens in mobile (Arc browser issue)-->
+<script>
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+      link.removeAttribute('target');
+    });
+  }
+</script><!-- Splide Core -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1/dist/js/splide.min.js"></script>
+
+<!-- Splide AutoScroll Extension -->
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5/dist/js/splide-extension-auto-scroll.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const isMobile = window.innerWidth < 768;
+  
+  const splide = new Splide('.splide', {
+    type: 'loop',
+    autoWidth: true,
+    pagination: false,
+    arrows: false,
+    drag: isMobile ? 'free' : false, // Drag only on mobile
+    autoScroll: {
+      speed: 0.45, // Adjust speed here
+      pauseOnHover: false,
+    },
+  });
+
+  // Mount with AutoScroll extension
+  splide.mount(window.splide.Extensions);
+  
+  // Resume autoscroll after drag on mobile
+  if(isMobile) {
+    splide.on('scrolled', function() {
+      splide.Components.AutoScroll.play();
+    });
+  }
+});
+</script>
+
+<!--Background wave-->
+<script>
+  gsap.registerPlugin(DrawSVGPlugin);
+
+  gsap.set("[data-element='wave']", { drawSVG: "0%", opacity: 1 });
+  gsap.to("[data-element='wave']", {
+    duration: 2,
+    drawSVG: "100%",
+    ease: "power1.inOut"
+  });
+</script>
+
+
+<!-- bundle all your scripts into one -->
+<script>
+  // 0) register all needed plugins up front
+  gsap.registerPlugin(
+    ScrollTrigger,
+    DrawSVGPlugin,
+    MotionPathPlugin,
+    SplitText
+  );
+
+  // 3) Testimonials section – same scrubbed draw
+  function initTestimonialsDraw() {
+    gsap.from(".testimonials_svg path", {
+      drawSVG: "0%",
+      ease: "none",
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: ".testimonials_svg",
+        start: "center 100%",
+        end: "top 20%",
+        scrub: 1.2,
+      },
+    });
+  }
+
+  // 4) Underline with scroll animation (locks at 100% once complete)
+  function initUnderlineDraw() {
+    const drawAnim = gsap.from("#heading-underline", { drawSVG: "0%", paused: true });
+    let hasCompleted = false;
+
+    ScrollTrigger.create({
+      trigger: "#heading-underline",
+      start: "top bottom",
+      end: "top 30%",
+      scrub: false,
+      onUpdate: (self) => {
+        if (self.direction > 0) {
+          drawAnim.progress(self.progress);
+          if (self.progress >= 1) hasCompleted = true;
+        } else {
+          drawAnim.progress(hasCompleted ? 1 : self.progress);
+        }
+      },
+    });
+  }
+
+
+function initIconPath(desiredCountWeb, desiredCountMobile) {
+  const isMobile = window.matchMedia('(max-width: 767px)').matches;
+  const pathId = isMobile ? '#icon-path-mobile' : '#icon-path-web';
+  const desiredCount = isMobile ? desiredCountMobile : desiredCountWeb;
+
+  let icons = document.querySelectorAll('.icon-item');
+  if (!icons.length) return;
+
+  const parent = icons[0].parentNode;
+  const originalIcons = Array.from(icons);
+
+  if (originalIcons.length < desiredCount) {
+    let i = 0;
+    while (parent.querySelectorAll('.icon-item').length < desiredCount) {
+      const clone = originalIcons[i % originalIcons.length].cloneNode(true);
+      parent.appendChild(clone);
+      i++;
+    }
+  }
+
+  icons = parent.querySelectorAll('.icon-item');
+  const tl = gsap.timeline({ repeat: -1 });
+
+  icons.forEach((icon, index) => {
+    const start = index / icons.length;
+    tl.to(icon, {
+      motionPath: {
+        path: pathId,
+        align: pathId,
+        alignOrigin: [0.5, 0.5],
+        autoRotate: true,
+        start,
+        end: start + 1
+      },
+      ease: 'none',
+      duration: 60
+    }, 0);
+  });
+}
+
+  // combine and run them all after full load + layout
+  function initAllAnimations() {
+    initTestimonialsDraw();
+    initUnderlineDraw();
+    initIconPath(43, 48);
+  }
+
+  window.addEventListener("load", () => {
+    // wait one frame so CSS and SVG layout settle
+    requestAnimationFrame(initAllAnimations);
+  });
+  
+  window.addEventListener("resize", () => {
+  if (window.innerWidth > 991) {
+    initIconPath(43, 48);
+  }
+    });
+</script></body></html>

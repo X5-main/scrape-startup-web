@@ -1,0 +1,1440 @@
+<!DOCTYPE html><!-- Last Published: Sat Aug 22 2026 07:17:08 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="wisprflow.ai" data-wf-page="68390474bc3294d3c9e7cfad" data-wf-site="682f84b3838c89f8ff7667db" lang="en" data-wf-collection="68390474bc3294d3c9e7cf88" data-wf-item-slug="tiktok"><head><meta charset="utf-8"/><link href="../../index.html" rel="preconnect" crossorigin="anonymous"/><title>Use TikTok with Wispr Flow | Wispr Flow</title><meta content="Quickly script voiceovers or captions using natural speech for smoother, more engaging videos." name="description"/><meta content="Use TikTok with Wispr Flow | Wispr Flow" property="og:title"/><meta content="Quickly script voiceovers or captions using natural speech for smoother, more engaging videos." property="og:description"/><meta content="Use TikTok with Wispr Flow | Wispr Flow" name="twitter:title"/><meta content="Quickly script voiceovers or captions using natural speech for smoother, more engaging videos." name="twitter:description"/><meta property="og:type" content="website"/><meta content="summary_large_image" name="twitter:card"/><meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="nB5ZhzlaRY-zASqKlMYFlebzNc0mGhssolT9qcS3nms" name="google-site-verification"/><link href="../../682f84b3838c89f8ff7667db/css/flowsite-dev.webflow.shared.f1751100a.min.css" rel="stylesheet" type="text/css" integrity="sha384-8XURAKSC0HHrJSBJoq4R9XOU0u6fkbdrX5nJG6mRpOLfPMExpuISM261bI5qS4Hb" crossorigin="anonymous"/><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="../../682f84b3838c89f8ff7667db/6a8406645defe8dfdb19c7f3_flow-favicon.png" rel="shortcut icon" type="image/x-icon"/><link href="../../682f84b3838c89f8ff7667db/6a840664d12190f8ec4ab592_flow-favicon.png" rel="icon" type="image/png" sizes="48x48"/><link href="../../682f84b3838c89f8ff7667db/68d27d1a8a10f417b5644527_flow-wc-v2.png" rel="apple-touch-icon"/><link href="https://wisprflow.ai/use-cases/tiktok" rel="canonical"/><!--UTM capture: persist UTM params to localStorage on any page load-->
+<script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign'].forEach(function (k) {
+      var v = params.get(k);
+      if (v) localStorage.setItem('wf_' + k, v);
+    });
+  })();
+</script>
+
+<!--Download button text - OS detection (site-wide)-->
+<script>
+  (function () {
+    // Promo variant lives in the home page's per-page head and owns the CTAs
+    // when ?promo_code= is present. Yield to it.
+    if (new URLSearchParams(window.location.search).has('promo_code')) return;
+
+    const getOSText = (platform) => {
+      switch (platform) {
+        case 'mac_m1':
+        case 'mac_intel':
+        case 'mac_unknown':
+          return 'Get started on macOS';
+        case 'Windows':
+        case 'win_unknown':
+          return 'Get started on Windows';
+        case 'iOS':
+          return 'Get started on iPhone';
+        case 'Android':
+          return 'Get started on Android';
+        default:
+          return null;
+      }
+    };
+
+    const run = () => {
+      if (window.promoActive) return;
+      if (!window.userPlatform) {
+        setTimeout(run, 1);
+        return;
+      }
+
+      const platform = window.userPlatform;
+      const osText = getOSText(platform);
+
+      // Linux, ChromeOS, or unknown — leave default button text untouched.
+      if (!osText) return;
+
+      const buttons = document.querySelectorAll('[app-download]:not([no-change])');
+      if (buttons.length === 0) {
+        setTimeout(run, 1);
+        return;
+      }
+
+      const appleIcon = document.querySelector('[apple-icon]');
+      const windowsIcon = document.querySelector('[windows-icon]');
+      const androidIcon = document.querySelector('[android-icon]');
+
+      const applyToButton = (btn) => {
+        btn.textContent = osText;
+        if ((platform === 'mac_m1' || platform === 'mac_intel' || platform === 'mac_unknown' || platform === 'iOS') && appleIcon) {
+          btn.prepend(appleIcon.cloneNode(true));
+        } else if ((platform === 'Windows' || platform === 'win_unknown') && windowsIcon) {
+          btn.prepend(windowsIcon.cloneNode(true));
+        } else if (platform === 'Android' && androidIcon) {
+          btn.prepend(androidIcon.cloneNode(true));
+        }
+      };
+
+      buttons.forEach(applyToButton);
+
+      const navContainer = document.querySelector('.nav_container-v2');
+      if (navContainer) {
+        if (platform === 'mac_m1' || platform === 'mac_intel' || platform === 'mac_unknown') {
+          navContainer.classList.add('macos-button-fit');
+        } else if (platform === 'Windows' || platform === 'win_unknown') {
+          navContainer.classList.add('windows-button-fit');
+        }
+      }
+
+      document.querySelector('.nav_big-button')?.classList.add('smaller');
+
+      const setupAnims = () => {
+        if (typeof setupButtonAnimations === 'function') {
+          setupButtonAnimations('.button:not([no-animations="true"])');
+        } else {
+          setTimeout(setupAnims, 50);
+        }
+      };
+      setupAnims();
+
+      // Late-binding safety: re-apply if the button was re-rendered after we set it.
+      const reapply = () => {
+        if (window.promoActive) return;
+        document.querySelectorAll('[app-download]:not([no-change])').forEach((btn) => {
+          if (!btn.textContent.includes(osText)) applyToButton(btn);
+        });
+      };
+      setTimeout(reapply, 200);
+      setTimeout(reapply, 600);
+    };
+
+    run();
+  })();
+</script>
+
+<style>
+  #usercentrics-cmp-ui {
+    position: relative;
+    z-index: 99;
+  }
+</style>
+
+<script>
+  window.addEventListener('UC_UI_VIEW_CHANGED', (event) => {
+    const layer = event.detail?.view;
+    const ucEl = document.querySelector('#usercentrics-cmp-ui');
+    if (!ucEl) return;
+    if (layer === 'FIRST_LAYER' || layer === 'SECOND_LAYER') {
+      ucEl.style.zIndex = '999999';
+    } else {
+      ucEl.style.zIndex = '99';
+    }
+  });
+</script>
+
+<!--Safari smart app banner-->
+<meta name="apple-itunes-app" content="app-id=6497229487, app-argument=https://wisprflow.ai" />
+
+<!--Usercentrics CMP DRAFT script
+<script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-draft="true" data-settings-id="OJkJpCiDSYCcgG" async></script>-->
+
+<!--Usercentrics CMP LIVE script
+<script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js"></script>
+<script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="OJkJpCiDSYCcgG" async></script>-->
+
+<!--load cmp on staging homepage only
+<script>
+  if (window.location.hostname === 'flowsite-dev.webflow.io' && window.location.pathname === '/') {
+    var s2 = document.createElement('script');
+    s2.src = 'https://web.cmp.usercentrics.eu/ui/loader.js';
+    s2.id = 'usercentrics-cmp';
+    s2.setAttribute('data-settings-id', 'OJkJpCiDSYCcgG');
+    s2.async = true;
+    document.head.prepend(s2);
+  }
+</script>-->
+
+<!--Bottom bar-->
+<style>
+  .nav_bottom {
+    transform: translateY(100%);
+  }
+</style>
+
+<!--Preloading above the fold fonts-->
+<link rel="preload" href="../../682f84b3838c89f8ff7667db/682fbe57a719a4ebf1fb56d5_EBGaramond-Regular.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="preload" href="../../682f84b3838c89f8ff7667db/68d3db1d34da60ddf73ff544_683b1349ca0a0ddd3d6a7cd3_EBGaramond-Italic.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="preload" href="../../682f84b3838c89f8ff7667db/682fbd6763ee33a2be0ffd05_Figtree-Medium.woff2" as="font" type="font/woff2" crossorigin />
+
+<link rel="preload" href="../../682f84b3838c89f8ff7667db/682fbd676708c4fa3708edc8_Figtree-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+
+<!-- GSC Verification -->
+<meta name="google-site-verification" content="P6GGpe_kog7Zac5lr_zc-Riq4UO4NNedDoVSLBu2-C4" />
+<!-- End of GSC Verification -->
+
+<!-- Persistent anonymous visitor ID for Meta CAPI matching -->
+<script>
+  (function () {
+    if (!localStorage.getItem('wispr_visitor_id')) {
+      localStorage.setItem('wispr_visitor_id', crypto.randomUUID());
+    }
+  })();
+</script>
+
+<!--No consent in GTM by default-->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 2000,
+  });
+</script>
+
+<!-- Google Tag Manager -->
+<script>
+  (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+    var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s),
+      dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', 'GTM-N8JTW8TQ');
+</script>
+<!-- End Google Tag Manager -->
+
+<!--Verbiflow
+<script type="text/plain" data-usercentrics="Verbiflow">
+  !function(){
+    // Don't load Verbiflow on /get-started page
+    if (window.location.pathname === '/get-started') {
+      return;
+    }
+    
+    window.__VERBIFLOW_API_KEY__ = "fb7e1058-28fd-466d-86da-d1114ed68ffd";
+    var verbiflowScript = document.createElement("script");
+    verbiflowScript.async = true;
+    verbiflowScript.setAttribute("src", "https://verbiflow-customer-assets.s3.us-east-1.amazonaws.com/deanonymization.js");
+    verbiflowScript.setAttribute("id", "verbiflowtag");
+    (document.body || document.head).appendChild(verbiflowScript);
+  }();
+</script>-->
+
+<!--Unify
+<script type="text/plain" data-usercentrics="Unify">!function(){var e=["identify","page","startAutoPage","stopAutoPage","startAutoIdentify","stopAutoIdentify"];function t(o){return Object.assign([],e.reduce(function(r,n){return r[n]=function(){return o.push([n,[].slice.call(arguments)]),o},r},{}))}window.unify||(window.unify=t(window.unify)),window.unifyBrowser||(window.unifyBrowser=t(window.unifyBrowser));var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://tag.unifyintent.com/v1/6pSdUHMfwsfTM4drx7hLnj/script.js"),n.setAttribute("data-api-key","wk_SutNNYTR_A5ygcgBTbiAx1Bvf6Wb8HBvubDQLJBm6"),n.setAttribute("id","unifytag"),(document.body||document.head).appendChild(n)}();</script>-->
+
+<!-- Save referral code and promo code in cookies-->
+<script>
+  (function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const referral = urlParams.get('referral');
+    const promoCode = urlParams.get('promo_code');
+
+    if (referral) {
+      const sanitizedReferral = encodeURIComponent(referral);
+      const expiryDate = new Date();
+      expiryDate.setTime(expiryDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+
+      // Dynamic domain logic (matching your global code)
+      const { hostname } = window.location;
+      const domain = hostname.includes('wisprflow.ai') ? '.wisprflow.ai' : hostname;
+
+      document.cookie = `referral=${sanitizedReferral};expires=${expiryDate.toUTCString()};path=/;domain=${domain};Secure;`;
+    }
+
+    if (promoCode) {
+      const sanitizedPromoCode = encodeURIComponent(promoCode);
+      const expiryDate = new Date();
+      expiryDate.setTime(expiryDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+
+      // Dynamic domain logic (matching your global code)
+      const { hostname } = window.location;
+      const domain = hostname.includes('wisprflow.ai') ? '.wisprflow.ai' : hostname;
+
+      document.cookie = `promo_code=${sanitizedPromoCode};expires=${expiryDate.toUTCString()};path=/;domain=${domain};Secure;`;
+    }
+  })();
+</script>
+
+<!-- Analytics-->
+<script>
+  // Posthog
+  !(function (t, e) {
+    var o, n, p, r;
+    e.__SV ||
+      ((window.posthog = e),
+      (e._i = []),
+      (e.init = function (i, s, a) {
+        function g(t, e) {
+          var o = e.split('.');
+          (2 == o.length && ((t = t[o[0]]), (e = o[1])),
+            (t[e] = function () {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+            }));
+        }
+        (((p = t.createElement('script')).type = 'text/javascript'), (p.async = !0), (p.src = s.api_host + '/static/array.js'), (r = t.getElementsByTagName('script')[0]).parentNode.insertBefore(p, r));
+        var u = e;
+        for (
+          void 0 !== a ? (u = e[a] = []) : (a = 'posthog'),
+            u.people = u.people || [],
+            u.toString = function (t) {
+              var e = 'posthog';
+              return ('posthog' !== a && (e += '.' + a), t || (e += ' (stub)'), e);
+            },
+            u.people.toString = function () {
+              return u.toString(1) + '.people (stub)';
+            },
+            o = 'capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep'.split(' '),
+            n = 0;
+          n < o.length;
+          n++
+        )
+          g(u, o[n]);
+        e._i.push([i, s, a]);
+      }),
+      (e.__SV = 1));
+  })(document, window.posthog || []);
+
+  window.posthog.init('phc_yV8yhSiAUoblWb3L5ju54QEk6Y3u2rA3xV4Dep1yIDC', {
+    api_host: 'https://ph.wisprflow.ai',
+    ui_host: 'https://us.posthog.com',
+  });
+</script>
+
+<!--Dub
+<script type="text/plain" data-usercentrics="Dub.co" src="https://www.dubcdn.com/analytics/script.js" defer></script>-->
+
+<!-- Ahrefs Analytics
+
+<script type="text/plain" data-usercentrics="Ahrefs" src="https://analytics.ahrefs.com/analytics.js" data-key="5nR81NV35qF6wRFgDb3Tjg" async></script>-->
+
+<!-- End of Ahrefs Analytics -->
+
+<!--new [data-localize]
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.5.5/dist/global.js"></script>-->
+
+<!--posthog if check
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.5.12/dist/global.js"></script>-->
+
+<!--meta capi improvements
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.5.17/dist/global.js"></script>-->
+
+<!--chromebook support-->
+<script src="https://cdn.jsdelivr.net/npm/@tanay-wispr/webflow-package@6.6.1/dist/global.js"></script>
+
+<!-- <script defer src="http://localhost:3000/global.js"></script> -->
+
+<style>
+  .fs-rangeslider_handle:focus-visible {
+    outline: 0rem solid transparent !important;
+  }
+</style><meta property="og:image" content="https://cdn.prod.website-files.com/682f84b3838c89f8ff7667db/683c611aba65ade013982bcd_wispr-og-min.jpg" /><script src="../../682f84b3838c89f8ff7667db/6544eda5f000985a163a8687/68c93c62c7911406d96f138f/finsweetcomponentsconfig-1.0.0.js" type="module" async="" siteId="682f84b3838c89f8ff7667db" finsweet="components"></script></head><body><div class="page-wrapper"><div class="global-styles w-embed"><style>
+  /* Make text look crisper and more legible in all browsers */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Focus state style for keyboard navigation for the focusable elements */
+  *[tabindex]:focus-visible,
+  input[type='file']:focus-visible {
+    outline: 0.125rem solid #4d65ff;
+    outline-offset: 0.125rem;
+  }
+
+  /* Set color style to inherit */
+  .inherit-color * {
+    color: inherit;
+  }
+
+  /* Get rid of top margin on first element in any rich text element */
+  .w-richtext > :not(div):first-child,
+  .w-richtext > div:first-child > :first-child {
+    margin-top: 0 !important;
+  }
+
+  /* Get rid of bottom margin on last element in any rich text element */
+  .w-richtext > :last-child,
+  .w-richtext ol li:last-child,
+  .w-richtext ul li:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  /* Make sure containers never lose their center alignment */
+  .container-medium,
+  .container-small,
+  .container-large {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
+
+  /* 
+Make the following elements inherit typography styles from the parent and not have hardcoded values. 
+Important: You will not be able to style for example "All Links" in Designer with this CSS applied.
+Uncomment this CSS to use it in the project. Leave this message for future hand-off.
+*/
+  /*
+a,
+.w-input,
+.w-select,
+.w-tab-link,
+.w-nav-link,
+.w-dropdown-btn,
+.w-dropdown-toggle,
+.w-dropdown-link {
+  color: inherit;
+  text-decoration: inherit;
+  font-size: inherit;
+}
+*/
+
+  /* Apply "..." after 3 lines of text */
+  .text-style-3lines {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Apply "..." after 2 lines of text */
+  .text-style-2lines {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  /* These classes are never overwritten */
+  .hide {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 991px) {
+    .hide,
+    .hide-tablet {
+      display: none !important;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .hide-mobile-landscape {
+      display: none !important;
+    }
+  }
+  @media screen and (max-width: 479px) {
+    .hide-mobile {
+      display: none !important;
+    }
+  }
+
+  .margin-0 {
+    margin: 0rem !important;
+  }
+
+  .padding-0 {
+    padding: 0rem !important;
+  }
+
+  .spacing-clean {
+    padding: 0rem !important;
+    margin: 0rem !important;
+  }
+
+  .margin-top {
+    margin-right: 0rem !important;
+    margin-bottom: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-top {
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .margin-right {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-right {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .margin-bottom {
+    margin-top: 0rem !important;
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-bottom {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .margin-left {
+    margin-top: 0rem !important;
+    margin-right: 0rem !important;
+    margin-bottom: 0rem !important;
+  }
+
+  .padding-left {
+    padding-top: 0rem !important;
+    padding-right: 0rem !important;
+    padding-bottom: 0rem !important;
+  }
+
+  .margin-horizontal {
+    margin-top: 0rem !important;
+    margin-bottom: 0rem !important;
+  }
+
+  .padding-horizontal {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+  }
+
+  .margin-vertical {
+    margin-right: 0rem !important;
+    margin-left: 0rem !important;
+  }
+
+  .padding-vertical {
+    padding-right: 0rem !important;
+    padding-left: 0rem !important;
+  }
+
+  .text-wrap-balance {
+    text-wrap: balance !important;
+  }
+</style>
+
+<style>
+  .footer_link-block .icon-embed-xxsmall {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 300ms;
+  }
+
+  .footer_link-block:hover .icon-embed-xxsmall {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+
+<style>
+  .w-nav-overlay {
+    margin-top: -10px !important;
+    z-index: 1;
+  }
+</style>
+
+<style>
+  @media screen and (max-width: 992px) {
+    .w-dropdown-toggle.w--open .nav_menu-dropdown-arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  .dropdown1_border-radius-wrap,
+  .dropdown-border-right-overlay {
+    opacity: 0;
+  }
+
+  .dropdown-link:hover .dropdown-link-text {
+    color: #034f46;
+  }
+
+  @media (min-width: 992px) {
+    .nav_component:has([apple-icon]),
+    .nav_component:has([windows-icon]) {
+      max-width: 66rem;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .nav_container-v2:has(.nav_button.w--open),
+    .nav_container-v3:has(.nav_button.w--open) {
+      border-bottom-color: transparent;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .nav_container-v2:has(.nav_button.w--open) .nav_left-line,
+    .nav_container-v3:has(.nav_button.w--open) .nav_left-line,
+    .nav_container-v2:has(.nav_button.w--open) .nav_right-line,
+    .nav_container-v3:has(.nav_button.w--open) .nav_right-line {
+      opacity: 1;
+    }
+  }
+
+  /*.text-link:hover .text-link-arrow {
+    transform: translateX(100%);
+  }*/
+
+  /* nav v2 */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    [nav-dropdown='resources'] .dropdown-link {
+      min-width: 13rem !important;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .nav-link-wrap.research {
+      padding-left: 0.5rem;
+      align-items: center;
+      /* gap: 3.5rem; */
+      gap: 2.25rem;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .nav_mobile-btn:has([android-icon]) {
+      font-size: 0.75rem;
+    }
+
+    .nav_mobile-btn [android-icon] {
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+    }
+  }
+
+  .nav_menu-dropdown-toggle-v2.force-reset,
+  .nav_menu-dropdown-toggle-v2.force-reset:hover {
+    background-color: rgba(228, 228, 208, 0) !important;
+  }
+
+  .blog-v2-item h2,
+  .blog-v2-item h3 {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 3px;
+    transition: text-decoration-color 0.25s ease;
+  }
+
+  .blog-v2-item:hover h2,
+  .blog-v2-item:hover h3 {
+    text-decoration-color: currentColor;
+  }
+
+  .testi_card-bottom-card:has(.testi_card-bottom-card-bg.is-green) {
+    color: #ffffeb;
+  }
+
+  .testi_card:has(.testi_card-bg-color.is-dark-green) {
+    color: #ffffeb;
+  }
+
+  @media (max-width: 767px) {
+    .testi_card:has(.testi_card-bg-color.is-dark-green) .testi_card-stats-grid {
+      color: #ffffeb;
+    }
+  }
+</style></div><div class="page-specific-css w-embed"><style>
+.integration_back-link:hover .integration_back-icon{
+ transform: translate(-4px, 0px);
+}
+
+</style></div><div class="nav_fixed"><div data-wf--navbar--variant="base" data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="nav_component-v2 w-nav"><div class="hide"><img apple-icon="" src="../../6838259bd246e848c14f0840/683829796f346a9a6f931363_apple.png" alt="" class="download_button-icon homepage"/><img windows-icon="" src="../../682f84b3838c89f8ff7667db/686d4881d944a4b80f7d047e_windows.svg" alt="" class="download_button-icon homepage"/><img android-icon="" src="../../682f84b3838c89f8ff7667db/69935aa16ba22091f2d8c927_Android.svg" alt="" class="download_button-icon homepage"/></div><div class="nav_container-v3"><div class="nav_container-v3-left"><a href="../../index.html" class="nav_brand w-nav-brand"><img loading="eager" src="../../682f84b3838c89f8ff7667db/683215c6f233131a07d8bafc_navbar_logo.svg" alt="Flow Logo" class="nav_logo"/></a><div class="nav_tab-wrap"><a nav-link="dictation" href="../../index.html" class="nav_tab w-inline-block"><div>Dictation</div></a><img src="../../682f84b3838c89f8ff7667db/6a719965013c961a2a7caa58_navbar-divider.svg" loading="eager" alt="" class="nav_divider"/><a nav-link="notetaker" href="../../notetaker/index.html" class="nav_tab w-inline-block"><div>Notetaker</div></a></div></div><div class="nav_mobile-cta"><a id="nav-mobile-download" cta="" cta_location="nav_mobile" cta_type="download_for_free" app-download="" href="../../get-started/index.html" class="nav_mobile-btn w-button">Download for free</a></div><nav role="navigation" class="nav_menu v3 w-nav-menu"><div class="nav_menu-wrapper grid v3"><div class="show-tablet"><a href="../../index.html" class="nav_menu-link-v2">Dictation</a><a href="../../notetaker/index.html" class="nav_menu-link-v2">Notetaker</a></div><a nav-link="teams" href="../../business/index.html" class="nav_menu-link-v2">Business</a><a nav-link="pricing" href="../../pricing/index.html" class="nav_menu-link-v2">Pricing</a><a nav-link="lab" href="../../lab/index.html" class="nav_menu-link-v2">Lab</a><a id="nav-download" cta="" cta_location="navbar" cta_type="download_for_free" app-download="" nav-link="download" href="../../get-started/index.html" class="nav_big-button button w-node-eacbc97b-ceb5-27cd-3c54-32407e106f40-63dfdea9 w-inline-block"><div>Download for free</div></a></div></nav><div class="nav_button v2 w-nav-button"><div class="hamburger_12_wrap"><div class="hamburger_12_line"></div><div class="hamburger_embed w-embed"><style>
+.hamburger_12_wrap {
+	--thickness: 0.125rem;
+	--gap: 0.375rem;
+	--rotate: 45;
+  --width: 100%;
+}
+.hamburger_12_wrap:hover .hamburger_12_line {
+	width: 65%;
+}
+.hamburger_12_wrap:hover .hamburger_12_line:first-child {
+	width: 85%;
+}
+.hamburger_12_wrap:hover .hamburger_12_line:last-child {
+	width: 100%;
+}
+.w--open .hamburger_12_line {
+	width: 100% !important;
+	transform: scaleX(0);
+}
+.w--open .hamburger_12_line:first-child {
+	transform: translateY(calc(var(--thickness) + var(--gap))) rotate(calc(var(--rotate) * 3 * 1deg));
+}
+.w--open .hamburger_12_line:last-child {
+	transform: translateY(calc(var(--thickness) * -1 + var(--gap) * -1)) rotate(calc(var(--rotate) * 1deg));
+}
+</style></div><div class="hamburger_12_line"></div><div class="hamburger_12_line"></div></div></div><div class="nav_left-line"></div><div class="nav_right-line"></div></div></div></div><main class="main-wrapper"><header class="section_integration-header"><div class="padding-global"><div class="container-large"><div class="padding-section-large"><div class="header23_component"><div class="text-align-center"><div class="align-center"><a href="../index.html" class="integration_back-link w-inline-block"><div class="integration_back-icon"><div class="icon-embed-xsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M14.0829 16L10.79 12.7071C10.3994 12.3166 10.3994 11.6834 10.79 11.2929L14.0829 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div>All Apps</div></a><div class="spacer-huge"></div><img src="../../682fa12727f78b943ed45584/686c2241414f518a5f8e4c0d_tiktok.avif" loading="lazy" alt="" class="use-case_logo"/><div class="spacer-medium"></div><h4>TikTok</h4><div class="spacer-medium"></div><h1 class="heading-style-h1">TikTok</h1><div class="spacer-medium"></div><div class="max-width-medium-plus align-center"><p class="text-size-large">Quickly script voiceovers or captions using natural speech for smoother, more engaging videos.</p></div><div class="spacer-medium"></div><div class="button-group is-center"><a app-download="" cta="" cta_location="integration_single_page" cta_type="get_started" href="../../get-started/index.html" class="button w-button">Get started</a><a cta_type="" cta="" cta_location="integration_single_page" href="#" class="button w-condition-invisible w-dyn-bind-empty w-button"></a></div></div></div></div></div></div></div></header><div class="background-color-tertiary"><header class="section_header23 w-condition-invisible"><div class="padding-global"><div class="container-large"><div><div class="header23_component"><div class="spacer-xhuge"></div><div class="text-align-center"><div class="align-center"><div class="max-width-large-plus align-center"><h2 class="w-dyn-bind-empty"></h2></div><div class="spacer-huge"></div><div class="w-layout-grid integration-feature_list"><div class="integration-feature_item is-dark w-condition-invisible"><div class="integration-feature_item-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 49 48" fill="none" class="integration-feature_icon"><path d="M9.12207 24C18.1221 34 18.1221 35 20.1221 37C21.5363 38.4142 32.1221 15 41.1221 12" stroke="#F0D7FF" stroke-width="4" stroke-linecap="round"></path></svg></div><div class="spacer-medium"></div><div class="spacer-small"></div><p class="w-dyn-bind-empty"></p></div><div class="integration-feature_item is-dark w-condition-invisible"><div class="integration-feature_item-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 49 48" fill="none" class="integration-feature_icon"><path d="M9.12207 24C18.1221 34 18.1221 35 20.1221 37C21.5363 38.4142 32.1221 15 41.1221 12" stroke="#F0D7FF" stroke-width="4" stroke-linecap="round"></path></svg></div><div class="spacer-medium"></div><div class="spacer-small"></div><p class="w-dyn-bind-empty"></p></div><div class="integration-feature_item is-dark w-condition-invisible"><div class="integration-feature_item-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 49 48" fill="none" class="integration-feature_icon"><path d="M9.12207 24C18.1221 34 18.1221 35 20.1221 37C21.5363 38.4142 32.1221 15 41.1221 12" stroke="#F0D7FF" stroke-width="4" stroke-linecap="round"></path></svg></div><div class="spacer-medium"></div><div class="spacer-small"></div><p class="w-dyn-bind-empty"></p></div><div class="integration-feature_item is-dark w-condition-invisible"><div class="integration-feature_item-icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 49 48" fill="none" class="integration-feature_icon"><path d="M9.12207 24C18.1221 34 18.1221 35 20.1221 37C21.5363 38.4142 32.1221 15 41.1221 12" stroke="#F0D7FF" stroke-width="4" stroke-linecap="round"></path></svg></div><div class="spacer-medium"></div><div class="spacer-small"></div><p class="w-dyn-bind-empty"></p></div></div></div></div></div></div></div></div></header></div><div class="section_integration-wrapper"><section class="section_faster"><div class="padding-global"><div><div class="container-large"><div class="spacer-huge"></div><div class="spacer-small"></div><div><div class="text-align-center"><h2 class="heading-style-h1"><div class="heading_text-wrapper"><div>4x faster</div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 387 16" fill="none" height="auto" class="heading_border"><path d="M4.23059 11.782C50.3846 10.1795 96.5723 10.4079 142.653 7.76456C202.017 4.3592 322.467 1.92554 382.231 11.7818" stroke="#F0D7FF" stroke-width="8" stroke-linecap="round" id="heading-underline" preserveAspectRatio="none" heading-underline=""></path></svg></div><div class="heading_text"> than typing</div></h2><div class="spacer-medium"></div><div class="spacer-small"></div><div class="max-width-large align-center"><p class="text-size-large text-wrap-balance">Voice that finally works is here. Flow lets you create, code, message, and write at the speed of thought, 4x faster than your keyboard.</p></div><div class="spacer-medium"></div><div id="hero-button-group" hero-button-group="" class="button-group"><div><a web-demo-open="" cta="" cta_location="4x_faster_section" cta_type="web_demo" href="../../demo/index.html" class="button is-icon is-secondary w-inline-block"><img src="../../682f84b3838c89f8ff7667db/68335d5ca4a30e3a678bf92d_mic-icon.svg" loading="lazy" alt="" class="icon-1x1-small"/><div web-demo-text="">Try Flow</div></a></div><a app-download="" cta="" cta_location="4x_faster_section" cta_type="download" href="../../get-started/index.html" class="button w-inline-block"><div>Download for free</div></a></div></div><div class="spacer-xxlarge"></div><div class="faster_grid"><div id="w-node-_1ca9eff4-2ea1-8588-e3ca-3ff1aecd62b5-aecd62a0" class="faster_grid-left"><div class="faster_content left"><div class="text-size-large text-weight-medium">Keyboard</div><h3 class="ls-3 lineheight-0-95">45 wpm</h3></div><div class="faster_straight-marquee w-embed"><svg id="svg" width="110%" height="100%" viewBox="0 0 350 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path id="curve-straight" d="M0.726196 0.594727H764.221">
+  </path>
+  <text x="-1000">
+    <textPath id="marquee-text-str" xlink:href="#curve-straight">
+      I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. 
+    </textPath>
+    <animate attributeName="x" dur="100s" values="-4000;0" repeatCount="indefinite"></animate>
+  </text>
+</svg>
+
+<style>
+#svg-trail path {
+    fill: transparent;
+}
+
+#marquee-text-str{
+ font-size: inherit;
+ font-weight: 600;
+ fill: #8d8d83;
+}
+</style></div></div><div class="faster_grid-right"><img src="../../682f84b3838c89f8ff7667db/683c80552dab37fd47216e74_Frame 48096435.avif" loading="lazy" sizes="(max-width: 2881px) 100vw, 2881px" srcset="../../682f84b3838c89f8ff7667db/683c80552dab37fd47216e74_Frame/index.html 48096435-p-500.avif 500w, ../../682f84b3838c89f8ff7667db/683c80552dab37fd47216e74_Frame/index.html 48096435-p-800.avif 800w, ../../682f84b3838c89f8ff7667db/683c80552dab37fd47216e74_Frame/index.html 48096435-p-1080.avif 1080w, ../../682f84b3838c89f8ff7667db/683c80552dab37fd47216e74_Frame/index.html 48096435-p-1600.avif 1600w, ../../682f84b3838c89f8ff7667db/683c80552dab37fd47216e74_Frame/index.html 48096435-p-2000.avif 2000w, ../../682f84b3838c89f8ff7667db/683c80552dab37fd47216e74_Frame/index.html 48096435.avif 2881w" alt="Wispr Flow UI frame" class="faster_flow-image"/><div class="faster_content"><div class="text-size-large text-weight-medium">Flow</div><h3 class="ls-3 lineheight-0-95">220 wpm</h3></div><div class="faster_flow-marquee w-embed"><svg id="svg-trail" width="100%" height="100%" viewBox="0 0 928 76" xmlns="http://www.w3.org/2000/svg">
+  <path id="curve" d="M0.535156 74.7977C216.035 74.7977 283.147 0.534007 467.535 0.797575C650.383 1.05894 649.035 74.7977 927.535 74.7977">
+  </path>
+  <text x="-4000">
+    <textPath id="marquee-text" xlink:href="#curve">
+      I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options.      I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options. I’m getting started with the project, How would you like to set up the file. Here are a few options.
+    </textPath>
+    <animate attributeName="x" dur="30s" values="-4000;0" repeatCount="indefinite"></animate>
+  </text>
+</svg>
+
+<style>
+#svg-trail path {
+    fill: transparent;
+}
+
+#marquee-text{
+ font-size: inherit;
+ font-weight: 600;
+ fill: #FFFFEB;
+}
+</style></div><div class="faster_flow-lottie" data-w-id="1ca9eff4-2ea1-8588-e3ca-3ff1aecd62c4" data-animation-type="lottie" data-src="../../682f84b3838c89f8ff7667db/683a874f2714dc8d38242818_Flow - 4x faster.lottie" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-default-duration="8" data-duration="0" data-loading="eager"></div></div></div></div><div class="spacer-small"></div><div class="spacer-huge"></div></div></div></div></section><div class="section_team"><div class="padding-global padding-section-large"><div class="container-large"><div data-wf--on-the-go--variant="base" class="features_grid-bottom"><div id="w-node-_052f7d2b-e7ec-555f-f754-113f32b51459-32b51458" class="features_grid-bottom-left"><div class="hide w-embed"><style>
+@media (min-width:1085px) {
+	.features_grid-bottom .home_integrations_chips-div {
+    flex-flow: nowrap;
+  }
+  
+  .features_grid-bottom .home_integrations_chip {
+  	flex: 0 0 auto;
+  }
+}
+</style></div><div data-wf--integrations-dark-text--variant="base" class="home_integrations_chips-div"><div class="home_integrations_chip is-dark"><img src="../../682f84b3838c89f8ff7667db/683292faea21a80a4ec2ab80_apple_symbol-dark.svg" alt="" class="home_integrations_chip-logo"/><div>Mac</div></div><div class="home_integrations_chip is-dark"><img src="../../682f84b3838c89f8ff7667db/686d4881d944a4b80f7d047e_windows.svg" alt="" class="home_integrations_chip-logo"/><div>Windows</div></div><div class="home_integrations_chip is-dark"><img src="../../682f84b3838c89f8ff7667db/683292faea21a80a4ec2ab80_apple_symbol-dark.svg" alt="" class="home_integrations_chip-logo"/><div>iPhone</div></div><div class="home_integrations_chip is-dark"><img loading="lazy" src="../../682f84b3838c89f8ff7667db/6999a06f0d32b32837da06be_android-511-dark.svg" alt="" class="home_integrations_chip-logo android"/><div>Android</div></div></div><div class="spacer-large"></div><h2 class="text-wrap-balance">On-the-go or at your desk</h2><div class="spacer-medium"></div><p class="text-size-large">Flow is the only voice-to-text tool that works on any app or device, with your personal dictionary, style, and settings synced everywhere.</p><div class="spacer-large"></div><a app-download="" cta="" cta_location="on_the_go_section" cta_type="get_started" href="../../get-started/index.html" class="button w-button">Download for free</a></div><div id="w-node-_052f7d2b-e7ec-555f-f754-113f32b5146f-32b51458" data-w-id="052f7d2b-e7ec-555f-f754-113f32b5146f" class="features_grid-bottom-right"><img src="../../682f84b3838c89f8ff7667db/683c97e9250a60766fe58275_Frame 480.avif" alt="Wispr Flow UI frame" class="features_grid-bottom-bg"/><img src="../../682f84b3838c89f8ff7667db/68359c7eced9028aa72378c0_flowin-worksapce.avif" alt="Wispr Flow in workspace" class="features_grid-bottom-dashboard"/><div data-platform="default" class="features_grid-bottom-mobile"><img src="../../682f84b3838c89f8ff7667db/691dd5b5e588c4e69934ccc9_crazy-ideas-phone.png" alt="Wispr Flow crazy product ideas" class="mobile-screen_top"/><div class="mobile-screen_bottom"><img src="../../682f84b3838c89f8ff7667db/684a1a8bb2e8d8efc7773ad4_Frame 48096378.svg" alt="" class="mobile-screen_bottom-img"/><div class="mobile-screen_bottom-wave" data-w-id="3180e3c7-018a-654e-3711-134583464f43" data-animation-type="lottie" data-src="../../682f84b3838c89f8ff7667db/683a875074894e1be0d6250c_Flow - Write faster.lottie" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-duration="0" data-loading="eager"></div></div></div><div data-platform="android" class="features_grid-bottom-mobile"><img src="../../682f84b3838c89f8ff7667db/6999a465c4d0619656b471c7_android-top.png" alt="Wispr Flow Android app screenshot" class="mobile-screen_top"/><div class="mobile-screen_bottom"><img src="../../682f84b3838c89f8ff7667db/6999a4eff11951eae023b98b_android-bottom.png" alt="Wispr Flow Android app screenshot" class="mobile-screen_bottom-img"/></div><div class="features_android-wave-wrap"><div class="features_android-wave" data-w-id="d1bad634-4d10-1ad0-2fe3-a59e9860cd34" data-animation-type="lottie" data-src="../../682f84b3838c89f8ff7667db/683a875074894e1be0d6250c_Flow - Write faster.lottie" data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg" data-duration="0" data-loading="eager"></div></div></div></div><div class="cta-v2-wrapper"><div class="cta_platforms-wrap"><div data-wf--integrations-dark-text--variant="base" class="home_integrations_chips-div"><div class="home_integrations_chip is-dark"><img src="../../682f84b3838c89f8ff7667db/683292faea21a80a4ec2ab80_apple_symbol-dark.svg" alt="" class="home_integrations_chip-logo"/><div>Mac</div></div><div class="home_integrations_chip is-dark"><img src="../../682f84b3838c89f8ff7667db/686d4881d944a4b80f7d047e_windows.svg" alt="" class="home_integrations_chip-logo"/><div>Windows</div></div><div class="home_integrations_chip is-dark"><img src="../../682f84b3838c89f8ff7667db/683292faea21a80a4ec2ab80_apple_symbol-dark.svg" alt="" class="home_integrations_chip-logo"/><div>iPhone</div></div><div class="home_integrations_chip is-dark"><img loading="lazy" src="../../682f84b3838c89f8ff7667db/6999a06f0d32b32837da06be_android-511-dark.svg" alt="" class="home_integrations_chip-logo android"/><div>Android</div></div></div></div><div><h2 class="text-wrap-balance">Flow, wherever you work</h2><div class="spacer-medium"></div><div><p class="text-size-large text-wrap-balance">Flow runs natively on Mac, Windows, iOS, and Android. Use it at your desk for deep work, and on your phone when you&#x27;re on the move.</p></div></div><div><a app-download="" cta="" cta_location="pink_cta_section" cta_type="download" href="../../get-started/index.html" class="button w-button">Download</a></div></div></div><div class="spacer-xxhuge"></div><div class="spacer-xhuge"></div><div class="use-case_slider-component"><div class="use-case_header"><h3>More apps</h3><div class="slider-arrow_wrapper"><a href="#" class="slider-arrow is-prev w-inline-block"><div class="slider-arrow-icon w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M14.4971 8L11.2042 11.2929C10.8137 11.6834 10.8137 12.3166 11.2042 12.7071L14.4971 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></a><a href="#" class="slider-arrow is-next w-inline-block"><div class="slider-arrow-icon w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M10.4971 16L13.79 12.7071C14.1805 12.3166 14.1805 11.6834 13.79 11.2929L10.4971 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></a></div></div><div class="use-case_slider w-dyn-list"><div role="list" class="swiper-wrapper use-case_mask w-dyn-items"><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../beeper/index.html" class="use-case_card-link w-inline-block"></a><div class="use-case_content"><div class="use-case_arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/68390599d410cc26625e528a_673755834f9a1a3a3fa939cc_74791520.avif" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">Beeper</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Dictate messages across all your chat platforms in Beeper, streamlining communication with voice.</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../discord/index.html" class="use-case_card-link w-inline-block"></a><div class="use-case_content"><div class="use-case_arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/684076f702bf36675931e700_discord.avif" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">Discord</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Send messages, manage servers, and engage with communities on Discord using voice.</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../linkedin/index.html" class="use-case_card-link w-inline-block w-condition-invisible"></a><div class="use-case_content"><div class="use-case_arrow w-condition-invisible w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/6840732a3642ad43c092522a_linkedin.avif" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">LinkedIn</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Respond to comments and send messages on LinkedIn without typing.</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../outlook/index.html" class="use-case_card-link w-inline-block"></a><div class="use-case_content"><div class="use-case_arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/683905a0280f5948c495fdef_672e15b9f03c835884216e71_Microsoft_Office_Outlook_(2018%E2%80%93present).svg" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">Outlook</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Dictate and send emails in Outlook quickly, so you can focus on what’s important</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../teams/index.html" class="use-case_card-link w-inline-block"></a><div class="use-case_content"><div class="use-case_arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/683905a2ce1558b67b62977f_67374fa03bd36d7f5fa04cc5_Microsoft%20Teams.avif" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">Teams</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Collaborate and communicate seamlessly in Microsoft Teams with natural voice updates.</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../whatsapp/index.html" class="use-case_card-link w-inline-block w-condition-invisible"></a><div class="use-case_content"><div class="use-case_arrow w-condition-invisible w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/683905a30146ce25be8493fd_673f2aa997a5ff93a1850001_479px-WhatsApp.svg.avif" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">WhatsApp</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Have natural conversations that keep your authentic tone.</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../instagram/index.html" class="use-case_card-link w-inline-block w-condition-invisible"></a><div class="use-case_content"><div class="use-case_arrow w-condition-invisible w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/686c219289d2529a652c165d_insta.avif" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">Instagram</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Dictate captions, DMs, and comments with natural speech for faster, clearer content sharing.</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../slack/index.html" class="use-case_card-link w-inline-block"></a><div class="use-case_content"><div class="use-case_arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/683905a161280b313858e84c_67d12c4013faa1a61f3a8348_slack.svg" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">Slack</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Send quick updates to your team without breaking your focus.</div></div></div></div><div role="listitem" class="swiper-slide use-case_slide w-dyn-item"><div class="use-case_card"><a href="../superhuman/index.html" class="use-case_card-link w-inline-block"></a><div class="use-case_content"><div class="use-case_arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M11.3476 13.3147C8.59777 16.0202 5.85232 18.7302 3.09468 21.4279C2.54492 21.9655 1.95765 22.4672 1.36278 22.9552C1.26343 23.0351 1.1422 23.083 1.01497 23.0927C0.887738 23.1024 0.760419 23.0735 0.649656 23.0097C0.46548 22.9145 0.421893 22.5617 0.577392 22.3479C0.728219 22.1406 0.862568 21.9187 1.03165 21.7278C2.11112 20.5086 3.16146 19.2605 4.29101 18.0893C6.6119 15.6832 8.96531 13.3082 11.3266 10.9415C13.5668 8.69608 15.8379 6.4813 18.0859 4.24366C18.4469 3.88443 18.7618 3.47861 19.0891 3.08684C19.107 3.05709 19.1172 3.02327 19.1186 2.98851C19.1201 2.95374 19.1128 2.91915 19.0974 2.88789C19.0482 2.82574 18.9378 2.74814 18.8809 2.76509C17.8159 3.07848 16.7398 3.36387 15.6956 3.73718C13.2667 4.60563 10.7632 5.19548 8.25766 5.78104C7.84592 5.87725 7.41944 5.9832 7.00392 5.77263C6.92834 5.73425 6.8017 5.6657 6.80631 5.62296C6.81178 5.45886 6.85781 5.29879 6.94029 5.15706C7.04555 5.02353 7.18592 4.922 7.34575 4.86377C7.90738 4.65301 8.47391 4.45272 9.04644 4.27377C13.1384 2.99474 17.2311 1.71811 21.3245 0.443865C22.8671 -0.0409638 23.8616 -0.00982938 23.8076 2.36991C23.7923 3.05568 23.7723 3.74503 23.6892 4.42432C23.3049 7.57609 22.9058 10.7259 22.4917 13.8737C22.4232 14.2948 22.3218 14.7099 22.1885 15.115C22.1085 15.3862 21.876 15.5053 21.6098 15.5422C21.3167 15.5828 20.8462 15.3195 20.7423 15.1006C20.5119 14.6145 20.5038 14.097 20.5392 13.5855C20.676 11.6162 20.8249 9.64781 20.9861 7.68044C21.0875 6.39867 21.2049 5.11833 21.304 3.83646C21.309 3.7732 21.2201 3.68089 21.1518 3.64024C21.1191 3.62573 21.0835 3.61936 21.0479 3.62166C21.0123 3.62397 20.9778 3.63488 20.9474 3.65347C20.5627 3.99064 20.1709 4.32193 19.8116 4.68505C16.9777 7.54918 14.1475 10.417 11.321 13.2886L11.3476 13.3147Z" fill="currentColor"/>
+</svg></div><div class="use-case_logo-wrapper"><img src="../../682fa12727f78b943ed45584/683905a308b7155963ff540e_672b6a4beb386755c1602d38_superhuman.avif" alt="" class="use-case_logo"/></div><div class="spacer-medium"></div><h4 class="use-case_heading">Superhuman</h4><div class="spacer-xsmall"></div><div class="text-size-xsmall">Get through your Superhuman inbox even faster by dictating emails with natural speech.</div></div></div></div></div></div></div></div></div></div></div><section data-wf--pre-cta--variant="base" class="section_startflowing"><img src="../../682f84b3838c89f8ff7667db/684a1953b2e8d8efc7769c8e_d11bc5e1021589f0030c972b07779ca99a1837fa.jpg" alt="Person headshot" class="cta_bg"/><div class="padding-global"><div class="spacer-xhuge"></div><div class="spacer-medium"></div><div class="spacer-small"></div><div class="cta_content-wrap"><div class="cta_content"><div class="text-wrapper"><div class="cta_dot hide"></div><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 524 615" fill="none" preserveAspectRatio="none" class="cta_svg"><path d="M0.391602 319.953C359.892 319.953 412.294 -6.54721 244.392 1.45428C95.409 8.55414 -47.1084 513.452 522.892 612.952C646.17 634.931 943.303 651.895 1145.61 543.915" id="curve-cta"></path></svg><h2 class="heading-style-h1">Start flowing</h2></div><div class="spacer-xlarge"></div><div class="cta_content-wrap-inside"><p class="text-size-large text-wrap-balance">Effortless voice dictation in every application.</p><div class="spacer-medium"></div><div class="button-group stretch-mobile"><a app-download="" cta="" cta_location="bottom_cta_section" cta_type="download" href="https://wisprflow.onelink.me/PguH/lw5h199m" class="button w-button">Download for free</a><a web-demo-open="" cta="" cta_location="bottom_cta_section" cta_type="try_flow" href="../../demo/index.html" class="button is-icon is-secondary w-inline-block"><img src="../../682f84b3838c89f8ff7667db/68335d5ca4a30e3a678bf92d_mic-icon.svg" loading="lazy" alt="" class="icon-1x1-small"/><div web-demo-text="">Try Flow</div></a></div><div class="cta-byline-wrap"><div class="spacer-medium"></div><div class="text-size-small text-weight-medium">Available on Mac, Windows, iPhone, and Android.</div></div></div></div></div><div class="spacer-small"></div><div class="spacer-medium"></div><div class="spacer-xhuge"></div></div></section><div data-wf--footer-combined--variant="base" class="section_footer-wrapper"><footer class="section_footer"><div class="padding-global"><div class="container-large"><div class="footer_v2-top"><div class="products_mega-wrap"><div class="tag is-small text-color-black50">Products</div><div class="products_grid"><div class="product_card"><div class="product_card-graphic-wrap"><img src="../../682f84b3838c89f8ff7667db/6a4f5ff3f6da81ba30f2416b_Flowbar.svg" alt="" class="product_card-graphic"/></div><div class="product-card-content"><div class="product_card-heading-wrap"><div class="text-size-regular text-weight-semibold">Wispr Flow Dictation</div></div><div><p class="text-size-regular text-color-black70 size-small-mobile">The voice-to-text AI that turns speech into clear, polished writing in every app.</p></div><div><div class="spacer-xxsmall hide-mobile-landscape"></div><div class="button-group is-left"><div class="z-index-2"><a no-change="" cta="" cta_location="notetaker_page" cta_type="download_flow" app-download="" href="../../get-started/index.html" class="text-link size-small-mobile w-inline-block"><div class="text-link-text text-weight-semibold">Download free</div><div class="text-link-arrow-wrap"><div class="text-link-arrow before w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div><div class="text-link-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div></div></a></div></div></div></div><a href="../../index.html" class="product_card-overlay w-inline-block"></a></div><div class="product_card"><div class="product_card-graphic-wrap is-notetaker"><img src="../../682f84b3838c89f8ff7667db/6a69c8b43e0590af4f0af523_transcript-new.png" alt="" class="product_card-graphic"/></div><div class="product-card-content"><div class="product_card-heading-wrap"><div class="text-size-regular text-weight-semibold">Wispr Flow Notetaker</div><div class="products_nt-tag">New</div></div><div><p class="text-size-regular text-color-black70 size-small-mobile">Meeting notes that are accurate enough to action on. Works in all meetings.</p></div><div><div class="spacer-xxsmall hide-mobile-landscape"></div><div class="button-group is-left"><div class="z-index-2"><a no-change="" cta="" cta_location="notetaker_page" cta_type="download_flow" app-download="" href="../../get-started/index.html" class="text-link size-small-mobile w-inline-block"><div class="text-link-text text-weight-semibold">Download free</div><div class="text-link-arrow-wrap"><div class="text-link-arrow before w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div><div class="text-link-arrow w-embed"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M9.29 15.88L13.17 12L9.29 8.12a.996.996 0 1 1 1.41-1.41l4.59 4.59c.39.39.39 1.02 0 1.41L10.7 17.3a.996.996 0 0 1-1.41 0c-.38-.39-.39-1.03 0-1.42"></path></svg></div></div></a></div></div></div></div><a href="../../notetaker/index.html" class="product_card-overlay w-inline-block"></a></div></div></div><div class="footer_links-grid"><div class="footer_link-column"><div class="footer_link-heading">Get started</div><div class="footer_link-list"><a href="../../pricing/index.html" class="footer_link-block w-inline-block"><div>Pricing</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../privacy/index.html" class="footer_link-block w-inline-block"><div>Privacy &amp; Security</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../demo/index.html" class="footer_link-block w-inline-block"><div>Web demo</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../why-flow/index.html" class="footer_link-block w-inline-block"><div>Why Flow vs. Built-in Dictation</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../microphones/index.html" class="footer_link-block w-inline-block"><div>Microphone guide</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div><div class="footer_link-column"><div class="footer_link-heading">Professionals</div><div class="footer_link-list"><a href="../../leaders/index.html" class="footer_link-block w-inline-block"><div>Leaders</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../developers/index.html" class="footer_link-block w-inline-block"><div>Developers</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../content-creators/index.html" class="footer_link-block w-inline-block"><div>Creators</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../customer-support/index.html" class="footer_link-block w-inline-block"><div>Customer Support</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../students/index.html" class="footer_link-block w-inline-block"><div>Students</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../lawyers/index.html" class="footer_link-block w-inline-block"><div>Lawyers</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../accessibility/index.html" class="footer_link-block w-inline-block"><div>Accessibility</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../sales/index.html" class="footer_link-block w-inline-block"><div>Sales</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div><div class="footer_link-column"><div class="footer_link-heading">Resources</div><div class="footer_link-list"><a href="../../case-studies/index.html" class="footer_link-block w-inline-block"><div>Case studies</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../blog/index.html" class="footer_link-block w-inline-block"><div>Blog</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../ai-prompting-guide/index.html" class="footer_link-block w-inline-block"><div>AI prompting guide</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../workflows/index.html" class="footer_link-block w-inline-block"><div>Workflows</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../whats-new/index.html" class="footer_link-block w-inline-block"><div>What&#x27;s new</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../vibe-coding/index.html" class="footer_link-block w-inline-block"><div>Vibe coding</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../bug-bounty/index.html" class="footer_link-block w-inline-block"><div>Bug bounty</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../support/index.html" class="footer_link-block w-inline-block"><div>Talk to support</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../talk-to-sales/index.html" class="footer_link-block w-inline-block"><div>Talk to sales</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="https://docs.wisprflow.ai/" target="_blank" class="footer_link-block w-inline-block"><div>Help center</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div><div class="footer_link-column"><div class="footer_link-heading">Company</div><div class="footer_link-list"><a href="../../about/index.html" class="footer_link-block w-inline-block"><div>About</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../careers/index.html" class="footer_link-block w-inline-block"><div>Careers</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="https://trust.wispr.ai/" target="_blank" class="footer_link-block w-inline-block"><div>Trust Center</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="https://partners.dub.co/flow" target="_blank" class="footer_link-block w-inline-block"><div>Become an affiliate</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a><a href="../../media-kit/index.html" class="footer_link-block w-inline-block"><div>Media Kit</div><div class="icon-embed-xxsmall w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 16 9" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M7.30209 4.39387C5.58154 4.37997 3.86103 4.36522 2.14057 4.34963C1.79759 4.34582 1.45417 4.31894 1.11266 4.28535C1.05617 4.27926 1.00284 4.25627 0.959627 4.21939C0.916414 4.18251 0.88533 4.13345 0.870437 4.07863C0.842351 3.99082 0.939919 3.86619 1.05679 3.84791C1.16971 3.83011 1.2821 3.80265 1.39573 3.79577C2.12069 3.75198 2.84552 3.68968 3.57115 3.67664C5.06198 3.65002 6.55317 3.64309 8.04409 3.64158C9.45874 3.63994 10.8733 3.65774 12.2882 3.66093C12.5152 3.66146 12.7424 3.63267 12.9693 3.61257C12.9844 3.60886 12.9982 3.60144 13.0097 3.59097C13.0211 3.5805 13.0297 3.56733 13.0347 3.55267C13.0388 3.51762 13.0288 3.45878 13.0052 3.44595C12.5704 3.2096 12.1412 2.96113 11.694 2.75006C10.6541 2.2595 9.67872 1.65767 8.70364 1.05423C8.54347 0.955023 8.37557 0.854219 8.31084 0.65726C8.29908 0.621454 8.28076 0.560097 8.29575 0.548117C8.34922 0.498263 8.4142 0.462417 8.4849 0.443795C8.5602 0.434903 8.6365 0.447087 8.70529 0.478984C8.94883 0.589421 9.19069 0.70447 9.42749 0.828484C11.1214 1.71282 12.8125 2.60248 14.5075 3.48451C15.147 3.8172 15.4508 4.13955 14.6833 4.87064C14.4621 5.08139 14.2384 5.29192 13.998 5.47948C12.8828 6.34954 11.7636 7.21439 10.6403 8.07401C10.4859 8.18478 10.323 8.28331 10.1532 8.36871C10.0424 8.42883 9.93159 8.39317 9.83597 8.32107C9.73072 8.24173 9.66536 8.01096 9.7017 7.90948C9.78232 7.68422 9.94289 7.51894 10.1154 7.36928C10.7796 6.79313 11.449 6.22298 12.1186 5.65327C12.555 5.28207 12.9957 4.91656 13.4313 4.54474C13.4528 4.52633 13.4537 4.46908 13.4451 4.43514C13.4393 4.42033 13.4301 4.40713 13.4181 4.39669C13.4061 4.38625 13.3918 4.37888 13.3763 4.3752C13.1485 4.36038 12.9206 4.34125 12.6927 4.34245C10.8957 4.35189 9.09869 4.36372 7.30168 4.37795L7.30209 4.39387Z" fill="currentColor"/>
+</svg></div></a></div></div></div></div><div data-w-id="a13f4943-95a2-60d3-e20e-e12854af9d42" class="footer_logo"><div><div id="w-node-_6ca0a8ce-bad4-f0ae-d8d7-e6c3a8dc1b2e-9cb12a35" data-is-ix2-target="1" class="footer_lottie" data-w-id="6ca0a8ce-bad4-f0ae-d8d7-e6c3a8dc1b2e" data-animation-type="lottie" data-src="../../682f84b3838c89f8ff7667db/683a875030ccb710048ea251_Flow - Footer icon.lottie" data-loop="0" data-direction="1" data-autoplay="0" data-renderer="svg" data-duration="0" data-loading="eager" data-ix2-initial-state="0"></div></div><img src="../../682f84b3838c89f8ff7667db/683b9b328bdb48594a3514e5_Flow New.svg" alt="" class="footer_logo-text"/></div><div class="footer_copyright-div"><div footer-legal-links=""><div class="footer_copyright-content"><div class="text-block">© Wispr Flow <span year="">year</span></div><div class="footer_copyright-links-wrap"><a href="../../terms-of-service/index.html" class="footer_link-block is-legal w-inline-block"><div>Terms</div></a><a href="../../privacy-policy/index.html" class="footer_link-block is-legal w-inline-block"><div>Privacy</div></a><a href="../../data-controls/index.html" class="footer_link-block is-legal w-inline-block"><div>Data Controls</div></a></div></div></div><div class="footer_socials-content"><a rel="noopener noreferrer" href="https://www.youtube.com/channel/UCzaXlOt3J2_rYQT1aEJMMFQ/videos?sub_confirmation=1" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M21.0657 4.77345C22.0134 5.02692 22.7526 5.76903 23.0089 6.71673C23.6792 9.42042 23.6356 14.5321 23.023 17.278C22.7695 18.2257 22.0274 18.965 21.0797 19.2213C18.4042 19.8831 6.42063 19.8015 3.90001 19.2213C2.95231 18.9678 2.21302 18.2257 1.95673 17.278C1.32446 14.7011 1.36811 9.25144 1.94265 6.73081C2.19612 5.78311 2.93823 5.04382 3.88593 4.78753C7.46268 4.0412 19.7927 4.282 21.0657 4.77345ZM10.3639 8.70227L16.1093 11.9974L10.3639 15.2925V8.70227Z" fill="currentColor"/>
+</svg></div></a><a rel="noopener noreferrer" href="https://www.crunchbase.com/organization/wispr-ai" target="_blank" class="footer_social-link w-inline-block"><div class="icon-embed-custom w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 25" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<g clip-path="url(#clip0_7503_2610)">
+<mask id="mask0_7503_2610" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="25" height="25">
+<path d="M24.4971 0.5H0.49707V24.5H24.4971V0.5Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_7503_2610)">
+<path d="M22.0971 0.5H2.89707C2.26136 0.502632 1.65244 0.756334 1.20292 1.20585C0.753404 1.65537 0.499703 2.26429 0.49707 2.9V22.1C0.499703 22.7357 0.753404 23.3446 1.20292 23.7941C1.65244 24.2437 2.26136 24.4974 2.89707 24.5H22.0971C22.7328 24.4974 23.3417 24.2437 23.7912 23.7941C24.2408 23.3446 24.4945 22.7357 24.4971 22.1V2.9C24.4945 2.26429 24.2408 1.65537 23.7912 1.20585C23.3417 0.756334 22.7328 0.502632 22.0971 0.5ZM7.54207 14.965C8.05129 15.1971 8.63183 15.2173 9.15599 15.0214C9.68016 14.8254 10.105 14.4292 10.3371 13.92H11.9971C11.7831 14.7966 11.2554 15.5644 10.5136 16.0783C9.77186 16.5921 8.86754 16.8164 7.97166 16.7086C7.07578 16.6008 6.25043 16.1686 5.65169 15.4935C5.05295 14.8184 4.72231 13.9473 4.72231 13.045C4.72231 12.1427 5.05295 11.2716 5.65169 10.5965C6.25043 9.92145 7.07578 9.48916 7.97166 9.38141C8.86754 9.27365 9.77186 9.49789 10.5136 10.0117C11.2554 10.5256 11.7831 11.2934 11.9971 12.17H10.3371C10.1958 11.8599 9.98146 11.5887 9.71247 11.3795C9.44349 11.1702 9.12784 11.0293 8.79252 10.9686C8.45719 10.908 8.11216 10.9295 7.78695 11.0312C7.46173 11.133 7.166 11.312 6.92504 11.553C6.68408 11.7939 6.50507 12.0897 6.40331 12.4149C6.30155 12.7401 6.28007 13.0851 6.34071 13.4204C6.40135 13.7558 6.54231 14.0714 6.75152 14.3404C6.96074 14.6094 7.23198 14.8237 7.54207 14.965ZM18.8871 15.81C18.5732 16.0802 18.2145 16.2934 17.8271 16.44C17.2733 16.655 16.6757 16.7327 16.0854 16.6665C15.4951 16.6003 14.9295 16.3922 14.4371 16.06V16.44H12.9271V5.87H14.4271V9.98C14.9626 9.61798 15.5827 9.40093 16.2271 9.35H16.4971C17.2479 9.34883 17.981 9.57797 18.5975 10.0065C19.2141 10.4351 19.6843 11.0424 19.9448 11.7466C20.2053 12.4507 20.2436 13.2179 20.0545 13.9445C19.8653 14.6711 19.4579 15.3222 18.8871 15.81ZM18.6641 13.044C18.6702 13.3241 18.6203 13.6026 18.5173 13.8631C18.4144 14.1237 18.2604 14.3611 18.0645 14.5613C17.8685 14.7616 17.6346 14.9207 17.3763 15.0293C17.1181 15.1379 16.8408 15.1939 16.5606 15.1939C16.2804 15.1939 16.0031 15.1379 15.7449 15.0293C15.4866 14.9207 15.2527 14.7616 15.0567 14.5613C14.8608 14.3611 14.7068 14.1237 14.6039 13.8631C14.5009 13.6026 14.451 13.3241 14.4571 13.044C14.4691 12.4941 14.696 11.9707 15.0892 11.586C15.4823 11.2013 16.0105 10.9859 16.5606 10.9859C17.1107 10.9859 17.6389 11.2013 18.032 11.586C18.4252 11.9707 18.6521 12.4941 18.6641 13.044Z" fill="currentColor"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_7503_2610">
+<rect width="24" height="25" fill="white" transform="translate(0.49707)"/>
+</clipPath>
+</defs>
+</svg></div></a><a rel="noopener noreferrer" href="https://www.instagram.com/wisprflow/" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M16.4971 3H8.49707C5.73565 3 3.49707 5.23858 3.49707 8V16C3.49707 18.7614 5.73565 21 8.49707 21H16.4971C19.2585 21 21.4971 18.7614 21.4971 16V8C21.4971 5.23858 19.2585 3 16.4971 3ZM19.7471 16C19.7416 17.7926 18.2897 19.2445 16.4971 19.25H8.49707C6.70442 19.2445 5.25256 17.7926 5.24707 16V8C5.25256 6.20735 6.70442 4.75549 8.49707 4.75H16.4971C18.2897 4.75549 19.7416 6.20735 19.7471 8V16ZM17.2471 8.25C17.7994 8.25 18.2471 7.80228 18.2471 7.25C18.2471 6.69772 17.7994 6.25 17.2471 6.25C16.6948 6.25 16.2471 6.69772 16.2471 7.25C16.2471 7.80228 16.6948 8.25 17.2471 8.25ZM12.4971 7.5C10.0118 7.5 7.99707 9.51472 7.99707 12C7.99707 14.4853 10.0118 16.5 12.4971 16.5C14.9824 16.5 16.9971 14.4853 16.9971 12C16.9998 10.8057 16.5265 9.65957 15.682 8.81508C14.8375 7.97059 13.6914 7.49734 12.4971 7.5ZM9.74707 12C9.74707 13.5188 10.9783 14.75 12.4971 14.75C14.0159 14.75 15.2471 13.5188 15.2471 12C15.2471 10.4812 14.0159 9.25 12.4971 9.25C10.9783 9.25 9.74707 10.4812 9.74707 12Z" fill="currentColor"/>
+</svg></div></a><a rel="noopener noreferrer" href="https://x.com/wisprflow" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path d="M17.6732 4H20.4333L14.4032 10.7774L21.4971 20H15.9427L11.5922 14.4066L6.6143 20H3.85251L10.3022 12.7508L3.49707 4H9.19252L13.125 9.11262L17.6732 4ZM16.7044 18.3754H18.2339L8.36148 5.53928H6.72027L16.7044 18.3754Z" fill="currentColor"/>
+</svg></div></a><a rel="noopener noreferrer" href="https://www.linkedin.com/company/wisprflow" target="_blank" class="footer_social-link w-inline-block"><div class="footer_social-icons w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 25 24" fill="none" preserveAspectRatio="xMidYMid meet" aria-hidden="true" role="img">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M4.99707 3C4.16864 3 3.49707 3.67157 3.49707 4.5V19.5C3.49707 20.3284 4.16864 21 4.99707 21H19.9971C20.8255 21 21.4971 20.3284 21.4971 19.5V4.5C21.4971 3.67157 20.8255 3 19.9971 3H4.99707ZM9.01783 7.00272C9.02346 7.95897 8.30768 8.54819 7.4583 8.54397C6.65814 8.53975 5.96064 7.90272 5.96486 7.00413C5.96908 6.15897 6.63705 5.47975 7.50471 5.49944C8.38502 5.51913 9.02346 6.1646 9.01783 7.00272ZM12.7768 9.76176H10.2568H10.2554V18.3216H12.9188V18.1219C12.9188 17.742 12.9185 17.362 12.9182 16.9819C12.9174 15.9681 12.9165 14.9532 12.9217 13.9397C12.9231 13.6936 12.9343 13.4377 12.9976 13.2028C13.2352 12.3253 14.0242 11.7586 14.9045 11.8979C15.4698 11.9864 15.8438 12.3141 16.0013 12.8471C16.0984 13.1803 16.142 13.5389 16.1462 13.8863C16.1576 14.9339 16.156 15.9815 16.1544 17.0292C16.1538 17.399 16.1532 17.769 16.1532 18.1388V18.3202H18.8251V18.1149C18.8251 17.6629 18.8249 17.211 18.8246 16.7591C18.8241 15.6296 18.8235 14.5001 18.8265 13.3702C18.8279 12.8597 18.7731 12.3563 18.6479 11.8627C18.4609 11.1286 18.0742 10.5211 17.4456 10.0824C16.9998 9.77019 16.5104 9.5691 15.9634 9.5466C15.9011 9.54401 15.8383 9.54062 15.7752 9.53721C15.4955 9.52209 15.2112 9.50673 14.9438 9.56066C14.1788 9.71394 13.5067 10.0641 12.999 10.6814C12.94 10.7522 12.8823 10.8241 12.7962 10.9314L12.7768 10.9557V9.76176ZM6.17871 18.3244H8.82949V9.76733H6.17871V18.3244Z" fill="currentColor"/>
+</svg></div></a></div></div></div></div></footer><div class="nav_bottom"><div bottom-bar2="" class="bb-v2_wrap"><div class="bb-v2_div"><div class="bb-v2_left"><img src="../../682f84b3838c89f8ff7667db/69d91e631c2edb2851e6565b_close.svg" alt="" data-w-id="5573d0a0-36a5-6871-41d3-3df73ac9edae" class="bb-v2_close-btn"/><img src="../../682f84b3838c89f8ff7667db/69d91e94a9c949c8dbd78faa_App Icon.png" alt="Wispr Flow app icon" class="bb-v2_logo"/><div><div bb-heading="" class="text-weight-semibold text-size-small">Wispr Flow</div><div class="spacer-xxsmall"></div><div bb-subtext="" class="text-size-tiny">Talk 4x faster</div><div class="spacer-xxsmall"></div><div class="text-size-tiny text-weight-medium">FREE</div></div></div><a bb-button="" cta="" cta_location="bottom_bar" cta_type="download_flow" app-download="" no-change="" href="../../get-started/index.html" class="bb_btn bb-v2 w-button">Get app</a></div></div></div></div></main></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=682f84b3838c89f8ff7667db" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="../../682f84b3838c89f8ff7667db/js/webflow.schunk.f2efb3c5440a81cf.js" type="text/javascript" integrity="sha384-VK02VJvMib7ytrF5M2joPWNtDQs366FZgEQ5B+Iwnjx0WBnwQXfootyziSYxdrmS" crossorigin="anonymous"></script><script src="../../682f84b3838c89f8ff7667db/js/webflow.schunk.b7b72544d8957638.js" type="text/javascript" integrity="sha384-tWpxFzH2DN14o9RY6aovn4liKTzcYNGediOpB5lrtyTXyDPZG0qTmmvRJS8zxS4L" crossorigin="anonymous"></script><script src="../../682f84b3838c89f8ff7667db/js/webflow.schunk.41628626f89d3adb.js" type="text/javascript" integrity="sha384-K7o8PNfoMNNhpL1Un04/6z6VpAs9sKtgbNh10IPIFKv0d4q1RnouPJrg53wPJIWR" crossorigin="anonymous"></script><script src="../../682f84b3838c89f8ff7667db/js/webflow.57bff308.51d48ae957b97fa9.js" type="text/javascript" integrity="sha384-UuiGKmSJiPhcZADuZwL9XOHxFDvN9c/w8i2bfqPM/eYxq6n4p78yzzs9VCDPpd+9" crossorigin="anonymous"></script><script src="../../gsap/3.15.0/gsap.min.js" type="text/javascript"></script><script src="../../gsap/3.15.0/MotionPathPlugin.min.js" type="text/javascript"></script><script src="../../gsap/3.15.0/SplitText.min.js" type="text/javascript"></script><script src="../../gsap/3.15.0/DrawSVGPlugin.min.js" type="text/javascript"></script><script src="../../gsap/3.15.0/ScrollTrigger.min.js" type="text/javascript"></script><script src="../../gsap/3.15.0/MotionPathHelper.min.js" type="text/javascript"></script><script src="../../gsap/3.15.0/ScrollToPlugin.min.js" type="text/javascript"></script><script type="text/javascript">gsap.registerPlugin(MotionPathPlugin,SplitText,DrawSVGPlugin,ScrollTrigger,MotionPathHelper,ScrollToPlugin);</script><!--Show divider in navbar-->
+<script>
+  const hiddenPaths = ['/', '/notetaker', '/wip/notetaker', '/wip/flow'];
+  const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+
+  if (!hiddenPaths.includes(currentPath)) {
+    document.querySelectorAll('.nav_divider').forEach((divider) => {
+      divider.style.display = 'block';
+    });
+  }
+</script>
+
+<!--Direct 0.1% users to start.wisprflow.ai when they click download button - desktop only
+<script>
+  (function () {
+    // ============ KNOBS ============
+    var TREATMENT_RATE = 0.05; // 0.001 = 0.1%. Change to ramp: 0.01 = 1%, 0.5 = 50%, 0 = no new treatments.
+    var DISABLE_ALL = false; // Set to true for an instant hard-stop (no one gets redirected, even existing treatment cookies).
+    // ================================
+
+    var COOKIE = 'web_onboarding_canary';
+
+    function readCookie(name) {
+      var m = document.cookie.split('; ').find(function (c) {
+        return c.indexOf(name + '=') === 0;
+      });
+      return m ? m.split('=')[1] : null;
+    }
+
+    function writeCookie(name, value) {
+      var domain = window.location.hostname.indexOf('wisprflow.ai') !== -1 ? '.wisprflow.ai' : window.location.hostname;
+      document.cookie = name + '=' + value + '; path=/; domain=' + domain + '; max-age=' + 60 * 60 * 24 * 30 + '; SameSite=Lax';
+    }
+
+    function assignOrRead() {
+      var existing = readCookie(COOKIE);
+      if (existing) return existing;
+      var variant = Math.random() < TREATMENT_RATE ? 'treatment' : 'control';
+      writeCookie(COOKIE, variant);
+      return variant;
+    }
+
+    // QA override — ?variant=treatment (or =control) writes the cookie so a
+    // shared link puts the recipient into that variant persistently.
+    var forced = new URLSearchParams(window.location.search).get('variant');
+    if (forced === 'treatment' || forced === 'control') {
+      writeCookie(COOKIE, forced);
+    }
+
+    // Inline script runs before <head defer> scripts execute, so global.js has
+    // NOT yet attached its click listener. Mine registers first → fires first on
+    // click. preventDefault stops the default navigation regardless of order.
+    document.querySelectorAll('[app-download]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        // Desktop only per George's spec — checked at click time so a browser
+        // resize between page load and click is honored.
+        if (window.innerWidth < 992) return;
+
+        var variant = assignOrRead();
+
+        if (window.posthog && typeof window.posthog.capture === 'function') {
+          window.posthog.capture('web_onboarding_canary_exposed', {
+            variant: variant,
+            device_type: window.userPlatform,
+            source: el.getAttribute('cta_location') || el.id || 'unknown',
+            width: window.innerWidth,
+          });
+        }
+
+        if (variant === 'treatment' && !DISABLE_ALL) {
+          e.preventDefault();
+          // Forward query string (UTMs, ref, etc.) so SPA's attribution capture
+          // sees them. Strip our QA-only `variant` param — it's ours, not theirs.
+          var params = new URLSearchParams(window.location.search);
+          params.delete('variant');
+          var query = params.toString();
+          window.location.href = 'https://start.wisprflow.ai' + (query ? '?' + query : '');
+        }
+      });
+    });
+  })();
+</script>-->
+
+<!--Adding no opener and no referrer to external links-->
+<script>
+  document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
+    a.setAttribute('rel', 'noopener noreferrer');
+  });
+</script>
+
+<!--Navbar dropdown click closes dropdown but not toggle bg color - fix -->
+<script>
+  document.querySelectorAll('.nav_menu-dropdown-toggle-v2').forEach((wrapper) => {
+    const toggle = wrapper.querySelector('.dropdown1_toggle');
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
+      if (window.innerWidth < 992) return;
+      if (toggle.classList.contains('w--open')) {
+        requestAnimationFrame(() => wrapper.classList.add('force-reset'));
+      } else {
+        wrapper.classList.remove('force-reset');
+      }
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      wrapper.classList.remove('force-reset');
+    });
+  });
+</script>
+
+<!--Remove rogue quotes-->
+<script>
+  // Function to remove rogue quotes
+  function removeRogueQuotes() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (node) => {
+        if (node.parentElement?.closest('.page-wrapper')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        const text = node.textContent;
+        if (/[""]/.test(text) && /^[""\s]+$/.test(text)) {
+          return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_REJECT;
+      },
+    });
+
+    const nodesToRemove = [];
+    while (walker.nextNode()) {
+      nodesToRemove.push(walker.currentNode);
+    }
+
+    nodesToRemove.forEach((node) => node.remove());
+  }
+
+  // Run immediately
+  removeRogueQuotes();
+
+  // Run after DOM is fully loaded
+  document.addEventListener('DOMContentLoaded', removeRogueQuotes);
+
+  // Run after everything including external scripts
+  window.addEventListener('load', removeRogueQuotes);
+
+  // Watch for changes (in case plugin adds them dynamically)
+  const observer = new MutationObserver(() => {
+    removeRogueQuotes();
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+</script>
+
+<!--Navbar scroll animation-->
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  const navbar = document.querySelector('.nav_fixed');
+
+  if (navbar && window.matchMedia('(max-width: 991px)').matches) {
+    // Create the hide animation (from visible to hidden)
+    const hideAnim = gsap.fromTo(navbar, { yPercent: 0 }, { yPercent: -100, duration: 0.5, ease: 'power2.inOut', paused: true });
+
+    let lastScrollY = 0;
+    let ticking = false;
+
+    ScrollTrigger.create({
+      start: 'top top',
+      end: 'max',
+      onUpdate: (self) => {
+        const currentScrollY = self.scroll();
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            if (currentScrollY > lastScrollY && currentScrollY > 50) {
+              // Scrolling down - hide navbar
+              hideAnim.play();
+            } else if (currentScrollY < lastScrollY) {
+              // Scrolling up - show navbar
+              hideAnim.reverse();
+            }
+            lastScrollY = currentScrollY;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      },
+    });
+  }
+</script>
+
+<!-- Bottom Sticky Nav -->
+<script>
+  if (window.matchMedia('(max-width: 991px)').matches) {
+    window.addEventListener('load', () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const bottomBar = document.querySelector('.nav_bottom');
+      if (bottomBar && window.matchMedia('(max-width: 991px)').matches) {
+        const showAnim = gsap.fromTo(
+          bottomBar,
+          { y: '100%' },
+          {
+            y: 0,
+            duration: 0.5,
+            ease: 'power2.inOut',
+            paused: true,
+          },
+        );
+
+        let lastScrollY = 0;
+        let ticking = false;
+
+        ScrollTrigger.create({
+          start: 'top top',
+          end: 'max',
+          onUpdate: (self) => {
+            const currentScrollY = self.scroll();
+            if (!ticking) {
+              requestAnimationFrame(() => {
+                if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                  showAnim.play();
+                } else if (currentScrollY < lastScrollY) {
+                  showAnim.reverse();
+                }
+                lastScrollY = currentScrollY;
+                ticking = false;
+              });
+              ticking = true;
+            }
+          },
+        });
+
+        // Hide bottom nav when footer is in view
+        ScrollTrigger.create({
+          trigger: '.section_footer',
+          start: 'top 80%',
+          end: 'bottom bottom',
+          onEnter: () => {
+            gsap.to(bottomBar, {
+              opacity: 0,
+              pointerEvents: 'none',
+              duration: 0.3,
+            });
+          },
+          onLeaveBack: () => {
+            gsap.to(bottomBar, {
+              opacity: 1,
+              pointerEvents: 'auto',
+              duration: 0.3,
+            });
+          },
+        });
+      }
+    });
+  }
+</script>
+
+<!--Script to show typeform on button clicks
+<script src="//embed.typeform.com/next/embed.js"></script>-->
+
+<!--[typeform-open] href change-->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const triggers = document.querySelectorAll('[typeform-open]');
+
+    triggers.forEach(function (trigger) {
+      trigger.setAttribute('href', '/talk-to-sales');
+    });
+  });
+</script>
+
+<!--Open typeform popup
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('click', function(e) {
+        const trigger = e.target.closest('[typeform-open]');
+        
+        if (trigger) {
+            e.preventDefault();
+            
+            const typeformButton = document.querySelector('[data-tf-live] button');
+            
+            if (typeformButton) {
+                typeformButton.click();
+            } else {
+                console.warn('Typeform button not found. Make sure the hidden div is loaded.');
+            }
+        }
+    });
+});
+</script>-->
+
+<!--Nav dropdown flicker issue code-->
+<script>
+  $('.nav_menu-dropdown-toggle-v2')
+    .on('mouseenter', function () {
+      const hoveredDropdown = $(this);
+
+      $('.dropdown-border-overlay').not(hoveredDropdown.find('.dropdown-border-overlay')).css('opacity', '0');
+
+      const allDropdowns = $('.nav_menu-dropdown-toggle-v2');
+      const currentIndex = allDropdowns.index(this);
+      const nextDropdown = allDropdowns.eq(currentIndex + 1);
+
+      if (nextDropdown.length) {
+        const lastHoveredIndex = allDropdowns.data('lastHoveredIndex') || -1;
+        const isSecondToFirst = lastHoveredIndex === 1 && currentIndex === 0;
+
+        if (isSecondToFirst) {
+          setTimeout(() => {
+            nextDropdown.find('.dropdown1_border-radius-wrap').css('opacity', '0');
+          }, 200);
+        } else {
+          nextDropdown.find('.dropdown1_border-radius-wrap').css('opacity', '0');
+        }
+      }
+
+      allDropdowns.data('lastHoveredIndex', currentIndex);
+    })
+    .on('mouseleave', function () {
+      $('.dropdown-border-overlay').css('opacity', '');
+
+      const allDropdowns = $('.nav_menu-dropdown-toggle-v2');
+      const currentIndex = allDropdowns.index(this);
+      const nextDropdown = allDropdowns.eq(currentIndex + 1);
+
+      if (nextDropdown.length) {
+        nextDropdown.find('.dropdown1_border-radius-wrap').css('opacity', '');
+      }
+    });
+</script>
+
+<!--Close nav dropdown when you scroll down and dropdown is open-->
+<script>
+  $(window).scroll(function () {
+    const navbarStyle = $('.nav_fixed').attr('style');
+
+    if (navbarStyle && /transform:\s*translate(3d)?\(0(px|%),\s*-/.test(navbarStyle)) {
+      if (window.matchMedia('(min-width: 992px)').matches) {
+        $('.nav_menu-dropdown-toggle, .nav_menu-dropdown-toggle-v2').has('.w--open').find('.w--open').removeClass('w--open');
+      } else {
+        $('.nav_menu-dropdown-toggle, .nav_menu-dropdown-toggle-v2').has('.w--open').click();
+        $('.nav_button.w--open').click();
+      }
+    }
+  });
+</script>
+
+<!--Button hover animation-->
+<script>
+  function setupButtonAnimations(selector = '.button', targetSelector = null) {
+    if (window.matchMedia('(hover: hover)').matches) {
+      document.querySelectorAll(selector).forEach((element) => {
+        const animationTarget = targetSelector ? element.querySelector(targetSelector) : element;
+
+        if (animationTarget) {
+          const split = new SplitText(animationTarget, {
+            type: 'words,chars',
+          });
+          const chars = split.chars;
+          let waveTimeline;
+
+          element.addEventListener('mouseenter', () => {
+            if (waveTimeline) waveTimeline.kill();
+            waveTimeline = gsap.timeline();
+            chars.forEach((char, i) => {
+              waveTimeline.to(
+                char,
+                {
+                  keyframes: [
+                    {
+                      yPercent: -20,
+                      rotation: -5,
+                    },
+                    {
+                      yPercent: 20,
+                      rotation: 5,
+                    },
+                    {
+                      yPercent: 0,
+                      rotation: 0,
+                    },
+                  ],
+                  duration: 1,
+                  ease: 'none',
+                  yoyo: true,
+                },
+                i * 0.06,
+              );
+            });
+          });
+
+          element.addEventListener('mouseleave', () => {
+            if (waveTimeline) {
+              waveTimeline.kill();
+              gsap.to(chars, {
+                yPercent: 0,
+                rotation: 0,
+                duration: 0.2,
+                ease: 'none',
+              });
+            }
+          });
+        }
+      });
+    }
+  }
+
+  // Usage:
+  // [app-download] excluded — the site-wide head's OS-detection script owns text+icon+animation for those buttons to avoid a double-setup race.
+  setupButtonAnimations('.button:not([no-animations="true"]):not([app-download])');
+  setupButtonAnimations('.nav_menu-link'); // navbar links
+  setupButtonAnimations('.nav_menu-link-v2'); // navbar links [notetaker page]
+  setupButtonAnimations('.nav_tab'); // [notetaker page]
+  setupButtonAnimations('.dropdown-link', '.dropdown-link-text'); // Dropdown links
+  setupButtonAnimations('.blog-v2-item', '.text-link-text');
+  setupButtonAnimations('.text-link', '.text-link-text');
+</script>
+
+<!-- 5) CTA dots moving on a path [Footer] -->
+<script>
+  function initCtaDots() {
+    const ctaCount = 100;
+    const ctaDuration = 20;
+    const pathOpts = {
+      path: '#curve-cta',
+      align: '#curve-cta',
+      alignOrigin: [0.5, 0.5],
+    };
+
+    const curveElement = document.querySelector('#curve-cta');
+    if (!curveElement) {
+      return;
+    }
+
+    const svgWrapper = curveElement.closest('svg').parentNode;
+    svgWrapper.style.position = 'relative';
+
+    for (let i = 0; i < ctaCount; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('cta_dot');
+      gsap.set(dot, { position: 'absolute' });
+      svgWrapper.appendChild(dot);
+
+      const tween = gsap.to(dot, {
+        duration: ctaDuration,
+        repeat: -1,
+        ease: 'none',
+        motionPath: pathOpts,
+        immediateRender: false,
+      });
+      tween.progress(i / ctaCount);
+    }
+  }
+
+  // create a GSAP matchMedia instance
+  const mm = gsap.matchMedia();
+
+  // add a rule for screens ≥768px
+  mm.add('(min-width: 768px)', () => {
+    // when this rule first matches, wait for load + a frame then init
+    window.addEventListener('load', () => {
+      requestAnimationFrame(initCtaDots);
+    });
+
+    // return a cleanup function to remove the listener if rule no longer matches
+    return () => {
+      window.removeEventListener('load', initCtaDots);
+    };
+  });
+</script>
+
+<script>
+  // Find all elements with the attribute 'year'
+  const elements = document.querySelectorAll('[year]');
+
+  // Get the current year
+  const currentYear = new Date().getFullYear();
+
+  // Loop through all elements and set their text content to the current year
+  elements.forEach((element) => {
+    element.textContent = currentYear;
+  });
+</script>
+
+<!--Nextplay Adapta and Terra code-->
+<script>
+  function setCookie(name, value, daysToExpire, domain) {
+    const date = new Date();
+    date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
+    const expires = 'expires=' + date.toUTCString();
+    document.cookie = name + '=' + value + ';' + expires + ';path=/;domain=' + domain + ';secure;samesite=lax';
+  }
+
+  function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  const trialPromo = getQueryParam('trial_promo');
+  if (trialPromo === '3mo' || trialPromo === '2mo') {
+    setCookie('trial_promo', trialPromo, 30, '.wisprflow.ai');
+  }
+</script>
+
+<!--bear AI code
+<script type="text/plain" data-usercentrics="Bear AI" src="https://yqagkqabd5.us-east-2.awsapprunner.com/pixel.js" data-project-id="eed39acc-d24c-4129-a771-db2bcea87cf8"></script>-->
+
+<!--No new tab opens in mobile (Arc browser issue)-->
+<script>
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+      link.removeAttribute('target');
+    });
+  }
+</script><script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script>
+  // 0) register all needed plugins up front
+  gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+
+  // Desktop animation: trigger once on the full list
+  function createDesktopAnimation() {
+    gsap.from(".integration-feature_icon path", {
+      drawSVG: "0%",
+      ease: "none",
+      duration: 0.5,
+      stagger: 0.3,
+      scrollTrigger: {
+        trigger: ".integration-feature_list",
+        start: "bottom bottom",
+      },
+    });
+  }
+
+  // Mobile animation: trigger per .integration-feature_item
+  function createMobileAnimation() {
+    document.querySelectorAll(".integration-feature_item").forEach((item) => {
+      gsap.from(item.querySelectorAll(".integration-feature_icon path"), {
+        drawSVG: "0%",
+        ease: "none",
+        duration: 0.5,
+        stagger: 0.3,
+        scrollTrigger: {
+          trigger: item,
+          start: "bottom bottom",
+        },
+      });
+    });
+  }
+
+  function initAllAnimations() {
+    let mm = gsap.matchMedia();
+
+    // Define two conditions: desktop vs. mobile
+    mm.add(
+      {
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+      },
+      (context) => {
+        let { isDesktop, isMobile } = context.conditions;
+
+        if (isDesktop) {
+          createDesktopAnimation();
+        }
+        if (isMobile) {
+          createMobileAnimation();
+        }
+      }
+    );
+  }
+
+  // Run after load + one frame so layouts are settled
+  window.addEventListener("load", () => {
+    requestAnimationFrame(initAllAnimations);
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // If viewport width is ≤767px (i.e. mobile), shorten the duration
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      const anim = document.querySelector('.faster_flow-marquee animate');
+      if (anim) {
+        anim.setAttribute('dur', '10s');
+      }
+    }
+  });
+</script>
+
+
+<script>
+document.querySelectorAll('.use-case_slider-component').forEach(component => {
+  const sliderEl = component.querySelector('.use-case_slider');
+  const prevBtn  = component.querySelector('.slider-arrow.is-prev');
+  const nextBtn  = component.querySelector('.slider-arrow.is-next');
+
+  new Swiper(sliderEl, {
+    mousewheel:      { forceToAxis: true },
+    speed:           800,
+    keyboard:        true,
+    slidesPerView:   'auto',
+    spaceBetween:    8,
+    navigation: {
+      prevEl: prevBtn,
+      nextEl: nextBtn,
+      disabledClass: 'is-inactive'
+    }
+  });
+});
+</script></body></html>
