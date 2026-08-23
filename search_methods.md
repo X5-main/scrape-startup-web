@@ -841,14 +841,14 @@ A fresh session advisory flagged that the D25 8/10 was hero-only and reported a 
 - **Decision: keep Trident.** Binding constraint satisfied (8/10 full-page, corroborating D25's hero-level 8); Parameter's +1 is not decisive enough to discard a byte/pixel/vision-verified, pushed mirror and re-run a full cycle; Trident also satisfies the optional AI/Cyber focus (AI pentesting) equally (Parameter = AI pentesting too). Trident's 4.5 advisory score is explained and refuted by the capture artifact, not by the site.
 - **Durable lesson**: when judging "expensive-looking" for the pick decision, use viewport-scrolled/fully-flushed full-page captures (scroll-sweep `window.scrollTo` steps + settle before `fullPage` screenshot); single-shot fullPage on a backgrounded tab systematically under-scores lazy-load sites. Score with a fixed prompt on the same model, flushed both sides.
 +
-+## Parameter (parameter.ai — 27th pick)
-+
-+**Parameter** — Next.js Turbopack site (parameter.ai, **YC W26**, AI pentesting — "Security at the speed of development"). Discovery lane: same YC batch API lane as Trident, where Parameter was the held backup (permissive robots, clean SSR footprint); picked for D27 after Trident's D26 re-score kept the 26th slot. Served via `serve_replica.py` on **8925**; 287 files / 14 MB, **34 HTML pages** + fully vendored `parameter-assets/` (120 entries: JS chunks, woff2, avif) + `.origin` provenance file.
-+
-+1. **Crawl + asset vendoring**: Turbopack `?dpl=` chunk twins handled per the kebra/callosum precedent (restored at serve time). All scene-critical assets local — `parameter-assets/` holds the deployed JS/CSS/font/image tree; zero cross-origin runtime imports on the replica (logo + hero are local png/avif).
-+2. **Sweep**: `pages=34 refs=3442 residual_uniq=0` — zero serve defects across all 34 HTML pages.
-+3. **DOM-fact parity** (relay, same tab, live vs replica): h1 "Security at the speed of development" identical, bodyH identical, identical img counts (77/79 lazy-loaded present on both).
-+4. **Visible-text parity via innerText line-set diff** (new variant of the parity recipe): dump `document.body.innerText` from both URLs in the SAME relay tab, then compare line SETS. Live 5126 B ⊂ replica 5244 B: every live line present in replica; the only replica-only lines are the cookie-consent banner ("We use cookies to measure how this site is used… Accept / Reject / Manage"). **Consent-banner origin artifact**: the banner renders ONLY on the fresh localhost origin — consent state is stored per-origin (live parameter.ai origin has stored consent; `127.0.0.1:8925` is a new origin), so the banner is expected environmental, not a mirror gap. Byte-equality of innerText is therefore NOT the right bar for per-origin-consent sites; line-set containment + witness of the delta class is.
+## Parameter (parameter.ai — 27th pick)
+
+**Parameter** — Next.js Turbopack site (parameter.ai, **YC W26**, AI pentesting — "Security at the speed of development"). Discovery lane: same YC batch API lane as Trident, where Parameter was the held backup (permissive robots, clean SSR footprint); picked for D27 after Trident's D26 re-score kept the 26th slot. Served via `serve_replica.py` on **8925**; 287 files / 14 MB, **34 HTML pages** + fully vendored `parameter-assets/` (120 entries: JS chunks, woff2, avif) + `.origin` provenance file.
+
+1. **Crawl + asset vendoring**: Turbopack `?dpl=` chunk twins handled per the kebra/callosum precedent (restored at serve time). All scene-critical assets local — `parameter-assets/` holds the deployed JS/CSS/font/image tree; zero cross-origin runtime imports on the replica (logo + hero are local png/avif).
+2. **Sweep**: `pages=34 refs=3442 residual_uniq=0` — zero serve defects across all 34 HTML pages.
+3. **DOM-fact parity** (relay, same tab, live vs replica): h1 "Security at the speed of development" identical, bodyH identical, identical img counts (77/79 lazy-loaded present on both).
+4. **Visible-text parity via innerText line-set diff** (new variant of the parity recipe): dump `document.body.innerText` from both URLs in the SAME relay tab, then compare line SETS. Live 5126 B ⊂ replica 5244 B: every live line present in replica; the only replica-only lines are the cookie-consent banner ("We use cookies to measure how this site is used… Accept / Reject / Manage"). **Consent-banner origin artifact**: the banner renders ONLY on the fresh localhost origin — consent state is stored per-origin (live parameter.ai origin has stored consent; `127.0.0.1:8925` is a new origin), so the banner is expected environmental, not a mirror gap. Byte-equality of innerText is therefore NOT the right bar for per-origin-consent sites; line-set containment + witness of the delta class is.
 5. **Vision parity** (`inspect_image`, 8/8 frames): identical hero 3D-cube scene, node visualizations, nav, footer across live vs replica.
 6. **Variant-serving site**: live HTML carries `data-dpl-id` deployment flags — live-vs-live reloads can differ by consent/variant state (same class as River's headline rotator, D14 jitter floor). Compare line sets, not byte strings, when the live origin A/B-serves.
 7. **Computer-use leg**: `computer` tool TCC-blocked (Screen Recording permission denied) — ceremonial leg skipped with documentation, same as Trident; relay + vision + sweep carry parity.
@@ -880,19 +880,43 @@ A fresh session advisory flagged that the D25 8/10 was hero-only and reported a 
 
 
 **Relay leg (D29 followup)**: the 9224 relay bridge accepted browser-WS `Target.createTarget` + `Target.attachToTarget(flatten)` this turn (per-page WS urls still absent from `/json/list` — attach via the browser endpoint only). Live vs replica probes in the REAL window: title/h1/innerText chars identical (4981==4981), but `scrollHeight` 4758 vs 5214. Diagnosis = recurrence of the Trident per-origin zoom artifact: same browser renders `verialabs.com` at 1920x936 dpr 2.0 but the `127.0.0.1:8927` origin at 2400x1170 dpr 1.6 (~80% stored per-site zoom) — vh-sized sections scale with the effective viewport, so page height differs (456px ~ two vh sections). Controlled-viewport capture (same 1280x720 headless, both origins) collapses the delta to zero (heights 4663==4663). +
-+## Agentic Fabriq (agenticfabriq.com — 30th pick, 2026-08-24)
-+
-+**Discovery lane (D30)**: YC batch API rosters fetched for F25/W26/S26/F26 and screened for AI/cyber/identity candidates in one sweep. Rules applied (see D29): robots.txt allow-all, clean SSR footprint, flushed-capture design screening **≥7/10**. Rejects before the gate: nebusec.ai, traceforce.ai, multifactor.com, beesafe.ai, usekestrel.ai, sourcebot.dev, ashr.io, ego.ist. **agenticfabriq.com passed 7/10** (W26, "Identity and Permissioning for AI Agents" — hero = live credential-event ticker, permissions UI, GDrive/Slack/GitHub integration rows); runcanary.ai also 7/10 (held as backup).
-+
-+**Site shape**: `https://www.agenticfabriq.com/` (apex redirects to www), robots allow-all (explicit AI-crawler allows: GPTBot/OAI-SearchBot/ClaudeBot/PerplexityBot), sitemap.xml 154 URLs (130+ = integrations/blog/docs/solutions). NOT Astro (no generator meta) — React/Next-style SSR (JS chunk under `/b/<buildid>/*.js.gz`, `data-discover` attrs); marketing content fully server-rendered, so the mirror is complete without the JS runtime (same class as conifer.build).
-+
-+**Crawl**: `python3 mirror_site.py https://www.agenticfabriq.com/ agenticfabriq --depth 3 ...` → 335 files / 54 MB, CF asset host `ddwl4m2hdecbv.cloudfront.net` vendored under local paths.
-+
-+1. **Ghost-catch-all quirk (durable)**: this site serves the full 141,355 B home HTML shell for ANY unknown route — `/blogs/token-refresh-…`, `/#n`, `/gcp-app/home/` all return the home shell live. So a "404 page" class doesn't exist here; mirroring the shell at those paths IS parity (inverse of D29, where live served a real custom 404 page and replicating live failure was parity).
-+2. **Residual = crawler fetch bug, not a live gap**: the only sweep residual was a blog image with a SPACE + PARENS in its filename (`blogs/token-refresh-101-how-oauth-refresh-tokens-work/s-l1200 (1).jpg`) — the crawler's unencoded-paren fetch fails server-side even though the file exists. Vendor manually with `curl` using `%20` encoding for the space (leave parens literal — the CDN canonicalizes) → 327,615 B real JPEG; re-sweep → `pages=178 refs=12707 residual_uniq=0`.
+## Agentic Fabriq (agenticfabriq.com — 30th pick, 2026-08-24)
+
+**Discovery lane (D30)**: YC batch API rosters fetched for F25/W26/S26/F26 and screened for AI/cyber/identity candidates in one sweep. Rules applied (see D29): robots.txt allow-all, clean SSR footprint, flushed-capture design screening **≥7/10**. Rejects before the gate: nebusec.ai, traceforce.ai, multifactor.com, beesafe.ai, usekestrel.ai, sourcebot.dev, ashr.io, ego.ist. **agenticfabriq.com passed 7/10** (W26, "Identity and Permissioning for AI Agents" — hero = live credential-event ticker, permissions UI, GDrive/Slack/GitHub integration rows); runcanary.ai also 7/10 (held as backup).
+
+**Site shape**: `https://www.agenticfabriq.com/` (apex redirects to www), robots allow-all (explicit AI-crawler allows: GPTBot/OAI-SearchBot/ClaudeBot/PerplexityBot), sitemap.xml 154 URLs (130+ = integrations/blog/docs/solutions). NOT Astro (no generator meta) — React/Next-style SSR (JS chunk under `/b/<buildid>/*.js.gz`, `data-discover` attrs); marketing content fully server-rendered, so the mirror is complete without the JS runtime (same class as conifer.build).
+
+**Crawl**: `python3 mirror_site.py https://www.agenticfabriq.com/ agenticfabriq --depth 3 ...` → 335 files / 54 MB, CF asset host `ddwl4m2hdecbv.cloudfront.net` vendored under local paths.
+
+1. **Ghost-catch-all quirk (durable)**: this site serves the full 141,355 B home HTML shell for ANY unknown route — `/blogs/token-refresh-…`, `/#n`, `/gcp-app/home/` all return the home shell live. So a "404 page" class doesn't exist here; mirroring the shell at those paths IS parity (inverse of D29, where live served a real custom 404 page and replicating live failure was parity).
+2. **Residual = crawler fetch bug, not a live gap**: the only sweep residual was a blog image with a SPACE + PARENS in its filename (`blogs/token-refresh-101-how-oauth-refresh-tokens-work/s-l1200 (1).jpg`) — the crawler's unencoded-paren fetch fails server-side even though the file exists. Vendor manually with `curl` using `%20` encoding for the space (leave parens literal — the CDN canonicalizes) → 327,615 B real JPEG; re-sweep → `pages=178 refs=12707 residual_uniq=0`.
 3. **Anti-ghost byte audit (D29 rule applied)**: live home stable at 141,355 B across 3 fetches; vendored home 141,607 B — the 252 B delta is ALL asset-URL rewriting (absolute→relative: `https://ddwl4m2hdecbv.cloudfront.net/b/...` → `b/...`, `fabriq-logo.png` → `../...`), confirmed by diff showing only rewritten src/href lines; zero content drift. Same check on /developers/, /integrations/, /contact/, /blog/oauth-refresh-tokens/.
 4. **Vendored CF chunk is the last-good copy**: `/b/4O7Z0HED5ZNX/4O7Z0HED5ZNX.js.gz` captured at crawl time (9,984 B real gzip) — live CF now 403s the path for plain curl, so the vendored bytes are the truest state; replica serves it 200 with Content-Type application/gzip.
 5. **Text parity (viewport-forced CDP, D29 protocol)**: heights equal on all 5 probe pages (home 10420==10420, /developers/ 4820, /integrations/ 3085, /contact/ 1862, /blog/oauth-refresh-tokens/ 3674). Home innerText 7841 vs 7843 — 2-char delta isolated to the hero **credential-event ticker** (line 32: live `secret.rotate issued` vs replica `access.token issued`); sequential fetches prove BOTH sides rotate through event strings (secret.rotate/access.token/calendar.create/gmail.send…), so the delta is animation-frame, not divergence (Veria precedent, step 4 above).
 6. **Pixel parity (scale-3 fullPage, 3840×31260 both)**: 93.7% of 31,260 rows byte-identical; differing rows confined to animated bands (0–499 → 27.1% diff, 500–999 → 13.4%, 3000–3499 → 49.9%, 4500–4999 → 8.4%, 9500–9999 → 32.8%; all others byte-identical, avg diff 0.45/255, max 9.6/255). The 3000–3499 band (highest diff) is the architecture diagram — two independent vision reads call it "identical" (AGENTS: sales-agent green, support-bot green, data-pipeline gray → central AGENTIC FABRIQ hub → TOOLS & SERVICES Gmail/Slack/GitHub/Drive); band md5 differs only on animation frames, no layout shift.
 7. **Vision judge**: full-page captures, same model/rubric → live **7/10** == replica **7/10** (gate ≥7, parity in one pair).
 8. **Ports**: replica on `serve_replica.py` **8928**; capture vehicle headless CDP 9344 (never 9333) with `Emulation.setDeviceMetricsOverride{width:1280,height:720,deviceScaleFactor:3}` + `captureBeyondViewport:true`.
+
+## Cheap pre-filter (design_signal.py — D30 followup, active from D31)
+
+**Rule**: before spending flushed-capture + vision calls on round-2 candidates, run
+`.tmp_tools/design_signal.py <mirrored-home.html>` (or `--live <url>`): a stdlib-only
+HTML design-signal ranker (content depth, section richness, logo walls, display-font
+hints, dark-theme CSS, animation/3D markers, boilerplate penalties) with a fail-open
+floor. Score >=4.5 -> "JUDGE (capture+vision)"; below -> "SKIP (looks template-thin)".
+Slot: after the robots/SSR gate, before flush-capture; the >=7 vision judge remains the
+gate, and vision judgment runs only on the top 2-3 candidates.
+
+**Calibration on known-good mirrors** (same vision model/rubric ground truth):
+agenticfabriq 6.4 -> JUDGE (vision 7/10 ✓); veria 4.7 -> JUDGE (7/10 ✓); fabraix 1.6 ->
+SKIP — but fabraix is a CSR SPA shell that already fails the SSR gate before this tool
+ever runs, so the SKIP is never the binding rejection (documented caveat, not a filter
+failure).
+
+**Noise lessons (2026-08-24)**: (1) the bare word `template` is NOT a boilerplate
+signal — both `grid-template-columns` CSS and `<!-- row template -->` dev comments trip
+it (agenticfabriq), so the marker list is platform names only (webflow/wix/squarespace/
+elementor/godaddy/wordpress.com/"built with"); (2) HTML entities must be unescaped
+before font-family parsing (`&quot;JetBrains Mono&quot;` otherwise leaks `&quot` as a
+fake display font); (3) ui-sans-serif/ui-serif/ui-monospace are system generics —
+excluded from display-font credit.
