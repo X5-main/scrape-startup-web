@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="en" data-palette="catppuccin" data-mode="ink"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Herdr 0.6.3: session persistence, safer updates, and workspace navigation — Herdr blog</title><meta name="description" content="This one adds new persistence paths for updates, server restarts, and larger sessions."><meta name="theme-color" content="#17171a"><link rel="canonical" href="https://herdr.dev/blog/herdr-0-6-3/"><meta property="og:type" content="article"><meta property="og:site_name" content="Herdr"><meta property="og:title" content="Herdr 0.6.3: session persistence, safer updates, and workspace navigation — Herdr blog"><meta property="og:description" content="This one adds new persistence paths for updates, server restarts, and larger sessions."><meta property="og:url" content="https://herdr.dev/blog/herdr-0-6-3/"><meta property="og:image" content="https://herdr.dev/assets/og-card-v9.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Herdr — run them anywhere, leave them running."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Herdr 0.6.3: session persistence, safer updates, and workspace navigation — Herdr blog"><meta name="twitter:description" content="This one adds new persistence paths for updates, server restarts, and larger sessions."><meta name="twitter:image" content="https://herdr.dev/assets/og-card-v9.png"><meta name="twitter:image:alt" content="Herdr — run them anywhere, leave them running."><link rel="icon" href="../../favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon.png"><link rel="apple-touch-icon" href="../../assets/logo.png"><link rel="preload" href="../../assets/jbm__v-2.woff2" as="font" type="font/woff2" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><script>
+      /* Ground selection, shared with the docs — see index.html for the
+         reasoning. Starlight's `starlight-theme` key is the source of truth;
+         `auto` is treated as dark so the default never follows the OS. */
+      window.herdrGround = {
+        read: function () {
+          try {
+            return localStorage.getItem('starlight-theme') === 'light' ? 'paper' : 'ink';
+          } catch (e) {
+            return 'ink';
+          }
+        },
+        apply: function (mode) {
+          var root = document.documentElement;
+          root.setAttribute('data-mode', mode);
+          root.setAttribute('data-palette', mode === 'paper' ? 'solarized-light' : 'catppuccin');
+          return mode;
+        },
+        save: function (mode) {
+          try {
+            localStorage.setItem('starlight-theme', mode === 'paper' ? 'light' : 'dark');
+          } catch (e) {}
+        },
+      };
+      window.herdrGround.apply(window.herdrGround.read());
+    </script><link rel="stylesheet" href="../../css/style__v-59.css"><link rel="stylesheet" href="../../css/site__v-64.css"><script type="module" src="../../_astro/page.B1D-nYk3.js"></script></head> <body class="site"> <div class="hd-frame"> <nav class="hd-nav"> <a class="lock" href="../../index.html"><span class="ram"></span><b>herdr</b></a> <div class="sp"></div> <a class="lnk" href="../../docs/index.html">Docs</a> <a class="lnk" href="../../plugins/index.html">Plugins</a> <a class="lnk" href="../index.html">Blog</a> <a class="lnk" href="../../compare/index.html">Compare</a> <a class="ico wide" href="https://github.com/herdrdev/herdr" aria-label="Herdr on GitHub — star count"> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 8 3.87c.68 0 1.36.09 2 .26 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg> <b data-stars>31,600</b> </a> <a class="ico" href="https://x.com/herdrdev" aria-label="Herdr on X"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"></path></svg> </a> <div class="mode"> <button type="button" data-ground="ink" aria-pressed="true">ink</button> <button type="button" data-ground="paper" aria-pressed="false">paper</button> </div> <a class="btn" href="../../docs/install/index.html">Install</a> <button type="button" class="menu" id="nav-menu" aria-expanded="false" aria-controls="nav-sheet" aria-label="Menu"> <span></span><span></span><span></span> </button> </nav> <div class="sheet" id="nav-sheet"> <a href="../../docs/index.html">Docs</a> <a href="../../plugins/index.html">Plugins</a> <a href="../index.html">Blog</a> <a href="../../compare/index.html">Compare</a> <a href="https://x.com/herdrdev">@herdrdev</a> <div class="sheet-ground"> <span>Ground</span> <div class="mode"> <button type="button" data-ground="ink" aria-pressed="true">ink</button> <button type="button" data-ground="paper" aria-pressed="false">paper</button> </div> </div> </div> <div class="article"> <article class="article-body"> <p class="article-meta"> <a href="../index.html">← Blog</a> <time datetime="2026-05-27T00:00:00.000Z"> May 27, 2026 </time> </p> <h1>Herdr 0.6.3: session persistence, safer updates, and workspace navigation</h1> <p class="article-lede">This one adds new persistence paths for updates, server restarts, and larger sessions.</p> <hr class="article-rule"> <div class="prose"> <h2 id="persistence-for-the-hard-parts">Persistence for the hard parts</h2>
+<p>Keeping a session alive means handling several different cases: a detached client, a stopped server, terminal history replay, agent conversation restore, and an update handoff. Each protects a different part of the workspace.</p>
+<p>Herdr 0.6.3 improves three of those paths.</p>
+<h3 id="agent-restore-after-server-restart">Agent restore after server restart</h3>
+<p>When a Herdr server stops, normal pane processes stop with it. Native agent restore is the path for getting supported agent conversations back after that kind of restart.</p>
+<p>With <code>[session] resume_agents_on_restore = true</code>, Herdr can use official session references from supported integrations to relaunch Pi, Claude Code, Codex, OpenCode, and Hermes panes into their previous conversations.</p>
+<p><a href="../../docs/session-state/index.html">Read the session restore docs</a>.</p>
+<h3 id="pane-screen-history">Pane screen history</h3>
+<p>Pane screen history solves the visual half of restart recovery. When enabled, Herdr saves recent pane output and replays it into restored panes so the workspace does not come back as a set of empty terminals.</p>
+<p>It is useful for shells, logs, dev servers, and agent panes where recent output explains what was happening before the server stopped.</p>
+<p><a href="../../docs/session-state/index.html">Read how pane history differs from live persistence</a>.</p>
+<h3 id="live-handoff-for-updates">Live handoff for updates</h3>
+<p>Live handoff is the update path for supported running sessions. Instead of stopping the old server and killing pane processes, Herdr can ask the old server to transfer live PTY ownership to the updated server.</p>
+<p>It is currently experimental and opt-in with <code>herdr update --handoff</code> and <code>herdr --remote &#x3C;host> --handoff</code>. That keeps the default path conservative while the feature gets more real-world coverage.</p>
+<p><a href="../../docs/session-state/index.html">Read the live handoff docs</a>.</p>
+<p>For the technical background, read the deep dive: <a href="../live-updates-without-killing-your-terminal-processes/index.html">Live updates without killing your terminal processes</a>.</p>
+<h2 id="session-navigator">Session navigator</h2>
+<p>Large Herdr sessions need fast movement. The new session navigator opens with <code>prefix+g</code> and gives you a searchable workspace, tab, and pane tree.</p>
+<p>At a glance, you can see the full tree of workspaces, tabs, and panes. Press <code>/</code> to fuzzy find by text. Press <code>b</code>, <code>w</code>, <code>i</code>, or <code>d</code> to filter by blocked, working, idle, or done panes. Press <code>a</code> or Backspace to clear the state filter.</p>
+<p>Use it to jump straight to the pane that needs attention without manually scanning the sidebar.</p>
+<figure class="release-media">
+  <video src="../../assets/releases/v0.6.3/session-navigator.mp4" controls playsinline preload="metadata"></video>
+  <figcaption>
+    The session navigator shows workspaces, tabs, panes, and agent states in one searchable tree.
+  </figcaption>
+</figure>
+<h2 id="more-terminal-workflow-polish">More terminal workflow polish</h2>
+<p>Direct agent terminal attaches now have scrollback, so PageUp, PageDown, and mouse wheel scrolling work in the attach viewport when the running terminal app has not requested that input for itself.</p>
+<p>Herdr also gained better update and remote-bootstrap behavior for package-manager installs, more reliable event delivery under load, and fixes across agent detection, terminal colors, sound alerts, and integration lifecycle handling.</p>
+<h2 id="pane-metadata-reporting">Pane metadata reporting</h2>
+<p>The new <code>pane.report_metadata</code> socket method and <code>herdr pane report-metadata</code> CLI command let integrations and local hooks customize what Herdr shows for a pane.</p>
+<p>Once installed, an integration can report a title, visible agent name, compact status label, state label, and native session metadata without taking over unrelated lifecycle behavior.</p>
+<p>You can also use it from your own scripts. For example, a hook can mark a pane as running a deploy, rename a long-lived task, or ask an agent to report a more specific state for the work it is doing.</p>
+<div class="expressive-code"><link rel="stylesheet" href="../../_astro/ec.v4551.css"><script type="module" src="../../_astro/ec.0vx5m.js"></script><figure class="frame is-terminal not-content"><figcaption class="header"><span class="title"></span><span class="sr-only">Terminal window</span></figcaption><pre data-language="bash"><code><div class="ec-line"><div class="code"><span style="--0:#82AAFF;--1:#3B61B0">herdr</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">pane</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#ECC48D;--1:#3B61B0">report-metadata</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#F78C6C;--1:#AA0982">\</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#82AAFF;--1:#3B61B0">--title</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">api deploy</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#F78C6C;--1:#AA0982">\</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#82AAFF;--1:#3B61B0">--agent-name</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">codex</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#F78C6C;--1:#AA0982">\</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#82AAFF;--1:#3B61B0">--state-label</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">reviewing logs</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#F78C6C;--1:#AA0982">\</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#82AAFF;--1:#3B61B0">--compact-status</span><span style="--0:#D6DEEB;--1:#403F53"> </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#ECC48D;--1:#984E4D">deploy</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="herdr pane report-metadata \  --title &#x22;api deploy&#x22; \  --agent-name &#x22;codex&#x22; \  --state-label &#x22;reviewing logs&#x22; \  --compact-status &#x22;deploy&#x22;"><div></div></button></div></figure></div>
+<p>This gives integrations a supported way to make panes more readable while keeping Herdr’s session and agent ownership rules intact.</p>
+<p><a href="../../docs/socket-api/index.html">Read the socket API docs</a>.</p>
+<h2 id="full-notes">Full notes</h2>
+<p>This page highlights the product changes. The complete release notes remain on GitHub.</p>
+<p><a href="https://github.com/herdrdev/herdr/releases/tag/v0.6.3">Open the 0.6.3 GitHub release</a>.</p> </div> <aside class="author-card" aria-label="About the author"> <img class="author-photo" src="../../assets/author-can.jpeg" width="72" height="72" alt="Can Celik" loading="lazy" decoding="async"> <div class="author-body"> <p class="author-name">Can Celik</p> <p class="author-role">Building Herdr</p> <div class="author-links"> <a href="https://x.com/cancelik" target="_blank" rel="me noopener" aria-label="Can Celik on X"> <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path> </svg> <span>X</span> </a> <a href="../../cdn-cgi/l/email-protection/index.html" aria-label="Email Can Celik"> <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"> <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect> <path d="m3 6 9 7 9-7"></path> </svg> <span>Email</span> </a> </div> </div> </aside> </article> <aside class="toc" aria-label="Article sections"> <p>Sections</p> <nav> <a href="#persistence-for-the-hard-parts" data-heading-link="persistence-for-the-hard-parts">Persistence for the hard parts</a><a href="#session-navigator" data-heading-link="session-navigator">Session navigator</a><a href="#more-terminal-workflow-polish" data-heading-link="more-terminal-workflow-polish">More terminal workflow polish</a><a href="#pane-metadata-reporting" data-heading-link="pane-metadata-reporting">Pane metadata reporting</a><a href="#full-notes" data-heading-link="full-notes">Full notes</a> </nav> </aside> </div> <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">const n=Array.from(document.querySelectorAll(".prose h2[id]")),i=new Map(Array.from(document.querySelectorAll("[data-heading-link]")).map(e=>[e.getAttribute("data-heading-link"),e]));function s(e){for(const t of i.values())t.removeAttribute("aria-current");i.get(e)?.setAttribute("aria-current","true")}if(n.length>0&&i.size>0){s(n[0].id);const e=new IntersectionObserver(t=>{const o=t.filter(r=>r.isIntersecting).sort((r,a)=>r.boundingClientRect.top-a.boundingClientRect.top)[0];o?.target instanceof HTMLElement&&s(o.target.id)},{rootMargin:"-18% 0px -68% 0px",threshold:0});for(const t of n)e.observe(t)}</script>  <footer class="foot"> <span class="ram"></span> <a href="../../docs/index.html">docs</a> <a href="../../plugins/index.html">plugins</a> <a href="../index.html">blog</a> <a href="../../compare/index.html">compare</a> <span>built in the terminal · © 2026 Herdr, Inc.</span> <span class="fact">v0.8.2 · Apache 2.0</span> <span class="out"> <a class="ico" href="https://github.com/herdrdev/herdr" aria-label="Herdr on GitHub"> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 8 3.87c.68 0 1.36.09 2 .26 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg> </a> <a class="ico" href="https://x.com/herdrdev" aria-label="Herdr on X"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"></path></svg> </a> <a href="../../cdn-cgi/l/email-protection/index.html"><span class="__cf_email__" data-cfemail="036b667a436b667167712d676675">[email&#160;protected]</span></a> </span> </footer> </div> <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+      (function () {
+        var buttons = document.querySelectorAll('[data-ground]');
+        function paint(mode) {
+          window.herdrGround.apply(mode);
+          buttons.forEach(function (b) {
+            b.setAttribute('aria-pressed', String(b.dataset.ground === mode));
+          });
+        }
+        buttons.forEach(function (b) {
+          b.addEventListener('click', function () {
+            window.herdrGround.save(b.dataset.ground);
+            paint(b.dataset.ground);
+          });
+        });
+        paint(window.herdrGround.read());
+      })();
+
+      /* nav sheet — the links, the account and the ground toggle that don't
+         fit the bar on a phone */
+      (function () {
+        var btn = document.getElementById('nav-menu');
+        var sheet = document.getElementById('nav-sheet');
+        if (!btn || !sheet) return;
+        function set(open) {
+          sheet.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', String(open));
+        }
+        btn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          set(!sheet.classList.contains('open'));
+        });
+        /* the ground buttons live in the sheet, so a tap inside must not close
+           it — only taps on the page behind do */
+        document.addEventListener('click', function (event) {
+          if (!sheet.contains(event.target)) set(false);
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') set(false);
+        });
+      })();
+
+      /* The nav count is baked at build, which can be a deploy behind. Refresh
+         it from the same snapshot so the number is current on every page. No
+         count-up here — this is chrome, not the argument the homepage makes. */
+      fetch('https://assets.herdr.dev/stats/stats.json', { headers: { accept: 'application/json' } })
+        .then(function (r) {
+          return r.ok ? r.json() : null;
+        })
+        .then(function (d) {
+          if (!d || !d.stars || typeof d.stars.total !== 'number') return;
+          var text = d.stars.total.toLocaleString('en-US');
+          document.querySelectorAll('[data-stars]').forEach(function (el) {
+            el.textContent = text;
+          });
+        })
+        .catch(function () {});
+    </script> </body> </html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="en" data-palette="catppuccin" data-mode="ink"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Live updates without killing your terminal processes — Herdr blog</title><meta name="description" content="Herdr can replace its server during an update while keeping pane processes alive."><meta name="theme-color" content="#17171a"><link rel="canonical" href="https://herdr.dev/blog/live-updates-without-killing-your-terminal-processes/"><meta property="og:type" content="article"><meta property="og:site_name" content="Herdr"><meta property="og:title" content="Live updates without killing your terminal processes — Herdr blog"><meta property="og:description" content="Herdr can replace its server during an update while keeping pane processes alive."><meta property="og:url" content="https://herdr.dev/blog/live-updates-without-killing-your-terminal-processes/"><meta property="og:image" content="https://herdr.dev/assets/og-card-v9.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Herdr — run them anywhere, leave them running."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Live updates without killing your terminal processes — Herdr blog"><meta name="twitter:description" content="Herdr can replace its server during an update while keeping pane processes alive."><meta name="twitter:image" content="https://herdr.dev/assets/og-card-v9.png"><meta name="twitter:image:alt" content="Herdr — run them anywhere, leave them running."><link rel="icon" href="../../favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon.png"><link rel="apple-touch-icon" href="../../assets/logo.png"><link rel="preload" href="../../assets/jbm__v-2.woff2" as="font" type="font/woff2" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><script>
+      /* Ground selection, shared with the docs — see index.html for the
+         reasoning. Starlight's `starlight-theme` key is the source of truth;
+         `auto` is treated as dark so the default never follows the OS. */
+      window.herdrGround = {
+        read: function () {
+          try {
+            return localStorage.getItem('starlight-theme') === 'light' ? 'paper' : 'ink';
+          } catch (e) {
+            return 'ink';
+          }
+        },
+        apply: function (mode) {
+          var root = document.documentElement;
+          root.setAttribute('data-mode', mode);
+          root.setAttribute('data-palette', mode === 'paper' ? 'solarized-light' : 'catppuccin');
+          return mode;
+        },
+        save: function (mode) {
+          try {
+            localStorage.setItem('starlight-theme', mode === 'paper' ? 'light' : 'dark');
+          } catch (e) {}
+        },
+      };
+      window.herdrGround.apply(window.herdrGround.read());
+    </script><link rel="stylesheet" href="../../css/style__v-59.css"><link rel="stylesheet" href="../../css/site__v-64.css"><script type="module" src="../../_astro/page.B1D-nYk3.js"></script></head> <body class="site"> <div class="hd-frame"> <nav class="hd-nav"> <a class="lock" href="../../index.html"><span class="ram"></span><b>herdr</b></a> <div class="sp"></div> <a class="lnk" href="../../docs/index.html">Docs</a> <a class="lnk" href="../../plugins/index.html">Plugins</a> <a class="lnk" href="../index.html">Blog</a> <a class="lnk" href="../../compare/index.html">Compare</a> <a class="ico wide" href="https://github.com/herdrdev/herdr" aria-label="Herdr on GitHub — star count"> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 8 3.87c.68 0 1.36.09 2 .26 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg> <b data-stars>31,600</b> </a> <a class="ico" href="https://x.com/herdrdev" aria-label="Herdr on X"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"></path></svg> </a> <div class="mode"> <button type="button" data-ground="ink" aria-pressed="true">ink</button> <button type="button" data-ground="paper" aria-pressed="false">paper</button> </div> <a class="btn" href="../../docs/install/index.html">Install</a> <button type="button" class="menu" id="nav-menu" aria-expanded="false" aria-controls="nav-sheet" aria-label="Menu"> <span></span><span></span><span></span> </button> </nav> <div class="sheet" id="nav-sheet"> <a href="../../docs/index.html">Docs</a> <a href="../../plugins/index.html">Plugins</a> <a href="../index.html">Blog</a> <a href="../../compare/index.html">Compare</a> <a href="https://x.com/herdrdev">@herdrdev</a> <div class="sheet-ground"> <span>Ground</span> <div class="mode"> <button type="button" data-ground="ink" aria-pressed="true">ink</button> <button type="button" data-ground="paper" aria-pressed="false">paper</button> </div> </div> </div> <div class="article"> <article class="article-body"> <p class="article-meta"> <a href="../index.html">← Blog</a> <time datetime="2026-05-27T00:00:00.000Z"> May 27, 2026 </time> </p> <h1>Live updates without killing your terminal processes</h1> <p class="article-lede">Herdr can replace its server during an update while keeping pane processes alive.</p> <hr class="article-rule"> <div class="prose"> <p>Live handoff shipped in Herdr 0.6.3 as an experimental, opt-in update path. See the <a href="../../docs/session-state/index.html">live handoff docs</a> for the user-facing behavior.</p>
+<p>Terminal multiplexers are supposed to protect long-running work from interruption. You start a server, run shells and tools inside panes, detach clients, reconnect later, and the work keeps going.</p>
+<p>Updating the multiplexer itself usually breaks that.</p>
+<p>That is normal for tools like tmux and Zellij. They are mature, stable, and their core job changes slowly. If the server/client protocol changes, the usual answer is to keep using the old server until you can restart it. That is annoying, but often acceptable.</p>
+<p>Herdr has a different problem. It is a terminal multiplexer, sure, but it is also an AI development workspace. It is new. I released it a few months ago, and we are at 2.6k stars on GitHub. It has more than 15k downloads according to GitHub release stats.</p>
+<p>It gets frequent fixes for agent detection (isn’t it cool that we have all the labs building their own CLIs, plugins, and hooks in their own broken way?), terminal behavior, remote workflows, worktrees, mobile use, update flows, and integrations. Users should not have to choose between getting those fixes and killing every pane in a running session.</p>
+<p>Herdr needed to update like an app while preserving processes like a terminal multiplexer.</p>
+<h2 id="the-update-problem">The update problem</h2>
+<p>A persistent terminal multiplexer usually has at least two sides.</p>
+<p>The server owns the session. It owns pane state, PTYs, readers, writers, layout, buffers, sockets, and child process lifetime. The client is mostly a view and input path into that server.</p>
+<p>When a new binary changes the client/server protocol, the new client may not be able to talk to the old server. Restarting the server fixes that, but it also risks killing the pane processes. For a terminal multiplexer, that is the worst possible update path.</p>
+<p>This is not only a Herdr problem. I looked around because I assumed somebody had already solved it.</p>
+<p>Zellij has multiple long-running issues about upgrade pain: sessions appearing lost after upgrade, users being unable to attach to sessions from a previous version, requests for an <code>upgrade-session</code> flow, and requests to import sessions from previous versions. See <a href="https://github.com/zellij-org/zellij/issues/1255">zellij#1255</a>, <a href="https://github.com/zellij-org/zellij/issues/2943">zellij#2943</a>, <a href="https://github.com/zellij-org/zellij/issues/3371">zellij#3371</a>, <a href="https://github.com/zellij-org/zellij/issues/3420">zellij#3420</a>, <a href="https://github.com/zellij-org/zellij/issues/3449">zellij#3449</a>, and <a href="https://github.com/zellij-org/zellij/issues/4305">zellij#4305</a>. Zellij 0.44 added forward-compatible client/server support, which helps future clients connect to older running sessions, but that is still not replacing the running server while preserving live PTYs.</p>
+<p>Tmux has the same class of version-skew behavior. Users hit protocol mismatch errors, and the practical answer is to restart tmux, delay the update, or attach with the old binary through <code>/proc/&#x3C;pid>/exe</code> where that exists. See <a href="https://github.com/tmux/tmux/issues/99">tmux#99</a>, <a href="https://github.com/tmux/tmux/issues/2189">tmux#2189</a>, <a href="https://github.com/tmux/tmux/issues/4356">tmux#4356</a>, and <a href="https://github.com/tmux/tmux/issues/4890">tmux#4890</a>.</p>
+<p>As far as I can tell, mainstream terminal multiplexers do not do in-place server binary replacement while keeping arbitrary live pane processes attached.</p>
+<p>That is a small breakthrough, but a real one.</p>
+<h2 id="the-important-detail-is-pty-ownership">The important detail is PTY ownership</h2>
+<p>At first, the problem sounds like process migration. But no, that would be much harder.</p>
+<p>Herdr does not move the child processes. It moves ownership of the terminals those processes are already attached to.</p>
+<p>Each pane process talks to the slave side of a PTY. Herdr’s server owns the master side. If the final master FD disappears, the child can lose I/O, receive HUP, or exit. But if the master FD stays alive and a new server takes over reading and writing it, the child process does not need to know the server changed.</p>
+<p>That changes the problem from “move a process” to “transfer open file descriptors and rebuild runtime ownership around them.”</p>
+<p>On Unix, that is possible with <code>SCM_RIGHTS</code>: one process can send open file descriptors to another process over a Unix socket.</p>
+<h2 id="the-handoff">The handoff</h2>
+<p>The final shape is a two-server transaction.</p>
+<div class="expressive-code"><link rel="stylesheet" href="../../_astro/ec.v4551.css"><script type="module" src="../../_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">old server: pause PTY readers</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">old server: snapshot pure app state</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">old server: duplicate PTY master FDs</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">old server: spawn new Herdr in import mode</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">handoff:    send manifest + FDs over a private Unix socket</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">new server: restore state and rebuild pane runtimes</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">new server: bind public sockets and report ready</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">old server: commit and exit without killing pane process groups</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">new server: unpause readers and continue</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="old server: pause PTY readersold server: snapshot pure app stateold server: duplicate PTY master FDsold server: spawn new Herdr in import modehandoff:    send manifest + FDs over a private Unix socketnew server: restore state and rebuild pane runtimesnew server: bind public sockets and report readyold server: commit and exit without killing pane process groupsnew server: unpause readers and continue"><div></div></button></div></figure></div>
+<p>The old server does not just dump state and hope. It enters handoff mode, rejects new mutations, disconnects clients, and pauses every transferred PTY reader. That pause acknowledgement matters because only one server may actively read from a PTY at a time. If both servers read from the same master, output can be stolen by the wrong runtime.</p>
+<p>After readers are paused, the old server captures Herdr’s normal session snapshot. That works because Herdr already separates pure application state from runtime ownership. <code>AppState</code> can be serialized. Pane runtimes, PTY handles, readers, writers, and detector loops are separate runtime objects.</p>
+<p>Then the old server creates a handoff manifest and sends the duplicated PTY master FDs to the new server.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">manifest = app snapshot + pane metadata + optional replay bytes</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">FDs      = duplicated PTY master file descriptors</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">transport = private Unix socket + SCM_RIGHTS</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="manifest = app snapshot + pane metadata + optional replay bytesFDs      = duplicated PTY master file descriptorstransport = private Unix socket + SCM_RIGHTS"><div></div></button></div></figure></div>
+<p>The new server validates the manifest, checks the expected protocol and version, receives the FDs, restores <code>AppState</code>, constructs imported pane runtimes around the received PTY masters, binds the normal Herdr sockets, and reports ready.</p>
+<p>Only then does the old server commit. Before commit, any failure rolls back to the old server. After commit, the new server owns the panes and the old server exits without signaling the pane process groups.</p>
+<p>That commit boundary is the safety line.</p>
+<h2 id="why-herdr-could-do-it">Why Herdr could do it</h2>
+<p>Herdr had the pieces already, mostly because of earlier architecture choices.</p>
+<p>The state model is separated from runtime ownership. Workspaces, tabs, panes, labels, focus, layout, and agent metadata live in serializable state. PTYs, child handles, reader threads, writer paths, resize state, and detectors live in runtime objects.</p>
+<p>The server/client boundary is explicit. Herdr already has a persistent server, reconnecting clients, local sockets, named sessions, remote attach flows, and documented <a href="../../docs/session-state/index.html">session state paths</a>. That made it possible to add a hidden import mode instead of rewriting the app around live upgrades.</p>
+<p>The terminal engine also helped with visual continuity. Herdr uses <code>libghostty-vt</code> for pane terminal state. For normal primary-screen panes, the old server can export recent ANSI history and the new server can seed that history before it starts reading future PTY bytes. That is not required for process survival, but it makes shells and dev servers look continuous after reconnect.</p>
+<p>Full-screen terminal apps are different. Herdr does not fake replay for alternate-screen panes like <code>nvim</code>, <code>btop</code>, or <code>htop</code>. Their processes survive the handoff, but the visual state is best effort until the app redraws. That is the honest trade-off.</p>
+<h2 id="the-invariants">The invariants</h2>
+<p>Sending FDs was easier than making the transaction safe.</p>
+<p>These were the rules:</p>
+<ul>
+<li>exactly one server may read each PTY at a time</li>
+<li>every transferred reader must acknowledge pause before snapshot and replay capture</li>
+<li>before commit, failure leaves the old server alive and owning the panes</li>
+<li>after commit, the old server must not destructively drop transferred runtimes</li>
+<li>no failure path may close the final PTY master FD</li>
+<li>agent restore must not run during <a href="../../docs/session-state/index.html">live handoff</a></li>
+<li>alternate-screen panes must stay live without pretending their screen was perfectly serialized</li>
+</ul>
+<p>The implementation was tested with shell panes, a Python HTTP server, <code>btop</code>, and <code>nvim</code> on Linux and macOS. The HTTP server kept serving requests across handoff. Shell panes accepted input after handoff. Full-screen TUIs stayed alive and redrew on a best-effort basis.</p>
+<h2 id="what-this-is-not">What this is not</h2>
+<p>This is not checkpoint/restore. It does not survive a reboot. It does not migrate processes across machines. It does not preserve arbitrary process memory. It does not make every future internal state change automatically compatible.</p>
+<p>It is a same-machine Unix handoff. The running pane process stays attached to its PTY slave. The old Herdr server transfers the PTY master to the new Herdr server. The server binary changes; the pane process keeps running.</p>
+<h2 id="why-this-is-cool">Why this is cool</h2>
+<p>Herdr users often keep the exact kind of work open that should not be casually restarted: coding agents, dev servers, shells, REPLs, SSH sessions, debugging sessions, long builds, and local experiments.</p>
+<p>A terminal multiplexer should make that work safer, not make updates feel dangerous.</p>
+<p>The process inside the pane does not have to know an update happened.</p> </div> <aside class="author-card" aria-label="About the author"> <img class="author-photo" src="../../assets/author-can.jpeg" width="72" height="72" alt="Can Celik" loading="lazy" decoding="async"> <div class="author-body"> <p class="author-name">Can Celik</p> <p class="author-role">Building Herdr</p> <div class="author-links"> <a href="https://x.com/cancelik" target="_blank" rel="me noopener" aria-label="Can Celik on X"> <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path> </svg> <span>X</span> </a> <a href="../../cdn-cgi/l/email-protection/index.html" aria-label="Email Can Celik"> <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"> <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect> <path d="m3 6 9 7 9-7"></path> </svg> <span>Email</span> </a> </div> </div> </aside> </article> <aside class="toc" aria-label="Article sections"> <p>Sections</p> <nav> <a href="#the-update-problem" data-heading-link="the-update-problem">The update problem</a><a href="#the-important-detail-is-pty-ownership" data-heading-link="the-important-detail-is-pty-ownership">The important detail is PTY ownership</a><a href="#the-handoff" data-heading-link="the-handoff">The handoff</a><a href="#why-herdr-could-do-it" data-heading-link="why-herdr-could-do-it">Why Herdr could do it</a><a href="#the-invariants" data-heading-link="the-invariants">The invariants</a><a href="#what-this-is-not" data-heading-link="what-this-is-not">What this is not</a><a href="#why-this-is-cool" data-heading-link="why-this-is-cool">Why this is cool</a> </nav> </aside> </div> <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">const n=Array.from(document.querySelectorAll(".prose h2[id]")),i=new Map(Array.from(document.querySelectorAll("[data-heading-link]")).map(e=>[e.getAttribute("data-heading-link"),e]));function s(e){for(const t of i.values())t.removeAttribute("aria-current");i.get(e)?.setAttribute("aria-current","true")}if(n.length>0&&i.size>0){s(n[0].id);const e=new IntersectionObserver(t=>{const o=t.filter(r=>r.isIntersecting).sort((r,a)=>r.boundingClientRect.top-a.boundingClientRect.top)[0];o?.target instanceof HTMLElement&&s(o.target.id)},{rootMargin:"-18% 0px -68% 0px",threshold:0});for(const t of n)e.observe(t)}</script>  <footer class="foot"> <span class="ram"></span> <a href="../../docs/index.html">docs</a> <a href="../../plugins/index.html">plugins</a> <a href="../index.html">blog</a> <a href="../../compare/index.html">compare</a> <span>built in the terminal · © 2026 Herdr, Inc.</span> <span class="fact">v0.8.2 · Apache 2.0</span> <span class="out"> <a class="ico" href="https://github.com/herdrdev/herdr" aria-label="Herdr on GitHub"> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 8 3.87c.68 0 1.36.09 2 .26 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg> </a> <a class="ico" href="https://x.com/herdrdev" aria-label="Herdr on X"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"></path></svg> </a> <a href="../../cdn-cgi/l/email-protection/index.html"><span class="__cf_email__" data-cfemail="d9b1bca099b1bcabbdabf7bdbcaf">[email&#160;protected]</span></a> </span> </footer> </div> <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+      (function () {
+        var buttons = document.querySelectorAll('[data-ground]');
+        function paint(mode) {
+          window.herdrGround.apply(mode);
+          buttons.forEach(function (b) {
+            b.setAttribute('aria-pressed', String(b.dataset.ground === mode));
+          });
+        }
+        buttons.forEach(function (b) {
+          b.addEventListener('click', function () {
+            window.herdrGround.save(b.dataset.ground);
+            paint(b.dataset.ground);
+          });
+        });
+        paint(window.herdrGround.read());
+      })();
+
+      /* nav sheet — the links, the account and the ground toggle that don't
+         fit the bar on a phone */
+      (function () {
+        var btn = document.getElementById('nav-menu');
+        var sheet = document.getElementById('nav-sheet');
+        if (!btn || !sheet) return;
+        function set(open) {
+          sheet.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', String(open));
+        }
+        btn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          set(!sheet.classList.contains('open'));
+        });
+        /* the ground buttons live in the sheet, so a tap inside must not close
+           it — only taps on the page behind do */
+        document.addEventListener('click', function (event) {
+          if (!sheet.contains(event.target)) set(false);
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') set(false);
+        });
+      })();
+
+      /* The nav count is baked at build, which can be a deploy behind. Refresh
+         it from the same snapshot so the number is current on every page. No
+         count-up here — this is chrome, not the argument the homepage makes. */
+      fetch('https://assets.herdr.dev/stats/stats.json', { headers: { accept: 'application/json' } })
+        .then(function (r) {
+          return r.ok ? r.json() : null;
+        })
+        .then(function (d) {
+          if (!d || !d.stars || typeof d.stars.total !== 'number') return;
+          var text = d.stars.total.toLocaleString('en-US');
+          document.querySelectorAll('[data-stars]').forEach(function (el) {
+            el.textContent = text;
+          });
+        })
+        .catch(function () {});
+    </script> </body> </html>

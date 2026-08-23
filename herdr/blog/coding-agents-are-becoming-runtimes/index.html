@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="en" data-palette="catppuccin" data-mode="ink"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Coding agents are becoming runtimes — Herdr blog</title><meta name="description" content="Coding agent CLIs are becoming developer infrastructure. Project instructions, lifecycle state, hooks, and terminal runtimes need shared contracts."><meta name="theme-color" content="#17171a"><link rel="canonical" href="https://herdr.dev/blog/coding-agents-are-becoming-runtimes/"><meta property="og:type" content="article"><meta property="og:site_name" content="Herdr"><meta property="og:title" content="Coding agents are becoming runtimes — Herdr blog"><meta property="og:description" content="Coding agent CLIs are becoming developer infrastructure. Project instructions, lifecycle state, hooks, and terminal runtimes need shared contracts."><meta property="og:url" content="https://herdr.dev/blog/coding-agents-are-becoming-runtimes/"><meta property="og:image" content="https://herdr.dev/assets/og-card-v9.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Herdr — run them anywhere, leave them running."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Coding agents are becoming runtimes — Herdr blog"><meta name="twitter:description" content="Coding agent CLIs are becoming developer infrastructure. Project instructions, lifecycle state, hooks, and terminal runtimes need shared contracts."><meta name="twitter:image" content="https://herdr.dev/assets/og-card-v9.png"><meta name="twitter:image:alt" content="Herdr — run them anywhere, leave them running."><link rel="icon" href="../../favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="192x192" href="../../assets/favicon.png"><link rel="apple-touch-icon" href="../../assets/logo.png"><link rel="preload" href="../../assets/jbm__v-2.woff2" as="font" type="font/woff2" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"><script>
+      /* Ground selection, shared with the docs — see index.html for the
+         reasoning. Starlight's `starlight-theme` key is the source of truth;
+         `auto` is treated as dark so the default never follows the OS. */
+      window.herdrGround = {
+        read: function () {
+          try {
+            return localStorage.getItem('starlight-theme') === 'light' ? 'paper' : 'ink';
+          } catch (e) {
+            return 'ink';
+          }
+        },
+        apply: function (mode) {
+          var root = document.documentElement;
+          root.setAttribute('data-mode', mode);
+          root.setAttribute('data-palette', mode === 'paper' ? 'solarized-light' : 'catppuccin');
+          return mode;
+        },
+        save: function (mode) {
+          try {
+            localStorage.setItem('starlight-theme', mode === 'paper' ? 'light' : 'dark');
+          } catch (e) {}
+        },
+      };
+      window.herdrGround.apply(window.herdrGround.read());
+    </script><link rel="stylesheet" href="../../css/style__v-59.css"><link rel="stylesheet" href="../../css/site__v-64.css"><script type="module" src="../../_astro/page.B1D-nYk3.js"></script></head> <body class="site"> <div class="hd-frame"> <nav class="hd-nav"> <a class="lock" href="../../index.html"><span class="ram"></span><b>herdr</b></a> <div class="sp"></div> <a class="lnk" href="../../docs/index.html">Docs</a> <a class="lnk" href="../../plugins/index.html">Plugins</a> <a class="lnk" href="../index.html">Blog</a> <a class="lnk" href="../../compare/index.html">Compare</a> <a class="ico wide" href="https://github.com/herdrdev/herdr" aria-label="Herdr on GitHub — star count"> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 8 3.87c.68 0 1.36.09 2 .26 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg> <b data-stars>31,600</b> </a> <a class="ico" href="https://x.com/herdrdev" aria-label="Herdr on X"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"></path></svg> </a> <div class="mode"> <button type="button" data-ground="ink" aria-pressed="true">ink</button> <button type="button" data-ground="paper" aria-pressed="false">paper</button> </div> <a class="btn" href="../../docs/install/index.html">Install</a> <button type="button" class="menu" id="nav-menu" aria-expanded="false" aria-controls="nav-sheet" aria-label="Menu"> <span></span><span></span><span></span> </button> </nav> <div class="sheet" id="nav-sheet"> <a href="../../docs/index.html">Docs</a> <a href="../../plugins/index.html">Plugins</a> <a href="../index.html">Blog</a> <a href="../../compare/index.html">Compare</a> <a href="https://x.com/herdrdev">@herdrdev</a> <div class="sheet-ground"> <span>Ground</span> <div class="mode"> <button type="button" data-ground="ink" aria-pressed="true">ink</button> <button type="button" data-ground="paper" aria-pressed="false">paper</button> </div> </div> </div> <div class="article"> <article class="article-body"> <p class="article-meta"> <a href="../index.html">← Blog</a> <time datetime="2026-06-10T00:00:00.000Z"> June 10, 2026 </time> </p> <h1>Coding agents are becoming runtimes</h1> <p class="article-lede">Coding agent CLIs are becoming developer infrastructure. Project instructions, lifecycle state, hooks, and terminal runtimes need shared contracts.</p> <hr class="article-rule"> <div class="prose"> <p>Coding agents started as chat interfaces that could edit code. Now they live inside repositories, terminals, editors, CI jobs, remote machines, mobile shells, multiplexers, and custom wrappers. They read project instructions. They run commands. They ask for permission. They spawn subagents. They pause, resume, compact, fail, recover, and keep working while the developer does something else.</p>
+<p>That is runtime behavior.</p>
+<p>The model can be proprietary. The hosted API can be proprietary. The subscription can be priced however the lab needs to price it. That part belongs to the companies building the models.</p>
+<p>But the CLI that runs inside a developer’s terminal is part of the developer environment. It sits next to shells, language servers, package managers, test runners, terminals, editors, and multiplexers. Developers will compose it with the rest of their tools whether vendors plan for that or not.</p>
+<p>That is where the industry needs to be more careful.</p>
+<h2 id="we-have-seen-this-drift-before">We have seen this drift before</h2>
+<p>Software already has too many places where the same idea fractured into incompatible files and conventions.</p>
+<p>JavaScript has <code>package.json</code>, then layers of package-manager lockfiles and workspace formats. Rust has <code>Cargo.toml</code>, which is refreshingly predictable. Python has lived through <code>requirements.txt</code>, <code>setup.py</code>, <code>setup.cfg</code>, <code>Pipfile</code>, <code>poetry.lock</code>, <code>pyproject.toml</code>, and tool-specific sections inside the same TOML file. Editors have their own settings. CI systems have their own YAML. Formatters and linters each add another little contract.</p>
+<p>Some of that is natural. Tools have different jobs.</p>
+<p>But the cost is real. Every repository becomes a map of overlapping conventions. Every new tool needs to learn which file matters, which one wins, and which one is legacy but still active.</p>
+<p>Agent CLIs are young enough that we can avoid repeating the worst version of that.</p>
+<p>Project instructions are the clearest example. <a href="https://agents.md/">AGENTS.md</a> is trying to give coding agents one predictable place to read repository guidance. It describes itself as “a simple, open format for guiding coding agents” and says it is used by more than 60,000 open-source projects.</p>
+<p>The shape is simple:</p>
+<div class="expressive-code"><link rel="stylesheet" href="../../_astro/ec.v4551.css"><script type="module" src="../../_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">one repository</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">one shared instruction file</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">many coding agents</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="one repositoryone shared instruction filemany coding agents"><div></div></button></div></figure></div>
+<p>Claude Code still stays on <a href="https://docs.anthropic.com/en/docs/claude-code/memory#agents-md"><code>CLAUDE.md</code>, not <code>AGENTS.md</code></a>. The official workaround is to create a <code>CLAUDE.md</code> that imports <code>AGENTS.md</code>, or to symlink one file to the other.</p>
+<p>That workaround works, and it is how standards drift begins.</p>
+<p>First there is one extra file. Then every agent has a native file. Then every repository grows a compatibility layer. Then teams spend time keeping duplicated intent in sync.</p>
+<p>Nobody loses a production database because a repo has two instruction files. The cost is smaller and more constant: duplicated intent, stale guidance, and another convention every tool has to learn.</p>
+<h2 id="the-terminal-is-the-shared-surface">The terminal is the shared surface</h2>
+<p>There is another debate happening around access and third-party tools.</p>
+<p>Coding agents made per-token pricing feel very different. A chat session can be expensive. A coding agent can run tools, read files, loop, spawn work, and burn through a lot more context. So the labs started selling subscriptions with usage limits: some explicit, some soft, some hourly, some weekly, some hard to reason about from the outside.</p>
+<p>Then developers started doing what developers always do. They put the model behind the tool they preferred.</p>
+<p>That is where the Claude ecosystem became a useful case study. People used Claude subscriptions through third-party tools such as OpenClaw and OpenCode. Anthropic pushed back. Today Anthropic documents that <a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">Claude Code can use Pro and Max subscriptions</a>, while <a href="https://support.claude.com/en/articles/9876003-i-have-a-paid-claude-subscription-pro-max-team-or-enterprise-plans-why-do-i-have-to-pay-separately-to-use-the-claude-api-and-console">Claude paid plans and API access are separate products</a>. Anthropic also introduced a separate <a href="https://support.claude.com/en/articles/15036540-use-the-claude-agent-sdk-with-your-claude-plan">Agent SDK credit</a> for programmatic and third-party Agent SDK usage. Zed summarized the practical effect well: first-party Claude usage and third-party agent or SDK usage now draw from different pools.</p>
+<p>Anthropic can make that decision. They own the API. They own the subscription terms. Compute is expensive, and a first-party interactive CLI has different economics from arbitrary programmatic tools running through an SDK or protocol adapter.</p>
+<p>The developer-tooling question remains: what does a developer actually own—the subscription, the API spend, the model access, or the runtime where the agent works?</p>
+<p>When an agent runs in a terminal, it is no longer only a hosted product experience. It is a process in a developer environment. Developers will put that process in Herdr, Zed, tmux, SSH sessions, CI jobs, containers, and scripts. They will supervise it. They will route it. They will build workflows around it.</p>
+<p>The terminal is where ownership gets shared.</p>
+<p>That does not mean vendors lose the right to build first-party experiences. It means the CLI surface needs stable contracts because it has become infrastructure other tools depend on.</p>
+<h2 id="hooks-are-a-symptom">Hooks are a symptom</h2>
+<p>Hooks show the same tension.</p>
+<p>Most serious agent CLIs have hooks, plugins, or extensions now. That is good. The problem is that “hooks” can mean almost anything.</p>
+<p>Some hooks are policy gates. Some are notifications. Some modify tool calls. Some inject context. Some observe messages. Some run at session boundaries. Some run around tools but miss interruptions, permission resolutions, or the exact state an external supervisor needs.</p>
+<p>This matters because agent work is no longer a single request and response. A coding agent has a lifecycle.</p>
+<p>For external tools, the minimum lifecycle is small:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">working -> actively doing work</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">blocked -> needs permission, input, recovery, or attention</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">idle    -> ready for the next instruction</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="working -> actively doing workblocked -> needs permission, input, recovery, or attentionidle    -> ready for the next instruction"><div></div></button></div></figure></div>
+<p>The concrete shape could be small:</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="json"><code><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"session_id"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">abc123</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"state"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">blocked</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"reason"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">permission_request</span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#D6DEEB;--1:#403F53">,</span></div></div><div class="ec-line"><div class="code"><span class="indent">  </span><span style="--0:#7FDBCA;--1:#096E72">"source"</span><span style="--0:#D6DEEB;--1:#403F53">: </span><span style="--0:#D9F5DD;--1:#111111">"</span><span style="--0:#C789D6;--1:#7C5686">agent</span><span style="--0:#D9F5DD;--1:#111111">"</span></div></div><div class="ec-line"><div class="code"><span style="--0:#D6DEEB;--1:#403F53">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="{  &#x22;session_id&#x22;: &#x22;abc123&#x22;,  &#x22;state&#x22;: &#x22;blocked&#x22;,  &#x22;reason&#x22;: &#x22;permission_request&#x22;,  &#x22;source&#x22;: &#x22;agent&#x22;}"><div></div></button></div></figure></div>
+<p>Permission prompts, failed tools, interrupted generations, automated reviews, subagent handoffs, and waiting for the user all need to land somewhere coherent.</p>
+<p>Claude Code has a serious hook system, and Codex has its own shape too. Both are substantial, but each agent still defines its own boundary. A hook surface can be powerful and still fail to provide a portable lifecycle contract.</p>
+<p>OpenCode is closer to the shape orchestration tools need. Its <a href="https://opencode.ai/docs/plugins/">plugin documentation</a> exposes session-level events such as <code>session.idle</code>, <code>session.status</code>, <code>session.error</code>, <code>permission.asked</code>, and <code>permission.replied</code>.</p>
+<p>pi, meanwhile, treats extensibility as a broader system. Its <a href="https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/extensions.md">extension documentation</a> describes TypeScript extensions that can subscribe to lifecycle events, register tools, add commands, intercept behavior, render UI, persist state, and hot-reload from local extension directories.</p>
+<p>Those designs are worth praising because they treat the agent as something other tools can understand.</p>
+<h2 id="what-herdr-sees-from-below">What Herdr sees from below</h2>
+<p>Herdr sits below the agent.</p>
+<p>It owns terminal panes. It keeps processes alive. It lets developers switch between agents, inspect them, recover sessions, and operate multiple agent processes as one workspace.</p>
+<p>From that layer, runtime drift becomes very visible.</p>
+<p>Herdr’s first useful agent detection path was screen reading. If an agent drew “working”, “waiting for approval”, or “done” in the terminal, Herdr could read the terminal state and classify the pane.</p>
+<p>That matched what humans saw, which made it useful. It also broke when agent UIs changed. If the fix lived inside the Herdr binary, users needed a full Herdr update just to recognize a new prompt or status line.</p>
+<p>Another tempting signal was terminal activity.</p>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="text"><code><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">screen changing  -> probably working</span></div></div><div class="ec-line"><div class="code"><span style="--0:#d6deeb;--1:#403f53">screen still     -> maybe idle or blocked</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="screen changing  -> probably workingscreen still     -> maybe idle or blocked"><div></div></button></div></figure></div>
+<p>Real agents break that quickly. A spinner can redraw while the meaningful state is blocked. A permission prompt can sit still while it is the most important thing in the pane. A subagent can produce activity while the parent session is waiting.</p>
+<p>Terminal activity is evidence. Lifecycle is stronger.</p>
+<p>Herdr now uses better signals where agents expose them, keeps screen evidence as a fallback, and ships hot-reloadable detection manifests so compatibility fixes do not always require a new Herdr binary. That is the practical bridge for today’s ecosystem. The durable contract should come from agents themselves.</p>
+<h2 id="runtime-support-should-be-visible">Runtime support should be visible</h2>
+<p>Herdr can support agents in two broad ways.</p>
+<p>Some agents expose reliable lifecycle signals. Those can have verified lifecycle support.</p>
+<p>Other agents require observed detection through terminal output, screen evidence, manifests, and heuristics. That can work well, but it depends on UI behavior staying recognizable.</p>
+<p>Herdr will publish this as a per-agent support matrix: which agents expose verified lifecycle signals, and which agents require observed detection.</p>
+<p>This distinction should be public because it helps everyone.</p>
+<p>Users get honest expectations. Agent authors get a target. Tool builders get a vocabulary. The ecosystem rewards agents that expose their runtime state cleanly.</p>
+<p>Agents can keep their own plugin systems while standardizing the parts that should never have been product differentiation.</p>
+<h2 id="standardize-the-boring-parts">Standardize the boring parts</h2>
+<p>Use one predictable project instruction format. Expose a small lifecycle contract. Make permission state observable. Make interruption state observable. Tie state to the session that is actually running. Document what external tools can rely on.</p>
+<p>Keep competing on models, UX, planning, context management, speed, pricing, safety, and taste.</p>
+<p>Do not compete on whether a repository needs five instruction files.</p>
+<p>Do not compete on whether an external tool can tell if an agent is blocked.</p>
+<p>Do not make every terminal runtime reverse-engineer every other terminal runtime.</p>
+<p>Coding agents are becoming infrastructure. The companies building them still own their products, but developers own their environments.</p>
+<p>Herdr is built from that position. The terminal is where these agents actually run. The runtime surface belongs to the developer workflow, and vendors share that space whether they design for it or not.</p>
+<p>Agents should make their basic contracts visible, durable, and boring.</p>
+<p>Then the rest of us can build.</p> </div> <aside class="author-card" aria-label="About the author"> <img class="author-photo" src="../../assets/author-can.jpeg" width="72" height="72" alt="Can Celik" loading="lazy" decoding="async"> <div class="author-body"> <p class="author-name">Can Celik</p> <p class="author-role">Building Herdr</p> <div class="author-links"> <a href="https://x.com/cancelik" target="_blank" rel="me noopener" aria-label="Can Celik on X"> <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path> </svg> <span>X</span> </a> <a href="../../cdn-cgi/l/email-protection/index.html" aria-label="Email Can Celik"> <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"> <rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect> <path d="m3 6 9 7 9-7"></path> </svg> <span>Email</span> </a> </div> </div> </aside> </article> <aside class="toc" aria-label="Article sections"> <p>Sections</p> <nav> <a href="#we-have-seen-this-drift-before" data-heading-link="we-have-seen-this-drift-before">We have seen this drift before</a><a href="#the-terminal-is-the-shared-surface" data-heading-link="the-terminal-is-the-shared-surface">The terminal is the shared surface</a><a href="#hooks-are-a-symptom" data-heading-link="hooks-are-a-symptom">Hooks are a symptom</a><a href="#what-herdr-sees-from-below" data-heading-link="what-herdr-sees-from-below">What Herdr sees from below</a><a href="#runtime-support-should-be-visible" data-heading-link="runtime-support-should-be-visible">Runtime support should be visible</a><a href="#standardize-the-boring-parts" data-heading-link="standardize-the-boring-parts">Standardize the boring parts</a> </nav> </aside> </div> <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module">const n=Array.from(document.querySelectorAll(".prose h2[id]")),i=new Map(Array.from(document.querySelectorAll("[data-heading-link]")).map(e=>[e.getAttribute("data-heading-link"),e]));function s(e){for(const t of i.values())t.removeAttribute("aria-current");i.get(e)?.setAttribute("aria-current","true")}if(n.length>0&&i.size>0){s(n[0].id);const e=new IntersectionObserver(t=>{const o=t.filter(r=>r.isIntersecting).sort((r,a)=>r.boundingClientRect.top-a.boundingClientRect.top)[0];o?.target instanceof HTMLElement&&s(o.target.id)},{rootMargin:"-18% 0px -68% 0px",threshold:0});for(const t of n)e.observe(t)}</script>  <footer class="foot"> <span class="ram"></span> <a href="../../docs/index.html">docs</a> <a href="../../plugins/index.html">plugins</a> <a href="../index.html">blog</a> <a href="../../compare/index.html">compare</a> <span>built in the terminal · © 2026 Herdr, Inc.</span> <span class="fact">v0.8.2 · Apache 2.0</span> <span class="out"> <a class="ico" href="https://github.com/herdrdev/herdr" aria-label="Herdr on GitHub"> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.64 7.64 0 0 1 8 3.87c.68 0 1.36.09 2 .26 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"></path></svg> </a> <a class="ico" href="https://x.com/herdrdev" aria-label="Herdr on X"> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"></path></svg> </a> <a href="../../cdn-cgi/l/email-protection/index.html"><span class="__cf_email__" data-cfemail="b2dad7cbf2dad7c0d6c09cd6d7c4">[email&#160;protected]</span></a> </span> </footer> </div> <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+      (function () {
+        var buttons = document.querySelectorAll('[data-ground]');
+        function paint(mode) {
+          window.herdrGround.apply(mode);
+          buttons.forEach(function (b) {
+            b.setAttribute('aria-pressed', String(b.dataset.ground === mode));
+          });
+        }
+        buttons.forEach(function (b) {
+          b.addEventListener('click', function () {
+            window.herdrGround.save(b.dataset.ground);
+            paint(b.dataset.ground);
+          });
+        });
+        paint(window.herdrGround.read());
+      })();
+
+      /* nav sheet — the links, the account and the ground toggle that don't
+         fit the bar on a phone */
+      (function () {
+        var btn = document.getElementById('nav-menu');
+        var sheet = document.getElementById('nav-sheet');
+        if (!btn || !sheet) return;
+        function set(open) {
+          sheet.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', String(open));
+        }
+        btn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          set(!sheet.classList.contains('open'));
+        });
+        /* the ground buttons live in the sheet, so a tap inside must not close
+           it — only taps on the page behind do */
+        document.addEventListener('click', function (event) {
+          if (!sheet.contains(event.target)) set(false);
+        });
+        document.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') set(false);
+        });
+      })();
+
+      /* The nav count is baked at build, which can be a deploy behind. Refresh
+         it from the same snapshot so the number is current on every page. No
+         count-up here — this is chrome, not the argument the homepage makes. */
+      fetch('https://assets.herdr.dev/stats/stats.json', { headers: { accept: 'application/json' } })
+        .then(function (r) {
+          return r.ok ? r.json() : null;
+        })
+        .then(function (d) {
+          if (!d || !d.stars || typeof d.stars.total !== 'number') return;
+          var text = d.stars.total.toLocaleString('en-US');
+          document.querySelectorAll('[data-stars]').forEach(function (el) {
+            el.textContent = text;
+          });
+        })
+        .catch(function () {});
+    </script> </body> </html>
