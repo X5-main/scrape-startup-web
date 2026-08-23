@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introducing River AI — River</title>
+  <meta name="description" content="A personal note from Igor Babuschkin, co-founder &amp; CEO of River AI, on why we are building personal AI." />
+  <link rel="canonical" href="https://river.ai/introducing-river-ai" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="River AI" />
+  <meta property="og:title" content="Introducing River AI" />
+  <meta property="og:description" content="A personal note from Igor Babuschkin, co-founder &amp; CEO of River AI, on why we are building personal AI." />
+  <meta property="og:url" content="https://river.ai/introducing-river-ai" />
+  <meta property="og:image" content="https://river.ai/assets/igor-portrait.jpg" />
+  <meta property="article:published_time" content="2026-06-10" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="../assets/fonts/inter-tight-var-normal-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="../assets/fonts/fonts__v-1.css" />
+  <link rel="icon" href="../favicon.ico" sizes="48x48" />
+  <link rel="icon" type="image/png" href="../assets/favicon-192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../styles__v-45.css" />
+  <style>
+    /* Post layout: centered prose column. The .page container is 1440px wide;
+       the column inside is constrained to --body (800px) and centered. */
+    .post-wrap {
+      max-width: var(--body);
+      margin: 0 auto;
+    }
+    /* Title overrides for the post: smaller, slightly heavier, looser tracking —
+       the default .page-title (80px / weight 300 / -0.035em) is too thin and
+       tight to read comfortably for a long headline on the cream background. */
+    .post-wrap .page-title {
+      max-width: none;
+      font-size: clamp(36px, 4.4vw, 56px);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: clamp(32px, 4vw, 48px);
+    }
+    /* Override .mission-copy sizing/color for long-form reading. The site's
+       --ink-2 (#1F3F8E) is too saturated for sustained reading; the homepage
+       uses it in short paragraphs, but a full post wants something quieter. */
+    .post-body p.mission-copy {
+      font-size: clamp(17px, 1.25vw, 19px);
+      line-height: 1.7;
+      color: #1a2340;
+      margin-top: clamp(20px, 2.2vw, 28px);
+    }
+    .post-body > p:first-of-type { margin-top: 0; }
+    .post-body a { border-bottom: 1px solid currentColor; }
+
+    /* Portrait floated to the right of the opening paragraphs. Width is fixed
+       (no aspect-ratio / object-fit — those caused the image to crop to a
+       center slice if container dimensions ever drifted off true 2:3). Natural
+       height follows from the 2:3 source. */
+    .post-portrait {
+      float: right;
+      width: clamp(260px, 38%, 340px);
+      height: auto;
+      margin: 6px 0 16px 28px;
+      border-radius: 4px;
+      display: block;
+    }
+    @media (max-width: 640px) {
+      .post-portrait {
+        float: none;
+        width: 60%;
+        max-width: 260px;
+        margin: 0 auto clamp(24px, 4vw, 32px);
+      }
+    }
+    .post-sig {
+      margin-top: clamp(40px, 5vw, 64px);
+      font-family: var(--type-mono);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      color: var(--ink-3);
+    }
+  </style>
+  <!-- Product analytics (Mixpanel). Deferred and self-contained: it never
+       blocks parse or paint. data-page names this page in every event. -->
+  <script src="../analytics__v-2.js" data-page="introducing-river-ai" defer></script>
+</head>
+<body>
+  <nav class="nav scrolled">
+    <a href="../index.html" class="wordmark" aria-label="River.ai home">
+      <svg class="logo" viewBox="51 75 709 176" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M290 96.9999C290 137.317 257.344 170.066 216.875 170.066H160L166.216 145.171C168.44 136.265 176.441 130.016 185.62 130.016H216.875C235.169 130.015 250 115.222 250 96.9741V93.005C250 91.3462 251.346 90.0022 253.005 90.005L287.005 90.0613C288.66 90.064 290 91.4064 290 93.0613V96.9999Z" fill="currentColor"/><path d="M51.0004 163.066C51.0004 122.75 83.6561 90.0004 124.125 90.0002H176.159C178.11 90.0002 179.542 91.8337 179.069 93.7269L171.514 123.989C170.624 127.551 167.424 130.051 163.752 130.051H124.125C105.831 130.051 91.0004 144.844 91.0004 163.092V167.033C91.0004 168.69 89.6572 170.033 88.0004 170.033H54.0004C52.3435 170.033 51.0004 168.69 51.0004 167.033V163.066Z" fill="currentColor"/><path d="M51.0002 243.334C51.0002 203.017 83.6559 170.268 124.125 170.268L160 170L151.496 204.017C150.614 207.543 147.467 210.031 143.833 210.076L124.125 210.318C105.831 210.319 91.0002 225.112 91.0002 243.36V247.329C91.0002 248.988 89.654 250.332 87.9952 250.329L53.9952 250.273C52.3403 250.27 51.0002 248.928 51.0002 247.273V243.334Z" fill="currentColor"/><path d="M290 177C290 217.317 257.344 250.066 216.875 250.066H140L145.27 228.96C148.05 217.827 158.051 210.016 169.525 210.016H216.875C235.169 210.015 250 195.222 250 176.974V173.005C250 171.346 251.346 170.002 253.005 170.005L287.005 170.061C288.66 170.064 290 171.406 290 173.061V177Z" fill="currentColor"/><path d="M360.143 240V177.852C360.143 139.753 379.907 120.465 410.148 120.465H412.529V143.087H410.148C393.004 143.087 383.479 154.278 383.479 177.852V240H360.143ZM424.5 90.2246C424.5 81.8905 430.929 75.9376 438.787 75.9376C446.645 75.9376 452.836 82.3668 452.836 90.2246C452.836 98.0825 446.645 104.512 438.787 104.512C430.929 104.512 424.5 98.0825 424.5 90.2246ZM427.119 240V120.942H450.455V240H427.119ZM505.391 240L457.529 120.942H482.056L517.059 209.759L552.3 120.942H576.826L528.726 240H505.391ZM635.06 119.037C666.016 119.037 695.542 142.372 696.494 178.328C696.494 182.376 696.256 185.948 695.78 189.043H599.581C601.486 206.902 616.011 219.284 635.06 219.284C646.728 219.284 656.253 215.236 663.634 207.378L691.494 207.616C681.017 228.332 659.586 241.905 635.775 241.905C602.2 242.619 573.864 213.807 574.579 180.709C573.864 147.611 601.962 118.322 635.060 119.037ZM599.581 169.994H671.492C666.968 153.564 652.681 141.658 635.775 141.658C617.678 141.658 604.105 153.087 599.581 169.994ZM707.096 240V177.852C707.096 139.753 726.86 120.465 757.101 120.465H759.482V143.087H757.101C739.956 143.087 730.432 154.278 730.432 177.852V240H707.096Z" fill="currentColor"/></svg>
+    </a>
+    <div class="nav-links">
+      <a href="../api/index.html">API</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../careers/index.html">Careers</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="post-wrap">
+      <div class="page-eyebrow">Blog · June 10, 2026</div>
+      <h1 class="page-title">Introducing River AI</h1>
+
+      <div class="post-body">
+      <img class="post-portrait" src="../assets/igor-portrait.jpg" alt="Portrait of Igor Babuschkin" width="900" height="1350" />
+      <p class="mission-copy">
+        I've spent the past decade building AI at DeepMind, OpenAI, and xAI, scaling up deep learning and RL. The takeoff of AI progress happened faster than I expected. Years ago, I started the Alphacode project as my brainchild. Then over the span of a few years, coding models became superhuman! Soon AI will be capable of most of the economically valuable work that people do.
+      </p>
+
+      <p class="mission-copy">
+        There's a question that's been keeping me up at night: if machines can do the work, what is left for people? We started River AI to answer this question.
+      </p>
+
+      <p class="mission-copy">
+        We don't think replacement is inevitable. Today's agents already work alongside people. But they don't learn from you, and you don't really control them. However, a new type of AI that learns from you, and that you actually control, can lead somewhere very different. Imagine kicking off an agent on a long task and not having to babysit it: it understands your style, your preferences, and your goals, and does the work as if you had been supervising the whole time. That is the kind of AI we are building at River.
+      </p>
+
+      <p class="mission-copy">
+        To get there, we believe the stack has to be rebuilt end to end: training, models, the product layer, and new hardware that lets personal AI live close to you. Today's stack was designed for a world where a few companies own the intelligence and rent it out by the token. Personal AI does not fit that shape. It is yours, not rented, and you have real control over it.
+      </p>
+
+      <p class="mission-copy">
+        The <a href="../api/index.html">River API</a> is the first piece we are sharing. It sits at the training layer and lets anyone build and adapt their own models. If you have ever wanted to take a strong base model and shape it around the work you actually do, this is for you. The next layer we are building, on top of the API, is personalization and continual learning for agents. That is what turns a strong base model into one that actually knows you.
+      </p>
+
+      <p class="mission-copy">
+        An AI that knows you deeply, understands your goals, and can be trusted to act in your interest is, by definition, highly aligned. We don't think of alignment and safety as separate problems to solve. They are the natural result of building AI around the person it serves.
+      </p>
+
+      <p class="mission-copy">
+        Capable agents will be a normal part of everyday life. Less like the assistants you call on today when you need a task done, more like guardian angels: quietly present, on your side, helping with what actually matters to you. They will know you well, and they will be yours, not someone else's.
+      </p>
+
+      <p class="mission-copy">
+        This kind of company only works with the right team. We are looking for people who can do work at the top of the field, who care about how it lands in the world, and who have the taste to ship products that feel finished. We keep talent density high and the team small on purpose. If that sounds like you, <a href="../careers/index.html">come build with us</a>.
+      </p>
+
+      <p class="post-sig">— Igor Babuschkin, Co-Founder &amp; CEO</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" class="wordmark" aria-label="River.ai home">
+          <svg class="logo" viewBox="51 75 709 176" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M290 96.9999C290 137.317 257.344 170.066 216.875 170.066H160L166.216 145.171C168.44 136.265 176.441 130.016 185.62 130.016H216.875C235.169 130.015 250 115.222 250 96.9741V93.005C250 91.3462 251.346 90.0022 253.005 90.005L287.005 90.0613C288.66 90.064 290 91.4064 290 93.0613V96.9999Z" fill="currentColor"/><path d="M51.0004 163.066C51.0004 122.75 83.6561 90.0004 124.125 90.0002H176.159C178.11 90.0002 179.542 91.8337 179.069 93.7269L171.514 123.989C170.624 127.551 167.424 130.051 163.752 130.051H124.125C105.831 130.051 91.0004 144.844 91.0004 163.092V167.033C91.0004 168.69 89.6572 170.033 88.0004 170.033H54.0004C52.3435 170.033 51.0004 168.69 51.0004 167.033V163.066Z" fill="currentColor"/><path d="M51.0002 243.334C51.0002 203.017 83.6559 170.268 124.125 170.268L160 170L151.496 204.017C150.614 207.543 147.467 210.031 143.833 210.076L124.125 210.318C105.831 210.319 91.0002 225.112 91.0002 243.36V247.329C91.0002 248.988 89.654 250.332 87.9952 250.329L53.9952 250.273C52.3403 250.27 51.0002 248.928 51.0002 247.273V243.334Z" fill="currentColor"/><path d="M290 177C290 217.317 257.344 250.066 216.875 250.066H140L145.27 228.96C148.05 217.827 158.051 210.016 169.525 210.016H216.875C235.169 210.015 250 195.222 250 176.974V173.005C250 171.346 251.346 170.002 253.005 170.005L287.005 170.061C288.66 170.064 290 171.406 290 173.061V177Z" fill="currentColor"/><path d="M360.143 240V177.852C360.143 139.753 379.907 120.465 410.148 120.465H412.529V143.087H410.148C393.004 143.087 383.479 154.278 383.479 177.852V240H360.143ZM424.5 90.2246C424.5 81.8905 430.929 75.9376 438.787 75.9376C446.645 75.9376 452.836 82.3668 452.836 90.2246C452.836 98.0825 446.645 104.512 438.787 104.512C430.929 104.512 424.5 98.0825 424.5 90.2246ZM427.119 240V120.942H450.455V240H427.119ZM505.391 240L457.529 120.942H482.056L517.059 209.759L552.3 120.942H576.826L528.726 240H505.391ZM635.06 119.037C666.016 119.037 695.542 142.372 696.494 178.328C696.494 182.376 696.256 185.948 695.78 189.043H599.581C601.486 206.902 616.011 219.284 635.06 219.284C646.728 219.284 656.253 215.236 663.634 207.378L691.494 207.616C681.017 228.332 659.586 241.905 635.775 241.905C602.2 242.619 573.864 213.807 574.579 180.709C573.864 147.611 601.962 118.322 635.060 119.037ZM599.581 169.994H671.492C666.968 153.564 652.681 141.658 635.775 141.658C617.678 141.658 604.105 153.087 599.581 169.994ZM707.096 240V177.852C707.096 139.753 726.86 120.465 757.101 120.465H759.482V143.087H757.101C739.956 143.087 730.432 154.278 730.432 177.852V240H707.096Z" fill="currentColor"/></svg>
+        </a>
+        <div class="tag">Intelligence that flows with you</div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="../api/index.html">API</a></li>
+          <li><a href="https://docs.river.ai">Documentation</a></li>
+          <li><a href="../changelog/index.html">Changelog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="../careers/index.html">Careers</a></li>
+          <li><a href="../support/index.html">Support</a></li>
+          <li><a href="../security/index.html">Security</a></li>
+          <li><a href="../cdn-cgi/l/email-protection/index.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="https://x.com/river_ai_inc" target="_blank" rel="noopener">X</a></li>
+          <li><a href="https://www.linkedin.com/company/river-ai-official/" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-meta">
+      <span>© 2026 River AI Inc.</span>
+      <div class="right">
+        <span aria-hidden="true">≈</span>
+      </div>
+    </div>
+  </footer>
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

@@ -30,6 +30,7 @@ if len(sys.argv) > 2:
     DOCROOT = sys.argv[2]
 
 DPL_SUFFIX = "__dpl-dpl-"
+V_SUFFIX = "__v-"
 # Serve-time reverse transform: the mirror rewrote every href/src/poster to a
 # RELATIVE ref and baked Turbopack `?dpl=` filenames into /assets|/badges names
 # (`NAME__dpl-dpl-<X>.ext`). React hydrates the DOM against the RSC flight
@@ -37,6 +38,8 @@ DPL_SUFFIX = "__dpl-dpl-"
 # `/_next/static/media/...woff2`, full-origin video URLs) — so the served bytes
 # must present live form or hydration fails (#418). This map reconstructs live
 # form per ref; disk lookup for the served file is unchanged (_dpl_alternatives).
+# Plain query-versioned refs (`styles.css?v=49`) are stored as `styles__v-49.css`
+# and restored the same way, with the on-disk twin resolved by _v_alternatives.
 ORIGIN = ""
 _origin_file = os.path.join(DOCROOT, ".origin")
 if os.path.isfile(_origin_file):
@@ -59,6 +62,10 @@ def _restore_ref(url):
     if m:
         # group('dir') already carries the leading '/' (dir + stem = absu path).
         return "%s%s?dpl=dpl_%s" % (m.group("dir") or "/", m.group("stem") + m.group("ext"), m.group("tok"))
+    m = re.match(r"^(?P<dir>.*/)?(?P<stem>.+?)" + re.escape(V_SUFFIX) + r"(?P<ver>\d+)(?P<ext>\.\w+)$", absu)
+    if m:
+        # query-folded refs (`styles.css?v=49` stored as `styles__v-49.css`)
+        return "%s%s?v=%s" % (m.group("dir") or "/", m.group("stem") + m.group("ext"), m.group("ver"))
     # The onecli replica keeps live-origin mp4 refs (React flight payload parity);
     # every other site serves its mirrored mp4 from the replica itself.
     if base.endswith(".mp4") and "onecli.sh" in ORIGIN:
@@ -122,6 +129,15 @@ def _dpl_alternatives(relpath):
     return hits[0] if hits else None
 
 
+def _v_alternatives(relpath, ver):
+    """Map a query-versioned ref (`styles.css?v=49`) to the folded file the
+    mirror stored on disk (`styles__v-49.css`)."""
+    d, base = os.path.split(relpath)
+    stem, ext = os.path.splitext(base)
+    cand = os.path.join(d, "%s%s%s%s" % (stem, V_SUFFIX, ver, ext))
+    return cand if os.path.isfile(cand) else None
+
+
 class ReplicaHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         # keep SimpleHTTPRequestHandler's traversal-safe resolution against DOCROOT
@@ -129,6 +145,12 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         parsed = urllib.parse.urlsplit(self.path)
+        q = urllib.parse.parse_qs(parsed.query)
+        ver = q.get("v", [""])[0]
+        if ver and ver.isdigit():
+            vmap = _v_alternatives(parsed.path.lstrip("/"), ver)
+            if vmap:
+                self.path = "/" + vmap
         if parsed.path.startswith("/_next/image"):
             # serve the underlying image file for next/image optimizer requests
             q = urllib.parse.parse_qs(parsed.query)
