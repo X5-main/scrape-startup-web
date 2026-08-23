@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:#faf8f2;color:#333;padding:18px 20px;-webkit-font-smoothing:antialiased;overflow:hidden}
+.caption{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#9ca3af;margin-bottom:12px}
+.box{border:1.5px solid #e5e7eb;border-radius:8px;padding:11px 13px;background:#f5f3ed}
+.t{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#111;margin-bottom:5px}
+.d{font-size:10px;color:#71717A;line-height:1.5}
+.warm{border-color:rgba(234,88,12,.45);background:rgba(234,88,12,.05)} .warm .t{color:#EA580C}
+.blue{border-color:rgba(59,130,246,.38);background:rgba(59,130,246,.045)} .blue .t{color:#2563eb}
+</style>
+<style>
+.cols{display:grid;grid-template-columns:1fr 1px 1fr;gap:0;height:calc(100% - 30px)}
+.col{padding:0 16px;display:flex;flex-direction:column}
+.col:first-child{padding-left:2px}
+.col:last-child{padding-right:2px}
+.rule{background:#e5e7eb;width:1px}
+.colhead{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#111;margin-bottom:10px}
+.box.sm{padding:8px 11px}
+.box.sm .d{font-size:9px}
+.ar{color:#9ca3af;font-weight:800;font-size:14px;text-align:center;line-height:1.1;margin:5px 0}
+.ar.blue{color:#2563eb}
+.cap{font-size:9px;color:#71717A;margin-top:10px;line-height:1.45}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.feed{margin-top:auto}
+.lbl{font-size:8px;font-weight:700;color:#9ca3af;letter-spacing:.5px}
+.fetched{color:#2563eb}
+</style>
+</head>
+<body>
+<div class="caption">Direct vs. Indirect Injection</div>
+<div class="cols">
+  <div class="col">
+    <div class="colhead">Direct Injection</div>
+    <div class="box warm sm">
+      <div class="t">Attacker = User</div>
+      <div class="d">types instructions to override yours</div>
+    </div>
+    <div class="ar">&#8595;</div>
+    <div class="box sm">
+      <div class="t">Agent</div>
+    </div>
+    <div class="cap">The user is the attacker.</div>
+  </div>
+
+  <div class="rule"></div>
+
+  <div class="col">
+    <div class="colhead">Indirect Injection</div>
+    <div class="split">
+      <div>
+        <div class="box warm sm">
+          <div class="t">Attacker</div>
+        </div>
+        <div class="ar">&#8595;</div>
+        <div class="box blue sm">
+          <div class="t">Web&nbsp;&middot;&nbsp;Email&nbsp;&middot;&nbsp;PR</div>
+          <div class="d">payload hidden in content</div>
+        </div>
+      </div>
+      <div>
+        <div class="box sm">
+          <div class="t">User</div>
+          <div class="d">asks a normal question</div>
+        </div>
+      </div>
+    </div>
+    <div class="feed">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:end;margin-bottom:4px">
+        <div class="ar blue" style="margin:0"><span class="lbl fetched">fetched</span><br>&#8595;</div>
+        <div class="ar" style="margin:0"><span class="lbl">request</span><br>&#8595;</div>
+      </div>
+      <div class="box sm" style="text-align:center">
+        <div class="t" style="margin:0">Agent</div>
+      </div>
+      <div class="cap">The attacker borrows the agent's privileges; the victim does nothing wrong.</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'JetBrains Mono',monospace;
+  background:#faf8f2;
+  color:#333;
+  padding:1rem 1rem .8rem;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+.cap{font-size:.7rem;color:#9ca3af;margin-top:8px;line-height:1.5}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div style="position:relative;width:100%;height:320px;overflow:visible">
+  <canvas id="c"></canvas>
+</div>
+
+<div class="cap">Mean adversarial cost to exploit (ACE) in USD for each defender model (the agent being exploited). A single autonomous attacker targets each model in turn. Whiskers show min-max range across 40-50 trials per model. Higher cost = more resistant. Log scale.</div>
+
+<script src="./vendor/chart.umd.js"></script>
+<script>
+const models = [
+  'Gemini 3.1 Flash-Lite',
+  'DeepSeek v3.2',
+  'Mistral Small 4',
+  'Grok 4.1 Fast',
+  'GPT-5.4 Nano',
+  'Haiku 4.5'
+];
+
+const meanACE = [0.23, 0.46, 0.66, 0.95, 1.15, 10.21];
+const minACE =  [0.03, 0.06, 0.06, 0.68, 0.88, 5.95];
+const maxACE =  [0.42, 0.83, 1.22, 1.20, 1.51, 14.16];
+
+const barColors = models.map((_, i) =>
+  i === 5 ? '#EA580C' : 'rgba(234,88,12,0.35)'
+);
+
+const tc = '#71717A';
+const ff = {family: 'JetBrains Mono, monospace'};
+
+// Custom plugin for error bars
+const errorBarPlugin = {
+  id: 'errorBars',
+  afterDatasetsDraw(chart) {
+    const {ctx, scales: {x, y}} = chart;
+    const meta = chart.getDatasetMeta(0);
+    meta.data.forEach((bar, i) => {
+      const yCenter = bar.y;
+      const barH = bar.height * 0.25;
+      const xMin = x.getPixelForValue(minACE[i]);
+      const xMax = x.getPixelForValue(maxACE[i]);
+
+      ctx.save();
+      ctx.strokeStyle = '#71717A';
+      ctx.lineWidth = 1.5;
+
+      // Horizontal line
+      ctx.beginPath();
+      ctx.moveTo(xMin, yCenter);
+      ctx.lineTo(xMax, yCenter);
+      ctx.stroke();
+
+      // Left cap
+      ctx.beginPath();
+      ctx.moveTo(xMin, yCenter - barH);
+      ctx.lineTo(xMin, yCenter + barH);
+      ctx.stroke();
+
+      // Right cap
+      ctx.beginPath();
+      ctx.moveTo(xMax, yCenter - barH);
+      ctx.lineTo(xMax, yCenter + barH);
+      ctx.stroke();
+
+      ctx.restore();
+    });
+  }
+};
+
+new Chart(document.getElementById('c'), {
+  type: 'bar',
+  data: {
+    labels: models,
+    datasets: [{
+      data: meanACE,
+      backgroundColor: barColors,
+      borderRadius: 3,
+      barPercentage: 0.6,
+      categoryPercentage: 0.8
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {padding: {right: 40}},
+    scales: {
+      x: {
+        type: 'logarithmic',
+        min: 0.02,
+        max: 20,
+        ticks: {
+          color: tc,
+          font: {...ff, size: 10},
+          callback: v => {
+            if ([0.02,0.05,0.1,0.2,0.5,1,2,5,10,20].includes(v)) return '$'+v;
+            return '';
+          }
+        },
+        grid: {color: 'rgba(0,0,0,.05)'},
+        border: {color: '#E4E4E7'},
+        title: {
+          display: true,
+          text: 'Mean ACE (USD, log scale)',
+          color: '#9ca3af',
+          font: {...ff, size: 10}
+        }
+      },
+      y: {
+        ticks: {
+          color: tc,
+          font: {...ff, size: 11, weight: '600'},
+          crossAlign: 'far'
+        },
+        grid: {display: false},
+        border: {display: false}
+      }
+    },
+    plugins: {
+      legend: {display: false},
+      tooltip: {
+        backgroundColor: '#0A0A0A',
+        borderColor: '#27272A',
+        borderWidth: 1,
+        titleFont: {...ff, size: 12, weight: '700'},
+        titleColor: '#EA580C',
+        bodyFont: {...ff, size: 11},
+        bodyColor: '#A1A1AA',
+        padding: 12,
+        cornerRadius: 6,
+        callbacks: {
+          title: items => items[0].label,
+          label: item => {
+            const i = item.dataIndex;
+            return [
+              'Mean: $' + meanACE[i].toFixed(2),
+              'Min:  $' + minACE[i].toFixed(2),
+              'Max:  $' + maxACE[i].toFixed(2)
+            ];
+          }
+        }
+      }
+    }
+  },
+  plugins: [errorBarPlugin]
+});
+</script>
+</body>
+</html>

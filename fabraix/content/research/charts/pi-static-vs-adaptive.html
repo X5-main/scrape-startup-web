@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:#faf8f2;color:#333;padding:18px 20px;-webkit-font-smoothing:antialiased;overflow:hidden}
+.caption{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#9ca3af;margin-bottom:12px}
+.note{margin-top:14px;font-size:9.5px;color:#71717A;line-height:1.6}
+svg{display:block}
+</style>
+</head>
+<body>
+<div class="caption">Static vs. Adaptive Attack Success</div>
+
+<svg viewBox="0 0 520 250" width="100%" height="250" font-family="'JetBrains Mono',monospace">
+  <text x="50" y="11" font-size="8" font-weight="700" letter-spacing="1" fill="#9ca3af" text-anchor="start">ATTACK SUCCESS &#8595;</text>
+
+  <line x1="50" y1="20"  x2="500" y2="20"  stroke="#e5e7eb" stroke-width="1"/>
+  <text x="44" y="23" font-size="8" fill="#9ca3af" text-anchor="end">100%</text>
+  <line x1="50" y1="70"  x2="500" y2="70"  stroke="#f1f1f3" stroke-width="1"/>
+  <text x="44" y="73" font-size="8" fill="#9ca3af" text-anchor="end">75%</text>
+  <line x1="50" y1="120" x2="500" y2="120" stroke="#f1f1f3" stroke-width="1"/>
+  <text x="44" y="123" font-size="8" fill="#9ca3af" text-anchor="end">50%</text>
+  <line x1="50" y1="170" x2="500" y2="170" stroke="#f1f1f3" stroke-width="1"/>
+  <text x="44" y="173" font-size="8" fill="#9ca3af" text-anchor="end">25%</text>
+  <line x1="50" y1="220" x2="500" y2="220" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="44" y="223" font-size="8" fill="#9ca3af" text-anchor="end">0%</text>
+
+  <rect x="150" y="210" width="90" height="10" rx="2" fill="rgba(34,197,94,.18)" stroke="#16a34a" stroke-width="1.5"/>
+  <text x="195" y="203" font-size="13" font-weight="800" fill="#16a34a" text-anchor="middle">&lt; 5%</text>
+  <text x="195" y="236" font-size="8.5" font-weight="700" fill="#71717A" text-anchor="middle">STATIC BENCHMARK</text>
+
+  <rect x="330" y="40" width="90" height="180" rx="2" fill="rgba(239,68,68,.14)" stroke="#dc2626" stroke-width="1.5"/>
+  <text x="375" y="33" font-size="13" font-weight="800" fill="#dc2626" text-anchor="middle">&gt; 90%</text>
+  <text x="375" y="236" font-size="8.5" font-weight="700" fill="#71717A" text-anchor="middle">ADAPTIVE ATTACKER</text>
+</svg>
+
+<div class="note">Twelve recent defenses, most reporting &lt;5% attack success on static tests, exceeded 90% once the attacker was allowed to adapt. &mdash; "The Attacker Moves Second" (Nasr et al., 2025).</div>
+
+</body>
+</html>

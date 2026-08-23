@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:#faf8f2;color:#333;padding:18px 20px;-webkit-font-smoothing:antialiased;overflow:hidden}
+.caption{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#9ca3af;margin-bottom:12px}
+.box{border:1.5px solid #e5e7eb;border-radius:8px;padding:11px 13px;background:#f5f3ed}
+.t{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#111;margin-bottom:5px}
+.d{font-size:10px;color:#71717A;line-height:1.5}
+.warm{border-color:rgba(234,88,12,.45);background:rgba(234,88,12,.05)} .warm .t{color:#EA580C}
+.green{border-color:rgba(34,197,94,.42);background:rgba(34,197,94,.06)} .green .t{color:#16a34a}
+.arrow{color:#9ca3af;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center}
+</style>
+<style>
+.pipe{display:flex;align-items:stretch;gap:4px}
+.pipe .box{flex:1;padding:9px 9px;display:flex;flex-direction:column}
+.pipe .arrow{flex:0 0 16px}
+.eyebrow{font-size:7.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#EA580C;margin-bottom:4px}
+.nm{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#111;margin-bottom:5px}
+.pipe .d{font-size:8.5px;line-height:1.45}
+.note{margin-top:16px;font-size:9.5px;color:#71717A;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="caption">A Four-Layer Defense Taxonomy</div>
+
+<div class="pipe">
+<div class="box"><div class="nm">Untrusted Data / User Request</div><div class="d">incoming text of unknown trust</div></div>
+<div class="arrow">&rarr;</div>
+<div class="box warm"><div class="eyebrow">Layer 3</div><div class="nm">Input Guards</div><div class="d">classifier screens incoming text</div></div>
+<div class="arrow">&rarr;</div>
+<div class="box warm"><div class="eyebrow">Layer 1</div><div class="nm">Prompt Delimiters</div><div class="d">fence data from instructions</div></div>
+<div class="arrow">&rarr;</div>
+<div class="box warm"><div class="eyebrow">Layer 2</div><div class="nm">Hardened Model</div><div class="d">weights trained to resist</div></div>
+<div class="arrow">&rarr;</div>
+<div class="box warm"><div class="eyebrow">Layer 4</div><div class="nm">Output &amp; Trajectory Guards</div><div class="d">watch what the agent does</div></div>
+<div class="arrow">&rarr;</div>
+<div class="box green"><div class="nm">Tools &amp; APIs</div><div class="d">contained execution</div></div>
+</div>
+
+<div class="note">Numbering follows the sections of this post; arrows follow the order a request actually travels. Anything a guard rejects &rarr; security alert.</div>
+
+</body>
+</html>

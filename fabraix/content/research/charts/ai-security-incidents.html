@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'JetBrains Mono',monospace;
+  background:#faf8f2;
+  color:#333;
+  padding:1rem 1rem .8rem;
+  -webkit-font-smoothing:antialiased;
+}
+.stats{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.stat{flex:1;min-width:90px;padding:10px 12px;border-radius:6px;background:#f9fafb;border:1px solid #e5e7eb}
+.stat.hot{background:rgba(234,88,12,.06);border-color:rgba(234,88,12,.25)}
+.stat .lb{font-size:9px;color:#9ca3af;text-transform:uppercase;letter-spacing:1px}
+.stat .val{font-size:22px;font-weight:800;line-height:1.1;margin-top:2px;color:#111}
+.stat.hot .val{color:#EA580C}
+.stat{background:#f5f3ed}
+.stat .sub{font-size:9px;color:#9ca3af}
+.leg{display:flex;flex-wrap:wrap;gap:12px;font-size:10px;color:#666;margin-bottom:8px}
+.leg span{display:flex;align-items:center;gap:4px}
+.leg i{width:8px;height:8px;display:inline-block}
+.leg i.c{border-radius:50%}
+.leg i.d{background:transparent;border-left:2px dashed;height:8px;width:2px}
+.cap{font-size:.7rem;color:#9ca3af;margin-top:8px;line-height:1.5}
+#tt{
+  position:absolute;pointer-events:none;
+  background:#0A0A0A;border:1px solid #27272A;border-radius:6px;
+  padding:10px 14px;max-width:360px;
+  font-size:11px;line-height:1.5;color:#A1A1AA;
+  opacity:0;transition:opacity .15s;z-index:10;
+}
+#tt .th{font-weight:700;color:#EA580C;margin-bottom:6px;font-size:12px}
+#tt .ti{margin-bottom:4px}
+#tt .td{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
+#tt .tn{font-weight:600;color:#fff}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="stats">
+  <div class="stat"><div class="lb">2024 Total</div><div class="val">12</div><div class="sub">incidents</div></div>
+  <div class="stat"><div class="lb">2025 Total</div><div class="val">17</div><div class="sub">incidents</div></div>
+  <div class="stat hot"><div class="lb">2026 Q1</div><div class="val">12</div><div class="sub">in 3 months</div></div>
+  <div class="stat hot"><div class="lb">Mar 2026</div><div class="val">8</div><div class="sub">single-month record</div></div>
+</div>
+
+<div class="leg">
+  <span><i style="background:#EA580C;border-radius:2px"></i> Incidents / month</span>
+  <span><i class="d" style="border-color:#A1A1AA"></i> Model release</span>
+</div>
+
+<div style="position:relative;width:100%;height:380px;overflow:visible">
+  <canvas id="c"></canvas>
+  <div id="tt"></div>
+</div>
+
+<div class="leg" style="margin-top:8px">
+  <span style="font-weight:600">Incident types:</span>
+  <span><i class="c" style="background:#EA580C"></i> Supply Chain</span>
+  <span><i class="c" style="background:#7A9A82"></i> Prompt Injection</span>
+  <span><i class="c" style="background:#9B8BB4"></i> Model Poisoning</span>
+  <span><i class="c" style="background:#6B8FAD"></i> Platform Compromise</span>
+  <span><i class="c" style="background:#A1A1AA"></i> Data Breach</span>
+  <span><i class="c" style="background:#C47E6A"></i> Targeted Attack</span>
+</div>
+
+<div class="cap">AI infrastructure attacks vs. agentic model releases, Jan 2024 – Mar 2026. 41 catalogued incidents. Hover bars for details.</div>
+
+<script src="./vendor/chart.umd.js"></script>
+<script src="./vendor/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="./vendor/chartjs-plugin-annotation.min.js"></script>
+<script>
+const tc='#71717A';
+const gc='rgba(0,0,0,.05)';
+const D=d=>new Date(d+'T00:00:00Z');
+
+const CC={sc:'#EA580C',pi:'#7A9A82',mp:'#9B8BB4',pc:'#6B8FAD',db:'#A1A1AA',ta:'#C47E6A'};
+
+const INC=[
+  {m:'2024-01',c:0,i:[]},
+  {m:'2024-02',c:2,i:[{n:'100+ malicious ML models on Hugging Face',t:'sc'},{n:'Hugging Face conversion service vuln',t:'sc'}]},
+  {m:'2024-03',c:1,i:[{n:'XZ Utils backdoor (CVE-2024-3094)',t:'sc'}]},
+  {m:'2024-04',c:0,i:[]},
+  {m:'2024-05',c:0,i:[]},
+  {m:'2024-06',c:1,i:[{n:'Hugging Face Spaces breach',t:'pc'}]},
+  {m:'2024-07',c:2,i:[{n:'Polyfill.io supply chain compromise',t:'sc'},{n:'CrowdStrike faulty update \u2014 8.5M systems',t:'sc'}]},
+  {m:'2024-08',c:1,i:[{n:'Slack AI indirect prompt injection',t:'pi'}]},
+  {m:'2024-09',c:1,i:[{n:'ChatGPT SpAIware \u2014 persistent memory exploit',t:'pi'}]},
+  {m:'2024-10',c:1,i:[{n:'ZombAIs \u2014 Claude Computer Use \u2192 C2',t:'pi'}]},
+  {m:'2024-11',c:0,i:[]},
+  {m:'2024-12',c:3,i:[{n:'DeepSeek XSS \u2192 account takeover',t:'pi'},{n:'Solana web3.js npm compromise',t:'sc'},{n:'Ultralytics AI PyPI supply chain attack',t:'sc'}]},
+  {m:'2025-01',c:1,i:[{n:"Lazarus 'Operation 99' targeting Web3/AI devs",t:'ta'}]},
+  {m:'2025-02',c:1,i:[{n:'Malicious PyPI packages mimicking LLM libraries',t:'sc'}]},
+  {m:'2025-03',c:1,i:[{n:'tj-actions/changed-files GitHub Actions compromise',t:'sc'}]},
+  {m:'2025-04',c:2,i:[{n:'51,700 models flagged on Hugging Face',t:'sc'},{n:'MCP tool poisoning: WhatsApp exfiltration',t:'pi'}]},
+  {m:'2025-05',c:1,i:[{n:'EchoLeak: zero-click M365 Copilot exfiltration',t:'pi'}]},
+  {m:'2025-06',c:2,i:[{n:'GGUF template poisoning disclosed',t:'mp'},{n:'Supabase Cursor agent prompt injection',t:'pi'}]},
+  {m:'2025-07',c:1,i:[{n:'Google Gemini calendar invite prompt injection',t:'pi'}]},
+  {m:'2025-08',c:1,i:[{n:'nullifAI: novel malware in ML models on HF',t:'mp'}]},
+  {m:'2025-09',c:2,i:[{n:'Shai-Hulud worm: 500+ npm packages',t:'sc'},{n:'qix npm compromise: 2.6B downloads/week',t:'sc'}]},
+  {m:'2025-10',c:1,i:[{n:'Supply chain attacks hit record: 41 in October',t:'sc'}]},
+  {m:'2025-11',c:0,i:[]},
+  {m:'2025-12',c:4,i:[{n:'Shai-Hulud 2.0: 400K secrets stolen',t:'sc'},{n:'GlassWorm: 72 malicious VS Code extensions',t:'sc'},{n:'LangGrinch: LangChain core injection',t:'pc'},{n:'mcp-remote command injection',t:'pc'}]},
+  {m:'2026-01',c:2,i:[{n:'OpenClaw prompt injection vulnerabilities',t:'pi'},{n:'Anthropic Git MCP server \u2014 3 CVEs',t:'pc'}]},
+  {m:'2026-02',c:2,i:[{n:'Clinejection: Cline \u2192 OpenClaw on 4K machines',t:'pi'},{n:'Mercer Advisors breach (ShinyHunters)',t:'db'}]},
+  {m:'2026-03',c:8,i:[{n:'McKinsey Lilli AI chatbot hacked',t:'pi'},{n:'Trivy scanner compromised (TeamPCP)',t:'sc'},{n:'Checkmarx KICS/AST compromised',t:'sc'},{n:'LiteLLM PyPI compromise (TeamPCP)',t:'sc'},{n:'Telnyx SDK compromise (TeamPCP)',t:'sc'},{n:'Axios npm supply chain attack',t:'sc'},{n:'OpenAI Codex \u2192 GitHub token theft',t:'pc'},{n:'ChatGPT DNS exfiltration side-channel',t:'pc'}]}
+];
+
+const barData=INC.map(d=>({x:D(d.m+'-15'),y:d.c}));
+const barColors=INC.map(d=>d.c>=1?'#EA580C':'rgba(234,88,12,.05)');
+
+let sum=0;
+const cumData=INC.map(d=>{sum+=d.c;return{x:D(d.m+'-15'),y:sum}});
+
+const ML=[
+  {d:'2024-02',n:'Gem Ultra'},
+  {d:'2024-03',n:'Claude 3'},
+  {d:'2024-04',n:'Llama 3'},
+  {d:'2024-05',n:'GPT-4o'},
+  {d:'2024-06',n:'Cl 3.5 Son'},
+  {d:'2024-09',n:'o1-preview'},
+  {d:'2024-10',n:'Cl CompUse \u26a1'},
+  {d:'2024-12',n:'Gem 2 / DS V3'},
+  {d:'2025-01',n:'DS R1 / Op \u26a1'},
+  {d:'2025-02',n:'Cl 3.7 / 4.5'},
+  {d:'2025-03',n:'Gem 2.5 Pro'},
+  {d:'2025-04',n:'Llama 4'},
+  {d:'2025-05',n:'Cl 4 / Codex \u26a1'},
+  {d:'2025-07',n:'GPT-5'},
+  {d:'2025-09',n:'Grok 4 / o3'},
+  {d:'2025-11',n:'Cl 4.5 / Gem 3'},
+  {d:'2026-01',n:'GPT-5.2'},
+  {d:'2026-03',n:'Cl 4.6 / 5.4'}
+];
+
+const ann={};
+ML.forEach((m,i)=>{
+  ann['m'+i]={
+    type:'line',
+    xMin:m.d+'-15',xMax:m.d+'-15',
+    borderColor:'rgba(161,161,170,.25)',
+    borderWidth:1,borderDash:[3,3],
+    label:{
+      display:true,content:m.n,
+      position:['10%','35%','60%','85%'][i%4],
+      backgroundColor:'transparent',
+      color:'#A1A1AA',
+      font:{size:8,weight:'600',family:'JetBrains Mono,monospace'},
+      rotation:-90,padding:2
+    }
+  };
+});
+
+const monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmtMonth(m){const[y,mo]=m.split('-');return monthNames[parseInt(mo)-1]+' '+y}
+
+const externalTooltip=(ctx)=>{
+  const tt=document.getElementById('tt');
+  const model=ctx.tooltip;
+  if(model.opacity===0){tt.style.opacity=0;return}
+  const dp=model.dataPoints;
+  if(!dp||!dp.length){tt.style.opacity=0;return}
+  const idx=dp[0].dataIndex;
+  const data=INC[idx];
+  if(!data||data.i.length===0){tt.style.opacity=0;return}
+
+  let html='<div class="th">'+fmtMonth(data.m)+' \u2014 '+data.c+' incident'+(data.c>1?'s':'')+'</div>';
+  data.i.forEach(inc=>{
+    html+='<div class="ti"><span class="td" style="background:'+CC[inc.t]+'"></span><span class="tn">'+inc.n+'</span></div>';
+  });
+  tt.innerHTML=html;
+  tt.style.opacity=1;
+
+  const cw=ctx.chart.canvas.parentNode.offsetWidth;
+  let left=model.caretX+12;
+  let top=model.caretY-10;
+  if(left+360>cw)left=model.caretX-370;
+  if(left<0)left=8;
+  if(top<0)top=8;
+  tt.style.left=left+'px';
+  tt.style.top=top+'px';
+};
+
+new Chart(document.getElementById('c'),{
+  type:'bar',
+  data:{
+    datasets:[
+      {
+        type:'bar',
+        data:barData,
+        backgroundColor:barColors,
+        borderRadius:3,
+        barPercentage:0.65,
+        categoryPercentage:0.85,
+        maxBarThickness:26,
+        yAxisID:'y',
+        order:2
+      },
+      {
+        type:'line',
+        data:cumData,
+        borderColor:'rgba(23,23,23,.45)',
+        borderWidth:2.5,
+        pointRadius:0,
+        pointHoverRadius:0,
+        fill:false,
+        tension:0.3,
+        yAxisID:'y1',
+        order:1
+      }
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false,axis:'x'},
+    scales:{
+      x:{
+        type:'time',
+        time:{unit:'month',displayFormats:{month:"MMM ''yy"}},
+        min:D('2023-12-01'),max:D('2026-04-30'),
+        offset:true,
+        ticks:{color:tc,font:{size:10,family:'JetBrains Mono,monospace'},maxRotation:0},
+        grid:{color:gc},
+        border:{color:'#E4E4E7'}
+      },
+      y:{
+        position:'left',beginAtZero:true,
+        ticks:{color:tc,font:{size:10,family:'JetBrains Mono,monospace'},stepSize:2,precision:0},
+        grid:{color:gc},border:{display:false},
+        title:{display:true,text:'Incidents / month',color:'#A1A1AA',font:{size:10,family:'JetBrains Mono,monospace'}}
+      },
+      y1:{
+        position:'right',beginAtZero:true,
+        ticks:{color:'#A1A1AA',font:{size:10,family:'JetBrains Mono,monospace'},precision:0},
+        grid:{display:false},border:{display:false},
+        title:{display:true,text:'Cumulative',color:'#A1A1AA',font:{size:10,family:'JetBrains Mono,monospace'}}
+      }
+    },
+    plugins:{
+      legend:{display:false},
+      tooltip:{enabled:false,external:externalTooltip},
+      annotation:{annotations:ann}
+    }
+  }
+});
+</script>
+</body>
+</html>

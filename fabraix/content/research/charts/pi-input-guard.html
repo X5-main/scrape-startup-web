@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:#faf8f2;color:#333;padding:18px 20px;-webkit-font-smoothing:antialiased;overflow:hidden}
+.caption{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#9ca3af;margin-bottom:12px}
+.box{border:1.5px solid #e5e7eb;border-radius:8px;padding:11px 13px;background:#f5f3ed}
+.t{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#111;margin-bottom:5px}
+.d{font-size:10px;color:#71717A;line-height:1.5}
+.warm{border-color:rgba(234,88,12,.45);background:rgba(234,88,12,.05)} .warm .t{color:#EA580C}
+.red{border-color:rgba(239,68,68,.38);background:rgba(239,68,68,.045)} .red .t{color:#dc2626}
+.blue{border-color:rgba(59,130,246,.38);background:rgba(59,130,246,.045)} .blue .t{color:#2563eb}
+.green{border-color:rgba(34,197,94,.42);background:rgba(34,197,94,.06)} .green .t{color:#16a34a}
+.arrow{color:#9ca3af;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:9px;color:#71717A;font-weight:600}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+</style>
+<style>
+.grid{display:grid;grid-template-columns:1.15fr 0.5fr 1fr 0.6fr 1.1fr;align-items:center;gap:6px}
+.col{display:flex;flex-direction:column;gap:9px}
+.box.sm{padding:9px 11px}
+.lab{font-size:8px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;text-align:center;line-height:1.4;margin-top:3px}
+.mono{font-family:'JetBrains Mono',monospace;background:#f1f1f1;border-radius:4px;padding:1px 4px;font-size:9px;color:#52525b}
+.arr-red{color:#dc2626}
+.center-col{display:flex;flex-direction:column;align-items:center;gap:6px}
+.out-col{display:flex;flex-direction:column;gap:14px;justify-content:center}
+.flowline{display:flex;align-items:center;gap:4px}
+</style>
+</head>
+<body>
+<div class="caption">Input-Guard Evasion Paths</div>
+<div class="grid">
+
+  <div class="col">
+    <div class="box">
+      <div class="t">Obvious Payload</div>
+      <div class="d"><span class="mono">ignore previous instructions</span></div>
+    </div>
+    <div class="box blue">
+      <div class="t">Obfuscated + Multi-Turn</div>
+      <div class="d">char swaps, base64; each turn looks benign</div>
+    </div>
+    <div class="box">
+      <div class="t" style="color:#16a34a">Benign Traffic</div>
+      <div class="d">an ordinary, harmless request</div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow">&rarr;</div>
+    <div class="arrow">&rarr;</div>
+    <div class="arrow" style="font-size:13px">&#10231;</div>
+  </div>
+
+  <div class="box warm" style="text-align:center">
+    <div class="t">Input Guard</div>
+    <div class="d">probabilistic &mdash; scores each input in isolation</div>
+  </div>
+
+  <div class="out-col">
+    <div class="flowline"><span class="arrow">&rarr;</span><span class="lab" style="margin:0;text-align:left">obvious<br>attacks caught</span></div>
+    <div class="flowline"><span class="arrow arr-red">&rarr;</span><span class="lab" style="margin:0;text-align:left;color:#dc2626">evasions<br>slip through</span></div>
+    <div class="flowline"><span class="arrow" style="font-size:13px">&#10231;</span><span class="lab" style="margin:0;text-align:left">benign over-<br>blocked</span></div>
+  </div>
+
+  <div class="col">
+    <div class="box green sm">
+      <div class="t">Blocked / Flagged</div>
+      <div class="d">caught at the gate</div>
+    </div>
+    <div class="box red sm">
+      <div class="t">Main Agent &rarr; Hijacked</div>
+      <div class="d">attacker controls the loop</div>
+    </div>
+    <div class="box sm" style="border-style:dashed">
+      <div class="t" style="color:#9ca3af">False Positive</div>
+      <div class="d">legit user turned away</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="legend">
+  <span><span class="dot" style="background:#9ca3af"></span>caught</span>
+  <span><span class="dot" style="background:#dc2626"></span>evasion slips through</span>
+  <span><span class="dot" style="background:#9ca3af;opacity:.5"></span>benign over-blocked</span>
+</div>
+</body>
+</html>

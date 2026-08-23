@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:#faf8f2;color:#333;padding:18px 20px;-webkit-font-smoothing:antialiased;overflow:hidden}
+.caption{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#9ca3af;margin-bottom:12px}
+.box{border:1.5px solid #e5e7eb;border-radius:8px;padding:11px 13px;background:#f5f3ed}
+.t{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#111;margin-bottom:5px}
+.d{font-size:10px;color:#71717A;line-height:1.5}
+.warm{border-color:rgba(234,88,12,.45);background:rgba(234,88,12,.05)} .warm .t{color:#EA580C}
+.red{border-color:rgba(239,68,68,.38);background:rgba(239,68,68,.045)} .red .t{color:#dc2626}
+.blue{border-color:rgba(59,130,246,.38);background:rgba(59,130,246,.045)} .blue .t{color:#2563eb}
+.green{border-color:rgba(34,197,94,.42);background:rgba(34,197,94,.06)} .green .t{color:#16a34a}
+.arrow{color:#9ca3af;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:9px;color:#71717A;font-weight:600}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+</style>
+<style>
+.stage{display:grid;grid-template-columns:0.95fr 1.55fr 1.25fr;gap:14px;align-items:stretch}
+.box.sm{padding:9px 11px}
+.lab{font-size:8px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px}
+.loop{position:relative}
+.loopgrid{display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto auto;align-items:center;gap:7px 8px}
+.exit{display:flex;flex-direction:column;gap:9px;justify-content:center}
+.flowrow{display:flex;align-items:center;gap:6px}
+.col{display:flex;flex-direction:column;gap:9px;justify-content:center}
+.watcher{display:flex;flex-direction:column;justify-content:center;gap:8px}
+.conn{font-size:8px;font-weight:700;color:#9ca3af;letter-spacing:.5px;display:flex;align-items:center;gap:5px}
+.dash{flex:1;border-top:1.5px dashed #cbd5e1;height:0}
+.cyc{font-size:14px;color:#9ca3af;font-weight:800;text-align:center}
+.arr-red{color:#dc2626}
+</style>
+</head>
+<body>
+<div class="caption">Trajectory-Level Monitoring</div>
+
+<div class="stage">
+
+  <div class="watcher">
+    <div class="box warm sm">
+      <div class="t">Trajectory Guard</div>
+      <div class="d">inspects every reasoning + tool step</div>
+    </div>
+    <div class="conn">watches<span class="dash"></span></div>
+    <div class="conn">watches<span class="dash"></span></div>
+    <div class="conn">watches<span class="dash"></span></div>
+  </div>
+
+  <div class="loop">
+    <div class="loopgrid">
+      <div class="box sm" style="grid-column:1/3">
+        <div class="t">Reason / Plan</div>
+        <div class="d">decides the next move</div>
+      </div>
+      <div class="cyc" style="grid-row:1/3">&#8635;</div>
+
+      <div class="cyc" style="grid-column:1/3;justify-self:start;padding-left:6px">&darr;</div>
+
+      <div class="box sm" style="grid-column:1/2">
+        <div class="t">Call Tool</div>
+        <div class="d">issues a request</div>
+      </div>
+      <div class="cyc">&rarr;</div>
+      <div class="box blue sm" style="grid-column:3/4">
+        <div class="t">Fetched Data</div>
+        <div class="d">may carry an injection</div>
+      </div>
+    </div>
+    <div class="lab" style="text-align:center;margin-top:6px">&#8617; loops back to Reason / Plan</div>
+  </div>
+
+  <div class="exit">
+    <div class="flowrow"><span class="lab">branch</span><span class="arrow" style="font-size:13px">&rarr;</span></div>
+    <div class="box sm">
+      <div class="t">Final Output</div>
+    </div>
+    <div class="arrow">&darr;</div>
+    <div class="box sm">
+      <div class="t">Output Guard / DLP</div>
+      <div class="d">scan for leaked secrets</div>
+    </div>
+    <div class="flowrow" style="justify-content:space-between">
+      <div class="flowrow"><span class="arrow" style="font-size:13px">&rarr;</span><span class="lab" style="color:#16a34a">clean</span></div>
+      <div class="flowrow"><span class="arrow arr-red" style="font-size:13px;color:#dc2626">&rarr;</span><span class="lab" style="color:#dc2626">secrets/keys</span></div>
+    </div>
+    <div class="flowrow" style="gap:8px">
+      <div class="box green sm" style="flex:1;text-align:center"><div class="t">User</div></div>
+      <div class="box red sm" style="flex:1;text-align:center"><div class="t">Blocked</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="legend">
+  <span><span class="dot" style="background:#9ca3af"></span>solid gray = agent flow</span>
+  <span><span class="dot" style="background:#cbd5e1"></span>dashed gray = trajectory guard watching</span>
+  <span><span class="dot" style="background:#2563eb"></span>untrusted fetched data</span>
+</div>
+</body>
+</html>

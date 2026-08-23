@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'JetBrains Mono',monospace;
+  background:#faf8f2;
+  color:#333;
+  padding:1.2rem 1rem .8rem;
+  -webkit-font-smoothing:antialiased;
+}
+.chart-legend{
+  display:flex;flex-wrap:wrap;gap:14px;
+  font-size:11px;color:#71717A;margin-bottom:10px;
+}
+.chart-legend span{display:flex;align-items:center;gap:5px}
+.chart-legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.chart-caption{
+  font-size:.75rem;color:#9ca3af;margin-top:8px;line-height:1.5;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="chart-legend">
+  <span><i style="background:#3266ad"></i> Running best score (any scaffold)</span>
+  <span><i style="background:#1D9E75;border-radius:50%"></i> Standardized harness (vals.ai)</span>
+  <span><i style="background:transparent;border-left:2px dashed #EA580C;height:10px;width:2px"></i> Model release</span>
+</div>
+<div style="position:relative;width:100%;height:400px">
+  <canvas id="c"></canvas>
+</div>
+<div class="chart-caption">SWE-bench Verified resolve rate, Aug 2024 – Mar 2026. Running max. Green = standardized mini-SWE-agent harness, same scaffold for every model. Data from swebench.com, vals.ai, Anthropic, OpenAI, Google.</div>
+
+<script src="./vendor/chart.umd.js"></script>
+<script src="./vendor/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script src="./vendor/chartjs-plugin-annotation.min.js"></script>
+<script>
+const tc='#71717A';
+const gc='rgba(0,0,0,.05)';
+const D=d=>new Date(d+'T00:00:00Z');
+
+const record=[
+  {x:'2024-08-13',y:33.2,l:'GPT-4o + Agentless'},
+  {x:'2024-08-20',y:40.6,l:'Honeycomb'},
+  {x:'2024-10-28',y:43.0,l:'CodeStory Aide'},
+  {x:'2024-11-15',y:48.3,l:'Globant Code Fix'},
+  {x:'2025-02-27',y:55.0,l:'SWE-agent 1.0 (Claude 3.7)'},
+  {x:'2025-05-22',y:60.0,l:'Amazon Q Developer'},
+  {x:'2025-06-05',y:65.0,l:'Atlassian Rovo Dev'},
+  {x:'2025-06-12',y:75.2,l:'TRAE multi-model'},
+  {x:'2025-09-02',y:75.8,l:'Atlassian Rovo Dev v2'},
+  {x:'2025-11-17',y:77.4,l:'Live-SWE-agent + Gemini 3 Pro'},
+  {x:'2025-11-24',y:80.9,l:'Claude Opus 4.5'},
+  {x:'2026-02-10',y:81.4,l:'Claude Opus 4.6'},
+].map(d=>({x:D(d.x),y:d.y,l:d.l}));
+let mx=0;record.forEach(d=>{d.y=Math.max(d.y,mx);mx=d.y});
+
+const std=[
+  {x:'2025-07-20',y:33.0,l:'GPT-4o'},
+  {x:'2025-07-20',y:42.0,l:'Claude 3.7 Sonnet'},
+  {x:'2025-07-26',y:49.0,l:'o4-mini'},
+  {x:'2025-08-02',y:54.0,l:'Claude 4 Opus'},
+  {x:'2025-09-29',y:64.0,l:'Claude 4.5 Sonnet'},
+  {x:'2025-11-20',y:68.0,l:'GPT-5.1'},
+  {x:'2025-12-11',y:70.0,l:'GPT-5.2'},
+  {x:'2026-02-13',y:75.0,l:'Claude Opus 4.5 (Thinking)'},
+  {x:'2026-02-17',y:74.0,l:'Claude Opus 4.6'},
+  {x:'2026-02-19',y:72.0,l:'GPT-5.2 Codex'},
+  {x:'2026-02-26',y:78.8,l:'Gemini 3.1 Pro'},
+  {x:'2026-03-05',y:78.2,l:'GPT 5.4 / Claude 4.6 Thinking'},
+].map(d=>({x:D(d.x),y:d.y,l:d.l}));
+
+const mdl=[
+  {d:'2024-05-13',n:'GPT-4o'},
+  {d:'2024-06-20',n:'Cl 3.5 Son'},
+  {d:'2024-09-12',n:'o1-preview'},
+  {d:'2024-10-22',n:'Cl 3.5 v2'},
+  {d:'2025-02-24',n:'Claude 3.7'},
+  {d:'2025-04-16',n:'o4-mini'},
+  {d:'2025-05-14',n:'Claude 4'},
+  {d:'2025-08-07',n:'GPT-5'},
+  {d:'2025-11-01',n:'Claude 4.5'},
+  {d:'2025-11-13',n:'GPT-5.1'},
+  {d:'2025-12-11',n:'GPT-5.2'},
+  {d:'2026-02-06',n:'Claude 4.6'},
+  {d:'2026-02-15',n:'Gem 3.1'},
+  {d:'2026-03-05',n:'GPT-5.4'},
+];
+
+const ann={};
+mdl.forEach((m,i)=>{
+  ann['m'+i]={
+    type:'line',xMin:m.d,xMax:m.d,
+    borderColor:'rgba(234,88,12,.25)',
+    borderWidth:1,borderDash:[3,3],
+    label:{display:true,content:m.n,
+      position:i%3===0?'12%':i%3===1?'50%':'88%',
+      backgroundColor:'transparent',
+      color:'rgba(234,88,12,.6)',
+      font:{size:8.5,weight:'400',family:'JetBrains Mono,monospace'},
+      rotation:-90,padding:2}
+  };
+});
+ann.sat={type:'line',yMin:100,yMax:100,
+  borderColor:'rgba(0,0,0,.1)',
+  borderWidth:1,borderDash:[8,4],
+  label:{display:true,content:'100%',position:'end',
+    backgroundColor:'transparent',
+    color:'rgba(0,0,0,.3)',
+    font:{size:10,family:'JetBrains Mono,monospace'}}
+};
+
+new Chart(document.getElementById('c'),{
+  type:'line',
+  data:{datasets:[
+    {label:'Running record',data:record,
+      borderColor:'#3266ad',
+      backgroundColor:'rgba(50,102,173,.1)',
+      fill:true,stepped:'after',
+      pointRadius:4,pointHoverRadius:7,borderWidth:2.2,order:2},
+    {label:'Standardized',data:std,
+      borderColor:'transparent',backgroundColor:'#1D9E75',
+      pointRadius:4,pointHoverRadius:7,pointStyle:'circle',
+      showLine:false,borderWidth:0,order:1}
+  ]},
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    interaction:{mode:'nearest',intersect:false},
+    scales:{
+      x:{type:'time',
+        time:{unit:'quarter',displayFormats:{quarter:'MMM yy'}},
+        min:D('2024-04-01'),max:D('2026-05-01'),
+        ticks:{color:tc,font:{size:10,family:'JetBrains Mono,monospace'},maxRotation:0},
+        grid:{color:gc}},
+      y:{min:0,max:105,
+        ticks:{color:tc,font:{size:10,family:'JetBrains Mono,monospace'},
+          callback:v=>v+'%',stepSize:20},
+        grid:{color:gc}}
+    },
+    plugins:{
+      legend:{display:false},
+      tooltip:{
+        titleFont:{family:'JetBrains Mono,monospace',size:11},
+        bodyFont:{family:'JetBrains Mono,monospace',size:11},
+        callbacks:{
+          title:ctx=>{const d=new Date(ctx[0].parsed.x);
+            return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})},
+          label:ctx=>{const p=ctx.dataset.data[ctx.dataIndex];
+            return (p.l||'')+': '+Math.round(p.y*10)/10+'%'}
+        }
+      },
+      annotation:{annotations:ann}
+    }
+  }
+});
+</script>
+</body>
+</html>

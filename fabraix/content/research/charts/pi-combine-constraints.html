@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:#faf8f2;color:#333;padding:18px 20px;-webkit-font-smoothing:antialiased;overflow:hidden}
+.caption{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#9ca3af;margin-bottom:12px}
+.box{border:1.5px solid #e5e7eb;border-radius:8px;padding:11px 13px;background:#f5f3ed}
+.t{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#111;margin-bottom:5px}
+.d{font-size:10px;color:#71717A;line-height:1.5}
+.warm{border-color:rgba(234,88,12,.45);background:rgba(234,88,12,.05)} .warm .t{color:#EA580C}
+.green{border-color:rgba(34,197,94,.42);background:rgba(34,197,94,.06)} .green .t{color:#16a34a}
+.arrow{color:#9ca3af;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:9px;color:#71717A;font-weight:600}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:7px;height:7px;border-radius:50%;display:inline-block}
+</style>
+<style>
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.chip{border:1.5px solid #e5e7eb;border-radius:8px;background:#f5f3ed;padding:8px 9px;text-align:center}
+.chip .ct{font-size:9px;font-weight:800;color:#111;letter-spacing:.5px}
+.chip .tax{font-size:8.5px;color:#9ca3af;font-weight:600;margin-top:4px}
+.zone{margin-top:13px}
+.zlabel{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#9ca3af;margin-bottom:8px}
+.meter{display:grid;grid-template-columns:58px 1fr;align-items:center;gap:10px;margin-bottom:9px}
+.mname{font-size:9px;font-weight:700;color:#52525b;letter-spacing:.5px}
+.track{height:9px;border-radius:5px;background:#f1f1f1;overflow:hidden;position:relative}
+.fill{height:100%;border-radius:5px}
+.note{font-size:9px;color:#71717A;line-height:1.5;margin-top:2px}
+.bottom{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-top:13px}
+</style>
+</head>
+<body>
+<div class="caption">Composite Defense Under Deployment Constraints</div>
+
+<div class="chips">
+  <div class="chip"><div class="ct">L1 Delimiters</div><div class="tax">~0ms / ~free</div></div>
+  <div class="chip"><div class="ct">L2 Hardened Model</div><div class="tax">built-in</div></div>
+  <div class="chip"><div class="ct">L3 Input Guards</div><div class="tax">+100&ndash;300ms / +1 call</div></div>
+  <div class="chip"><div class="ct">L4 Trajectory Guards</div><div class="tax">+latency / +1 call</div></div>
+</div>
+
+<div class="zone">
+  <div class="zlabel">Every Layer Is a Trade-off</div>
+  <div class="meter">
+    <span class="mname">Latency</span>
+    <div class="track"><div class="fill" style="width:68%;background:rgba(234,88,12,.7)"></div></div>
+  </div>
+  <div class="meter">
+    <span class="mname">Cost</span>
+    <div class="track"><div class="fill" style="width:60%;background:rgba(239,68,68,.55)"></div></div>
+  </div>
+  <div class="meter">
+    <span class="mname">Utility</span>
+    <div class="track"><div class="fill" style="width:42%;background:rgba(34,197,94,.6)"></div></div>
+  </div>
+  <div class="note">More layers push <b style="color:#EA580C">latency</b> and <b style="color:#dc2626">cost</b> up &mdash; while <b style="color:#16a34a">utility</b> (legit tasks allowed) is squeezed down.</div>
+</div>
+
+<div class="bottom">
+  <div class="box green" style="padding:10px 12px">
+    <div class="t">Typical Strong Default</div>
+    <div class="d">Hardened model (L2) + trajectory guards (L4); add L1/L3 where the risk earns the tax</div>
+  </div>
+  <div class="arrow">&rarr;</div>
+  <div class="box warm" style="padding:10px 12px">
+    <div class="t">Red-Team to Set the Bar</div>
+    <div class="d">raise the adversarial cost-to-exploit until it exceeds what an attacker will spend</div>
+  </div>
+</div>
+
+<div class="legend">
+  <span><span class="dot" style="background:#EA580C"></span>latency tax</span>
+  <span><span class="dot" style="background:#dc2626"></span>cost tax</span>
+  <span><span class="dot" style="background:#16a34a"></span>utility retained</span>
+</div>
+</body>
+</html>

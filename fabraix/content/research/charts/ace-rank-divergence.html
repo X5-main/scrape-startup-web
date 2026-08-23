@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:'JetBrains Mono',monospace;
+  background:#faf8f2;
+  color:#333;
+  padding:1rem 1rem .8rem;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+.cap{font-size:.7rem;color:#9ca3af;margin-top:8px;line-height:1.5}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div style="position:relative;width:100%;height:320px;overflow:visible">
+  <canvas id="c" style="display:none"></canvas>
+  <svg id="chart" viewBox="0 0 600 320" width="100%" height="100%" style="display:block">
+  </svg>
+</div>
+
+<div class="cap">Provider rankings by b3 static vulnerability score (left) vs. ACE adversarial cost (right). Rank 1 = most secure. Dashed lines = comparable model from same provider. Solid line = exact model match.</div>
+
+<script>
+const providers = [
+  { name: "Anthropic", b3Rank: 1, aceRank: 1, b3Val: 0.17, aceVal: 10.21, exact: true },
+  { name: "xAI", b3Rank: 2, aceRank: 3, b3Val: 0.25, aceVal: 0.95, exact: false },
+  { name: "OpenAI", b3Rank: 3, aceRank: 2, b3Val: 0.34, aceVal: 1.15, exact: false },
+  { name: "DeepSeek", b3Rank: 4, aceRank: 5, b3Val: 0.50, aceVal: 0.46, exact: false },
+  { name: "Google", b3Rank: 5, aceRank: 6, b3Val: 0.50, aceVal: 0.23, exact: false },
+  { name: "Mistral", b3Rank: 6, aceRank: 4, b3Val: 0.56, aceVal: 0.66, exact: false },
+];
+
+const COLORS = {
+  Anthropic: "#EA580C",
+  xAI: "#A1A1AA",
+  OpenAI: "#A1A1AA",
+  DeepSeek: "#A1A1AA",
+  Google: "#A1A1AA",
+  Mistral: "#A1A1AA",
+};
+
+const svg = document.getElementById('chart');
+const W = 600, H = 320;
+const padL = 110, padR = 110, padT = 50, padB = 20;
+const colLeft = padL;
+const colRight = W - padR;
+const rowH = (H - padT - padB) / 5;
+const yForRank = (rank) => padT + (rank - 1) * rowH;
+
+function el(tag, attrs, text) {
+  const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+  if (text) e.textContent = text;
+  return e;
+}
+
+// Column headers
+svg.appendChild(el('text', {
+  x: colLeft, y: padT - 22, 'text-anchor': 'middle',
+  fill: '#71717A', 'font-size': '11', 'font-family': 'JetBrains Mono, monospace', 'font-weight': '600'
+}, 'b3 (static)'));
+svg.appendChild(el('text', {
+  x: colRight, y: padT - 22, 'text-anchor': 'middle',
+  fill: '#EA580C', 'font-size': '11', 'font-family': 'JetBrains Mono, monospace', 'font-weight': '600'
+}, 'ACE (dynamic)'));
+
+// Rank labels and gridlines
+for (let r = 1; r <= 6; r++) {
+  svg.appendChild(el('text', {
+    x: colLeft - 40, y: yForRank(r) + 4, 'text-anchor': 'end',
+    fill: '#D4D4D8', 'font-size': '10', 'font-family': 'JetBrains Mono, monospace'
+  }, '#' + r));
+  svg.appendChild(el('text', {
+    x: colRight + 40, y: yForRank(r) + 4, 'text-anchor': 'start',
+    fill: '#D4D4D8', 'font-size': '10', 'font-family': 'JetBrains Mono, monospace'
+  }, '#' + r));
+  svg.appendChild(el('line', {
+    x1: colLeft - 28, y1: yForRank(r), x2: colRight + 28, y2: yForRank(r),
+    stroke: '#F4F4F5', 'stroke-width': '1'
+  }));
+}
+
+// Lines connecting ranks
+providers.forEach(p => {
+  const y1 = yForRank(p.b3Rank);
+  const y2 = yForRank(p.aceRank);
+  const crossed = p.b3Rank !== p.aceRank;
+  const color = p.name === 'Anthropic' ? '#EA580C' : (crossed ? '#71717A' : '#D4D4D8');
+  svg.appendChild(el('line', {
+    x1: colLeft + 8, y1: y1, x2: colRight - 8, y2: y2,
+    stroke: color,
+    'stroke-width': crossed || p.name === 'Anthropic' ? '2' : '1.5',
+    opacity: crossed || p.name === 'Anthropic' ? '0.8' : '0.35',
+    'stroke-dasharray': p.exact ? 'none' : '6 3'
+  }));
+});
+
+// Left dots and labels
+providers.forEach(p => {
+  const y = yForRank(p.b3Rank);
+  const color = p.name === 'Anthropic' ? '#EA580C' : '#71717A';
+  svg.appendChild(el('circle', {
+    cx: colLeft, cy: y, r: '5', fill: color
+  }));
+  svg.appendChild(el('text', {
+    x: colLeft + 14, y: y + 4,
+    fill: '#333', 'font-size': '11',
+    'font-family': 'JetBrains Mono, monospace',
+    'font-weight': p.exact ? '700' : '400'
+  }, p.name));
+});
+
+// Right dots and labels
+providers.forEach(p => {
+  const y = yForRank(p.aceRank);
+  const color = p.name === 'Anthropic' ? '#EA580C' : '#71717A';
+  svg.appendChild(el('circle', {
+    cx: colRight, cy: y, r: '5', fill: color
+  }));
+  svg.appendChild(el('text', {
+    x: colRight - 14, y: y + 4, 'text-anchor': 'end',
+    fill: '#333', 'font-size': '11',
+    'font-family': 'JetBrains Mono, monospace',
+    'font-weight': p.exact ? '700' : '400'
+  }, p.name));
+});
+</script>
+</body>
+</html>

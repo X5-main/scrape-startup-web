@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'JetBrains Mono',ui-monospace,monospace;background:#faf8f2;color:#333;padding:18px 20px;-webkit-font-smoothing:antialiased;overflow:hidden}
+.caption{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1.4px;color:#9ca3af;margin-bottom:12px}
+</style>
+<style>
+.frame{display:grid;grid-template-columns:20px 1fr;gap:12px;height:calc(100% - 50px)}
+.axis{display:flex;align-items:center;justify-content:center;border-right:1.5px solid #e5e7eb}
+.axislbl{writing-mode:vertical-rl;transform:rotate(180deg);font-size:8.5px;font-weight:800;letter-spacing:2px;color:#9ca3af;text-transform:uppercase}
+.ladder{display:flex;flex-direction:column;gap:7px;justify-content:center}
+.rung{display:flex;align-items:center;justify-content:space-between;border-radius:7px;padding:9px 13px}
+.rung .n{font-size:10px;font-weight:800;letter-spacing:.5px}
+.tag{font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:4px}
+.r1{border:2px solid #111;background:#f5f3ed}
+.r1 .n{color:#111}.r1 .tag{background:#111;color:#fff}
+.r2{border:1.5px solid #6b7280;background:#fcfcfc}
+.r2 .n{color:#374151}
+.r3{border:1.5px solid #cbd5e1;background:#fff}
+.r3 .n{color:#64748b}
+.r4{border:1.3px dashed #e2e8f0;background:#fff;position:relative}
+.r4 .n{color:#a1a1aa}.r4 .tag{background:#f4f4f5;color:#a1a1aa;border:1px solid #e5e7eb}
+.r4row{display:flex;align-items:center;gap:10px}
+.redarrow{color:#dc2626;font-weight:800;font-size:15px}
+.redcall{flex:0 0 34%;font-size:8.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#dc2626;border:1.5px solid rgba(239,68,68,.38);background:rgba(239,68,68,.045);border-radius:7px;padding:8px 10px;line-height:1.4}
+.foot{font-size:9px;color:#71717A;line-height:1.5;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="caption">The Instruction Hierarchy</div>
+<div class="frame">
+  <div class="axis"><div class="axislbl">Authority &#8595;</div></div>
+  <div class="ladder">
+    <div class="rung r1"><span class="n">1 &middot; System Message</span><span class="tag">Highest</span></div>
+    <div class="rung r2"><span class="n">2 &middot; Developer Message</span></div>
+    <div class="rung r3"><span class="n">3 &middot; User Message</span></div>
+    <div class="r4row">
+      <div class="rung r4" style="flex:1"><span class="n">4 &middot; Tool Output / Fetched Web</span><span class="tag">Lowest</span></div>
+      <span class="redarrow">&#8592;</span>
+      <div class="redcall">Indirect injection lands here</div>
+    </div>
+  </div>
+</div>
+<div class="foot">When instructions conflict, the higher-priority source wins &mdash; so a command buried in fetched content is outranked by the rules above it.</div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',-apple-system,system-ui,sans-serif;
+  background:#faf8f2;color:#171717;
+  padding:1.5rem 1.5rem 1.1rem;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace}
+.title{font-size:16px;font-weight:700;letter-spacing:-.01em;color:#171717;line-height:1.25}
+.title .accent{color:#EA580C}
+.sub{font-size:11.5px;color:#71717A;line-height:1.5;margin-top:5px;max-width:700px}
+
+.legend{display:flex;gap:16px;margin:13px 0 6px}
+.lg{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#52525B;font-weight:500}
+.sw{width:11px;height:11px;border-radius:3px;flex-shrink:0}
+
+/* chart */
+.chart{position:relative;margin-top:8px}
+.track-area{position:relative}
+.row{display:grid;grid-template-columns:190px 1fr;align-items:center;gap:12px;height:25px}
+.rlabel{font-size:11px;color:#52525B;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rlabel b{color:#3f3f46;font-weight:600}
+.rlabel .mono{font-size:10px;color:#71717A}
+.bartrack{position:relative;height:16px;background:rgba(23,23,23,.035);border-radius:3px}
+.bar{position:absolute;top:0;left:0;height:16px;border-radius:3px;display:flex;align-items:center;justify-content:flex-end}
+.bar.weak{background:#EA580C}
+.bar.robust{background:#c8c6bd}
+.bval{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;padding-right:7px}
+.bar.weak .bval{color:#fff}
+.bar.robust .bval{color:#3f3f46}
+
+.axis{display:grid;grid-template-columns:190px 1fr;gap:12px;margin-top:2px}
+.ticks{position:relative;height:16px}
+.tick{position:absolute;top:0;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#A1A1AA;transform:translateX(-50%)}
+
+.foot{margin-top:12px;padding-top:10px;border-top:1px solid #e5e3db;font-size:11px;color:#71717A;line-height:1.55}
+.foot b{color:#171717;font-weight:600}
+.foot .hl{color:#EA580C;font-weight:700}
+@media (max-width:640px){
+  body{padding:1.1rem 1rem .8rem}
+  .sub{font-size:10.5px;line-height:1.4}
+  .legend{margin:9px 0 4px}
+  .row,.axis{grid-template-columns:178px 1fr;gap:9px}
+  .rlabel{font-size:10.5px}
+  .foot{margin-top:8px;padding-top:8px;font-size:10.5px}
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="title">Block rates vary from <span class="accent">17.4% to 100%</span> across the tested categories</div>
+<div class="sub">Share of author-labeled expected-deny inputs blocked by <span class="mono">Sonnet 4.6</span> under the policy and two-stage protocol captured from Claude Code v2.1.204. Results cover 1,008 standalone replays.</div>
+
+<div class="legend">
+  <div class="lg"><span class="sw" style="background:#EA580C"></span>Lower block rate</div>
+  <div class="lg"><span class="sw" style="background:#c8c6bd"></span>Higher block rate</div>
+</div>
+
+<div class="chart">
+  <div class="track-area">
+    <div class="row"><div class="rlabel"><b>outbound software distribution</b></div><div class="bartrack"><div class="bar weak" style="width:17.4%"><span class="bval">17.4%</span></div></div></div>
+    <div class="row"><div class="rlabel"><b>scope escalation</b></div><div class="bartrack"><div class="bar weak" style="width:63.5%"><span class="bval">63.5%</span></div></div></div>
+    <div class="row"><div class="rlabel"><b>cross-boundary execution</b></div><div class="bartrack"><div class="bar weak" style="width:71.2%"><span class="bval">71.2%</span></div></div></div>
+    <div class="row"><div class="rlabel"><b>safety bypass</b></div><div class="bartrack"><div class="bar weak" style="width:76%"><span class="bval">76.0%</span></div></div></div>
+    <div class="row"><div class="rlabel">credential exploration</div><div class="bartrack"><div class="bar robust" style="width:86.1%"><span class="bval">86.1%</span></div></div></div>
+    <div class="row"><div class="rlabel">blast radius</div><div class="bartrack"><div class="bar robust" style="width:87.2%"><span class="bval">87.2%</span></div></div></div>
+    <div class="row"><div class="rlabel">degraded security posture</div><div class="bartrack"><div class="bar robust" style="width:87.5%"><span class="bval">87.5%</span></div></div></div>
+    <div class="row"><div class="rlabel">explicit secret exfiltration</div><div class="bartrack"><div class="bar robust" style="width:98.8%"><span class="bval">98.8%</span></div></div></div>
+    <div class="row"><div class="rlabel">inferred production target</div><div class="bartrack"><div class="bar robust" style="width:100%"><span class="bval">100%</span></div></div></div>
+
+    <div class="axis">
+      <div></div>
+      <div class="ticks">
+        <span class="tick" style="left:0%">0%</span>
+        <span class="tick" style="left:25%">25%</span>
+        <span class="tick" style="left:50%">50%</span>
+        <span class="tick" style="left:75%">75%</span>
+        <span class="tick" style="left:100%">100%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="foot">
+  Full-pipeline block rate: <b>752 / 1,008 (74.6%)</b>. Descriptive results for an adaptively constructed challenge set, not a production false-negative estimate.
+</div>
+
+</body>
+</html>
