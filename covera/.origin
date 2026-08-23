@@ -1,0 +1,9 @@
+www.covera-agents.com — mirrored 2026-08-24 (D31) via mirror_site.py (depth 3, asset host rewriting) into covera/. Site is a Next.js Turbopack SSR build ("AI agents for insurance brokers", YC F26; tagline "Less admin, more selling."). robots.txt allow-all + sitemap declared. 54 files mirrored, 1.8 MB, served via serve_replica.py on 8929.
+
+Pages mirrored: index.html (home), fr/index.html (FR locale), insurance-fest-2026/index.html, plus en/fr opengraph-image (see deviation 1) and /logos/* (8 partner/carrier logos: ams360, ezlynx, hawksoft, gmail, outlook, googledrive, sharepoint, salesforce, hubspot).
+
+Externals / deviations:
+- Vercel Next.js route handler products vendored under their requested paths: /en/opengraph-image and /fr/opengraph-image are NOT HTML — they're the opengraph PNG bytes stored under *-image/index__*.html (crawler stores fetched bytes at the requested URL path). md5 == live fetch (byte-verified), no cache pollution.
+- apple-icon SVG IS mirrored (icon__icon-1trqcwzdiu7o6-svg.svg) but the live site 404s it (missing manifest entry?); the sweep residual of 2 (apple-icon refs) 404s identically on LIVE — parity, not a serve defect.
+- Fonts: 21 woff2 (_next/static/media/*) vendored locally; font state live vs replica identical (26 FontFace records, same loaded set) — no runtime webfont fetch needed.
+- Social/external links (none inline beyond logos) — all in-page assets self-hosted.
