@@ -919,3 +919,69 @@ elementor/godaddy/wordpress.com/"built with"); (2) HTML entities must be unescap
 before font-family parsing (`&quot;JetBrains Mono&quot;` otherwise leaks `&quot` as a
 fake display font); (3) ui-sans-serif/ui-serif/ui-monospace are system generics —
 excluded from display-font credit.
+
+## Covera (www.covera-agents.com — 31st pick, 2026-08-24)
+
+**Discovery lane (D31, first full design_signal pre-filter)**:
+F26 roster (18 companies) fetched from the YC batch API; robots/SSR gate applied;
+then design_signal.py --live screening: covera 4.8, veeza 6.2, collar 6.9 — all
+three >= 4.5 → JUDGE round. Flush-captures + vision judge (gate >= 7): **covera
+7/7/7 PASS**, veeza 6/6/6 FAIL, collar 4/7/6 FAIL → winner with the highest full
+pass. (Pre-filter worked: 3 candidates captured instead of 6+; the failing two
+were caught at the vision gate, not after a full crawl.)
+
+**Site shape**: `https://www.covera-agents.com/` — Next.js Turbopack SSR build
+("AI agents for insurance brokers", YC F26; H1 "Less admin, more selling."), en +
+fr locales, robots allow-all (Host + sitemap declared). Static SSR ⇒ the mirror is
+complete without the JS runtime. Portfolio row + .origin committed; served via
+`serve_replica.py` on **8929**.
+
+**Crawl**: `mirror_site.py` → covera/ (54 files / 1.8 MB — small, mostly the 21
+vendored woff2 + 8 partner logos). The opengraph-image route handler
+(`/en/opengraph-image`, `/fr/opengraph-image`) vendored as PNG **bytes** under the
+crawler's requested path (`…/opengraph-image/index__1ed4f61bdafae44f.html` —
+crawler stores fetched bytes at the requested URL); md5 == live (byte-verified).
+
+1. **Residual sweep** `pages=5 refs=… residual_uniq=2` — both residuals are
+   `apple-icon`, and live 404s them with the identical refs → parity, not a serve
+   gap (same class as D29 /privacy/ + D30's inverse ghost lesson).
+2. **Text parity (viewport-forced CDP, D29 protocol)**: 3/3 probe pages MATCH
+   exact — `/`, `/fr/`, `/insurance-fest-2026` — title, h1, innerText chars +
+   lines, scrollHeight all byte-identical live vs replica. (No ticking/dynamic
+   text on these pages other than the clock, which lives in the home booking
+   form — see pixel audit.)
+3. **Pixel audit — 2026-08-24 (the D31 lesson: attribute EVERY diff before
+   concluding)**: full-page captures 23106×3840 (7702 CSS px × 3 DPR) both sides.
+   Early pair showed ~98.6% rows byte-identical with three differing bands:
+   (a) **nav strip rows 87–187** — NOT a structural delta: fresh synchronized
+   captures (timeshot.mjs, same wall-clock window, both origins) give 720/720
+   viewport rows byte-identical incl. rows 80–200; the boot/hero animation
+   (fade/position) is a transient frame that lands differently per capture time.
+   (b) **logo wall rows 16281–16360** — the site runs an infinite horizontal
+   **logo marquee**: marquee.mjs measures 18 logos shifting −29.97/−30.01 CSS px
+   per 800 ms on BOTH live and replica (same content, same speed); captures at
+   different wall-clock moments freeze different x-phase, but the marquee y-extent
+   is constant ⇒ a deterministic row band, not a rendering difference. Settled by
+   font probe (26 FontFace records, identical loaded set both sides), label
+   geometry probe (Inter 16.8 px / lh 25.2, identical), img-rect probe (same
+   srcs+rects), logo-byte md5 (all 8 logos identical live vs vendored).
+   (c) **bot band = live clock**: fresh 3-band captures (`d31_bands.mjs`,
+   3840×2160) → top + mid md5-identical; bot differs in exactly 41/2160 rows at
+   x 1784–1872 = the booking-form clock text "Israel Time (01:22)" vs "(01:23)"
+   — the minute ticked between captures. NOTHING else in the whole bottom band
+   differs. ⇒ zero real rendering differences; all bands time-varying elements
+   frozen at capture time. (Contrast with D30, where 93.7% was parity and bands
+   were attributed by animation; D31 goes further — synchronized recapture +
+   per-mechanism probes prove band-by-band identity.)
+4. **Vision judge (3 viewport bands, top/mid/bot)**: content identical in every
+   band both sides; polish live 8/7/7 vs replica 7/7/7 — all >= 7 (D30-style
+   live==replica pattern). Minor "Less admin, more advising/selling" read = OCR
+   variance on a byte-identical row run. PASS.
+5. **Ports**: replica `serve_replica.py` **8929**; capture vehicle headless CDP
+   9344, `Emulation.setDeviceMetricsOverride{width:1280,height:720,
+   deviceScaleFactor:3}` + `captureBeyondViewport:true` (clip > ~16384 px fails;
+   clip-less fullPage handles 31 k-px pages).
+
+**Tools added this turn**: `.tmp_tools/d31_bands.mjs` (3-band synchronized
+capture), `d31_full.mjs` (full-page fp1/fp2 pairs), `d31_pxdiff.py` (stdlib PNG
+decoder + row diff), `af_parity.mjs` (text parity harness reused 3/3).
