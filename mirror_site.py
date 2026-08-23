@@ -42,6 +42,14 @@ class LinkFinder(html.parser.HTMLParser):
 
     ATTRS = ("href", "src", "srcset", "action", "poster", "data-src", "data-href")
 
+    # og:image / twitter:image family only — width/height/alt are NOT URLs
+    # and must never be rewritten ("1200" -> "1200/index.html" corrupts the
+    # document head and breaks React hydration).
+    META_IMAGE_PROPS = {
+        "og:image", "og:image:url", "og:image:secure_url",
+        "twitter:image", "twitter:image:src",
+    }
+
     def __init__(self):
         super().__init__()
         self.urls = []
@@ -55,15 +63,20 @@ class LinkFinder(html.parser.HTMLParser):
                     url = part.strip().split(" ")[0]
                     if url:
                         self.urls.append((url, "srcset"))
+            elif k == "href" and tag == "link" and any(
+                    r == "canonical" for r in
+                    dict(attrs).get("rel", "").split()):
+                # canonical keeps its ABSOLUTE live form: the served replica
+                # must render the same bytes React's metadata API emits, or
+                # hydration fails.
+                self.urls.append((v, "canonical"))
             elif k in self.ATTRS:
                 self.urls.append((v, k))
             elif k == "content" and tag == "meta":
-                # og:image / twitter:image meta content refs
                 for mk, mv in attrs:
-                    if mk == "property" and "image" in mv.lower():
+                    if mk == "property" and mv in self.META_IMAGE_PROPS:
                         self.urls.append((v, "meta"))
                         break
-
     def handle_starttag(self, tag, attrs):
         self.collect(tag, attrs)
 
@@ -267,6 +280,15 @@ class Mirror:
             abs_url = self.absolute(base, raw)
             if not self.allowed(abs_url):
                 continue  # external links stay absolute
+            if attr in ("canonical", "meta"):
+                # canonical + og/twitter image metas keep their ABSOLUTE live
+                # form (React hydrates the head from metadata-API output and
+                # compares meta content byte-for-byte). Only the og image
+                # ASSET is still fetched so the offline store keeps it.
+                if attr == "meta" and abs_url not in self.assets_seen:
+                    self.assets_seen.add(abs_url)
+                    self.queue.append((abs_url, -1))
+                continue
             rewrite.append((raw, attr, abs_url))
             if self.is_html_like(abs_url) and self.is_same_origin(abs_url):
                 # page: enqueue only inside depth budget; never queue as asset
@@ -294,7 +316,7 @@ class Mirror:
                 text = escaped.sub(
                     lambda m: self._rewrite_srcset(m, url), text)
             else:
-                attr_name = "content" if attr == "meta" else attr
+                attr_name = attr
                 for q in ('"', "'"):
                     for cand in ({raw, raw.replace("&", "&amp;")}):
                         text = text.replace(
@@ -304,7 +326,10 @@ class Mirror:
         # inline <style> blocks: rewrite url() refs to allowed assets
         for block in STYLE_BLOCK_RE.findall(text):
             for m in CSS_URL_RE.finditer(block):
-                ref = html.unescape(m.group(2))
+                ref = html.unescape(m.group(2)).strip("'\"")
+                if not ref or ref.startswith(
+                        ("#", "data:", "blob:", "about:", "javascript:")):
+                    continue  # fragment/data refs keep byte-identical form
                 abs_url = self.absolute(base, ref)
                 if self.allowed(abs_url):
                     text = text.replace(m.group(0), "url('" + self.rel_to(abs_url, url) + "')")
@@ -317,7 +342,10 @@ class Mirror:
             attr = m.group(1)
             new_attr = attr
             for cm in CSS_URL_RE.finditer(attr):
-                ref = html.unescape(cm.group(2))
+                ref = html.unescape(cm.group(2)).strip("'\"")
+                if not ref or ref.startswith(
+                        ("#", "data:", "blob:", "about:", "javascript:")):
+                    continue  # fragment/data refs keep byte-identical form
                 abs_url = self.absolute(base, ref)
                 if self.allowed(abs_url):
                     rel = self.rel_to(abs_url, url)

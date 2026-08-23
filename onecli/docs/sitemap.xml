@@ -1,0 +1,998 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agent-setup/get-a-credential-stub</loc>
+    <lastmod>2026-07-29T17:25:21.309Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agent-setup/get-container-configuration</loc>
+    <lastmod>2026-07-29T17:25:21.289Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agent-setup/get-the-gateway-skill</loc>
+    <lastmod>2026-07-29T17:25:21.319Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agent-setup/list-credential-stub-agents</loc>
+    <lastmod>2026-07-29T17:25:21.299Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/an-agents-usable-credentials</loc>
+    <lastmod>2026-07-29T17:25:20.559Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/create-an-agent</loc>
+    <lastmod>2026-07-29T17:25:20.576Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/delete-an-agent</loc>
+    <lastmod>2026-08-21T08:30:39.739Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/get-default-agent</loc>
+    <lastmod>2026-07-29T17:25:20.587Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/list-agents</loc>
+    <lastmod>2026-07-29T17:25:20.540Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/regenerate-agent-token</loc>
+    <lastmod>2026-07-29T17:25:20.644Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/rename-an-agent</loc>
+    <lastmod>2026-08-21T08:30:39.729Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/agents/set-default-agent</loc>
+    <lastmod>2026-07-29T17:25:20.631Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/approvals/list-pending-approvals</loc>
+    <lastmod>2026-07-29T17:25:21.348Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/approvals/submit-an-approval-decision</loc>
+    <lastmod>2026-07-29T17:25:21.358Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/activate-or-add-a-blocklist-entry</loc>
+    <lastmod>2026-07-29T17:25:21.003Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/connect-app-with-credentials</loc>
+    <lastmod>2026-07-29T17:25:20.893Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/delete-app-configuration</loc>
+    <lastmod>2026-08-21T08:30:39.873Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/get-app-configuration</loc>
+    <lastmod>2026-07-29T17:25:20.927Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/get-app-details</loc>
+    <lastmod>2026-07-29T17:25:20.872Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/get-app-permission-definition</loc>
+    <lastmod>2026-07-29T17:25:20.916Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/get-blocklist-state</loc>
+    <lastmod>2026-07-29T17:25:20.993Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/list-app-permission-definitions</loc>
+    <lastmod>2026-07-29T17:25:20.904Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/list-apps</loc>
+    <lastmod>2026-07-29T17:25:20.862Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/list-configured-providers</loc>
+    <lastmod>2026-07-29T17:25:20.972Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/list-providers-with-platform-default-credentials</loc>
+    <lastmod>2026-07-29T17:25:20.983Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/remove-a-blocklist-rule</loc>
+    <lastmod>2026-08-21T08:30:39.917Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/set-app-configuration</loc>
+    <lastmod>2026-07-29T17:25:20.937Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/start-oauth-flow</loc>
+    <lastmod>2026-07-29T17:25:20.883Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/toggle-a-blocklist-rule</loc>
+    <lastmod>2026-08-21T08:30:39.907Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/apps/toggle-app-configuration</loc>
+    <lastmod>2026-07-29T17:25:20.962Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/connections/disconnect-a-connection</loc>
+    <lastmod>2026-07-29T17:25:21.121Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/connections/list-connections</loc>
+    <lastmod>2026-07-29T17:25:21.088Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/connections/rename-a-connection</loc>
+    <lastmod>2026-07-29T17:25:21.111Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/connections/which-agents-can-reach-a-connection</loc>
+    <lastmod>2026-07-29T17:25:21.101Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/errors</loc>
+    <lastmod>2026-07-29T17:25:32.814Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/gateway-errors</loc>
+    <lastmod>2026-07-29T17:25:32.807Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/attach-a-connection-to-an-agent</loc>
+    <lastmod>2026-07-29T17:25:20.680Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/attach-a-secret-to-an-agent</loc>
+    <lastmod>2026-07-29T17:25:20.713Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/attach-an-agent-to-a-connection</loc>
+    <lastmod>2026-07-29T17:25:20.762Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/detach-a-connection-from-an-agent</loc>
+    <lastmod>2026-07-29T17:25:20.696Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/detach-a-secret-from-an-agent</loc>
+    <lastmod>2026-07-29T17:25:20.729Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/detach-an-agent-from-a-connection</loc>
+    <lastmod>2026-07-29T17:25:20.779Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/get-a-connections-grants</loc>
+    <lastmod>2026-07-29T17:25:20.746Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/grants/get-an-agents-grants</loc>
+    <lastmod>2026-07-29T17:25:20.663Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference</loc>
+    <lastmod>2026-07-29T17:25:32.811Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/migration/export-data-to-onecli-cloud</loc>
+    <lastmod>2026-07-29T17:25:21.336Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/multi-account</loc>
+    <lastmod>2026-07-29T17:25:32.809Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/activate-or-add-an-organization-blocklist-entry</loc>
+    <lastmod>2026-07-29T17:25:21.676Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/connect-app-at-the-organization-level</loc>
+    <lastmod>2026-07-29T17:25:21.603Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/delete-organization-app-configuration</loc>
+    <lastmod>2026-07-29T17:25:21.644Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/get-organization-app-configuration</loc>
+    <lastmod>2026-07-29T17:25:21.624Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/get-organization-blocklist-state</loc>
+    <lastmod>2026-07-29T17:25:21.665Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/list-configured-providers</loc>
+    <lastmod>2026-07-29T17:25:21.614Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/remove-an-organization-blocklist-rule</loc>
+    <lastmod>2026-07-29T17:25:21.696Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/set-organization-app-configuration</loc>
+    <lastmod>2026-07-29T17:25:21.634Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/start-organization-oauth-flow</loc>
+    <lastmod>2026-07-29T17:25:21.592Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/toggle-an-organization-blocklist-rule</loc>
+    <lastmod>2026-07-29T17:25:21.686Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-app-config/toggle-organization-app-configuration</loc>
+    <lastmod>2026-07-29T17:25:21.655Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-approvals/list-pending-approvals-across-the-organization</loc>
+    <lastmod>2026-07-29T17:25:21.706Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-connections/disconnect-an-organization-connection</loc>
+    <lastmod>2026-07-29T17:25:21.582Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-connections/list-organization-connections</loc>
+    <lastmod>2026-07-29T17:25:21.561Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-connections/rename-an-organization-connection</loc>
+    <lastmod>2026-07-29T17:25:21.572Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-partner/detach-from-partner</loc>
+    <lastmod>2026-07-29T17:25:21.950Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-partner/get-partner-status</loc>
+    <lastmod>2026-07-29T17:25:21.940Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-partner/list-inherited-partner-secrets</loc>
+    <lastmod>2026-07-29T17:25:21.930Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/create-a-policy-rule-organization</loc>
+    <lastmod>2026-07-29T17:25:21.450Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/delete-a-draft-policy-rule-organization</loc>
+    <lastmod>2026-08-21T08:30:40.118Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/get-a-draft-policy-rule-organization</loc>
+    <lastmod>2026-07-29T17:25:21.433Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/get-the-default-rule-organization</loc>
+    <lastmod>2026-07-29T17:25:21.500Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/get-the-most-recent-publish-organization</loc>
+    <lastmod>2026-08-21T08:30:40.155Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/list-policy-rules-organization</loc>
+    <lastmod>2026-07-29T17:25:21.411Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/publish-the-staged-draft-organization</loc>
+    <lastmod>2026-07-29T17:25:21.536Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/reorder-the-draft-organization</loc>
+    <lastmod>2026-07-29T17:25:21.490Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/set-the-default-rules-action-organization</loc>
+    <lastmod>2026-08-21T08:30:40.138Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-policy/update-a-draft-policy-rule-organization</loc>
+    <lastmod>2026-08-21T08:30:40.107Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-secrets/create-an-organization-secret</loc>
+    <lastmod>2026-07-29T17:25:21.380Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-secrets/delete-an-organization-secret</loc>
+    <lastmod>2026-07-29T17:25:21.401Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-secrets/list-organization-secrets</loc>
+    <lastmod>2026-07-29T17:25:21.369Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization-secrets/update-an-organization-secret</loc>
+    <lastmod>2026-07-29T17:25:21.390Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/organization/effective-app-permissions-organization</loc>
+    <lastmod>2026-07-29T17:25:21.423Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner</loc>
+    <lastmod>2026-06-09T19:12:04.481Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-budgets/list-spend-budgets-for-an-organization</loc>
+    <lastmod>2026-07-29T17:25:21.857Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-budgets/remove-a-spend-budget</loc>
+    <lastmod>2026-07-29T17:25:21.878Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-budgets/set-or-update-a-spend-budget</loc>
+    <lastmod>2026-07-29T17:25:21.868Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-members/add-a-partner-member</loc>
+    <lastmod>2026-07-29T17:25:21.900Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-members/change-a-members-role</loc>
+    <lastmod>2026-07-29T17:25:21.910Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-members/list-partner-members</loc>
+    <lastmod>2026-07-29T17:25:21.888Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-members/remove-a-partner-member</loc>
+    <lastmod>2026-07-29T17:25:21.920Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-organizations/create-an-organization</loc>
+    <lastmod>2026-07-29T17:25:21.729Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-organizations/delete-an-unclaimed-organization</loc>
+    <lastmod>2026-07-29T17:25:21.749Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-organizations/get-an-organization</loc>
+    <lastmod>2026-07-29T17:25:21.739Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-organizations/list-partner-organizations</loc>
+    <lastmod>2026-07-29T17:25:21.716Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-organizations/reissue-a-claim-link</loc>
+    <lastmod>2026-07-29T17:25:21.759Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-organizations/rotate-organization-tokens</loc>
+    <lastmod>2026-07-29T17:25:21.769Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-projects/create-a-project</loc>
+    <lastmod>2026-07-29T17:25:21.789Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-projects/delete-a-project</loc>
+    <lastmod>2026-07-29T17:25:21.799Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-projects/list-projects</loc>
+    <lastmod>2026-07-29T17:25:21.779Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-secrets/create-a-partner-secret</loc>
+    <lastmod>2026-07-29T17:25:21.820Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-secrets/delete-a-partner-secret</loc>
+    <lastmod>2026-08-21T08:30:40.316Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-secrets/list-partner-secrets</loc>
+    <lastmod>2026-07-29T17:25:21.810Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/partner-secrets/update-a-partner-secret</loc>
+    <lastmod>2026-07-29T17:25:21.830Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/policy/effective-app-permissions-project</loc>
+    <lastmod>2026-07-29T17:25:21.139Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/projects/create-a-project</loc>
+    <lastmod>2026-07-29T17:25:21.170Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/projects/delete-a-project</loc>
+    <lastmod>2026-07-29T17:25:21.191Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/projects/get-a-project</loc>
+    <lastmod>2026-07-29T17:25:21.160Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/projects/list-projects</loc>
+    <lastmod>2026-07-29T17:25:21.149Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/projects/update-a-project</loc>
+    <lastmod>2026-07-29T17:25:21.181Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/secrets/create-a-secret</loc>
+    <lastmod>2026-07-29T17:25:20.800Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/secrets/delete-a-secret</loc>
+    <lastmod>2026-08-21T08:30:39.810Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/secrets/list-secrets</loc>
+    <lastmod>2026-07-29T17:25:20.789Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/secrets/update-a-secret</loc>
+    <lastmod>2026-07-29T17:25:20.810Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/team/provision-a-team-member</loc>
+    <lastmod>2026-07-29T17:25:21.202Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/user/get-api-key</loc>
+    <lastmod>2026-07-29T17:25:21.238Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/user/get-current-user</loc>
+    <lastmod>2026-07-29T17:25:21.213Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/user/regenerate-api-key</loc>
+    <lastmod>2026-07-29T17:25:21.248Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/user/update-user-profile</loc>
+    <lastmod>2026-08-21T08:30:39.982Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/utility/get-resource-counts</loc>
+    <lastmod>2026-07-29T17:25:21.269Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/utility/health-check</loc>
+    <lastmod>2026-07-29T17:25:21.259Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/api-reference/utility/list-vault-connections</loc>
+    <lastmod>2026-07-29T17:25:21.279Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/cli/onecli-cli</loc>
+    <lastmod>2026-07-30T05:38:18.340Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/agent-access</loc>
+    <lastmod>2026-07-29T17:25:32.817Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/claude-code-plugin</loc>
+    <lastmod>2026-05-13T16:57:42.735Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/coding-agents</loc>
+    <lastmod>2026-07-30T08:03:01.388Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/credential-stubs/general-app</loc>
+    <lastmod>2026-06-22T00:09:36.520Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/credential-stubs/gmail</loc>
+    <lastmod>2026-05-12T20:54:46.353Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/credential-stubs/vertex-ai</loc>
+    <lastmod>2026-05-12T20:54:46.351Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/github-app</loc>
+    <lastmod>2026-05-19T17:28:30.635Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides</loc>
+    <lastmod>2026-07-29T17:25:32.816Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/nanoclaw</loc>
+    <lastmod>2026-07-29T17:25:32.828Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/projects</loc>
+    <lastmod>2026-07-30T05:38:18.337Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/rules</loc>
+    <lastmod>2026-07-29T17:25:32.815Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/guides/user-provisioning</loc>
+    <lastmod>2026-06-14T15:03:05.694Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/how-it-works</loc>
+    <lastmod>2026-08-21T08:30:46.340Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs</loc>
+    <lastmod>2026-08-21T08:30:46.342Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/anthropic</loc>
+    <lastmod>2026-07-29T17:25:32.803Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/apollo-io</loc>
+    <lastmod>2026-07-29T17:25:32.806Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/app-connections</loc>
+    <lastmod>2026-06-22T02:10:20.106Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/attio</loc>
+    <lastmod>2026-07-29T17:25:32.811Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/aws</loc>
+    <lastmod>2026-07-29T17:25:32.820Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/cloudflare</loc>
+    <lastmod>2026-07-29T17:25:32.819Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/confluence</loc>
+    <lastmod>2026-07-29T17:25:32.818Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/datadog</loc>
+    <lastmod>2026-07-29T17:25:32.821Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/dropbox</loc>
+    <lastmod>2026-07-29T17:25:32.812Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/flyio</loc>
+    <lastmod>2026-07-29T17:25:32.810Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/github</loc>
+    <lastmod>2026-07-29T17:25:32.828Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/github-app</loc>
+    <lastmod>2026-07-29T17:25:32.827Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/gmail</loc>
+    <lastmod>2026-07-29T17:25:32.808Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-admin</loc>
+    <lastmod>2026-07-29T17:25:32.821Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-analytics</loc>
+    <lastmod>2026-07-29T17:25:32.805Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-calendar</loc>
+    <lastmod>2026-07-29T17:25:32.803Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-classroom</loc>
+    <lastmod>2026-07-29T17:25:32.808Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-docs</loc>
+    <lastmod>2026-07-29T17:25:32.804Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-drive</loc>
+    <lastmod>2026-07-29T17:25:32.802Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-forms</loc>
+    <lastmod>2026-07-29T17:25:28.753Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-meet</loc>
+    <lastmod>2026-07-29T17:25:28.818Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-photos</loc>
+    <lastmod>2026-07-29T17:25:28.819Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-search-console</loc>
+    <lastmod>2026-07-29T17:25:28.771Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-sheets</loc>
+    <lastmod>2026-07-29T17:25:28.772Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-slides</loc>
+    <lastmod>2026-07-29T17:25:28.762Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/google-tasks</loc>
+    <lastmod>2026-07-29T17:25:28.765Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/hubspot</loc>
+    <lastmod>2026-07-29T17:25:28.761Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations</loc>
+    <lastmod>2026-05-12T20:54:46.432Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/jira</loc>
+    <lastmod>2026-07-29T17:25:28.763Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/linkedin</loc>
+    <lastmod>2026-07-29T17:25:28.772Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/llms</loc>
+    <lastmod>2026-07-29T17:25:28.760Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/microsoft-onenote</loc>
+    <lastmod>2026-07-29T17:25:28.760Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/monday</loc>
+    <lastmod>2026-07-29T17:25:28.757Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/mongodb-atlas</loc>
+    <lastmod>2026-07-29T17:25:28.764Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/notion</loc>
+    <lastmod>2026-07-29T17:25:28.767Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/openai</loc>
+    <lastmod>2026-07-29T17:25:28.755Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/outlook-calendar</loc>
+    <lastmod>2026-07-29T17:25:28.761Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/outlook-mail</loc>
+    <lastmod>2026-07-29T17:25:28.766Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/resend</loc>
+    <lastmod>2026-07-29T17:25:28.759Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/sentry</loc>
+    <lastmod>2026-07-29T17:25:28.754Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/supabase</loc>
+    <lastmod>2026-07-29T17:25:28.768Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/todoist</loc>
+    <lastmod>2026-07-29T17:25:28.766Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/vertex-ai</loc>
+    <lastmod>2026-07-29T17:25:28.762Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/youtube</loc>
+    <lastmod>2026-07-29T17:25:28.756Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/integrations/zoom</loc>
+    <lastmod>2026-07-29T17:25:28.759Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/quickstart</loc>
+    <lastmod>2026-08-21T08:30:46.342Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/reference/environment-variables</loc>
+    <lastmod>2026-07-30T05:38:18.334Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/reference/telemetry</loc>
+    <lastmod>2026-05-12T20:57:42.830Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks/dotnet</loc>
+    <lastmod>2026-05-12T20:57:42.829Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks/go</loc>
+    <lastmod>2026-05-12T20:54:46.460Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks</loc>
+    <lastmod>2026-05-19T16:54:04.133Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks/java</loc>
+    <lastmod>2026-05-12T20:54:46.460Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks/node</loc>
+    <lastmod>2026-07-29T17:25:28.758Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks/python</loc>
+    <lastmod>2026-05-12T20:57:42.859Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks/ruby</loc>
+    <lastmod>2026-05-12T20:54:46.479Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/sdks/rust</loc>
+    <lastmod>2026-05-12T20:54:46.479Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/self-hosting/app-credentials</loc>
+    <lastmod>2026-07-02T23:40:37.720Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/self-hosting/community</loc>
+    <lastmod>2026-08-21T08:30:46.343Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/self-hosting/configuration</loc>
+    <lastmod>2026-08-21T08:30:46.338Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/self-hosting/connect-agents</loc>
+    <lastmod>2026-07-29T17:25:28.763Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/self-hosting/enterprise/all-in-one</loc>
+    <lastmod>2026-07-29T17:25:28.753Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/self-hosting/overview</loc>
+    <lastmod>2026-07-29T17:25:28.768Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/vaults/1password</loc>
+    <lastmod>2026-05-26T19:42:12.499Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/vaults/bitwarden</loc>
+    <lastmod>2026-05-19T17:28:32.523Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://onecli.sh/docs/vaults/overview</loc>
+    <lastmod>2026-05-26T19:42:12.502Z</lastmod>
+  </url>
+</urlset>

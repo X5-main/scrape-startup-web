@@ -7,10 +7,13 @@ Serves the mirrored tree (docroot) faithfully:
 - GET /_next/image?url=X&w=..&q=.. -> decodes X and serves the real file,
   replacing Next.js's image optimization endpoint offline
 - POST *           -> index.html (Next.js App Router RSC refresh stub)
-- /relay-fgLF/*    -> analytics (PostHog) stub, returns 204/200
-- /_next/static/*  -> plain-name references (RSC flight manifest emits
-  `NAME.js?dpl=dpl_X` while the mirror stored `NAME__dpl-dpl-<X>.js`) are
-  resolved to the on-disk mangled file so client-side hydration completes.
+ /relay-fgLF/*    -> analytics (PostHog) stub, returns 204/200
+ /api/github-stars, /api/status -> mirror-time snapshots of the live API
+  (footer badges render identically; values frozen at capture time)
+ *                -> any plain-name ref whose `__dpl-dpl-`-mangled twin
+  exists on disk is served from that file (Turbopack images under /assets/,
+  /badges/ keep their live `?dpl=` URL form in the stored HTML; the server
+  maps to the mangled file at serve time).
 
 Usage: python3 serve_replica.py [port] [docroot]
 """
@@ -27,6 +30,82 @@ if len(sys.argv) > 2:
     DOCROOT = sys.argv[2]
 
 DPL_SUFFIX = "__dpl-dpl-"
+# Serve-time reverse transform: the mirror rewrote every href/src/poster to a
+# RELATIVE ref and baked Turbopack `?dpl=` filenames into /assets|/badges names
+# (`NAME__dpl-dpl-<X>.ext`). React hydrates the DOM against the RSC flight
+# payload, which carries the LIVE absolute forms (`/assets/NAME.png?dpl=dpl_X`,
+# `/_next/static/media/...woff2`, full-origin video URLs) — so the served bytes
+# must present live form or hydration fails (#418). This map reconstructs live
+# form per ref; disk lookup for the served file is unchanged (_dpl_alternatives).
+ORIGIN = ""
+_origin_file = os.path.join(DOCROOT, ".origin")
+if os.path.isfile(_origin_file):
+    ORIGIN = open(_origin_file, encoding="utf-8").read().strip()
+
+
+def _restore_ref(url):
+    """Return the live-absolute byte form for a mirrored URL, or None to keep."""
+    import posixpath
+
+    if not url or url.startswith(("#", "?", "//")):
+        return None
+    if url.startswith(("/", "data:", "mailto:", "tel:", "javascript:")):
+        return None
+    if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", url):
+        return None
+    absu = "/" + posixpath.normpath(url)
+    base = absu.rsplit("/", 1)[-1]
+    m = re.match(r"^(?P<dir>.*/)?(?P<stem>.+?)" + re.escape(DPL_SUFFIX) + r"(?P<tok>[A-Za-z0-9]+)(?P<ext>\.\w+)$", absu)
+    if m:
+        # group('dir') already carries the leading '/' (dir + stem = absu path).
+        return "%s%s?dpl=dpl_%s" % (m.group("dir") or "/", m.group("stem") + m.group("ext"), m.group("tok"))
+    if base.endswith(".mp4"):
+        return ORIGIN + absu if ORIGIN else absu
+    if re.match(r"^onecli-full-logo(-dark)?\.png$", base):
+        tok = "dpl_FDFXHVrLEJVFDWvwEtkNAZFRP8Gj"
+        return "/_next/image?url=%%2F%s&amp;w=1920&amp;q=75&amp;dpl=%s" % (base, tok)
+    if base == "icon__icon-2556a84e-png.png":
+        return "/icon.png?icon.2556a84e.png"
+    if absu.endswith("/index.html"):
+        # `/product/index.html` -> `/product` (live nav links are extensionless,
+        # no trailing slash); root `/index.html` -> `/`.
+        return absu[: -(len("index.html"))].rstrip("/") or "/"
+    return absu
+
+
+_ATTR_RE = re.compile(rb'\b(href|src|poster)=("[^"]*"|\'[^\']*\')')
+_SRCSET_RE = re.compile(rb'\bsrcSet=("[^"]*"|\'[^\']*\')')
+
+
+def _restore_live_html(body):
+    """Rewrite mirrored relative refs to live absolute form in an HTML body."""
+
+    def _repl(m):
+        attr = m.group(1)
+        quote = m.group(2)[:1].decode("ascii")
+        val = m.group(2)[1:-1].decode("utf-8", "replace")
+        restored = _restore_ref(val)
+        if restored is None:
+            return m.group(0)
+        return ('%s=%s%s%s' % (attr.decode(), quote, restored, quote)).encode()
+
+    def _srcset_repl(m):
+        quote = m.group(1)[:1].decode("ascii")
+        raw = m.group(1)[1:-1].decode("utf-8", "replace")
+        out = []
+        for cand in raw.split(","):
+            parts = cand.strip().split()
+            if not parts:
+                continue
+            restored = _restore_ref(parts[0])
+            if restored is None:
+                out.append(cand)
+            else:
+                out.append(restored + (" " + " ".join(parts[1:]) if len(parts) > 1 else ""))
+        return ('srcSet=%s%s%s' % (quote, ", ".join(out), quote)).encode()
+
+    body = _ATTR_RE.sub(_repl, body)
+    return _SRCSET_RE.sub(_srcset_repl, body)
 
 
 def _dpl_alternatives(relpath):
@@ -63,13 +142,48 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             self.send_response(200)
             self.end_headers()
             return
-        if parsed.path.startswith("/_next/static/") and DPL_SUFFIX not in parsed.path:
+        if parsed.path == "/api/github-stars":
+            body = b'{"stars":3368}'
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        if parsed.path == "/api/status":
+            body = b'{"operational":true}'
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        full = self.translate_path(self.path)
+        if DPL_SUFFIX not in parsed.path and not full.lower().endswith((".html", ".htm")):
             # Hydration-critical: RSC flight payloads reference chunks by their
             # plain name while the mirror stored them mangled. Resolve the
-            # plain reference to the on-disk file.
+            # plain reference to the on-disk file so those fetches 200.
             mapped = _dpl_alternatives(parsed.path.lstrip("/"))
             if mapped:
                 self.path = "/" + mapped
+        full = self.translate_path(self.path)
+        if os.path.isdir(full):
+            # SimpleHTTPRequestHandler serves index.html for a directory; we
+            # must transform those bytes too, so resolve before the suffix check.
+            full = os.path.join(full, "index.html")
+        if full.lower().endswith((".html", ".htm")):
+            try:
+                with open(full, "rb") as fh:
+                    body = fh.read()
+            except OSError:
+                return super().do_GET()
+            body = _restore_live_html(body)
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
         return super().do_GET()
 
     def do_POST(self):
@@ -80,7 +194,7 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             return
         # RSC router refresh: respond with the initial HTML document
         self.path = "/"
-        return super().do_GET()
+        return self.do_GET()
 
     def end_headers(self):
         self.send_header("Cache-Control", "no-store")

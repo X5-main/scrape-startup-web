@@ -31,3 +31,11 @@ The goal is a durable, versioned archive: as startups launch, pivot, or shut dow
 ```
 
 Each subfolder is a complete, standalone snapshot of that startup's website at the time it was captured.
+
+## Startups in the library (current)
+
+| Startup | Folder | Notes |
+|---|---|---|
+| OneCLI | `onecli/` | React App Router site, mirrored via `mirror_site.py` (220 files), served via `serve_replica.py` serve-time ref restoration. Full-page parity with live: identical height (7348px), nav 25/25 links, byte-identical SSR DOM modulo intended rewrites, `uncaught:[]` (React #418 eliminated), 0 broken images, videos streamed from origin. |
+
+See `search_methods.md` for the mirroring replay log and verification recipes.

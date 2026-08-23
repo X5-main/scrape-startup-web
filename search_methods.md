@@ -426,3 +426,51 @@ startup-website library. Ordered by usefulness per effort.
   byte-equal to live on every metric (height 7057, 40/40 imgs loaded, h1
   "Hire your first") incl. the same vendor chatbot `b2bjsstore...js.gz` error
   on BOTH sites — proven live-inherent, external-only ref.
+- **OneCLI (onecli.sh) — React/Next.js hydration parity (the #418 case).**
+  React-driven App Router site (8 videos, `_next/image` optimizer URLs, dpl
+  deployment-token chunk names). Served through a hub (`serve_replica.py`,
+  DOCROOT `onecli/`) with a serve-time ref-restoration layer:
+  `__dpl-dpl-TOKEN.ext` → `?dpl=dpl_TOKEN`, mp4 → absolute
+  `https://onecli.sh/...` (stream from origin), fonts/css/assets → `/` prefix,
+  `index.html` links → extensionless, `icon__icon-HASH-png.png` →
+  `/icon.png?icon.HASH.png`. `og:image`/canonical/meta content pass through
+  untouched.
+- **Mirror-rewriter corruption was the #106/108 hydration root cause**
+  (fix in `mirror_site.py`, applied before the 2nd crawl): (1) old
+  `LinkFinder` rewrote ANY meta whose property *contained* "image" —
+  `og:image:width`/"height"/"alt" contents became pages (`1200/index.html`);
+  fixed with an exact-match `META_IMAGE_PROPS` set; (2) `rel=canonical`
+  rewritten to `index.html`; (3) `og:image` `?v=2` folded into the filename;
+  (4) hero inline data-URI shredded because the entity-encoded style
+  `background-image:url(&quot;data:...#...&quot;)` was `html.unescape()`d
+  BEFORE the scheme check, defeating `allowed()` → the whole `url(...)` was
+  rewritten and garbage enqueued. Fix: guard `ref = html.unescape(...)`
+  `.strip('\'"')`, skip refs starting with `#`/`data:`/`blob:`/`about:`/
+  `javascript:`; canonical/meta attrs keep absolute live form; og-image
+  assets still queued for offline storage. Regenerate the store after any
+  mirror-script fix — never hand-patch stored HTML.
+- **SSR-DOM compare beats post-hydration DOMs:** aborted hydration replaces
+  the tree, so compare JS-disabled SSR dumps for mismatch truth; live keeps
+  its DOM on hydration, the broken replica replaces it.
+- **React #418 diagnosis pattern:** audit captures `uncaught:["Minified
+  React error #418"]` + `failures:[{t:err,tag:"window"...}]`. Root-mean the
+  first SSR-DOM diff, not the last: it was `canonical href="/"` vs
+  `https://onecli.sh`.
+- **Docs-route "broken" assets can be live-inherent:** `/docs` 404s 6 fonts/
+  CSS on the replica — verified the SAME refs 404 on live (stale deployment
+  artifacts, both dpl-token and bare-path forms). Parity, not defect; don't
+  chase live's own broken links (curl HEAD each ref on the origin first).
+- **Full-page parity via pixel bands:** `Page.captureScreenshot
+  captureBeyondViewport` on both origins (1440×7348 both), decode PNG
+  (colorType 2 = RGB, stride w*3+1), per-1000px band diff. Result: 0.356% →
+  0.086% differing pixels, confined to bands containing ANIMATION (hero
+  videos/marquees) — each site's own capture-to-capture jitter (live 0.19%,
+  replica 0.31%) in the same bands dominates the cross-site diff. Static
+  structure (nav links 25/25, h1 rect 461,187,517,153, body height 7348,
+  video sizes 1104×622/1104×461, html class light) is byte-identical.
+- **HTMLParser quirks:** old parser has no link/img/source tag names — use
+  `get_starttag_text()` + regex and `convert_charrefs=False`; restore a
+  collapsed class attribute after whole-class rewrites (py_compile passes but
+  runtime `AttributeError` on a missing class dict). `og:image` needs
+  `:width/:height/:alt` excluded from href-collection AND `twitter:image`
+  included; mangle `?v=N` query folding is expected filename churn.
