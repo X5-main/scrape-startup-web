@@ -1,0 +1,8 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame">
+<g id="Ellipse">
+<circle cx="8" cy="7.5" r="3" fill="var(--fill-0, #F1F3F9)"/>
+<circle cx="8" cy="7.5" r="4" stroke="var(--stroke-0, #F1F3F9)" stroke-opacity="0.2" stroke-width="2"/>
+</g>
+</g>
+</svg>

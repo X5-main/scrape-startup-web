@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Parameter Blog</title>
+    <link>https://www.parameter.ai/blog</link>
+    <atom:link href="https://www.parameter.ai/blog/rss.xml" rel="self" type="application/rss+xml"/>
+    <description>Research and engineering notes from the Parameter team on AI penetration testing, autonomous security agents, and shipping software safely.</description>
+    <language>en-us</language>
+    <item>
+      <title>The bug is rarely in the diff: reviewing 5,000 PRs per day</title>
+      <link>https://www.parameter.ai/blog/agentic-code-review-explained</link>
+      <guid isPermaLink="true">https://www.parameter.ai/blog/agentic-code-review-explained</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <description>How Sentinel, our agentic PR review bot, catches exploitable security bugs before they merge by following execution paths across a pull request, not just scanning the diff.</description>
+    </item>
+    <item>
+      <title>We ran 2,300 pentests in 3 weeks. Here's what our AI finds</title>
+      <link>https://www.parameter.ai/blog/what-ai-pentests-find</link>
+      <guid isPermaLink="true">https://www.parameter.ai/blog/what-ai-pentests-find</guid>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <description>In three weeks our agents ran 2,300 autonomous AI penetration tests. ~37% of findings were high or critical, mostly authorization, IDOR, and business-logic bugs scanners miss.</description>
+    </item>
+    <item>
+      <title>Hex Security is now Parameter</title>
+      <link>https://www.parameter.ai/blog/we-are-now-parameter</link>
+      <guid isPermaLink="true">https://www.parameter.ai/blog/we-are-now-parameter</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Hex Security has a new name and a new home. The company behind it, Anytool, Inc., is unchanged, and so is the product. Here is what changed, what didn't, and where to verify it, including in person at Black Hat USA 2026.</description>
+    </item>
+    <item>
+      <title>It's the harness, not the model: +26% on CryptanalysisBench's hard set</title>
+      <link>https://www.parameter.ai/blog/cryptanalysisbench-harness-not-model</link>
+      <guid isPermaLink="true">https://www.parameter.ai/blog/cryptanalysisbench-harness-not-model</guid>
+      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Fix the model to Claude Opus 4.8, keep the paper's protocol, change only the harness, and the scaffold lifts Tier-2 from 31/140 (22.1%) to 39/140 (27.9%).</description>
+    </item>
+    <item>
+      <title>Continuous penetration testing vs. annual pentests: what actually changed</title>
+      <link>https://www.parameter.ai/blog/continuous-penetration-testing-vs-annual-pentests</link>
+      <guid isPermaLink="true">https://www.parameter.ai/blog/continuous-penetration-testing-vs-annual-pentests</guid>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      <description>The annual pentest was built for a world that shipped software twice a year. Here's what continuous penetration testing means, where the market's definitions fall apart, and how to tell real coverage from a scanner in a trench coat.</description>
+    </item>
+    <item>
+      <title>SSRF to cloud takeover: how one URL field becomes credential theft</title>
+      <link>https://www.parameter.ai/blog/ssrf-to-cloud-credentials</link>
+      <guid isPermaLink="true">https://www.parameter.ai/blog/ssrf-to-cloud-credentials</guid>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Server-side request forgery turns an innocent 'fetch this URL' feature into a path straight to your cloud's metadata endpoint, and the temporary credentials behind it. Here's the full chain and how to break it.</description>
+    </item>
+    <item>
+      <title>Security at the speed of development</title>
+      <link>https://www.parameter.ai/blog/security-at-the-speed-of-development</link>
+      <guid isPermaLink="true">https://www.parameter.ai/blog/security-at-the-speed-of-development</guid>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Security can't be the team that says no once a quarter. It has to move at the cadence engineering already runs at: every commit, every deploy.</description>
+    </item>
+  </channel>
+</rss>

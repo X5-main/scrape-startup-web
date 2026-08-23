@@ -1,0 +1,8 @@
+upstream: https://www.parameter.ai/
+site-kind: marketing (Security at the speed of development)
+crawler: ../bot1.py (pure-stdlib, stealth)
+seed: https://www.parameter.ai/ (depth-limited, same-site)
+served: http://localhost:8925/ (serve_replica.py)
+assets: fully vendored locally (parameter/_static/)
+verification: relay DOM facts + innerText line-set parity + vision 8/8
+notes: live origin serves per-request variant; consent banner shows only on localhost origin

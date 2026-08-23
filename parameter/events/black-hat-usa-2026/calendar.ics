@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Parameter//Black Hat USA 2026//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:black-hat-usa-2026@parameter.ai
+DTSTAMP:20260730T000000Z
+DTSTART;VALUE=DATE:20260801
+DTEND;VALUE=DATE:20260807
+SUMMARY:Parameter at Black Hat USA 2026
+LOCATION:Mandalay Bay Convention Center\, 3950 S Las Vegas Blvd\, Las Vegas
+ \, NV 89119
+DESCRIPTION:Parameter's agents pentest like a real adversary. Watch them fi
+ nd\, chain\, and prove a real exploit against a live target — or bring o
+ ne of your own.\n\nWHERE TO FIND US\nBooth 5701\, Startup City — Busines
+ s Hall open August 5–6\nMandalay Bay Convention Center\, 3950 S Las Vega
+ s Blvd\, Las Vegas\, NV 89119\n\nTHE WEEK\n- Live agent runs\, on the half
+  hour | August 5–6\, every 30 minutes | Booth 5701\, Startup City\n- Bri
+ ng your own target | August 5–6\, by appointment | Booth 5701\, Startup 
+ City\n- Thirty minutes with a founder | August 1–6\, 2026\, by appointme
+ nt | TBD\, Las Vegas\n\nBOOK A SLOT\nReserve time with the team before the
+  good slots go: https://www.parameter.ai/events/black-hat-usa-2026#book\n\
+ nFull details: https://www.parameter.ai/events/black-hat-usa-2026
+URL:https://www.parameter.ai/events/black-hat-usa-2026
+END:VEVENT
+END:VCALENDAR
