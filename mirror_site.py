@@ -48,6 +48,7 @@ def _looks_like_css(text_or_bytes):
 # Backticks: Framer rolldown bundles use template-literal chunk imports.
 JS_IMPORT_RE = re.compile(r"""(?:import(?:\(|\s+[^;'"]*?\s+from)?\s*["'`]([^"'`]+)["'`])""")
 STYLE_BLOCK_RE = re.compile(r"<style[^>]*>(.*?)</style>", re.S)
+INLINE_STYLE_RE = re.compile(r'style="([^"]*)"')
 # A srcset candidate is `URL [descriptor]`. The URL may contain literal
 # spaces (Webflow/Cloudinary upload filenames like "Rapid Deployment - …
 # -p-500.webp"), so the trailing width/DPR descriptor is anchored at the end
@@ -456,10 +457,11 @@ class Mirror:
                     for m in JS_IMPORT_RE.finditer(text):
                         ref = m.group(1)
                         nxt = text[m.end():m.end() + 1]
-                        if "+" in ref or "${" in ref or nxt == "+":
-                            # runtime-interpolated template (e.g.
-                            # `+locationHref+`): not a static chunk path,
-                            # cannot resolve
+                        if ":" in ref:
+                            # scheme-ish string fragments (Turbopack emits
+                            # minified `case"@import":case":` switch labels
+                            # that the import regex crosses): never a valid
+                            # chunk path, cannot resolve
                             continue
                         abs_url = self.absolute(base, ref)
                         if self.allowed(abs_url):
