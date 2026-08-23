@@ -661,7 +661,10 @@ startup-website library. Ordered by usefulness per effort.
    DOM + vision compare — results appended below after execution.**2026-08-23 execution results:**
 
 6. **Mirror** (corma/): `mirror_site.py https://corma.ai/ corma --sitemap auto
-   --asset-hosts framerusercontent.com,fonts.gstatic.com` → 166 files, **"no missing referenced
+   --asset-hosts framerusercontent.com,fonts.gstatic.com` → 166 fetched → **154 unique files on disk**
+   (crawler `downloads` counter increments per `save()` with no asset dedupe — 12 duplicate saves
+   overwrite already-written keys; disk tally 68 woff2 + 39 png + 31 mjs + 5 jpg + 4 html + 2 webp +
+   2 gif + 1 svg + 1 mp4 + 1 `.origin`), **"no missing referenced
    assets"** (Framer chunk graph resolved via backtick-import machinery; `data-redirect-timezone`
    stripped); assets: `corma/images/` (49 png/jpg/webp/gif/svg with `__width-N-height-M` and
    `__scale-down-to-N-width-...` query keys), `corma/sites/…/*.mjs` (31), `corma/s/` woff2 (68 —
