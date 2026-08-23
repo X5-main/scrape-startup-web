@@ -40,7 +40,8 @@ INLINE_STYLE_RE = re.compile(r'style="([^"]*)"')
 class LinkFinder(html.parser.HTMLParser):
     """Collect (url, attr-name) candidates from HTML."""
 
-    ATTRS = ("href", "src", "srcset", "action", "poster", "data-src", "data-href")
+    ATTRS = ("href", "src", "srcset", "action", "poster", "data-src", "data-href",
+             "data-rive-url")
 
     # og:image / twitter:image family only — width/height/alt are NOT URLs
     # and must never be rewritten ("1200" -> "1200/index.html" corrupts the
