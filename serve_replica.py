@@ -174,6 +174,16 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             raw = super().translate_path(urllib.parse.quote(path, safe="/"))
             if os.path.exists(raw):
                 return raw
+            # CSS url() inside a custom property (`mask:var(--lw-src)`) resolves
+            # against the base of the STYLESHEET that consumes the var (a
+            # /_next/static/chunks/*.css), not the page where --lw-src is set.
+            # The mirror stores such CDN assets flat at DOCROOT root
+            # (url_path_key keeps only the CDN URL's basename, e.g.
+            # landing-logo-uber.svg?ver -> landing-logo-uber__ver.svg). If the
+            # chunk-relative lookup misses, serve the root copy.
+            root = os.path.join(DOCROOT, os.path.basename(p))
+            if os.path.isfile(root):
+                return root
         return p
 
     def do_GET(self):
@@ -186,18 +196,51 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
                 self.path = "/" + vmap
         if parsed.path.startswith("/_next/image"):
             # serve the underlying image file for next/image optimizer requests
-            q = urllib.parse.parse_qs(parsed.query)
-            target = urllib.parse.unquote(q.get("url", [""])[0])
+            raw = ""
+            for part in parsed.query.split("&"):
+                if part.startswith("url="):
+                    raw = part[4:]
+            # one decode, mirroring mirror_site.url_path_key's recursion
+            target = urllib.parse.unquote(raw)
             it = urllib.parse.urlsplit(target)
+            path = None
             if it.scheme in ("http", "https"):
                 # absolute asset URL (e.g. cdn.sanity.io) -> path only
-                target = it.path
-            if target.startswith("/"):
-                self.path = target
+                path = urllib.parse.unquote(it.path)
+            elif target.startswith("/"):
+                path = target
+            if path:
+                # Version-query stamp on the CDN URL is folded into the stored
+                # name (`name.png?ver` -> `name__ver.png`, mirror_site.url_path_key);
+                # 38k optimizer refs carry such a query, so re-apply the fold or
+                # the lookup 404s.
+                if it.query and "." in path.rsplit("/", 1)[-1]:
+                    safe = re.sub(r"[^A-Za-z0-9]+", "-", it.query).strip("-")[:80]
+                    if safe:
+                        dot = path.rfind(".")
+                        path = path[:dot] + "__" + safe + path[dot:]
+                self.path = path
                 return super().do_GET()
         if parsed.path.startswith("/relay-fgLF/"):
             self.send_response(200)
             self.end_headers()
+            return
+        if parsed.path == "/api/users/me":
+            body = b'{"user":null,"message":"Account"}'
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        if parsed.path.startswith("/ingest/"):
+            # PostHog telemetry beacon (config.js + config?_= + event POSTs).
+            # Offline replica: no-op 200, real analytics are irrelevant here.
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(b"{}")))
+            self.end_headers()
+            self.wfile.write(b"{}")
             return
         if parsed.path == "/api/github-stars":
             body = b'{"stars":3368}'
