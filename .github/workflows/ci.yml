@@ -39,7 +39,7 @@ jobs:
           # High-signal credential material: exact formats, never placeholders.
           if grep -rPnI --exclude-dir=.github --include='*.py' --include='*.md' --include='*.yml' \
               --include='*.yaml' --include='*.json' --include='*.sh' \
-              'sk-[a-zA-Z0-9]{20,}|BEGIN[[:space:]]+(RSA|DSA|EC|OPENSSH)[[:space:]]+PRIVATE' .; then
+              'sk-[a-zA-Z0-9]{20,}|(AKIA|ASIA)[0-9A-Z]{16}|BEGIN[[:space:]]+(RSA|DSA|EC|OPENSSH)[[:space:]]+PRIVATE' .; then
             echo "FAIL: real secret material detected (sk- key / private key block)"
             exit 1
           fi

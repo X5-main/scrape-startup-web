@@ -11,7 +11,7 @@ BEGIN { bad = 0 }
 {
   low = tolower($0)
   pos = 1
-  while (match(substr(low, pos), /(api[_-]?key|password|token|secret)["']?[[:space:]]*[=:][[:space:]]*["']?[[:alnum:]_./+=-]{12,}["']?/)) {
+  while (match(substr(low, pos), /(api[_-]?key|access[_-]?key|password|token|secret)["']?[[:space:]]*[=:][[:space:]]*["']?[[:alnum:]_./+=-]{12,}["']?/)) {
     v = substr($0, pos + RSTART - 1, RLENGTH)
     sub(/^[^=:]*[=:][[:space:]]*["']?/, "", v)
     gsub(/["']/, "", v)
