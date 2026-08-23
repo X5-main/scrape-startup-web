@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+
+  <g transform="translate(300 300) scale(3.0000)" stroke="#FFFFFF" stroke-width="0.667" fill="none" color="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="-15.400000000000002" cy="-15.400000000000002" r="22" /><circle cx="15.400000000000002" cy="-15.400000000000002" r="22" /><circle cx="-15.400000000000002" cy="15.400000000000002" r="22" /><circle cx="15.400000000000002" cy="15.400000000000002" r="22" />
+  </g>
+</svg>

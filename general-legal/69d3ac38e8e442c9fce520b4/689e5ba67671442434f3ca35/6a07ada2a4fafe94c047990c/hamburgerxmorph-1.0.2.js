@@ -1,0 +1,1 @@
+(function(){var s=document.createElement('style');s.textContent='[data-header].is-mobile-open .hamburger-top{transform:rotate(45deg) translateY(3px)!important}[data-header].is-mobile-open .hamburger-bottom{transform:rotate(-45deg) translateY(-3px)!important}';document.head.appendChild(s);})();

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <g transform="translate(600 600) scale(6.0)" stroke="#FFFFFF" stroke-width="0.667" fill="none" color="#FFFFFF" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M -38 0 A 48 48 0 0 1 38 0 A 48 48 0 0 1 -38 0 Z" />
+    <path d="M -19 0 A 24 24 0 0 1 19 0 A 24 24 0 0 1 -19 0 Z" />
+    <circle cx="0" cy="0" r="7" fill="currentColor" stroke="none" />
+    <line x1="-48" y1="0" x2="-40" y2="0" />
+    <line x1="40" y1="0" x2="48" y2="0" />
+  </g>
+</svg>

@@ -1,0 +1,1 @@
+(function(){var s=document.createElement('style');s.textContent='.careers-jobs__inner{max-width:72rem!important}#gh-jobs>div{max-width:none!important;margin:0 auto!important}';document.head.appendChild(s);})();

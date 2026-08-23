@@ -1,0 +1,1 @@
+(function(){var h=document.documentElement;function s(){if(h.getAttribute('data-nav-mode')!=='invert'){h.setAttribute('data-nav-mode','invert');}}s();try{new MutationObserver(s).observe(h,{attributes:true,attributeFilter:['data-nav-mode']});}catch(e){}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',s);}window.addEventListener('load',s);})();

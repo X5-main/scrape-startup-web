@@ -1,0 +1,1 @@
+(function(){document.addEventListener('click',function(e){var s=e.target.closest('.faq-item__summary');if(!s||e.target===s)return;e.preventDefault();e.stopImmediatePropagation();s.click();},true);})();

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+
+  <g transform="translate(600 600) scale(6.0000)" stroke="#fff" stroke-width="0.150" fill="none" color="#fff" stroke-linejoin="round" stroke-linecap="round">
+    <circle cx="0" cy="0" r="32" /><circle cx="32.00" cy="0.00" r="3" fill="currentColor" stroke="none" /><circle cx="22.63" cy="22.63" r="3" fill="currentColor" stroke="none" /><circle cx="0.00" cy="32.00" r="3" fill="currentColor" stroke="none" /><circle cx="-22.63" cy="22.63" r="3" fill="currentColor" stroke="none" /><circle cx="-32.00" cy="0.00" r="3" fill="currentColor" stroke="none" /><circle cx="-22.63" cy="-22.63" r="3" fill="currentColor" stroke="none" /><circle cx="-0.00" cy="-32.00" r="3" fill="currentColor" stroke="none" /><circle cx="22.63" cy="-22.63" r="3" fill="currentColor" stroke="none" /><circle cx="0" cy="0" r="3" fill="currentColor" stroke="none" />
+  </g>
+</svg>

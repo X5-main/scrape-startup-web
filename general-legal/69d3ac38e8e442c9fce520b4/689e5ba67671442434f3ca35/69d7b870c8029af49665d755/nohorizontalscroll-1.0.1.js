@@ -1,0 +1,1 @@
+(function(){var s=document.createElement('style');s.textContent='html,body{overflow-x:clip;}';document.head.appendChild(s);})();

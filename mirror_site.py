@@ -430,6 +430,60 @@ class Mirror:
         else:
             print("  no missing referenced assets")
 
+# ---- sitemap seeding ----------------------------------------------
+    def fetch_sitemap_locs(self, url, acc):
+        """Parse one sitemap document; recurse into sitemap indexes."""
+        status, body = fetch(url)
+        if status != 200:
+            return
+        text = body.decode("utf-8", errors="replace")
+        if "<sitemapindex" in text:
+            for m in re.finditer(r"<sitemap>\s*<loc>\s*([^<]+?)\s*</loc>", text):
+                self.fetch_sitemap_locs(html.unescape(m.group(1)).strip(), acc)
+            return
+        for m in re.finditer(r"<loc>\s*([^<]+?)\s*</loc>", text):
+            loc = html.unescape(m.group(1)).strip()
+            if self.allowed(loc):
+                acc.add(loc)
+
+    def seed_sitemap(self, spec):
+        """Seed the crawl queue with pages that have no inbound links.
+
+        BFS link crawling can only reach pages that some other page links
+        to. Sites publish sitemap.xml entries (canonical pages, hreflang
+        alternate locales, marketing landers) that are zero-inbound
+        orphans; seed them explicitly so the mirror covers the full
+        sitemap manifest. Spec: a sitemap URL, 'auto' (read the
+        robots.txt Sitemap: line), or comma-separated explicit URLs.
+        """
+        if not spec:
+            return
+        seeds = set()
+        for part in spec.split(","):
+            part = part.strip()
+            if not part:
+                continue
+            if part == "auto":
+                auto = "https://" + urllib.parse.urlparse(self.origin).netloc \
+                    + "/robots.txt"
+                status, body = fetch(auto)
+                if status == 200:
+                    txt = body.decode("utf-8", errors="replace")
+                    for m in re.finditer(r"(?im)^\s*Sitemap:\s*(\S+)", txt):
+                        self.fetch_sitemap_locs(m.group(1).strip(), seeds)
+            elif "sitemap" in urllib.parse.urlparse(part).path:
+                self.fetch_sitemap_locs(part, seeds)
+            else:
+                seeds.add(part)
+        newly = 0
+        for seed in sorted(seeds):
+            if seed not in self.pages_seen:
+                self.pages_seen.add(seed)
+                self.queue.append((seed, 0))
+                newly += 1
+        if newly:
+            print(f"sitemap seeds: {newly} pages queued")
+
     def run(self):
         self.pages_seen.add(self.origin)
         self.queue.append((self.origin, 0))
@@ -453,10 +507,17 @@ def main():
     ap.add_argument("--depth", type=int, default=2)
     ap.add_argument("--asset-hosts", default="",
                     help="comma-separated extra hosts whose assets are mirrored")
+    ap.add_argument("--sitemap", default="",
+                    help="extra page seeds: URL of a sitemap.xml, 'auto' to read "
+                         "the Sitemap: line from the site's robots.txt, or a "
+                         "comma-separated list of URLs (orphan pages with no "
+                         "inbound links are unreachable by BFS link crawling)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     asset_hosts = [h.strip() for h in args.asset_hosts.split(",") if h.strip()]
-    Mirror(args.url, args.out, args.depth, asset_hosts).run()
+    mirror = Mirror(args.url, args.out, args.depth, asset_hosts)
+    mirror.seed_sitemap(args.sitemap)
+    mirror.run()
 
 
 if __name__ == "__main__":
