@@ -560,7 +560,7 @@ startup-website library. Ordered by usefulness per effort.
 **2026-08-23 discovery path:**
 
 1. **Fresh YC batch re-pull (full coverage):** `W26` 199 + `S26` 236 + `F26` 18 = 453 unique again (identical cohort to D15 — zero new members since). Exclusion diff vs D15's probed set (probe13 442 + D15's 8 probes + all 15 library domains via .origin/canonical, www-normalized on both sides — naive matching would keep 131 `www.`-prefixed false candidates) left exactly **3 truly unprobed domains**: executor.sh, kebra.com, qokedas.com.
-- **Exclusion reuse (rule):** the already-mirrored set is recovered with ONE `glob */` of the repo root — dir names ARE the slugified startup names (`covera` → Covera, `last-accounting-company` → …) — then fuzzy-matched against roster names; do NOT re-loop per-dir domain extraction and www-normalization on every cycle. Over-inclusion is cheap: the D31 flow proves it — F26 roster 18 → design_signal gate → 3 captured → vision gate dropped 2 before any crawl; a non-excluded mirror costs at most one `design_signal --live` probe. Exact `.origin`/canonical domain mapping stays in each dir's `.origin` for final docs only.
+- **Exclusion reuse (rule):** the already-mirrored set is recovered with ONE `glob */` of the repo root — dir names ARE the slugified startup names (`covera` → Covera, `last-accounting-company` → …) — then fuzzy-matched against roster names; do NOT re-loop per-dir domain extraction and www-normalization on every cycle. Over-inclusion is cheap: the D31 flow proves it — F26 roster 18 → design_signal gate → 3 captured → vision gate dropped 2 before any crawl; a non-excluded mirror costs at most one `design_signal --live` probe. When a dir name does NOT fuzzy-match any roster name (rebranded dirs, suffixed slugs), read `<dir>/.origin` for the canonical domain and match roster entries against that — the D16 exclusion diff and every later cycle use `.origin`/canonical as the final authority, never the dir name.
 2. **Content-signal robots is a hard skip class:** executor.sh AND qokedas.com both serve the "content-signal" robots (collect only where the operator signals yes) — same class already declined in earlier rounds; skipped without further probing.
 3. **Site pick — Kebra (kebra.com → www.kebra.com):** YC **S26**, Active, "Making the field queryable" (field-service ops AI). 308 `kebra.com → www.kebra.com`; robots `User-Agent: * / Allow: /` with only app paths (`/api/`, `/dashboard`, `/scheduler`, `/operations`) disallowed — clean. Home 200 / 66 983 B, h1 present, **Next.js fingerprint** (`_next/static` ×52; **Turbopack** build — chunk names carry the `__dpl-dpl-<X>` suffix, Vercel "baked" deployment form).
 4. **Real sitemap.xml** (`<loc>…kebra.com…</loc>` + `/inspections`, `/home-services` etc.) → `--sitemap auto` usable (news: real XML here vs hilstart's Nuxt SPA-shell trap); `python3 mirror_site.py https://www.kebra.com/ kebra --sitemap auto --depth 3` → **64 files in 23 s**: index.html + 4 pages (inspections/home-services/facility-management/privacy), 39 Turbopack `_next/static/chunks` + 1 css, 16 woff2, brand/ + logos/ (yc.svg etc.), 10 photos, 2 mp4 (hero-field-loop.mp4 + s3-field-single.mp4) + poster, icon/favicon/og. `.origin` = `https://www.kebra.com/`.
@@ -986,3 +986,70 @@ crawler stores fetched bytes at the requested URL); md5 == live (byte-verified).
 **Tools added this turn**: `.tmp_tools/d31_bands.mjs` (3-band synchronized
 capture), `d31_full.mjs` (full-page fp1/fp2 pairs), `d31_pxdiff.py` (stdlib PNG
 decoder + row diff), `af_parity.mjs` (text parity harness reused 3/3).
+
+
+## Ndea (ndea.com — 32nd pick, 2026-08-24)
+
+**Discovery lane (D32, second full design_signal pre-filter round)**: YC batch
+API re-pull of all four cohorts (F25=146, W26=199, S26=236, F26=18 = 599) →
+existing-mirror exclusion via the one-`glob */` dirname rule (see D16 bullet) →
+robots gate (404/empty robots.txt = allow-all; full-site `Disallow: /` or
+AI-crawler `content-signal` block = skip; per-path disallows OK) → SSR front
+gate → `design_signal.py --live` rank (>= 4.5 fail-open JUDGE) → flushed-capture
++ vision **>= 7 binding** on the top 2-3. Passed: **ndea.com** (YC W26, "Building
+AGI that can innovate.", AI/Deep Learning/Hard Tech/Remote Work/ML, teamSize 15,
+Active). Dropped below bar: flick, wardstone, origin, mochi.
+
+1. **Site class — hand-rolled static Jekyll** (5th pure-static member after
+   caution/last-accounting-company/river/veeda): simple HTML + one
+   `media/css/global.css`, `media/js/{illustrations,scripts}.js`; 6 canvases
+   (particle-field "network" art from `illustrations.js`, rAF + `cycleLength
+   3000`, 300 particles — per-load random seed).
+2. **Mirror**: `python3 mirror_site.py https://ndea.com ndea --depth 6` → `ndea/`
+   (pages /, /about, /jobs, /jobs/symbolic-reasoning-open, /contact, /podcast,
+   7 files of HTML served); `.origin` = `https://ndea.com`; replica via
+   `serve_replica.py` **8930** (hub `ndea-replica`).
+3. **Residual sweep**: derived `ndea_sweep.py` from `af_sweep.py` (hardcoded
+   `SITE, PORT = "ndea", 8930` — BSD `sed` pattern MUST include the `"` quote
+   before the comma or it silently no-ops) → `pages=7 refs=149 residual_uniq=0`
+   — zero serve defects.
+4. **Text parity**: `af_parity.mjs` 5/5 MATCH — /, /about, /jobs, /contact,
+   /jobs/symbolic-reasoning-open innerText chars/lines/heights byte-identical.
+   Real-Chrome relay re-probe: textLen 4702 == 4702, weighted hash identical
+   both sides, 6 canvases both, nav identical.
+5. **Asset byte-identity (cache-pollution rule)**: SHA-256 all SAME live vs
+   vendored — illustrations.js, scripts.js, global.css, ndea-founders.jpg,
+   ndea-og-image.jpg, type.css.
+6. **Pixel audit — the D32 lesson (fade-freeze root cause)**: full-page
+   captures (3840 wide, scale 3) → top band byte-identical 2160/2160 on a fresh
+   synchronized pair; mid band 44.4% identical rows, bot 78.7% — differing rows
+   confined to the particle-canvas art + h1 region and with mean deltas 35-53.
+   **Control decides it**: live-vs-live self-capture of the mid band = 44.7%
+   identical rows, deltas 47.8-49.1 — statistically THE SAME residual as
+   live-vs-replica. The replica is pixel-indistinguishable from "another live
+   load": the residual is the site's own per-load stochastic canvas + heading
+   fade, not mirror drift. Root cause of the earlier "replica h1 renders pure
+   black": the site fades-in h1/h2/h3 (.fade-in, opacity 0 + translateY(10px))
+   via IntersectionObserver adding `.visible` → CSS `transition: opacity 1s ease
+   0.3s`. In hidden/backgrounded tabs (relay tab in real Chrome; headless
+   capture vehicle) Chrome freezes frame production ⇒ the transition freezes at
+   an arbitrary phase (observed 0 / 0.025 / 1 across loads — INCLUDING two
+   loads of the live site itself, where a real-Chrome relay tab of ndea.com
+   showed opacity 0 through 8 s and another load showed the headline fully
+   painted). Each load freezes at a load-specific phase; re-capturing the same
+   already-loaded page is pixel-stable (live-vs-live2 == rep-vs-rep2 == 100%).
+   Classified per the D31 live-dynamic rule: identical content + identical
+   mechanism + same state spread per side = parity; phase mismatch = artifact,
+   not a mirror defect. h1 rep3 vs live3 fresh crop: both render the italic
+   headline identically.
+7. **Vision judge (3 viewport bands)**: live 7/7/7; replica 7/7/7 (top/mid/bot
+   all >= 7, content identical per band). Relay real-Chrome full-page shots:
+   same site both sides (identical nav/sections/copy; the "© 2024 vs © 2025"
+   reading was OCR noise — innerText hash equality is ground truth). PASS.
+8. **Ports**: replica `serve_replica.py` **8930**; capture vehicle headless CDP
+   9344. Band tooling reused from D31 (`d31_bands.mjs` + `d31_pxdiff.py`).
+
+**Tools added this turn**: `.tmp_tools/ndea_sweep.py` (per-site af_sweep
+derivative), `ndea_probe_one.mjs` / `ndea_render_probe.mjs` (single-side CDP
+render probes — the dual-URL variant hung on its second target; split per URL).
+
