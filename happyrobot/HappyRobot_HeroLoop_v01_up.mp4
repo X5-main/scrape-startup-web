@@ -1,0 +1,2 @@
+S3PTR happyrobot/HappyRobot_HeroLoop_v01_up.mp4
+# Oversized asset (>100 MB GitHub cap): stored in GCS bucket scrape-startup-web-assets (HMAC SA glm52-observability-writer); serve_replica.py 302s to a freshly SigV4-presigned URL.
