@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<channel>
+  <title>Trident Research</title>
+  <link>https://tridentsecurity.io/blog</link>
+  <description>Cloud security, attack-path analysis, and web and API penetration-testing research from Trident.</description>
+  <language>en-us</language>
+  <lastBuildDate>Sat, 11 Jul 2026 00:00:00 GMT</lastBuildDate>
+  <atom:link href="https://tridentsecurity.io/blog/feed.xml" rel="self" type="application/rss+xml" />
+<item>
+  <title>Freezing a six-figure crypto vault</title>
+  <link>https://tridentsecurity.io/blog/oracle-bounds-mismatch-vault-freeze</link>
+  <guid isPermaLink="true">https://tridentsecurity.io/blog/oracle-bounds-mismatch-vault-freeze</guid>
+  <pubDate>Sat, 11 Jul 2026 00:00:00 GMT</pubDate>
+  <dc:creator>Trident Research</dc:creator>
+  <category>Threat Research</category>
+  <description>A few percent of disagreement between two contracts can freeze every deposit and withdrawal in a live crypto vault — and this one went unnoticed for six weeks.</description>
+</item>
+<item>
+  <title>A phone system, one request, and root</title>
+  <link>https://tridentsecurity.io/blog/cisco-cucm-rce</link>
+  <guid isPermaLink="true">https://tridentsecurity.io/blog/cisco-cucm-rce</guid>
+  <pubDate>Mon, 29 Jun 2026 00:00:00 GMT</pubDate>
+  <dc:creator>Trident Research</dc:creator>
+  <category>Threat Research</category>
+  <description>An unauthenticated SSRF in Cisco Unified CM’s WebDialer chains to a JSP webshell and root-level compromise of enterprise voice infrastructure. Cisco patched it on June 3; within weeks attackers were dropping webshells over Tor, and CISA gave federal agencies until June 28 to fix it.</description>
+</item>
+<item>
+  <title>Meta’s AI got tricked into resetting account passwords</title>
+  <link>https://tridentsecurity.io/blog/meta-ai-instagram-account-takeover</link>
+  <guid isPermaLink="true">https://tridentsecurity.io/blog/meta-ai-instagram-account-takeover</guid>
+  <pubDate>Mon, 01 Jun 2026 00:00:00 GMT</pubDate>
+  <dc:creator>Trident Research</dc:creator>
+  <category>Incident Analysis</category>
+  <description>Attackers simply asked Instagram’s AI support assistant to send password-reset codes to an email they controlled, and it complied.</description>
+</item>
+</channel>
+</rss>

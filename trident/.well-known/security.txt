@@ -1,0 +1,5 @@
+Contact: mailto:contact@tridentsecurity.io
+Expires: 2027-07-28T23:59:59Z
+Preferred-Languages: en
+Canonical: https://tridentsecurity.io/.well-known/security.txt
+Policy: https://tridentsecurity.io/trust
