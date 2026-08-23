@@ -46,8 +46,15 @@ if os.path.isfile(_origin_file):
     ORIGIN = open(_origin_file, encoding="utf-8").read().strip()
 
 
-def _restore_ref(url):
-    """Return the live-absolute byte form for a mirrored URL, or None to keep."""
+def _restore_ref(url, pagedir="/"):
+    """Return the live-absolute byte form for a mirrored URL, or None to keep.
+
+    Relative refs resolve against pagedir (the served page's directory under
+    DOCROOT), NOT docroot: a nav ref stored as ``../marketing-to-building/``
+    from page ``/post/series-b/`` must come back as ``/post/marketing-to-building``,
+    never as the root-anchored ``/../marketing-to-building`` byte form (which a
+    browser resolves to ``/marketing-to-building`` -> 404).
+    """
     import posixpath
 
     if not url or url.startswith(("#", "?", "//")):
@@ -56,7 +63,9 @@ def _restore_ref(url):
         return None
     if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*://", url):
         return None
-    absu = "/" + posixpath.normpath(url)
+    absu = posixpath.normpath(posixpath.join(pagedir, url))
+    if not absu.startswith("/"):
+        absu = "/" + absu
     base = absu.rsplit("/", 1)[-1]
     m = re.match(r"^(?P<dir>.*/)?(?P<stem>.+?)" + re.escape(DPL_SUFFIX) + r"(?P<tok>[A-Za-z0-9]+)(?P<ext>\.\w+)$", absu)
     if m:
@@ -86,14 +95,14 @@ _ATTR_RE = re.compile(rb'\b(href|src|poster)=("[^"]*"|\'[^\']*\')')
 _SRCSET_RE = re.compile(rb'\bsrcSet=("[^"]*"|\'[^\']*\')')
 
 
-def _restore_live_html(body):
+def _restore_live_html(body, pagedir="/"):
     """Rewrite mirrored relative refs to live absolute form in an HTML body."""
 
     def _repl(m):
         attr = m.group(1)
         quote = m.group(2)[:1].decode("ascii")
         val = m.group(2)[1:-1].decode("utf-8", "replace")
-        restored = _restore_ref(val)
+        restored = _restore_ref(val, pagedir)
         if restored is None:
             return m.group(0)
         return ('%s=%s%s%s' % (attr.decode(), quote, restored, quote)).encode()
@@ -106,7 +115,7 @@ def _restore_live_html(body):
             parts = cand.strip().split()
             if not parts:
                 continue
-            restored = _restore_ref(parts[0])
+            restored = _restore_ref(parts[0], pagedir)
             if restored is None:
                 out.append(cand)
             else:
@@ -141,7 +150,16 @@ def _v_alternatives(relpath, ver):
 class ReplicaHandler(SimpleHTTPRequestHandler):
     def translate_path(self, path):
         # keep SimpleHTTPRequestHandler's traversal-safe resolution against DOCROOT
-        return super().translate_path(path)
+        p = super().translate_path(path)
+        if not os.path.exists(p):
+            # The mirror stored some Turbopack asset filenames verbatim, with a
+            # literal `%20` in the on-disk name (`...gdocs%20(2).svg`). The base
+            # lookup unquotes the request (`%20` -> space) and misses. Re-run
+            # against the raw (double-encoded) path so the literal name resolves.
+            raw = super().translate_path(urllib.parse.quote(path, safe="/"))
+            if os.path.exists(raw):
+                return raw
+        return p
 
     def do_GET(self):
         parsed = urllib.parse.urlsplit(self.path)
@@ -191,6 +209,11 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             if mapped:
                 self.path = "/" + mapped
         full = self.translate_path(self.path)
+        if not os.path.exists(full) and os.path.isfile(full + ".html"):
+            # Extensionless nav refs that name a bare file (`/index` -> the
+            # root `index.html`, mintlify docs-home links) resolve that way on
+            # live; the base dir lookup only covers `dir/index.html`.
+            full = full + ".html"
         if os.path.isdir(full):
             # SimpleHTTPRequestHandler serves index.html for a directory; we
             # must transform those bytes too, so resolve before the suffix check.
@@ -201,7 +224,9 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
                     body = fh.read()
             except OSError:
                 return super().do_GET()
-            body = _restore_live_html(body)
+            rel_dir = os.path.relpath(os.path.dirname(full), DOCROOT)
+            pagedir = "/" + rel_dir.replace(os.sep, "/") if rel_dir != "." else "/"
+            body = _restore_live_html(body, pagedir)
             self.send_response(200)
             self.send_header("Content-Type", "text/html")
             self.send_header("Content-Length", str(len(body)))
