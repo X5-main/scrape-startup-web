@@ -457,11 +457,14 @@ class Mirror:
                     for m in JS_IMPORT_RE.finditer(text):
                         ref = m.group(1)
                         nxt = text[m.end():m.end() + 1]
-                        if ":" in ref:
+                        if ":" in ref or "+" in ref or "${" in ref or nxt == "+":
                             # scheme-ish string fragments (Turbopack emits
                             # minified `case"@import":case":` switch labels
                             # that the import regex crosses): never a valid
                             # chunk path, cannot resolve
+                            # runtime-interpolated template (e.g.
+                            # `+locationHref+`): not a static chunk path,
+                            # cannot resolve
                             continue
                         abs_url = self.absolute(base, ref)
                         if self.allowed(abs_url):
