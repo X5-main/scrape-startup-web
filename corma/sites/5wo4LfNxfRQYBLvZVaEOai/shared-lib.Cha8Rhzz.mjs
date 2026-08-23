@@ -1,0 +1,2 @@
+import{t as e}from"./rolldown-runtime.Dh6celcD.mjs";function t(e,t){return{description:`Corma is building foundation models toward superintelligence for defensive cybersecurity.`,favicon:`https://framerusercontent.com/assets/FcFfvLaImbxI775lSEuknO2gEnE.svg`,robots:`max-image-preview:large`,socialImage:`https://framerusercontent.com/assets/951hclDEzmEq5QYCPYuneRkKqY.png`,title:`Corma`}}var n=e((()=>{}));export{t as n,n as t};
+//# sourceMappingURL=shared-lib.Cha8Rhzz.mjs.map

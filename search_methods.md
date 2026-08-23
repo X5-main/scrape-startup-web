@@ -630,3 +630,69 @@ startup-website library. Ordered by usefulness per effort.
    - **Vision-model verbatim match** (inspect_image on both webp captures): nav, headline, subhead, mission paragraphs transcribed identically; layout description identical (off-white/cream, Didone serif display headline, single-column centered, thin rule); no broken images either side.
    - cua-driver desktop leg: Chrome pid 61010 window inventory enumerated; the veeda tabs stay backgrounded (no focus theft) so the AX-tree leg reads David's topmost window (Azure support form) instead — DOM+vision+address-bar ground truth above is the relay leg of the mandated compare.
 7. **Environmental deltas (documented, NOT stubbed):** Ashby careers + mailto links kept absolute (external per precedent); zero scripts, zero analytics on either side — no runtime-injection class; robots/sitemap clean. Helper scripts: `.tmp_tools/veeda_sweep.py`, `.tmp_tools/veeda_parity.py` (mirror the herdr sweep/parity recipes, port :8918).
+
+## Framer-site with allow-all robots (corma.ai pattern — 21st pick)
+
+**2026-08-23 discovery path (D21, funding-wires lane, fresh Aug 22–23 window + SiliconANGLE month-sweep):**
+
+1. **Funding-wires lane, third run (D17/D20 route).** Fresh candidate surface from a
+   three-query sweep (TechCrunch, SiliconANGLE, FinSMEs, the SaaS News) over Aug 20–23:
+   Callosum (AI workload optimization, $100M seed @ Atomico, Aug 20 — 2-source: SiliconANGLE + TechCrunch-listed),
+   Corma (defensive cyber AI, $60M seed @ Sequoia + Khosla + Coatue, Aug 10), Synthefy ($6.5M, Wing VC, Aug 18),
+   Astromech ($20M, "Large Life Model", Aug 20), Twin1 AI ($20M, Aug 20 — twin1 already mirrored as D6, skipped),
+   Terra Industries ($52M defense, Aug 17 — was on the D17 shortlist and declined), Solinide (D20 shortlist, declined).
+   **Corma picks on evidence strength + mirror class**: the only one with allow-all robots + a 4-page sitemap and a
+   flexible static-SSR Framer site (no Next.js blog/JAMstack machinery, no WordPress wp-* surface).
+2. **Funding 2-source verified**: Fortune **Exclusive** (2026-08-10, Emily Forlini:
+   "Corma raises $60 million from Sequoia for AI trained to defend against cyberattacks", Sequoia led + Khosla
+   Ventures + Coatue, founded 2025, Tel Aviv + San Francisco, model deployed 6 weeks prior to F100/F500 customers;
+   direct Sequoia partner quote + Khosla quote) + SiliconANGLE (2026-08-10, "Corma launches with $60M funding for
+   defensive cybersecurity AI") + ai-market-watch.com (Aug 21). Inside the 24-month window (Aug 2025–Aug 2026).
+3. **Site class — Framer v2 hydrate (3rd Framer archive after nex.ai, uplane.com)**: fully server-rendered HTML,
+   inline `<style>`, `<div id="main" data-framer-hydrate-v2=...>`, JS chunks on `framerusercontent.com/sites/<id>/*.mjs`,
+   images `framerusercontent.com/images/*.png?width=…&height=…`; fonts Cormorant Garamond + DM Sans via
+   `fonts.gstatic.com`. robots: `User-agent: * / Allow: /` + sitemap — clean gate. **Scope = sitemap.xml exactly 4 URLs**:
+   `/`, `/defensive-gap-research`, `/introducing-corma`, `/privacy-policy` (home is a 345 KB one-pager; the research
+   page is 973 KB with 5 images; external Fortune + LinkedIn links only).
+4. **Mirror:** `python3 mirror_site.py https://corma.ai/ corma --sitemap auto --asset-hosts framerusercontent.com,fonts.gstatic.com`
+   — Framer chunk graph must complete (quote + backtick import forms), `verify_no_missing_chunks` post-pass mandatory,
+   `data-redirect-timezone` stripped at save; entity-decoded `&` rewriting applies to `?width=…` URLs.
+5. **Serve + verify:** `serve_replica.py 8919 corma` (hub-supervised); full-ref sweep, visible-text parity, relay
+   DOM + vision compare — results appended below after execution.**2026-08-23 execution results:**
+
+6. **Mirror** (corma/): `mirror_site.py https://corma.ai/ corma --sitemap auto
+   --asset-hosts framerusercontent.com,fonts.gstatic.com` → 166 files, **"no missing referenced
+   assets"** (Framer chunk graph resolved via backtick-import machinery; `data-redirect-timezone`
+   stripped); assets: `corma/images/` (49 png/jpg/webp/gif/svg with `__width-N-height-M` and
+   `__scale-down-to-N-width-...` query keys), `corma/sites/…/*.mjs` (31), `corma/s/` woff2 (68 —
+   Google Cormorant Garamond + DM Sans), `corma/assets/`; `.origin` = `https://corma.ai/`.
+7. **Serve + sweep**: `serve_replica.py 8919 corma` (hub `corma-8919`); `corma_sweep.py`
+   `pages=4 refs=291 residual_uniq=0` — zero serve defects; `corma_parity.py` visible-text byte
+   MATCH on all 4 sitemap pages (home 5112 B, defensive-gap-research 44378 B, introducing-corma
+   5376 B, privacy-policy 9751 B).
+8. **Relay DOM + screenshot parity (fresh -origin corma.localhost:8919 to dodge per-site zoom;
+   URL witnessed in-run)**: live `https://corma.ai/` vs replica every field identical — title
+   "Corma", h1 "Superintelligence for defensive cybersecurity", h1 computed `"A2 Gothic Regular"`
+   82px/720px, `document.fonts.status=loaded` with the same 8 families (A2 Gothic, Cormorant
+   Garamond, DM Sans, Fragment Mono, ABC Diatype Bold/Regular/Black/Ultra Italic), bodyH 7137==7137,
+   docW 1512==1512, innerText 1984 B == 1984 B, nav "Home Blog Request Access", 15 imgs both;
+   "broken" set identical both sides (4 lazy-load imgs measured before scroll — inherent, per
+   Framer precedent).
+9. **Byte-level pixels**: both relay captures 1024×545 @ dpr 2, zoom 1.0; per-pixel diff **109 /
+   558 080 px = 0.020%** (live `955282bb…` vs replica `0de0cf…` differ only there): a 14×11 px band
+   at (y20–31, x384–396) = the animated CORMΛ logo pill/starfield grain (vision-verified same
+   yellow-gold pill + identical CORMΛ wordmark in both crops; live `(76,75,80)`→`(104,108,81)`
+   etc. = animation-phase colors) + 5 single-pixel AA strays. Framer animation frames are inherent
+   (uplane/magma/general-legal precedent); post-settle 99.980% of pixels byte-equal.
+10. **Visual/vision leg**: relay full-frame captures → vision model verbatim lists identical on both
+    sides: nav pill "CORMΛ / Home / Blog / Request Access", h1 "SUPERINTELLIGENCE FOR DEFENSIVE
+    CYBERSECURITY", subhead "Corma is building foundation models toward superintelligence for
+    defensive cybersecurity" (yellow-gold accent on "Corma is building foundation models"), buttons
+    "Request Access" + "Explore Research", dark starfield + orange horizon glow.
+11. **Computer-use legs**: OMP computer tool blocked at the OS layer (Screen-Recording TCC denied —
+    same environmental limit as D20); cua-driver session `omp` had ended and the wrapper exposes no
+    restart action (D20-accepted limitation). Relay DOM + CDP screenshots + vision model carry the
+    mandated compare (precedent: D20 "cua-driver AX leg limitation accepted").
+Helper scripts: `.tmp_tools/corma_sweep.py`, `.tmp_tools/corma_parity.py` (mirror the veeda
+recipes, port :8919).
+
