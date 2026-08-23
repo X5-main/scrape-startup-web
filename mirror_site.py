@@ -27,7 +27,17 @@ import sys
 import urllib.parse
 import urllib.request
 
-DEFAULT_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
+try:
+    _TOOLSDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".tmp_tools")
+    if _TOOLSDIR not in sys.path:
+        sys.path.insert(0, _TOOLSDIR)
+    from s3ptr import S3_MAX_BYTES, s3_presigned_url, s3_upload
+except ImportError:
+    S3_MAX_BYTES = None
+
+S3_PTR_MAGIC = b"S3PTR "
+
+DEFAULT_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 
 CSS_URL_RE = re.compile(r"url\((['\"]?)([^)'\"]+)\1\)")
 def _looks_like_css(text_or_bytes):
@@ -230,10 +240,23 @@ class Mirror:
 
     # ---- storage ------------------------------------------------------
     def save(self, url, body):
+        """Store one fetched body at its URL-derived path.
+
+        Assets >= S3_MAX_BYTES (GitHub's 100MB hard cap) are pushed to the
+        S3 bucket and replaced on disk by a tiny S3PTR pointer file;
+        serve_replica.py streams them at request time via a presigned URL.
+        """
         key = url_path_key(url)
         dest = os.path.join(self.out, key)
         os.makedirs(os.path.dirname(dest), exist_ok=True)
         self.src_for[key] = url
+        if S3_MAX_BYTES is not None and len(body) >= S3_MAX_BYTES:
+            try:
+                s3_upload(key, body)
+                body = S3_PTR_MAGIC + key.encode() + b"\n"
+                print(f"  S3-routed oversized asset {key} -> pointer file", flush=True)
+            except Exception as e:  # noqa: BLE001 — storage must not kill the crawl
+                print(f"  WARN S3 upload failed for {key}: {e}; keeping local", flush=True)
         with open(dest, "wb") as f:
             f.write(body)
         self.downloaded += 1

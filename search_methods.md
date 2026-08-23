@@ -797,3 +797,24 @@ Helper scripts: `.tmp_tools/starcloud_sweep.py`, `.tmp_tools/starcloud_srcset_re
 7. **Asset alias note**: `og.png` is byte-identical to `control-plane.png` (md5 equal on live AND mirror) — the site aliases it for og:image; faithful, not a crawl error. HTML byte delta 22 734 (live) vs 22 675 (mirror) = only the crawler's preconnect/Google-Fonts rewrite (expected; resolves identically in-browser).
 
 Helper scripts: `.tmp_tools/palisade_sweep.py` (port :8923; sweep form `python3 serve_replica.py 8923 palisade`).
+
+## Oversized assets: S3 pointer convention (D24 hero mp4 — durable rule)
+
+Any mirrored asset >= 100 MB hits GitHub's hard blob cap, so oversized files
+live in GCS (`gs://scrape-startup-web-assets`, project fine-arbor-477412-f4,
+HMAC SA glm52-observability-writer via env GLM_S3_*`) and the repo file at the
+same relative path is a pointer:
+- **Pointer file format**: first line `S3PTR <bucket-relative-object-key>`,
+  optional `#` comment lines (metadata/provenance).
+- **Capture side is automatic**: `mirror_site.py` routes bodies >=
+  `s3ptr.S3_MAX_BYTES` (100 MB) through `s3_upload()` and writes the pointer;
+  no manual step, no size special-casing per site.
+- **Serve side is automatic**: `serve_replica.py` detects the `S3PTR ` magic on
+  the requested file and 302s to a freshly SigV4-presigned URL
+  (`.tmp_tools/s3ptr.py`, stdlib-only signer; no long-lived secret in the repo,
+  no stored expiry — URLs minted per request).
+- **Why presigned, not public**: org `domainRestrictedSharing` forbids
+  `allUsers` reads on GCS.
+- Example: `happyrobot/HappyRobot_HeroLoop_v01_up.mp4` (105.78 MB local) == GCS
+  object 110 914 261 B `video/mp4`; 8922 serves `GET /HappyRobot_HeroLoop_v01_up.mp4`
+  -> 302 -> presigned URL -> 200 `video/mp4` (verified 2026-08-23).

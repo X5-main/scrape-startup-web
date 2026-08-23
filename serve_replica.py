@@ -29,6 +29,17 @@ PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8899
 if len(sys.argv) > 2:
     DOCROOT = sys.argv[2]
 
+try:
+    _TOOLSDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".tmp_tools")
+    if _TOOLSDIR not in sys.path:
+        sys.path.insert(0, _TOOLSDIR)
+    from s3ptr import s3_presigned_url
+    _S3_AVAILABLE = True
+except ImportError:
+    _S3_AVAILABLE = False
+
+S3_PTR_MAGIC = b"S3PTR "
+
 DPL_SUFFIX = "__dpl-dpl-"
 V_SUFFIX = "__v-"
 # Serve-time reverse transform: the mirror rewrote every href/src/poster to a
@@ -259,6 +270,8 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
         full = self.translate_path(self.path)
+        if _S3_AVAILABLE and os.path.isfile(full) and self._s3_redirect(full):
+            return
         if DPL_SUFFIX not in parsed.path and not full.lower().endswith((".html", ".htm")):
             # Hydration-critical: RSC flight payloads reference chunks by their
             # plain name while the mirror stored them mangled. Resolve the
@@ -303,6 +316,32 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
         return super().do_GET()
+
+
+    def _s3_redirect(self, full):
+        """If `full` is an oversized-asset pointer (``S3PTR <key>`` first line),
+        302 to a freshly SigV4-presigned URL and return True."""
+        try:
+            with open(full, "rb") as fh:
+                head = fh.read(64)
+            if not head.startswith(S3_PTR_MAGIC):
+                return False
+            key = head[len(S3_PTR_MAGIC):].split(b"\n", 1)[0].decode("utf-8").strip()
+            if not key:
+                return False
+            self.send_response(302)
+            self.send_header("Location", s3_presigned_url(key))
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return True
+        except OSError:
+            return False
+
+    def do_HEAD(self):
+        full = self.translate_path(self.path)
+        if _S3_AVAILABLE and os.path.isfile(full) and self._s3_redirect(full):
+            return
+        return super().do_HEAD()
 
     def do_POST(self):
         parsed = urllib.parse.urlsplit(self.path)
