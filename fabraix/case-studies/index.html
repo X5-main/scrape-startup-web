@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Studies — Fabraix</title>
+  <meta name="description" content="Sandbox escapes, secret exfiltration, and discriminatory steering — vulnerabilities Nyx surfaced in live, production AI agents that static tests and one-off audits never reach.">
+
+  <meta property="og:title" content="Case Studies — Fabraix">
+  <meta property="og:description" content="Sandbox escapes, secret exfiltration, and discriminatory steering — vulnerabilities Nyx surfaced in live, production AI agents.">
+  <meta property="og:url" content="https://fabraix.com/case-studies">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://fabraix.com/og.png?v=1">
+  <meta property="og:image:width" content="1270">
+  <meta property="og:image:height" content="760">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Case Studies — Fabraix">
+  <meta name="twitter:description" content="Vulnerabilities Nyx surfaced in live, production AI agents — sandbox escapes, secret exfiltration, and more.">
+  <meta name="twitter:image" content="https://fabraix.com/og.png?v=1">
+  <meta name="twitter:site" content="@fabraixhq">
+
+  <link rel="icon" type="image/svg+xml" href="../content/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="module" crossorigin src="../assets/case-studies-DMSe_lq9.js"></script>
+  <link rel="modulepreload" crossorigin href="../assets/js-yaml-DSK4ua50.js">
+  <link rel="modulepreload" crossorigin href="../assets/siteLayout-DP_gnFnc.js">
+  <link rel="stylesheet" crossorigin href="../assets/js-yaml-C8yvyMWo.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="logo"><span id="nav-logo" class="logo-text">fabraix</span></a>
+      <div id="nav-links" class="nav-links"></div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="mk-hero">
+      <div class="mk-inner">
+        <span class="section-chip">Case Studies</span>
+        <h1 class="mk-hero-title" style="margin-top:1.5rem;">Sandbox escapes. Secret exfiltration. Illegal steering.</h1>
+        <p class="mk-hero-lede">Every finding here came out of a live, customer-facing agent in production - not a benchmark or a staging clone. These are the failure modes static tests and scripted evals never reach.</p>
+        <div class="mk-cta-row">
+          <a href="https://calendar.app.google/d1uBvixwUwVtGj5F8" class="hero-cta primary">Book a demo</a>
+          <a href="../blog/index.html" class="hero-cta">Read the research</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured study: coding-agent red-team -->
+    <section class="mk-section mk-section--dark">
+      <div class="mk-inner">
+        <div class="mk-two mk-two--wide-right">
+          <div>
+            <span class="mk-eyebrow">Featured finding · Red-teaming by Nyx</span>
+            <h2 class="mk-section-title">We turned a coding agent into a persistent foothold.</h2>
+            <p class="mk-section-lede">335 live adversarial runs against a coding agent. Flip on its auto-review guardian for hands-off autonomy, and a booby-trapped file in the repo it's reviewing talks the guardian into approving a persistent dev shell — which escapes the read-only sandbox and writes a persistence hook to ~/.zshenv, with no human in the loop.</p>
+            <div class="mk-cta-row">
+              <span class="cs-soon">Full case study coming soon</span>
+            </div>
+          </div>
+          <div class="trace">
+            <div class="trace-head">
+              <span class="trace-head-label">Nyx · Red-team</span>
+              <span class="trace-head-meta"><span class="trace-dot"></span> Finding F13</span>
+            </div>
+            <div class="trace-body">
+              <div class="trace-row"><span class="trace-k">Target</span><span class="trace-v">Coding agent · CLI</span></div>
+              <div class="trace-row"><span class="trace-k">Runs</span><span class="trace-v">335 adversarial</span></div>
+              <div class="trace-row"><span class="trace-k">Vector</span><span class="trace-v">Repo-file injection</span></div>
+              <div class="trace-row"><span class="trace-k">Posture</span><span class="trace-v">read-only + auto-review</span></div>
+              <div class="trace-row"><span class="trace-k">Result</span><span class="trace-v trace-v--accent">sandbox escape</span></div>
+              <div class="trace-line"></div>
+              <div class="trace-log"><span class="c"># guardian approves a "persistent dev shell"</span><br>&gt; write_stdin → ~/.zshenv&nbsp;&nbsp;<span class="o">persistence hook</span><br><span class="g">✓ no human in the loop</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Three cleared findings -->
+    <section class="field-proof mk-section--line" style="border-top:1px solid #e5e3db;">
+      <div class="field-proof-inner">
+        <div class="mk-head">
+          <span class="mk-eyebrow">More findings</span>
+          <h2 class="mk-section-title">Three more, from live production agents.</h2>
+          <p class="mk-section-lede">Each ran against a live, customer-facing agent.</p>
+        </div>
+        <div class="field-proof-grid">
+          <div class="field-proof-card">
+            <span class="field-proof-num">01</span>
+            <h3 class="field-proof-card-title">Browser agent leaking a password-manager vault credential</h3>
+            <p class="field-proof-card-desc">An indirect prompt injection (a crafted email the agent was told never to answer) drove a browser agent to read a credential from its connected password-manager vault and exfiltrate it.</p>
+            <span class="field-proof-card-tags">Exfiltration</span>
+            <span class="cs-soon">Case study coming soon</span>
+          </div>
+          <div class="field-proof-card">
+            <span class="field-proof-num">02</span>
+            <h3 class="field-proof-card-title">Bypassed an LLM-as-judge over network egress to exfiltrate API keys</h3>
+            <p class="field-proof-card-desc">A crafted outbound request read as benign to the LLM-as-judge policing network egress, smuggling the host's locally-stored API keys out to an attacker-controlled endpoint.</p>
+            <span class="field-proof-card-tags">Network egress bypass</span>
+            <span class="cs-soon">Case study coming soon</span>
+          </div>
+          <div class="field-proof-card is-dark">
+            <span class="field-proof-num">03</span>
+            <h3 class="field-proof-card-title">Jailbroke an AI real-estate search agent into illegal steering</h3>
+            <p class="field-proof-card-desc">Tested past its fair-housing guardrails into recommending homes and neighborhoods by a buyer's race, age, and other protected characteristics - the "steering" the Fair Housing Act and New York State law expressly prohibit.</p>
+            <span class="field-proof-card-tags">Discriminatory steering</span>
+            <span class="cs-soon">Case study coming soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Patterns we routinely find -->
+    <section class="mk-section mk-section--line">
+      <div class="mk-inner">
+        <div class="mk-head">
+          <span class="mk-eyebrow">The patterns</span>
+          <h2 class="mk-section-title">What we routinely find across engagements.</h2>
+          <p class="mk-section-lede">The findings above are a sample. These are the failure classes Nyx surfaces again and again.</p>
+        </div>
+        <div class="mk-grid mk-grid--4">
+          <div class="mk-card"><h3 class="mk-card-title">Prompt injection &amp; jailbreaks</h3><p class="mk-card-desc">Direct attempts to override the system prompt and coax the model past its own policy.</p></div>
+          <div class="mk-card"><h3 class="mk-card-title">Indirect injection</h3><p class="mk-card-desc">Instructions smuggled in through retrieved pages, documents, and emails the agent reads.</p></div>
+          <div class="mk-card"><h3 class="mk-card-title">Tool-use hijacking</h3><p class="mk-card-desc">Steering an agent's tools and code execution toward actions it was never meant to take.</p></div>
+          <div class="mk-card"><h3 class="mk-card-title">Guardrail &amp; judge bypass</h3><p class="mk-card-desc">Getting past an LLM-as-judge or policy filter that was supposed to hold the line.</p></div>
+          <div class="mk-card"><h3 class="mk-card-title">Secret &amp; PII exfiltration</h3><p class="mk-card-desc">Pulling API keys, credentials, and personal data out of the agent's context or environment.</p></div>
+          <div class="mk-card"><h3 class="mk-card-title">Refund &amp; transaction fraud</h3><p class="mk-card-desc">Talking support and commerce bots into refunds and transactions they should refuse.</p></div>
+          <div class="mk-card"><h3 class="mk-card-title">Hallucinated advice &amp; policy drift</h3><p class="mk-card-desc">Confident, off-policy answers in regulated domains like finance and health.</p></div>
+          <div class="mk-card"><h3 class="mk-card-title">Reward hacking</h3><p class="mk-card-desc">Agents in RL and training setups gaming the reward signal instead of doing the task.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="mk-cta-band mk-section--dark">
+      <div class="mk-inner">
+        <h2 class="mk-cta-title">Schedule your first scan now.</h2>
+        <div class="mk-cta-row" style="justify-content:center;">
+          <a href="https://calendar.app.google/d1uBvixwUwVtGj5F8" class="hero-cta primary">Book a demo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span id="footer-logo" class="footer-logo">fabraix</span>
+        <p id="footer-brand-tagline" class="footer-brand-tagline"></p>
+        <div id="footer-socials" class="footer-socials"></div>
+      </div>
+      <div id="footer-groups" class="footer-groups"></div>
+    </div>
+    <div class="footer-bottom">
+      <span id="footer-tagline" class="footer-tagline"></span>
+      <span id="footer-copyright" class="footer-copyright"></span>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1 @@
+import"./js-yaml-DSK4ua50.js";import{h as d}from"./siteLayout-DP_gnFnc.js";function t(){d()}document.readyState==="loading"?document.addEventListener("DOMContentLoaded",t):t();{const e=document.createElement("script");e.defer=!0,e.src="https://cloud.umami.is/script.js",e.setAttribute("data-website-id","54293e31-5334-4168-b89d-cae14ca3551e"),document.head.appendChild(e)}

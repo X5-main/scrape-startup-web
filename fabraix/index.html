@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fabraix — Adversarial Verification for AI Agents</title>
+  <meta name="description" content="Fabraix builds red-teaming AI agents that continuously find security vulnerabilities in customer-facing AI.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Fabraix — Adversarial Verification for AI Agents">
+  <meta property="og:description" content="Fabraix builds red-teaming AI agents that continuously find security vulnerabilities in customer-facing AI.">
+  <meta property="og:url" content="https://fabraix.com">
+  <meta property="og:image" content="https://fabraix.com/og.png?v=1">
+  <meta property="og:image:width" content="1270">
+  <meta property="og:image:height" content="760">
+  <meta property="og:image:alt" content="Nyx by Fabraix — Agents. Verified. Automated adversarial verification for AI agents.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Fabraix">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fabraix — Adversarial Verification for AI Agents">
+  <meta name="twitter:description" content="Fabraix builds red-teaming AI agents that continuously find security vulnerabilities in customer-facing AI.">
+  <meta name="twitter:image" content="https://fabraix.com/og.png?v=1">
+  <meta name="twitter:site" content="@fabraixhq">
+
+  <meta name="theme-color" content="#090909">
+  <link rel="icon" type="image/svg+xml" href="content/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Umami Analytics -->
+  <script type="module" crossorigin src="assets/main-BBG46r15.js"></script>
+  <link rel="modulepreload" crossorigin href="assets/js-yaml-DSK4ua50.js">
+  <link rel="modulepreload" crossorigin href="assets/siteLayout-DP_gnFnc.js">
+  <link rel="modulepreload" crossorigin href="assets/flowGradient-DDTEKXEO.js">
+  <link rel="stylesheet" crossorigin href="assets/js-yaml-C8yvyMWo.css">
+</head>
+
+<body class="home">
+
+  <!-- Navigation (hydrated by siteLayout.renderNavigation) -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span id="nav-logo" class="logo-text">fabraix</span>
+      </a>
+      <div id="nav-links" class="nav-links"></div>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════
+       HERO — flowing gradient panel left, copy right
+       ════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-panel">
+        <canvas id="hero-flow" class="hero-flow" aria-hidden="true"></canvas>
+        <span class="hero-panel-wordmark">fabraix</span>
+      </div>
+      <div class="hero-main">
+        <a id="hero-yc-badge" class="hero-yc-badge" target="_blank" rel="noopener"></a>
+        <h1 class="hero-title">
+          <span id="hero-title-line1" class="hero-title-line"></span>
+          <span id="hero-title-line2" class="hero-title-line hero-title-accent"></span>
+        </h1>
+        <p id="hero-subtitle" class="hero-subtitle"></p>
+        <div id="hero-ctas" class="hero-ctas"></div>
+        <div id="hero-caps" class="hero-caps" aria-label="What Fabraix does"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       PROVEN IN THE FIELD — compact black credibility ribbon (after the hero)
+       ════════════════════════════════════════════ -->
+  <section id="field-proof" class="proofbar">
+    <div class="proofbar-inner">
+      <div class="proofbar-top">
+        <div class="proofbar-lead">
+          <h2 id="field-proof-title" class="proofbar-title"></h2>
+        </div>
+        <a id="field-proof-cta-link" class="proofbar-cta" href="case-studies/index.html"></a>
+      </div>
+      <p id="field-proof-lede" class="proofbar-lede"></p>
+      <div id="field-proof-boxes" class="proofbar-boxes"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       BIG TYPOGRAPHY + BUILT BY
+       ════════════════════════════════════════════ -->
+  <section id="built-by" class="big-type">
+    <div class="big-type-inner">
+      <div class="big-type-circle">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Longitude (vertical ellipses) -->
+          <ellipse cx="100" cy="100" rx="95" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="90" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="80" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="70" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="60" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="50" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="40" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="30" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="20" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="10" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="3" ry="95" stroke="#d5d3cb" stroke-width="0.4"/>
+          <!-- Latitude (horizontal ellipses) -->
+          <ellipse cx="100" cy="100" rx="95" ry="90" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="80" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="70" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="60" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="50" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="40" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="30" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="20" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="10" stroke="#d5d3cb" stroke-width="0.4"/>
+          <ellipse cx="100" cy="100" rx="95" ry="3" stroke="#d5d3cb" stroke-width="0.4"/>
+        </svg>
+      </div>
+      <div id="big-type-left" class="big-type-left"></div>
+      <div class="big-type-right">
+        <div id="big-type-right" class="big-type-accent-block"></div>
+      </div>
+    </div>
+    <div id="built-by-logos" class="built-by-grid"></div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       THESIS / OUR APPROACH (hydrated from YAML `approach`)
+       ════════════════════════════════════════════ -->
+  <section id="thesis" class="thesis">
+    <div class="thesis-scroll" id="thesis-scroll">
+      <div class="thesis-sticky">
+        <div class="thesis-sticky-inner">
+          <h2 class="thesis-title"></h2>
+          <div class="thesis-progress-track">
+            <div class="thesis-progress-bar" id="thesis-progress-bar"></div>
+          </div>
+          <div class="thesis-counter">
+            <span class="thesis-counter-current">01</span>
+            <span class="thesis-counter-total">/ 03</span>
+          </div>
+          <div class="thesis-stage"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       NYX INTRO BRIDGE
+       ════════════════════════════════════════════ -->
+  <section id="nyx" class="nyx">
+    <div class="nyx-inner">
+      <span id="nyx-chip" class="section-chip"></span>
+      <div class="nyx-row">
+        <div class="nyx-circle nyx-circle-dark"></div>
+        <span id="nyx-label" class="nyx-text"></span>
+        <div class="nyx-circle nyx-circle-outline"></div>
+      </div>
+      <div class="nyx-row">
+        <span id="nyx-name" class="nyx-outline"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       NYX PRODUCT SECTION
+       ════════════════════════════════════════════ -->
+  <section id="nyx-product" class="nyx-product">
+    <div class="nyx-product-inner">
+      <!-- Hero: description left, animated chat feed right -->
+      <div class="nyx-product-hero">
+        <div class="nyx-product-hero-left">
+          <p id="nyx-product-lede" class="nyx-product-lede"></p>
+        </div>
+        <div class="nyx-product-hero-right">
+          <div id="chat-viewport" class="chat-viewport">
+            <div class="chat-feed" id="chat-feed" aria-live="polite"></div>
+          </div>
+          <template id="chat-script"></template>
+        </div>
+      </div>
+
+      <!-- Feature boxes (hydrated from YAML nyx.features) -->
+      <div id="nyx-product-features" class="nyx-product-features"></div>
+
+      <!-- CTAs (hydrated from YAML nyx.ctas) -->
+      <div id="nyx-product-cta-row" class="nyx-product-cta-row"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       INDUSTRIES & USE CASES
+       ════════════════════════════════════════════ -->
+  <section id="use-cases" class="use-cases">
+    <div class="use-cases-inner">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span id="use-cases-chip" class="section-chip"></span>
+          <h2 id="use-cases-title" class="section-title"></h2>
+        </div>
+        <div class="section-header-right">
+          <p id="use-cases-lede" class="section-lede"></p>
+        </div>
+      </div>
+
+      <!-- Filter pills (hydrated from YAML use_cases.filters) -->
+      <div class="use-cases-filter" id="use-cases-filter"></div>
+
+      <!-- Blueprint grid (hydrated from YAML use_cases.cards) -->
+      <div class="use-cases-grid" id="use-cases-grid"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       NYX BY THE NUMBERS
+       ════════════════════════════════════════════ -->
+  <section id="nyx-numbers" class="numbers">
+    <div class="numbers-inner">
+      <div class="section-header is-dark">
+        <div class="section-header-left">
+          <span id="numbers-chip" class="section-chip"></span>
+          <h2 id="numbers-title" class="section-title"></h2>
+        </div>
+        <div class="section-header-right">
+          <p id="numbers-lede" class="section-lede"></p>
+        </div>
+      </div>
+
+      <div id="numbers-grid" class="numbers-grid"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       RESEARCH: FROM THE TEAM BEHIND ACE
+       ════════════════════════════════════════════ -->
+  <section id="research" class="research">
+    <div class="research-inner">
+      <div class="section-header">
+        <div class="section-header-left">
+          <span id="research-chip" class="section-chip"></span>
+          <h2 id="research-title" class="section-title"></h2>
+        </div>
+        <div class="section-header-right">
+          <p id="research-lede" class="section-lede"></p>
+        </div>
+      </div>
+
+      <div id="research-grid" class="research-grid"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       ENTERPRISE-GRADE SECURITY (comprehensive section, before pricing)
+       ════════════════════════════════════════════ -->
+  <section id="security" class="security-home">
+    <div class="security-home-inner">
+      <div class="security-home-left">
+        <span id="security-eyebrow" class="mk-eyebrow"></span>
+        <h2 id="security-title" class="security-home-title"></h2>
+        <p id="security-lede" class="security-home-lede"></p>
+        <div id="security-ctas" class="mk-cta-row"></div>
+      </div>
+      <div class="security-home-right">
+        <div id="security-badge" class="security-badge"></div>
+        <ul id="security-points" class="security-points"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       PRICING
+       ════════════════════════════════════════════ -->
+  <section id="pricing" class="pricing">
+    <div class="pricing-inner">
+      <h2 id="pricing-title" class="pricing-title"></h2>
+      <p id="pricing-subtitle" class="pricing-subtitle"></p>
+      <div id="pricing-grid" class="pricing-grid"></div>
+      <div id="pricing-enterprise" class="pricing-enterprise"></div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       FINAL CTA (hydrated from YAML final_cta)
+       ════════════════════════════════════════════ -->
+  <section class="final-cta-section">
+    <a id="final-cta" href="#" class="final-cta"></a>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       FOOTER (hydrated by siteLayout.renderFooter)
+       ════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span id="footer-logo" class="footer-logo">fabraix</span>
+        <p id="footer-brand-tagline" class="footer-brand-tagline"></p>
+        <div id="footer-socials" class="footer-socials"></div>
+      </div>
+      <div id="footer-groups" class="footer-groups"></div>
+    </div>
+    <div class="footer-bottom">
+      <span id="footer-tagline" class="footer-tagline"></span>
+      <span id="footer-copyright" class="footer-copyright"></span>
+    </div>
+  </footer>
+</body>
+
+</html>

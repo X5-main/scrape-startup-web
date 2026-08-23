@@ -1,0 +1,69 @@
+[
+  {
+    "slug": "red-team-claude-code",
+    "title": "How we got Claude Code to approve dropping a PostgreSQL schema and deleting every deployment and service in staging",
+    "date": "2026-08-02",
+    "author": "Ahmed (Zach) Aly, Ibrahim Abdu",
+    "tags": [
+      "security",
+      "red-teaming",
+      "coding-agents"
+    ],
+    "excerpt": "The second in our Nyx red-team series. Claude Code's auto mode sends risky actions to a classifier that approves or blocks them in place of a human, reported to catch 83% of real overeager actions. We disguised 1,008 risky commands as routine developer work and replayed them through the captured shipping policy on Sonnet 4.6. On this challenge set it blocked 74.6% and allowed 1 in 4 — including dropping a PostgreSQL schema and deleting every service in staging. In 82% of those allows, stage one had already flagged the danger and stage two cleared it.",
+    "og_image": "/content/research/og/red-team-claude-code.png"
+  },
+  {
+    "slug": "nobody-has-solved-prompt-injection",
+    "title": "Bounding the Blast Radius: A Survey of Prompt-Injection Defenses for LLM Agents",
+    "date": "2026-06-26",
+    "author": "Ibrahim Abdu",
+    "tags": [
+      "security",
+      "prompt-injection",
+      "agents",
+      "defense-in-depth"
+    ],
+    "excerpt": "Prompt injection has no known general solution. We organize the defense landscape into a four-layer taxonomy, analyze the documented failure mode of each layer, and argue for composing defenses under explicit cost and latency budgets, then verifying the result with adaptive, environment-specific red-teaming.",
+    "og_image": "/content/research/og/nobody-has-solved-prompt-injection.png"
+  },
+  {
+    "slug": "adversarial-cost-to-exploit",
+    "title": "Adversarial Cost to Exploit (ACE): A Dynamic Benchmark for AI Agent Security",
+    "date": "2026-04-05",
+    "author": "Ibrahim Abdu, Ahmed (Zach) Aly",
+    "tags": [
+      "security",
+      "benchmarks",
+      "evaluation",
+      "game-theory"
+    ],
+    "excerpt": "We introduce Adversarial Cost to Exploit (ACE), measuring the token expenditure an adversary must invest to breach an LLM agent. Six budget-tier models show an order-of-magnitude variance in adversarial cost.",
+    "og_image": "/content/research/og/adversarial-cost-to-exploit.png"
+  },
+  {
+    "slug": "ai-security-incidents-q1-2026",
+    "title": "2026 so far has matched all of 2024 for AI security incidents.",
+    "date": "2026-04-01",
+    "author": "Ahmed (Zach) Aly",
+    "tags": [
+      "security",
+      "threat-intelligence",
+      "supply-chain"
+    ],
+    "excerpt": "We catalogued 41 AI security incidents since January 2024. Q1 2026 alone matched all of 2024. March had 8 — the worst single month on record.",
+    "og_image": "/content/research/og/ai-security-incidents-q1-2026.png"
+  },
+  {
+    "slug": "swe-bench-90-percent",
+    "title": "SWE-bench will hit 90% this year.",
+    "date": "2026-03-24",
+    "author": "Ahmed (Zach) Aly",
+    "tags": [
+      "benchmarks",
+      "evaluation",
+      "open-source"
+    ],
+    "excerpt": "Six models are within 1.3 points on SWE-bench Verified. Binary benchmarks are saturating — what will replace them?",
+    "og_image": "/content/research/og/swe-bench-90-percent.png"
+  }
+]
