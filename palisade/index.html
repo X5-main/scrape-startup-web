@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palisade — AI that detects and fixes OS vulnerabilities across every endpoint in minutes</title>
+  <meta name="description" content="Palisade watches your fleet at the kernel — syscalls, eBPF traces, process and memory events, network packets — finds the OS vulnerabilities other tools miss, and applies the fix across every endpoint in minutes.">
+  <link rel="canonical" href="https://palisade-ai.com/">
+  <link rel="icon" type="image/png" href="assets/brand-mark.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Palisade">
+  <meta property="og:title" content="Palisade — AI that detects and fixes OS vulnerabilities in minutes">
+  <meta property="og:description" content="Kernel-level detection and one-click remediation for privilege escalation, remote code execution, and memory corruption — fleet-wide, in minutes instead of weeks.">
+  <meta property="og:url" content="https://palisade-ai.com/">
+  <meta property="og:image" content="https://palisade-ai.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="index.html">
+  <link rel="preconnect" href="index.html" crossorigin>
+  <link href="css2/index__family-Inter-wght-400-500-600-700-800-family-JetBrains-Mono-wght-400-500-700-dis.html" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ======================= NAV ======================= -->
+<header class="nav" id="top">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="Palisade — home">
+      <img class="brand-lockup" src="assets/brand-lockup.png" alt="Palisade" width="409" height="129">
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#proof">Proof</a>
+      <a href="#cves">CVEs</a>
+      <a href="#founder">Founder</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://www.youtube.com/watch?v=CTVhq7jfTPY" target="_blank" rel="noopener">Watch demo</a>
+      <a class="btn btn-primary btn-sm" href="https://calendly.com/prince-palisade-ai/30min" target="_blank" rel="noopener">Book a demo</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <a class="pill yc" href="https://www.ycombinator.com/companies" target="_blank" rel="noopener">
+        <span class="yc-badge" aria-hidden="true">Y</span> Backed by Y&nbsp;Combinator&nbsp;· S26
+      </a>
+      <h1>AI that detects and fixes <span class="grad">OS vulnerabilities</span> — across every endpoint, in minutes.</h1>
+      <p class="lede">
+        Palisade watches your systems at the kernel — syscalls, eBPF traces, process and memory
+        events, live network packets — finds the vulnerabilities other tools miss, and applies the
+        fix fleet-wide. Privilege escalation, remote code execution, memory corruption:
+        <strong>caught before the exploit lands.</strong>
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://calendly.com/prince-palisade-ai/30min" target="_blank" rel="noopener">Book a 30-min demo</a>
+        <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=CTVhq7jfTPY" target="_blank" rel="noopener">
+          <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          Watch the 3-minute demo
+        </a>
+      </div>
+    </div>
+
+    <!-- Animated control-plane mock (decorative; mirrors the real product) -->
+    <div class="hero-demo" aria-label="Simulated Palisade control plane: live kernel decisions streaming, a one-click fix, then enforcing mode denying an attack.">
+      <div class="cp" id="cp">
+        <div class="cp-head">
+          <div class="cp-brand">
+            <span class="mark sm" aria-hidden="true">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <defs>
+                  <linearGradient id="brandg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#67e8f9"/><stop offset="0.5" stop-color="#8b7cf6"/><stop offset="1" stop-color="#f472b6"/>
+                  </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="60" height="60" rx="17" fill="url(#brandg)"/>
+                <rect x="9" y="9" width="46" height="46" rx="12" fill="#0a0a12"/>
+                <rect x="22" y="22" width="20" height="20" rx="5" fill="#ffffff"/>
+              </svg>
+            </span>
+            <span class="cp-title">Palisade</span>
+            <span class="cp-badge mono">CONTROL PLANE</span>
+          </div>
+          <button class="mode mono" id="modeToggle" type="button" aria-live="polite" aria-label="Toggle between audit-only and enforcing mode">
+            <span class="mode-label" id="modeLabel">AUDIT-ONLY</span>
+            <span class="knob" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div class="cp-statusline mono" id="cpStatus">
+          <span class="ledot" aria-hidden="true"></span>
+          <span id="statusText">audit-only</span>&nbsp;· <span id="ruleCount">37</span> rules · 5 packs ·
+          <span id="eventCount">3.6k</span> events · <span id="denyCountInline">0</span> denies
+        </div>
+
+        <div class="cp-stats">
+          <div class="stat"><span class="stat-k mono">MODE</span><span class="stat-v mono" id="statMode">AUDIT</span><span class="stat-s" id="statModeSub">watching only — nothing blocked</span></div>
+          <div class="stat"><span class="stat-k mono">RULES</span><span class="stat-v mono violet" id="statRules">37</span><span class="stat-s">policy map · 5 packs</span></div>
+          <div class="stat"><span class="stat-k mono">DENIES</span><span class="stat-v mono red" id="statDenies">0</span><span class="stat-s" id="statDeniesSub">only while enforcing</span></div>
+        </div>
+
+        <div class="cp-finding" id="finding">
+          <div class="f-row">
+            <span class="chip chip-id mono">NET-004</span>
+            <span class="chip chip-med mono" id="findingSev">MEDIUM</span>
+            <span class="f-title" id="findingTitle">Cloud metadata service reachable by every process</span>
+          </div>
+          <p class="f-desc" id="findingDesc">Any local process can query 169.254.169.254 and harvest instance credentials — the same path behind the Capital One breach.</p>
+          <div class="f-fix">
+            <span class="mono f-fixlabel" id="fixLabel">MAINTAINER FIX → block outbound to 169.254.169.254 except cloud-init</span>
+            <button class="btn btn-primary btn-xs" id="applyFix" type="button">Apply fix</button>
+          </div>
+        </div>
+
+        <div class="cp-feedlabel mono">LIVE FEED <span class="feed-hint" id="feedHint">— every row is a kernel decision on a syscall</span></div>
+        <div class="cp-feed mono" id="feed" aria-hidden="true"></div>
+
+        <div class="cp-toast mono" id="toast" role="status">NET-004 fixed → rule installed</div>
+      </div>
+      <p class="demo-note mono">Simulation of the live product — same rules, same syscalls. <a href="https://www.youtube.com/watch?v=CTVhq7jfTPY" target="_blank" rel="noopener">Watch it run against a real kernel →</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROBLEM ======================= -->
+<section class="section problem" id="problem">
+  <div class="container">
+    <p class="kicker mono reveal">THE GAP</p>
+    <h2 class="reveal">Modern attacks target the operating system.<br>Most security tools are watching everything else.</h2>
+    <p class="section-lede reveal">
+      Network, cloud, and application-layer products can't see what happens inside the kernel. That
+      leaves OS vulnerabilities among the hardest problems to detect — and the slowest to fix. Even
+      after you find one, rolling a mitigation out across hundreds or thousands of machines takes weeks.
+    </p>
+    <div class="cards3">
+      <div class="card reveal">
+        <span class="chip chip-high mono">PRIVILEGE ESCALATION</span>
+        <h3>From user to root</h3>
+        <p>A single local privesc turns any foothold into full control of the host — and of everything scheduled on it.</p>
+      </div>
+      <div class="card reveal">
+        <span class="chip chip-high mono">REMOTE CODE EXECUTION</span>
+        <h3>Payloads out of nowhere</h3>
+        <p>Unknown binaries executing from <span class="mono">/tmp</span> is the classic opening move. By the time it's in your SIEM, it already ran.</p>
+      </div>
+      <div class="card reveal">
+        <span class="chip chip-high mono">MEMORY CORRUPTION</span>
+        <h3>Invisible from outside</h3>
+        <p>Use-after-free and heap bugs live below every agent that only reads logs. Detection requires kernel-level visibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= HOW IT WORKS ======================= -->
+<section class="section how" id="how">
+  <div class="container">
+    <p class="kicker mono reveal">HOW IT WORKS</p>
+    <h2 class="reveal">Deploys alongside your OS. No rip-and-replace.</h2>
+    <p class="section-lede reveal">
+      Palisade ships as a module next to your existing operating system and attaches at the LSM-BPF
+      layer. AI runs directly on kernel data — then every fix becomes an ordinary, inspectable rule.
+    </p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n mono">01</div>
+        <h3>See the layer nothing else can</h3>
+        <p>Syscalls, eBPF traces, process and memory events, live network packets — streamed from the
+        kernel in real time. AI finds the vulnerabilities monitoring tools miss.</p>
+        <div class="snippet mono" aria-hidden="true">
+          <span class="row"><i>183916.62</i> <b>file_open</b> <em class="ok">ALLOW</em> /etc/ssh/sshd_config</span>
+          <span class="row"><i>183916.07</i> <b>bprm_check</b> <em class="ok">ALLOW</em> /usr/sbin/logrotate</span>
+          <span class="row"><i>183915.41</i> <b>connect</b> <em class="warn">AUDIT</em> 169.254.169.254:80</span>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-n mono">02</div>
+        <h3>AI finds it. You approve the fix.</h3>
+        <p>The host audit ranks real findings by severity. Every finding ships a vetted maintainer fix —
+        nothing is changed behind your back. One click installs it as a kernel rule.</p>
+        <div class="snippet mono" aria-hidden="true">
+          <span class="row"><em class="idchip">SSH-001</em> <em class="sev-high">HIGH</em> sshd permits root login</span>
+          <span class="row"><em class="idchip">NET-004</em> <em class="sev-med">MEDIUM</em> metadata reachable by every process</span>
+          <span class="row apply"><b>→ Apply fix</b> <span class="ok">✓ rule installed · finding resolved</span></span>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-n mono">03</div>
+        <h3>Flip to enforcing. The attack dies at the first syscall.</h3>
+        <p>Matched operations return <span class="mono">-EPERM</span> from the kernel itself. The payload never executes;
+        the connection is never made. A rollout that took weeks lands fleet-wide in minutes.</p>
+        <div class="snippet mono" aria-hidden="true">
+          <span class="row"><i>184102.11</i> <b>bprm_check</b> <em class="deny">DENY</em> /tmp/payload.sh · rule 3</span>
+          <span class="row"><i>184102.36</i> <b>connect</b> <em class="deny">DENY</em> 169.254.169.254:80 · NET-004</span>
+          <span class="row"><i>184103.02</i> <b>file_open</b> <em class="deny">DENY</em> /etc/shadow · rule 1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ENGLISH → KERNEL ======================= -->
+<section class="section english">
+  <div class="container narrow">
+    <p class="kicker mono reveal">AI-NATIVE POLICY</p>
+    <h2 class="reveal">Write policy in English. Enforce it in the kernel.</h2>
+    <p class="section-lede reveal">Describe the rule the way you'd say it in a security review. Palisade compiles it into a
+    kernel-enforced BPF policy — and rejects deny-all footguns before they ever reach the kernel.</p>
+
+    <div class="rulebox reveal" id="rulebox">
+      <div class="rulebox-label mono">AUTHOR A RULE IN ENGLISH</div>
+      <div class="rulebox-input">
+        <span class="mono" id="ruleTyped" aria-label="Example rule">Block reads of /root/.ssh/ except by sshd, ssh, scp</span><span class="caret" aria-hidden="true"></span>
+        <button class="btn btn-primary btn-sm" type="button" id="compileBtn">Compile &amp; install</button>
+      </div>
+      <div class="rulebox-out mono" id="ruleOut">
+        <span class="chip chip-id">rule 38</span>
+        <span class="chip chip-hook">file_open</span>
+        <span class="chip chip-deny">deny</span>
+        <span class="chip chip-plain">path&nbsp;/root/.ssh/</span>
+        <span class="chip chip-plain">except&nbsp;sshd,&nbsp;ssh,&nbsp;scp</span>
+        <span class="chip chip-ok">✓ installed</span>
+      </div>
+    </div>
+
+    <div class="packs reveal">
+      <p class="packs-lede">Prefer determinism? Compliance packs bypass the model entirely — every rule is preset, reproducible JSON:</p>
+      <div class="pack-row mono">
+        <span class="pack">cis-linux-level-1 <b>10 rules</b></span>
+        <span class="pack">iso-27001-baseline <b>7 rules</b></span>
+        <span class="pack">nist-800-53-moderate <b>6 rules</b></span>
+        <span class="pack">pci-dss-v4 <b>6 rules</b></span>
+        <span class="pack">intrusion-detection <b>8 rules</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= PROOF / SCREENSHOTS ======================= -->
+<section class="section proof" id="proof">
+  <div class="container">
+    <p class="kicker mono reveal">LIVE AGAINST A REAL KERNEL</p>
+    <h2 class="reveal">Not a mockup. Every row is a real kernel decision.</h2>
+    <p class="section-lede reveal">Captured on a production Linux host running the kernel-attached daemon (LSM-BPF). Every number,
+    deny, and event below is real syscall data.</p>
+
+    <figure class="shot reveal">
+      <img src="assets/control-plane.png" alt="The Palisade control plane: audit-only mode with 37 rules, 5 packs and 3.6k events; a live feed of file_open ALLOW decisions streaming from the kernel." loading="lazy" width="2880" height="1800">
+      <figcaption>The control plane, live — the feed at the bottom streams real syscall decisions, polled from the daemon over the same Unix socket <span class="mono">palisadectl</span> uses.</figcaption>
+    </figure>
+
+    <figure class="shot reveal">
+      <img src="assets/one-click-fix.png" alt="The Palisade host audit: findings ranked by severity, including sshd permits root login (high) and cloud metadata service reachable by every process (medium) with a one-click Apply fix button." loading="lazy" width="2880" height="1800">
+      <figcaption>The host audit — real findings ranked by severity, each shipping a vetted one-click fix. The bottom one is the cloud-metadata exposure: the same path behind the Capital One breach.</figcaption>
+    </figure>
+
+    <div class="beforeafter">
+      <figure class="shot half reveal">
+        <span class="chip chip-med mono ba-tag">BEFORE — AUDIT ONLY</span>
+        <img src="assets/shell-audit.png" alt="An attacker's terminal in audit mode: the payload in /tmp runs and prints 'pwned', and the cloud metadata endpoint answers with HTTP 200." loading="lazy" width="1466" height="912">
+        <figcaption>The attacker's terminal: the payload runs, the metadata service answers <span class="mono">HTTP 200</span>.</figcaption>
+      </figure>
+      <figure class="shot half reveal">
+        <span class="chip chip-ok mono ba-tag">AFTER — ENFORCING</span>
+        <img src="assets/shell-enforce.png" alt="The same terminal with Palisade enforcing: the payload is blocked with exit code 126 and the metadata connection is refused — not one credential leaves the machine." loading="lazy" width="1466" height="912">
+        <figcaption>Same host, enforcing: payload blocked (<span class="mono">exit 126</span>), connection never made. Not one credential leaves the machine.</figcaption>
+      </figure>
+    </div>
+
+    <div class="video-cta reveal">
+      <a class="btn btn-ghost" href="https://www.youtube.com/watch?v=CTVhq7jfTPY" target="_blank" rel="noopener">
+        <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+        Watch the full demo — detect → fix → enforce
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CVES ======================= -->
+<section class="section cves" id="cves">
+  <div class="container">
+    <p class="kicker mono reveal">NOT TOY EXAMPLES</p>
+    <h2 class="reveal">Real CVEs, detected and fixed.</h2>
+    <p class="section-lede reveal">Every one of these is a path to root — caught and mitigated before an exploit lands.</p>
+    <div class="cards3">
+      <div class="card cve reveal">
+        <span class="cve-id mono">CVE-2024-1086</span>
+        <h3>Linux kernel netfilter <span class="mono">nf_tables</span></h3>
+        <p>Use-after-free in the kernel's netfilter subsystem — local privilege escalation to root.</p>
+        <span class="chip chip-deny mono">→ root · mitigated</span>
+      </div>
+      <div class="card cve reveal">
+        <span class="cve-id mono">CVE-2025-6019</span>
+        <h3>libblockdev / udisks</h3>
+        <p>Privilege escalation through the storage stack to full root.</p>
+        <span class="chip chip-deny mono">→ root · mitigated</span>
+      </div>
+      <div class="card cve reveal">
+        <span class="cve-id mono">CVE-2025-32463</span>
+        <h3>sudo <span class="mono">--chroot</span></h3>
+        <p>Local privilege escalation to root through sudo's chroot option.</p>
+        <span class="chip chip-deny mono">→ root · mitigated</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= WHO IT'S FOR ======================= -->
+<section class="section who">
+  <div class="container">
+    <p class="kicker mono reveal">WHO IT'S FOR</p>
+    <h2 class="reveal">One kernel vulnerability, multiplied by your whole fleet.</h2>
+    <div class="cards3">
+      <div class="card who-card reveal">
+        <div class="who-icon" aria-hidden="true">▦</div>
+        <h3>GPU clusters</h3>
+        <p>Training and inference fleets where a single compromised node can reach every job, checkpoint, and credential on the fabric.</p>
+      </div>
+      <div class="card who-card reveal">
+        <div class="who-icon" aria-hidden="true">☁</div>
+        <h3>Cloud device fleets</h3>
+        <p>Hundreds of near-identical instances: the same vulnerability everywhere, the same metadata service to steal from — and one rollout to fix it.</p>
+      </div>
+      <div class="card who-card reveal">
+        <div class="who-icon" aria-hidden="true">◨</div>
+        <h3>On-device deployments</h3>
+        <p>Endpoints in the field you can't easily re-image. Palisade mitigates at the kernel until you can patch on your schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOUNDER ======================= -->
+<section class="section founder" id="founder">
+  <div class="container narrow">
+    <p class="kicker mono reveal">WHY THIS EXISTS</p>
+    <h2 class="reveal">Built at the intersection of machine learning and operating systems.</h2>
+    <div class="founder-card reveal">
+      <div class="founder-body">
+        <p>
+          "In red-team and blue-team work, one pattern kept showing up: OS-level vulnerabilities were
+          consistently the hardest to handle. Detection needed low-level visibility most tools don't
+          have — and even after you found one, rolling the mitigation out across hundreds or thousands
+          of machines took weeks. I was convinced this didn't have to be a manual process. So I built Palisade."
+        </p>
+        <div class="founder-sig">
+          <span class="founder-name">Prince — Founder, Palisade</span>
+          <a class="mono founder-mail" href="mailto:prince@palisade-ai.com">prince@palisade-ai.com</a>
+        </div>
+      </div>
+      <ul class="cred mono">
+        <li>Red-team &amp; blue-team security work at startups</li>
+        <li>ML &amp; applied-math research at Caltech labs</li>
+        <li>SANS Institute GIAC advisory board — one of its youngest members</li>
+        <li>Top 0.1% in national olympiads</li>
+        <li>Built an operating system from scratch</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CTA ======================= -->
+<section class="section cta-final" id="demo">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div class="container narrow center">
+    <h2 class="reveal">A fix that used to take weeks.<br><span class="grad">Palisade applies it in minutes.</span></h2>
+    <div class="hero-ctas center reveal">
+      <a class="btn btn-primary btn-lg" href="https://calendly.com/prince-palisade-ai/30min" target="_blank" rel="noopener">Book a 30-min demo</a>
+      <a class="btn btn-ghost btn-lg" href="mailto:prince@palisade-ai.com?subject=Palisade%20beta">Join the beta waitlist</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="brand">
+      <img class="brand-lockup footer-lockup" src="assets/brand-lockup.png" alt="Palisade" width="409" height="129">
+      <span class="brand-tag mono">YC S26</span>
+    </div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="mailto:prince@palisade-ai.com">Email</a>
+      <a href="https://calendly.com/prince-palisade-ai/30min" target="_blank" rel="noopener">Calendly</a>
+      <a href="https://www.youtube.com/watch?v=CTVhq7jfTPY" target="_blank" rel="noopener">Demo video</a>
+    </nav>
+    <p class="mono footer-copy">© <span id="year">2026</span> Palisade. AI-native security for infrastructure, device, and GPU fleets.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
