@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>News — Last Accounting Company</title>
+    <link>https://lastaccountingcompany.com/news</link>
+    <description>Writing on agentic accounting, research, and the future of accounting from Last Accounting Company — the AI-native accounting firm for Finnish SMBs.</description>
+    <language>en</language>
+    <atom:link href="https://lastaccountingcompany.com/news/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How We’re Building the Most Interfaceable General Ledger</title>
+      <link>https://lastaccountingcompany.com/news/interfaceable-general-ledger</link>
+      <guid>https://lastaccountingcompany.com/news/interfaceable-general-ledger</guid>
+      <pubDate>Thu, 30 Jul 2026 08:00:00 +0000</pubDate>
+      <description>An interfaceable general ledger makes financial data easy to put in, retrieve, and use safely from other systems. Here is why we built our own ledger and how its MCP server and API let software and AI agents work with live accounting data.</description>
+      <content:encoded><![CDATA[<p>Most accounting software keeps useful financial data behind its own interface. The data exists, but getting it in, getting it out, or combining it with information from other systems still takes exports, copy-paste, and manual work.</p>
+<p>We heard this problem in customer interviews from the start. Finance leaders did not need another closed dashboard. They needed their general ledger to work with the rest of the company.</p>
+<p>That is why we decided on day one to build the most interfaceable general ledger possible. By <em>interfaceable</em>, we mean that financial information must be easy to put in and easy to use anywhere it is needed.</p>
+<h2>What makes a general ledger interfaceable?</h2>
+<p>An interfaceable general ledger does two things well: it accepts information without repeated data entry, and it makes trusted financial data available to other systems. Both directions matter. A system that is easy to fill but hard to read is still a silo, and a good API cannot fix poor or incomplete source data.</p>
+<p>On the way in, bank transactions, invoices, receipts, contracts, and records from connected systems should flow into one accounting process. A document should enter once, keep its source and history, and remain linked to the accounting entry it supports.</p>
+<p>On the way out, the ledger should offer clear, stable ways to read data and perform allowed actions. That does not mean giving every tool direct database access. It means offering a safe interface with defined data, permissions, and audit trails.</p>
+<figure>
+  <div class="article-flow" role="img" aria-label="Source data enters one live general ledger. Trusted financial data and allowed actions then connect to reports, AI agents, and company systems.">
+    <div class="article-flow-node article-flow-node--input squircle">
+      <span class="article-visual-label">Data in</span>
+      <strong>Source facts</strong>
+      <span>Banks · invoices · receipts · contracts</span>
+    </div>
+    <span class="article-flow-arrow" aria-hidden="true">→</span>
+    <div class="article-flow-node article-flow-node--core squircle">
+      <span class="article-visual-label">LAC general ledger</span>
+      <strong>One live financial record</strong>
+      <span>Structured · reviewed · traceable</span>
+    </div>
+    <span class="article-flow-arrow" aria-hidden="true">↔</span>
+    <div class="article-flow-node article-flow-node--output squircle">
+      <span class="article-visual-label">Use anywhere</span>
+      <strong>Trusted data and actions</strong>
+      <span>Reports · AI agents · your systems</span>
+    </div>
+  </div>
+  <figcaption>Interfaceability is a two-way promise: source data enters once, and the same current financial record can be used wherever work happens.</figcaption>
+</figure>
+
+<h2>Why did we build our own general ledger?</h2>
+<p>We built our own ledger because interfaceability is a property of the whole system, not a feature that can be added at the edge. The data model, evidence links, permissions, accounting controls, and external interfaces must all describe the same facts.</p>
+<p>Existing products such as Procountor and Netvisor were built for a different operating model. We could have added another integration layer on top of them, but we would still depend on their data structures, access limits, and update cycles. We would not control the foundation.</p>
+<p>Owning the ledger lets us design every input as a route into one common financial record and every output as a view of that same record. Today, more than $80 million in transaction value has passed through our system. It supports the accounting, analysis, and decisions of dozens of Finnish companies.</p>
+<h2>How can AI agents use the general ledger?</h2>
+<p>Our <a href="https://docs.lastaccountingcompany.com/mcp-server">MCP server</a> lets Claude, ChatGPT, and other compatible agents work with a company’s accounting through typed tools. An agent can read the books, VAT position, financial statements, analytics, documents, invoices, and messages with Björn, our accounting agent.</p>
+<p>With write access, an agent can also upload documents, draft and send sales invoices, request filing review, start a connection sync, and message Björn. The same capabilities are available through our <a href="https://docs.lastaccountingcompany.com/">REST API</a>, so teams can use the lighter interface when MCP is not the right fit.</p>
+<p>This turns the ledger into a usable part of a company’s technology stack. Your own agent could:</p>
+<ul>
+<li>Pull current revenue, costs, and cash data into a board memo.</li>
+<li>Combine ledger data with a CRM pipeline to update a forecast.</li>
+<li>Upload a receipt from another internal system.</li>
+<li>Create a sales invoice draft when a delivery milestone is complete.</li>
+<li>Ask Björn about an unclear transaction without leaving its current workflow.</li>
+</ul>
+<p>These are not separate copies of the books. Each action uses the same accounting system and the same current data.</p>
+<h2>How do we keep an open ledger safe?</h2>
+<p>Interfaceability does not mean unlimited access. Every connection is tied to one company and has a defined permission level. Read-only connections cannot change data, while write connections receive a limited set of operator actions.</p>
+<p>Some capabilities stay outside MCP and the API by design. Payroll, payroll approval, company settings, user access, and API-key management require an interactive administrator or approver in the portal. The interface also uses the same validation, accounting rules, and audit trail as the customer portal.</p>
+<figure>
+  <div class="article-access" role="img" aria-label="Access is divided into read tools, limited write tools, and sensitive actions that remain in the interactive portal.">
+    <div class="article-access-node article-access-node--read squircle">
+      <span class="article-visual-label">Read</span>
+      <strong>See the financial truth</strong>
+      <span>Books · VAT · statements · invoices</span>
+    </div>
+    <div class="article-access-node article-access-node--write squircle">
+      <span class="article-visual-label">Limited writes</span>
+      <strong>Act through defined tools</strong>
+      <span>Documents · invoice drafts · Björn</span>
+    </div>
+    <div class="article-access-node article-access-node--portal squircle">
+      <span class="article-visual-label">Portal only</span>
+      <strong>Keep sensitive actions interactive</strong>
+      <span>Payroll · approvals · access · settings</span>
+    </div>
+  </div>
+  <figcaption>The interface widens access without removing the controls around sensitive work.</figcaption>
+</figure>
+
+<p>This boundary matters. A useful financial interface must make safe work easy without making sensitive actions casual.</p>
+<h2>Why does interfaceability matter more in the age of AI?</h2>
+<p>AI agents can now work across tools, but they are only as useful as the data and actions they can reach. A closed ledger limits them to copied reports and old exports. An interfaceable ledger lets them use current, structured, and reviewed financial information in the flow of work.</p>
+<p>This changes the role of the ledger. It is no longer only a record that someone opens at month end. It becomes shared financial infrastructure for reporting, planning, customer operations, and day-to-day decisions.</p>
+<p>The feedback loop improves too. When financial data can move safely between systems, a company can find missing evidence sooner, answer questions while the context is fresh, and act on changes before a monthly report arrives.</p>
+<h2>Why are the software and the accounting firm one product?</h2>
+<p>An interface to stale or unreviewed books only moves unreliable data faster. Useful access depends on the accounting behind it being current, complete, and correct.</p>
+<p>That is why Last Accounting Company is both the accounting firm and the software company. We handle the accounting work, operate the ledger, and provide the interfaces around it as one service. Customers do not need to coordinate a traditional accounting firm, a separate software subscription, and another integration layer.</p>
+<p>We are building the general ledger for a world where people, software, and AI agents all need to work with the same financial truth. If that is how you want your accounting to work, <a href="/#signup">join the waitlist</a> or <a href="mailto:hello@lastaccountingcompany.com">email us</a>.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>The New UX of Accounting Is No UX at All</title>
+      <link>https://lastaccountingcompany.com/news/accounting-ux-no-ux-at-all</link>
+      <guid>https://lastaccountingcompany.com/news/accounting-ux-no-ux-at-all</guid>
+      <pubDate>Thu, 23 Jul 2026 08:00:00 +0000</pubDate>
+      <description>Accounting UX remains broken because founders and CFOs still move information between accountants, banks, payroll, tax authorities, and disconnected software. Our thesis is that accounting should become one connected process whose data is always current and available where work happens.</description>
+      <content:encoded><![CDATA[<p>When did you last chase a receipt? Approve an invoice you&rsquo;d already approved somewhere else? Explain a bank transaction to your accountant, double-check that payroll went out, or dig up a VAT filing?</p>
+<p>If you run a company in the Nordics, you probably know the ritual. Sunday evening, a folder of PDFs, an email from your accountant asking about a charge from March. A login to your accounting software, another to your bank, a third to check whether payroll actually went out. Forward, attach, explain, repeat.</p>
+<p>None of that is accounting. It&rsquo;s manual labour of carrying information between systems that don&rsquo;t talk to each other. And our mission at Last Accounting Company is to make sure that you do not need to participate.</p>
+<h2>Why is accounting UX broken?</h2>
+<p>The traditional setup is not one product. It&rsquo;s a firm <em>plus</em> a piece of software <em>plus</em> your bank <em>plus</em> the Tax Administration <em>plus</em> your invoicing tool, your payroll provider, and your expense app. The list goes on if you count all the individual data points living in email chains, Slack threads, or siloed HR, CRM, and ERP systems. Each has its own login, its own inbox, and its own idea of what happened in your business last month.</p>
+<p>These systems were not built to communicate effectively. So there has to be an integration layer to chase receipts, forward invoices, answer &ldquo;what is this transaction?&rdquo; emails, and reconcile the different versions of the truth. Unfortunately, this layer is usually the founder or the CFO.</p>
+<p>The industry&rsquo;s answer for the past two decades has been to improve the software. But software alone just gave you a nicer inbox for the same chores. The accountant still sat outside your systems. You still ferried information between them. The user experience of accounting stayed the same.</p>
+<h2>What should it look like instead?</h2>
+<p>We built Last Accounting Company as a single end-to-end package, joining the accounting service and the software together with integrations into your systems, banks, and authorities.</p>
+<table>
+<thead>
+<tr>
+<th>The old way</th>
+<th>With Last Accounting Company</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chasing receipts and forwarding invoices</td>
+<td>Documents flow in automatically and match themselves to transactions</td>
+</tr>
+<tr>
+<td>&ldquo;What is this charge?&rdquo; email chains, answered in business days</td>
+<td>Anything unclear is asked once in your messaging tools, and learned</td>
+</tr>
+<tr>
+<td>Monthly close arrives weeks after the end of the month</td>
+<td>Books update as transactions arrive</td>
+</tr>
+<tr>
+<td>Logging into a handful of systems to check payroll, VAT, invoices, and filings</td>
+<td>Payroll, VAT, receipts, and filings are automated and visible in one place</td>
+</tr>
+<tr>
+<td>You run between systems as the integration layer</td>
+<td>Last Accounting Company is the layer</td>
+</tr>
+</tbody>
+</table>
+<p>Behind the scenes, Björn Books, our AI accountant, does the manual work, and human accountants review the results.</p>
+<p>For our customers, this adds up to full workdays of work that simply stop existing. Bookkeeping is up to date around the clock instead of 12 times per year, in a good year.</p>
+<h2>Where should the interface live?</h2>
+<p>Old-world accounting has two interfaces: a dashboard someone built years ago and email threads that move at the speed of business days.</p>
+<p>Instead, you should be able to ask questions where you already work—Teams, Slack, or even WhatsApp—and get answers instantly from books that are current as of today, not last month.</p>
+<p>Your financials are available over MCP, so you can use them directly with your AI tools. Connect Claude or ChatGPT to your books and let it pull the numbers into a board memo, a forecast, or an investor update. No exports, no copy-paste, no waiting for someone to run a report. Everything comes from data validated by our system and accounting professionals, including humans.</p>
+<h2>Why should bookkeeping be more than a necessary evil?</h2>
+<p>Ask yourself who your accounting has been serving all these years. Traditional bookkeeping exists mainly to satisfy authorities: a backward-looking, deadline-driven chore whose output gets filed and forgotten. The single most relevant dataset about your company&rsquo;s finances, maintained at real cost every month, leaves most of its potential on the table.</p>
+<p>Always-current books change that. Runway, margins by customer, whether you can afford the next hire: these have always technically lived in your ledger, just locked behind stale data and someone else&rsquo;s reporting cycle. When the data is current, the ledger becomes the shared source of truth for your company&rsquo;s key financial knowledge. It starts working proactively for you: surfacing what changed, answering your questions, and informing every decision you make. Compliance still happens, of course. It is simply demoted from the whole point of accounting to a by-product of it.</p>
+<h2>Trying it takes five minutes</h2>
+<p>We also want to fix the switching cost, because in accounting the switching cost is the traditional system&rsquo;s only moat.</p>
+<p>To achieve this, we changed onboarding completely. Connecting takes no more than five minutes. Connect your bank and other tools, and we start building your books. You can be set up in a single sitting. You leave your old setup only when you trust our numbers and process more than the old ones.</p>
+<p>Curious to hear more? <a href="https://calendar.app.google/joojJRUDpZjhRCoE9">Let&rsquo;s chat.</a></p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Creating Self-Improving AI Accounting Systems</title>
+      <link>https://lastaccountingcompany.com/news/self-improving-ai-accounting-systems</link>
+      <guid>https://lastaccountingcompany.com/news/self-improving-ai-accounting-systems</guid>
+      <pubDate>Sun, 19 Jul 2026 08:00:00 +0000</pubDate>
+      <description>A self-improving accounting system treats bookkeeping as one measurable transformation: raw financial data in, auditable ledgers and filings out. We improve that transformation with a recurring evaluation loop built on high-quality data. Here is how the loop works, and why data quality decides who wins.</description>
+      <content:encoded><![CDATA[<p>Self-improvement is the talk of the AI world right now. It means AI models taking on a growing share of the work of improving themselves, rather than depending solely on the ingenuity of human engineers. Media coverage mostly frames this as something frontier labs do: OpenAI and Anthropic improving their foundation models, GPT and Claude. But self-improvement is not limited to the neural network. It works just as well at the application layer, the layer where the model is actually put to work, whether that is customer support, coding agents, or an accounting system. This article covers how we build self-improvement into accounting, and why that positions us to become the best solution for accounting as AI evolves.</p>
+<p>The ground the application layer stands on is rising at a remarkable rate. Stanford&rsquo;s 2026 <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance">AI Index</a> measured what a single year of model progress now looks like: on OSWorld, a benchmark of AI agents doing real work on a computer, accuracy rose from roughly 12% in 2024 to 66.3% in 2025, within six percentage points of human performance. On Humanity&rsquo;s Last Exam, a benchmark built to be hard for AI and favourable to human experts, accuracy jumped from under 10% to 38.3% over the same year. And the curve has not slowed since the report went to print: as of July 2026, the top score on the OSWorld-Verified leaderboard stands at 85%, clearly above the 72% human baseline, and the leading score on Humanity&rsquo;s Last Exam has climbed to 46.4%. A system designed to ride that curve improves even while you sleep. A system designed around the current models&rsquo; weaknesses becomes obsolete on the same schedule.</p>
+<figure>
+<svg viewBox="0 0 680 232" role="img" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+  <title>The jump in AI capability, 2024 to July 2026</title>
+  <text x="0" y="16" font-size="14" font-weight="650" fill="var(--ink, #191913)">The jump in AI capability</text>
+  <text x="0" y="36" font-size="12.5" fill="var(--ink-soft, #606077)">Best model accuracy on two frontier benchmarks</text>
+  <circle cx="440" cy="12" r="5" fill="var(--accent-strong, #8fa9fb)"/>
+  <text x="450" y="16" font-size="12" fill="var(--ink-soft, #606077)">2024</text>
+  <circle cx="502" cy="12" r="5" fill="var(--accent-deep, #4a63d4)"/>
+  <text x="512" y="16" font-size="12" fill="var(--ink-soft, #606077)">2025</text>
+  <circle cx="564" cy="12" r="5" fill="#26357e"/>
+  <text x="574" y="16" font-size="12" fill="var(--ink-soft, #606077)">Jul 2026</text>
+  <line x1="295" y1="56" x2="295" y2="200" stroke="var(--chart-grid, #e2e9ed)" stroke-width="1"/>
+  <line x1="410" y1="56" x2="410" y2="200" stroke="var(--chart-grid, #e2e9ed)" stroke-width="1"/>
+  <line x1="525" y1="56" x2="525" y2="200" stroke="var(--chart-grid, #e2e9ed)" stroke-width="1"/>
+  <line x1="640" y1="56" x2="640" y2="200" stroke="var(--chart-grid, #e2e9ed)" stroke-width="1"/>
+  <line x1="180" y1="56" x2="180" y2="200" stroke="var(--chart-axis, #93a1ab)" stroke-width="1"/>
+  <text x="168" y="94" text-anchor="end" font-size="13" font-weight="600" fill="var(--ink, #191913)">OSWorld</text>
+  <text x="168" y="108" text-anchor="end" font-size="11" fill="var(--ink-tertiary, #a1a1a6)">agents on real computer tasks</text>
+  <line x1="235" y1="100" x2="571" y2="100" stroke="var(--accent, #a8bdff)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="513" y1="84" x2="513" y2="116" stroke="var(--ink, #191913)" stroke-width="1.5"/>
+  <text x="513" y="130" text-anchor="middle" font-size="11" fill="var(--ink-soft, #606077)">humans 72%</text>
+  <circle cx="235" cy="100" r="7" fill="var(--accent-strong, #8fa9fb)" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="485" cy="100" r="7" fill="var(--accent-deep, #4a63d4)" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="571" cy="100" r="7" fill="#26357e" stroke="#ffffff" stroke-width="2"/>
+  <text x="235" y="86" text-anchor="middle" font-size="12.5" fill="var(--ink-soft, #606077)">12%</text>
+  <text x="478" y="86" text-anchor="middle" font-size="12.5" fill="var(--ink-soft, #606077)">66.3%</text>
+  <text x="571" y="86" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--ink, #191913)">85%</text>
+  <text x="168" y="158" text-anchor="end" font-size="13" font-weight="600" fill="var(--ink, #191913)">Humanity's Last Exam</text>
+  <text x="168" y="172" text-anchor="end" font-size="11" fill="var(--ink-tertiary, #a1a1a6)">expert-level questions</text>
+  <line x1="226" y1="164" x2="393" y2="164" stroke="var(--accent, #a8bdff)" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="226" cy="164" r="7" fill="var(--accent-strong, #8fa9fb)" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="356" cy="164" r="7" fill="var(--accent-deep, #4a63d4)" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="393" cy="164" r="7" fill="#26357e" stroke="#ffffff" stroke-width="2"/>
+  <text x="226" y="150" text-anchor="middle" font-size="12.5" fill="var(--ink-soft, #606077)">under 10%</text>
+  <text x="348" y="150" text-anchor="middle" font-size="12.5" fill="var(--ink-soft, #606077)">38.3%</text>
+  <text x="393" y="186" text-anchor="middle" font-size="12.5" font-weight="600" fill="var(--ink, #191913)">46.4%</text>
+  <text x="180" y="220" text-anchor="middle" font-size="12" fill="var(--chart-text, #5c6a73)">0</text>
+  <text x="295" y="220" text-anchor="middle" font-size="12" fill="var(--chart-text, #5c6a73)">25</text>
+  <text x="410" y="220" text-anchor="middle" font-size="12" fill="var(--chart-text, #5c6a73)">50</text>
+  <text x="525" y="220" text-anchor="middle" font-size="12" fill="var(--chart-text, #5c6a73)">75</text>
+  <text x="640" y="220" text-anchor="middle" font-size="12" fill="var(--chart-text, #5c6a73)">100%</text>
+</svg>
+<figcaption>AI agents went from failing almost every real computer task to beating the human baseline. 2024 and 2025 figures: Stanford HAI, <a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance">AI Index Report 2026, Technical Performance</a> (published March 2026). We augmented the chart with the official leaderboard top scores as of July 2026: <a href="https://os-world.github.io/">OSWorld-Verified</a> (85%) and <a href="https://labs.scale.com/leaderboard/humanitys_last_exam">Humanity's Last Exam</a> (46.4%, without tools).</figcaption>
+</figure>
+
+<h2>What exactly are we improving?</h2>
+<p>We see accounting as a simple input-output system: bank statements and documents in, bookkeeping and filings out. We see no benefit in complicating that picture, least of all when the goal is a recurring self-improvement loop. What matters is being crystal clear about the actual transformation you want to improve (all natural phenomena are transformations: inputs and outputs). That judgement is the one thing humans are still uniquely positioned for. It is the simple decision of <em>what to do</em>.</p>
+<p>Once you have decided what to optimise, in our case turning raw customer financial data such as transactions, invoices, and documents into auditable ledgers and reports, two steps remain: formalising the evaluation and harnessing the data.</p>
+<h2>How does the self-improvement loop work?</h2>
+<p>Formalising the evaluation (the &ldquo;eval&rdquo;) is a simple process: run your system on a set of test inputs and compare the results to a corresponding set of known-good outputs. Then grade the result: how accurate was the transformation? Run this daily, or several times a day, and you build up a historical dataset of how your system performs and which changes affect the score, positively or negatively. An agent can then analyse the results, compare them with changes to the codebase, and suggest or even implement improvements to the system. This creates a simple but powerful self-reinforcing loop.</p>
+<h2>Why does data quality decide who wins?</h2>
+<p>Evals amount to nothing unless they are built on <em>high-quality data</em>. Data is king here. If we train our systems on low-quality, untrustworthy data, the result will be low-quality, untrustworthy systems. We currently train our systems with select design partners (never on our customers&rsquo; data without consent), and we envision a world where we conjoin this loop with audit firms, effectively creating <strong>a system that passes audits more efficiently than existing solutions</strong>.</p>
+<h2>What does this mean for your company?</h2>
+<p>The shift is no longer hypothetical for the accounting industry. In Blue J and CPA.com&rsquo;s June 2026 survey of more than 1,000 tax professionals, weekly AI use had nearly doubled in a year:</p>
+<table>
+<thead>
+<tr>
+<th>What tax professionals report</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Use AI for tax research at least weekly</td>
+<td><strong>60%</strong>, up from 33% a year earlier</td>
+</tr>
+<tr>
+<td>Agree AI-powered research saves time</td>
+<td><strong>84%</strong></td>
+</tr>
+<tr>
+<td>Plan to adopt AI in the near future</td>
+<td><strong>32%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Source: Blue J and CPA.com, <a href="https://www.cpa.com/news/blue-j-and-cpacom-survey-finds-ai-adoption-among-tax-firms-has-nearly-doubled-one-year">AI Tax Research Solution Outlook Report, June 2026</a>.</p>
+<p>Most of the industry is adopting AI as a feature. We are building the loop that compounds. If you&rsquo;re a company that wants faster, cheaper, and more correct accounting, we&rsquo;re the accounting firm to turn to. We&rsquo;re an accounting firm on the outside, but an AI research company on the inside. As AI develops, we&rsquo;re the only firm positioned to capitalise on it. By choosing us as your partner, you position yourself for the same growth. <a href="/#signup">Join the waitlist</a>.</p>]]></content:encoded>
+    </item>
+    <item>
+      <title>Outsiders by Design</title>
+      <link>https://lastaccountingcompany.com/news/why-start-an-accounting-firm</link>
+      <guid>https://lastaccountingcompany.com/news/why-start-an-accounting-firm</guid>
+      <pubDate>Thu, 09 Jul 2026 08:00:00 +0000</pubDate>
+      <description>Last Accounting Company is driven by a desire to transform an industry which seems to have fallen behind in technological development since the turn of the millennium. To clients we are an efficient, professional, and reliable accounting firm — internally, we are an AI company: a full-stack AI accounting firm, accepted into Y Combinator in spring 2026.</description>
+      <content:encoded><![CDATA[<p>Why would two AI, crypto, and technology experts, one commercial engineer, and one law-oriented MBA start an accounting firm?</p>
+<p>The easiest answer would be that all (or at least some) of us have a deep passion for accounting. This would be an overstatement. Last Accounting Company is driven by a desire to transform an industry which seems to have fallen behind in technological development since the turn of the millennium. To our clients, Last Accounting Company is an efficient, professional, and reliable accounting firm, but internally, we are an AI company.</p>
+<p>Last Accounting Company does not just give accountants AI tools. Improving an accountant&rsquo;s efficiency marginally isn&rsquo;t enough for us. When we were accepted into <a href="https://www.ycombinator.com/">Y Combinator</a> in spring 2026, we described our company as a full-stack AI accounting firm. In practice, that means rebuilding the accounting service from the ground up, not merely optimising at the margins by handing an accountant a paid Claude subscription or cutting costs with a chatbot built in the 2010s. With us accounting is not just necessary evil or a cost center, it is a growth opportunity.</p>
+<p>We believe that the routine financial administration work currently done by humans will inevitably shift toward a world where AI performs day-to-day accounting tasks automatically, faster and more accurately than any person. It&rsquo;s time for humans to move up the value chain and focus on what matters. Exactly as has happened after every major productivity innovation. We want to be at the forefront of that shift.</p>
+<p>Accounting is not an industry where companies typically look for a technological edge. That&rsquo;s precisely why it&rsquo;s an excellent segment in which to create immediate value for Finnish and international businesses. Last Accounting Company&rsquo;s clients are founders and entrepreneurs who recognize change before it becomes standard practice for their competitors and who want to take advantage of it before the mainstream even looks in the same direction. To date, nearly every proposal we&rsquo;ve made has reduced our clients&rsquo; accounting costs, and our founding team&rsquo;s response time is the sharpest in the market. At this stage, being involved doesn&rsquo;t require a high risk appetite. It requires the ability to recognise where the industry is headed.</p>
+<p>In upcoming posts, we&rsquo;ll take a closer look at the technology and what&rsquo;s happening in the AI space right now. Your future accountant follows AI developments daily and brings them directly into your service. Welcome to 2026 – and welcome aboard.</p>]]></content:encoded>
+    </item>
+  </channel>
+</rss>

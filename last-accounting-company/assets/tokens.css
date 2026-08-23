@@ -1,0 +1,272 @@
+/* LAC design tokens — THE single source of truth for color, type, radius,
+ * shadow, motion, and density across every LAC surface.
+ *
+ * Documented in /design.md (the design contract). Iterated in the design
+ * studio (design/studio — `npm run dev`, http://localhost:5199).
+ *
+ * Structure: `:root` holds the base system (the product/portal dialect is the
+ * base because both apps already read these exact var names). Plane and world
+ * blocks override only what legitimately differs:
+ *   .plane-marketing — landing + blog (Satoshi/Cabinet Grotesk, pastel cards)
+ *   .plane-product   — customer portal + internal app shell (inherits base)
+ *   .world-internal  — the internal expert dialect (wireframe monochrome, volt)
+ *
+ * Migration target: app/src/styles/base.css:root, internal-app/src/styles.css:root,
+ * and landing/index.html:root all re-point here (see design.md §Migration).
+ * No hex value is born anywhere else. */
+
+:root {
+  /* ------------------------------------------------------------ type ---- */
+  /* Inter for the product body (founder pick 2026-07-28, dev-palette round:
+     the product-UI standard — Linear/GitHub/Figma). Was Manrope Variable. */
+  --font-body: 'Inter Variable', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-heading: var(--font-body);
+  /* Serif locked: Newsreader (founder call 2026-07-04). Wordmark + editorial only. */
+  --font-serif: 'Newsreader Variable', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ------------------------------------------------------------ inks ---- */
+  /* Slate ink family (founder 2026-07-28, with the mould): engraved rather
+     than printed — softer than the old near-black, still AA on the clay. */
+  --ink: #2b2e36;
+  --ink-deep: #16203a;
+  --ink-soft: #5f636e;
+  --ink-tertiary: #8f939d;
+
+  /* ------------------------------------------------- surfaces & lines --- */
+  /* Moulded panel (founder direction 2026-07-28, "instrument"): ONE grey
+     material everywhere. Cards are the same clay as the page, a hair lighter;
+     depth comes from the raise/press shadow recipes below, never from a
+     second fill or a border. Was cool paper #f0f5f7 / white cards. */
+  /* Lifted toward white (founder 2026-07-28 "less grey, more white"):
+     same one-clay grammar, two shades lighter. Shade alphas below carry the
+     depth now that the field is near-white. */
+  /* Field deepened a step (founder palette pick 2026-07-28): more contrast
+     under the near-white panels, so raised chips read without heavy shadows. */
+  --paper: #f7f8fa;
+  --surface: #eceff4;
+  --portal-surface: #eceff4;
+  --mist: rgba(255, 255, 255, 0.72);
+  --line: #e2e4e9; /* hairlines follow the moulded field */
+  --line-strong: #111111; /* black outlines carry the wireframe frames */
+
+  /* ---------------------------------------------------------- accent ---- */
+  /* One brand accent — pastel periwinkle, FINAL customer-facing accent
+     (founder lock 2026-07-04). Fills for active/selected states and key
+     actions; BLACK ink sits on top. Internal world = volt. */
+  --accent: #a8bdff; /* periwinkle — FINAL customer-facing accent (founder lock 2026-07-04) */
+  --accent-strong: #8fa9fb;
+  --accent-ink: #000000; /* black ink on the pastel accent */
+  --accent-deep: #4a63d4; /* text-weight periwinkle for light surfaces */
+  --accent-tint: color-mix(in srgb, var(--accent) 16%, white);
+  /* Secondary accent — vivid modern orange, tiny doses only ("Needs context").
+     Refreshed 2026-07-04: the old tangerine #e07a2f read as dated. */
+  --accent-warm: #ff6b2c;
+  --accent-warm-soft: #ffeee4;
+
+  /* ------------------------------------------------------- semantics ---- */
+  /* Colour only where it carries meaning. Never chrome. */
+  --ok: #16b364; /* bright modern green (founder 2026-07-04; was #0f7b51) */
+  --ok-soft: #e4f8ee;
+  --warn: #d97706;
+  --warn-soft: #fcf2e2;
+  /* De-blued with the mould (founder 2026-07-28): informational state reads
+     as slate on the clay — blue is reserved for the brand tile and charts. */
+  --info: #5f6a7d;
+  --info-soft: #edeff3;
+  --review: #f6eed6; /* softened for the clay (2026-07-28) */
+  --review-ink: #8a6a10; /* label ink on/for review state — AA on paper and --review */
+  --danger: #d93a2f;
+  --danger-soft: #fdeaea;
+  /* Internal-app aliases (balanced/negative in ledgers). */
+  --pos: #16b364;
+  --neg: #b42318;
+
+  /* ------------------------------------------------- books grid glue ---- */
+  /* Horizontal hairlines only, no vertical rules; selection is a soft blue
+     wash with NO edges (highlight only — settled taste call 2026-06-18). */
+  --grid-line: #e5e7eb;
+  /* Selection is a pressed grey wash (founder 2026-07-28 — supersedes the
+     2026-06-18 accent wash): the mould selects by seating, not by colour. */
+  --select-bg: #e6e8ed;
+  --select-bg-strong: #dee1e7;
+
+  /* ------------------------------------------------------------ radii --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  /* ---------------------------------------------------------- shadows --- */
+  /* The mould (founder 2026-07-28): every surface is pressed out of or into
+     the one panel material. RAISED = actionable/elevated (light top-left,
+     shade bottom-right); PRESSED = selected, recessed, or holding a value
+     (the same pair inset). Shade ink #8b919e is the field's own shadow tone.
+     These four recipes are the entire depth system — compose, never invent. */
+  /* Dialed on the live app (founder palette pick 2026-07-28: depth offset
+     0.60× / blur 0.40× on the deeper field): short throw, tight blur —
+     crisp edges, no banding where keys stack. */
+  --raise:
+    -3px -3px 4.8px rgba(255, 255, 255, 0.9),
+    3px 3px 5.6px rgba(139, 145, 158, 0.32);
+  --raise-sm:
+    -1.2px -1.2px 2.4px rgba(255, 255, 255, 0.86),
+    1.8px 1.8px 3.2px rgba(139, 145, 158, 0.3);
+  --press:
+    inset -1.8px -1.8px 3.2px rgba(255, 255, 255, 0.82),
+    inset 2.4px 2.4px 4px rgba(139, 145, 158, 0.34);
+  --press-sm:
+    inset -1.2px -1.2px 2px rgba(255, 255, 255, 0.8),
+    inset 1.2px 1.2px 2.4px rgba(139, 145, 158, 0.32);
+  --shadow-card: var(--raise-sm);
+  --shadow-pop:
+    -3.6px -3.6px 5.6px rgba(255, 255, 255, 0.9),
+    4.8px 6px 10.4px rgba(139, 145, 158, 0.4);
+  --shadow-glass: var(--raise);
+  --shadow-soft: none;
+  /* Card edge — the depth-mode dial flips shadow vs border emphasis. */
+  --card-border: 1px solid var(--line-strong);
+
+  /* ------------------------------------------------------------ focus --- */
+  --focus: var(--accent-deep);
+
+  /* ----------------------------------------------------------- charts --- */
+  /* Palette + semantics (revenue green, expense rose, VAT amber). JS reads
+     these via getComputedStyle — never hard-code chart colors in components. */
+  --chart-1: #b9adf9; /* lavender (accent kin) */
+  --chart-2: #f5a08c; /* soft coral — expenses (fresher than the old red) */
+  --chart-3: #7fcfae; /* mint — revenue (fresher than the old green) */
+  --chart-4: #f6c66d; /* honey — VAT */
+  --chart-5: #8cc7e8; /* sky */
+  --chart-6: #d9a8e3; /* orchid */
+  --chart-7: #9fb7c9; /* steel */
+  --chart-8: #cdbfae; /* sand */
+  --chart-revenue: var(--chart-3);
+  --chart-expense: var(--chart-2);
+  --chart-profit: var(--chart-1);
+  --chart-vat: var(--chart-4);
+  --chart-vat-receivable: var(--chart-5);
+  --chart-grid: #dde2e7;
+  --chart-axis: #93a1ab;
+  --chart-text: #5c6a73;
+
+  /* ----------------------------------------------------------- motion --- */
+  /* One easing family. --motion-scale multiplies every duration (0 = off);
+     prefers-reduced-motion is always respected regardless. */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --motion-scale: 2; /* founder lock 2026-07-04 — the choreography is judged at 2× */
+  --dur-fast: calc(150ms * var(--motion-scale));
+  --dur-med: calc(280ms * var(--motion-scale));
+  --dur-slow: calc(600ms * var(--motion-scale));
+  --dur-bjorn-turn: calc(2.8s * var(--motion-scale));
+  /* Portal shell (2026-07-29): the rail/stage slide and the view enter —
+     tuned live at the 2× lock (340ms / 200ms rendered). */
+  --dur-rail: calc(170ms * var(--motion-scale));
+  --dur-enter: calc(100ms * var(--motion-scale));
+  --dur-ink: calc(90ms * var(--motion-scale));
+
+  /* ---------------------------------------------------------- density --- */
+  --row-h: 44px;
+  --cell-pad-x: 10px;
+  --space-unit: 8px;
+
+  /* -------------------------------------------- v2 layer (2026-08 port) --- */
+  /* The spyrox ds session's additions, unified here — no token is born in a
+     component. Used by app/src/ds (the component layer for the rebuilt
+     surfaces: Transactions, Data, Accounting). */
+  /* Reading-table rhythm: dense in information, generous in height. */
+  --row-h-read: 46px;
+  --row-h-compact: 38px;
+  --table-min-w: 640px;
+  /* One control height for chips, buttons, inputs (36px accessibility floor). */
+  --control-h: 36px;
+  /* Uppercase micro-label tracking (column heads, eyebrows). One per view. */
+  --text-eyebrow-tracking: 0.075em;
+  /* The five meanings as word inks. Neutral sits a step lighter than soft
+     ink so `progress` and `neutral` stay distinguishable (the de-blued
+     --info stands — founder 2026-07-28). */
+  --tone-ok: var(--ok);
+  --tone-progress: var(--info);
+  --tone-review: var(--review-ink);
+  --tone-blocked: var(--warn);
+  --tone-neutral: var(--ink-tertiary);
+  /* ONE elevation, and it belongs to the card: a card lifts off the page
+     and nothing lifts off a card. Paper-white card on the tinted field. */
+  --card-bg: #ffffff;
+  --radius-card: 16px;
+  --lift: 0 1px 2px rgba(23, 26, 31, 0.04), 0 10px 28px -14px rgba(23, 26, 31, 0.18);
+  --lift-hover: 0 1px 2px rgba(23, 26, 31, 0.05), 0 16px 34px -16px rgba(23, 26, 31, 0.22);
+}
+
+/* ======================================================================= */
+/* Marketing plane — landing page + blog. Warmer, editorial, pastel play.  */
+/* ======================================================================= */
+.plane-marketing {
+  /* Marketing keeps the pre-mould ground: white cards on cool paper. The
+     moulded panel is a product-plane decision (2026-07-28), not a brand one. */
+  --paper: #ffffff;
+  --surface: #f0f5f7;
+  --line: #e2e8ec;
+  --shadow-card: 0 1px 2px rgba(23, 26, 31, 0.05), 0 8px 24px rgba(23, 26, 31, 0.06);
+  --shadow-pop: 0 18px 52px rgba(24, 32, 28, 0.16);
+
+  /* Fonts follow the global tokens (two-scope model, 2026-07-04). */
+  /* Inks re-tuned with the living-ledger landing (2026-07-08): a hint
+     warmer black, cool purple-grey secondary. */
+  --ink: #191913;
+  --ink-soft: #606077;
+  --ink-tertiary: #a1a1a6;
+
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 28px;
+  --radius-xl: 34px;
+
+  /* The landing's 3D '+'-mark scenery colour (2026-07-08). */
+  --field: #2e46ff;
+
+  /* Landing-only extras: status greens + the pastel data-card set (the
+     blog still uses the pastels; the landing itself moved to glass cards). */
+  --green: #1aa251;
+  --green-ink: #16823f;
+  --amber: #d97706;
+  --c1: #e26365;
+  --c2: #e4a4e8;
+  --c3: #f3b264;
+  --c4: #95c47e;
+  --c5: #f8d765;
+  --c6: #78acb6;
+}
+
+/* ======================================================================= */
+/* Product plane — the app shells. Inherits the base system.              */
+/* ======================================================================= */
+.plane-product {
+  /* Deliberately empty: the base IS the product dialect. The block exists so
+     studio per-plane overrides have a stable hook. */
+  --font-heading: var(--font-body);
+}
+
+/* ======================================================================= */
+/* Internal world — SAME components and tokens as the product base;        */
+/* only the accent changes (volt, fill-only, black ink). 2026-07-04.        */
+/* ======================================================================= */
+.world-internal {
+  /* ONLY the accent differs from the product base (founder call 2026-07-04):
+     volt, fill-only, black ink on it. Volt fails the 3:1 indicator minimum on
+     white, so the focus ring stays black. Everything else inherits. */
+  --accent: #c6ff3d;
+  --accent-strong: #b3ef1f;
+  --accent-deep: #5b7a00;
+  --accent-ink: #000000;
+  --accent-tint: color-mix(in srgb, var(--accent) 24%, white);
+  --focus: #0a0a0a;
+
+  /* Aliases the ported internal CSS still reads. */
+  --ink-strong: var(--ink);
+  --error: var(--neg);
+  --font-sans: var(--font-body);
+}

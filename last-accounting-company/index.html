@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<!-- deploy-lane probe 2026-08-20 -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Last Accounting Company" data-fi="Last Accounting Company">Last Accounting Company</title>
+<meta name="description"
+  data-en="LAC replaces your accounting firm and software with one fixed-price service for Finnish startups, scaleups and SMBs."
+  data-fi="LAC korvaa tilitoimiston ja ohjelmistot yhdellä kiinteähintaisella palvelulla suomalaisille startupeille, kasvuyrityksille ja pk-yrityksille."
+  content="LAC replaces your accounting firm and software with one fixed-price service for Finnish startups, scaleups and SMBs.">
+<link rel="icon" type="image/png" href="favicon__v-5.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon__v-5.png">
+<link rel="canonical" href="https://lastaccountingcompany.com/">
+<meta property="og:site_name" content="Last Accounting Company">
+<meta property="og:title" content="Last Accounting Company">
+<meta property="og:description" content="LAC replaces your accounting firm and software with one fixed-price service for Finnish startups, scaleups and SMBs.">
+<meta property="og:url" content="https://lastaccountingcompany.com/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://lastaccountingcompany.com/brand/lac_face_social_card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="Björn, the Last Accounting Company face logo, on a blue square">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Last Accounting Company">
+<meta name="twitter:description" content="LAC replaces your accounting firm and software with one fixed-price service for Finnish startups, scaleups and SMBs.">
+<meta name="twitter:image" content="https://lastaccountingcompany.com/brand/lac_face_social_card.png">
+<meta name="twitter:image:alt" content="Björn, the Last Accounting Company face logo, on a blue square">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Last Accounting Company",
+  "legalName": "Bloom Systems Oy",
+  "url": "https://lastaccountingcompany.com/",
+  "logo": "https://lastaccountingcompany.com/favicon.png",
+  "email": "hello@lastaccountingcompany.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Helsinki", "addressCountry": "FI" }
+}
+</script>
+<script>document.documentElement.classList.add('js');</script>
+<script>
+  // Sync language detection before paint to avoid a flash.
+  // Order: ?lang= > localStorage > timezone (Europe/Helsinki → fi) > en.
+  (function () {
+    try {
+      var params = new URLSearchParams(location.search);
+      var lang = null;
+      var qs = params.get('lang');
+      if (qs === 'fi' || qs === 'en') lang = qs;
+      if (!lang) { var s = localStorage.getItem('lac-lang'); if (s === 'fi' || s === 'en') lang = s; }
+      if (!lang) { var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone) || ''; if (tz === 'Europe/Helsinki') lang = 'fi'; }
+      document.documentElement.lang = (lang === 'fi') ? 'fi' : 'en';
+    } catch (e) { document.documentElement.lang = 'en'; }
+  })();
+</script>
+<style>
+  /* ── Fonts (self-hosted, per design.md marketing plane) ── */
+  @font-face { font-family: 'Manrope Variable'; font-style: normal; font-weight: 200 800; font-display: swap;
+    src: url('assets/fonts/manrope-latin-wght-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Newsreader Variable'; font-style: normal; font-weight: 200 800; font-display: swap;
+    src: url('assets/fonts/newsreader-latin-wght-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Newsreader Variable'; font-style: italic; font-weight: 200 800; font-display: swap;
+    src: url('assets/fonts/newsreader-latin-wght-italic.woff2') format('woff2'); }
+  @font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap;
+    src: url('assets/fonts/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper:        #ffffff;
+    --ink:          #191913;
+    /* Björn tile hues */
+    --tile-hi:      #e2e7ff;
+    --tile-mid:     #b5c2ff;
+    --tile-deep:    #91a2f8;
+    --tile-glow:    71, 92, 230;
+    --ink-soft:     #606077;
+    --ink-tertiary: #a1a1a6;
+    --line:         rgba(17,17,17,0.10);
+    --line-dot:     rgba(17,17,17,0.26);
+    --accent:       #a8bdff;
+    --accent-deep:  #4a63d4;
+    --accent-tint:  rgba(168,189,255,0.20);
+    --field:        #2e46ff; /* the '+' dust marks and the chat spinner */
+    --shadow-card:  0 1px 2px rgba(23,26,31,.05), 0 8px 24px rgba(23,26,31,.06);
+    --card-rule: rgba(17,17,17,0.16);
+    --r-xl: 34px; --r-lg: 28px; --r-md: 22px; --r-sm: 14px; --r-pill: 999px;
+    --ease:   cubic-bezier(0.22, 1, 0.36, 1);
+    --spring: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --maxw: 1280px;
+    --page-pad: clamp(24px, 4vw, 64px);
+    --font-body:  'Manrope Variable', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-serif: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+    --font-mono:  'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --rail-x: 50%;
+    --roto-step: 78px;
+  }
+
+  @supports (corner-shape: superellipse(1)) {
+    .squircle { corner-shape: superellipse(1.8); }
+    .pill     { corner-shape: superellipse(2.2); }
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 96px; -webkit-text-size-adjust: 100%; overflow-x: clip; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 430; letter-spacing: -0.012em; line-height: 1.5;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh; overflow-x: hidden;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--page-pad); }
+  .mono { font-family: var(--font-mono); }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+
+  /* i18n */
+  .lang-fi { display: none; }
+  html[lang="fi"] .lang-en { display: none; }
+  html[lang="fi"] .lang-fi { display: revert; }
+
+  :focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 2px; border-radius: 4px; }
+  .contact-panel :focus-visible { outline-color: #fff; }
+
+  /* ── Number stardust: fixed full-page depth field behind everything ── */
+  #dust { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+  /* frosted band under the text column: the dust can run darker while the
+     reading path stays calm; edges feather so it never reads as a box */
+  .text-veil {
+    position: fixed; top: 0; bottom: 0; left: 50%; z-index: -1;
+    width: min(1040px, 94vw); transform: translateX(-50%);
+    pointer-events: none;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent);
+  }
+  @media (max-width: 760px) {
+    /* small screens: calm the scenery under the text without erasing it */
+    .text-veil {
+      width: 100vw;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(1px);
+      -webkit-backdrop-filter: blur(1px);
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+
+  /* ── Liquid glass (marketing recipe) ── */
+  .glass {
+    position: relative;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 0 0 0.5px rgba(255,255,255,0.6) inset, 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  /* ── Y2K liquid-glass bubble cards: convex shell, rim light, ink text ── */
+  .glass-card {
+    position: relative;
+    background:
+      radial-gradient(130% 115% at 26% 16%,
+        rgba(255,255,255,0.7), rgba(255,255,255,0.22) 52%, rgba(255,255,255,0.48) 100%),
+      rgba(168, 189, 255, 0.18);
+    backdrop-filter: blur(20px) saturate(190%);
+    -webkit-backdrop-filter: blur(20px) saturate(190%);
+    border: none;
+    box-shadow:
+      inset 0 14px 22px -14px rgba(255,255,255,0.95),
+      inset 0 -14px 26px -16px rgba(23,26,31,0.24),
+      inset 8px 0 18px -14px rgba(255,255,255,0.7),
+      inset -10px 0 20px -16px rgba(23,26,31,0.12),
+      0 2px 4px rgba(23,26,31,0.08),
+      0 30px 64px -26px rgba(23,26,31,0.32);
+  }
+  .glass-card::before { /* curved specular blobs under the text, over the frost */
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    border-radius: inherit; pointer-events: none;
+    background:
+      radial-gradient(52% 30% at 24% 5%, rgba(255,255,255,0.95), rgba(255,255,255,0) 70%),
+      radial-gradient(36% 22% at 80% 97%, rgba(255,255,255,0.55), rgba(255,255,255,0) 72%),
+      linear-gradient(112deg, rgba(255,255,255,0) 44%, rgba(255,255,255,0.34) 51%, rgba(255,255,255,0) 60%);
+  }
+  .glass-card::after { /* the bubble rim: bright where the light hits */
+    content: ''; position: absolute; inset: 0; padding: 1.5px;
+    border-radius: inherit; pointer-events: none;
+    background: linear-gradient(135deg,
+      rgba(255,255,255,1) 0%, rgba(255,255,255,0.2) 28%,
+      rgba(120,126,150,0.18) 52%, rgba(255,255,255,0.85) 100%);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  /* ── Buttons (canonical .btn-dark / .btn-ghost) ── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+    appearance: none; -webkit-appearance: none;
+    font-family: var(--font-body); font-size: 14px; font-weight: 560; line-height: 1.2; letter-spacing: -0.01em; text-decoration: none; cursor: pointer; border: 1px solid transparent;
+    padding: 11px 20px; border-radius: 12px;
+    transition: transform 0.2s var(--ease), background 0.2s var(--ease), box-shadow 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease); white-space: nowrap;
+  }
+  .btn-dark {
+    background: var(--ink); color: #fff; justify-content: space-between; gap: 14px;
+    border-color: rgba(0,0,0,0.9);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 14px 30px -24px rgba(0,0,0,0.68);
+  }
+  .btn-dark:hover {
+    background: #0b0b0d; transform: translateY(-1px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset, 0 20px 38px -26px rgba(0,0,0,0.74);
+  }
+  .btn-dark:active { transform: translateY(0) scale(0.96); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 8px 18px -18px rgba(0,0,0,0.64); }
+  .btn-lg.btn-dark { padding-right: 18px; }
+  .btn-arrow { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
+    width: 1em; height: 1em; background: transparent; color: currentColor; opacity: 0.72;
+    transition: opacity 0.2s var(--ease), transform 0.2s var(--ease); }
+  .btn-dark:hover .btn-arrow { opacity: 1; transform: translateX(2px); }
+  .btn-arrow svg { width: 0.82em; height: 0.82em; display: block; }
+  .btn-lg { min-height: 46px; padding: 12px 22px; font-size: 15px; }
+
+  /* ── Header + fixed chrome ── */
+  .site-header {
+    position: relative; z-index: 200;
+    width: min(100%, var(--maxw)); padding-inline: var(--page-pad);
+    margin: 26px auto -66px;
+    display: flex; align-items: center;
+  }
+  .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  /* the portal's .glass-tile-accent recipe, verbatim (app/src/styles/glass.css) */
+  .brand-logo {
+    display: grid; place-items: center; width: 38px; aspect-ratio: 1; line-height: 0;
+    position: relative; isolation: isolate; overflow: hidden;
+    border-radius: 29.5%; border: 1px solid rgba(255, 255, 255, 0.4);
+    background:
+      linear-gradient(135deg, rgba(255,255,255,0.34), rgba(255,255,255,0.08) 46%, rgba(74,99,212,0.34)),
+      var(--accent);
+    box-shadow:
+      inset 0 1.5px 0 rgba(255, 255, 255, 0.68),
+      inset 0 -10px 20px rgba(74, 99, 212, 0.34),
+      inset 0 -1.5px 0 rgba(74, 99, 212, 0.4),
+      0 2px 6px rgba(74, 99, 212, 0.3),
+      0 14px 34px -8px rgba(74, 99, 212, 0.45);
+  }
+  .brand-logo::before {
+    content: ''; position: absolute; inset: 1px; z-index: -1; border-radius: inherit;
+    background:
+      radial-gradient(84% 130% at 20% 0%, rgba(255,255,255,0.36), transparent 40%),
+      linear-gradient(120deg, rgba(255,255,255,0.22), transparent 40%, rgba(255,255,255,0.12) 72%, transparent);
+    pointer-events: none;
+  }
+  .brand-logo img { display: block; width: 61.4%; height: auto;
+    filter: brightness(0) drop-shadow(0 1px 0 rgba(255,255,255,0.4)) drop-shadow(0 1.5px 3px rgba(35,52,126,0.45)); }
+  .brand-wordmark { font-family: var(--font-serif); font-size: 22px; font-weight: 420; line-height: 1; letter-spacing: 0; }
+
+  .chrome {
+    position: fixed; top: 20px; right: clamp(16px, 2.6vw, 40px); z-index: 300;
+    display: flex; align-items: center; gap: 8px;
+  }
+  /* Latest-post announcement pill — filled at build time from news/posts */
+  .news-pill {
+    display: inline-flex; align-items: center; gap: 8px; max-width: 100%;
+    min-height: 42px; padding: 5px 16px; border-radius: var(--r-pill);
+    border: 1px solid rgba(17,17,17,0.10);
+    font-size: 13px; font-weight: 500; letter-spacing: -0.01em;
+    color: var(--ink-soft); text-decoration: none;
+    transition: transform 0.25s var(--ease), color 0.18s var(--ease);
+  }
+  .news-pill:hover { transform: translateY(-1px); color: var(--ink); }
+  .news-pill-tag { font-weight: 650; color: var(--accent-deep); }
+  .news-pill-title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .news-pill-arrow { transition: transform 0.18s var(--ease); }
+  .news-pill:hover .news-pill-arrow { transform: translateX(2px); }
+  a.news-pill.lang-fi { display: none; }
+  html[lang="fi"] a.news-pill.lang-fi { display: inline-flex; }
+  .lang-switch {
+    position: relative; display: inline-flex; align-items: center; gap: 4px;
+    padding: 5px 8px; border-radius: var(--r-pill);
+    border: 1px solid rgba(17,17,17,0.10);
+    transition: transform 0.25s var(--ease);
+  }
+  .lang-switch:hover { transform: translateY(-1px); }
+  /* liquid-glass thumb glides under the active language */
+  .lang-switch::before {
+    content: ''; position: absolute; top: 5px; bottom: 5px; left: 8px; width: 34px;
+    border-radius: 9px;
+    background:
+      radial-gradient(120% 90% at 25% 12%, rgba(255,255,255,0.95), rgba(255,255,255,0.35) 70%),
+      rgba(255,255,255,0.55);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.95),
+      inset 0 -3px 6px rgba(17,17,17,0.06),
+      0 2px 6px -2px rgba(17,17,17,0.28);
+    transition: transform 0.4s var(--spring);
+  }
+  html[lang="fi"] .lang-switch::before { transform: translateX(38px); }
+  .lang-switch button {
+    appearance: none; -webkit-appearance: none; border: 0; background: transparent; cursor: pointer;
+    position: relative; z-index: 1;
+    font: inherit; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; line-height: 1;
+    color: var(--ink); min-width: 34px; min-height: 30px; padding: 0; border-radius: var(--r-pill);
+    transition: color 0.18s var(--ease), transform 0.18s var(--ease);
+  }
+  .lang-switch button:active { transform: scale(0.92); }
+  html[lang="en"] .lang-switch [data-lang="en"],
+  html[lang="fi"] .lang-switch [data-lang="fi"] { font-weight: 750; }
+
+  /* ── The spine: Björn's travel axis. Invisible — it exists for layout
+     (railX) only; the one visible piece of it is .stage-rail in the
+     constellation, between Björn and the balance scale. ── */
+  .ledger-flow { position: relative; }
+  .spine {
+    position: absolute; z-index: 0; top: 0; left: var(--rail-x);
+    width: 1px; height: 100%;
+  }
+  .spine-face {
+    position: absolute; z-index: 40; top: 0; left: var(--rail-x);
+    width: 68px; height: 68px; margin-top: 0;
+    transform: translate(-50%, 120px) translateY(-50%);
+    display: grid; place-items: center;
+    will-change: transform; pointer-events: none;
+  }
+  /* The traveling mark is the app's brand tile: periwinkle liquid glass,
+     black face embossed on it. The tile itself rolls along the spine (the
+     old frame mechanic); the face stays upright above it. */
+  /* portal tile shading; base + outer shadows here, the directional light
+     lives on .frame-light, counter-rotated by JS so it always falls from
+     the upper left while the tile rolls */
+  .face-frame {
+    position: absolute; inset: 0; border-radius: 29.5%; overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: var(--accent);
+    box-shadow:
+      0 2px 6px rgba(74, 99, 212, 0.3),
+      0 14px 34px -8px rgba(74, 99, 212, 0.45);
+    will-change: transform;
+  }
+  .frame-light {
+    position: absolute; inset: -22%; pointer-events: none; will-change: transform;
+    background:
+      radial-gradient(60% 90% at 32% 16%, rgba(255,255,255,0.36), transparent 42%),
+      linear-gradient(135deg, rgba(255,255,255,0.34), rgba(255,255,255,0.08) 46%, rgba(74,99,212,0.34)),
+      linear-gradient(to top, rgba(74,99,212,0.4) 4%, rgba(74,99,212,0) 30%);
+  }
+  .face-core {
+    position: relative; width: 61.4%; line-height: 0;
+    --face-bg: var(--paper); --face-filter: brightness(0);
+    /* portal emboss (scaled 44→68px), computed ONCE for the assembled face —
+       after masks, clips and per-frame part transforms — so moving parts can
+       never reveal halo seams at the hole edges */
+    filter: drop-shadow(0 1.5px 0 rgba(255,255,255,0.4)) drop-shadow(0 2.3px 4.6px rgba(35,52,126,0.45));
+    will-change: transform;
+  }
+  /* On glass there is no solid --face-bg to erase with: the base image has
+     its eyes + brow cut out via an alpha mask; the animated clip-path copies
+     draw them back on top. */
+  .face-core > img { display: block; width: 100%; height: auto;
+    filter: var(--face-filter);
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 744 522'><path fill-rule='evenodd' d='M0 0H744V522H0Z M110.1 282.1a85.6 79.6 0 1 0 171.2 0a85.6 79.6 0 1 0 -171.2 0Z M559.5 305.9a58.4 54.3 0 1 0 116.8 0a58.4 54.3 0 1 0 -116.8 0Z M37.9 24H343.7V190H37.9Z M404 90H712V250H404Z'/></svg>");
+    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 744 522'><path fill-rule='evenodd' d='M0 0H744V522H0Z M110.1 282.1a85.6 79.6 0 1 0 171.2 0a85.6 79.6 0 1 0 -171.2 0Z M559.5 305.9a58.4 54.3 0 1 0 116.8 0a58.4 54.3 0 1 0 -116.8 0Z M37.9 24H343.7V190H37.9Z M404 90H712V250H404Z'/></svg>");
+    -webkit-mask-size: 100% 100%; mask-size: 100% 100%; }
+  .face-core .brow-erase, .face-core .face-eye-erase { display: none; }
+  .brow-erase { position: absolute; z-index: 2; left: 5.1%; top: 4.6%; width: 41.1%; height: 31.8%; background: var(--face-bg); }
+  .brow-lift  { position: absolute; z-index: 3; inset: 0; background: url('brand/face-only.png') center/100% 100% no-repeat;
+    filter: var(--face-filter);
+    clip-path: inset(2.68% 53.5% 61.69% 3.76%); }
+  /* right brow: the curl's stroke continues into the nose below, so it
+     stretches about the cut line instead of sliding — nothing tears */
+  .brow-lift.brow-right {
+    clip-path: inset(17.2% 4.3% 52.1% 54.3%);
+    transform-origin: 75% 47.9%;
+  }
+  .face-eye-erase { position: absolute; z-index: 4; background: var(--face-bg); border-radius: 50%; }
+  .face-eye-erase.left  { left: 14.8%; top: 38.8%; width: 23%;   height: 30.5%; }
+  .face-eye-erase.right { left: 75.2%; top: 48.2%; width: 15.7%; height: 20.8%; }
+  .face-gaze { position: absolute; z-index: 5; inset: 0; will-change: transform; }
+  .face-eye { position: absolute; z-index: 5; inset: 0; background: url('brand/face-only.png') center/100% 100% no-repeat;
+    filter: var(--face-filter); }
+  .face-eye.left  { clip-path: inset(38.5% 61.8% 30.5% 14.2%); transform-origin: 26.2% 54%; }
+  .face-eye.right { clip-path: inset(46.8% 8%   30.2% 73.8%); transform-origin: 82.9% 58.3%; }
+
+  /* ── Postings ── */
+  .posting { position: relative; margin-top: clamp(110px, 15vh, 190px); }
+  .post-title {
+    margin: clamp(30px, 4.5vh, 44px) auto 0; max-width: 880px; text-align: center;
+    font-family: var(--font-serif);
+    font-size: clamp(33px, 3.8vw, 56px); font-weight: 560; line-height: 1.06;
+    letter-spacing: -0.022em; color: var(--ink); text-wrap: balance;
+  }
+  .post-lede {
+    margin: 20px auto 0; max-width: 42em; text-align: center;
+    font-size: clamp(15.5px, 1.25vw, 17.5px); line-height: 1.6; color: var(--ink-soft);
+    padding-inline: 8px;
+  }
+  .dock { display: block; height: 0; }
+  .post-dock { height: 1px; margin-bottom: 63px; }
+
+  /* reveal choreography */
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .rv { opacity: 0; }
+    html.js .in .rv { animation: rise 0.7s var(--ease) both; animation-delay: calc(var(--i, 0) * 90ms); }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+  }
+
+  /* ── Hero ── */
+  .hero { margin-top: 0; min-height: min(92svh, 940px); display: grid; align-content: center; justify-items: center; padding-top: clamp(120px, 16vh, 170px); text-align: center; }
+  .yc-badge {
+    display: inline-flex; align-items: center; gap: 9px; margin-bottom: 26px;
+    text-decoration: none; color: var(--ink-soft); font-size: 14px; font-weight: 500;
+    letter-spacing: -0.01em; transition: color 0.18s var(--ease);
+    background: var(--paper); padding: 2px 10px; border-radius: var(--r-pill);
+  }
+  .yc-badge:hover { color: var(--ink); }
+  .yc-badge .yc-mark {
+    display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto;
+    width: 22px; height: 22px; border-radius: 4px; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(255,102,0,0.35);
+  }
+  .yc-badge .yc-mark svg { width: 22px; height: 22px; display: block; }
+  .yc-badge .yc-text strong { font-weight: 620; color: var(--ink); }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(46px, 7vw, 100px); font-weight: 550; line-height: 1.02;
+    letter-spacing: -0.022em; color: var(--ink); text-wrap: balance; max-width: 12em;
+  }
+  .hero-sub {
+    margin: clamp(22px, 3.5vh, 34px) auto 0; max-width: 30em;
+    font-size: clamp(16px, 1.3vw, 19px); line-height: 1.55; color: var(--ink-soft);
+    padding-inline: 8px;
+  }
+  .hero-actions { margin-top: clamp(26px, 4.5vh, 40px); display: flex; justify-content: center; }
+  .hero-dock { margin-top: clamp(84px, 11vh, 120px); }
+
+  /* ── Hero cards: the books as floating objects — Björn tours them ── */
+  .hero-cards {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    --cube: clamp(150px, 12.5vw, 190px);
+  }
+  .hcard {
+    position: absolute; width: var(--cube);
+    margin: calc(var(--cube) / -2.5) 0 0 calc(var(--cube) / -2);
+    perspective: 900px;
+  }
+  /* cards size to their content — no forced square, no dead bottoms */
+  .hcard .cube-face {
+    position: relative; inset: auto;
+    transform: rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz));
+  }
+  .hp-l2 { left: 7%;  top: 76%; --rx: -6deg; --ry: 16deg;  --rz: 2.5deg; }
+  .hp-l1 { left: 3%;  top: 26%; --rx: 8deg;  --ry: 20deg;  --rz: -3deg; }
+  .hp-r1 { left: 95%; top: 24%; --rx: 6deg;  --ry: -18deg; --rz: 2deg; }
+  .hp-r2 { left: 97%; top: 52%; --rx: -5deg; --ry: -24deg; --rz: -2deg; }
+  .hp-r3 { left: 93%; top: 82%; --rx: 10deg; --ry: -14deg; --rz: 3deg; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hcard { animation: hcardFloat calc(6.5s + var(--i, 0) * 1.1s) ease-in-out infinite;
+      animation-delay: calc(var(--i, 0) * -1.7s); }
+    @keyframes hcardFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+  }
+  .cf-pulse { animation: cfPulse 0.9s var(--ease); }
+  @keyframes cfPulse { 0%, 45% { color: var(--accent-deep); } }
+  .cf-new { animation: cfNew 0.45s var(--ease) both; }
+  @keyframes cfNew { from { opacity: 0; transform: translateY(-6px); } }
+  .cube-face {
+    position: absolute; inset: 0; overflow: hidden;
+    display: flex; flex-direction: column;
+    backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    background: #fff; border: 1px solid rgba(17,17,17,0.15); border-radius: 12px;
+    padding: 9% 9.5%;
+    font-size: calc(var(--cube) * 0.049); line-height: 1.4; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .cf-label {
+    font-family: var(--font-mono); font-size: 0.74em; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.5em;
+  }
+  .cf-row {
+    display: flex; align-items: baseline; gap: 0.7em;
+    padding: 0.58em 0; border-top: 1px solid rgba(17,17,17,0.08);
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .cf-row .cf-d { font-family: var(--font-mono); font-size: 0.78em; color: var(--ink-tertiary); }
+  .cf-row .cf-k { color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; flex: 1 1 auto; min-width: 0; }
+  .cf-row .cf-num, .cf-row .cf-ok { margin-left: auto; font-weight: 620; }
+  .cf-total { border-top: 2px solid var(--ink); font-weight: 750; }
+  .cf-total .cf-k { color: var(--ink); font-weight: 750; }
+  .cf-foot { margin-top: 0.9em; font-size: 0.82em; color: var(--ink-tertiary); }
+  .hero .wrap-inner { position: relative; z-index: 2; }
+  @media (max-width: 1149px) { .hero-cards { display: none; } }
+
+  /* ── Posting 01: rotating list ── */
+  .roto-band { position: relative; margin-top: clamp(36px, 6vh, 60px); }
+  .roto-heading {
+    text-align: center; font-size: clamp(17px, 1.4vw, 20px); font-weight: 660;
+    letter-spacing: -0.015em; color: var(--ink-soft);
+  }
+  .roto-list {
+    position: relative; height: calc(var(--roto-step) * 5.4);
+    margin-top: clamp(10px, 2vh, 22px);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 2%, #000 30%, #000 70%, transparent 98%);
+    mask-image: linear-gradient(to bottom, transparent 2%, #000 30%, #000 70%, transparent 98%);
+  }
+  .roto-item {
+    position: absolute; left: 0; right: 0; top: 50%; text-align: center;
+    font-family: var(--font-serif); font-size: clamp(29px, 3.3vw, 47px);
+    font-weight: 500; letter-spacing: -0.012em;
+    line-height: 1.1; color: var(--ink); white-space: nowrap;
+    transform: translateY(calc(-50% + var(--d, 0) * var(--roto-step))) scale(var(--s, 1));
+    opacity: var(--o, 1); filter: blur(var(--b, 0px));
+    transition: transform 0.55s var(--spring), opacity 0.55s var(--spring), filter 0.55s var(--spring);
+    will-change: transform, opacity;
+  }
+  .roto-item.a1 { --s: 0.93; --o: 0.42; --b: 0.5px; }
+  .roto-item.a2 { --s: 0.86; --o: 0.13; --b: 1.1px; }
+  .roto-item.ah { --s: 0.82; --o: 0; --b: 1.4px; transition: none; }
+  .roto-close {
+    margin: clamp(6px, 1.5vh, 16px) auto 0; max-width: 34em; text-align: center;
+    font-size: clamp(17px, 1.4vw, 20px); font-weight: 660; letter-spacing: -0.015em;
+    line-height: 1.45; color: var(--ink-soft);
+    padding-inline: 8px;
+  }
+
+  /* ── Posting 02: T-account ── */
+  .tt { position: relative; max-width: 980px; margin: clamp(48px, 7vh, 84px) auto 0; }
+  .tt-heads { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(90px, 12vw, 170px); }
+  .tt-heads > div:first-child { text-align: left; }
+  .tt-heads > div:last-child { text-align: left; }
+  .tt-side-h {
+    font-size: clamp(20px, 1.9vw, 27px); font-weight: 730;
+    letter-spacing: -0.025em; line-height: 1.12; color: var(--ink); text-wrap: balance; max-width: 13em;
+  }
+  .tt-bar { height: 0; margin-top: clamp(20px, 3vh, 30px); }
+  .tt-cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(90px, 12vw, 170px); margin-top: 22px; }
+  .tt-list {
+    list-style: none;
+    border-radius: var(--r-md);
+    padding: 8px 26px 10px;
+    transition: transform 0.25s var(--ease);
+  }
+  .tt-list:hover { transform: translateY(-2px); }
+  .tt-list li {
+    display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; align-items: start;
+    padding: 17px 0 16px; border-bottom: 1px solid var(--card-rule);
+    color: var(--ink); font-size: 14.5px; line-height: 1.5;
+  }
+  .tt-list li:last-child { border-bottom: 0; }
+  .tt-list li::before { content: 'x'; color: var(--ink); font-size: 15px; font-weight: 700; line-height: 1.35; }
+  .tt-list.credit li::before { content: '✓'; color: var(--ink); }
+
+  /* ── Posting 03: constellation ── */
+  .stage-outer { margin-top: clamp(40px, 6vh, 70px); }
+  .stage { position: relative; height: clamp(480px, 58vh, 600px); max-width: 1180px; margin: 0 auto; }
+  .stage-abs { position: absolute; inset: 0; }
+  .chip-pos.c1  { left: 11%; top: 16%; }
+  .chip-pos.c2  { left: 27%; top: 6%;  }
+  .chip-pos.c3  { left: 6%;  top: 44%; }
+  .chip-pos.c4  { left: 29%; top: 33%; }
+  .chip-pos.c5  { left: 24%; top: 64%; }
+  .chip-pos.c6  { left: 10%; top: 80%; }
+  .chip-pos.c7  { left: 72%; top: 10%; }
+  .chip-pos.c8  { left: 89%; top: 24%; }
+  .chip-pos.c9  { left: 74%; top: 46%; }
+  .chip-pos.c10 { left: 90%; top: 62%; }
+  .chip-pos.c11 { left: 73%; top: 82%; }
+  .chip-pos.c12 { left: 40%; top: 12%; }
+  /* the one visible piece of the spine: from Björn (the hub) down to the
+     balance scale — the input → books axis */
+  .stage-rail { position: absolute; left: 50%; top: 47%; bottom: 15%; width: 1px; background: var(--line); }
+  .stage-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .stage-lines path { fill: none; stroke: rgba(17,17,17,0.13); stroke-width: 1; transition: stroke 0.5s var(--ease); }
+  .stage-lines path.lit { stroke: rgba(17,17,17,0.75); }
+  .stage-lines circle { fill: var(--ink); }
+  .stage-hub { position: absolute; left: 50%; top: 47%; width: 0; height: 0; }
+  .chip-pos { position: absolute; transform: translate(-50%, -50%); }
+  /* the chip whose line is lit leans toward the hub while its pulse travels */
+  .chip-pos.lean-l { transform: translate(-50%, -50%) rotate(3.5deg); }
+  .chip-pos.lean-r { transform: translate(-50%, -50%) rotate(-3.5deg); }
+  @media (prefers-reduced-motion: no-preference) {
+    html.js .chip-pos { opacity: 0; transition: opacity 0.8s var(--ease), translate 0.8s var(--ease), transform 0.45s var(--spring); }
+    html.js .chip-pos.from-l { translate: -56px 0; }
+    html.js .chip-pos.from-r { translate: 56px 0; }
+    html.js .in .chip-pos { opacity: 1; translate: 0 0; transition-delay: calc(var(--i, 0) * 70ms); }
+    html.js .in .chip-pos.lean-l, html.js .in .chip-pos.lean-r { transition-delay: 0s; }
+  }
+  .chip {
+    display: flex; align-items: center; justify-content: center;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    width: 58px; height: 58px;
+  }
+  .chip.wide { width: 118px; height: 52px; border-radius: 15px; }
+  .chip img { display: block; object-fit: contain; }
+  .chip.sq img { width: 26px; height: 26px; }
+  .chip.wide img { height: auto; }
+  .chip.nordea img { width: 78px; }
+  .chip.danske img { width: 86px; }
+  .chip.revolut img { width: 74px; }
+  .chip.stripe img { width: 52px; }
+  .chip.holvi img { width: 28px; height: 28px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .chip { animation: chipDrift calc(5.2s + var(--i, 0) * 0.7s) ease-in-out infinite; animation-delay: calc(var(--i, 0) * -1.3s); }
+    @keyframes chipDrift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+  }
+  /* The composed output — the hub's pulse lands on the balance scale and
+     the beam weighs: one pan dips, then the other, then it settles. */
+  .out-chip {
+    position: absolute; z-index: 3; left: 50%; top: 85%;
+    transform: translate(-50%, -50%);
+    display: grid; place-items: center; width: 46px; height: 46px;
+    background: var(--paper); border: 1px solid rgba(17,17,17,0.16); border-radius: 50%;
+    box-shadow: var(--shadow-card); color: var(--ink);
+    transition: transform 0.3s var(--spring);
+  }
+  .out-chip svg { width: 23px; height: 23px; display: block; }
+  .out-chip .scale-beam { transform-box: view-box; transform-origin: 50% 29%; }
+  .out-chip.weigh .scale-beam { animation: weigh 1.5s var(--ease); }
+  @keyframes weigh {
+    0%, 100% { transform: rotate(0deg); }
+    22% { transform: rotate(8deg); }
+    58% { transform: rotate(-6deg); }
+    82% { transform: rotate(2.5deg); }
+  }
+  .out-chip.tick { transform: translate(-50%, -50%) scale(1.12); }
+
+  /* ── Posting 04: MCP — glass chat bar with the agent stack ── */
+  .mcp-stack { max-width: 640px; margin: clamp(20px, 3vh, 32px) auto 0; }
+  .mcp-dock { height: clamp(100px, 13vh, 132px); }
+  .agent-stack { display: flex; justify-content: center; margin-bottom: 18px; }
+  .agent-chip {
+    display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+    background: #fff; border: 1px solid rgba(17,17,17,0.1);
+    box-shadow: 0 2px 8px -2px rgba(23,26,31,0.2);
+    margin-left: -7px;
+  }
+  .agent-chip:first-child { margin-left: 0; }
+  .agent-chip img { width: 100%; height: 100%; padding: 3px; display: block; }
+  .chat-bar {
+    display: flex; align-items: center; gap: 12px;
+    border-radius: 999px; padding: 10px 10px 10px 20px; min-height: 60px;
+    font-size: 16px; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .chat-plus {
+    display: grid; place-items: center; width: 34px; height: 34px; flex: 0 0 auto;
+    border-radius: 50%; border: 1px solid var(--plus-line, rgba(17,17,17,0.14));
+    background: var(--plus-bg, transparent);
+    color: var(--plus-ink, var(--ink-soft)); font-size: 18px; font-weight: 300;
+  }
+  .chat-text { flex: 1 1 auto; min-width: 0; color: var(--ink-soft);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chat-send {
+    display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 auto;
+    border-radius: 50%; background: var(--ink); color: #fff;
+    box-shadow: 0 6px 14px -6px rgba(23,26,31,0.5);
+  }
+  .chat-send svg { width: 17px; height: 17px; display: block; }
+  .t-spin { display: inline-block; width: 1.1em; color: var(--field); }
+
+  /* ── Posting 05: clients — solid pastel data-cards (units-style) ── */
+  .client-grid {
+    position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(90px, 11vw, 150px); row-gap: 20px;
+    max-width: 1080px; margin: clamp(44px, 7vh, 72px) auto 0;
+  }
+  .client-dock { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+  .client-card {
+    border-radius: var(--r-lg); color: var(--ink);
+    padding: clamp(28px, 3vw, 38px) clamp(26px, 3vw, 38px) clamp(20px, 2.4vw, 28px);
+    transition: transform 0.25s var(--ease);
+  }
+  .client-card:hover { transform: translateY(-2px); }
+  .client-card h3 { font-size: clamp(23px, 2vw, 28px); font-weight: 740; letter-spacing: -0.028em; line-height: 1.1; color: var(--ink); }
+  .client-card p { margin-top: 13px; color: var(--ink); font-size: 15.5px; line-height: 1.58; }
+  .client-card ul { margin-top: 24px; list-style: none; }
+  .client-card li { padding: 12px 0; border-top: 1px solid var(--card-rule); color: var(--ink); font-size: 14px; line-height: 1.5; }
+
+  /* ── Posting 07: contact (dark closing card — the page's last component) ── */
+  .posting-contact { margin-bottom: clamp(28px, 5vh, 64px); }
+  .contact-panel {
+    background: #0b0b0d; color: #fff; border-radius: var(--r-xl);
+    width: min(1760px, calc(100% - 2 * clamp(14px, 2.5vw, 44px)));
+    margin: clamp(48px, 7vh, 80px) auto 0;
+    padding: clamp(72px, 12vh, 128px) clamp(26px, 5vw, 84px) clamp(32px, 5vh, 56px);
+    box-shadow: 0 2px 4px rgba(23,26,31,.10), 0 32px 80px -28px rgba(23,26,31,.45);
+  }
+  .contact-form-column { max-width: 760px; margin: 0 auto; }
+  .signup-form { margin: 0; text-align: left; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(18px, 2.5vw, 26px); align-items: start; }
+  .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 26px; }
+  .field label { font-family: var(--font-body); font-size: 11.5px; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
+  .field input, .field textarea {
+    font: inherit; font-size: 16.5px; line-height: 1.42; color: #fff; background: transparent;
+    border: 0; border-bottom: 1px solid rgba(255,255,255,0.32); border-radius: 0;
+    padding: 8px 0 13px; outline: none;
+    transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease), color 0.18s var(--ease);
+  }
+  .field textarea { min-height: 104px; resize: vertical; line-height: 1.5; }
+  #f-additional-notes { min-height: 42px; height: 42px; overflow: hidden; resize: vertical; }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(255,255,255,0.5); }
+  .field input:focus, .field textarea:focus { border-color: rgba(255,255,255,0.88); box-shadow: 0 1px 0 rgba(255,255,255,0.88); }
+  /* Honeypot: hidden from humans and, unlike a clipped/off-screen field, from
+     password managers and autofill that fill by field name. Bots parsing the
+     raw HTML still fill it, which is what the submit handler traps. */
+  .hp { display: none; }
+  .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; flex-wrap: wrap; }
+  .form-status { font-family: var(--font-body); font-size: 12px; font-weight: 550; color: #f3b264; }
+  .contact-panel .btn-dark {
+    background: #fff; color: #0b0b0d; border-color: rgba(255,255,255,0.92); box-shadow: none;
+  }
+  .contact-panel .btn-dark:hover { background: rgba(255,255,255,0.9); color: #0b0b0d; box-shadow: none; }
+  .consent { max-width: 620px; font-size: 12px; line-height: 1.5; color: rgba(255,255,255,0.55); margin-top: 22px; }
+  .consent a { color: rgba(255,255,255,0.88); text-decoration: underline; text-underline-offset: 3px; }
+  .success { max-width: 680px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.14); }
+  .success h3 { font-size: 24px; font-weight: 740; letter-spacing: -0.02em; color: #fff; }
+  .success p { color: rgba(255,255,255,0.58); margin-top: 8px; }
+
+  /* ── Card foot: the footer lives inside the closing card ── */
+  .card-foot {
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px 28px;
+    margin-top: clamp(64px, 11vh, 128px);
+    border-top: 1px solid rgba(255,255,255,0.12); padding-top: 22px;
+  }
+  .foot-brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+  .foot-brand .brand-logo { width: 28px; }
+  .foot-brand-name { font-family: var(--font-serif); font-size: 17px; font-weight: 430; }
+  .foot-meta { display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--font-body); font-size: 12.5px; letter-spacing: -0.006em; color: rgba(255,255,255,0.55); }
+  .foot-meta a { text-decoration: none; color: rgba(255,255,255,0.55); transition: color 0.15s; }
+  .foot-meta a:hover { color: #fff; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .tt-heads, .tt-cols { column-gap: clamp(64px, 9vw, 110px); }
+    .client-grid { column-gap: clamp(64px, 9vw, 110px); }
+  }
+  @media (max-width: 760px) {
+    :root { --rail-x: 22px; --roto-step: 66px; }
+    html { scroll-padding-top: 72px; }
+    .wrap { padding-inline: 20px; }
+    .site-header { margin: 18px auto -58px; padding-inline: 20px; }
+    .brand { padding-left: 34px; }
+    .brand-logo { width: 30px; }
+    .brand-wordmark { font-size: 17px; }
+    /* keep the wordmark clear of the fixed chrome pills: the news pill
+       truncates its title — and drops it entirely on small phones — instead
+       of pushing over the brand */
+    @media (max-width: 430px) {
+      .brand-wordmark { font-size: 14px; }
+      .chrome .news-pill-title { display: none; }
+      .chrome .news-pill { max-width: none; }
+    }
+    .chrome { top: 14px; right: 14px; flex-direction: column; align-items: flex-end; gap: 6px; }
+    .chrome .news-pill { max-width: calc(100vw - 290px); }
+    .spine-face { width: 46px; height: 46px; }
+
+    .posting { margin-top: clamp(86px, 12vh, 120px); }
+    .post-dock { margin-bottom: 47px; }
+    .post-title, .post-lede { text-align: left; margin-left: 56px; margin-right: 4px; }
+    .post-title { font-size: clamp(29px, 8.4vw, 34px); }
+
+    .hero { justify-items: start; text-align: left; padding-top: 120px; min-height: 88svh; }
+    .hero .wrap-inner { padding-left: 36px; }
+    .hero h1 { font-size: clamp(40px, 11.6vw, 48px); letter-spacing: -0.04em; }
+    .hero-sub { margin-left: 0; padding-inline: 0; }
+    .hero-actions { justify-content: flex-start; }
+    .hero-dock { margin-top: 72px; }
+
+    .roto-heading, .roto-item, .roto-close { text-align: left; padding-left: 56px; padding-right: 4px; }
+    .roto-item { font-size: 21px; line-height: 1.22; white-space: normal; letter-spacing: -0.02em; }
+    .roto-close { margin-left: 0; padding-inline: 56px 4px; }
+
+    .tt { margin-left: 0; }
+    .tt-heads { grid-template-columns: 1fr; column-gap: 0; }
+    .tt-heads > div:last-child { display: none; }
+    .tt-heads > div:first-child, .tt-cols .tt-list, .tt-credit-head { margin-left: 56px; }
+    .tt-bar { display: none; }
+    .tt-cols { display: block; }
+    .tt-credit-head { display: block !important; margin-top: 48px; margin-bottom: 20px; }
+
+    .stage { height: auto; }
+    .stage-abs { position: relative; inset: auto; height: 640px; }
+    .stage-hub { left: calc(var(--rail-x) - var(--page-pad)); top: 50%; }
+    .chip { width: 52px; height: 52px; border-radius: 14px; }
+    .chip.wide { width: 104px; height: 46px; }
+    .chip.nordea img { width: 70px; }
+    .chip.danske img { width: 78px; }
+    .chip.revolut img { width: 66px; }
+    .chip.stripe img { width: 46px; }
+    .chip-pos.c1  { left: 36%; top: 4%;  }
+    .chip-pos.c2  { left: 78%; top: 10%; }
+    .chip-pos.c3  { left: 32%; top: 22%; }
+    .chip-pos.c4  { left: 82%; top: 31%; }
+    .chip-pos.c5  { left: 38%; top: 41%; }
+    .chip-pos.c6  { left: 78%; top: 51%; }
+    .chip-pos.c7  { left: 34%; top: 61%; }
+    .chip-pos.c8  { left: 84%; top: 70%; }
+    .chip-pos.c9  { left: 40%; top: 80%; }
+    .chip-pos.c10 { left: 80%; top: 89%; }
+    .chip-pos.c11 { left: 36%; top: 92%; }
+    .chip-pos.c12 { left: 78%; top: 98%; }
+    .out-chip, .stage-rail { display: none; }
+
+    .mcp-stack { margin-left: 56px; margin-right: 4px; }
+    /* sized so "connecting to your books…" never wraps to a second line */
+    .chat-bar { min-height: 46px; font-size: clamp(11px, 3.5vw, 15px); gap: 6px; padding: 8px 6px 8px 12px; }
+    .chat-plus { width: 28px; height: 28px; font-size: 15px; }
+    .chat-send { width: 32px; height: 32px; }
+    .chat-send svg { width: 15px; height: 15px; }
+
+    .client-grid { grid-template-columns: 1fr; margin-left: 56px; margin-right: 4px; row-gap: 16px; }
+    .client-dock { display: none; }
+    .client-card { padding: 24px 22px; }
+
+
+    .contact-panel { border-radius: var(--r-lg); padding: 52px 20px 28px; }
+    .card-foot { margin-top: 44px; }
+    .contact-form-column { max-width: none; }
+    .field { margin-bottom: 20px; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-panel .btn-dark { width: 100%; justify-content: center; }
+    .form-foot { align-items: stretch; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-8Tpn3_z8XdzFmEGWDpZnV.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+</head>
+<body>
+
+<canvas id="dust" aria-hidden="true"></canvas>
+<div class="text-veil" aria-hidden="true"></div>
+
+<header class="site-header">
+  <a href="#top" class="brand" aria-label="Last Accounting Company — home">
+    <span class="brand-logo" aria-hidden="true"><img src="brand/face-only.png" alt="" width="744" height="522"></span>
+    <span class="brand-wordmark">Last Accounting Company</span>
+  </a>
+</header>
+
+<div class="chrome">
+  <a class="news-pill glass pill lang-en" href="news/interfaceable-general-ledger/index.html"><span class="news-pill-tag">New</span><span class="news-pill-title">How We’re Building the Most Interfaceable General Ledger</span><span class="news-pill-arrow" aria-hidden="true">→</span></a>
+  <a class="news-pill glass pill lang-fi" href="news/interfaceable-general-ledger/index.html" lang="fi"><span class="news-pill-tag">Uutta</span><span class="news-pill-title">How We’re Building the Most Interfaceable General Ledger</span><span class="news-pill-arrow" aria-hidden="true">→</span></a>
+  <div class="lang-switch glass pill" role="group" aria-label="Language / Kieli">
+    <button type="button" data-lang="en" lang="en" aria-label="In English">EN</button>
+    <button type="button" data-lang="fi" lang="fi" aria-label="Suomeksi">FI</button>
+  </div>
+</div>
+
+<main id="top">
+  <div class="ledger-flow" id="ledger-flow">
+
+    <div class="spine" id="spine" aria-hidden="true"></div>
+
+    <div class="spine-face" id="spine-face" aria-hidden="true">
+      <div class="face-frame" id="face-frame"><span class="frame-light" id="frame-light"></span></div>
+      <div class="face-core">
+        <img src="brand/face-only.png" alt="" width="744" height="522">
+        <span class="brow-erase"></span>
+        <span class="brow-lift" id="face-brow"></span>
+        <span class="brow-lift brow-right" id="face-brow-r"></span>
+        <span class="face-eye-erase left"></span>
+        <span class="face-eye-erase right"></span>
+        <span class="face-gaze" id="face-gaze">
+          <span class="face-eye left"></span>
+          <span class="face-eye right"></span>
+        </span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="posting hero wrap" data-post="0" id="hero">
+      <div class="wrap-inner">
+        <a class="yc-badge rv" style="--i:0" href="https://www.ycombinator.com/" target="_blank" rel="noopener" aria-label="Backed by Y Combinator / Y Combinatorin tukema">
+          <span class="yc-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M47.9985 47.9994H0V8.61853e-07H47.9985V47.9994Z" fill="#FF6600"/><path d="M13.9012 11.7843H17.6595L22.4961 21.5325C23.203 22.9836 23.7984 24.3976 23.7984 24.3976C23.7984 24.3976 24.4313 23.021 25.175 21.5325L30.0868 11.7843H33.5843L25.2865 27.3746V37.309H22.1244V27.1884L13.9012 11.7843Z" fill="white"/></svg>
+          </span>
+          <span class="yc-text"><span class="lang-en">Backed by <strong>Y&nbsp;Combinator</strong></span><span class="lang-fi"><strong>Y&nbsp;Combinatorin</strong> tukema</span></span>
+        </a>
+        <h1 class="rv" style="--i:1">
+          <span class="lang-en">There's a Björn for that.</span>
+          <span class="lang-fi">Sitä varten on Björn.</span>
+        </h1>
+        <p class="hero-sub rv" style="--i:2">
+          <span class="lang-en">One service that combines the accounting firm and software to handle everything for you.</span>
+          <span class="lang-fi">Yksi alusta, joka yhdistää kirjanpito-ohjelmiston ja ammattitaitoisen kirjanpito-osaamisen ilman yrittäjän osallistumista</span>
+        </p>
+        <div class="hero-actions rv" style="--i:3">
+          <a href="#contact" class="btn btn-dark btn-lg"><span class="lang-en">Sign up</span><span class="lang-fi">Liity</span><span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+        </div>
+      </div>
+      <div class="hero-cards rv" style="--i:4" aria-hidden="true">
+        <div class="hcard hp-l2" style="--i:0">
+          <div class="cube-face" id="card-tx">
+            <div class="cf-label"><span class="lang-en">Transactions</span><span class="lang-fi">Tapahtumat</span></div>
+            <div class="cf-row"><span class="cf-d">12.6</span><span class="cf-k">Stripe payout</span><span class="cf-num">4 210,00</span></div>
+            <div class="cf-row"><span class="cf-d">13.6</span><span class="cf-k">Telia</span><span class="cf-num">−64,90</span></div>
+            <div class="cf-row"><span class="cf-d">16.6</span><span class="cf-k"><span class="lang-en">Salaries</span><span class="lang-fi">Palkat</span></span><span class="cf-num">−9 640,00</span></div>
+            <div class="cf-row"><span class="cf-d">18.6</span><span class="cf-k">AWS</span><span class="cf-num">−312,44</span></div>
+            <div class="cf-row"><span class="cf-d">19.6</span><span class="cf-k"><span class="lang-en">Invoice 2041</span><span class="lang-fi">Lasku 2041</span></span><span class="cf-num">2 480,00</span></div>
+          </div>
+        </div>
+        <div class="hcard hp-l1" style="--i:1">
+          <div class="cube-face">
+            <div class="cf-label"><span class="lang-en">Income statement</span><span class="lang-fi">Tuloslaskelma</span></div>
+            <div class="cf-row"><span class="cf-k"><span class="lang-en">Revenue</span><span class="lang-fi">Tuotot</span></span><span class="cf-num" id="pl-rev">48 200</span></div>
+            <div class="cf-row"><span class="cf-k"><span class="lang-en">Expenses</span><span class="lang-fi">Kulut</span></span><span class="cf-num" id="pl-exp">−31 480</span></div>
+            <div class="cf-row cf-total"><span class="cf-k"><span class="lang-en">Result</span><span class="lang-fi">Tulos</span></span><span class="cf-num" id="pl-res">16 720</span></div>
+            <div class="cf-foot"><span class="lang-en">Reconciled daily</span><span class="lang-fi">Täsmäytetty päivittäin</span></div>
+          </div>
+        </div>
+        <div class="hcard hp-r1" style="--i:2">
+          <div class="cube-face">
+            <div class="cf-label"><span class="lang-en">Filings</span><span class="lang-fi">Ilmoitukset</span></div>
+            <div class="cf-row"><span class="cf-k"><span class="lang-en">VAT return</span><span class="lang-fi">ALV-ilmoitus</span></span><span class="cf-ok"><span class="lang-en">Filed ✓</span><span class="lang-fi">Ilmoitettu ✓</span></span></div>
+            <div class="cf-row"><span class="cf-k"><span class="lang-en">Payroll</span><span class="lang-fi">Palkat</span></span><span class="cf-ok"><span class="lang-en">Reported ✓</span><span class="lang-fi">Ilmoitettu ✓</span></span></div>
+            <div class="cf-row"><span class="cf-k" id="fil-k"><span class="lang-en">Financial statements</span><span class="lang-fi">Tilinpäätös</span></span><span class="cf-ok" id="fil-s"><span class="lang-en">Drafted</span><span class="lang-fi">Luonnos</span></span></div>
+          </div>
+        </div>
+        <div class="hcard hp-r2" style="--i:3">
+          <div class="cube-face">
+            <div class="cf-label"><span class="lang-en">Balance sheet</span><span class="lang-fi">Tase</span></div>
+            <div class="cf-row"><span class="cf-k"><span class="lang-en">Assets</span><span class="lang-fi">Vastaavaa</span></span><span class="cf-num" id="bs-a">128 400</span></div>
+            <div class="cf-row"><span class="cf-k"><span class="lang-en">Equity &amp; liabilities</span><span class="lang-fi">Vastattavaa</span></span><span class="cf-num" id="bs-b">128 400</span></div>
+            <div class="cf-row cf-total"><span class="cf-k"><span class="lang-en">In balance</span><span class="lang-fi">Täsmää</span></span><span class="cf-ok" id="bs-ok">✓</span></div>
+          </div>
+        </div>
+        <div class="hcard hp-r3" style="--i:4">
+          <div class="cube-face">
+            <div class="cf-label"><span class="lang-en">Bank feeds</span><span class="lang-fi">Pankkiyhteydet</span></div>
+            <div class="cf-row"><span class="cf-k">Nordea</span><span class="cf-ok" id="bank-v1">✓</span></div>
+            <div class="cf-row"><span class="cf-k">OP</span><span class="cf-ok">✓</span></div>
+            <div class="cf-row"><span class="cf-k">Stripe</span><span class="cf-ok">✓</span></div>
+          </div>
+        </div>
+      </div>
+      <span class="dock hero-dock" data-dock aria-hidden="true"></span>
+    </section>
+
+    <!-- 01 · ROTATING LIST -->
+    <section class="posting wrap" data-post="1" id="work">
+      <span class="dock post-dock" data-dock aria-hidden="true"></span>
+      <div class="roto-band rv" style="--i:1">
+        <h2 class="roto-heading" style="margin-top: clamp(30px, 4.5vh, 44px)">
+          <span class="lang-en">Work you'll never do again.</span>
+          <span class="lang-fi">Työt, joita et enää koskaan tee.</span>
+        </h2>
+        <div class="roto-list" id="roto-list" aria-hidden="false">
+          <div class="roto-item"><span class="lang-en">Chasing missing receipts</span><span class="lang-fi">Kuittien metsästäminen</span></div>
+          <div class="roto-item"><span class="lang-en">Reconciling bank statements</span><span class="lang-fi">Tiliotteiden täsmäyttäminen</span></div>
+          <div class="roto-item"><span class="lang-en">Compiling VAT returns</span><span class="lang-fi">ALV-ilmoitusten kokoaminen</span></div>
+          <div class="roto-item"><span class="lang-en">Running payroll</span><span class="lang-fi">Palkka-ajojen pyörittäminen</span></div>
+          <div class="roto-item"><span class="lang-en">Answering month-end questions</span><span class="lang-fi">Kuunvaihteen kysymyksiin vastaaminen</span></div>
+          <div class="roto-item"><span class="lang-en">Forwarding invoices between systems</span><span class="lang-fi">Laskujen siirtely järjestelmästä toiseen</span></div>
+          <div class="roto-item"><span class="lang-en">Watching filing deadlines</span><span class="lang-fi">Määräpäivien vahtiminen</span></div>
+          <div class="roto-item"><span class="lang-en">Closing the books</span><span class="lang-fi">Kirjanpidon sulkeminen</span></div>
+        </div>
+        <p class="roto-close">
+          <span class="lang-en">Our agent Björn handles the manual work —<br>our accountants sign off the result.</span>
+          <span class="lang-fi">Agenttimme Björn hoitaa manuaaliset prosessit,<br>kirjanpitäjämme varmistavat lopputuloksen.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 02 · T-ACCOUNT -->
+    <section class="posting wrap" data-post="2" id="problem">
+      <h2 class="post-title rv" style="--i:1">
+        <span class="lang-en">Accounting should not run through your team.</span>
+        <span class="lang-fi">Kirjanpitopalvelu, joka auttaa yritystäsi kasvamaan</span>
+      </h2>
+      <div class="tt rv" style="--i:2">
+        <span class="dock tt-dock" data-dock aria-hidden="true" style="position:absolute; left:50%; top: 0;"></span>
+        <div class="tt-heads">
+          <div>
+            <h3 class="tt-side-h"><span class="lang-en">You still chase the missing pieces.</span><span class="lang-fi">Vanha kirjanpitojärjestelmä ei palvele yrittäjää</span></h3>
+          </div>
+          <div>
+            <h3 class="tt-side-h"><span class="lang-en">LAC takes you out of the loop.</span><span class="lang-fi">Last Accounting Company tuo kirjanpidon nykyaikaan</span></h3>
+          </div>
+        </div>
+        <div class="tt-bar" aria-hidden="true"></div>
+        <div class="tt-cols">
+          <ul class="tt-list debit glass-card">
+            <li><span class="lang-en">Your team is still the connector between accountant, software, and source data.</span><span class="lang-fi">Tiiminne on yhä yhdistävä taho tilitoimiston, ohjelmiston ja yrityksen datan välillä.</span></li>
+            <li><span class="lang-en">Documents, banks, payroll, tax, and reports live in separate places.</span><span class="lang-fi">Dokumentit, pankkitiedot, palkat, verotiedot ja raportit elävät eri paikoissa eivätkä keskustele keskenään.</span></li>
+            <li><span class="lang-en">Every month-end depends on someone inside the company pushing the process forward.</span><span class="lang-fi">Kirjanpitoprosessia edistää edelleen joku yrityksessänne.</span></li>
+          </ul>
+          <div class="tt-credit-head" style="display:none" aria-hidden="true">
+            <h3 class="tt-side-h"><span class="lang-en">LAC takes you out of the loop.</span><span class="lang-fi">Last Accounting Company tuo kirjanpidon nykyaikaan</span></h3>
+            <div class="tt-bar"></div>
+          </div>
+          <ul class="tt-list credit glass-card">
+            <li><span class="lang-en">LAC becomes the operating layer across accounting, software, and source data.</span><span class="lang-fi">LAC toimii operointikerroksena kirjanpidon, ohjelmiston ja lähdedatan päällä.</span></li>
+            <li><span class="lang-en">Your systems connect once and stay updated automatically.</span><span class="lang-fi">Järjestelmänne yhdistetään kerran ja pysyvät ajan tasalla automaattisesti ja huomaamattomasti.</span></li>
+            <li><span class="lang-en">Books, filings, and finance visibility arrive without your team driving the process.</span><span class="lang-fi">Kirjanpito, viranomaisilmoitukset ja reaaliaikainen taloudellinen kuva syntyvät ilman, että tiiminne pyörittää prosessia.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · CONSTELLATION -->
+    <section class="posting wrap" data-post="3" id="integrations">
+      <h2 class="post-title rv" style="--i:1">
+        <span class="lang-en">Many systems in. One set of books out.</span>
+        <span class="lang-fi">Kaikki tarvittava sisään. Yksi kokonaisuus ulos.</span>
+      </h2>
+      <div class="stage-outer rv" style="--i:2">
+        <div class="stage" id="stage">
+          <div class="stage-abs">
+            <span class="stage-rail" aria-hidden="true"></span>
+            <svg class="stage-lines" id="stage-lines" aria-hidden="true"></svg>
+            <span class="stage-hub" id="stage-hub" data-dock aria-hidden="true"></span>
+            <span class="chip-pos from-l c1" style="--i:0"><span class="chip wide nordea" style="--i:0"><img src="brand/icons/nordea.svg" alt="Nordea" width="136" height="29" loading="lazy"></span></span>
+            <span class="chip-pos from-l c2" style="--i:1"><span class="chip sq" style="--i:1"><img src="brand/icons/op.svg" alt="OP" loading="lazy"></span></span>
+            <span class="chip-pos from-l c3" style="--i:2"><span class="chip wide danske" style="--i:2"><img src="brand/icons/danske.svg" alt="Danske Bank" width="799" height="121" loading="lazy"></span></span>
+            <span class="chip-pos from-l c4" style="--i:3"><span class="chip wide stripe" style="--i:3"><img src="brand/icons/stripe.svg" alt="Stripe" loading="lazy"></span></span>
+            <span class="chip-pos from-l c5" style="--i:4"><span class="chip sq holvi" style="--i:4"><img src="brand/icons/holvi.png" alt="Holvi" width="192" height="192" loading="lazy"></span></span>
+            <span class="chip-pos from-l c6" style="--i:5"><span class="chip wide revolut" style="--i:5"><img src="brand/icons/revolut.svg" alt="Revolut" width="106" height="25" loading="lazy"></span></span>
+            <span class="chip-pos from-r c7" style="--i:6"><span class="chip sq" style="--i:6"><img src="brand/icons/slack.svg" alt="Slack" width="127" height="127" loading="lazy"></span></span>
+            <span class="chip-pos from-r c8" style="--i:7"><span class="chip sq" style="--i:7"><img src="brand/icons/gmail.svg" alt="Gmail" loading="lazy"></span></span>
+            <span class="chip-pos from-r c9" style="--i:8"><span class="chip sq" style="--i:8"><img src="brand/icons/teams.svg" alt="Microsoft Teams" loading="lazy"></span></span>
+            <span class="chip-pos from-r c10" style="--i:9"><span class="chip sq" style="--i:9"><img src="brand/icons/whatsapp.svg" alt="WhatsApp" loading="lazy"></span></span>
+            <span class="chip-pos from-r c11" style="--i:10"><span class="chip sq" style="--i:10"><img src="brand/icons/google-drive.svg" alt="Google Drive" loading="lazy"></span></span>
+            <span class="chip-pos from-l c12" style="--i:11"><span class="chip sq" style="--i:11"><img src="brand/icons/shopify.png" alt="Shopify" width="192" height="192" loading="lazy"></span></span>
+            <span class="out-chip" id="out-chip" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 4.5v15"/>
+                <path d="M8.5 19.5h7"/>
+                <g class="scale-beam">
+                  <path d="M4.5 7h15"/>
+                  <path d="M6 7.2l-2.7 5.4M6 7.2l2.7 5.4"/>
+                  <path d="M2.7 12.6a3.3 3.3 0 0 0 6.6 0"/>
+                  <path d="M18 7.2l-2.7 5.4M18 7.2l2.7 5.4"/>
+                  <path d="M14.7 12.6a3.3 3.3 0 0 0 6.6 0"/>
+                </g>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+      <ul class="sr-only">
+        <li><span class="lang-en">LAC provides the full accounting service: bookkeeping, invoices and payables, payroll, VAT and tax filings, monthly closes, financial statements, consolidations, and advisory.</span><span class="lang-fi">LAC tarjoaa koko kirjanpitopalvelun: kirjanpidon, laskut ja ostovelat, palkat, ALV:n ja veroilmoitukset, kuukausisulut, tilinpäätökset, konserniluvut ja neuvonnan.</span></li>
+        <li><span class="lang-en">Accounting systems such as Procountor, Fennoa, and Netvisor are replaced by LAC's AI-optimised platform.</span><span class="lang-fi">Kirjanpitojärjestelmät kuten Procountor, Fennoa ja Netvisor korvataan LAC:n tekoälyoptimoidulla alustalla.</span></li>
+        <li><span class="lang-en">Connected data sources such as banks, CRM, expenses, cards, HR, Slack, Teams, WhatsApp, email inboxes, tax authorities, and other internal tools connect into LAC General Ledger as one source of truth.</span><span class="lang-fi">Yhdistetyt tietolähteet kuten pankit, CRM, kulut, kortit, HR, Slack, Teams, WhatsApp, sähköpostilaatikot, veroviranomaiset ja muut sisäiset työkalut yhdistyvät LAC-pääkirjaan yhtenä totuuden lähteenä.</span></li>
+      </ul>
+    </section>
+
+    <!-- 04 · MCP -->
+    <section class="posting wrap" data-post="4" id="mcp">
+      <h2 class="post-title rv" style="--i:1">
+        <span class="lang-en">A full accounting team, one MCP server away.</span>
+        <span class="lang-fi">Koko kirjanpitotiimi yhden MCP-palvelimen päässä.</span>
+      </h2>
+      <p class="post-lede rv" style="--i:2">
+        <span class="lang-en">The whole team, and the full service behind it, one MCP auth away. Connect Claude, ChatGPT or your own agents and everything moves both ways — context and documents in, live status and figures out — so you never think about accounting.</span>
+        <span class="lang-fi">Koko tiimi ja koko palvelu yhden MCP-tunnistautumisen päässä. Yhdistä Claude, ChatGPT tai omat agenttisi, ja kaikki liikkuu molempiin suuntiin — konteksti ja dokumentit sisään, tilannekuva ja luvut ulos.</span>
+      </p>
+      <div class="mcp-stack rv" style="--i:4">
+        <span class="dock mcp-dock" data-dock aria-hidden="true"></span>
+        <div class="agent-stack" aria-hidden="true">
+          <span class="agent-chip"><img src="brand/icons/claude.svg" alt="Claude" loading="lazy"></span>
+          <span class="agent-chip"><img src="brand/icons/openai.svg" alt="OpenAI" loading="lazy"></span>
+        </div>
+        <div class="chat-bar glass-card" id="mcp-term">
+          <span class="chat-plus" aria-hidden="true">+</span>
+          <span class="chat-text"><span class="t-spin" id="t-spin">⠙</span> <span class="lang-en">connecting to your books…</span><span class="lang-fi">yhdistetään kirjanpitoosi…</span></span>
+          <span class="chat-send" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 19V6M6 12l6-6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · CLIENTS -->
+    <section class="posting wrap" data-post="5" id="clients">
+      <h2 class="post-title rv" style="--i:1">
+        <span class="lang-en">Built to support startups and SMBs.</span>
+        <span class="lang-fi">Startuppien ja kasvuyritysten tuki, joka haluaa nähdä teidän kasvavan</span>
+      </h2>
+      <div class="client-grid">
+        <span class="dock client-dock" data-dock aria-hidden="true"></span>
+        <div class="client-card glass-card squircle rv" style="--i:2">
+          <h3><span class="lang-en">Startups &amp; scaleups</span><span class="lang-fi">Startupit</span></h3>
+          <p><span class="lang-en">For founder-led teams that need accounting handled while the company moves fast.</span><span class="lang-fi">Perustajavetoisille tiimeille, jotka haluavat keskittyä olennaiseen ja pitää kirjanpitonsa kunnossa.</span></p>
+          <ul>
+            <li><span class="lang-en">Founders stay out of accounting and focused on building, while LAC pulls in the relevant tools and data sources behind the scenes.</span><span class="lang-fi">Perustajien ei pitäisi huolehtia kirjanpidosta, vaan keskittyä yrityksensä rakentamiseen.</span></li>
+            <li><span class="lang-en">Scales with the company without pricing by headcount or company size.</span><span class="lang-fi">Läpinäkyvä hinnoittelu skaalautuu teidän kasvaessa, ilman yllätyksiä.</span></li>
+            <li><span class="lang-en">Built for lean teams that want finance work automated, not staffed internally.</span><span class="lang-fi">Rakennettu tehokkaille tiimeille, jotka haluavat taloushallinnon automatisoituna, eivätkä laskutusta henkilötyötunteina.</span></li>
+          </ul>
+        </div>
+        <div class="client-card glass-card squircle rv" style="--i:3">
+          <h3><span class="lang-en">SMBs</span><span class="lang-fi">Kasvuyritykset</span></h3>
+          <p><span class="lang-en">For established companies that want one accountable service for bookkeeping, payroll, VAT, filings and visibility.</span><span class="lang-fi">Vakiintuneille yrityksille, jotka haluavat keskitetyn ja korkeatasoisen palvelun kirjanpitoon, palkkoihin ja viranomaisilmoituksiin.</span></p>
+          <ul>
+            <li><span class="lang-en">A cleaner replacement for the firm plus software setup.</span><span class="lang-fi">Älä taistele kirjanpitäjän ja ohjelmiston välissä</span></li>
+            <li><span class="lang-en">Predictable service for recurring finance work.</span><span class="lang-fi">Siirretään taloushallintosi nykyaikaan</span></li>
+            <li><span class="lang-en">Owners pulled in only when a real business decision needs them.</span><span class="lang-fi">Omistajat pyydetään mukaan vain, kun päätös oikeasti kuuluu heille.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · SCOPE -->
+    <section class="posting wrap" data-post="6" id="included">
+      <span class="dock post-dock" data-dock aria-hidden="true"></span>
+      <h2 class="post-title rv" style="--i:1">
+        <span class="lang-en">The recurring finance work, handled as one service.</span>
+        <span class="lang-fi">Toistuva taloushallinnon työ yhtenä palveluna.</span>
+      </h2>
+    </section>
+
+    <!-- 07 · CONTACT -->
+    <section class="posting posting-contact" data-post="7" id="contact">
+      <span id="signup" aria-hidden="true"></span><!-- anchor alias: blog CTAs link /#signup -->
+      <span class="dock post-dock" data-dock aria-hidden="true"></span>
+      <div class="contact-panel squircle rv" style="--i:1">
+          <div class="contact-form-column">
+            <form class="signup-form" id="waitlist-form" novalidate>
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-name"><span class="lang-en">Name*</span><span class="lang-fi">Nimi*</span></label>
+                  <input id="f-name" name="name" type="text" required maxlength="120" autocomplete="name" data-en-placeholder="Your name" data-fi-placeholder="Nimesi" placeholder="Your name">
+                </div>
+                <div class="field">
+                  <label for="f-company"><span class="lang-en">Company name*</span><span class="lang-fi">Yrityksen nimi*</span></label>
+                  <input id="f-company" name="company" type="text" required maxlength="200" autocomplete="organization" data-en-placeholder="Company Oy" data-fi-placeholder="Yrityksen nimi" placeholder="Company Oy">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-email"><span class="lang-en">Email*</span><span class="lang-fi">Sähköposti*</span></label>
+                  <input id="f-email" name="email" type="email" required maxlength="254" autocomplete="email" data-en-placeholder="you@example.com" data-fi-placeholder="sina@esimerkki.fi" placeholder="you@example.com">
+                </div>
+                <div class="field">
+                  <label for="f-phone"><span class="lang-en">Phone</span><span class="lang-fi">Puhelin</span></label>
+                  <input id="f-phone" name="phone" type="tel" maxlength="40" autocomplete="tel" data-en-placeholder="+358 40 123 4567" data-fi-placeholder="+358 40 123 4567" placeholder="+358 40 123 4567">
+                </div>
+              </div>
+              <div class="field">
+                <label for="f-additional-notes"><span class="lang-en">Additional</span><span class="lang-fi">Lisättävää</span></label>
+                <textarea id="f-additional-notes" name="additionalNotes" rows="1" maxlength="1500" data-en-placeholder="Anything else to add, e.g. current accounting pain points." data-fi-placeholder="Muuta lisättävää, esim. nykyisen kirjanpitonne kipukohdat" placeholder="Anything else to add, e.g. current accounting pain points."></textarea>
+              </div>
+              <label class="hp" aria-hidden="true">Leave empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+              <div class="form-foot">
+                <button type="submit" class="btn btn-dark btn-lg" id="waitlist-submit"><span class="lang-en">Sign up</span><span class="lang-fi">Liity</span><span class="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+                <span class="form-status" id="form-status" role="status" aria-live="polite"></span>
+              </div>
+              <p class="consent">
+                <span class="lang-en">By joining you agree to us storing this information and syncing it to our CRM so we can contact you about LAC. See our <a href="privacy/index.html">privacy notice</a> for details and how to opt out. This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.</span>
+                <span class="lang-fi">Liittymällä hyväksyt, että tallennamme nämä tiedot ja synkronoimme ne CRM-järjestelmäämme voidaksemme ottaa sinuun yhteyttä LAC:iin liittyen. Lue <a href="privacy/index.html">tietosuojaseloste</a> tarkemmat tiedot ja peruutusohjeet. Sivustoa suojaa reCAPTCHA, ja siihen sovelletaan Googlen <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">tietosuojakäytäntöä</a> ja <a href="https://policies.google.com/terms" target="_blank" rel="noopener">käyttöehtoja</a>.</span>
+              </p>
+            </form>
+
+            <div class="success" id="waitlist-success" hidden>
+              <h3><span class="lang-en">Sign-up received.</span><span class="lang-fi">Ilmoittautuminen vastaanotettu.</span></h3>
+              <p><span class="lang-en">Thanks — we'll be in touch shortly.</span><span class="lang-fi">Kiitos — olemme pian yhteydessä.</span></p>
+            </div>
+          </div>
+        <div class="card-foot">
+          <a href="#top" class="foot-brand" aria-label="Last Accounting Company — home">
+            <span class="brand-logo" aria-hidden="true"><img src="brand/face-only.png" alt="" width="744" height="522"></span>
+            <span class="foot-brand-name">Last Accounting Company</span>
+          </a>
+          <div class="foot-meta">
+            <a href="mailto:hello@lastaccountingcompany.com">hello@lastaccountingcompany.com</a>
+            <span>© 2026 Bloom Systems Oy</span>
+            <span><span class="lang-en">Helsinki · Finland</span><span class="lang-fi">Helsinki · Suomi</span></span>
+            <a href="news/index.html"><span class="lang-en">News</span><span class="lang-fi">Uutiset</span></a>
+            <a href="privacy/index.html"><span class="lang-en">Privacy notice</span><span class="lang-fi">Tietosuojaseloste</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /ledger-flow -->
+</main>
+
+<script>
+/* ── Language: apply meta/placeholders + wire toggle ── */
+(function () {
+  function applyMeta(lang) {
+    document.querySelectorAll('[data-en][data-fi]').forEach(function (el) {
+      var v = el.getAttribute('data-' + lang); if (v == null) return;
+      if (el.tagName === 'TITLE') el.textContent = v;
+      else if (el.tagName === 'META') el.setAttribute('content', v);
+    });
+    document.querySelectorAll('[data-en-placeholder][data-fi-placeholder]').forEach(function (el) {
+      var v = el.getAttribute('data-' + lang + '-placeholder'); if (v != null) el.setAttribute('placeholder', v);
+    });
+  }
+  window.__setLang = function (lang) {
+    lang = (lang === 'fi') ? 'fi' : 'en';
+    document.documentElement.lang = lang;
+    try { localStorage.setItem('lac-lang', lang); } catch (e) {}
+    applyMeta(lang);
+  };
+  applyMeta(document.documentElement.lang === 'fi' ? 'fi' : 'en');
+  // Anchor scrolling: desktop and mobile use ordinary page scrolling.
+  function scrollToId(id, smooth) {
+    var beh = smooth ? 'smooth' : 'auto';
+    if (!id || id === 'top') { window.scrollTo({ top: 0, behavior: beh }); return; }
+    var el = document.getElementById(id);
+    if (!el) return;
+    var navH = 84, vh = window.innerHeight;
+    var elTop = el.getBoundingClientRect().top + window.pageYOffset;
+    var elH = el.offsetHeight;
+    var maxTop = Math.max(0, document.documentElement.scrollHeight - vh);
+    var top;
+    if (id === 'contact') top = elTop;                        // contact has its own top spacing
+    else if (window.innerWidth <= 760) top = elTop - navH;    // mobile: section start under nav
+    else if (elH + navH + 16 <= vh) top = elTop - navH;      // fits → top-align
+    else top = elTop + elH - vh + 24;                        // tall → reveal its end
+    top = Math.max(0, Math.min(top, maxTop));
+    window.scrollTo({ top: top, behavior: beh });
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href').slice(1);
+      e.preventDefault();
+      scrollToId(id, true);
+      try { history.replaceState(null, '', (id && id !== 'top') ? '#' + id : location.pathname); } catch (_) {}
+    });
+  });
+  if (location.hash.length > 1) {
+    var hid = location.hash.slice(1);
+    window.addEventListener('load', function () { setTimeout(function () {
+      scrollToId(hid, false);
+      if (hid === 'top') { try { history.replaceState(null, '', location.pathname); } catch (_) {} }
+    }, 80); });
+  }
+})();
+
+/* ── Function scenery: layered 3D terrain sheets + ribbons in depth.
+   Each layer is a dot-grid sampling of a composite trig height field, seen
+   at a shallow tilt with perspective, waves rolling through it over time.
+   Far layers small, faint and slow; near layers large and dark — with
+   per-layer scroll parallax the stack reads as one deep scene. ── */
+(function () {
+  var cv = document.getElementById('dust');
+  if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext('2d');
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+  var TAU = Math.PI * 2;
+  function rnd(a, b) { return a + Math.random() * (b - a); }
+
+  var FIELD = (getComputedStyle(document.documentElement).getPropertyValue('--field') || '').trim() || '#2e46ff';
+  // tune-panel hook (tune.js): recolor the field sprites in place
+  window.__lacDust = { recolor: function (c) { FIELD = c; seed(); if (RM) draw(0, true); } };
+  function glyph(px) { // '+' sprite — the field is drawn in marks, not dots
+    var s = px * DPR;
+    var c = document.createElement('canvas');
+    c.width = Math.ceil(s * 0.9); c.height = Math.ceil(s * 1.15);
+    var g = c.getContext('2d');
+    g.font = s + 'px ui-monospace, "SF Mono", Menlo, monospace';
+    g.textBaseline = 'top';
+    g.fillStyle = FIELD;
+    g.fillText('+', 0, 0);
+    return { c: c, w: c.width / DPR, h: c.height / DPR };
+  }
+
+  var W = 0, H = 0, sheets = [], ribbons = [];
+  // depth order, far → near: three big planes, not many small ones — cheaper
+  // and more scenery-like
+  var LAYERS = [
+    { band: 0.16, rw: 1.1,  alpha: 0.20, para: 0.05, dot: 1.1, tilt: 0.30, amp: 0.40 },
+    { band: 0.52, rw: 1.3,  alpha: 0.25, para: 0.12, dot: 1.3, tilt: 0.40, amp: 0.46 },
+    { band: 0.88, rw: 1.55, alpha: 0.27, para: 0.20, dot: 1.5, tilt: 0.50, amp: 0.52 }
+  ];
+  function makeSheet(conf) {
+    return {
+      conf: conf,
+      band: conf.band + rnd(-0.05, 0.05),
+      R: conf.rw * W,
+      spr: glyph(3.5 + conf.dot * 2.6),
+      nu: Math.min(110, Math.max(70, Math.round(W / 13))),
+      nv: 30,
+      f1: rnd(1.6, 3.4), g1: rnd(1.2, 2.6),
+      f2: rnd(3.4, 6.2), g2: rnd(1.8, 3.6),
+      f3: rnd(1.4, 2.6),
+      p1: rnd(0, TAU), p2: rnd(0, TAU), p3: rnd(0, TAU), p4: rnd(0, TAU),
+      s1: rnd(0.05, 0.14), s2: rnd(0.08, 0.2), s3: rnd(0.04, 0.1),
+      yaw0: rnd(-0.1, 0.1), yawAmp: rnd(0.06, 0.14), yawSp: rnd(0.03, 0.07)
+    };
+  }
+  var RIBBONS = [
+    function knot(n, pts) {
+      var p = 2 + ((Math.random() * 2) | 0), q = 3 + ((Math.random() * 2) | 0);
+      if (p === q) q++;
+      for (var i = 0; i < n; i++) {
+        var t = i / n * TAU;
+        var r = (Math.cos(q * t) + 2) / 3;
+        pts[i * 3]     = r * Math.cos(p * t);
+        pts[i * 3 + 1] = r * Math.sin(p * t);
+        pts[i * 3 + 2] = -Math.sin(q * t) / 3;
+      }
+    },
+    function lissajous(n, pts) {
+      var A = 1 + ((Math.random() * 3) | 0), B = 2 + ((Math.random() * 3) | 0), C = 3 + ((Math.random() * 2) | 0);
+      var d1 = Math.random() * TAU, d2 = Math.random() * TAU;
+      for (var i = 0; i < n; i++) {
+        var t = i / n * TAU * 2;
+        pts[i * 3]     = Math.sin(A * t + d1);
+        pts[i * 3 + 1] = Math.sin(B * t + d2);
+        pts[i * 3 + 2] = Math.sin(C * t);
+      }
+    }
+  ];
+  function makeRibbon() {
+    var n = 1200, pts = new Float32Array(n * 3);
+    RIBBONS[(Math.random() * RIBBONS.length) | 0](n, pts);
+    return {
+      pts: pts,
+      spr: glyph(7.5),
+      R: rnd(0.35, 0.5) * W,
+      x: Math.random() * W, y: Math.random() * H,
+      alpha: 0.2, para: rnd(0.07, 0.18), dot: 1.3,
+      rx: rnd(0, TAU), ry: rnd(0, TAU),
+      wx: rnd(-0.06, 0.06),
+      wy: rnd(0.04, 0.09) * (Math.random() < 0.5 ? -1 : 1)
+    };
+  }
+  function seed() {
+    sheets = []; ribbons = [];
+    for (var i = 0; i < LAYERS.length; i++) sheets.push(makeSheet(LAYERS[i]));
+    if (W > 760) ribbons.push(makeRibbon());
+  }
+
+  function drawSheet(sh, t, sy) {
+    var conf = sh.conf;
+    var m = sh.R * 0.5;
+    var span = H + 2 * m;
+    var cy = ((((sh.band * H - sy * conf.para) + m) % span) + span) % span - m;
+    var cx = W / 2;
+    var yaw = sh.yaw0 + Math.sin(t * sh.yawSp + sh.p4) * sh.yawAmp;
+    var cT = Math.cos(conf.tilt), sT = Math.sin(conf.tilt);
+    var cY = Math.cos(yaw), sY = Math.sin(yaw);
+    // the surface malforms: the main frequency itself breathes over time
+    var f1e = sh.f1 * (1 + 0.18 * Math.sin(t * 0.06 + sh.p2));
+    for (var iv = 0; iv < sh.nv; iv++) {
+      var v = iv / (sh.nv - 1) * 2 - 1;
+      var v4 = v * v * v * v;
+      var ev = 1 - v4;
+      for (var iu = 0; iu < sh.nu; iu++) {
+        var u = iu / (sh.nu - 1) * 2 - 1;
+        var h = conf.amp * (
+          0.55 * Math.sin(f1e * u + t * sh.s1 + sh.p1) * Math.cos(sh.g1 * v + sh.p2)
+          + 0.30 * Math.sin(sh.f2 * u + sh.g2 * v + t * sh.s2 + sh.p3)
+          + 0.15 * Math.sin(sh.f3 * (u * u + v * v) * 2.2 - t * sh.s3)
+        );
+        var y1 = -h * cT - v * sT;
+        var z1 = -h * sT + v * cT;
+        var x1 = u * cY + z1 * sY;
+        var z2 = z1 * cY - u * sY;
+        var f = 3.2 / (3.2 - z2); // soft perspective: near marks stay small
+        var sxp = cx + x1 * sh.R * f;
+        if (sxp < -4 || sxp > W + 4) continue;
+        var syp = cy + y1 * sh.R * 0.75 * f;
+        if (syp < -4 || syp > H + 4) continue;
+        var edge = ev * (1 - u * u * u * u) * 1.6;
+        if (edge > 1) edge = 1;
+        ctx.globalAlpha = conf.alpha * edge * (0.4 + 0.3 * (z2 + 1));
+        ctx.drawImage(sh.spr.c, sxp, syp, sh.spr.w * f, sh.spr.h * f);
+      }
+    }
+  }
+  function drawRibbon(rb, t, sy) {
+    var m = rb.R * 1.7;
+    var spanX = W + m * 2, spanY = H + m * 2;
+    var cx = (((rb.x + m) % spanX) + spanX) % spanX - m;
+    var cy = ((((rb.y - sy * rb.para) + m) % spanY) + spanY) % spanY - m;
+    var ax = rb.rx + t * rb.wx, ay = rb.ry + t * rb.wy;
+    var cX = Math.cos(ax), sX = Math.sin(ax), cY = Math.cos(ay), sY2 = Math.sin(ay);
+    var pts = rb.pts;
+    for (var i = 0; i < pts.length; i += 3) {
+      var x = pts[i], y = pts[i + 1], z = pts[i + 2];
+      var x1 = x * cY + z * sY2, z1 = z * cY - x * sY2;
+      var y1 = y * cX - z1 * sX, z2 = y * sX + z1 * cX;
+      var f = 3.2 / (3.2 - z2);
+      var sxp = cx + x1 * rb.R * f;
+      if (sxp < -4 || sxp > W + 4) continue;
+      var syp = cy + y1 * rb.R * f;
+      if (syp < -4 || syp > H + 4) continue;
+      ctx.globalAlpha = rb.alpha * (0.35 + 0.325 * (z2 + 1));
+      ctx.drawImage(rb.spr.c, sxp, syp, rb.spr.w * f, rb.spr.h * f);
+    }
+  }
+  function draw(now, still) {
+    ctx.clearRect(0, 0, W, H);
+    var sy = window.pageYOffset, t = still ? 0 : now * 0.001;
+    for (var i = 0; i < sheets.length; i++) drawSheet(sheets[i], t, sy);
+    for (var j = 0; j < ribbons.length; j++) drawRibbon(ribbons[j], t, sy);
+    ctx.globalAlpha = 1;
+  }
+  function resize() {
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    seed();
+    if (RM) draw(0, true);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  if (RM) return; // one static scene, no motion
+  var skip = false; // 30 fps is plenty for glacial motion — half the CPU
+  (function loop(now) {
+    requestAnimationFrame(loop);
+    skip = !skip;
+    if (skip || document.hidden) return;
+    draw(now, false);
+  })(0);
+})();
+
+/* ── The ledger: spine, traveling face, active posting ── */
+(function () {
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var flow = document.getElementById('ledger-flow');
+  var spine = document.getElementById('spine');
+  var face = document.getElementById('spine-face');
+  var frame = document.getElementById('face-frame');
+  var gaze = document.getElementById('face-gaze');
+  var brow = document.getElementById('face-brow');
+  var browR = document.getElementById('face-brow-r');
+  // gaze interest targets. Initialized HERE, before the animation tick's
+  // first synchronous call — an uninitialized read fed NaN into the eye
+  // springs, which self-perpetuates and froze the eyes entirely.
+  var gtx = 0, gty = 0;
+  var core = document.querySelector('#spine-face .face-core');
+  var frameLight = document.getElementById('frame-light');
+  var eyeL = gaze ? gaze.querySelector('.face-eye.left') : null;
+  var eyeR = gaze ? gaze.querySelector('.face-eye.right') : null;
+  if (!flow || !spine || !face) return;
+
+  var sections = Array.prototype.slice.call(document.querySelectorAll('[data-post]'));
+  // Idle gaze bias per posting: which way the eyes wander while parked there.
+  var GAZE = [[0], [0, 1, -1], [-1, 1], [0], [0, -1], [-1, 1], [1, -1], [0]];
+
+  /* — layout maps — */
+  var flowTop = 0, railX = 0, tops = [], docks = [];
+  function layout() {
+    var sy = window.pageYOffset;
+    var fr = flow.getBoundingClientRect();
+    flowTop = fr.top + sy;
+    railX = spine.offsetLeft;
+    tops = []; docks = [];
+    sections.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      tops.push(r.top + sy - flowTop);
+      var d = el.querySelector('[data-dock]') || el;
+      var dr = d.getBoundingClientRect();
+      docks.push(dr.top + dr.height / 2 + sy - flowTop);
+    });
+    face.style.left = (railX + 0.5) + 'px';
+    buildPaths();
+  }
+
+  /* — active posting — */
+  var active = 0;
+  var browPulseUntil = 0;
+  function browLift() {
+    if (RM || !brow) return;
+    browPulseUntil = performance.now() + 480;
+  }
+  function setActive(i) {
+    if (i === active) return;
+    active = i;
+    browLift();
+    if (RM) pinFace();
+  }
+
+  /* — scroll → activation — */
+  var scrollPend = false;
+  function onScroll() {
+    scrollPend = false;
+    var line = window.pageYOffset + window.innerHeight * 0.42 - flowTop;
+    var idx = 0;
+    for (var i = 0; i < tops.length; i++) if (tops[i] <= line) idx = i;
+    setActive(idx);
+  }
+  window.addEventListener('scroll', function () {
+    if (scrollPend) return;
+    scrollPend = true;
+    requestAnimationFrame(onScroll);
+  }, { passive: true });
+
+  /* — traveling face + hero tour — */
+  function target() { return docks[active] || 0; }
+  function pinFace() {
+    face.style.transform = 'translate(-50%, ' + Math.round(target()) + 'px) translateY(-50%)';
+    if (frame) frame.style.transform = 'none';
+  }
+
+  /* card inspections: the data moves while Björn hovers */
+  function pulse(el) { if (!el) return; el.classList.remove('cf-pulse'); void el.offsetWidth; el.classList.add('cf-pulse'); }
+  function fmtInt(v) {
+    v = Math.round(v);
+    return (v < 0 ? '−' : '') + String(Math.abs(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+  function countTo(el, to) {
+    if (!el) return;
+    var from = parseFloat(el.textContent.replace(/\s/g, '').replace('−', '-')) || 0;
+    var t0 = performance.now();
+    (function st(n) {
+      var p = Math.min(1, (n - t0) / 620); p = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmtInt(from + (to - from) * p);
+      if (p < 1) requestAnimationFrame(st);
+    })(t0);
+    pulse(el);
+  }
+  var TXP = [
+    ['20.6', 'Google Ads', '−240,00'],
+    ['21.6', '<span class="lang-en">Invoice 2042</span><span class="lang-fi">Lasku 2042</span>', '3 150,00'],
+    ['23.6', 'Wolt', '−31,20'],
+    ['24.6', 'Stripe payout', '5 020,00'],
+    ['25.6', 'Telia', '−64,90']
+  ], txAt = 0;
+  var PLP = [[52400, -33120], [61050, -35660], [57800, -34210], [48200, -31480]], plAt = 0;
+  var BSP = [131250, 137980, 129400, 134620], bsAt = 0;
+  var FILP = [
+    ['<span class="lang-en">VAT · June</span><span class="lang-fi">ALV · kesäkuu</span>', '<span class="lang-en">Filed ✓</span><span class="lang-fi">Ilmoitettu ✓</span>'],
+    ['<span class="lang-en">Payroll · June</span><span class="lang-fi">Palkat · kesäkuu</span>', '<span class="lang-en">Reported ✓</span><span class="lang-fi">Ilmoitettu ✓</span>'],
+    ['<span class="lang-en">Financial statements</span><span class="lang-fi">Tilinpäätös</span>', '<span class="lang-en">Drafted</span><span class="lang-fi">Luonnos</span>']
+  ], filAt = 0;
+  function inspect(i) {
+    if (i === 0) {        // transactions: a fresh row lands on top
+      var host = document.getElementById('card-tx');
+      if (!host) return;
+      var t = TXP[txAt++ % TXP.length];
+      var row = document.createElement('div');
+      row.className = 'cf-row cf-new';
+      row.innerHTML = '<span class="cf-d">' + t[0] + '</span><span class="cf-k">' + t[1] + '</span><span class="cf-num">' + t[2] + '</span>';
+      host.insertBefore(row, host.querySelector('.cf-row'));
+      var rows = host.querySelectorAll('.cf-row');
+      host.removeChild(rows[rows.length - 1]);
+    } else if (i === 1) { // income statement: figures move, the result still foots
+      var pl = PLP[plAt++ % PLP.length];
+      countTo(document.getElementById('pl-rev'), pl[0]);
+      countTo(document.getElementById('pl-exp'), pl[1]);
+      countTo(document.getElementById('pl-res'), pl[0] + pl[1]);
+    } else if (i === 2) { // filings: the open item gets handled
+      var f = FILP[filAt++ % FILP.length];
+      document.getElementById('fil-k').innerHTML = f[0];
+      var st2 = document.getElementById('fil-s');
+      st2.innerHTML = f[1];
+      pulse(st2);
+    } else if (i === 3) { // balance sheet: both sides move together
+      var v = BSP[bsAt++ % BSP.length];
+      countTo(document.getElementById('bs-a'), v);
+      countTo(document.getElementById('bs-b'), v);
+      pulse(document.getElementById('bs-ok'));
+    } else if (i === 4) { // bank feed: new items land, booked on the spot
+      var b = document.getElementById('bank-v1');
+      var n = 2 + ((Math.random() * 5) | 0);
+      b.innerHTML = '<span class="lang-en">' + n + ' new</span><span class="lang-fi">' + n + ' uutta</span>';
+      pulse(b);
+      setTimeout(function () { b.textContent = '✓'; pulse(b); }, 1100);
+    }
+  }
+
+  /* the tour: glide card to card, look, inspect, move on; leaving the hero
+     hands the tile back to the spine mid-flight */
+  var hcards = Array.prototype.slice.call(document.querySelectorAll('.hcard'));
+  function cardsShown() { return hcards.length > 0 && hcards[0].offsetParent !== null; }
+  var wayPos = 0, tourIdx = -1, tourArrived = false, tourUntil = 2600, tourAnchor = 0;
+  function pickAnchor() {
+    var r = Math.random(); // inner side is home base; outside/top/bottom keep it alive
+    return r < 0.55 ? 0 : r < 0.7 ? 1 : r < 0.85 ? 2 : 3;
+  }
+  function tourTarget() {
+    var r = hcards[tourIdx].getBoundingClientRect();
+    var cx = r.left + r.width / 2;
+    var cy = r.top + r.height / 2 + window.pageYOffset - flowTop;
+    var side = cx < railX ? 1 : -1;
+    if (tourAnchor === 1) return { x: cx - railX - side * (r.width / 2 + 44), y: cy - 8, look: side, lookV: 0 };
+    if (tourAnchor === 2) return { x: cx - railX + side * 12, y: cy - r.height / 2 - 46, look: 0, lookV: 1 };
+    if (tourAnchor === 3) return { x: cx - railX, y: cy + r.height / 2 + 46, look: 0, lookV: -1 };
+    return { x: cx - railX + side * (r.width / 2 + 44), y: cy - 8, look: -side, lookV: 0 };
+  }
+  if (!RM) {
+    var x = 0, y = null, rot = 0, dip = 1, prevY = 0, mirCur = 1, mirEase = 1;
+    var browCur = 0, browRCur = 1, nextBlink = 2000, blinkStart = -1, esCur = 1;
+    var fx = 0, fy = 0, ex = 0, ey = 0, jx2 = 0, jy2 = 0, nextFix = 1500;
+    var exprType = 0, exprUntil = 0, nextExpr = 6000;
+    var hdX = 0, hdY = 0, hdR = 0, hdTX = 0, hdTY = 0, hdTR = 0, nextHead = 2400;
+    var glanceUntil = 0, nextGlance = 3200;
+    (function tick(nowT) {
+      requestAnimationFrame(tick);
+      var touring = active === 0 && cardsShown();
+      var tt = (touring && tourIdx >= 0) ? tourTarget() : null;
+      var txT = touring && tt ? tt.x : 0;
+      var tyT = tt ? tt.y : target();
+      if (touring) { // never freeze: hover softly even while parked
+        txT += Math.sin(nowT * 0.0006) * 6;
+        tyT += Math.sin(nowT * 0.00083 + 1) * 5;
+      }
+      if (y === null) { y = tyT; prevY = tyT; }
+      x += (txT - x) * 0.075;                  // x leads y: the flight arcs
+      y += (tyT - y) * (touring ? 0.05 : 0.09);
+      var moving = Math.abs(tyT - y) > 7 || Math.abs(txT - x) > 7;
+      if (touring) {
+        // bank into the direction of travel; lean toward the card while parked
+        var rTarget = moving
+          ? Math.max(-13, Math.min(13, (txT - x) * 0.08))
+          : (tt ? -tt.look * 4.5 : 0);
+        rot += (rTarget - rot) * 0.1;
+      } else {
+        rot += (y - prevY) * 0.26;             // the frame rolls along the spine
+        if (!moving) { var n = Math.round(rot / 90) * 90; rot += (n - rot) * 0.14; }
+      }
+      prevY = y;
+      dip += ((moving ? 0.9 : 1) - dip) * 0.16;
+      face.style.transform = 'translate(calc(-50% + ' + x.toFixed(1) + 'px), ' + y.toFixed(1) + 'px) translateY(-50%)';
+      frame.style.transform = 'rotate(' + rot.toFixed(2) + 'deg) scale(' + dip.toFixed(3) + ')';
+      if (frameLight) frameLight.style.transform = 'rotate(' + (-rot).toFixed(2) + 'deg)';
+      // — face life as fixate → saccade → fixate. Real eyes hold nearly
+      //   still, then JUMP; blinks and brow flicks ride along with the big
+      //   jumps; occasional expressions (squint / widen / languid blink)
+      //   break any remaining rhythm. No oscillators anywhere. —
+      if (moving) {
+        gtx = Math.max(-1, Math.min(1, (txT - x) * 0.02));
+        gty = Math.max(-0.8, Math.min(0.8, (tyT - y) * 0.012));
+      }
+      // the face turns to whichever side it is flying toward or reading
+      var mirT = mirCur;
+      if (touring) {
+        if (moving && Math.abs(txT - x) > 30) mirT = (txT - x) > 0 ? 1 : -1;
+        else if (tourArrived && tt && tt.look) mirT = tt.look > 0 ? 1 : -1;
+      } else mirT = 1;
+      mirCur = mirT;
+      // the whole head lives: micro nods and tilts move BOTH brows, the nose,
+      // everything together; the mirror flip eases through the same transform
+      if (core) {
+        mirEase += (mirT - mirEase) * 0.08;
+        if (nowT > nextHead) {
+          hdTX = (Math.random() * 2 - 1) * 1.6;
+          hdTY = (Math.random() * 2 - 1) * 1.2;
+          hdTR = (Math.random() * 2 - 1) * 2.2;
+          nextHead = nowT + 2200 + Math.random() * 3200;
+        }
+        hdX += (hdTX - hdX) * 0.02;
+        hdY += (hdTY - hdY) * 0.02;
+        hdR += (hdTR - hdR) * 0.02;
+        core.style.transform = 'translate(' + hdX.toFixed(2) + '%, ' + hdY.toFixed(2) + '%) rotate(' + hdR.toFixed(2) + 'deg) scaleX(' + mirEase.toFixed(3) + ')';
+      }
+      // curiosity: glance at one of the nearby floating cards, then let go
+      if (nowT > nextGlance) {
+        nextGlance = nowT + 2400 + Math.random() * 3200;
+        if (!moving && cardsShown()) {
+          var gc = hcards[(Math.random() * hcards.length) | 0].getBoundingClientRect();
+          var fr2 = face.getBoundingClientRect();
+          gtx = Math.max(-1, Math.min(1, ((gc.left + gc.width / 2) - (fr2.left + fr2.width / 2)) * 0.003));
+          gty = Math.max(-0.8, Math.min(0.8, ((gc.top + gc.height / 2) - (fr2.top + fr2.height / 2)) * 0.003));
+          glanceUntil = nowT + 900 + Math.random() * 1000;
+          if (Math.random() < 0.3) browPulseUntil = nowT + 300;
+        }
+      }
+      if (glanceUntil && nowT > glanceUntil) { glanceUntil = 0; gtx = 0; gty = 0; }
+      if (nowT > nextFix) {
+        var rF = Math.random();
+        if (rF < 0.5) {            // drift within the fixation cluster
+          fx = Math.max(-1, Math.min(1, fx + (Math.random() * 2 - 1) * 0.34));
+          fy = Math.max(-0.8, Math.min(0.8, fy + (Math.random() * 2 - 1) * 0.22));
+          nextFix = nowT + 420 + Math.random() * 800;
+        } else if (rF < 0.72) {    // back near the point of interest
+          fx = (Math.random() * 2 - 1) * 0.15;
+          fy = (Math.random() * 2 - 1) * 0.12;
+          nextFix = nowT + 500 + Math.random() * 1400;
+        } else if (rF < 0.92) {    // big relocation — blink or brow may ride along
+          fx = Math.random() * 2 - 1;
+          fy = (Math.random() * 2 - 1) * 0.6;
+          nextFix = nowT + 320 + Math.random() * 900;
+          if (Math.random() < 0.35 && blinkStart < 0) blinkStart = nowT;
+          if (Math.random() < 0.25) browPulseUntil = nowT + 260;
+        } else {                   // held stare
+          fx = (Math.random() * 2 - 1) * 0.8;
+          fy = (Math.random() * 2 - 1) * 0.5;
+          nextFix = nowT + 1500 + Math.random() * 1900;
+        }
+      }
+      // saccade-fast jump toward fixation + interest, then hold with tremor
+      var gxT = Math.max(-1.15, Math.min(1.15, fx * 0.55 + gtx * 0.75));
+      var gyT = Math.max(-0.9, Math.min(0.9, fy * 0.55 + gty * 0.7));
+      ex += (gxT - ex) * 0.45;
+      ey += (gyT - ey) * 0.45;
+      jx2 += ((Math.random() - 0.5) * 0.036 - jx2) * 0.06;
+      jy2 += ((Math.random() - 0.5) * 0.03 - jy2) * 0.06;
+      var hPct = (ex + jx2) * 5.2;
+      var vPct = (ey + jy2) * 3.4;
+      // expressions
+      var eyeScale = 1;
+      if (nowT > nextExpr && blinkStart < 0 && nowT > exprUntil) {
+        var rE = Math.random();
+        exprType = rE < 0.45 ? 1 : rE < 0.75 ? 2 : 3;
+        exprUntil = nowT + (exprType === 3 ? 340 : 600);
+        nextExpr = nowT + 6000 + Math.random() * 9000;
+        if (exprType === 2) browPulseUntil = nowT + 500;
+      }
+      if (nowT < exprUntil) {
+        if (exprType === 1) eyeScale = 0.72;                 // squint: thinking
+        else if (exprType === 2) eyeScale = 1.14;            // widen: interest
+        else {                                               // languid blink
+          var ep = (exprUntil - nowT) / 340;
+          eyeScale = 0.12 + 0.88 * Math.abs(ep * 2 - 1);
+        }
+      }
+      esCur += (eyeScale - esCur) * 0.35;
+      var blinkK = 1;
+      if (blinkStart < 0 && nowT > nextBlink) blinkStart = nowT;
+      if (blinkStart >= 0) {
+        var bp = (nowT - blinkStart) / 150;
+        if (bp >= 1) {
+          blinkStart = -1; // sometimes a quick double-blink
+          nextBlink = nowT + (Math.random() < 0.22 ? 260 : 2400 + Math.random() * 4200);
+        } else {
+          // lids close fast, open slower
+          blinkK = bp < 0.35 ? 1 - 0.9 * (bp / 0.35) : 0.1 + 0.9 * ((bp - 0.35) / 0.65);
+        }
+      }
+      if (gaze) gaze.style.transform = 'translate(' + (hPct * mirCur).toFixed(2) + '%, ' + vPct.toFixed(2) + '%)';
+      if (eyeL) {
+        var bs = 'scaleY(' + Math.min(esCur, blinkK).toFixed(3) + ')';
+        eyeL.style.transform = bs; eyeR.style.transform = bs;
+      }
+      var browUp = nowT < browPulseUntil ? -8 : 0;
+      browCur += (browUp - browCur) * 0.12;
+      if (brow) brow.style.transform = 'translateY(' + browCur.toFixed(2) + '%)';
+      // the right brow rides along, a touch later and gentler (stretch, not
+      // slide — its stroke continues into the nose, so it's anchored there)
+      browRCur += ((nowT < browPulseUntil ? 1.08 : 1) - browRCur) * 0.09;
+      if (browR) browR.style.transform = 'scaleY(' + browRCur.toFixed(3) + ')';
+      if (!touring) { wayPos = 0; tourIdx = -1; tourArrived = false; face.style.zIndex = ''; return; }
+      if (!tourArrived) {
+        if (!moving) {
+          tourArrived = true;
+          tourUntil = nowT + (tourIdx >= 0 ? 2600 + Math.random() * 1600 : 2000);
+          if (tourIdx >= 0) {
+            face.style.zIndex = ''; // surface if it swam in behind the cards
+            browLift();
+            gazeBias = tt.look;
+            look(tt.look, tt.lookV);
+            var r2 = Math.random(), lh = tt.look, lv = tt.lookV;
+            if (r2 < 0.33) {         // double take
+              setTimeout(function () { look(0, 0); }, 800);
+              setTimeout(function () { look(lh, lv); browLift(); }, 1350);
+              setTimeout(function () { look(0, 0); }, 2300);
+            } else if (r2 < 0.63) {  // second brow pop
+              setTimeout(browLift, 500);
+              setTimeout(function () { look(0, 0); }, 1600);
+            } else {                 // scan the card downwards
+              setTimeout(function () { look(lh, 1); }, 850);
+              setTimeout(function () { look(0, 0); }, 1900);
+            }
+            (function (k) { setTimeout(function () { inspect(k); browLift(); }, 700); })(tourIdx);
+          }
+        }
+      } else if (nowT > tourUntil) {
+        wayPos = (wayPos + 1) % (hcards.length + 1);
+        tourIdx = wayPos - 1;
+        tourAnchor = pickAnchor();
+        tourArrived = false;
+        // some legs it dives behind the cards and surfaces on arrival
+        face.style.zIndex = (tourIdx >= 0 && Math.random() < 0.45) ? '1' : '';
+      }
+    })(0);
+  }
+
+  /* — idle gaze — */
+  var gazeBias = 0; // set by the constellation when a dot arrives
+  function look(b, v) {
+    gtx = b > 0 ? 1 : b < 0 ? -1 : 0;
+    gty = v > 0 ? 1 : v < 0 ? -0.8 : 0;
+  }
+  if (!RM) {
+    var gi = 0;
+    setInterval(function () {
+      if (document.hidden) return;
+      var set = GAZE[active] || [0];
+      var b = gazeBias !== 0 ? gazeBias : set[gi++ % set.length];
+      gazeBias = 0;
+      look(b);
+      setTimeout(function () { look(0); }, 1500);
+    }, 3600);
+  }
+
+  /* — reveals — */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -40px 0px' });
+  sections.forEach(function (el, i) { if (i > 0) io.observe(el); });
+  sections[0].classList.add('in');
+
+  /* — rotating list — */
+  (function () {
+    var list = document.getElementById('roto-list');
+    if (!list) return;
+    var items = Array.prototype.slice.call(list.children);
+    var N = items.length, cur = 0;
+    function render() {
+      items.forEach(function (el, j) {
+        var d = j - cur;
+        while (d > N / 2) d -= N;
+        while (d < -N / 2) d += N;
+        el.style.setProperty('--d', d);
+        var a = Math.abs(d);
+        el.className = 'roto-item' + (a === 0 ? '' : a === 1 ? ' a1' : a === 2 ? ' a2' : ' ah');
+      });
+    }
+    render();
+    if (RM) return;
+    var inview = false;
+    new IntersectionObserver(function (entries) {
+      inview = entries[0].isIntersecting;
+    }, { rootMargin: '10% 0px' }).observe(list);
+    setInterval(function () {
+      if (!inview || document.hidden) return;
+      cur = (cur + 1) % N;
+      render();
+    }, 1400);
+  })();
+
+  /* — constellation: hairlines dock into the spine; one event at a time — */
+  var svg = document.getElementById('stage-lines');
+  var hub = document.getElementById('stage-hub');
+  var chipEls = Array.prototype.slice.call(document.querySelectorAll('.chip-pos'));
+  var paths = [];
+  function buildPaths() {
+    if (!svg || !hub || !chipEls.length) return;
+    // Offset metrics: immune to the slide-in translate on .chip-pos.
+    var stage = svg.parentElement;
+    var w = stage.offsetWidth, h = stage.offsetHeight;
+    if (w < 10) return;
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    var hx = hub.offsetLeft, hy = hub.offsetTop;
+    svg.innerHTML = '';
+    paths = chipEls.map(function (el) {
+      var cx = el.offsetLeft, cy = el.offsetTop;
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      var mx = cx + (hx - cx) * 0.5;
+      p.setAttribute('d', 'M' + cx.toFixed(1) + ' ' + cy.toFixed(1) +
+        ' C' + mx.toFixed(1) + ' ' + cy.toFixed(1) + ', ' + mx.toFixed(1) + ' ' + hy.toFixed(1) +
+        ', ' + hx.toFixed(1) + ' ' + hy.toFixed(1));
+      svg.appendChild(p);
+      return { el: p, side: cx < hx ? -1 : 1, chip: el };
+    });
+  }
+  if (svg && !RM) {
+    var stageInView = false, k = 0, arrivals = 0;
+    var outChip = document.getElementById('out-chip');
+    var ORDER = [0, 6, 2, 8, 4, 10, 1, 7, 3, 9, 5, 11]; /* alternate sides */
+    new IntersectionObserver(function (entries) {
+      stageInView = entries[0].isIntersecting;
+    }, { rootMargin: '-10% 0px' }).observe(svg);
+    function spawnDot(r) {
+      var d = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      d.setAttribute('r', r);
+      svg.appendChild(d);
+      return d;
+    }
+    /* inbound: line lights, chip leans in, the face's eyes track the dot */
+    function launch() {
+      if (!paths.length) return;
+      var pk = paths[ORDER[k++ % ORDER.length] % paths.length];
+      var path = pk.el, L;
+      try { L = path.getTotalLength(); } catch (e) { return; }
+      path.classList.add('lit');
+      pk.chip.classList.add(pk.side < 0 ? 'lean-l' : 'lean-r');
+      gazeBias = pk.side; look(pk.side);
+      var dot = spawnDot(3);
+      var t0 = performance.now(), D = 1050;
+      (function step(now) {
+        var p = Math.min(1, (now - t0) / D);
+        var q = path.getPointAtLength(L * p);
+        dot.setAttribute('cx', q.x); dot.setAttribute('cy', q.y);
+        if (p < 1) requestAnimationFrame(step);
+        else {
+          svg.removeChild(dot);
+          path.classList.remove('lit');
+          pk.chip.classList.remove('lean-l', 'lean-r');
+          setTimeout(function () { look(0); }, 700);
+          arrivals++;
+          if (active === 3 && arrivals % 3 === 0) browLift();
+          if (arrivals % 4 === 0) emitOut();
+        }
+      })(t0);
+    }
+    /* outbound: every few arrivals ONE composed pulse drops into the VAT chip */
+    function emitOut() {
+      var stage = svg.parentElement;
+      if (!hub || !outChip || !outChip.offsetWidth || stage.offsetWidth < 10) return;
+      var sr = stage.getBoundingClientRect(), cr = outChip.getBoundingClientRect();
+      var tx = cr.left + cr.width / 2 - sr.left;
+      var ty = cr.top + 2 - sr.top;
+      var hx = hub.offsetLeft, hy = hub.offsetTop;
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', 'M' + hx.toFixed(1) + ' ' + hy.toFixed(1) + ' L' + tx.toFixed(1) + ' ' + ty.toFixed(1));
+      p.setAttribute('class', 'lit');
+      svg.appendChild(p);
+      var dot = spawnDot(3.5);
+      var L = p.getTotalLength();
+      var t0 = performance.now(), D = 600;
+      browLift();
+      (function step(now) {
+        var q = Math.min(1, (now - t0) / D);
+        var pt = p.getPointAtLength(L * q);
+        dot.setAttribute('cx', pt.x); dot.setAttribute('cy', pt.y);
+        if (q < 1) requestAnimationFrame(step);
+        else {
+          svg.removeChild(dot); svg.removeChild(p);
+          outChip.classList.add('tick');
+          outChip.classList.remove('weigh');
+          void outChip.offsetWidth;
+          outChip.classList.add('weigh');
+          setTimeout(function () { outChip.classList.remove('tick'); }, 900);
+        }
+      })(t0);
+    }
+    /* pump: keep at least one pulse in flight nearly all the time */
+    (function pump() {
+      if (stageInView && !document.hidden) launch();
+      setTimeout(pump, 1000 + Math.random() * 300);
+    })();
+  }
+
+  /* — MCP chat bar: just keeps connecting — */
+  (function () {
+    var spin = document.getElementById('t-spin');
+    var term = document.getElementById('mcp-term');
+    if (!spin || !term || RM) return;
+    var inview = false;
+    new IntersectionObserver(function (entries) {
+      inview = entries[0].isIntersecting;
+    }, { threshold: 0.4 }).observe(term);
+    var chars = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏', k = 0;
+    setInterval(function () {
+      if (!inview || document.hidden) return;
+      spin.textContent = chars[k++ % chars.length];
+    }, 90);
+  })();
+
+  /* — relayout on resize, font load, language switch — */
+  var rlT = 0;
+  function relayout() {
+    clearTimeout(rlT);
+    rlT = setTimeout(function () { layout(); onScroll(); if (RM) pinFace(); }, 60);
+  }
+  window.addEventListener('resize', relayout);
+  window.addEventListener('load', relayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+  new MutationObserver(relayout).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  if (window.ResizeObserver) new ResizeObserver(relayout).observe(flow);
+
+  layout();
+  onScroll();
+  if (RM) pinFace();
+})();
+</script>
+
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+  import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app-check.js';
+  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCrAdiksUNgoGeQValazawkbHDCXigEev0",
+    authDomain: "the-last-accounting-company.firebaseapp.com",
+    projectId: "the-last-accounting-company",
+    appId: "1:118480934527:web:b33233ab2684ecc7d5114a"
+  };
+  const app = initializeApp(firebaseConfig);
+  // App Check: Firestore enforces reCAPTCHA Enterprise attestation, so direct
+  // API writes with the public config (bot spam) are rejected server-side.
+  initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider('6Ld2j0YtAAAAAPKXX2SEdA2VtakDyAj-zOw9YeJq'),
+    isTokenAutoRefreshEnabled: true
+  });
+  const db = getFirestore(app);
+
+  const form = document.getElementById('waitlist-form');
+  const success = document.getElementById('waitlist-success');
+  const status = document.getElementById('form-status');
+  const submit = document.getElementById('waitlist-submit');
+  const additionalNotesField = document.getElementById('f-additional-notes');
+  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  const MSG = {
+    en: { name: 'Name is required.', company: 'Company name is required.', email: 'Email is required.', invalid: 'Please enter a valid email.', generic: "Couldn't submit — please try again or email us." },
+    fi: { name: 'Nimi on pakollinen.', company: 'Yrityksen nimi on pakollinen.', email: 'Sähköposti on pakollinen.', invalid: 'Syötä kelvollinen sähköpostiosoite.', generic: 'Lähetys epäonnistui — yritä uudelleen tai laita meille sähköpostia.' }
+  };
+  const t = (k) => MSG[document.documentElement.lang === 'fi' ? 'fi' : 'en'][k];
+  function resizeAdditionalNotes() {
+    if (!additionalNotesField) return;
+    additionalNotesField.style.height = '42px';
+    if (additionalNotesField.value.trim()) {
+      additionalNotesField.style.height = Math.max(42, additionalNotesField.scrollHeight) + 'px';
+    }
+  }
+
+  form.addEventListener('input', () => { status.textContent = ''; });
+  form.addEventListener('change', () => { status.textContent = ''; });
+  if (additionalNotesField) {
+    additionalNotesField.addEventListener('input', resizeAdditionalNotes);
+    resizeAdditionalNotes();
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '';
+    const data = new FormData(form);
+    // Honeypot: a real user never sees this field. If it's filled it's almost
+    // certainly a bot — but on the off chance a stray autofill populated it,
+    // show the generic error rather than failing silently with no feedback.
+    if ((data.get('website') || '').toString().trim() !== '') { status.textContent = t('generic'); return; }
+    const name = (data.get('name') || '').toString().trim();
+    const company = (data.get('company') || '').toString().trim();
+    const email = (data.get('email') || '').toString().trim();
+    const phone = (data.get('phone') || '').toString().trim();
+    const additionalNotes = (data.get('additionalNotes') || '').toString().trim();
+    if (!name) { status.textContent = t('name'); return; }
+    if (!company) { status.textContent = t('company'); return; }
+    if (!email) { status.textContent = t('email'); return; }
+    if (!EMAIL_RE.test(email)) { status.textContent = t('invalid'); return; }
+    submit.disabled = true;
+    try {
+      const payload = {
+        name, company: company.slice(0, 200), email,
+        lang: document.documentElement.lang === 'fi' ? 'fi' : 'en',
+        createdAt: serverTimestamp(),
+        userAgent: (navigator.userAgent || '').slice(0, 500),
+        referrer: (document.referrer || '').slice(0, 500)
+      };
+      if (phone) payload.phone = phone.slice(0, 40);
+      if (additionalNotes) payload.additionalNotes = additionalNotes.slice(0, 1500);
+      await addDoc(collection(db, 'waitlist'), payload);
+      form.hidden = true;
+      success.hidden = false;
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (err) {
+      console.error('waitlist submit failed', err);
+      status.textContent = t('generic');
+      submit.disabled = false;
+    }
+  });
+</script>
+
+<script>
+  // Temporary design-tuning panel (site colors / Björn face shaders / chat +).
+  // Loads only with ?tune in the URL; delete tune.js and this block when done.
+  if (new URLSearchParams(location.search).has('tune')) {
+    var tuneScript = document.createElement('script');
+    tuneScript.type = 'module';
+    tuneScript.src = '/tune.js';
+    document.head.appendChild(tuneScript);
+  }
+</script>
+
+<script>
+  // Language switcher: flip html[lang], persist the choice, reflect aria-pressed.
+  // Detection on load already ran in <head>; this only handles user clicks.
+  (function () {
+    var sw = document.querySelector('.lang-switch');
+    if (!sw) return;
+    var btns = sw.querySelectorAll('button[data-lang]');
+    function sync() {
+      var cur = document.documentElement.lang === 'fi' ? 'fi' : 'en';
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.lang === cur)); });
+    }
+    sw.addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-lang]');
+      if (!b) return;
+      var lang = b.dataset.lang === 'fi' ? 'fi' : 'en';
+      if (window.__setLang) window.__setLang(lang);
+      else {
+        document.documentElement.lang = lang;
+        try { localStorage.setItem('lac-lang', lang); } catch (err) {}
+      }
+      sync();
+    });
+    sync();
+  })();
+</script>
+</body>
+</html>

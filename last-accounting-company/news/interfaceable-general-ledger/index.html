@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How We’re Building the Most Interfaceable General Ledger — Last Accounting Company</title>
+<meta name="description" content="An interfaceable general ledger makes financial data easy to put in, retrieve, and use safely from other systems. Here is why we built our own ledger and how its MCP server and API let software and AI agents work with live accounting data.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lastaccountingcompany.com/news/interfaceable-general-ledger">
+
+<link rel="icon" type="image/png" href="../../favicon__v-5.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon__v-5.png">
+<link rel="alternate" type="application/rss+xml" title="Last Accounting Company News" href="../rss.xml">
+<meta property="og:site_name" content="Last Accounting Company">
+<meta property="og:title" content="How We’re Building the Most Interfaceable General Ledger — Last Accounting Company">
+<meta property="og:description" content="An interfaceable general ledger makes financial data easy to put in, retrieve, and use safely from other systems. Here is why we built our own ledger and how its MCP server and API let software and AI agents work with live accounting data.">
+<meta property="og:url" content="https://lastaccountingcompany.com/news/interfaceable-general-ledger">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://lastaccountingcompany.com/brand/lac_face_social_card.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="Björn, the Last Accounting Company face logo, on a blue square">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How We’re Building the Most Interfaceable General Ledger — Last Accounting Company">
+<meta name="twitter:description" content="An interfaceable general ledger makes financial data easy to put in, retrieve, and use safely from other systems. Here is why we built our own ledger and how its MCP server and API let software and AI agents work with live accounting data.">
+<meta name="twitter:image" content="https://lastaccountingcompany.com/brand/lac_face_social_card.png">
+<meta name="twitter:image:alt" content="Björn, the Last Accounting Company face logo, on a blue square">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How We’re Building the Most Interfaceable General Ledger", "description": "An interfaceable general ledger makes financial data easy to put in, retrieve, and use safely from other systems. Here is why we built our own ledger and how its MCP server and API let software and AI agents work with live accounting data.", "inLanguage": "en", "datePublished": "2026-07-30", "dateModified": "2026-07-30", "author": {"@type": "Person", "name": "Sami Laakkonen", "jobTitle": "Co-founder"}, "publisher": {"@type": "Organization", "name": "Last Accounting Company", "legalName": "Bloom Systems Oy", "url": "https://lastaccountingcompany.com/", "logo": "https://lastaccountingcompany.com/favicon.png"}, "image": "https://lastaccountingcompany.com/brand/lac_face_social_card.png", "mainEntityOfPage": "https://lastaccountingcompany.com/news/interfaceable-general-ledger"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://lastaccountingcompany.com/"}, {"@type": "ListItem", "position": 2, "name": "News", "item": "https://lastaccountingcompany.com/news"}, {"@type": "ListItem", "position": 3, "name": "How We’re Building the Most Interfaceable General Ledger", "item": "https://lastaccountingcompany.com/news/interfaceable-general-ledger"}]}</script>
+<link rel="preload" href="../../assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/tokens.css">
+<link rel="stylesheet" href="../../assets/news.css">
+</head>
+<body class="plane-marketing">
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand-pill pill" href="../../index.html">Last Accounting Company</a>
+    <nav class="head-nav">
+      <a href="../index.html">News</a>
+      <a class="site-link" href="../../index.html">lastaccountingcompany.com</a>
+      <a class="btn-dark squircle" href="../../index.html">Join the waitlist
+        <span class="btn-arrow" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" width="16" height="16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<article class="article">
+  <p class="kicker">Future of accounting</p>
+  <h1>How We’re Building the Most Interfaceable General Ledger</h1>
+  <p class="post-meta">
+    <span class="author">Sami Laakkonen · Co-founder</span>
+    <span aria-hidden="true">·</span>
+    <time datetime="2026-07-30">30 July 2026</time>
+    
+    <span aria-hidden="true">·</span>
+    <span>5 min read</span>
+    
+  </p>
+
+  <div class="article-body">
+    <p>Most accounting software keeps useful financial data behind its own interface. The data exists, but getting it in, getting it out, or combining it with information from other systems still takes exports, copy-paste, and manual work.</p>
+<p>We heard this problem in customer interviews from the start. Finance leaders did not need another closed dashboard. They needed their general ledger to work with the rest of the company.</p>
+<p>That is why we decided on day one to build the most interfaceable general ledger possible. By <em>interfaceable</em>, we mean that financial information must be easy to put in and easy to use anywhere it is needed.</p>
+<h2>What makes a general ledger interfaceable?</h2>
+<p>An interfaceable general ledger does two things well: it accepts information without repeated data entry, and it makes trusted financial data available to other systems. Both directions matter. A system that is easy to fill but hard to read is still a silo, and a good API cannot fix poor or incomplete source data.</p>
+<p>On the way in, bank transactions, invoices, receipts, contracts, and records from connected systems should flow into one accounting process. A document should enter once, keep its source and history, and remain linked to the accounting entry it supports.</p>
+<p>On the way out, the ledger should offer clear, stable ways to read data and perform allowed actions. That does not mean giving every tool direct database access. It means offering a safe interface with defined data, permissions, and audit trails.</p>
+<figure>
+  <div class="article-flow" role="img" aria-label="Source data enters one live general ledger. Trusted financial data and allowed actions then connect to reports, AI agents, and company systems.">
+    <div class="article-flow-node article-flow-node--input squircle">
+      <span class="article-visual-label">Data in</span>
+      <strong>Source facts</strong>
+      <span>Banks · invoices · receipts · contracts</span>
+    </div>
+    <span class="article-flow-arrow" aria-hidden="true">→</span>
+    <div class="article-flow-node article-flow-node--core squircle">
+      <span class="article-visual-label">LAC general ledger</span>
+      <strong>One live financial record</strong>
+      <span>Structured · reviewed · traceable</span>
+    </div>
+    <span class="article-flow-arrow" aria-hidden="true">↔</span>
+    <div class="article-flow-node article-flow-node--output squircle">
+      <span class="article-visual-label">Use anywhere</span>
+      <strong>Trusted data and actions</strong>
+      <span>Reports · AI agents · your systems</span>
+    </div>
+  </div>
+  <figcaption>Interfaceability is a two-way promise: source data enters once, and the same current financial record can be used wherever work happens.</figcaption>
+</figure>
+
+<h2>Why did we build our own general ledger?</h2>
+<p>We built our own ledger because interfaceability is a property of the whole system, not a feature that can be added at the edge. The data model, evidence links, permissions, accounting controls, and external interfaces must all describe the same facts.</p>
+<p>Existing products such as Procountor and Netvisor were built for a different operating model. We could have added another integration layer on top of them, but we would still depend on their data structures, access limits, and update cycles. We would not control the foundation.</p>
+<p>Owning the ledger lets us design every input as a route into one common financial record and every output as a view of that same record. Today, more than $80 million in transaction value has passed through our system. It supports the accounting, analysis, and decisions of dozens of Finnish companies.</p>
+<h2>How can AI agents use the general ledger?</h2>
+<p>Our <a href="https://docs.lastaccountingcompany.com/mcp-server">MCP server</a> lets Claude, ChatGPT, and other compatible agents work with a company’s accounting through typed tools. An agent can read the books, VAT position, financial statements, analytics, documents, invoices, and messages with Björn, our accounting agent.</p>
+<p>With write access, an agent can also upload documents, draft and send sales invoices, request filing review, start a connection sync, and message Björn. The same capabilities are available through our <a href="https://docs.lastaccountingcompany.com/">REST API</a>, so teams can use the lighter interface when MCP is not the right fit.</p>
+<p>This turns the ledger into a usable part of a company’s technology stack. Your own agent could:</p>
+<ul>
+<li>Pull current revenue, costs, and cash data into a board memo.</li>
+<li>Combine ledger data with a CRM pipeline to update a forecast.</li>
+<li>Upload a receipt from another internal system.</li>
+<li>Create a sales invoice draft when a delivery milestone is complete.</li>
+<li>Ask Björn about an unclear transaction without leaving its current workflow.</li>
+</ul>
+<p>These are not separate copies of the books. Each action uses the same accounting system and the same current data.</p>
+<h2>How do we keep an open ledger safe?</h2>
+<p>Interfaceability does not mean unlimited access. Every connection is tied to one company and has a defined permission level. Read-only connections cannot change data, while write connections receive a limited set of operator actions.</p>
+<p>Some capabilities stay outside MCP and the API by design. Payroll, payroll approval, company settings, user access, and API-key management require an interactive administrator or approver in the portal. The interface also uses the same validation, accounting rules, and audit trail as the customer portal.</p>
+<figure>
+  <div class="article-access" role="img" aria-label="Access is divided into read tools, limited write tools, and sensitive actions that remain in the interactive portal.">
+    <div class="article-access-node article-access-node--read squircle">
+      <span class="article-visual-label">Read</span>
+      <strong>See the financial truth</strong>
+      <span>Books · VAT · statements · invoices</span>
+    </div>
+    <div class="article-access-node article-access-node--write squircle">
+      <span class="article-visual-label">Limited writes</span>
+      <strong>Act through defined tools</strong>
+      <span>Documents · invoice drafts · Björn</span>
+    </div>
+    <div class="article-access-node article-access-node--portal squircle">
+      <span class="article-visual-label">Portal only</span>
+      <strong>Keep sensitive actions interactive</strong>
+      <span>Payroll · approvals · access · settings</span>
+    </div>
+  </div>
+  <figcaption>The interface widens access without removing the controls around sensitive work.</figcaption>
+</figure>
+
+<p>This boundary matters. A useful financial interface must make safe work easy without making sensitive actions casual.</p>
+<h2>Why does interfaceability matter more in the age of AI?</h2>
+<p>AI agents can now work across tools, but they are only as useful as the data and actions they can reach. A closed ledger limits them to copied reports and old exports. An interfaceable ledger lets them use current, structured, and reviewed financial information in the flow of work.</p>
+<p>This changes the role of the ledger. It is no longer only a record that someone opens at month end. It becomes shared financial infrastructure for reporting, planning, customer operations, and day-to-day decisions.</p>
+<p>The feedback loop improves too. When financial data can move safely between systems, a company can find missing evidence sooner, answer questions while the context is fresh, and act on changes before a monthly report arrives.</p>
+<h2>Why are the software and the accounting firm one product?</h2>
+<p>An interface to stale or unreviewed books only moves unreliable data faster. Useful access depends on the accounting behind it being current, complete, and correct.</p>
+<p>That is why Last Accounting Company is both the accounting firm and the software company. We handle the accounting work, operate the ledger, and provide the interfaces around it as one service. Customers do not need to coordinate a traditional accounting firm, a separate software subscription, and another integration layer.</p>
+<p>We are building the general ledger for a world where people, software, and AI agents all need to work with the same financial truth. If that is how you want your accounting to work, <a href="../../index.html">join the waitlist</a> or <a href="mailto:hello@lastaccountingcompany.com">email us</a>.</p>
+  </div>
+</article>
+
+<footer class="post-foot">
+  <a class="back" href="../index.html">← All news</a>
+  
+  <p class="post-cta"><strong>Last Accounting Company</strong> replaces your accounting firm and software with one fixed-price AI-run service for Finnish SMBs. <a href="../../index.html">Join the waitlist</a>.</p>
+  
+</footer>
+
+<section class="subscribe squircle" aria-label="Newsletter">
+  <h2>Get new posts by email</h2>
+  <p>Agentic accounting, research, and the future of accounting. No spam, unsubscribe any time.</p>
+  <form id="nl-form" novalidate
+        data-msg-invalid="Please enter a valid email."
+        data-msg-ok="Almost there — check your inbox and confirm your subscription."
+        data-msg-err="Couldn&#39;t subscribe — please try again.">
+    <input id="nl-email" type="email" name="email" required maxlength="254"
+           placeholder="you@company.fi" autocomplete="email" aria-label="Email address">
+    <button class="btn-dark squircle" type="submit" id="nl-submit">Subscribe</button>
+  </form>
+  <p class="nl-status" id="nl-status" role="status"></p>
+  <p class="nl-note">Double opt-in: we send one confirmation email first. Details in the <a href="../../privacy/index.html">privacy notice</a>.</p>
+</section>
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+  import { initializeAppCheck, ReCaptchaEnterpriseProvider } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app-check.js';
+  import { getFirestore, collection, addDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js';
+
+  const app = initializeApp({
+    apiKey: "AIzaSyCrAdiksUNgoGeQValazawkbHDCXigEev0",
+    authDomain: "the-last-accounting-company.firebaseapp.com",
+    projectId: "the-last-accounting-company",
+    appId: "1:118480934527:web:b33233ab2684ecc7d5114a"
+  });
+  // Firestore enforces App Check (reCAPTCHA Enterprise): direct API writes
+  // with the public config are rejected server-side.
+  initializeAppCheck(app, {
+    provider: new ReCaptchaEnterpriseProvider('6Ld2j0YtAAAAAPKXX2SEdA2VtakDyAj-zOw9YeJq'),
+    isTokenAutoRefreshEnabled: true
+  });
+  const db = getFirestore(app);
+
+  const form = document.getElementById('nl-form');
+  const email = document.getElementById('nl-email');
+  const status = document.getElementById('nl-status');
+  const submit = document.getElementById('nl-submit');
+  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  // The page's language is the default; the landing page's stored choice
+  // wins, and on English pages a Finnish timezone still means a Finnish
+  // confirmation email.
+  let lang = document.documentElement.lang === 'fi' ? 'fi' : 'en';
+  try {
+    const stored = localStorage.getItem('lac-lang');
+    if (stored === 'fi' || stored === 'en') lang = stored;
+    else if (lang === 'en' && (Intl.DateTimeFormat().resolvedOptions().timeZone || '') === 'Europe/Helsinki') lang = 'fi';
+  } catch (e) {}
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const value = email.value.trim();
+    if (!EMAIL_RE.test(value)) {
+      status.textContent = form.dataset.msgInvalid;
+      return;
+    }
+    submit.disabled = true;
+    status.textContent = '';
+    try {
+      await addDoc(collection(db, 'newsletter_signups'), {
+        email: value,
+        lang,
+        createdAt: serverTimestamp()
+      });
+      form.hidden = true;
+      status.textContent = form.dataset.msgOk;
+    } catch (err) {
+      submit.disabled = false;
+      status.textContent = form.dataset.msgErr;
+    }
+  });
+</script>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-row">
+    <span>© 2026 Bloom Systems Oy</span>
+    <span>Helsinki · Finland</span>
+    <nav class="foot-nav">
+      <a href="../../index.html">Home</a>
+      <a href="../rss.xml">RSS</a>
+      <a href="../../privacy/index.html">Privacy notice</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

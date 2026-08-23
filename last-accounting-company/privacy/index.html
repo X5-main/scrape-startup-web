@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Privacy notice — LAC" data-fi="Tietosuojaseloste — LAC">Privacy notice — LAC</title>
+<meta name="description" data-en="How Last Accounting Company processes website and service data — controller, purposes, Google API data, retention, rights." data-fi="Miten Last Accounting Company käsittelee verkkosivuston ja palvelun tietoja — rekisterinpitäjä, käyttötarkoitukset, Google-rajapintatiedot, säilytysaika, oikeudet." content="How Last Accounting Company processes website and service data — controller, purposes, Google API data, retention, rights.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://lastaccountingcompany.com/privacy">
+<link rel="icon" type="image/png" href="../favicon__v-5.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon__v-5.png">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
+<script>
+  // Same language-detection as index.html so the toggle persists across pages.
+  (function () {
+    try {
+      var lang = null;
+      var qs = new URLSearchParams(window.location.search).get('lang');
+      if (qs === 'fi' || qs === 'en') lang = qs;
+      if (!lang) {
+        var saved = localStorage.getItem('lac-lang');
+        if (saved === 'fi' || saved === 'en') lang = saved;
+      }
+      if (!lang) {
+        var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone) || '';
+        if (tz === 'Europe/Helsinki') lang = 'fi';
+      }
+      if (lang !== 'fi') lang = 'en';
+      document.documentElement.lang = lang;
+    } catch (e) {
+      document.documentElement.lang = 'en';
+    }
+  })();
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:    #1d1d1f;
+    --paper:  #ffffff;
+    --mid:    #6e6e73;
+    --rule:   rgba(0, 0, 0, 0.08);
+    --font-body: "Satoshi", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-heading: "Cabinet Grotesk", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    --font-logo: Baskerville, "Baskerville Old Face", "Libre Baskerville", "Times New Roman", serif;
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--font-body); font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Show only the active language */
+  html[lang="en"] .lang-fi, html[lang="fi"] .lang-en { display: none !important; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 56px;
+    position: sticky; top: 0; background: var(--paper); z-index: 10;
+  }
+  .logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); white-space: nowrap; }
+  .logo-mark {
+    position: relative; display: inline-block; width: 38px; height: auto; line-height: 0;
+    --face-bg: var(--paper); --face-filter: brightness(0);
+  }
+  .logo-mark > img { display: block; width: 100%; height: auto; filter: var(--face-filter); }
+  .face-eye-erase { position: absolute; z-index: 4; background: var(--face-bg); border-radius: 50%; }
+  .face-eye-erase.left { left: 14.8%; top: 38.8%; width: 23%; height: 30.5%; }
+  .face-eye-erase.right { left: 75.2%; top: 48.2%; width: 15.7%; height: 20.8%; }
+  .face-eye {
+    position: absolute; z-index: 5; inset: 0;
+    background: url('../brand/face-only.png') center / 100% 100% no-repeat;
+    filter: var(--face-filter); opacity: 1; will-change: transform, opacity;
+  }
+  .face-eye.left { clip-path: inset(38.5% 61.8% 30.5% 14.2%); }
+  .face-eye.right { clip-path: inset(46.8% 8% 30.2% 73.8%); }
+  @media (prefers-reduced-motion: no-preference) {
+    .face-eye { animation: faceEyesLook 9.5s ease-in-out 0.7s infinite; }
+    @keyframes faceEyesLook {
+      0%, 68%, 100% { transform: translateX(0); opacity: 1; }
+      72% { transform: translateX(4.2%); opacity: 1; }
+      78% { transform: translateX(4.2%); opacity: 1; }
+      84% { transform: translateX(-3.2%); opacity: 1; }
+      90% { transform: translateX(-3.2%); opacity: 1; }
+      96% { transform: translateX(0); opacity: 1; }
+    }
+  }
+  .logo-wordmark { font-family: var(--font-logo); font-size: 21px; font-weight: 400; line-height: 1; letter-spacing: 0; }
+  .nav-right { display: flex; gap: 24px; align-items: center; }
+  .lang-toggle { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.075em; color: var(--mid); display: inline-flex; gap: 4px; align-items: center; }
+  .lang-toggle button { background: none; border: none; color: var(--mid); cursor: pointer; padding: 0 4px; font: inherit; letter-spacing: inherit; }
+  .lang-toggle button:hover { color: var(--ink); }
+  html[lang="en"] .lang-toggle button[data-set-lang="en"],
+  html[lang="fi"] .lang-toggle button[data-set-lang="fi"] { color: var(--ink); }
+  .lang-toggle .sep { color: var(--rule); }
+  .nav-back {
+    font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.075em;
+    text-transform: uppercase; color: var(--mid); text-decoration: none;
+  }
+  .nav-back:hover { color: var(--ink); }
+
+  main { max-width: 760px; margin: 0 auto; padding: 80px 56px 120px; }
+  h1 {
+    font-family: var(--font-heading); font-weight: 700;
+    font-size: clamp(36px, 4.5vw, 56px); line-height: 1.1; letter-spacing: -0.02em;
+    margin-bottom: 16px; overflow-wrap: anywhere;
+  }
+  .meta {
+    font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.075em;
+    color: var(--mid); text-transform: uppercase; margin-bottom: 56px;
+  }
+  h2 {
+    font-family: var(--font-heading); font-weight: 700;
+    font-size: 22px; line-height: 1.3; letter-spacing: -0.01em;
+    margin: 48px 0 16px; overflow-wrap: anywhere;
+  }
+  h3 { overflow-wrap: anywhere; }
+  p { font-size: 16px; margin-bottom: 16px; max-width: 640px; overflow-wrap: anywhere; }
+  ul { margin: 0 0 16px 22px; max-width: 640px; }
+  li { font-size: 16px; margin-bottom: 8px; overflow-wrap: anywhere; }
+  strong { font-weight: 500; }
+  a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; overflow-wrap: anywhere; }
+  a:hover { color: var(--mid); }
+  code {
+    font-family: var(--font-body); font-size: 13px; font-weight: 500;
+    background: rgba(29, 29, 31, 0.05); padding: 1px 6px; border-radius: 3px;
+  }
+
+  footer {
+    border-top: 1px solid var(--rule); padding: 32px 56px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+    font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.075em;
+    color: var(--mid); text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    nav, footer { padding-left: 24px; padding-right: 24px; }
+    .logo-mark { width: 32px; }
+    .logo-wordmark { display: none; }
+    main { padding: 56px 24px 80px; }
+  }
+</style>
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-8Tpn3_z8XdzFmEGWDpZnV.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">
+    <span class="logo-mark" aria-hidden="true">
+      <img src="../brand/face-only.png" alt="" width="744" height="522">
+      <span class="face-eye-erase left"></span>
+      <span class="face-eye-erase right"></span>
+      <span class="face-eye left"></span>
+      <span class="face-eye right"></span>
+    </span>
+    <span class="logo-wordmark">Last Accounting Company</span>
+  </a>
+  <div class="nav-right">
+    <span class="lang-toggle" aria-label="Language">
+      <button type="button" data-set-lang="en">EN</button>
+      <span class="sep">/</span>
+      <button type="button" data-set-lang="fi">FI</button>
+    </span>
+    <a href="../index.html" class="nav-back"><span class="lang-en">← Back</span><span class="lang-fi">← Takaisin</span></a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ─── ENGLISH ─── -->
+<section class="lang-en">
+  <h1>Privacy notice</h1>
+  <p class="meta">Last updated 5 August 2026 · GDPR Art. 13 / Finnish Tietosuojalaki</p>
+
+  <p>This notice describes how Last Accounting Company ("LAC") handles personal data from this website and from the LAC accounting service. We've kept it short on purpose: we collect the data needed to respond to signups and to provide accounting work for customers.</p>
+
+  <h2>1. Who is the controller</h2>
+  <p>
+    <strong>Bloom Systems Oy</strong> (Y-tunnus 3616618-4), Helsinki, Finland — operating as <em>Last Accounting Company</em>.<br>
+    Contact for any privacy matter: <a href="mailto:hello@lastaccountingcompany.com">hello@lastaccountingcompany.com</a>.
+  </p>
+
+  <h2>2. What we collect</h2>
+  <p>From the signup form:</p>
+  <ul>
+    <li><strong>Required</strong> — your name, company name, email address, the language you used, and the time you submitted.</li>
+    <li><strong>Optional</strong> — your phone number, and anything you choose to write about your firm, accountant, payroll, invoices, timeline, or current pain points.</li>
+    <li><strong>Technical</strong> — your browser's user-agent string and the referring URL, captured automatically when you submit. We use these to spot bot submissions and understand how people find us.</li>
+    <li><strong>Analytics</strong> — aggregate page-view and event counts through Plausible Analytics, including page URL, referrer, browser, operating system, device type, and approximate location. Plausible does not use cookies, store raw IP addresses, or receive signup form contents.</li>
+  </ul>
+  <p>If you use the LAC customer portal and choose to connect a Google account:</p>
+  <ul>
+    <li><strong>Gmail</strong> — we request read-only access so Björn can search and read messages, attachments, receipts, invoices, contracts, and bookkeeping context that you have chosen to make available for accounting work.</li>
+    <li><strong>Google Drive</strong> — we request read-only access so Björn can inspect accounting files and Google Sheets you already keep in Drive.</li>
+    <li><strong>OAuth account and token data</strong> — we store the connected Google account email, non-secret connection status, and OAuth token material needed to refresh the read-only grant.</li>
+  </ul>
+  <p>These Google grants are read-only. LAC does not send, modify, delete, move, share, or create Gmail or Drive content through them.</p>
+  <p>The site also stores your language preference (<code>lac-lang</code>) in your browser's local storage. This never leaves your device.</p>
+
+  <h2>3. Why we collect it and on what legal basis</h2>
+  <ul>
+    <li><strong>Purpose</strong> — to respond to your signup, create a lead in our CRM, contact you about LAC, and understand whether our service fits your company.</li>
+    <li><strong>Service purpose</strong> — to provide the accounting service for customers: finding source documents, attaching evidence, reconciling books, preparing review materials, and maintaining an audit trail.</li>
+    <li><strong>Lawful basis</strong> — your <strong>consent</strong> (GDPR Art. 6(1)(a)), given by submitting the form. We also rely on <strong>legitimate interest</strong> (Art. 6(1)(f)) for understanding our prospective market — a low-impact use balanced by the small amount of data we collect.</li>
+  </ul>
+  <p>We do not intentionally request special-category data. Connected Gmail or Google Drive content may contain such data if the user stores it there. If it does, we apply the same purpose, access, and security restrictions described in this notice. We do not make decisions based only on automated processing.</p>
+
+  <h2>4. Who else sees this data</h2>
+  <p>The signup data is stored in <strong>Google Cloud Firestore</strong>, which acts as our processor under GDPR Art. 28. The database lives in the EU multi-region <code>eur3</code> (Belgium + Netherlands).</p>
+  <p>Signup entries — including entries submitted before 2 July 2026 — are also synced to <strong>Zero</strong> (Zero Technologies Oy, Finland), the customer-relationship system we use to keep track of signups and stay in touch. Zero likewise acts as our processor under Art. 28 and hosts the data in the EU. Some of Zero's sub-processors operate outside the EEA; those transfers are covered by Standard Contractual Clauses and the other GDPR Chapter V safeguards in Zero's <a href="https://zero.inc/policies/data-processing-agreement" target="_blank" rel="noopener">data processing agreement</a>.</p>
+  <p>A lead summary — such as your name, company, email, phone number, and other business context you submitted — is posted to LAC's internal <strong>Slack</strong> channel so our team can follow up. Slack Technologies Limited, part of Salesforce, acts as our processor. Unless Slack data residency is enabled, Slack stores customer data in the United States; transfers are protected by Slack's <a href="https://slack.com/terms-of-service/data-processing" target="_blank" rel="noopener">data processing addendum</a>, Standard Contractual Clauses, and applicable Data Privacy Framework commitments. See Slack's <a href="https://slack.com/help/articles/360035633934-Data-residency-for-Slack" target="_blank" rel="noopener">data-residency information</a>.</p>
+  <p>This site uses <strong>Plausible Analytics</strong> (Plausible Insights OÜ, Estonia) for cookie-free aggregate website analytics on EU-hosted infrastructure. Plausible processes only usage measurements for us, not the contents of signup forms.</p>
+  <p>To keep automated spam out of the signup form, this site is protected by <strong>Google reCAPTCHA Enterprise</strong>. When you load the page, Google processes technical signals about your browser and interaction (such as IP address and device information) to distinguish people from bots; this may involve transfers outside the EEA under Google's GDPR Chapter V safeguards. The Google <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply. reCAPTCHA does not read what you type into the form.</p>
+  <p>This site loads typefaces from <strong>Fontshare</strong>; your IP address may be processed when fonts are fetched.</p>
+  <p>We will never sell your data or share it with anyone for marketing purposes.</p>
+
+  <h3>Google API data used in the Service</h3>
+  <p>When you connect Gmail or Google Drive, Google provides data to LAC only after you complete Google's OAuth consent flow. The grants are read-only. We use Google user data only to provide or improve the user-facing accounting features you enabled, keep the service secure, comply with law, and maintain accounting records and audit trails.</p>
+  <p><strong>Sharing and disclosure.</strong> Google Cloud EMEA Limited processes and stores Google user data as the provider of LAC's application hosting, databases, file storage, and backups. OpenAI Ireland Ltd. may process the limited content needed by Björn to find, extract, classify, and link accounting evidence for the user-facing accounting service. Authorized LAC accountants and reviewers may read data that the customer has affirmatively made available for the relevant accounting work. Support and security personnel may access it only with customer permission for a support request, to investigate security or abuse, or where law requires it. These parties act under confidentiality and data-processing obligations. We use applicable transfer safeguards, including the European Commission's Standard Contractual Clauses, when processing involves a transfer outside the EEA.</p>
+  <p>We do not sell Google user data, use it for advertising, disclose it to data brokers or information resellers, use it to determine creditworthiness or for lending, or disclose it to unrelated third parties. We do not use or transfer information received from Google Workspace APIs to develop, improve, or train generalized or non-personalized artificial intelligence or machine-learning models. LAC's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+  <p><strong>How we protect Google user data.</strong> LAC uses HTTPS/TLS for traffic between users, LAC, and Google APIs. Google Cloud encrypts stored customer content at rest. OAuth token material is kept in a protected server-side credential store and is not placed in the user's browser, customer workspaces, or connection database rows. Accounting evidence is separated by customer in customer-specific databases and workspaces. Access requires authenticated identities, authorization checks, and least-privilege service identities. LAC also uses operational monitoring and incident-response procedures.</p>
+  <p>Disconnecting a Google connection in LAC stops new Google API reads. It does not delete content in Google. The user can separately revoke LAC's access in their Google Account. Google-sourced material that has already become accounting evidence may be retained as part of the customer's statutory bookkeeping records and audit trail. Other Google-sourced data and OAuth token material are deleted or minimized when they are no longer needed for the service, security, incident handling, legal obligations, or accounting records.</p>
+
+  <h3>Newsletter (added 6 July 2026)</h3>
+  <p>If you subscribe to our newsletter on the <a href="../news/index.html">News</a> page, we collect your <strong>email address</strong> to send you new articles (legal basis: your consent, Art. 6(1)(a)). We use double opt-in: nothing is sent beyond a single confirmation email until you click the confirmation link. Newsletter emails are delivered by <strong>Resend</strong> (Plus Five Five, Inc., USA), our processor under Art. 28, from EU-region infrastructure; any transfers outside the EEA are covered by Standard Contractual Clauses under Resend's <a href="https://resend.com/legal/dpa" target="_blank" rel="noopener">data processing agreement</a>. Every newsletter includes an unsubscribe link; unsubscribing or asking us to delete your address removes it from the list. Unconfirmed signups are not mailed again.</p>
+
+  <h2>5. How long we keep it</h2>
+  <p>We keep signup entries for up to <strong>24 months after our last contact with you</strong>, or until you ask us to delete the entry — whichever comes first.</p>
+  <p>Google connection and accounting-evidence retention is described in the Google API data section above.</p>
+
+  <h2>6. Your rights</h2>
+  <p>Under the GDPR you can:</p>
+  <ul>
+    <li>ask for a copy of the data we hold about you (right of access);</li>
+    <li>ask us to correct anything that's wrong (rectification);</li>
+    <li>ask us to delete the entry (erasure / "right to be forgotten");</li>
+    <li>ask us to limit how we use it (restriction);</li>
+    <li>get the data in a portable form (portability);</li>
+    <li>object to processing based on legitimate interest;</li>
+    <li>withdraw your consent at any time — that doesn't affect anything we did before you withdrew.</li>
+  </ul>
+  <p>Email <a href="mailto:hello@lastaccountingcompany.com">hello@lastaccountingcompany.com</a> and we'll handle it. Usually within a few days.</p>
+  <p>If you think we've handled your data wrongly, you can complain to the Finnish Data Protection Ombudsman: <a href="https://tietosuoja.fi/en/" target="_blank" rel="noopener">tietosuoja.fi</a>.</p>
+
+  <h2>7. Updates to this notice</h2>
+  <p>If we change anything material — what we collect, why, who sees it — we'll update this page and bump the date at the top. The date always reflects the version that applies, including to entries submitted earlier.</p>
+</section>
+
+<!-- ─── FINNISH ─── -->
+<section class="lang-fi">
+  <h1>Tietosuojaseloste</h1>
+  <p class="meta">Päivitetty 5.8.2026 · GDPR 13 art. / Tietosuojalaki</p>
+
+  <p>Tämä seloste kertoo, miten Last Accounting Company ("LAC") käsittelee henkilötietoja verkkosivustolla ja LAC-kirjanpitopalvelussa. Kerromme asiat lyhyesti: keräämme tiedot, joita tarvitsemme ilmoittautumisiin vastaamiseen ja asiakkaiden kirjanpitotyön tekemiseen.</p>
+
+  <h2>1. Rekisterinpitäjä</h2>
+  <p>
+    <strong>Bloom Systems Oy</strong> (Y-tunnus 3616618-4), Helsinki, Suomi — toiminimi <em>Last Accounting Company</em>.<br>
+    Yhteydenotot tietosuoja-asioissa: <a href="mailto:hello@lastaccountingcompany.com">hello@lastaccountingcompany.com</a>.
+  </p>
+
+  <h2>2. Mitä tietoja keräämme</h2>
+  <p>Ilmoittautumislomakkeesta:</p>
+  <ul>
+    <li><strong>Pakolliset</strong> — nimesi, yrityksesi nimi, sähköpostiosoitteesi, käyttämäsi kieli ja lähetysaika.</li>
+    <li><strong>Valinnaiset</strong> — puhelinnumerosi sekä se, mitä itse kerrot yrityksestäsi, nykyisestä tilitoimistosta, palkoista, laskutuksesta, aikataulusta tai nykyisistä kipukohdista.</li>
+    <li><strong>Tekniset</strong> — selaimesi user-agent-tunniste ja viittaava URL, jotka tallentuvat automaattisesti lähetyksen yhteydessä. Käytämme näitä bottilähetysten torjumiseen ja sen ymmärtämiseen, miten kävijät löytävät sivustomme.</li>
+    <li><strong>Analytiikka</strong> — Plausible Analyticsin kautta kerättävät koostetut sivunäyttö- ja tapahtumamäärät, kuten sivun URL, viittaava sivu, selain, käyttöjärjestelmä, laitetyyppi ja likimääräinen sijainti. Plausible ei käytä evästeitä, tallenna raakoja IP-osoitteita tai saa ilmoittautumislomakkeen sisältöä.</li>
+  </ul>
+  <p>Jos käytät LAC-asiakasportaalia ja päätät yhdistää Google-tilin:</p>
+  <ul>
+    <li><strong>Gmail</strong> — pyydämme vain lukuoikeuden, jotta Björn voi hakea ja lukea viestejä, liitteitä, kuitteja, laskuja, sopimuksia ja kirjanpidon kannalta tarpeellista kontekstia, jonka olet päättänyt antaa kirjanpitotyöhön.</li>
+    <li><strong>Google Drive</strong> — pyydämme vain lukuoikeuden, jotta Björn voi tarkastaa kirjanpitotiedostoja ja Google Sheetsejä, joita säilytät Drivessä.</li>
+    <li><strong>OAuth-tili- ja tunnistetiedot</strong> — tallennamme yhdistetyn Google-tilin sähköpostiosoitteen, ei-salaisen yhteyden tilatiedon ja OAuth-tunnisteet, joita tarvitaan lukuoikeuden päivittämiseen.</li>
+  </ul>
+  <p>Nämä Google-yhteydet ovat vain lukuoikeuksia. LAC ei lähetä, muokkaa, poista, siirrä, jaa tai luo Gmail- tai Drive-sisältöä niiden avulla.</p>
+  <p>Sivusto tallentaa myös kielivalintasi (<code>lac-lang</code>) selaimesi paikalliseen muistiin. Se ei poistu laitteeltasi.</p>
+
+  <h2>3. Miksi keräämme ja millä oikeusperusteella</h2>
+  <ul>
+    <li><strong>Käyttötarkoitus</strong> — vastata ilmoittautumiseesi, luoda liidi CRM-järjestelmäämme, ottaa sinuun yhteyttä LAC:sta sekä ymmärtää, sopiiko palvelumme yrityksellesi.</li>
+    <li><strong>Palvelun käyttötarkoitus</strong> — tuottaa asiakkaiden kirjanpitopalvelu: etsiä tositteita, liittää evidenssiä, täsmäyttää kirjanpito, valmistella tarkastusaineistoa ja ylläpitää audit trailia.</li>
+    <li><strong>Oikeusperuste</strong> — <strong>suostumuksesi</strong> (tietosuoja-asetuksen 6 art. 1 kohdan a alakohta), joka syntyy, kun lähetät lomakkeen. Lisäksi nojaamme markkinaymmärryksen osalta <strong>oikeutettuun etuun</strong> (6 art. 1 kohdan f alakohta) — vähän tietoa, vähän vaikutusta sinulle, asianmukainen tasapaino.</li>
+  </ul>
+  <p>Emme pyydä tarkoituksella erityisiin henkilötietoryhmiin kuuluvia tietoja. Yhdistetyn Gmailin tai Google Driven sisältö voi kuitenkin sisältää niitä, jos käyttäjä on tallentanut niitä Google-tililleen. Tällaisiin tietoihin sovelletaan tässä selosteessa kuvattuja käyttötarkoitus-, käyttöoikeus- ja tietoturvarajoituksia. Emme tee päätöksiä vain automaattisen käsittelyn perusteella.</p>
+
+  <h2>4. Kuka muu näkee nämä tiedot</h2>
+  <p>Ilmoittautumistiedot tallennetaan <strong>Google Cloud Firestoreen</strong>, joka toimii käsittelijänämme tietosuoja-asetuksen 28 art. mukaisesti. Tietokanta sijaitsee EU:n monialueella <code>eur3</code> (Belgia ja Alankomaat).</p>
+  <p>Ilmoittautumistiedot — myös ennen 2.7.2026 lähetetyt — synkronoidaan lisäksi <strong>Zero</strong>-asiakkuudenhallintajärjestelmään (Zero Technologies Oy, Suomi), jonka avulla pidämme kirjaa ilmoittautumisista ja yhteydenpidosta. Zero toimii niin ikään käsittelijänämme 28 art. mukaisesti ja säilyttää tiedot EU:ssa. Osa Zeron alikäsittelijöistä toimii ETA-alueen ulkopuolella; siirrot on suojattu vakiosopimuslausekkein ja muin tietosuoja-asetuksen V luvun suojatoimin Zeron <a href="https://zero.inc/policies/data-processing-agreement" target="_blank" rel="noopener">tietojenkäsittelysopimuksen</a> mukaisesti.</p>
+  <p>Liidistä julkaistaan yhteenveto — esimerkiksi nimesi, yrityksesi, sähköpostiosoitteesi, puhelinnumerosi ja muu lähettämäsi yritystä koskeva tieto — LAC:n sisäiselle <strong>Slack</strong>-kanavalle, jotta tiimimme voi hoitaa yhteydenoton. Salesforceen kuuluva Slack Technologies Limited toimii käsittelijänämme. Jos Slackin dataresidenssiä ei ole otettu käyttöön, Slack säilyttää asiakasdataa Yhdysvalloissa; siirrot on suojattu Slackin <a href="https://slack.com/terms-of-service/data-processing" target="_blank" rel="noopener">tietojenkäsittelysopimuksella</a>, vakiosopimuslausekkeilla ja soveltuvilla Data Privacy Framework -sitoumuksilla. Katso Slackin <a href="https://slack.com/help/articles/360035633934-Data-residency-for-Slack" target="_blank" rel="noopener">dataresidenssiä koskevat tiedot</a>.</p>
+  <p>Automaattisen roskapostin torjumiseksi sivustoa suojaa <strong>Google reCAPTCHA Enterprise</strong>. Kun lataat sivun, Google käsittelee selaimesi ja käyttösi teknisiä signaaleja (kuten IP-osoitetta ja laitetietoja) erottaakseen ihmiset boteista; tähän voi liittyä siirtoja ETA-alueen ulkopuolelle Googlen tietosuoja-asetuksen V luvun suojatoimien mukaisesti. Sovellettavina ovat Googlen <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">tietosuojakäytäntö</a> ja <a href="https://policies.google.com/terms" target="_blank" rel="noopener">käyttöehdot</a>. reCAPTCHA ei lue lomakkeeseen kirjoittamiasi tietoja.</p>
+  <p>Sivusto käyttää <strong>Plausible Analyticsia</strong> (Plausible Insights OÜ, Viro) evästeettömään ja koostettuun verkkosivuanalytiikkaan EU:ssa sijaitsevalla infrastruktuurilla. Plausible käsittelee puolestamme vain käyttömittauksia, ei ilmoittautumislomakkeiden sisältöä.</p>
+  <p>Sivusto lataa kirjasimet <strong>Fontshare</strong>-palvelusta, jolloin IP-osoitettasi voidaan käsitellä kirjasimia ladattaessa.</p>
+  <p>Emme koskaan myy tietojasi tai jaa niitä markkinointitarkoituksiin.</p>
+
+  <h3>Palvelussa käytettävät Google-rajapintatiedot</h3>
+  <p>Kun yhdistät Gmailin tai Google Driven, Google luovuttaa tietoja LAC:lle vasta sen jälkeen, kun olet hyväksynyt Googlen OAuth-suostumuksen. Yhteydet antavat vain lukuoikeuden. Käytämme Google-käyttäjätietoja vain aktivoimiesi asiakasnäkyvien kirjanpitotoimintojen tuottamiseen tai parantamiseen, palvelun suojaamiseen, lain noudattamiseen sekä kirjanpitoaineiston ja audit trailin ylläpitämiseen.</p>
+  <p><strong>Tietojen luovuttaminen ja käsittely.</strong> Google Cloud EMEA Limited käsittelee ja säilyttää Google-käyttäjätietoja LAC:n sovelluksen, tietokantojen, tiedostovarastojen ja varmuuskopioiden palveluntarjoajana. OpenAI Ireland Ltd. voi käsitellä rajattua sisältöä, jota Björn tarvitsee kirjanpitoaineiston etsimiseen, tietojen poimintaan, luokitteluun ja yhdistämiseen asiakasnäkyvässä kirjanpitopalvelussa. LAC:n valtuutettu kirjanpitäjä tai tarkastaja voi lukea aineistoa, jonka asiakas on nimenomaisesti antanut kyseistä kirjanpitotyötä varten. Tuki- ja tietoturvahenkilöt voivat päästä tietoihin vain asiakkaan luvalla tukipyynnön ratkaisemiseksi, tietoturvan tai väärinkäytöksen selvittämiseksi tai lain vaatimuksesta. Näitä osapuolia sitovat salassapito- ja tietojenkäsittelyvelvoitteet. Jos käsittelyyn liittyy siirto ETA-alueen ulkopuolelle, käytämme sovellettavia suojatoimia, kuten Euroopan komission vakiosopimuslausekkeita.</p>
+  <p>Emme myy Google-käyttäjätietoja, käytä niitä mainontaan, luovuta niitä datanvälittäjille tai tiedon jälleenmyyjille, käytä niitä luottokelpoisuuden arviointiin tai luotonantoon emmekä luovuta niitä asiaankuulumattomille kolmansille osapuolille. Emme käytä tai siirrä Google Workspace -rajapinnoista saatuja tietoja yleisten tai personoimattomien tekoäly- tai koneoppimismallien kehittämiseen, parantamiseen tai kouluttamiseen. LAC käyttää ja siirtää Google-rajapinnoista saatuja tietoja <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a> -käytännön ja sen Limited Use -vaatimusten mukaisesti.</p>
+  <p><strong>Google-käyttäjätietojen suojaaminen.</strong> LAC käyttää HTTPS/TLS-suojausta käyttäjien, LAC:n ja Google-rajapintojen välisessä liikenteessä. Google Cloud salaa tallennetut asiakastiedot levossa. OAuth-tunnisteet säilytetään suojatussa palvelinpuolen tunnistevarastossa. Niitä ei tallenneta käyttäjän selaimeen, asiakkaan työtilaan tai yhteyden tietokantariville. Kirjanpitoaineisto erotetaan asiakaskohtaisiin tietokantoihin ja työtiloihin. Käyttö edellyttää todennettua käyttäjää, käyttöoikeustarkastusta ja vähimmillä oikeuksilla toimivia palvelutunnuksia. LAC käyttää myös toiminnan valvontaa ja tietoturvapoikkeamien käsittelymenettelyjä.</p>
+  <p>Google-yhteyden poistaminen käytöstä LAC:ssa lopettaa uudet Google-rajapintojen haut. Se ei poista sisältöä Googlesta. Käyttäjä voi erikseen perua LAC:n käyttöoikeuden Google-tilinsä asetuksissa. Kirjanpidon tositteeksi jo kopioitu Google-aineisto voidaan säilyttää osana asiakkaan lakisääteistä kirjanpitoaineistoa ja audit trailia. Muu Google-aineisto ja OAuth-tunnisteet poistetaan tai minimoidaan, kun niitä ei enää tarvita palveluun, tietoturvaan, poikkeamien käsittelyyn, lakisääteisiin velvoitteisiin tai kirjanpitoaineistoon.</p>
+
+  <h3>Uutiskirje (lisätty 6.7.2026)</h3>
+  <p>Jos tilaat uutiskirjeemme <a href="../news/index.html">News</a>-sivulla, keräämme <strong>sähköpostiosoitteesi</strong> uusien artikkelien lähettämistä varten (oikeusperuste: suostumuksesi, 6 art. 1 kohta a alakohta). Käytämme kaksivaiheista vahvistusta: lähetämme vain yhden vahvistusviestin, eikä mitään muuta ennen kuin klikkaat vahvistuslinkkiä. Uutiskirjeet toimittaa <strong>Resend</strong> (Plus Five Five, Inc., USA), käsittelijämme 28 art. mukaisesti, EU-alueen infrastruktuurista; mahdolliset siirrot ETA-alueen ulkopuolelle on suojattu vakiosopimuslausekkein Resendin <a href="https://resend.com/legal/dpa" target="_blank" rel="noopener">tietojenkäsittelysopimuksen</a> mukaisesti. Jokaisessa uutiskirjeessä on peruutuslinkki; peruutus tai poistopyyntö poistaa osoitteesi listalta. Vahvistamattomiin tilauksiin ei lähetetä lisäviestejä.</p>
+
+  <h2>5. Säilytysaika</h2>
+  <p>Säilytämme ilmoittautumistietoja enintään <strong>24 kuukautta viimeisestä yhteydenotostamme</strong>, tai kunnes pyydät meitä poistamaan tiedot — sen mukaan kumpi tulee ensin.</p>
+  <p>Google-yhteyden ja kirjanpitoaineiston säilytys on kuvattu edellä Google-rajapintatietojen kohdassa.</p>
+
+  <h2>6. Sinun oikeutesi</h2>
+  <p>Tietosuoja-asetuksen mukaan sinulla on oikeus:</p>
+  <ul>
+    <li>saada tieto sinusta tallennetuista tiedoista (tarkastusoikeus);</li>
+    <li>saada virheelliset tiedot oikaistuksi;</li>
+    <li>pyytää tietojesi poistamista ("oikeus tulla unohdetuksi");</li>
+    <li>rajoittaa käsittelyä;</li>
+    <li>saada tiedot siirtokelpoisessa muodossa;</li>
+    <li>vastustaa oikeutettuun etuun perustuvaa käsittelyä;</li>
+    <li>peruuttaa suostumuksesi milloin tahansa — peruutus ei vaikuta sitä edeltäneeseen käsittelyyn.</li>
+  </ul>
+  <p>Lähetä viesti osoitteeseen <a href="mailto:hello@lastaccountingcompany.com">hello@lastaccountingcompany.com</a>, niin hoidamme asian — yleensä muutamassa päivässä.</p>
+  <p>Jos koet, että olemme käsitelleet tietojasi virheellisesti, voit tehdä valituksen tietosuojavaltuutetulle: <a href="https://tietosuoja.fi/" target="_blank" rel="noopener">tietosuoja.fi</a>.</p>
+
+  <h2>7. Muutokset tähän selosteeseen</h2>
+  <p>Jos teemme olennaisia muutoksia — mitä keräämme, miksi, kenelle näytämme — päivitämme tämän sivun ja yläosan päivämäärän. Päivämäärä kertoo aina voimassa olevan version, joka koskee myös aiemmin lähetettyjä tietoja.</p>
+</section>
+
+</main>
+
+<footer>
+  <span>© 2026 Bloom Systems Oy</span>
+  <span><span class="lang-en">Helsinki · Finland</span><span class="lang-fi">Helsinki · Suomi</span></span>
+  <span><a href="../index.html"><span class="lang-en">Back to home</span><span class="lang-fi">Etusivulle</span></a></span>
+</footer>
+
+<script>
+  (function () {
+    function applyMeta(lang) {
+      document.querySelectorAll('[data-en][data-fi]').forEach(function (el) {
+        var v = el.getAttribute('data-' + lang);
+        if (v == null) return;
+        if (el.tagName === 'TITLE') el.textContent = v;
+        else if (el.tagName === 'META') el.setAttribute('content', v);
+      });
+    }
+    function setLang(lang) {
+      if (lang !== 'fi') lang = 'en';
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('lac-lang', lang); } catch (e) {}
+      applyMeta(lang);
+    }
+    applyMeta(document.documentElement.lang === 'fi' ? 'fi' : 'en');
+    document.querySelectorAll('.lang-toggle button[data-set-lang]').forEach(function (btn) {
+      btn.addEventListener('click', function () { setLang(btn.getAttribute('data-set-lang')); });
+    });
+  })();
+</script>
+
+</body>
+</html>
