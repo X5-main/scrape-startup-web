@@ -104,6 +104,21 @@ def _restore_ref(url, pagedir="/"):
 
 _ATTR_RE = re.compile(rb'\b(href|src|poster)=("[^"]*"|\'[^\']*\')')
 _SRCSET_RE = re.compile(rb'\bsrcSet=("[^"]*"|\'[^\']*\')')
+# Script/style bodies are opaque to attribute rewriting: JS template literals
+# and CSS url() builders byte-match src=/href= attributes but are runtime
+# code, not markup. Rewriting them corrupts JS-rendered refs (lyzr 2026-08-24:
+# `<img src="${d.logo}">` became `/agent-tracker/https://www.lyzr.ai/...`,
+# `'<img src="' + thumbUrl(id)` became `/videos/https://img.youtube.com/...`);
+# the browser's own parser also ends a script/style at the first close tag, so
+# a .*? span is byte-faithful.
+# lyzr (D46): JS builds <img>/<video> markup from template literals and data
+# blobs holding absolute URLs (`src="${d.logo}"`, `'<img src="' + thumbUrl(..)`).
+# A byte-global src=/href= rewrite corrupted those refs into
+# `/agent-tracker/https://www.lyzr.ai/...` 404s. Span-mask script/style BODIES
+# for lyzr; every other mirror keeps the original global restore pass
+# (Next.js RSC payload contents were historically load-bearing for hydration).
+_NON_MARKUP_RE = re.compile(rb'(<(?:script|style)\b[^>]*>)(.*?)(</(?:script|style)\s*>)', re.S)
+_MASK_SCRIPT_BODIES = bool(re.search(r"lyzr\.ai", ORIGIN))
 
 
 def _restore_live_html(body, pagedir="/"):
@@ -143,8 +158,37 @@ def _restore_live_html(body, pagedir="/"):
                 out.append(restored + (" " + " ".join(parts[1:]) if len(parts) > 1 else ""))
         return ('srcSet=%s%s%s' % (quote, ", ".join(out), quote)).encode()
 
-    body = _ATTR_RE.sub(_repl, body)
-    return _SRCSET_RE.sub(_srcset_repl, body)
+    if not _MASK_SCRIPT_BODIES:
+        # Historical global pass for non-lyzr mirrors: Next.js RSC payload
+        # bodies were rewritten too; keep that byte-for-byte.
+        body = _ATTR_RE.sub(_repl, body)
+        return _SRCSET_RE.sub(_srcset_repl, body)
+
+    # Rewrite only markup segments; splice script/style bodies back untouched.
+    out = []
+    pos = 0
+    for m in _NON_MARKUP_RE.finditer(body):
+        seg = body[pos:m.start()] if m.start() > pos else b""
+        if seg:
+            seg = _ATTR_RE.sub(_repl, seg)
+            seg = _SRCSET_RE.sub(_srcset_repl, seg)
+        out.append(seg)
+        # Open tag attrs (src=/href= on <script>/<style> itself) are still
+        # markup: restore them exactly as the pre-2026-08-24 global pass did.
+        # Only the tag BODY (JS/CSS runtime text) is kept byte-verbatim.
+        tag = m.group(1)
+        if tag:
+            tag = _ATTR_RE.sub(_repl, tag)
+            tag = _SRCSET_RE.sub(_srcset_repl, tag)
+        out.append(tag + m.group(2) + m.group(3))
+        pos = m.end()
+    tail = body[pos:]
+    if tail:
+        tail = _ATTR_RE.sub(_repl, tail)
+        tail = _SRCSET_RE.sub(_srcset_repl, tail)
+    out.append(tail)
+    return b"".join(out)
+
 
 
 def _dpl_alternatives(relpath):
