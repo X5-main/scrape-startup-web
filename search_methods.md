@@ -1185,3 +1185,49 @@ render probes — the dual-URL variant hung on its second target; split per URL)
   — the AX-visible logo subset tracks viewport timing, so upstream/downstream
   capture skew shows different named clients per load. Compare against the
   HTML alt inventory, not the captured frame; runtime slice ≠ parity failure.
+## D37 close — Allia Health (allia.health)
+
+- **Winner:** YC S26 "Clinically Integrated Group for Mental Health" (first
+  full-stack, AI-native clinical group for mental health; 600+ providers;
+  AI-native ✓, batch record = ≤24-mo funding). 19 on-disk HTML routes
+  mirrored (9.4 MB), served on **8935** (+8936 zoom-free). robots.txt
+  allow-all. Framer site → framerusercontent.com assets + events.framer.com
+  analytics left external per cross-host rule; subdomain apps
+  (app/worksheets/transparency/help/support.allia.health), cal.com,
+  googletagmanager.com, unpkg.com are live links, not mirrored.
+- **Screening:** roster F25=146 / W26=199 / S26=237 / F26=18 → 600 raw → 572
+  pool → 287 rankable; signal top: spaceflow 7.40, perfectly 7.30, karumi
+  7.10, minro 7.10, trylapis 7.10, talentpluto 7.10, allia 7.00, bernard
+  7.00. First fab_cdp_shot pass (non-scrolling) unfairly blanked lazy
+  sections (allia 5 / trylapis 4 / talentpluto 5) → **discarded, use
+  d31_full.mjs for screening** (scroll-flushed): karumi 6, trylapis 6,
+  bernard 6, minro 4, talentpluto 4, **allia 7**; allia full/top/bottom
+  bands 7/7/7 → binding held (D36 precedent). spaceflow/perfectly skipped
+  (D35 vision-rejected 5/10).
+- **Crawl/serve:** depth 6 → "no missing referenced assets" (sweep clean, no
+  vendoring needed); all 19 routes HTTP 200 on replica; text parity 15/15
+  (first pass 13/15, /network + /blog −40 chars = content-visibility
+  timing, re-run MATCH); render probe LIVE == REPLICA (title / height
+  11894 / innerText 6322, zero console errors, identical 6×
+  net::ERR_ABORTED Fetch class).
+- **Per-HOST Chrome zoom trap (new):** replica host `127.0.0.1` had a saved
+  **80% browser zoom that persisted across ports** (8935 AND fresh 8936 both
+  80%) → window captures 58% pixel-differed while content was true. Detect
+  via the AX "Zoom: 80%" button label in the cua-driver dump; fix =
+  cua-driver `hotkey {"pid":61010,"window_id":46026,"keys":["cmd","0"],
+  "delivery_mode":"foreground"}` (plain key send refused:
+  `same_pid_keyboard_ambiguity` — process-scoped keys can't be proven to
+  reach one window; foreground delivers globally, `effect: unverifiable`).
+  The computer tool is unavailable (no macOS Screen Recording grant) —
+  cua-driver hotkey is the key-input path.
+- **Relay per-session CDP bridge dead:** on 9224, browser-level
+  `Target.createTarget/activateTarget/closeTarget` work but session-scoped
+  commands (`Runtime.evaluate` via attachToTarget flatten sessionId → "'…
+  wasn't found") fail — read zoom/state from the AX dump instead of CDP.
+- **Computer-use leg (cua-driver + real Chrome, window 46026, tab swap):**
+  AX web-content parity **391/391 nodes = 100.0% positional identity**
+  (role::label::value, zero diff lines; chrome chrome excluded via
+  `in_web_content`); after zoom reset the two window captures are
+  **md5-byte-identical** (dfdf6f36…, 0 / 1,270,080 px differ = 0.0% — the
+  strongest parity evidence yet, beating D36's ~98.2%). cua vision pair
+  7/10 (byte-identical files, single judge). No broken images either side.
