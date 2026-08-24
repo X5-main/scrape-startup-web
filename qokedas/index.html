@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qokedas — teaching models to decode the physical world</title>
+<meta name="description" content="A small lab teaching models to decode the physical world and operate the instruments it runs on. Backed by Y Combinator.">
+<link rel="preconnect" href="index.html">
+<link rel="preconnect" href="index.html" crossorigin>
+<link href="css2/index__family-Familjen-Grotesk-wght-500-600-700-family-Spline-Sans-wght-300-400-500-fam.html" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper: #111111;
+    --ink:   #ececec;
+    --soft:  #8a8a8a;
+    --rule:  rgba(236,236,236,.14);
+    --body:  rgba(236,236,236,.74);
+    --yc:    #ff5c26;
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  body {
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Spline Sans', system-ui, sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 68rem; margin: 0 auto; padding: 2rem 1.6rem 7rem; }
+
+  .topbar {
+    display: flex; flex-wrap: wrap; gap: .7rem 2rem;
+    align-items: baseline; justify-content: space-between;
+    padding-bottom: 1.1rem; border-bottom: 1px solid var(--rule);
+  }
+
+  .mono {
+    font-family: 'Martian Mono', ui-monospace, monospace;
+    font-weight: 300; font-size: .62rem;
+    letter-spacing: .2em; text-transform: uppercase;
+  }
+
+  .mark {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    letter-spacing: -.015em;
+  }
+
+  .grid { display: grid; grid-template-columns: 1fr; gap: 3.2rem; margin-top: 4rem; }
+  @media (min-width: 62rem) {
+    .page { padding: 2.4rem 3rem 9rem; }
+    .grid { grid-template-columns: 20rem 1fr; gap: 6rem; margin-top: 6.5rem; }
+    .rail { position: sticky; top: 3rem; align-self: start; }
+  }
+
+  /* the instrument */
+  .instrument {
+    display: block; width: 100%; max-width: 20rem;
+    aspect-ratio: 1 / 1; height: auto;
+    touch-action: pan-y;
+  }
+  @media (max-width: 62rem) { .instrument { max-width: 15rem; margin-inline: auto; } }
+
+  /* text */
+  .thesis {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 700; font-size: clamp(2.4rem, 6.6vw, 4.1rem);
+    line-height: .96; letter-spacing: -.04em;
+    max-width: 14ch; margin-bottom: 2.6rem;
+  }
+
+  .notice {
+    max-width: 40rem;
+    margin: -0.6rem 0 2.6rem;
+    padding: 1.1rem 1.3rem 1.15rem;
+    border: 1px solid #4a86dd;
+    border-radius: 6px;
+    background: rgba(74,134,221,.12);
+    color: #d6e4fa;
+  }
+  .notice-tag { display: block; color: #7fb0f2; margin-bottom: .6rem; }
+  .notice p { font-size: .98rem; line-height: 1.62; margin-bottom: .8em; }
+  .notice p:last-child { margin-bottom: 0; }
+  .notice strong { font-weight: 500; color: #ffffff; }
+  .notice a { color: #ffffff; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  .notice a:hover { text-decoration-thickness: 2px; }
+
+  .memo { max-width: 40rem; }
+  .memo p { font-size: 1.0625rem; line-height: 1.72; color: var(--body); margin-bottom: 1.45em; }
+  .memo p:last-child { margin-bottom: 0; }
+  .memo strong { color: var(--ink); font-weight: 500; }
+
+  .legend {
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.06em;
+    letter-spacing: -.012em;
+    color: var(--yc);
+    white-space: nowrap;
+    background-image: linear-gradient(101deg,
+      #ff5c26 0%, #ff5c26 34%,
+      #ffab4d 43%, #ffe9a8 49%, #fff7dc 51%, #ffe9a8 53%, #ffab4d 58%,
+      #ff5c26 68%, #ff5c26 100%);
+    background-size: 320% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 18px rgba(255, 92, 38, .32);
+    animation: sheen 4.6s cubic-bezier(.5,.06,.32,1) infinite;
+  }
+  @keyframes sheen {
+    0%, 22%   { background-position: 100% 0; text-shadow: 0 0 15px rgba(255,92,38,.24); }
+    42%       { text-shadow: 0 0 23px rgba(255,150,60,.46); }
+    62%, 100% { background-position: 0 0;    text-shadow: 0 0 15px rgba(255,92,38,.24); }
+  }
+
+  .divider { height: 1px; border: 0; background: var(--rule); margin: 3.4rem 0 2.2rem; }
+
+  .contact { display: grid; gap: .55rem; }
+  .contact a {
+    justify-self: start;
+    font-family: 'Familjen Grotesk', sans-serif;
+    font-weight: 600; font-size: 1.4rem; letter-spacing: -.02em;
+    color: var(--ink); text-decoration: none; padding-bottom: .2rem;
+    background: linear-gradient(var(--ink), var(--ink)) no-repeat 0 100% / 100% 1px;
+    transition: background-size .3s cubic-bezier(.6,.1,.2,1);
+  }
+  .contact a:hover, .contact a:focus-visible { background-size: 100% 3px; }
+  .contact a:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; border-radius: 2px; }
+  .contact .where { color: var(--soft); }
+
+  .rise { opacity: 0; transform: translateY(12px); animation: rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  .d1 { animation-delay: .04s; } .d2 { animation-delay: .14s; }
+  .d3 { animation-delay: .24s; } .d4 { animation-delay: .34s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; opacity: 1; transform: none; }
+    .legend { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <div class="topbar rise d1">
+    <div class="mark">Qokedas</div>
+  </div>
+
+  <div class="grid">
+
+    <div class="rail rise d2">
+      <canvas class="instrument" width="360" height="360" role="img"
+              aria-label="A liquid mass held by surface tension. A fast swipe divides it; the pieces drift back together and merge."></canvas>
+    </div>
+
+    <div>
+      <h1 class="thesis rise d2">The world is not only software.</h1>
+
+      <aside class="notice rise d3" aria-label="We buy data">
+        <span class="mono notice-tag">We buy data</span>
+        <p>If you are a student, a chemist, a biochemist, a lab tech, or anyone sitting on real measurements (spectra, assay results, chromatograms, sensor logs, raw instrument exports) we will pay between <strong>$50 and $2,000</strong> per dataset, depending on size and quality. <a href="mailto:wilhelm@qokedas.com">Mail us.</a></p>
+        <p>If you do not have data but know someone who does, send them our way: when their data sells, you get a cut.</p>
+      </aside>
+
+      <div class="memo rise d3">
+        <p>Models are trained on the entire internet, yet most of what happens on Earth is never written down. It exists only as signals passing through instruments: spectrometers, sequencers, sensors, microscopes. Almost none of that has ever been used to train a model.</p>
+
+        <p>Our goal is to turn those signals into training data, so labs can build models that are <strong>better at science</strong>. A model trained this way should be able to read an instrument, predict what it will show, and eventually operate it.</p>
+
+        <p>Measurement is a better teacher than text. Written evaluations drift into the training set and get optimised against. A measurement doesn't care what the model expected. A reward that comes from the physical world can only be earned by learning how the physical world actually behaves.</p>
+
+        <p>We're backed by <span class="legend">Y Combinator</span>, currently in the F26 batch.</p>
+
+        <p>We're not hiring and won't reply to applications or CVs.</p>
+      </div>
+
+      <hr class="divider rise d4">
+
+      <div class="contact rise d4">
+        <a href="mailto:wilhelm@qokedas.com">wilhelm@qokedas.com</a>
+        <span class="mono where">San Francisco</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+(() => {
+  /* ------------------------------------------------------------------
+     A liquid as a scalar field.
+
+     Every body contributes a potential (r/d)^4 to the plane; the ink is
+     the region where the summed potential exceeds 1. One body alone
+     traces a circle of radius r exactly. Two bodies that overlap trace
+     the merged circle exactly (their potentials add). So splitting and
+     merging are not animations — they are what the field does when two
+     centres move apart or together.
+     ------------------------------------------------------------------ */
+  const canvas = document.querySelector('.instrument');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const TAU = Math.PI * 2;
+  const W = 360, CX = 180, CY = 180, R0 = 84, A0 = Math.PI * R0 * R0;
+  const MAXB = 22, MINA = Math.PI * 6 * 6;
+
+  const ink = (getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#14191a');
+  const hex = ink.replace('#', '');
+  const IR = parseInt(hex.slice(0, 2), 16), IG = parseInt(hex.slice(2, 4), 16), IB = parseInt(hex.slice(4, 6), 16);
+
+  /* field falloff: v = (r/d)^4 - 1/CUT^4, clipped at zero, so every body
+     fades to exactly nothing at CUT radii (no seams at the window edge).
+     That shifts the iso-radius by a constant factor we undo with RFIX. */
+  const CUT = 2.4, FLOOR = 1 / Math.pow(CUT, 4), RFIX = Math.pow(1 + FLOOR, 0.25);
+
+  /* ---- bodies ------------------------------------------------------ */
+  function mk(x, y, area, vx = 0, vy = 0) {
+    return { x, y, vx, vy, area, r: Math.sqrt(area / Math.PI), cool: 0, rest: 0,
+             waves: [], seed: Math.random() * TAU };
+  }
+  const bodies = [mk(CX, CY, A0)];
+
+  function wave(b, amp, k) {
+    b.waves.push({ a: amp, k, ph: Math.random() * TAU, w: 2.4 + k * 0.7, t: 0 });
+    if (b.waves.length > 5) b.waves.shift();
+  }
+
+  /* ---- raster ------------------------------------------------------ */
+  const off = document.createElement('canvas'), octx = off.getContext('2d');
+  let F = 0, img, px8, dpr = 1, size = 0;
+
+  function setRes(n) {
+    F = n; off.width = off.height = n;
+    img = octx.createImageData(n, n); px8 = img.data;
+    for (let i = 0; i < px8.length; i += 4) { px8[i] = IR; px8[i + 1] = IG; px8[i + 2] = IB; }
+  }
+  function fit() {
+    dpr = Math.min(2, devicePixelRatio || 1);
+    const cw = canvas.clientWidth || 320;
+    size = Math.round(cw * dpr);
+    canvas.width = canvas.height = size;
+    const n = Math.max(160, Math.min(340, Math.round(size * 0.72)));
+    if (n !== F) setRes(n);
+  }
+  fit();
+  addEventListener('resize', fit);
+
+  const P = [];
+  function render(t) {
+    P.length = 0;
+    for (const b of bodies) {
+      const sp = Math.hypot(b.vx, b.vy);
+      const st = 1 + Math.min(0.32, sp / 800);            // stretched by travel
+      const ang = sp > 1 ? Math.atan2(b.vy, b.vx) : 0;
+
+      // surface modes 2 and 3 as phasors: ambient breathing + decaying ripples
+      let c2 = 0, s2 = 0, c3 = 0, s3 = 0;
+      const a2 = 0.026, a3 = 0.015;
+      c2 += a2 * Math.cos(t * 0.55 + b.seed);        s2 += a2 * Math.sin(t * 0.55 + b.seed);
+      c3 += a3 * Math.cos(-t * 0.41 + b.seed * 1.7); s3 += a3 * Math.sin(-t * 0.41 + b.seed * 1.7);
+      for (const v of b.waves) {
+        const e = v.a * (1 - Math.exp(-v.t * 12)) * Math.exp(-v.t * 1.7);
+        const ph = v.ph - v.t * v.w;
+        if (v.k === 2) { c2 += e * Math.cos(ph); s2 += e * Math.sin(ph); }
+        else           { c3 += e * Math.cos(ph); s3 += e * Math.sin(ph); }
+      }
+      const re = b.r * RFIX;
+      const reach = CUT * re * 1.12 * st;
+      P.push({ x: b.x, y: b.y, r4: re * re * re * re, cut2: reach * reach,
+               ca: Math.cos(ang), sa: Math.sin(ang), st, c2, s2, c3, s3 });
+    }
+
+    const sc = W / F, n = P.length;
+    let i = 0;
+    for (let py = 0; py < F; py++) {
+      const y = (py + 0.5) * sc;
+      for (let px = 0; px < F; px++, i += 4) {
+        const x = (px + 0.5) * sc;
+        let f = 0, g = 0;
+        for (let j = 0; j < n; j++) {
+          const q = P[j];
+          const dx = x - q.x, dy = y - q.y;
+          if (dx * dx + dy * dy > q.cut2) continue;
+          const ux = (dx * q.ca + dy * q.sa) / q.st;
+          const uy = (-dx * q.sa + dy * q.ca) * q.st;
+          const d2 = ux * ux + uy * uy;
+          if (d2 < 0.25) { f += 1e4; g += 1; continue; }
+          const d = Math.sqrt(d2), c = ux / d, s = uy / d;
+          // sin(kθ+φ) built from cos θ, sin θ — no atan2 in the hot loop
+          const w = 1 + q.c2 * (2 * c * s) + q.s2 * (c * c - s * s)
+                      + q.c3 * (3 * s - 4 * s * s * s) + q.s3 * (4 * c * c * c - 3 * c);
+          const w2 = w * w, re4 = q.r4 * w2 * w2, d4 = d2 * d2;
+          const v = re4 / d4 - FLOOR;
+          if (v <= 0) continue;
+          f += v; g += 4 * re4 / (d4 * d);               // |∇f| for analytic anti-aliasing
+        }
+        let a = g > 0 ? (f - 1) / g / sc + 0.5 : 0;   // signed distance to the surface, in pixels
+        px8[i + 3] = a <= 0 ? 0 : a >= 1 ? 255 : (a * 255) | 0;
+      }
+    }
+    octx.putImageData(img, 0, 0);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, size, size);
+    const s = size / W;
+    ctx.globalAlpha = 0.18; ctx.strokeStyle = ink; ctx.lineWidth = Math.max(1, dpr);
+    ctx.beginPath(); ctx.arc(CX * s, CY * s, R0 * s, 0, TAU); ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(off, 0, 0, size, size);
+  }
+
+  if (reduce) { render(0); draw(); return; }
+
+  /* ---- pointer ----------------------------------------------------- */
+  const ptr = { x: -1e4, y: -1e4, lt: 0, sp: 0, vx: 0, vy: 0, on: false };
+  const strokes = [];
+  let rect = null, rectAge = 9;
+
+  function place(e) {
+    if (!rect || rectAge > 0.25) { rect = canvas.getBoundingClientRect(); rectAge = 0; }
+    if (!rect.width) return null;
+    const k = W / rect.width;
+    return [(e.clientX - rect.left) * k, (e.clientY - rect.top) * k];
+  }
+  addEventListener('pointerdown', e => {
+    const p = place(e); if (!p) return;
+    ptr.x = p[0]; ptr.y = p[1]; ptr.lt = e.timeStamp; ptr.on = true; ptr.sp = 0;
+  }, { passive: true });
+  addEventListener('pointermove', e => {
+    const p = place(e); if (!p) return;
+    const [x, y] = p;
+    if (ptr.on && e.timeStamp > ptr.lt) {
+      const dx = x - ptr.x, dy = y - ptr.y, len = Math.hypot(dx, dy);
+      const dtE = Math.max(0.004, (e.timeStamp - ptr.lt) / 1000);
+      ptr.sp = len / dtE; ptr.vx = dx / dtE; ptr.vy = dy / dtE;
+      if (ptr.sp > 420 && len > 1.5)
+        strokes.push({ x0: ptr.x, y0: ptr.y, x1: x, y1: y, ux: dx / len, uy: dy / len, sp: ptr.sp });
+    }
+    ptr.x = x; ptr.y = y; ptr.lt = e.timeStamp; ptr.on = true;
+  }, { passive: true });
+  addEventListener('blur', () => { ptr.on = false; strokes.length = 0; });
+  document.addEventListener('pointerleave', () => { ptr.on = false; });
+
+  /* ---- division ---------------------------------------------------- */
+  /* the blade's chord decides how the volume is shared, as a real chord
+     would. the pieces are born still joined (the field makes the neck)
+     and are pushed apart, then tension brings them back. */
+  // a blade that cannot divide still moves the liquid it hits
+  function shove(b, k, d) {
+    const nx = -k.uy, ny = k.ux, s = d >= 0 ? 1 : -1;
+    const kick = Math.min(160, k.sp * 0.07);
+    b.vx += nx * s * kick * 0.6 + k.ux * kick * 0.35;
+    b.vy += ny * s * kick * 0.6 + k.uy * kick * 0.35;
+    b.cool = Math.max(b.cool, 0.25); b.rest = 0.3;
+    wave(b, 0.07, 2); wave(b, 0.04, 3);
+  }
+
+  function divide(b, k) {
+    if (b.rest > 0) return false;                         // just cut: let it settle
+    const nx = -k.uy, ny = k.ux, r = b.r;
+    const d = (b.x - k.x1) * nx + (b.y - k.y1) * ny;      // centre's offset from the blade line
+    const ad = Math.abs(d);
+    if (ad > r * 0.88) return false;
+    const along = (b.x - k.x0) * k.ux + (b.y - k.y0) * k.uy;
+    const len = (k.x1 - k.x0) * k.ux + (k.y1 - k.y0) * k.uy;
+    if (along < -r * 0.6 || along > len + r * 0.6) return false;   // blade never reached it
+
+    const seg = r * r * Math.acos(Math.min(1, ad / r)) - ad * Math.sqrt(Math.max(0, r * r - ad * ad));
+    const aSmall = b.area * seg / (Math.PI * r * r), aBig = b.area - aSmall;
+    if (aSmall < MINA || bodies.length >= MAXB) { shove(b, k, d); return true; }
+
+    const s = d >= 0 ? 1 : -1;
+    const rB = Math.sqrt(aBig / Math.PI), rS = Math.sqrt(aSmall / Math.PI);
+    const fx = b.x - nx * d, fy = b.y - ny * d;           // foot of the cut
+    const kick = Math.min(180, k.sp * 0.09), along2 = kick * 0.25;
+    const M = b.area;
+
+    const big = mk(fx + nx * s * rB * 0.72, fy + ny * s * rB * 0.72, aBig,
+                   b.vx + nx * s * kick * (aSmall / M) + k.ux * along2,
+                   b.vy + ny * s * kick * (aSmall / M) + k.uy * along2);
+    const small = mk(fx - nx * s * rS * 0.72, fy - ny * s * rS * 0.72, aSmall,
+                     b.vx - nx * s * kick * (aBig / M) + k.ux * along2,
+                     b.vy - ny * s * kick * (aBig / M) + k.uy * along2);
+    big.cool = small.cool = 0.45; big.rest = small.rest = 0.3;
+    wave(big, 0.05, 2); wave(small, 0.09, 2); wave(small, 0.035, 3);
+
+    bodies.splice(bodies.indexOf(b), 1);
+    bodies.push(big, small);
+    return true;
+  }
+
+  /* ---- step -------------------------------------------------------- */
+  let pinchTimer = 9, cooldown = 0;
+
+  function step(dt, t) {
+    rectAge += dt;
+    if (ptr.on && performance.now() - ptr.lt > 90) { ptr.sp = 0; ptr.vx = ptr.vy = 0; }
+
+    for (const b of bodies) {
+      b.r += (Math.sqrt(b.area / Math.PI) - b.r) * (1 - Math.exp(-16 * dt));
+      if (b.cool > 0) b.cool -= dt;
+      if (b.rest > 0) b.rest -= dt;
+      for (const v of b.waves) v.t += dt;
+      while (b.waves.length && b.waves[0].a * Math.exp(-b.waves[0].t * 1.7) < 0.002) b.waves.shift();
+    }
+
+    // a fast blade divides whatever it passes through
+    cooldown -= dt;
+    for (const k of strokes) {
+      if (cooldown > 0) break;
+      for (let i = bodies.length - 1; i >= 0; i--) {
+        if (divide(bodies[i], k)) { cooldown = 0.07; break; }
+      }
+    }
+    strokes.length = 0;
+
+    // tension: attraction, coalescence, and a brief repulsion for fresh pieces
+    for (let i = bodies.length - 1; i >= 0; i--) {
+      const b = bodies[i];
+      for (let j = i - 1; j >= 0; j--) {
+        const o = bodies[j];
+        const ex = o.x - b.x, ey = o.y - b.y;
+        const dist = Math.hypot(ex, ey) || 1e-4;
+        const gap = dist - b.r - o.r;
+        const free = b.cool <= 0 && o.cool <= 0;
+        const mt = b.area + o.area;
+
+        if (free && dist < 0.45 * Math.max(b.r, o.r) + 0.15 * Math.min(b.r, o.r)) {
+          // the field already draws one body here; make it one body
+          const m = mk((b.x * b.area + o.x * o.area) / mt, (b.y * b.area + o.y * o.area) / mt, mt,
+                       (b.vx * b.area + o.vx * o.area) / mt, (b.vy * b.area + o.vy * o.area) / mt);
+          m.r = Math.max(b.r, o.r);                         // eases up to the merged radius
+          m.waves = (b.area >= o.area ? b : o).waves;
+          m.seed = (b.area >= o.area ? b : o).seed;
+          wave(m, 0.03 + Math.min(0.06, Math.min(b.area, o.area) / A0 * 0.5), 2);
+          bodies[j] = m; bodies.splice(i, 1);
+          break;
+        }
+
+        if (free) {
+          const rng = Math.max(12, 0.25 * Math.min(b.r, o.r));
+          const pull = (12 + 140 * Math.exp(-Math.max(gap, 0) / rng)) * dt;
+          b.vx += ex / dist * pull * 2 * (o.area / mt); b.vy += ey / dist * pull * 2 * (o.area / mt);
+          o.vx -= ex / dist * pull * 2 * (b.area / mt); o.vy -= ey / dist * pull * 2 * (b.area / mt);
+        } else if (gap < 6) {
+          const push = 70 * dt;
+          b.vx -= ex / dist * push * (o.area / mt); b.vy -= ey / dist * push * (o.area / mt);
+          o.vx += ex / dist * push * (b.area / mt); o.vy += ey / dist * push * (b.area / mt);
+        }
+      }
+    }
+
+    // the instrument holds the sample centred
+    let mx = 0, my = 0, mt = 0;
+    for (const b of bodies) { mx += b.x * b.area; my += b.y * b.area; mt += b.area; }
+    const hx = -((mx / mt) - CX) * 1.8, hy = -((my / mt) - CY) * 1.8;
+
+    for (const b of bodies) {
+      b.vx += hx * dt; b.vy += hy * dt;
+      if (b.r < R0 * 0.55) {                                 // small beads meander
+        b.vx += Math.sin(t * 0.9 + b.seed) * 11 * dt;
+        b.vy += Math.cos(t * 0.7 + b.seed * 1.7) * 11 * dt;
+      }
+      if (ptr.on && ptr.sp > 0) {                            // a slow finger drags the liquid with it
+        const ex = ptr.x - b.x, ey = ptr.y - b.y, pd = Math.hypot(ex, ey) || 1e-4;
+        const edge = pd - b.r;
+        if (edge < 40) {
+          const wgt = Math.exp(-Math.max(edge, 0) / 18) * Math.min(1, 300 / (ptr.sp + 1)) * 4 * dt;
+          b.vx += (ptr.vx - b.vx) * wgt; b.vy += (ptr.vy - b.vy) * wgt;
+          if (edge < 50 && edge > -b.r * 0.5) {
+            const pull = 30 * Math.exp(-Math.max(edge, 0) / 22) * dt;
+            b.vx += ex / pd * pull; b.vy += ey / pd * pull;
+          }
+        }
+      }
+      const damp = Math.exp(-1.35 * dt);
+      b.vx *= damp; b.vy *= damp;
+      b.x += b.vx * dt; b.y += b.vy * dt;
+
+      const pad = b.r + 3;
+      if (b.x < pad) { b.x = pad; b.vx = Math.abs(b.vx) * 0.3; }
+      if (b.x > W - pad) { b.x = W - pad; b.vx = -Math.abs(b.vx) * 0.3; }
+      if (b.y < pad) { b.y = pad; b.vy = Math.abs(b.vy) * 0.3; }
+      if (b.y > W - pad) { b.y = W - pad; b.vy = -Math.abs(b.vy) * 0.3; }
+    }
+
+    // volume is conserved by construction; this kills any float drift
+    const k = A0 / mt;
+    for (const b of bodies) b.area *= k;
+
+    // left alone, it occasionally pinches off a bead of its own accord
+    pinchTimer -= dt;
+    if (pinchTimer <= 0) {
+      pinchTimer = 10 + Math.random() * 8;
+      if (bodies.length === 1 && bodies[0].area > A0 * 0.9) {
+        const b = bodies[0], dir = Math.random() * TAU, a = Math.PI * 81, rr = Math.sqrt(a / Math.PI);
+        b.area -= a;
+        const nb = mk(b.x + Math.cos(dir) * (b.r + rr * 0.2), b.y + Math.sin(dir) * (b.r + rr * 0.2), a,
+                      Math.cos(dir) * 70, Math.sin(dir) * 70);
+        nb.cool = 0.6;
+        bodies.push(nb);
+        wave(b, 0.03, 2);
+      }
+    }
+  }
+
+  let prev = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.032, (now - prev) / 1000) || 0.016;
+    prev = now;
+    const t = now / 1000;
+    step(dt, t);
+    render(t);
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>
