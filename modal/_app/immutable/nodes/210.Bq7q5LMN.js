@@ -1,0 +1,285 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`d053385a-a2c6-4ce0-b015-51036518fa97`,e._sentryDebugIdIdentifier=`sentry-dbid-d053385a-a2c6-4ce0-b015-51036518fa97`)}catch{}})();import{r as e}from"../chunks/COtFpfH5.js";import{$t as t,St as n,Tn as r,bt as i,en as a,ht as o,st as s,tn as c,wn as l}from"../chunks/F_ixKBiO.js";import{t as u}from"../chunks/BqPQayrc.js";import"../chunks/B1sc9Zdx.js";import"../chunks/Bb2deiU3.js";var d=()=>({title:`LLM Engineer's Almanac - Workloads | Modal`,ogTitle:`LLM Engineer's Almanac - Workloads`,ogDescription:`The three types of LLM workloads and how to serve them`,ogImageUrl:`https://modal-cdn.com/llm-almanac/preview-image.png`}),f=e({load:()=>p}),p=d?u(d):void 0,m=n(`<footer class="mt-4"><!></footer>`),h=n(`<blockquote class="mb-4"><div class="relative pl-6"><div aria-hidden="true" class="absolute left-0 top-0 h-full w-1" style="background: var(--color-almanac-gray-green)"></div> <!> <!></div></blockquote>`);function g(e,n){var a=h(),l=t(a),u=c(t(l),2);s(u,()=>n.children);var d=c(u,2),f=e=>{var a=m();s(t(a),()=>n.attribution),r(a),i(e,a)};o(d,e=>{n.attribution&&e(f)}),r(l),r(a),i(e,a)}var _=n(`- G. Julius Caesar, <em>De Bello Gallico</em>`,1),v=n(`<p class="svelte-11sueyr">Gallia est omnis divisa in partes tres.</p>`),y=n(`- Alfred Marshall, <em>Principles of Economics</em>, 8th ed. (1920), Book
+      IV, Chapter XIII, §2`,1),b=n(`<p class="svelte-11sueyr">The <em>law of increasing return</em> may be worded thus: An increase of labour
+      and capital leads generally to improved organization, which increases the efficiency
+      of the work of labour and capital.</p>`),x=n(`- Doherty & Thadhani, <em>The Economic Value of Rapid Response Time</em> (1982)`,1),S=n(`<p class="svelte-11sueyr">When a computer and its users interact at a pace that ensures that neither
+      has to wait on the other, productivity soars, the cost of the work done on
+      the computer tumbles, employees get more satisfaction from their work, and
+      its quality tends to improve. Few online computer systems are this well
+      balanced…</p>`),C=n(`- Marc Brooker, <em>Surprising Scalability of Multitenancy</em> (2023)`,1),w=n(`<p class="svelte-11sueyr">Roughly speaking, the cost of a system scales with its (short-term) peak
+      traffic, but for most applications the value the system generates scales
+      with the (long-term) average traffic. The gap between "paying for peak"
+      and "earning on average" is critical to understand how the economics of
+      large-scale cloud systems differ from traditional single-tenant systems.</p>`),T=n(`<div class="flex flex-col"><h1 id="serving-workloads" class="mb-8 text-3xl font-bold">The three types of LLM workloads and how to serve them</h1></div> <div class="page-body mb-6 flex flex-col text-lg"><p class="svelte-11sueyr">We hold this truth to be self-evident: not all workloads are created equal.</p> <p class="svelte-11sueyr">But for large language models, this truth is far from universally
+    acknowledged. Most organizations building LLM applications get their AI from
+    an API, and these APIs hide the varied costs and engineering trade-offs of
+    distinct workloads behind <a href="/blog/dollars-per-token-considered-harmful" class="svelte-11sueyr">deceptively flat per-token pricing</a>.</p> <p class="svelte-11sueyr">The truth, however, will out. The era of model API dominance is ending,
+    thanks to excellent work on open source models by DeepSeek and Alibaba Qwen
+    (eroding the benefits of proprietary model APIs like OpenAI's) and excellent
+    work on open source inference engines like vLLM and SGLang (eroding the
+    benefits of open model APIs powered by proprietary inference engines).</p> <p class="svelte-11sueyr">Engineers who wish to take advantage of this technological change must
+    understand their workloads in greater detail in order to properly architect
+    and optimize their systems.</p> <p class="svelte-11sueyr">In this document, we'll walk through the workloads and requirements we've
+    seen in the market, working with leading organizations deploying inference
+    to production at scale. We'll explain the challenges LLM engineers face when
+    building for these workloads and how they solve those challenges. And we'll
+    share a bit about how you can implement those solutions on <a href="/" class="svelte-11sueyr">our cloud platform</a>.</p> <h2 class="text-2xl font-bold svelte-11sueyr">The breakdown: offline, online, and semi-online</h2> <!> <p class="svelte-11sueyr">In the more mature world of databases, there is a well-known split between
+    transaction processing (OLTP, think "shopping carts") and analytical
+    processing (OLAP, think "Year Wrapped"). In between are hybrid workloads
+    (HTAP) with the characteristics of both.</p> <p class="svelte-11sueyr">A similar three-part division has helped us organize LLM workloads:</p> <div class="ml-8"><ul class="list-disc"><li><em>offline</em> or analytical workloads, which operate in batch mode,
+        write to data stores asynchronously, and <em>demand throughput</em> above all else,</li> <li><em>online</em> or interactive workloads, which operate in streaming
+        mode, communicate synchronously with humans, and <em>demand low latency</em>, and</li> <li><em>semi-online</em> or bursty workloads, which operate on streams of
+        batches, communicate with other live computer systems, and <em>demand flexible infrastructure</em>.</li></ul></div> <img src="https://modal-cdn.com/llm-almanac/workloads-breakdown.png" alt="Diagram depicting the three types of LLM workloads"/> <p>Our recommendations for each are as follows:</p> <div class="mb-4 ml-8"><ul class="list-disc"><li>for <em>offline workloads</em>, we recommend using vLLM via asynchronous
+        RPC to ad hoc, auto-scaled compute capacity</li> <li>for <em>online workloads</em>, we recommend using SGLang with excess
+        tensor parallelism and EAGLE-3 speculative decoding on live edge
+        Hopper/Blackwell GPUs accessed via low-overhead, prefix-aware HTTP
+        proxies</li> <li>for <em>semi-online workloads</em>, we recommend using either engine
+        with rapid autoscaling of ad hoc compute capacity that can handle
+        variable load per-replica</li></ul></div> <p>We will unpack and justify these recommendations, with reference to both
+    specific applications & workloads that run on our platform and sample code
+    that you can work off of, in the remainder of this document.</p> <h2 class="text-2xl font-bold svelte-11sueyr">Offline workloads demand throughput</h2> <!> <p class="svelte-11sueyr">The <a href="https://weaviate.io/product/transformation-agent" class="svelte-11sueyr">Weaviate Transformation Agent</a> augments and updates entire datasets by applying an LLM to each row.</p> <p class="svelte-11sueyr">A leading video transcription service needs to produce LLM summaries of a
+    large volume of recorded calls for later search and retrieval.</p> <p class="svelte-11sueyr">These systems are <em>offline</em>: they produce information for long-term
+    storage in another computer system (like a filesystem or a database).
+    Workloads are submitted as bulk "jobs" composed of many LLM requests. The
+    entire job should be completed quickly, for cost reasons, but no single
+    request requires immediate service. The scale of the job exposes substantial
+    parallelism, which allows for economies of scale.</p> <p class="svelte-11sueyr">Offline systems are generally easier to architect — computer systems began
+    as offline batch-processing machines for a reason! But they still have their
+    challenges.</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Maximizing throughput per dollar</h3> <p class="svelte-11sueyr">The core challenge of offline, batch workloads is to maximize the throughput
+    while controlling cost by taking advantage of intra-batch task parallelism.</p> <p class="svelte-11sueyr">Fundamentally, this is good news. The most popular and readily-available
+    hardware for running LLM inference, GPUs, are designed for <a href="https://modal.com/gpu-glossary/perf/latency-hiding" class="svelte-11sueyr">maximum throughput</a>, from their <a href="https://modal.com/gpu-glossary/device-hardware/warp-scheduler" class="svelte-11sueyr">per-clock-cycle context switching</a> and <a href="https://modal.com/gpu-glossary/device-hardware/tensor-core" class="svelte-11sueyr">large matrix multiplication units</a> to their <a href="https://modal.com/gpu-glossary/device-software/cuda-programming-model" class="svelte-11sueyr">task-parallel programming model</a>. That makes it relatively easy to write inference kernels that <a href="https://modal.com/gpu-glossary/perf/compute-bound" class="svelte-11sueyr">saturate compute resources</a>, and the open source and freely available kernels are satisfactory.
+    Additionally, training of LLMs and other neural networks is an offline,
+    batch workload, and training workloads have historically gotten the most and
+    the quickest attention, e.g. when new hardware enters the market.</p> <p class="svelte-11sueyr">But kernels are not the only code required to take advantage of parallelism
+    in offline workloads. As one prominent example, batches must be constructed
+    out of live and pending tasks (aka requests). Intra-task LLM inference work
+    can be split into two phases: prefill (aka prompt processing) and decode
+    (aka generation). Prefill work can be further split into chunks. With care,
+    all of these kinds of work can be scheduled together for different tasks in
+    the same batch.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-mixed-batching.png" class="mx-auto mb-8 mt-16 block md:w-2/3" alt="Diagram depicting faster completion of workloads with mixed batching"/> <small class="mx-auto mb-4 block text-center md:w-2/3"><em>With mixed batching, less-compute-intensive decode work (thinner lines)
+      can piggyback on more compute-intensive prefill work (thicker lines).
+      Colors indicate different tasks. For details, see <a href="https://arxiv.org/abs/2308.16369" class="svelte-11sueyr">the SARATHI paper</a>.</em></small> <p>The vLLM inference engine has better support for these scheduling
+    optimizations. For this reason, we currently recommend it for
+    throughput-sensitive, offline workloads.</p> <h3 class="text-xl font-bold svelte-11sueyr">Implementation</h3> <p>We make the following choices to optimize for throughput (per dollar) in
+    offline applications:</p> <div class="mb-4 ml-8"><ul class="list-disc"><li>Run on vLLM with async scheduling and chunked prefill.</li> <li>Send large batches in each request to expose maximum parallelism to the
+        engine. This is easiest with an offline interface, like the <code>LLM</code> abstraction in vLLM's Python SDK, rather than the online-serving-oriented
+        HTTP server interfaces.</li> <li>On Modal, use asynchronous RPC with <a href="/docs/guide/job-queue" class="svelte-11sueyr"><code>.spawn</code></a> or <a href="/docs/guide/batch-processing" class="svelte-11sueyr"><code>.spawn_map</code></a> to queue
+        up large numbers of requests for later retrieval or storage.</li> <li>Limit the number of GPUs per replica to the minimum required to run on a
+        large enough batch to <a href="https://modal.com/gpu-glossary/perf/compute-bound" class="svelte-11sueyr">saturate the GPU's compute resources</a>. Excess available GPU capacity should be instead shifted to running
+        more replicas.</li></ul></div> <p>You can find these patterns demonstrated and explained in detail in <a href="https://modal.com/docs/examples/vllm_throughput" class="svelte-11sueyr">this code sample</a>.</p> <h3 class="text-xl font-bold svelte-11sueyr">Future considerations</h3> <p class="svelte-11sueyr">As the reliability of models increases and as their use becomes more
+    commonplace, we expect more and more batch workloads to operate quietly in
+    the background of many businesses, just as data analytics jobs, which
+    started out as rare, heroic tabulations like censuses, are now humdrum table
+    stakes.</p> <p class="svelte-11sueyr">We've noticed an interesting pattern in GPU pricing, which shows up in our
+    own <a href="/pricing" class="svelte-11sueyr">current rates</a> at time of writing: the FLOPs per
+    dollar is roughly constant, so older GPUs that might be easier to come by
+    (in on-premises deployments) or available in larger quantities (on platforms
+    like Modal) serve quite nicely for jobs that care about throughput per <em>dollar</em> more than they care about throughput per <em>second</em>.</p> <h2 class="text-2xl font-bold svelte-11sueyr">Online workloads abhor latency</h2> <!> <p class="svelte-11sueyr">Agents built with <a href="https://decagon.ai/product/voice" class="svelte-11sueyr">Decagon Voice</a> need to participate in phone calls with humans requesting support help.</p> <p class="svelte-11sueyr">A leading AI IDE company needs to serve "smart" auto-completion in the brief
+    intervals while human engineers consider what code to write next.</p> <p class="svelte-11sueyr">These systems are <em>online</em>: a human user is interacting with the
+    system, and they want responses that match their (and other humans')
+    reaction time, on the order of at most a few hundred milliseconds. Human
+    users create multi-turn contexts from their repeated interactions.</p> <p class="svelte-11sueyr">Online systems are extremely challenging to build. They are extremely
+    performance-sensitive, and performance melts abstractions and couples
+    decoupled concerns. But they can be built, if you can solve the attendant
+    challenges.</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Avoiding host overhead</h3> <p class="svelte-11sueyr">The primary challenge of online workloads is that the system has only a few
+    hundred milliseconds to respond.</p> <p class="svelte-11sueyr">First, that means that the performance hits from using interpreted
+    languages, like Python, start to matter. Leading LLM inference engines are
+    written mostly in Python, for faster development, and so they need to be
+    architected and implemented carefully to avoid the work on the CPU (or host)
+    from blocking the work on the GPU — inflicting "host overhead". We wrote
+    about the kinds of host overhead inference workloads encounter, and how
+    we've contributed to inference engines to solve them, in <a href="/blog/host-overhead-inference-efficiency" class="svelte-11sueyr">this blog post</a>.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-host-overhead.png" alt="Diagram depicting CPU work blocking GPU kernels (host overhead) and not blocking (no host overhead)"/> <p>In our experience, the SGLang inference engine wins here, since it generally
+    exhibits lower host overhead.</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Reducing communications overhead</h3> <p class="svelte-11sueyr">To repeat: the primary challenge of online workloads is that the system has
+    only a few hundred milliseconds to respond.</p> <p class="svelte-11sueyr">We are here considering LLM inference services, rather than local
+    applications, and so communication between the client and the system can
+    introduce notable latency at this timescale. Specifically, networks operate
+    at a large fraction of the speed of light, but that means tens or even
+    hundreds of milliseconds of latency for clients (assumed Earthbound) to a
+    system implemented in a single geographic location.</p> <p class="svelte-11sueyr">The solution is to deploy both routing proxies and accelerator capacity to
+    "the edge", i.e. into datacenters that are close to clients. Quite apart
+    from narrow-sense technical issues, this can prove challenging due to market
+    conditions, as not all cloud providers have available capacity of all GPU
+    types in all regions. At Modal, we solve this by aggregating capacity across
+    clouds, which support regionalized service deployments.</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Handling multiple turns</h3> <p class="svelte-11sueyr">Online workloads are interactive not just in latency requirement but also in
+    request patterns. Human users respond to the system's response, which the
+    system must respond to in turn.</p> <p class="svelte-11sueyr">Unlike a (nominally) stateless protocol like HTTP, efficient multi-turn LLM
+    inference is stateful. It may not look that way, since clients generally
+    provide the entire conversation history in their requests. But contemporary
+    models based on the Transformer architecture have computation requirements
+    that scale quadratically with conversation length. This can be exchanged for
+    linear computation in exchange for storing a linear quantity of model
+    activations, the "key-value cache" (originally and more descriptively known
+    as the "past cache").</p> <p class="svelte-11sueyr">The solution is to route requests to LLM inference replicas based on the
+    information used to populate the cache. For lossless cacheing, that means
+    the prefix(es) of the request. This "prefix-aware" routing can look as
+    simple as sticky sessions per conversation, which we provide native support
+    for in Modal, or can involve deeper inspection of both request and cache
+    contents.</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Wrangling the memory bound</h3> <p class="svelte-11sueyr">The bottlenecking operations in LLM inference with KV caching have a low <a href="https://modal.com/gpu-glossary/perf/arithmetic-intensity" class="svelte-11sueyr">arithmetic intensity</a>, which means inference is <a href="https://modal.com/gpu-glossary/perf/memory-bound" class="svelte-11sueyr">bound by memory</a>.</p> <p class="svelte-11sueyr">Intuitively, you can generate only one or a few tokens per forward pass per
+    request, but you must load all the model weights (typically numbered in the
+    billions) into <a href="https://modal.com/gpu-glossary/device-hardware/register-file" class="svelte-11sueyr">registers</a>. Per user, those weights get used for roughly one add and one multiply,
+    but <a href="https://modal.com/gpu-glossary/perf/arithmetic-intensity" class="svelte-11sueyr">ridge point arithmetic intensities</a> for GPUs are in the hundreds or thousands of operations per byte — and so, much <a href="https://modal.com/gpu-glossary/perf/arithmetic-bandwidth" class="svelte-11sueyr">arithmetic bandwidth</a> will go to waste. Furthermore, even if the latency requirements and request load
+    for the online service admit batching across requests, prefixes are generally
+    mostly distinct per request for these workloads, and so distinct elements of
+    the KV cache must be loaded per request. Cache contents start out negligible
+    relative to model weights but grow with sequence length.</p> <p class="svelte-11sueyr">The foregoing arguments focus on throughput, but in online workloads, where
+    latency is the primary concern, the situation is even worse. Because running
+    a forward pass on a batch requires loading billions of model weights and <a href="https://modal.com/gpu-glossary/perf/memory-bandwidth" class="svelte-11sueyr">memory bandwidths</a> are measured in trillions of bytes per second, forward passes on single accelerators
+    necessarily take milliseconds. Individual users cannot see lower per-token latencies
+    than this. Autoregressive, i.e. sequential, generation stacks these latencies,
+    rapidly eating into the latency budget, even for short generated sequences (another
+    instance of Amdahl's heartbreaking law).</p> <p class="svelte-11sueyr">One resolution is to increase the memory bandwidth in the system
+    (specifically, the <a href="https://modal.com/gpu-glossary/perf/memory-bandwidth" class="svelte-11sueyr">memory bandwidth</a> between model weights + KV cache and <a href="https://modal.com/gpu-glossary/device-hardware/tensor-core" class="svelte-11sueyr">arithmetic units</a>). On the hardware side, that means using the <a href="/blog/introducing-b200-h200" class="svelte-11sueyr">latest GPUs</a>, like H100s and B200s,
+    which offer substantial improvements in memory bandwidth over past
+    generations.</p> <p class="svelte-11sueyr">Using multiple GPUs increases aggregate bandwidth. But just adding more GPUs
+    isn't enough to cut latency. On the software side, systems must additionally
+    take advantage of intra-task parallelism to split bandwidth demands across
+    accelerators. The most common approach is tensor parallelism, which takes
+    advantage of the inherent parallelism of matrix multiplications to split
+    pieces of the multiplication onto different workers.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-tensor-parallel.png" alt="Diagram depicting the division of tensors across GPUs in tensor parallel matrix multiplication" class="mx-auto mb-4 mt-6 md:w-2/3"/> <small class="mx-auto mb-4 block md:w-2/3"><em>Tensor parallelism splits a single matrix multiplication (left-hand-side
+      of equation) across GPUs (represented by color; shared data on all GPUs in
+      gray).</em></small> <p class="svelte-11sueyr">This requires low latency and high bandwidth, so it is usually done only
+    within the backend/"scale-up" network, typically NVLink for GPUs. For many
+    useful open source models applied to specific tasks, the standard
+    eight-accelerator NVLink domain provides sufficient memory bandwidth to hit
+    interactive latency targets, but we anticipate a future where the larger,
+    rack-scale NVLink domains offered by NVSwitch are required.</p> <p class="svelte-11sueyr">In addition to increasing memory bandwidth, systems can also decrease memory
+    requirements, typically at a cost to model quality. Whether this trade-off
+    is sensible is application-dependent — another good reason to host your own
+    inference!</p> <p class="svelte-11sueyr">The first lever to pull is <a href="/llm-almanac/quant-formats" class="svelte-11sueyr">floating point quantization</a>. Generally, the performance benefit is greater if the hardware supports
+    native floating point operations on the quantized data type: eight bit (FP8)
+    for Hopper GPUs, four bit (FP4) for Blackwell GPUs. You can see what these
+    formats do to data on the <a href="/llm-almanac/block-quants" class="underline decoration-1 underline-offset-2 svelte-11sueyr">Block Quants visualizer</a>.</p> <p class="svelte-11sueyr">For models above about seventy billion parameters, four bit quantization
+    works well with minimal fuss. For smaller models, down to a billion
+    parameters, only eight bit quantization retains sufficient model quality —
+    with the notable exception of <a href="https://modal.com/docs/examples/gpt_oss_inference" class="svelte-11sueyr">gpt-oss 20B</a>.</p> <p class="svelte-11sueyr">Finally, we note in passing that the reason for the mixture-of-experts (MoE)
+    structure for feedforward layers in contemporary architectures is to reduce
+    the demand on memory bandwidth. If you're comparing across models to
+    determine memory requirements and serving cost, look at active parameters,
+    not just total parameters!</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Cheating the speed of light</h3> <p class="svelte-11sueyr">Eventually, the memory bound is inescapable, and latency cannot be reduced
+    any further. The system has reached the metaphorical "speed of light" for
+    the hardware.</p> <p class="svelte-11sueyr">The speed of light cannot be broken, but it can be cheated.</p> <p class="svelte-11sueyr">The key technique for memory-bound inference is speculative decoding, which
+    takes advantage of some of the slack in <a href="https://modal.com/gpu-glossary/perf/arithmetic-bandwidth" class="svelte-11sueyr">arithmetic bandwidth</a> in naïve, single-token autoregressive inference.</p> <p class="svelte-11sueyr">Specifically, we use a simpler language modeling system, the speculator, to
+    provide multiple sequential output tokens for the larger, target system to
+    judge in parallel. Because inference is memory-bound, there are extra FLOPs
+    to be had for running the speculator. Because the larger model already
+    outputs probabilities for each token in its input, engines can
+    straightforwardly ensure that outputs are unchanged (cf. "rejection
+    sampling" from statistical inference).</p> <img src="https://modal-cdn.com/llm-almanac/workloads-specdec.png" alt="Diagram depicting the relationship between speculator tokens and generated tokens" class="mx-auto mb-4 mt-6 md:w-4/5"/> <small class="mx-auto mb-4 block md:w-4/5"><em>In speculative decoding, a speculator model produces "draft" tokens (light
+      green) that are validated in parallel by the target model. Those with
+      sufficiently high probability under the target model are accepted (dark
+      green, lower right) and the first token that is rejected is replaced with
+      a generation from the target model (orange).</em></small> <p class="svelte-11sueyr">This idea is <a href="https://arxiv.org/abs/2302.01318" class="svelte-11sueyr">well</a>-<a href="https://arxiv.org/abs/2211.17192" class="svelte-11sueyr">worn</a> by LLM inference standards, but until relatively recently, using more sophisticated
+    draft models was hamstrung by operational difficulties that offset the limited
+    performance gains. That left only very simple speculators, like "predict that
+    the same subsequence will be repeated" (aka n-gram speculation), which generally
+    have lower rates of acceptance and so speed up inference less.</p> <p class="svelte-11sueyr">The <a href="https://arxiv.org/abs/2503.01840" class="svelte-11sueyr">EAGLE-3 speculator training method</a> changed that for us. Not only does it produce simple speculators with good support
+    in open source engines, but it also achieves very high quality, measured in acceptance
+    lengths. We have found that just adding EAGLE-3 via open source inference engines
+    is sufficient to match the performance achieved by model providers with proprietary
+    inference stacks. At time of writing, SGLang has better support for speculative
+    decoding, another reason we recommend it for low latency applications.</p> <h3 class="text-xl font-bold svelte-11sueyr">Implementation</h3> <p>We make the following choices to optimize for low latency in online
+    applications:</p> <div class="mb-4 ml-8"><ul class="list-disc"><li>run on SGLang to reduce host overhead and take full advantage of
+        speculative decoding</li> <li>use FP8 for smaller memory footprint and fast prefill and decode kernels
+        on H100/H200 GPUs</li> <li>apply extra tensor parallelism above any required by memory capacity in
+        order to reduce memory read latency</li> <li>use an off-the-shelf or custom-trained EAGLE-3 speculator model</li> <li>on Modal, use a <a href="/docs/guide/servers#servers" class="svelte-11sueyr">Modal Server</a> to
+        create a regionalized, ultra-low-overhead web server with session-based routing</li></ul></div> <p>You can see this in action in a code sample <a href="https://modal.com/docs/examples/sglang_low_latency" class="svelte-11sueyr">here</a>.</p> <h3 class="text-xl font-bold svelte-11sueyr">Future considerations</h3> <p class="svelte-11sueyr">Because of the tremendous investment in and excitement over chatbots, this
+    workload has received substantial engineering work already and its future is
+    slightly easier to chart.</p> <p class="svelte-11sueyr">First, we expect more ways to "cheat the speed of light" to become important
+    in the near future, in particular lossy optimizations that sacrifice some
+    performance for a lot of speed. A few we didn't mention above, but which are
+    the targets of current research: approximate KV cacheing, layer skipping,
+    pruning, lossy compression of the KV cache, lossy speculation. Many of these
+    techniques are already reasonably mature in the world of diffusion models,
+    where other opportunities for speedups are limited (see our <a href="/blog/flux-3x-faster" class="svelte-11sueyr">blog post on accelerating Flux</a>).</p> <p class="svelte-11sueyr">Note that because these optimizations are "lossy", they change the hosted
+    model, in the statistical sense. Behavior is guaranteed to change, if only
+    slightly. That makes for a good economic reason to self-host: you can check
+    which optimizations work for your workload.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-lossy-tradeoffs.png" alt="Diagram depicting the tradeoff between speed and quality with lossy optimizations" class="mx-auto mb-4 mt-6 md:w-1/3"/> <small class="mx-auto mb-4 block md:w-2/3"><em>For some workloads, fully lossless performance improvements like
+      speculative decoding might be insufficient to achieve target latency
+      (vertical arrow). The right lossy performance improvements (angled arrows)
+      to achieve the target speed and latency (colored regions) differ between
+      workloads (indicated by color).</em></small> <p class="svelte-11sueyr">In part due to the investments of existing hardware providers and the crop
+    of inference hardware startups, we expect these workloads to move
+    increasingly onto more exotic hardware that even less resembles a typical
+    workstation or generic high-performance machine in the cloud.</p> <p class="svelte-11sueyr">Nvidia is investing heavily in tightly-interconnected systems, e.g.
+    "rack-scale" <a href="https://www.nvidia.com/en-us/data-center/gb200-nvl72/" class="svelte-11sueyr">NVL72</a>/<a href="https://nvidianews.nvidia.com/news/nvidia-unveils-rubin-cpx-a-new-class-of-gpu-designed-for-massive-context-inference" class="svelte-11sueyr">CPX Rubin</a>. This architecture can achieve massive memory bandwidth at low latency
+    without using components that are too exotic relative to existing systems
+    (for instance, using <a href="https://modal.com/gpu-glossary/device-hardware/gpu-ram" class="svelte-11sueyr">HBM</a> for system memory). Following the same logic, Google is building large TPU systems
+    with a similar architecture. Doing better requires deeper innovation at the silicon
+    layer, likely in the form of application-specific integrated circuits for specific
+    model architectures. To reach one billion tokens per second, for instance, would
+    require tightly co-locating storage and compute, e.g. with analog elements.</p> <p class="svelte-11sueyr">While we don't expect these systems to go without demand, we expect the <em>relative</em> importance of online/chat workloads to decrease over time.
+    The current interest has been driven by the initial "killer app" for LLMs, OpenAI's
+    ChatGPT. This has led to lots of imitation and herding behavior by capital providers,
+    investors, founders, and even application developers.</p> <p class="svelte-11sueyr">But we are already seeing the signs of a different "killer app" emerging —
+    long-running background agents, like Claude Code, which have the patience of
+    machines, rather than humans. These applications generate quite different
+    workloads, to which we turn in the next section.</p> <h2 class="text-2xl font-bold svelte-11sueyr">Semi-online workloads demand flexibility</h2> <!> <p class="svelte-11sueyr">Users of <a href="https://reducto.ai/" class="svelte-11sueyr">Reducto</a>'s document processing
+    platform sometimes upload a single form for immediate perusal and sometimes
+    drop their business's entire document storage.</p> <p class="svelte-11sueyr">An AI news analytics agency needs to scale up its news agents in minutes in
+    response to breaking news, crawling a variety of sources to produce
+    syntheses. It also needs to produce a "daily newspaper" on a longer cadence.</p> <p class="svelte-11sueyr">These systems are <em>semi-online</em>: sometimes they must return to a
+    waiting human; other times they pass their results on to another computer
+    system in a pipeline (which might be another agent). Even when they directly
+    serve human users, they are not as tightly interactive. Their workloads are
+    bursty — sometimes load goes to hundreds of times baseline for minutes or
+    tens of minutes.</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Taming peak-to-average load ratio</h3> <p>This high peak-to-average ratio creates a cost conundrum for systems serving
+    these workloads, as alluded to by Marc Brooker of Amazon Web Services in the
+    quote above. That is, costs are typically driven by requirements to service <em>peak</em> demand, but revenues are driven by servicing <em>average</em> demand.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-peak-to-average.png" alt="Diagram depicting a workload with a high peak-to-average ratio" class="mx-auto mb-4 mt-6 md:w-1/3"/> <small class="mx-auto mb-4 block md:w-2/3"><em>System costs are proportional to the allocated resources for peak demand
+      (shaded area). Revenues are proportional to the realized demand for
+      resources (area under the curve). When peak demand is much higher than
+      average, systems without flexible resource allocations, as depicted in
+      this figure, become uneconomical.</em></small> <p>The solution we've taken at Modal is the same taken by AWS: aggregation and
+    multitenancy. That is, we service a variety of these workloads on shared
+    hardware, whose uncorrelated peaks aggregate into a smooth timeline of
+    demand for that hardware. The peak-to-average load ratio is diminished.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-multitenancy.png" alt="Diagram depicting the lower resource utilization of a multitenant system" class="mx-auto mb-4 mt-6 md:w-2/3"/> <small class="mx-auto mb-4 block md:w-4/5"><em>In a multi-tenant system (left, tenant resource demand indicated by
+      colored lines), peak demand is reduced, cutting costs (shaded region). A
+      group of single-tenant systems has, in the worst case scenario (right)
+      cost per workload (each shaded region) close to the cost of the entire
+      multi-tenant system.</em></small> <p>We can then maintain a buffer sufficient to service resource requests
+    immediately and acquire or release resources as the average changes. See <a href="/blog/resource-solver" class="svelte-11sueyr">this blog post</a> for details on that system.</p> <h3 class="text-xl font-bold svelte-11sueyr">Challenge: Cutting cold starts from minutes to seconds</h3> <p>Multi-tenant computer systems have their drawbacks, including the addition
+    of cold start latency. That is, even if the request for serving resources is
+    serviced out of a buffer, configuring those resources to start handling the
+    request takes some time: containers or VMs must boot, then inference engines
+    must start.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-slow-container-start.png" alt="Diagram depicting slow container starts during inference engine autoscaling"/> <p class="svelte-11sueyr">Without optimization, container startup time can run into several minutes
+    for large container images.</p> <p class="svelte-11sueyr">At Modal, we've invested heavily in techniques to accelerate container
+    startup time, like mixing eager pre-fetching of files that will be used and
+    lazy-loading of files that are unlikely to be used.</p> <img src="https://modal-cdn.com/llm-almanac/workloads-slow-engine-init.png" alt="Diagram depicting fast container startups with slow engine initialization"/> <p class="svelte-11sueyr">After optimization, container startup can be reduced to seconds. But engine
+    initialization can still take tens of seconds.</p> <p class="svelte-11sueyr">For instance, the Torch JIT compiler can deliver massive speedups to
+    inference passes, but it can take several minutes to run — during which time
+    the inference server replica cannot service requests.</p> <p class="svelte-11sueyr">Our solution is GPU memory snapshotting. Just before an inference server
+    replica is ready to service requests, we dump the program state to the
+    filesystem. When we spin up a new replica, it is loaded straight from the
+    filesystem, skipping computations like Torch JIT compilation (and also
+    converting a large number of small file I/Os into one large I/O, which is a
+    better fit to storage systems).</p> <img src="https://modal-cdn.com/llm-almanac/workloads-memory-snapshot.png" alt="Diagram depicting fast container starts for snapshot inference engines"/> <small class="mx-auto mb-4 block md:w-4/5"><em>Memory snapshotting can cut down inference server start times by a factor
+      of 10, requiring only that the server be <code>restore</code>d from
+      serialized snapshot storage (drum icon). Rapid scaleup improves response
+      time under sudden bursts of load (yellow <code>/chat/completions</code> requests).</em></small> <p>We have <a href="/blog/gpu-mem-snapshots" class="svelte-11sueyr">benchmarked GPU snapshotting across a wide class of models</a> and found that it can cut LLM inference server start times from minutes to
+    seconds.</p> <h3 class="text-xl font-bold svelte-11sueyr">Implementation</h3> <p>We make the following choices to optimize for flexible scaling in
+    semi-online applications:</p> <div class="mb-4 ml-8"><ul class="list-disc"><li>Use fast-booting, autoscaling GPU resources to service variable load
+        economically</li> <li>While spot and on-demand B200s are still relatively scarce from
+        hyperscalers, prefer H100s or H200s, which further indicates the use of
+        FP8-quantized models</li> <li>On Modal, use a <a href="/docs/guide/servers#servers" class="svelte-11sueyr">Modal Server</a> to
+        turn a Python program exposing an OpenAI-compatible server into a web service</li> <li>Set autoscaling policy to absorb small load bursts — on Modal, tune <code>target_concurrency</code> on <code>@app.server()</code> and use <code>buffer_containers</code> to keep spare replicas warm</li> <li>The choice of engine, between vLLM and SGLang, depends on other factors
+        like model availability.</li> <li>Use GPU memory snapshotting to speed up server boots, especially if your
+        engine requires slow JIT compilation steps. Almost all programs can be
+        snapshot, but many programs require some slight code rewrites to be
+        snapshot.</li></ul></div> <p>You can find sample code for serving these workloads with SGLang <a href="https://modal.com/docs/examples/sglang_snapshot" class="svelte-11sueyr">here</a> and with vLLM <a href="https://modal.com/docs/examples/vllm_snapshot" class="svelte-11sueyr">here</a>.</p> <h3 class="text-xl font-bold svelte-11sueyr">Future considerations</h3> <p class="svelte-11sueyr">We expect more of these semi-online applications to emerge as the field
+    matures — offline/analytical and online/transaction workloads are the
+    obvious things to do, but there are many more tasks in the interior,
+    combining traits of both.</p> <p class="svelte-11sueyr">In particular, we expect the salience of these workloads to increase as more
+    work is done by long-running agents, which have the patience of computer
+    systems, rather than humans. That is, human users will pay a large premium
+    to avoid a small wait — and productivity studies like Doherty &amp;
+    Thadhani's, quoted above, bear out that trade. But engineers architecting
+    agents or systems of agents to complete long-running tasks will generally
+    prefer the opposite trade. We look forward to servicing more of these
+    workloads as builders and engineers discover and scale them.</p> <h2 class="text-2xl font-bold svelte-11sueyr">What next?</h2> <p class="svelte-11sueyr">We are still early in the era of LLM engineering, despite being several
+    years into the era of LLMs, thanks to the head-start on capabilities
+    achieved by proprietary model companies and proprietary inference engines.</p> <p class="svelte-11sueyr">But as in other domains, the underlying technologies are spreading enough to
+    become commodities. The additional benefits of customization and control
+    then tilt the balance increasingly in favor of building LLM inference
+    in-house.</p> <p class="svelte-11sueyr">This requires additional engineering effort — and a community effort to
+    distribute knowledge, to upskill, and to produce open models and open source
+    software. At Modal, we're happy to contribute to all of these. If you're
+    interested in deploying your own inference at scale, <a href="mailto:sales@modal.com" class="svelte-11sueyr">talk to us</a>.</p></div>`,1);function E(e){var n=T(),o=c(a(n),2),s=c(t(o),12);g(s,{attribution:e=>{l();var t=_();l(),i(e,t)},children:(e,t)=>{i(e,v())},$$slots:{attribution:!0,default:!0}});var u=c(s,18);g(u,{attribution:e=>{l();var t=y();l(2),i(e,t)},children:(e,t)=>{i(e,b())},$$slots:{attribution:!0,default:!0}});var d=c(u,40);g(d,{attribution:e=>{l();var t=x();l(2),i(e,t)},children:(e,t)=>{i(e,S())},$$slots:{attribution:!0,default:!0}}),g(c(d,110),{attribution:e=>{l();var t=C();l(2),i(e,t)},children:(e,t)=>{i(e,w())},$$slots:{attribution:!0,default:!0}}),l(68),r(o),i(e,n)}export{E as component,f as universal};
+//# sourceMappingURL=210.Bq7q5LMN.js.map

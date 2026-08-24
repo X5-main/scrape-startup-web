@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="4acf75a70f944400b0f059c9f468e3b7-bd874c6b5962643c"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=4acf75a70f944400b0f059c9f468e3b7,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="This example demonstrates some techniques for running LLM inference at the highest possible throughput on Modal."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Run LLM inference at maximum throughput"/> <meta property="og:description" content="This example demonstrates some techniques for running LLM inference at the highest possible throughput on Modal."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Run+LLM+inference+at+maximum+throughput&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Run LLM inference at maximum throughput | Modal Docs</title>
+		<link href="../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../index.html" class="shrink-0 lg:mr-8"><img src="../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb navlink-active" href="../index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="6rbR9icHiW" aria-expanded="false" data-state="closed" id="5ynzbXA5kV" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../sdk/py/releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[--><!--[--><a href="../index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Featured</span> <!--[!--><!--]--></span></a><!--]--><!--[!--><a href="../hello_world/index.html" class="header svelte-14npiaw">Getting started</a> <!--[--><a href="../hello_world/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Hello, world</span> <!--[!--><!--]--></span></a><a href="../webscraper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Simple web scraper</span> <!--[!--><!--]--></span></a><a href="../basic_web/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serving Web Functions</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm_inference/index.html" class="header svelte-14npiaw">Large language models (LLMs)</a> <!--[--><a href="../llm_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy an OpenAI-compatible LLM service with vLLM</span> <!--[!--><!--]--></span></a><a href="../ministral3_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cut Ministral 3 cold start times by 10x with snapshots</span> <!--[!--><!--]--></span></a><a href="index.html" class="item svelte-14npiaw active"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Maximize tokens per second in batch processing with vLLM</span> <!--[!--><!--]--></span></a><a href="../sglang_low_latency/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve an ultra-low-latency chatbot with SGLang</span> <!--[!--><!--]--></span></a><a href="../nemotron_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy Nemotron 3</span> <!--[!--><!--]--></span></a><a href="../inkling_small/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Inkling-Small with SGLang</span> <!--[!--><!--]--></span></a><a href="../deepseek_v4_flash/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve DeepSeek-V4-Flash</span> <!--[!--><!--]--></span></a><a href="../unsloth_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Efficient LLM Finetuning with Unsloth</span> <!--[!--><!--]--></span></a><a href="../chat_with_pdf_vision/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a multimodal RAG chatbot to answer questions about PDFs</span> <!--[!--><!--]--></span></a><a href="../llm-finetuning/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune an LLM to replace your CEO</span> <!--[!--><!--]--></span></a><a href="../mcp_server_stateless/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a stateless MCP with FastMCP</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../image_to_image/index.html" class="header svelte-14npiaw">Images, video, &amp; 3D</a> <!--[--><a href="../image_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Edit images with Flux Kontext</span> <!--[!--><!--]--></span></a><a href="../music-video-gen/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Wan2.1 video models on your face</span> <!--[!--><!--]--></span></a><a href="../flux/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Flux fast with torch.compile</span> <!--[!--><!--]--></span></a><a href="../diffusers_lora_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Flux with LoRA</span> <!--[!--><!--]--></span></a><a href="../image_to_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Animate images with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../ltx/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate video clips with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../text_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Stable Diffusion with a CLI, API, and web UI</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm-voice-chat/index.html" class="header svelte-14npiaw">Audio</a> <!--[--><a href="../llm-voice-chat/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Moshi voice chatbot</span> <!--[!--><!--]--></span></a><a href="../streaming_kyutai_stt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Stream transcripts at the speed of speech using Kyutai STT</span> <!--[!--><!--]--></span></a><a href="../generate_music/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Make music with ACE-Step</span> <!--[!--><!--]--></span></a><a href="../chatterbox_tts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate speech with Chatterbox</span> <!--[!--><!--]--></span></a><a href="../batched_whisper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run high throughput batched transcription with Whisper</span> <!--[!--><!--]--></span></a><a href="../fine_tune_asr/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Whisper to recognize new words</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../webrtc_yolo/index.html" class="header svelte-14npiaw">Real-time communication (WebRTC)</a> <!--[--><a href="../webrtc_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serverless WebRTC</span> <!--[!--><!--]--></span></a><a href="../fastrtc_flip_webcam/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>WebRTC quickstart with FastRTC</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../esmfold2_binder_design/index.html" class="header svelte-14npiaw">Computational biology</a> <!--[--><a href="../esmfold2_binder_design/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Design protein binders with ESMFold2</span> <!--[!--><!--]--></span></a><a href="../chai1/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Chai-1</span> <!--[!--><!--]--></span></a><a href="../esm3/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a protein-folding dashboard</span> <!--[!--><!--]--></span></a><a href="../boltz_predict/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Boltz-2</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../opencode_server/index.html" class="header svelte-14npiaw">Modal Sandboxes</a> <!--[--><a href="../opencode_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a background coding agent with OpenCode</span> <!--[!--><!--]--></span></a><a href="../modal-vibe/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a scalable AI coding platform</span> <!--[!--><!--]--></span></a><a href="../claude-slack-gif-creator/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Create GIFs from Slack using the Claude Agent SDK</span> <!--[!--><!--]--></span></a><a href="../agent/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a LangGraph agent's code in a secure GPU sandbox</span> <!--[!--><!--]--></span></a><a href="../computer_use_vnc/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Watch a computer-use agent work in real-time over VNC</span> <!--[!--><!--]--></span></a><a href="../harbor_evals/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run massively parallel evals on Modal Sandboxes</span> <!--[!--><!--]--></span></a><a href="../simple_code_interpreter/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a stateful, sandboxed code interpreter</span> <!--[!--><!--]--></span></a><a href="../safe_code_execution/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Node.js, Ruby, and more in a Sandbox</span> <!--[!--><!--]--></span></a><a href="../sandbox_pool/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Speed up Sandbox starts with warm pools</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../grpo_verl/index.html" class="header svelte-14npiaw">Reinforcement Learning</a> <!--[--><a href="../grpo_verl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve math problems using GRPO and verl</span> <!--[!--><!--]--></span></a><a href="../grpo_trl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve coding problems using GRPO and TRL</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../liquidai_embeddings_server/index.html" class="header svelte-14npiaw">Embeddings</a> <!--[--><a href="../liquidai_embeddings_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Liquid AI embeddings with Modal Servers</span> <!--[!--><!--]--></span></a><a href="../amazon_embeddings/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Embed millions of documents with TEI</span> <!--[!--><!--]--></span></a><a href="../mongodb-search/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Turn satellite images into vectors and store them in MongoDB</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hackernews_alerts/index.html" class="header svelte-14npiaw">Parallel processing and job scheduling</a> <!--[--><a href="../hackernews_alerts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Hacker News Slackbot</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_jobs/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a Document OCR job queue</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_webapp/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve a Document OCR web app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hp_sweep_gpt/index.html" class="header svelte-14npiaw">Training models from scratch</a> <!--[--><a href="../hp_sweep_gpt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train an SLM with early-stopping grid search over hyperparameters</span> <!--[!--><!--]--></span></a><a href="../long-training/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run long, resumable training jobs</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../finetune_yolo/index.html" class="header svelte-14npiaw">Hosting popular libraries</a> <!--[--><a href="../finetune_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>YOLO: Fine-tune and serve computer vision models</span> <!--[!--><!--]--></span></a><a href="../blender_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Blender: Build a 3D render farm</span> <!--[!--><!--]--></span></a><a href="../serve_streamlit/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Streamlit: Run and deploy Streamlit apps</span> <!--[!--><!--]--></span></a><a href="../cron_datasette/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SQLite: Publish explorable data with Datasette</span> <!--[!--><!--]--></span></a><a href="../algolia_indexer/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Algolia: Build docsearch with a crawler</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../discord_bot/index.html" class="header svelte-14npiaw">Connecting to other APIs</a> <!--[--><a href="../discord_bot/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Discord: Deploy and run a Discord Bot</span> <!--[!--><!--]--></span></a><a href="../db_to_sheet/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Google Sheets: Sync databases and APIs to a Google Sheet</span> <!--[!--><!--]--></span></a><a href="../potus_speech_qanda/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>OpenAI: Run a RAG Q&amp;A chatbot</span> <!--[!--><!--]--></span></a><a href="../modal_tailscale/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tailscale: Add Modal Apps to your VPN</span> <!--[!--><!--]--></span></a><a href="../pushgateway/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Prometheus: Publish custom metrics with Pushgateway</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../s3_bucket_mount/index.html" class="header svelte-14npiaw">Managing data</a> <!--[--><a href="../s3_bucket_mount/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Mount S3 buckets in Modal Apps</span> <!--[!--><!--]--></span></a><a href="../dbt_duckdb/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build your own data warehouse with DuckDB, dbt, and Modal</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[--><a href="../miscellaneous/index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Miscellaneous</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[!--><!----><!----><div class="text-c-gray-80"><!--[!--><!--[--><div class="float-left mb-6 mt-6 pr-2 md:float-right md:mb-2 md:mt-12 md:pl-2 md:pr-0"><a class="btn btn-outlined bg-c-gray-5" href="https://github.com/modal-labs/modal-examples/blob/main/06_gpu_and_ml/llm-serving/vllm_throughput.py" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github text-c-gray-80 mr-2.5"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-80 text-sm">View on GitHub</span></a></div><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="Gq-vsZfwtq" aria-expanded="false" data-state="closed" id="t8I_v-xJk7" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><h1 id="run-llm-inference-at-maximum-throughput"><!--[--><!---->Run LLM inference at maximum throughput<!--]--></h1><!----> <p>This example demonstrates some techniques for running LLM inference
+at the highest possible throughput on Modal.</p> <p>For more on other aspects of maximizing the performance of LLM inference, see <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/high-performance-llm-inference/index.html"><!--[--><!---->our guide<!--]--></a><!---->.
+For a simpler introduction to LLM serving, see <a rel="nofollow" class="text-c-green-100 hover:underline" href="../llm_inference/index.html"><!--[--><!---->this example<!--]--></a><!---->.</p> <p>As our sample application, we use an LLM to summarize thousands of filings with
+the U.S. federal government’s Securities and Exchange Commission (SEC),
+made available to the public for free in daily data dumps
+via the SEC’s Electronic Data Gathering, Analysis, and Retrieval System
+(<a rel="nofollow" class="text-c-green-100 hover:underline" href="https://www.sec.gov/submit-filings/about-edgar"><!--[--><!---->EDGAR<!--]--></a><!---->).
+We like to check out the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://www.sec.gov/files/form4data.pdf"><!--[--><!---->Form 4s<!--]--></a><!---->,
+which detail (legal) insider trading.</p> <p>Using the Qwen 3 8B parameter LLM on this task,
+which has inputs that average a few thousand tokens
+and outputs that average a few hundred tokens,
+we observe processing speeds of ~30,000 input tok/s
+and ~2,000 output tok/s per H100 GPU,
+as in the sample Modal Dashboard screenshot below.
+Note the <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../blog/gpu-utilization-guide/index.html"><!--[--><!---->100% GPU utilization<!--]--></a><!---->,
+indicating the absence of <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../blog/host-overhead-inference-efficiency/index.html"><!--[--><!---->host overhead<!--]--></a><!---->,
+and the high <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/gpu-metrics/index.html"><!--[--><!---->GPU power utilization<!--]--></a><!---->,
+further indicating we are close to the hardware’s physical limits.</p> <p><img src="../../../example-vllm-throughput-dashboard.png" alt="Modal Dashboard indicating 30k tok/s input and 2k tok/s output on a single H100 GPU" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <p>At Modal’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../pricing/index.html"><!--[--><!---->current rates<!--]--></a><!----> as of early 2026,
+that comes out to roughly 4¢ per million tokens. <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://artificialanalysis.ai/models/qwen3-8b-instruct"><!--[--><!---->According to Artificial Analysis<!--]--></a><!---->,
+API providers charge roughly five times as much for the same workload.</p> <!----><h2 id="organizing-a-batch-job-on-modal" class="group"><span><!--[--><!--[--><!---->Organizing a batch job on Modal<!--]--><!--]--></span><!--[--> <a href="#organizing-a-batch-job-on-modal" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We start by defining a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/apps/index.html"><!--[--><!---->App<!--]--></a><!---->,
+which collects together the Modal resources our batch job uses.
+While we’re at it, we import a bunch of the libraries we will need later.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>import datetime as dt
+import time
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+import modal
+
+MINUTES = 60  # seconds
+
+app = modal.App("example-vllm-throughput")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Many batch jobs work nicely as scripts — code that is run
+from a shell, ad hoc, rather than deployed.
+For that, we define a <code>local_entrypoint</code> with code that runs
+locally, when we pass our script to <code>modal run</code>,
+and triggers/orchestrates remote execution.</p> <p>We demonstrate two techniques for collecting the results of a batch job,
+toggled by passing the <code>--wait-for-results</code>/<code>--no-wait-for-results</code> flag via the command line.</p> <p>When we <code>--wait-for-results</code>, we pass the <code>modal.FunctionCall</code> IDs
+that make up our batch job to <code>FunctionCall.gather</code>, which
+returns once our job is done. Here, we just print the results,
+but in a more realistic setting you might save them to disk.</p> <p>Instead of waiting for results, we can retrieve them asynchronously
+based on the <code>FunctionCall</code> ID — a simple string.
+Results are stored in Modal for one week.
+In the <code>local_entrypoint</code> below, these IDs are printed,
+but you might store them in a file on disk, add them to your database,
+or put them in a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/queues/index.html"><!--[--><!---->Queue<!--]--></a><!----> or <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/dicts/index.html"><!--[--><!---->Dict<!--]--></a><!----> for later retrieval.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.local_entrypoint()
+def main(lookback: int = 5, wait_for_results: bool = True):
+    jobs = orchestrate.remote(lookback=lookback)  # trigger remote job orchestration
+
+    if wait_for_results:
+        print("Collecting results locally")
+        batches = modal.FunctionCall.gather(*jobs)
+        for batch in batches:
+            print(*(result.summary for result in batch if result.form == "4"), sep="\n")
+            print("\n")
+        print("Done")
+    else:
+        print("Collect results asynchronously with modal.FunctionCall.from_id")
+        print("FunctionCall IDs:", *[job.object_id for job in jobs], sep="\n\t")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>The meat of the work is done in our <code>orchestrate</code> function.
+It manages the overall pipeline of execution,
+starting with <code>extract</code>ing data from the raw data source,
+followed by <code>transform</code>ing it into a cleaner format
+and then <code>process</code>ing it with the LLM.</p> <p>For both extraction and transformation, we use <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/scale/index.html"><!--[--><code>.map</code><!--]--></a><!---->,
+which fans out inputs over containers in parallel.
+Each invocation handles at most 1,500 rows,
+which leads to runtimes of about five minutes per call
+By parallelizing the calls, we finish processing everything in about five minutes.</p> <p>“Rechunking” our data from a list of filings by day
+into a list of filings of fixed size requires a little
+helper function:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def rechunk(lists, size: int = 1_500):
+    from itertools import chain, islice
+
+    it = iter(chain.from_iterable(lists))
+    while chunk := list(islice(it, size)):
+        yield chunk</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>For the LLM call, we use <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/job-queue/index.html"><!--[--><code>.spawn</code><!--]--></a><!---->,
+which triggers asynchronous execution of the LLM, immediately
+returning the <code>FunctionCall</code> that can later be used to <code>.get</code> the result
+(or <code>.gather</code> several results).</p> <p>We run it as a <code>.remote</code> Modal Function call
+so that it can keep running even after our local client disconnects
+(so long as we use <code>modal run --detach</code>).
+In that case, we dump the <code>FunctionCall</code> IDs into the logs,
+but you might also write them to an external store for later retrieval.</p> <p>The <code>app.function</code> decorator below is all we need to set turn this Python function
+into a remote Modal Function!</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(timeout=30 * MINUTES)
+def orchestrate(lookback: int) -> list[modal.FunctionCall]:
+    llm = Vllm()
+
+    today = datetime.now(tz=ZoneInfo("America/New_York")).date()  # Eastern Time
+    print(f"Loading SEC filing data for the last {lookback} days")
+    folders = list(extract.map(today - dt.timedelta(days=ii) for ii in range(lookback)))
+    folders = list(
+        filter(  # drop days with no data (weekends, holidays)
+            lambda f: f is not None, folders
+        )
+    )
+
+    print("Transforming raw SEC filings for these dates:", *folders)
+    filing_batches = list(transform.map(folders))
+    n_filings = sum(map(len, filing_batches))
+    submission_batches_gen = rechunk(filing_batches)
+
+    print(f"Submitting {n_filings} SEC filings to LLM for summarization")
+    jobs = list(llm.process.spawn(batch) for batch in submission_batches_gen)
+    if jobs:
+        print("FunctionCall IDs:", *[job.object_id for job in jobs], sep="\n\t")
+
+    return jobs</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Before going any further, we should agree on the format that our <code>transform</code> and <code>llm.process</code> functions will use to communicate
+individual elements.</p> <p>We’ll use a lightweight Python <code>dataclass</code> to represent
+each SEC <code>Filing</code>.</p> <p>For our task, we’re going to take the <code>text</code> of a filing and produce
+a <code>summary</code>. So the <code>text</code> is mandatory and the <code>summary</code> starts out empty (<code>None</code>),
+to be filled in by the LLM.</p> <p>We’ll also keep a bit of metadata that should be included.
+But we’re not sure all of these fields will exist (API data is messy!),
+so we reserve the right to set them to <code>None</code>.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@dataclass
+class Filing:
+    accession_number: str | None
+    form: str | None
+    cik: str | None
+    text: str
+    summary: str | None = None</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>With the basic orchestration set up,
+let’s implement each component in turn.</p> <!----><h2 id="serving-tokens-at-maximum-throughput" class="group"><span><!--[--><!--[--><!---->Serving tokens at maximum throughput<!--]--><!--]--></span><!--[--> <a href="#serving-tokens-at-maximum-throughput" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>First, the LLM service.</p> <!----><h3 id="configuring-vllm-for-maximum-throughput" class="group"><span><!--[--><!--[--><!---->Configuring vLLM for maximum throughput<!--]--><!--]--></span><!--[--> <a href="#configuring-vllm-for-maximum-throughput" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>We choose the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://vllm.ai"><!--[--><!---->vLLM<!--]--></a><!----> inference engine. You might alternatively use <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.sglang.io"><!--[--><!---->SGLang<!--]--></a><!---->.
+In our experience, new models and other features
+are implemented first in vLLM, and vLLM has a small edge in throughput
+over SGLang, but either can work well.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>vllm_image = (
+    modal.Image.from_registry("nvidia/cuda:12.9.0-devel-ubuntu22.04", add_python="3.13")
+    .entrypoint([])
+    .uv_pip_install("vllm==0.13.0", "huggingface-hub==0.36.0")
+    .env({"HF_XET_HIGH_PERFORMANCE": "1"})  # faster model transfers
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>vLLM will automatically download the model for us and produce some compilation artifacts,
+all of which are saved to disk.
+Modal Functions are serverless and disks are ephemeral,
+so we attach a <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->Modal Volume<!--]--></a><!----> to the locations where vLLM saves these files to ensure that they persist.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>hf_cache_vol = modal.Volume.from_name("huggingface-cache", create_if_missing=True)
+vllm_cache_vol = modal.Volume.from_name("vllm-cache", create_if_missing=True)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Like a database or web server, an LLM inference engine
+typically has a few knobs to twiddle to adjust performance
+on different workloads.</p> <p>First and foremost, you need to pick the hardware it will run on.
+We’ll be running a smaller model in 8bit floating point format.
+Hopper and later GPUs have native support for this format.
+To maximize throughput, we want to ensure our inference is <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../gpu-glossary/perf/compute-bound/index.html"><!--[--><!---->compute-bound<!--]--></a><!---->:
+the bottleneck is not loading weights/KV cache from memory,
+it’s performing computations on those values.
+Roughly speaking, we want to be able to put together a batch
+whose size is within an order of magnitude of the <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../gpu-glossary/perf/roofline-model/index.html"><!--[--><!---->ridge point arithmetic intensity<!--]--></a><!----> of the GPU for our floating point format, which is <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../gpu-glossary/perf/arithmetic-intensity/index.html"><!--[--><!---->~600 for an H100 SXM Tensor Code on FP8 data<!--]--></a><!---->.</p> <p>A single H100 GPU has enough <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../gpu-glossary/device-hardware/gpu-ram/index.html"><!--[--><!---->GPU RAM<!--]--></a><!----> for pretty large batches of this data for this model,
+so we stick with one of those — and just one!
+Deploying onto multiple GPUs would increase throughput <em>per replica</em>,
+but not throughput <em>per GPU</em> and so not throughput <em>per dollar</em>.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>GPU = "h100"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>The dictionary of arguments below cover the knobs we found it
+important to tune in this case. Specifically, we
+set a maximum sequence length, based on the data,
+to give the engine more hints about how to pack batches.
+We select <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://github.com/flashinfer-ai/flashinfer"><!--[--><!---->FlashInfer<!--]--></a><!----> as the provider of the attention kernels, which vLLM recommends
+for higher throughput in offline serving. Finally, we
+turn on the asynchronous batch scheduler, which gives a small boost
+to throughput.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>vllm_throughput_kwargs = {
+    "max_model_len": 4096 * 4,  # based on data
+    "attention_backend": "flashinfer",  # best for throughput
+    "async_scheduling": True,  # usually faster, but not all features supported
+}</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>For details on these and other arguments, we recommend checking out the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://vllm.ai"><!--[--><!---->vLLM docs<!--]--></a><!---->,
+which include lots of recipes and recommendations for different workloads and models.</p> <!----><h3 id="deploying-vllm-on-modal" class="group"><span><!--[--><!--[--><!---->Deploying vLLM on Modal<!--]--><!--]--></span><!--[--> <a href="#deploying-vllm-on-modal" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>For offline, throughput-oriented serving,
+we can use the <code>LLM</code> interface of the vLLM SDK.
+This interface processes batches of inputs synchronously,
+unlike the <code>AsyncLLM</code> or HTTP serving interfaces.
+Dumping a large batch all at once exposes
+the maximum amount of parallelism to the engine
+and adds the least request management overhead,
+so we can expect it to maximize throughput.
+Critically, though, this means we don’t get any results
+until all of them are finished — a key engineering degree of freedom
+for throughput-oriented offline/batch jobs!</p> <p>We use a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/lifecycle-functions/index.html"><!--[--><!---->Cls<!--]--></a><!----> to control the spinup and shutdown logic for the <code>LLM</code> engine.
+Specifically, we create it (and warm it up with a test request)
+in a method decorated with <code>modal.enter</code> and we shut it down in a method decorated with <code>modal.exit</code>.
+The code in these methods will run only once per replica,
+when it is created and destroyed, respectively.</p> <p>In between, we run a batch of <code>Filings</code> through the engine,
+adding the model’s output text to the <code>summary</code> field.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.cls(
+    image=vllm_image,
+    gpu=GPU,
+    timeout=10 * MINUTES,
+    volumes={
+        "/root/.cache/huggingface": hf_cache_vol,
+        "/root/.cache/vllm": vllm_cache_vol,
+    },
+)
+class Vllm:
+    @modal.enter()
+    def start(self):
+        import vllm
+
+        self.llm = vllm.LLM(model="Qwen/Qwen3-8B-FP8", **vllm_throughput_kwargs)
+        self.sampling_params = self.llm.get_default_sampling_params()
+        self.sampling_params.max_tokens = 1000
+
+        self.llm.chat([{"role": "user", "content": "Is this thing on?"}])
+
+    @modal.method()
+    def process(self, filings: list[Filing]) -> list[Filing]:
+        messages = [
+            [
+                {
+                    "role": "user",
+                    "content": f"/no_think Summarize this SEC filing in a single, short paragraph.\n\n{filing.text}",
+                }
+            ]
+            for filing in filings
+        ]
+
+        start = time.time()
+        responses = self.llm.chat(messages, sampling_params=self.sampling_params)
+        duration_s = time.time() - start
+
+        in_token_count = sum(len(response.prompt_token_ids) for response in responses)
+        out_token_count = sum(
+            len(response.outputs[0].token_ids) for response in responses
+        )
+
+        print(f"processed {in_token_count} prompt tokens in {int(duration_s)} seconds")
+        print(f"generated {out_token_count} output tokens in {int(duration_s)} seconds")
+
+        for response, filing in zip(responses, filings):
+            filing.summary = response.outputs[0].text
+
+        return filings
+
+    @modal.exit()
+    def stop(self):
+        del self.llm</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>And that’s it for the LLM portion of the pipeline!
+The remainder of this document is code and explanation
+for the data loading and processing steps.
+The details are mostly specific to this dataset,
+but there are a few general Modal tips and tricks
+for batch processing along the way.</p> <!----><h2 id="transforming-sec-filings-for-batch-processing" class="group"><span><!--[--><!--[--><!---->Transforming SEC filings for batch processing<!--]--><!--]--></span><!--[--> <a href="#transforming-sec-filings-for-batch-processing" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We can avoid having to deal directly with the low-level
+details of the SEC’s data format by using the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://pypi.org/project/edgartools/"><!--[--><code>edgartools</code> library<!--]--></a><!---->.
+And we can avoid worrying about compatibility with the other libraries
+in our project by putting it in a separate container Image.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>data_proc_image = modal.Image.debian_slim(python_version="3.13").uv_pip_install(
+    # pin transitive deps to avoid surprises like this one:
+    # https://www.edgartools.io/pandas-3-0-and-edgartools/
+    "edgartools==5.8.3",
+    "httpx==0.28.1",
+    "httpxthrottlecache==0.3.0",
+    "pandas&lt;3",
+    "pyrate-limiter==3.9.0",
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Instead of hitting the SEC’s EDGAR Feed API every time we want to run a job,
+we’ll cache the results for each day in a Modal Volume.
+We use Modal’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->v2 Volumes<!--]--></a><!---->,
+which have no limit on the number of total stored files.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>sec_edgar_feed = modal.Volume.from_name(
+    "example-sec-edgar-daily", create_if_missing=True, version=2
+)
+data_root = Path("/data")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Note that v2 Volumes are still in beta, so data loss may be possible.
+This is acceptable for most batch jobs, which extract data from an external
+source of truth.</p> <p>The <code>transform</code> function below operates on a folder containing data
+with one filing per file
+(in <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://en.wikipedia.org/wiki/NetCDF"><!--[--><!---->NetCDF<!--]--></a><!---->/<code>.nc</code> format).</p> <p>Loading thousands of filings with <code>edgartools</code> takes tens of seconds.
+We can speed it up by running in parallel on Modal instead!
+But running each file in a separate container would add too much overhead.
+So we group up the files into <code>chunks</code> of ~100 and pass those to
+the Modal Function that actually does the work.
+Again, we use <code>map</code> to transparently scale out across containers.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(
+    volumes={data_root: sec_edgar_feed}, timeout=10 * MINUTES, scaledown_window=5
+)
+def transform(folder: str | None) -> list[Filing]:
+    if folder is None:
+        return []
+
+    folder_path = data_root / folder
+    paths = [p for p in folder_path.iterdir() if p.is_file() and p.suffix == ".nc"]
+
+    print(f"Processing {len(paths)} filings")
+
+    chunks: list[list[Path]] = [paths[i : i + 100] for i in range(0, len(paths), 100)]
+
+    batches = list(_transform_filing_batch.map(chunks))
+
+    filings = [f for batch in batches for f in batch if f is not None]
+
+    print(f"Found documents for {len(filings)} filings out of {len(paths)}")
+
+    return filings
+
+
+@app.function(
+    volumes={data_root: sec_edgar_feed},
+    scaledown_window=5,
+    image=data_proc_image,
+    timeout=10 * MINUTES,
+)
+def _transform_filing_batch(raw_filing_paths: list[Path]) -> list[Filing | None]:
+    from edgar.sgml import FilingSGML
+
+    out = []
+    for raw_filing_path in raw_filing_paths:
+        sgml = FilingSGML.from_source(raw_filing_path)
+        text = extract_text(sgml)
+        if text is None:
+            out.append(None)
+            continue
+        out.append(
+            Filing(
+                accession_number=sgml.accession_number,
+                form=sgml.form,
+                cik=sgml.cik,
+                text=text,
+            )
+        )
+    return out</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Because these containers are cheap to scale up and are only needed for
+a brief burst during the pipeline, we set the <code>scaledown_window</code> for the containers
+to a much lower value than the default of five minutes — here, five seconds.</p> <!----><h2 id="loading-filings-from-the-sec-edgar-feed" class="group"><span><!--[--><!--[--><!---->Loading filings from the SEC EDGAR Feed<!--]--><!--]--></span><!--[--> <a href="#loading-filings-from-the-sec-edgar-feed" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We complete our reverse tour of the pipeline by loading the data from the original source:
+the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://www.sec.gov/Archives/edgar/Feed/"><!--[--><!---->SEC EDGAR Feed<!--]--></a><!---->,
+an archive of daily filings going back over three decades.</p> <p>We use the <code>requests</code> library to pull data from the API.
+We’ll be downloading large (maybe megabytes to few gigabytes)
+files with low concurrency, so there’s little benefit to running an asynchronous web client.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>scraper_image = modal.Image.debian_slim(python_version="3.13").uv_pip_install(
+    "requests==2.32.5"
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Our concurrency is limited by the policies of the SEC EDGAR API.
+The limit is 10 RPS, which we aim to stay under by setting the <code>max</code> number of <code>containers</code> running our extraction to 10.</p> <p>We add <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/retries/index.html"><!--[--><!---->retries<!--]--></a><!----> via our Modal decorator as well, so that we can tolerate temporary outages or rate limits.</p> <p>Note that we also attach the same Volume used in the <code>transform</code> Functions above
+and we explicitly <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../reference/modal.Volume"><!--[--><code>.commit</code><!--]--></a><!----> our writes
+so that they will be visible to future containers running <code>transform</code>.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(
+    max_containers=10,
+    volumes={data_root: sec_edgar_feed},
+    retries=5,
+    image=scraper_image,
+    scaledown_window=5,
+)
+def extract(day: dt.date) -> str | None:
+    target_folder = str(day)
+    day_dir = data_root / target_folder
+    daily_name = f"{day:%Y%m%d}.nc.tar.gz"
+    tar_path = day_dir / daily_name
+
+    # If the folder doesn't exist yet, try downloading the day's tarball
+    if not tar_path.exists():
+        print(f"Looking for data for {day} in SEC EDGAR Feed")
+        ok = _download_from_sec_edgar(day, day_dir)
+        if not ok:
+            return None
+
+    if not any(p.suffix == ".nc" for p in day_dir.iterdir()):
+        print(f"Loading data for {day} from {tar_path}")
+        _extract_tarfile(tar_path, day_dir)
+
+    sec_edgar_feed.commit()
+    print(f"Data for {day} loaded")
+
+    return target_folder</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="addenda" class="group"><span><!--[--><!--[--><!---->Addenda<!--]--><!--]--></span><!--[--> <a href="#addenda" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The remainder of this code consists of utility functions and boiler plate used in the
+main code above.</p> <!----><h3 id="utilities-for-transforming-sec-filings" class="group"><span><!--[--><!--[--><!---->Utilities for transforming SEC Filings<!--]--><!--]--></span><!--[--> <a href="#utilities-for-transforming-sec-filings" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>The code in this section is used to transform, normalize, and otherwise munge
+the raw filings downloaded from the SEC.</p> <p>For LLM serving, the most important piece here is the function to truncate
+documents. A maximum document length can be used to set a loose bound
+on the sequence length in the LLM engine configuration.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def normalize_text(text: str) -> str:
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    text = clean_xml(text)
+    return text
+
+
+def clean_xml(xml: str) -> str:
+    import re
+
+    _XMLNS_ATTR_RE = re.compile(r'\s+xmlns(:\w+)?="[^"]*"', re.I)
+    _XML_DECL_RE = re.compile(r"^\s*&lt;\?xml[^>]*\?>\s*", re.I)
+    _EMPTY_TAG_RE = re.compile(r"&lt;(\w+)([^>]*)>\s*&lt;/\1>", re.S)
+    _BETWEEN_TAG_WS_RE = re.compile(r">\s+&lt;")
+
+    xml = xml.replace("\r\n", "\n").replace("\r", "\n").strip()
+
+    # drop xml declaration, remove xmlns attributes
+    xml = _XML_DECL_RE.sub("", xml)
+    xml = _XMLNS_ATTR_RE.sub("", xml)
+
+    # replace whitespace between tags with a single newline
+    xml = _BETWEEN_TAG_WS_RE.sub(">&lt;", xml).replace(">&lt;", ">\n&lt;")
+
+    return xml.strip()
+
+
+def truncate_head_tail(text: str, head: int = 13_000, tail: int = 2_000) -> str:
+    if len(text) &lt;= head + tail:
+        return text
+    return text[:head].rstrip() + "\n\n[...TRUNCATED...]\n\n" + text[-tail:].lstrip()
+
+
+def extract_text(sgml) -> str | None:
+    doc = sgml.xml()
+    return truncate_head_tail(normalize_text(doc)) if doc else None</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="utilities-for-loading-filings-from-the-sec-edgar-feed" class="group"><span><!--[--><!--[--><!---->Utilities for loading filings from the SEC EDGAR Feed<!--]--><!--]--></span><!--[--> <a href="#utilities-for-loading-filings-from-the-sec-edgar-feed" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>The code in this section is used to load raw data from the Feed
+section of SEC EDGAR.</p> <p>Daily dumps are stored in <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://www.math.utah.edu/docs/info/tar_4.html"><!--[--><!---->tar<!--]--></a><!----> archives, which the code below extracts.
+Archives for particular days are located by searching the SEC EDGAR Feed indices
+for the appropriate URL.</p> <p>For full compliance with SEC EDGAR etiquette,
+we recommend updating the <code>SEC_USER_AGENT</code> environment variable
+below with your name and email.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def _download_from_sec_edgar(day: dt.date, day_dir: Path) -> bool:
+    import os
+
+    import requests
+
+    SEC_UA = os.environ.get("SEC_USER_AGENT", "YourName your.email@example.com")
+    session = requests.Session()
+    session.headers.update({"User-Agent": SEC_UA, "Accept-Encoding": "gzip, deflate"})
+
+    base = "https://www.sec.gov/Archives/edgar/Feed"
+
+    def quarter(d: dt.date) -> str:
+        return f"QTR{(d.month - 1) // 3 + 1}"
+
+    qtr = quarter(day)
+    daily_name = f"{day:%Y%m%d}.nc.tar.gz"
+    qtr_index = f"{base}/{day.year}/{qtr}/index.json"
+
+    if not check_index(session, qtr_index, daily_name):
+        print(f"no data for {day} in SEC EDGAR Feed")
+        return False
+
+    day_dir.mkdir(parents=True, exist_ok=True)
+
+    tar_path = day_dir / daily_name
+    if not tar_path.exists() or tar_path.stat().st_size == 0:
+        url = f"{base}/{day.year}/{qtr}/{daily_name}"
+        print(f"Downloading from {url}")
+        print("This can take several minutes")
+        _download_tar(session, url, tar_path)
+
+    return True
+
+
+def _extract_tarfile(from_tar_path, to_dir):
+    import tarfile
+
+    with tarfile.open(from_tar_path, "r:gz") as tf:
+        for member in tf:
+            if not (member.isfile() and member.name.endswith(".nc")):
+                continue
+            dest = to_dir / Path(member.name).name
+            if dest.exists() and dest.stat().st_size > 0:
+                continue
+            f = tf.extractfile(member)
+            if f is None:
+                continue
+            dest.write_bytes(f.read())
+
+
+def check_index(session, index_url, name) -> bool:
+    r = session.get(index_url, timeout=30)
+    if r.status_code == 404:
+        return False
+    r.raise_for_status()
+    for it in r.json().get("directory", {}).get("item", []):
+        if it.get("type") == "file" and it.get("name") == name:
+            return True
+    return False
+
+
+def _download_tar(session, url, tar_path):
+    resp = session.get(url, timeout=500)
+    resp.raise_for_status()
+    tmp = tar_path.with_suffix(tar_path.suffix + ".part")
+    tmp.write_bytes(resp.content)
+    tmp.replace(tar_path)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-run-llm-inference-at-maximum-throughput" href="#run-llm-inference-at-maximum-throughput" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Run LLM inference at maximum throughput</a><!--]--><!--[--><a id="toc-organizing-a-batch-job-on-modal" href="#organizing-a-batch-job-on-modal" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Organizing a batch job on Modal</a><!--]--><!--[--><a id="toc-serving-tokens-at-maximum-throughput" href="#serving-tokens-at-maximum-throughput" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Serving tokens at maximum throughput</a><!--]--><!--[--><a id="toc-configuring-vllm-for-maximum-throughput" href="#configuring-vllm-for-maximum-throughput" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Configuring vLLM for maximum throughput</a><!--]--><!--[--><a id="toc-deploying-vllm-on-modal" href="#deploying-vllm-on-modal" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Deploying vLLM on Modal</a><!--]--><!--[--><a id="toc-transforming-sec-filings-for-batch-processing" href="#transforming-sec-filings-for-batch-processing" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Transforming SEC filings for batch processing</a><!--]--><!--[--><a id="toc-loading-filings-from-the-sec-edgar-feed" href="#loading-filings-from-the-sec-edgar-feed" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Loading filings from the SEC EDGAR Feed</a><!--]--><!--[--><a id="toc-addenda" href="#addenda" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Addenda</a><!--]--><!--[--><a id="toc-utilities-for-transforming-sec-filings" href="#utilities-for-transforming-sec-filings" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Utilities for transforming SEC Filings</a><!--]--><!--[--><a id="toc-utilities-for-loading-filings-from-the-sec-edgar-feed" href="#utilities-for-loading-filings-from-the-sec-edgar-feed" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Utilities for loading filings from the SEC EDGAR Feed</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[--><div class="mt-16"><div class="text-c-gray-60 space-y-3 text-sm"><div class="font-medium"><h2 class="text-xl text-white">Try this on Modal!</h2></div> <p>You can run this example on Modal in 60 seconds.</p> <!--[--><div class="py-1"><a class="btn btn-outlined btn-primary w-full text-base" href="../../../signup/index.html">Create account to run</a></div> <p>After creating a free account, install the Modal Python package, and
+      create an API token.</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>pip install modal</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal setup</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!--]--> <p>Clone the <a class="text-c-gray-80 font-semibold hover:underline" href="https://github.com/modal-labs/modal-examples">modal-examples</a> repository and run:</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>git clone https://github.com/modal-labs/modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>cd modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal run --detach 06_gpu_and_ml/llm-serving/vllm_throughput.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div></div><!----></div><!--]--></div></div><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../../sdk/py/releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="V022wLl3J2JDBZkeOJYClg==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 11, 128],
+							data: [{type:"data",data:{},uses:{}},null,null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

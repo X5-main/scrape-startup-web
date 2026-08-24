@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="efc2ee8b42d7484995f6e69f80d3462f-b6f7d349279d649a"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=efc2ee8b42d7484995f6e69f80d3462f,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="In this example, we show how to serve Mistral’s Ministral 3 vision-language models on Modal."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Serverless Ministral 3 with vLLM and Modal"/> <meta property="og:description" content="In this example, we show how to serve Mistral’s Ministral 3 vision-language models on Modal."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Serverless+Ministral+3+with+vLLM+and+Modal&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Serverless Ministral 3 with vLLM and Modal | Modal Docs</title>
+		<link href="../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../index.html" class="shrink-0 lg:mr-8"><img src="../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb navlink-active" href="../index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="e3SXQ9Fzho" aria-expanded="false" data-state="closed" id="OPUL1FX80e" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../sdk/py/releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[--><!--[--><a href="../index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Featured</span> <!--[!--><!--]--></span></a><!--]--><!--[!--><a href="../hello_world/index.html" class="header svelte-14npiaw">Getting started</a> <!--[--><a href="../hello_world/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Hello, world</span> <!--[!--><!--]--></span></a><a href="../webscraper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Simple web scraper</span> <!--[!--><!--]--></span></a><a href="../basic_web/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serving Web Functions</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm_inference/index.html" class="header svelte-14npiaw">Large language models (LLMs)</a> <!--[--><a href="../llm_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy an OpenAI-compatible LLM service with vLLM</span> <!--[!--><!--]--></span></a><a href="index.html" class="item svelte-14npiaw active"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cut Ministral 3 cold start times by 10x with snapshots</span> <!--[!--><!--]--></span></a><a href="../vllm_throughput/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Maximize tokens per second in batch processing with vLLM</span> <!--[!--><!--]--></span></a><a href="../sglang_low_latency/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve an ultra-low-latency chatbot with SGLang</span> <!--[!--><!--]--></span></a><a href="../nemotron_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy Nemotron 3</span> <!--[!--><!--]--></span></a><a href="../inkling_small/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Inkling-Small with SGLang</span> <!--[!--><!--]--></span></a><a href="../deepseek_v4_flash/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve DeepSeek-V4-Flash</span> <!--[!--><!--]--></span></a><a href="../unsloth_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Efficient LLM Finetuning with Unsloth</span> <!--[!--><!--]--></span></a><a href="../chat_with_pdf_vision/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a multimodal RAG chatbot to answer questions about PDFs</span> <!--[!--><!--]--></span></a><a href="../llm-finetuning/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune an LLM to replace your CEO</span> <!--[!--><!--]--></span></a><a href="../mcp_server_stateless/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a stateless MCP with FastMCP</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../image_to_image/index.html" class="header svelte-14npiaw">Images, video, &amp; 3D</a> <!--[--><a href="../image_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Edit images with Flux Kontext</span> <!--[!--><!--]--></span></a><a href="../music-video-gen/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Wan2.1 video models on your face</span> <!--[!--><!--]--></span></a><a href="../flux/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Flux fast with torch.compile</span> <!--[!--><!--]--></span></a><a href="../diffusers_lora_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Flux with LoRA</span> <!--[!--><!--]--></span></a><a href="../image_to_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Animate images with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../ltx/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate video clips with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../text_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Stable Diffusion with a CLI, API, and web UI</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm-voice-chat/index.html" class="header svelte-14npiaw">Audio</a> <!--[--><a href="../llm-voice-chat/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Moshi voice chatbot</span> <!--[!--><!--]--></span></a><a href="../streaming_kyutai_stt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Stream transcripts at the speed of speech using Kyutai STT</span> <!--[!--><!--]--></span></a><a href="../generate_music/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Make music with ACE-Step</span> <!--[!--><!--]--></span></a><a href="../chatterbox_tts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate speech with Chatterbox</span> <!--[!--><!--]--></span></a><a href="../batched_whisper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run high throughput batched transcription with Whisper</span> <!--[!--><!--]--></span></a><a href="../fine_tune_asr/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Whisper to recognize new words</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../webrtc_yolo/index.html" class="header svelte-14npiaw">Real-time communication (WebRTC)</a> <!--[--><a href="../webrtc_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serverless WebRTC</span> <!--[!--><!--]--></span></a><a href="../fastrtc_flip_webcam/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>WebRTC quickstart with FastRTC</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../esmfold2_binder_design/index.html" class="header svelte-14npiaw">Computational biology</a> <!--[--><a href="../esmfold2_binder_design/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Design protein binders with ESMFold2</span> <!--[!--><!--]--></span></a><a href="../chai1/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Chai-1</span> <!--[!--><!--]--></span></a><a href="../esm3/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a protein-folding dashboard</span> <!--[!--><!--]--></span></a><a href="../boltz_predict/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Boltz-2</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../opencode_server/index.html" class="header svelte-14npiaw">Modal Sandboxes</a> <!--[--><a href="../opencode_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a background coding agent with OpenCode</span> <!--[!--><!--]--></span></a><a href="../modal-vibe/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a scalable AI coding platform</span> <!--[!--><!--]--></span></a><a href="../claude-slack-gif-creator/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Create GIFs from Slack using the Claude Agent SDK</span> <!--[!--><!--]--></span></a><a href="../agent/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a LangGraph agent's code in a secure GPU sandbox</span> <!--[!--><!--]--></span></a><a href="../computer_use_vnc/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Watch a computer-use agent work in real-time over VNC</span> <!--[!--><!--]--></span></a><a href="../harbor_evals/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run massively parallel evals on Modal Sandboxes</span> <!--[!--><!--]--></span></a><a href="../simple_code_interpreter/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a stateful, sandboxed code interpreter</span> <!--[!--><!--]--></span></a><a href="../safe_code_execution/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Node.js, Ruby, and more in a Sandbox</span> <!--[!--><!--]--></span></a><a href="../sandbox_pool/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Speed up Sandbox starts with warm pools</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../grpo_verl/index.html" class="header svelte-14npiaw">Reinforcement Learning</a> <!--[--><a href="../grpo_verl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve math problems using GRPO and verl</span> <!--[!--><!--]--></span></a><a href="../grpo_trl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve coding problems using GRPO and TRL</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../liquidai_embeddings_server/index.html" class="header svelte-14npiaw">Embeddings</a> <!--[--><a href="../liquidai_embeddings_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Liquid AI embeddings with Modal Servers</span> <!--[!--><!--]--></span></a><a href="../amazon_embeddings/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Embed millions of documents with TEI</span> <!--[!--><!--]--></span></a><a href="../mongodb-search/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Turn satellite images into vectors and store them in MongoDB</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hackernews_alerts/index.html" class="header svelte-14npiaw">Parallel processing and job scheduling</a> <!--[--><a href="../hackernews_alerts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Hacker News Slackbot</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_jobs/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a Document OCR job queue</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_webapp/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve a Document OCR web app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hp_sweep_gpt/index.html" class="header svelte-14npiaw">Training models from scratch</a> <!--[--><a href="../hp_sweep_gpt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train an SLM with early-stopping grid search over hyperparameters</span> <!--[!--><!--]--></span></a><a href="../long-training/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run long, resumable training jobs</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../finetune_yolo/index.html" class="header svelte-14npiaw">Hosting popular libraries</a> <!--[--><a href="../finetune_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>YOLO: Fine-tune and serve computer vision models</span> <!--[!--><!--]--></span></a><a href="../blender_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Blender: Build a 3D render farm</span> <!--[!--><!--]--></span></a><a href="../serve_streamlit/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Streamlit: Run and deploy Streamlit apps</span> <!--[!--><!--]--></span></a><a href="../cron_datasette/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SQLite: Publish explorable data with Datasette</span> <!--[!--><!--]--></span></a><a href="../algolia_indexer/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Algolia: Build docsearch with a crawler</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../discord_bot/index.html" class="header svelte-14npiaw">Connecting to other APIs</a> <!--[--><a href="../discord_bot/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Discord: Deploy and run a Discord Bot</span> <!--[!--><!--]--></span></a><a href="../db_to_sheet/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Google Sheets: Sync databases and APIs to a Google Sheet</span> <!--[!--><!--]--></span></a><a href="../potus_speech_qanda/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>OpenAI: Run a RAG Q&amp;A chatbot</span> <!--[!--><!--]--></span></a><a href="../modal_tailscale/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tailscale: Add Modal Apps to your VPN</span> <!--[!--><!--]--></span></a><a href="../pushgateway/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Prometheus: Publish custom metrics with Pushgateway</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../s3_bucket_mount/index.html" class="header svelte-14npiaw">Managing data</a> <!--[--><a href="../s3_bucket_mount/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Mount S3 buckets in Modal Apps</span> <!--[!--><!--]--></span></a><a href="../dbt_duckdb/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build your own data warehouse with DuckDB, dbt, and Modal</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[--><a href="../miscellaneous/index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Miscellaneous</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[!--><!----><!----><div class="text-c-gray-80"><!--[!--><!--[--><div class="float-left mb-6 mt-6 pr-2 md:float-right md:mb-2 md:mt-12 md:pl-2 md:pr-0"><a class="btn btn-outlined bg-c-gray-5" href="https://github.com/modal-labs/modal-examples/blob/main/06_gpu_and_ml/llm-serving/ministral3_inference.py" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github text-c-gray-80 mr-2.5"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-80 text-sm">View on GitHub</span></a></div><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="fo_RPH061P" aria-expanded="false" data-state="closed" id="CDsn4ftV1p" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><h1 id="serverless-ministral-3-with-vllm-and-modal"><!--[--><!---->Serverless Ministral 3 with vLLM and Modal<!--]--></h1><!----> <p>In this example, we show how to serve Mistral’s Ministral 3 vision-language models on Modal.</p> <p>The <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/collections/mistralai/ministral-3-more"><!--[--><!---->Ministral 3<!--]--></a><!----> model series
+performs competitively with the Qwen 3-VL model series on benchmarks
+(see model cards for details).</p> <p>We also include instructions for cutting cold start times
+for long-running deployments by an order of magnitude using Modal’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/memory-snapshot/index.html"><!--[--><!---->CPU + GPU memory snapshots<!--]--></a><!---->.</p> <!----><h2 id="set-up-the-container-image" class="group"><span><!--[--><!--[--><!---->Set up the container image<!--]--><!--]--></span><!--[--> <a href="#set-up-the-container-image" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Our first order of business is to define the environment our server will run in:
+the <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/custom-container/index.html"><!--[--><!---->container <code>Image</code><!--]--></a><!---->.
+We’ll use the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.vllm.ai"><!--[--><!---->vLLM inference server<!--]--></a><!---->.
+vLLM can be installed with <code>uv pip</code>, since Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/cuda/index.html"><!--[--><!---->provides the CUDA drivers<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>import json
+import socket
+import subprocess
+from typing import Any
+
+import aiohttp
+import modal
+
+MINUTES = 60  # seconds
+VLLM_PORT = 8000
+
+app = modal.App("example-ministral3-inference")
+
+vllm_image = (
+    modal.Image.from_registry("nvidia/cuda:12.9.0-devel-ubuntu22.04", add_python="3.12")
+    .entrypoint([])
+    .uv_pip_install(
+        "vllm==0.13.0",
+        "huggingface-hub==0.36.0",
+        "flashinfer-python==0.5.3",
+    )
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="download-the-ministral-weights" class="group"><span><!--[--><!--[--><!---->Download the Ministral weights<!--]--><!--]--></span><!--[--> <a href="#download-the-ministral-weights" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We also need to download the model weights.
+We’ll retrieve them from the Hugging Face Hub.</p> <p>To speed up the model load, we’ll toggle the <code>HIGH_PERFORMANCE</code> flag for Hugging Face’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/docs/hub/en/xet/index"><!--[--><!---->Xet backend<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>vllm_image = vllm_image.env({"HF_XET_HIGH_PERFORMANCE": "1"})</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>The <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/collections/mistralai/ministral-3-more"><!--[--><!---->Ministral 3 model series<!--]--></a><!----> contains a variety of models:</p> <ul><li>3B, 8B, and 14B sizes</li> <li>base models and instruction &amp; reasoning fine-tuned models</li> <li>BF16 and FP8 quantizations</li></ul> <p>All are available under the Apache 2.0 open source license.</p> <p>We’ll use the FP8 instruct variant of the 8B model:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>MODEL_NAME = "mistralai/Ministral-3-8B-Instruct-2512"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Native hardware support for FP8 formats in <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../gpu-glossary/device-hardware/tensor-core/index.html"><!--[--><!---->Tensor Cores<!--]--></a><!----> is limited to the latest <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../gpu-glossary/device-hardware/streaming-multiprocessor-architecture/index.html"><!--[--><!---->Streaming Multiprocessor architectures<!--]--></a><!---->,
+like those of Modal’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../blog/introducing-b200-h200/index.html"><!--[--><!---->Hopper H100/H200 and Blackwell B200 GPUs<!--]--></a><!---->.</p> <p>At 80 GB VRAM, a single H100 GPU has enough space to store the 8B FP8 model weights (~8 GB)
+and a very large KV cache. A single H100 is also enough to serve the 14B model in full precision,
+but without as much room for KV (though still enough to handle the full sequence length).</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>N_GPU = 1</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="cache-with-modal-volumes" class="group"><span><!--[--><!--[--><!---->Cache with Modal Volumes<!--]--><!--]--></span><!--[--> <a href="#cache-with-modal-volumes" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Modal Functions are serverless: when they aren’t being used,
+their underlying containers spin down and all ephemeral resources,
+like GPUs, memory, network connections, and local disks are released.</p> <p>We can preserve saved files by mounting a <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->Modal Volume<!--]--></a><!----> —
+a persistent, remote filesystem.</p> <p>We’ll use two Volumes: one for weights from Hugging Face
+and one for compilation artifacts from vLLM.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>hf_cache_vol = modal.Volume.from_name("huggingface-cache", create_if_missing=True)
+vllm_cache_vol = modal.Volume.from_name("vllm-cache", create_if_missing=True)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="serve-ministral-3-with-vllm" class="group"><span><!--[--><!--[--><!---->Serve Ministral 3 with vLLM<!--]--><!--]--></span><!--[--> <a href="#serve-ministral-3-with-vllm" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We serve Ministral 3 on Modal by spinning up a Modal Function
+that acts as a <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/webhooks/index.html"><!--[--><code>web_server</code><!--]--></a><!----> and spins up a vLLM server in a subprocess
+(via the <code>vllm serve</code> command).</p> <!----><h3 id="improve-cold-start-time-with-snapshots" class="group"><span><!--[--><!--[--><!---->Improve cold start time with snapshots<!--]--><!--]--></span><!--[--> <a href="#improve-cold-start-time-with-snapshots" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Starting up a vLLM server can be slow —
+tens of seconds to minutes. Much of that time
+is spent on JIT compilation of inference code.</p> <p>We can skip most of that work and reduce startup times by a factor of 10
+using Modal’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/memory-snapshot/index.html"><!--[--><!---->memory snapshots<!--]--></a><!---->,
+which serialize the contents of CPU and GPU memory.</p> <p>This adds quite some complexity to the code.
+If you’re looking for a minimal example, see
+our <a rel="nofollow" class="text-c-green-100 hover:underline" href="../vllm_inference/index.html"><!--[--><code>vllm_inference</code> example here<!--]--></a><!---->.</p> <p>We’ll need to set a few extra configuration values:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>vllm_image = vllm_image.env(
+    {
+        "VLLM_SERVER_DEV_MODE": "1",  # allow use of "Sleep Mode"
+        "TORCHINDUCTOR_COMPILE_THREADS": "1",  # improve compatibility with snapshots
+    }
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Setting the <code>DEV_MODE</code> flag allows us to use the <code>sleep</code>/<code>wake_up</code> endpoints
+to toggle the server in and out of “sleep mode”.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>with vllm_image.imports():
+    import requests
+
+
+def sleep(level=1):
+    requests.post(
+        f"http://localhost:{VLLM_PORT}/sleep?level={level}"
+    ).raise_for_status()
+
+
+def wake_up():
+    requests.post(f"http://localhost:{VLLM_PORT}/wake_up").raise_for_status()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Sleep Mode helps with memory snapshotting.
+When the server is asleep, model weights are offloaded to CPU memory and the KV cache is emptied.
+For details, see the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.vllm.ai/en/stable/features/sleep_mode/"><!--[--><!---->vLLM docs<!--]--></a><!---->.</p> <p>We’ll also need two helper functions.
+Ther first, <code>wait_ready</code>, busy-polls the server until it is live.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def wait_ready(proc: subprocess.Popen):
+    while True:
+        try:
+            socket.create_connection(("localhost", VLLM_PORT), timeout=1).close()
+            return
+        except OSError:
+            if proc.poll() is not None:
+                raise RuntimeError(f"vLLM exited with {proc.returncode}")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Once the server is live, we <code>warmup</code> inference with a few requests.
+This is important for capturing non-serializable JIT compilation artifacts,
+like CUDA graphs and some Torch compilation outputs,
+in our snapshot.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def warmup():
+    payload = {
+        "model": "llm",
+        "messages": [{"role": "user", "content": "Who are you?"}],
+        "max_tokens": 16,
+    }
+
+    for ii in range(3):
+        requests.post(
+            f"http://localhost:{VLLM_PORT}/v1/chat/completions",
+            json=payload,
+            timeout=300,
+        ).raise_for_status()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="define-the-server" class="group"><span><!--[--><!--[--><!---->Define the server<!--]--><!--]--></span><!--[--> <a href="#define-the-server" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>We construct our web-serving Modal Function
+by decorating a regular Python class.
+The decorators include a number of configuration
+options for deployment, including resources like GPUs and Volumes
+and timeouts on container scaledown.
+You can read more about the options <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../reference/modal.App"><!--[--><!---->here<!--]--></a><!---->.</p> <p>We control memory snapshotting and container start behavior
+by decorating the methods of the class.</p> <p>We start the server, warm it up, and then put it to sleep
+in the <code>start</code> method. This method has the <code>modal.enter</code> decorator to ensure it runs when a new container starts
+and we pass <code>snap=True</code> to turn on memory snapshotting.</p> <p>The following method, <code>wake_up</code>, calls the <code>wake_up</code> endpoint and then waits for the server to be ready.
+It is run after the <code>start</code> method because it is defined later
+in the code and also has the <code>modal.enter</code> decorator.
+It has <code>snap=False</code> so that it isn’t included in the snapshot.</p> <p>Finally, we connect the vLLM server to the Internet
+using the <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/webhooks/index.html"><!--[--><code>modal.web_server</code><!--]--></a><!----> decorator.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.cls(
+    image=vllm_image,
+    gpu=f"H100:{N_GPU}",
+    scaledown_window=15 * MINUTES,  # how long should we stay up with no requests?
+    timeout=10 * MINUTES,  # how long should we wait for container start?
+    volumes={
+        "/root/.cache/huggingface": hf_cache_vol,
+        "/root/.cache/vllm": vllm_cache_vol,
+    },
+    enable_memory_snapshot=True,
+    experimental_options={"enable_gpu_snapshot": True},
+)
+@modal.concurrent(  # how many requests can one replica handle? tune carefully!
+    max_inputs=32
+)
+class VllmServer:
+    @modal.enter(snap=True)
+    def start(self):
+        cmd = [
+            "vllm",
+            "serve",
+            "--uvicorn-log-level=info",
+            MODEL_NAME,
+            "--served-model-name",
+            MODEL_NAME,
+            "llm",
+            "--host",
+            "0.0.0.0",
+            "--port",
+            str(VLLM_PORT),
+            "--gpu_memory_utilization",
+            str(0.95),
+        ]
+
+        # assume multiple GPUs are for splitting up large matrix multiplications
+        cmd += ["--tensor-parallel-size", str(N_GPU)]
+
+        # add mistral config arguments
+        cmd += [
+            "--tokenizer_mode",
+            "mistral",
+            "--config_format",
+            "mistral",
+            "--load_format",
+            "mistral",
+            "--tool-call-parser",
+            "mistral",
+            "--enable-auto-tool-choice",
+        ]
+
+        # add config arguments for snapshotting
+
+        cmd += [
+            "--enable-sleep-mode",
+            # make KV cache predictable / small
+            "--max-num-seqs",
+            "2",
+            "--max-model-len",
+            "12288",
+            "--max-num-batched-tokens",
+            "12288",
+        ]
+
+        print(*cmd)
+
+        self.vllm_proc = subprocess.Popen(cmd)
+
+        wait_ready(self.vllm_proc)
+
+        warmup()
+
+        sleep()
+
+    @modal.enter(snap=False)
+    def wake_up(self):
+        wake_up()
+        wait_ready(self.vllm_proc)
+
+    @modal.web_server(port=VLLM_PORT, startup_timeout=10 * MINUTES)
+    def serve(self):
+        pass
+
+    @modal.exit()
+    def stop(self):
+        self.vllm_proc.terminate()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="deploy-the-server" class="group"><span><!--[--><!--[--><!---->Deploy the server<!--]--><!--]--></span><!--[--> <a href="#deploy-the-server" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>To deploy the API on Modal, just run</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal deploy ministral3_inference.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>This will create a new app on Modal, build the container image for it if it hasn’t been built yet,
+and deploy the app.</p> <!----><h2 id="interact-with-the-server" class="group"><span><!--[--><!--[--><!---->Interact with the server<!--]--><!--]--></span><!--[--> <a href="#interact-with-the-server" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Once it is deployed, you’ll see a URL appear in the command line,
+something like <code>https://your-workspace-name--example-ministral3-inference-serve.modal.run</code>.</p> <p>You can find <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://swagger.io/tools/swagger-ui/"><!--[--><!---->interactive Swagger UI docs<!--]--></a><!----> at the <code>/docs</code> route of that URL, i.e. <code>https://your-workspace-name--example-ministral-inference-serve.modal.run/docs</code>.
+These docs describe each route and indicate the expected input and output
+and translate requests into <code>curl</code> commands.</p> <p>For simple routes like <code>/health</code>, which checks whether the server is responding,
+you can even send a request directly from the docs.</p> <p>To interact with the API programmatically in Python, we recommend the <code>openai</code> library.</p> <!----><h2 id="test-the-server" class="group"><span><!--[--><!--[--><!---->Test the server<!--]--><!--]--></span><!--[--> <a href="#test-the-server" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>To make it easier to test the server setup, we also include a <code>local_entrypoint</code> that does a healthcheck and then hits the server.</p> <p>If you execute the command</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal run ministral3_inference.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>a fresh replica of the server will be spun up on Modal while
+the code below executes on your local machine.</p> <p>Think of this like writing simple tests inside of the <code>if __name__ == "__main__"</code> block of a Python script, but for cloud deployments!</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.local_entrypoint()
+async def test(test_timeout=10 * MINUTES, content=None, twice=True):
+    url = VllmServer().serve.get_web_url()
+
+    system_prompt = {
+        "role": "system",
+        "content": "You are a pirate who can't help but drop sly reminders that he went to Harvard.",
+    }
+    if content is None:
+        image_url = "https://static.wikia.nocookie.net/essentialsdocs/images/7/70/Battle.png/revision/latest?cb=20220523172438"
+
+        content = [
+            {
+                "type": "text",
+                "text": "What action do you think I should take in this situation?"
+                " List all the possible actions and explain why you think they are good or bad.",
+            },
+            {"type": "image_url", "image_url": {"url": image_url}},
+        ]
+
+    messages = [  # OpenAI chat format
+        system_prompt,
+        {"role": "user", "content": content},
+    ]
+
+    async with aiohttp.ClientSession(base_url=url) as session:
+        print(f"Running health check for server at {url}")
+        async with session.get("/health", timeout=test_timeout - 1 * MINUTES) as resp:
+            up = resp.status == 200
+        assert up, f"Failed health check for server at {url}"
+        print(f"Successful health check for server at {url}")
+
+        print(f"Sending messages to {url}:", *messages, sep="\n\t")
+        await _send_request(session, "llm", messages, timeout=1 * MINUTES)
+        if twice:
+            messages[0]["content"] = """Yousa culled Jar Jar Binks.
+            Always be talkin' in da Gungan style, like thisa, okeyday?
+            Helpin' da user with big big enthusiasm, makin' tings bombad clear!"""
+            print(f"Sending messages to {url}:", *messages, sep="\n\t")
+            await _send_request(session, "llm", messages, timeout=1 * MINUTES)
+
+
+async def _send_request(
+    session: aiohttp.ClientSession, model: str, messages: list, timeout: int
+) -> None:
+    # `stream=True` tells an OpenAI-compatible backend to stream chunks
+    payload: dict[str, Any] = {
+        "messages": messages,
+        "model": model,
+        "stream": True,
+        "temperature": 0.15,
+    }
+
+    headers = {"Content-Type": "application/json", "Accept": "text/event-stream"}
+
+    async with session.post(
+        "/v1/chat/completions", json=payload, headers=headers, timeout=timeout
+    ) as resp:
+        async for raw in resp.content:
+            resp.raise_for_status()
+            # extract new content and stream it
+            line = raw.decode().strip()
+            if not line or line == "data: [DONE]":
+                continue
+            if line.startswith("data: "):  # SSE prefix
+                line = line[len("data: ") :]
+
+            chunk = json.loads(line)
+            assert (
+                chunk["object"] == "chat.completion.chunk"
+            )  # or something went horribly wrong
+            print(chunk["choices"][0]["delta"]["content"], end="")
+    print()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="test-memory-snapshotting" class="group"><span><!--[--><!--[--><!---->Test memory snapshotting<!--]--><!--]--></span><!--[--> <a href="#test-memory-snapshotting" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Using <code>modal run</code> creates an ephemeral Modal App,
+rather than a deployed Modal App.
+Ephemeral Modal Apps are short-lived,
+so they turn off snapshotting.</p> <p>To test the memory snapshot version of the server,
+first deploy it with <code>modal deploy</code> and then hit it with a client.</p> <p>You should observe startup improvements
+after a handful of cold starts
+(usually less than five).
+If you want to see the speedup during a test,
+we recommend heading to the deployed App in your <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../apps/index.html"><!--[--><!---->Modal dashboard<!--]--></a><!----> and manually stopping containers after they have served a request.</p> <p>You can use the client code below to test the endpoint.
+It can be run with the command</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>python ministral3_inference.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>if __name__ == "__main__":
+    import asyncio
+
+    # after deployment, we can use the class from anywhere
+    VllmServer = modal.Cls.from_name("example-ministral3-inference", "VllmServer")
+    server = VllmServer()
+
+    async def test(url):
+        messages = [{"role": "user", "content": "Tell me a joke."}]
+        async with aiohttp.ClientSession(base_url=url) as session:
+            await _send_request(session, "llm", messages, timeout=10 * MINUTES)
+
+    try:
+        print("calling inference server")
+        asyncio.run(test(server.serve.get_web_url()))
+    except modal.exception.NotFoundError as e:
+        raise Exception(
+            f"To take advantage of GPU snapshots, deploy first with modal deploy {__file__}"
+        ) from e</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-serverless-ministral-3-with-vllm-and-modal" href="#serverless-ministral-3-with-vllm-and-modal" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Serverless Ministral 3 with vLLM and Modal</a><!--]--><!--[--><a id="toc-set-up-the-container-image" href="#set-up-the-container-image" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Set up the container image</a><!--]--><!--[--><a id="toc-download-the-ministral-weights" href="#download-the-ministral-weights" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Download the Ministral weights</a><!--]--><!--[--><a id="toc-cache-with-modal-volumes" href="#cache-with-modal-volumes" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Cache with Modal Volumes</a><!--]--><!--[--><a id="toc-serve-ministral-3-with-vllm" href="#serve-ministral-3-with-vllm" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Serve Ministral 3 with vLLM</a><!--]--><!--[--><a id="toc-improve-cold-start-time-with-snapshots" href="#improve-cold-start-time-with-snapshots" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Improve cold start time with snapshots</a><!--]--><!--[--><a id="toc-define-the-server" href="#define-the-server" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Define the server</a><!--]--><!--[--><a id="toc-deploy-the-server" href="#deploy-the-server" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Deploy the server</a><!--]--><!--[--><a id="toc-interact-with-the-server" href="#interact-with-the-server" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Interact with the server</a><!--]--><!--[--><a id="toc-test-the-server" href="#test-the-server" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Test the server</a><!--]--><!--[--><a id="toc-test-memory-snapshotting" href="#test-memory-snapshotting" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Test memory snapshotting</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[--><div class="mt-16"><div class="text-c-gray-60 space-y-3 text-sm"><div class="font-medium"><h2 class="text-xl text-white">Try this on Modal!</h2></div> <p>You can run this example on Modal in 60 seconds.</p> <!--[--><div class="py-1"><a class="btn btn-outlined btn-primary w-full text-base" href="../../../signup/index.html">Create account to run</a></div> <p>After creating a free account, install the Modal Python package, and
+      create an API token.</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>pip install modal</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal setup</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!--]--> <p>Clone the <a class="text-c-gray-80 font-semibold hover:underline" href="https://github.com/modal-labs/modal-examples">modal-examples</a> repository and run:</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>git clone https://github.com/modal-labs/modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>cd modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>python 06_gpu_and_ml/llm-serving/ministral3_inference.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div></div><!----></div><!--]--></div></div><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../../sdk/py/releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="RGxllG3vlA/Xf7whvGIqdQ==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 11, 128],
+							data: [{type:"data",data:{},uses:{}},null,null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

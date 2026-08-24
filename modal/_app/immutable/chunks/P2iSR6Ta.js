@@ -1,0 +1,56 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`b9e3d511-dd54-45df-82a6-017e84107185`,e._sentryDebugIdIdentifier=`sentry-dbid-b9e3d511-dd54-45df-82a6-017e84107185`)}catch{}})();import{$t as e,St as t,Tn as n,Tt as r,bt as i,c as a,d as o,en as s,tn as c,wn as l}from"./F_ixKBiO.js";import"./B1sc9Zdx.js";import"./Bb2deiU3.js";import{t as u}from"./BWkHjgsf.js";import{t as d}from"./JPsrybyr.js";import{t as f}from"./CBagjQKJ.js";import{t as p}from"./DeWGVqas2.js";import{t as m}from"./CdZDxCfO2.js";var h={title:`How sync. uses Modal to lipsync 100 hours of video a day`,description:`sync. is a research lab training foundational models to understand and manipulate humans in video. After outgrowing Google Colab, they partnered with Modal for efficient deployment, allowing rapid iteration and scaling to process over 100 hours of video daily.`,date:`2025-04-18T12:00:00.000Z`,length:`4 minute read`,category:`Customer Stories`,published:!0,layout:`blog`,toc:[{depth:2,value:`About sync.`,id:`about-sync`},{depth:2,value:`The Challenge: Graduating from Google Colab`,id:`the-challenge-graduating-from-google-colab`},{depth:2,value:`Finding Modal: The Right Fit for AI-Driven Video Editing`,id:`finding-modal-the-right-fit-for-ai-driven-video-editing`},{depth:2,value:`Deep dive: lipsyncing over 100 hours of video a day`,id:`deep-dive-lipsyncing-over-100-hours-of-video-a-day`},{depth:2,value:`What’s next for sync. and Modal?`,id:`whats-next-for-sync-and-modal`}],rawContent:`<Quote authorName="Prady Modukuru" authorTitle="CEO">
+    <span>
+        With Modal, we went from a research project to a revenue-generating business almost overnight. Leveraging Modal allowed us to focus on what we do best – training state of the art video generation models – without worrying about MLops and infrastructure.
+    </span>
+</Quote>
+
+## About sync.
+
+sync. is a research lab training foundational models to understand and manipulate humans in video. They released a state-of-the-art lipsyncing model that lets you reanimate the speech of any human in live-action, animated, or AI generated video. They are the original team behind wav2lip, and are used by thousands of developers, marketing teams, and creatives around the world.
+
+Check out how their latest zero-shot lipsyncing model preserves the original speaking style of Nicolas Cage even when he's translated into other languages.
+
+<Tweet tweetId='1901780574936957055'>
+</Tweet>
+
+But they didn’t start here. Check out the viral demo that brought them to the forefront of AI video: Lex Fridman and Mark Zuckerberg talking about Elon Musk in Hindi.
+
+<Tweet tweetId='1680645510103977987'>
+</Tweet>
+
+## The Challenge: Graduating from Google Colab
+
+The viral tweet above was powered by a Google Colab notebook. This was great for a prototype and to get research out quickly, but impossible to scale into a business.
+
+Like many, they started with AWS Lambda and quickly ran into headaches with their deployment process, autoscaling policies, and lack of GPU support. At this time, they were only a team of five and wanted to focus on training new models and iterating on product, not MLops infrastructure.
+
+Then they checked out AI-as-an-API providers like Replicate. While Replicate was great for serving off-the-shelf models, the sync. team quickly became frustrated deploying their custom model via Replicate’s Cog framework. Every code update required a redeploy and rebuild of the container, which took **10-15 minutes**. Successful startups need to be able to iterate in seconds, not tens of minutes.
+
+## Finding Modal: The Right Fit for AI-Driven Video Editing
+
+Through connections at Founders Inc and Y Combinator, sync. discovered Modal’s startup credits program and was successfully awarded $25K in credits. Unlike other solutions, Modal just worked. No need to log in to a separate platform to write code; sync. could easily decorate their existing code, run \`modal serve\` to see code changes live, and deploy worry-free knowing that Modal would handle autoscaling.
+
+This fast iterative loop meant sync. could deploy up to **95 times a day** testing many small iterations and updates while managing a production workload. In one year, they were able to ship 10 major model variants to production and 1000 iterations in between.
+
+## Deep dive: lipsyncing over 100 hours of video a day
+
+Let’s look at a specific example of how Sync Labs uses parallel execution on Modal to lipsync over 100 hours of video a day.
+
+Short videos are processed in a single batch. Longer videos are broken down systematically:
+
+1. Splice the video into n scenes
+2. For n scenes, run face detection and translation across n T4 GPU containers
+3. Pass each scene to proprietary LipSync GenAI model on more powerful A100s
+4. Stitch dubbed scenes back together
+
+![sync diagram](https://modal-cdn.com/cdnbot/sync-diagramva5adbna_2b2d3f05.webp)
+
+This is a great example of how Modal’s simple [parallel execution model](/docs/guide/scale) can efficiently process what would have been hours-long, compute-intensive workloads.
+
+## What’s next for sync. and Modal?
+
+sync. wants to put the power of a VFX studio in everyone's pocket. Translation and lipsyncing is just the beginning of AI-enabled editing; the team is hard at work on emotion editing, pose adjustment, and even changing physical characteristics of the subject.
+
+It’s incredible how much a small team can accomplish these days. sync. can focus entirely on R&D and let Modal handle the platform. This is the kind of modern startup organization that Modal was built to support; people at the cutting edge of AI research who want to ship code fast.
+`,meta:{description:`sync. is a research lab training foundational models to understand and manipulate humans in video. After outgrowing Google Colab, they partnered with Modal for efficient deployment, allowing rapid iteration and scaling to process over 100 hours of video daily.`}},{title:g,description:_,date:v,length:y,category:b,published:x,layout:S,toc:C,rawContent:w,meta:T}=h,E=t(`<span>With Modal, we went from a research project to a revenue-generating business almost overnight. Leveraging Modal allowed us to focus on what we do best – training state of the art video generation models – without worrying about MLops and infrastructure.</span>`),D=t(`<!> <h2 id="about-sync">About sync.</h2> <p>sync. is a research lab training foundational models to understand and manipulate humans in video. They released a state-of-the-art lipsyncing model that lets you reanimate the speech of any human in live-action, animated, or AI generated video. They are the original team behind wav2lip, and are used by thousands of developers, marketing teams, and creatives around the world.</p> <p>Check out how their latest zero-shot lipsyncing model preserves the original speaking style of Nicolas Cage even when he’s translated into other languages.</p> <!> <p>But they didn’t start here. Check out the viral demo that brought them to the forefront of AI video: Lex Fridman and Mark Zuckerberg talking about Elon Musk in Hindi.</p> <!> <h2 id="the-challenge-graduating-from-google-colab">The Challenge: Graduating from Google Colab</h2> <p>The viral tweet above was powered by a Google Colab notebook. This was great for a prototype and to get research out quickly, but impossible to scale into a business.</p> <p>Like many, they started with AWS Lambda and quickly ran into headaches with their deployment process, autoscaling policies, and lack of GPU support. At this time, they were only a team of five and wanted to focus on training new models and iterating on product, not MLops infrastructure.</p> <p>Then they checked out AI-as-an-API providers like Replicate. While Replicate was great for serving off-the-shelf models, the sync. team quickly became frustrated deploying their custom model via Replicate’s Cog framework. Every code update required a redeploy and rebuild of the container, which took <strong>10-15 minutes</strong>. Successful startups need to be able to iterate in seconds, not tens of minutes.</p> <h2 id="finding-modal-the-right-fit-for-ai-driven-video-editing">Finding Modal: The Right Fit for AI-Driven Video Editing</h2> <p>Through connections at Founders Inc and Y Combinator, sync. discovered Modal’s startup credits program and was successfully awarded $25K in credits. Unlike other solutions, Modal just worked. No need to log in to a separate platform to write code; sync. could easily decorate their existing code, run <code>modal serve</code> to see code changes live, and deploy worry-free knowing that Modal would handle autoscaling.</p> <p>This fast iterative loop meant sync. could deploy up to <strong>95 times a day</strong> testing many small iterations and updates while managing a production workload. In one year, they were able to ship 10 major model variants to production and 1000 iterations in between.</p> <h2 id="deep-dive-lipsyncing-over-100-hours-of-video-a-day">Deep dive: lipsyncing over 100 hours of video a day</h2> <p>Let’s look at a specific example of how Sync Labs uses parallel execution on Modal to lipsync over 100 hours of video a day.</p> <p>Short videos are processed in a single batch. Longer videos are broken down systematically:</p> <ol><li>Splice the video into n scenes</li> <li>For n scenes, run face detection and translation across n T4 GPU containers</li> <li>Pass each scene to proprietary LipSync GenAI model on more powerful A100s</li> <li>Stitch dubbed scenes back together</li></ol> <p><!></p> <p>This is a great example of how Modal’s simple <!> can efficiently process what would have been hours-long, compute-intensive workloads.</p> <h2 id="whats-next-for-sync-and-modal">What’s next for sync. and Modal?</h2> <p>sync. wants to put the power of a VFX studio in everyone’s pocket. Translation and lipsyncing is just the beginning of AI-enabled editing; the team is hard at work on emotion editing, pose adjustment, and even changing physical characteristics of the subject.</p> <p>It’s incredible how much a small team can accomplish these days. sync. can focus entirely on R&D and let Modal handle the platform. This is the kind of modern startup organization that Modal was built to support; people at the cutting edge of AI research who want to ship code fast.</p>`,1);function O(t,g){let _=a(g,[`children`,`$$slots`,`$$events`,`$$legacy`]);m(t,o(()=>_,()=>h,{children:(t,a)=>{var o=D(),m=s(o);u(m,{authorName:`Prady Modukuru`,authorTitle:`CEO`,children:(e,t)=>{i(e,E())},$$slots:{default:!0}});var h=c(m,8);f(h,{tweetId:`1901780574936957055`});var g=c(h,4);f(g,{tweetId:`1680645510103977987`});var _=c(g,24);d(e(_),{src:`https://modal-cdn.com/cdnbot/sync-diagramva5adbna_2b2d3f05.webp`,alt:`sync diagram`}),n(_);var v=c(_,2);p(c(e(v)),{href:`/docs/guide/scale`,children:(e,t)=>{l(),i(e,r(`parallel execution model`))},$$slots:{default:!0}}),l(),n(v),l(6),i(t,o)},$$slots:{default:!0}}))}export{O as default,h as metadata};
+//# sourceMappingURL=P2iSR6Ta.js.map

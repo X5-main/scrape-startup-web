@@ -1,0 +1,2 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`8ec284d3-c12c-4b83-9472-84fa74bd2f3d`,e._sentryDebugIdIdentifier=`sentry-dbid-8ec284d3-c12c-4b83-9472-84fa74bd2f3d`)}catch{}})();var e=`/_app/immutable/assets/Substack.B7qlgtDV.svg`;export{e as t};
+//# sourceMappingURL=BGBooJ2k2.js.map

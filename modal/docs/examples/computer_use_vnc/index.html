@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="9f3c8bdd002149b5bd27a8ef5e41ea8c-bce3d30c66880baa"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=9f3c8bdd002149b5bd27a8ef5e41ea8c,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="Computer-use agents are LLMs that can interact with a web browser in a loop. Rather than calling a fixed set of APIs, they look at a rendered page or screen, decide what to click or type next, take that action, and look again."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Watch a Browser Use agent drive Chromium over VNC"/> <meta property="og:description" content="Computer-use agents are LLMs that can interact with a web browser in a loop. Rather than calling a fixed set of APIs, they look at a rendered page or screen, decide what to click or type next, take that action, and look again."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Watch+a+Browser+Use+agent+drive+Chromium+over+VNC&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Watch a Browser Use agent drive Chromium over VNC | Modal Docs</title>
+		<link href="../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../index.html" class="shrink-0 lg:mr-8"><img src="../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb navlink-active" href="../index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="z-kFCxolu_" aria-expanded="false" data-state="closed" id="eUTfuutSV5" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../sdk/py/releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[--><!--[--><a href="../index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Featured</span> <!--[!--><!--]--></span></a><!--]--><!--[!--><a href="../hello_world/index.html" class="header svelte-14npiaw">Getting started</a> <!--[--><a href="../hello_world/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Hello, world</span> <!--[!--><!--]--></span></a><a href="../webscraper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Simple web scraper</span> <!--[!--><!--]--></span></a><a href="../basic_web/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serving Web Functions</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm_inference/index.html" class="header svelte-14npiaw">Large language models (LLMs)</a> <!--[--><a href="../llm_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy an OpenAI-compatible LLM service with vLLM</span> <!--[!--><!--]--></span></a><a href="../ministral3_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cut Ministral 3 cold start times by 10x with snapshots</span> <!--[!--><!--]--></span></a><a href="../vllm_throughput/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Maximize tokens per second in batch processing with vLLM</span> <!--[!--><!--]--></span></a><a href="../sglang_low_latency/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve an ultra-low-latency chatbot with SGLang</span> <!--[!--><!--]--></span></a><a href="../nemotron_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy Nemotron 3</span> <!--[!--><!--]--></span></a><a href="../inkling_small/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Inkling-Small with SGLang</span> <!--[!--><!--]--></span></a><a href="../deepseek_v4_flash/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve DeepSeek-V4-Flash</span> <!--[!--><!--]--></span></a><a href="../unsloth_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Efficient LLM Finetuning with Unsloth</span> <!--[!--><!--]--></span></a><a href="../chat_with_pdf_vision/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a multimodal RAG chatbot to answer questions about PDFs</span> <!--[!--><!--]--></span></a><a href="../llm-finetuning/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune an LLM to replace your CEO</span> <!--[!--><!--]--></span></a><a href="../mcp_server_stateless/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a stateless MCP with FastMCP</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../image_to_image/index.html" class="header svelte-14npiaw">Images, video, &amp; 3D</a> <!--[--><a href="../image_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Edit images with Flux Kontext</span> <!--[!--><!--]--></span></a><a href="../music-video-gen/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Wan2.1 video models on your face</span> <!--[!--><!--]--></span></a><a href="../flux/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Flux fast with torch.compile</span> <!--[!--><!--]--></span></a><a href="../diffusers_lora_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Flux with LoRA</span> <!--[!--><!--]--></span></a><a href="../image_to_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Animate images with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../ltx/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate video clips with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../text_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Stable Diffusion with a CLI, API, and web UI</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm-voice-chat/index.html" class="header svelte-14npiaw">Audio</a> <!--[--><a href="../llm-voice-chat/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Moshi voice chatbot</span> <!--[!--><!--]--></span></a><a href="../streaming_kyutai_stt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Stream transcripts at the speed of speech using Kyutai STT</span> <!--[!--><!--]--></span></a><a href="../generate_music/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Make music with ACE-Step</span> <!--[!--><!--]--></span></a><a href="../chatterbox_tts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate speech with Chatterbox</span> <!--[!--><!--]--></span></a><a href="../batched_whisper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run high throughput batched transcription with Whisper</span> <!--[!--><!--]--></span></a><a href="../fine_tune_asr/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Whisper to recognize new words</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../webrtc_yolo/index.html" class="header svelte-14npiaw">Real-time communication (WebRTC)</a> <!--[--><a href="../webrtc_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serverless WebRTC</span> <!--[!--><!--]--></span></a><a href="../fastrtc_flip_webcam/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>WebRTC quickstart with FastRTC</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../esmfold2_binder_design/index.html" class="header svelte-14npiaw">Computational biology</a> <!--[--><a href="../esmfold2_binder_design/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Design protein binders with ESMFold2</span> <!--[!--><!--]--></span></a><a href="../chai1/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Chai-1</span> <!--[!--><!--]--></span></a><a href="../esm3/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a protein-folding dashboard</span> <!--[!--><!--]--></span></a><a href="../boltz_predict/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Boltz-2</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../opencode_server/index.html" class="header svelte-14npiaw">Modal Sandboxes</a> <!--[--><a href="../opencode_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a background coding agent with OpenCode</span> <!--[!--><!--]--></span></a><a href="../modal-vibe/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a scalable AI coding platform</span> <!--[!--><!--]--></span></a><a href="../claude-slack-gif-creator/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Create GIFs from Slack using the Claude Agent SDK</span> <!--[!--><!--]--></span></a><a href="../agent/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a LangGraph agent's code in a secure GPU sandbox</span> <!--[!--><!--]--></span></a><a href="index.html" class="item svelte-14npiaw active"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Watch a computer-use agent work in real-time over VNC</span> <!--[!--><!--]--></span></a><a href="../harbor_evals/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run massively parallel evals on Modal Sandboxes</span> <!--[!--><!--]--></span></a><a href="../simple_code_interpreter/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a stateful, sandboxed code interpreter</span> <!--[!--><!--]--></span></a><a href="../safe_code_execution/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Node.js, Ruby, and more in a Sandbox</span> <!--[!--><!--]--></span></a><a href="../sandbox_pool/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Speed up Sandbox starts with warm pools</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../grpo_verl/index.html" class="header svelte-14npiaw">Reinforcement Learning</a> <!--[--><a href="../grpo_verl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve math problems using GRPO and verl</span> <!--[!--><!--]--></span></a><a href="../grpo_trl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve coding problems using GRPO and TRL</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../liquidai_embeddings_server/index.html" class="header svelte-14npiaw">Embeddings</a> <!--[--><a href="../liquidai_embeddings_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Liquid AI embeddings with Modal Servers</span> <!--[!--><!--]--></span></a><a href="../amazon_embeddings/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Embed millions of documents with TEI</span> <!--[!--><!--]--></span></a><a href="../mongodb-search/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Turn satellite images into vectors and store them in MongoDB</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hackernews_alerts/index.html" class="header svelte-14npiaw">Parallel processing and job scheduling</a> <!--[--><a href="../hackernews_alerts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Hacker News Slackbot</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_jobs/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a Document OCR job queue</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_webapp/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve a Document OCR web app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hp_sweep_gpt/index.html" class="header svelte-14npiaw">Training models from scratch</a> <!--[--><a href="../hp_sweep_gpt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train an SLM with early-stopping grid search over hyperparameters</span> <!--[!--><!--]--></span></a><a href="../long-training/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run long, resumable training jobs</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../finetune_yolo/index.html" class="header svelte-14npiaw">Hosting popular libraries</a> <!--[--><a href="../finetune_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>YOLO: Fine-tune and serve computer vision models</span> <!--[!--><!--]--></span></a><a href="../blender_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Blender: Build a 3D render farm</span> <!--[!--><!--]--></span></a><a href="../serve_streamlit/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Streamlit: Run and deploy Streamlit apps</span> <!--[!--><!--]--></span></a><a href="../cron_datasette/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SQLite: Publish explorable data with Datasette</span> <!--[!--><!--]--></span></a><a href="../algolia_indexer/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Algolia: Build docsearch with a crawler</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../discord_bot/index.html" class="header svelte-14npiaw">Connecting to other APIs</a> <!--[--><a href="../discord_bot/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Discord: Deploy and run a Discord Bot</span> <!--[!--><!--]--></span></a><a href="../db_to_sheet/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Google Sheets: Sync databases and APIs to a Google Sheet</span> <!--[!--><!--]--></span></a><a href="../potus_speech_qanda/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>OpenAI: Run a RAG Q&amp;A chatbot</span> <!--[!--><!--]--></span></a><a href="../modal_tailscale/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tailscale: Add Modal Apps to your VPN</span> <!--[!--><!--]--></span></a><a href="../pushgateway/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Prometheus: Publish custom metrics with Pushgateway</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../s3_bucket_mount/index.html" class="header svelte-14npiaw">Managing data</a> <!--[--><a href="../s3_bucket_mount/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Mount S3 buckets in Modal Apps</span> <!--[!--><!--]--></span></a><a href="../dbt_duckdb/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build your own data warehouse with DuckDB, dbt, and Modal</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[--><a href="../miscellaneous/index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Miscellaneous</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[!--><!----><!----><div class="text-c-gray-80"><!--[!--><!--[--><div class="float-left mb-6 mt-6 pr-2 md:float-right md:mb-2 md:mt-12 md:pl-2 md:pr-0"><a class="btn btn-outlined bg-c-gray-5" href="https://github.com/modal-labs/modal-examples/blob/main/13_sandboxes/cua/computer_use_vnc.py" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github text-c-gray-80 mr-2.5"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-80 text-sm">View on GitHub</span></a></div><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="TZHjvO9ylp" aria-expanded="false" data-state="closed" id="4CCJQB7bgN" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><h1 id="watch-a-browser-use-agent-drive-chromium-over-vnc"><!--[--><!---->Watch a Browser Use agent drive Chromium over VNC<!--]--></h1><!----> <p>Computer-use agents are LLMs that can interact with a web browser in a loop.
+Rather than calling a fixed set of APIs, they look at a rendered page or screen,
+decide what to click or type next, take that action, and look again.</p> <p>This example builds one with <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.browser-use.com/"><!--[--><!---->Browser Use<!--]--></a><!---->.
+An open-weights model served from a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/endpoints/index.html"><!--[--><!---->Endpoint<!--]--></a><!----> powers the agent. The agent
+drives Chromium inside a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/vm-sandboxes/index.html"><!--[--><!---->VM Sandbox<!--]--></a><!---->,
+while a small web UI embeds a noVNC desktop so you can watch it work in real-time.</p> <!----><h2 id="run-the-example" class="group"><span><!--[--><!--[--><!---->Run the example<!--]--><!--]--></span><!--[--> <a href="#run-the-example" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>To programmatically test the example:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal run 13_sandboxes/cua/computer_use_vnc.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>You can also start the interactive UI:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal serve 13_sandboxes/cua/computer_use_vnc.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="set-up" class="group"><span><!--[--><!--[--><!---->Set up<!--]--><!--]--></span><!--[--> <a href="#set-up" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>import asyncio
+import json
+import subprocess
+import sys
+import textwrap
+import time
+import urllib.request
+from pathlib import Path
+
+import fastapi
+import modal
+from fastapi.responses import HTMLResponse
+
+app = modal.App("example-computer-use-vnc")
+MINUTES = 60</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We could point Browser Use at a hosted provider like OpenAI or Anthropic using
+your API key. For our purposes, however, we serve an open-weights model
+ourselves via a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/endpoints/index.html"><!--[--><!---->Endpoint<!--]--></a><!---->.
+It takes one command to create an OpenAI-compatible server for the agent to
+call. No external API key is needed, and the whole demo runs on Modal.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>ENDPOINT_MODEL = "Qwen/Qwen3.6-27B-FP8"
+ENDPOINT_NAME = "example-computer-use-vnc"
+ENDPOINT_ROUTING_REGION = "us-west"
+ENDPOINT_WARMUP_TIME = 5 * MINUTES
+endpoint_server = modal.Server.from_name(f"ep-{ENDPOINT_NAME}", "Server")
+
+VNC_PORT = 6080
+SESSION_START_TIMEOUT = 2 * MINUTES
+SANDBOX_TIMEOUT = 60 * MINUTES
+
+PAGE_PATH = Path(__file__).parent / "computer_use_vnc.html"
+PAGE_REMOTE = "/root/computer_use_vnc.html"
+RESULT_PREFIX = "__BROWSER_USE_RESULT__="
+DESKTOP_READY_PATH = "/tmp/desktop_ready"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="set-up-a-shareable-virtual-desktop" class="group"><span><!--[--><!--[--><!---->Set up a shareable virtual desktop<!--]--><!--]--></span><!--[--> <a href="#set-up-a-shareable-virtual-desktop" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>By default, Browser Use launches Chromium headless. However, we want to watch the
+browser in real time. In each Sandbox, Xvfb provides a virtual display,
+x11vnc serves it over VNC, and websockify bridges the stream into the noVNC
+page that the UI embeds.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>base_image = modal.Image.debian_slim(python_version="3.12")
+web_image = base_image.uv_pip_install("fastapi[standard]==0.139.2").add_local_file(
+    PAGE_PATH, remote_path=PAGE_REMOTE
+)
+sandbox_image = (
+    base_image.apt_install("novnc", "websockify", "x11vnc", "xvfb")
+    .uv_pip_install("browser-use==0.13.6", "playwright==1.61.0")
+    .run_commands("playwright install --with-deps chromium")
+)
+
+SANDBOX_COMMAND = textwrap.dedent(
+    """
+    set -euo pipefail
+    export DISPLAY=:99
+    Xvfb :99 -screen 0 1280x720x24 >/tmp/xvfb.log 2>&amp;1 &amp;
+    sleep 1
+    x11vnc -display :99 -forever -shared -nopw -listen 0.0.0.0 -rfbport 5900 -xkb >/tmp/x11vnc.log 2>&amp;1 &amp;
+    websockify --web=/usr/share/novnc/ 6080 localhost:5900 >/tmp/websockify.log 2>&amp;1 &amp;
+    exec python -c "$AGENT_SCRIPT"
+    """
+).strip()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="driving-the-browser-with-an-agent-loop" class="group"><span><!--[--><!--[--><!---->Driving the browser with an agent loop<!--]--><!--]--></span><!--[--> <a href="#driving-the-browser-with-an-agent-loop" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The agent loop is the core of the agent. At each step, it looks at the current
+page, picks an action such as click, type, or navigate, and executes it with
+Browser Use. The loop repeats until the model decides the task is done.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>AGENT_SCRIPT = textwrap.dedent(
+    """
+    import asyncio
+    import json
+    import os
+    import time
+    import urllib.parse
+    import urllib.request
+    from pathlib import Path
+
+    from browser_use import Agent, Browser, ChatOpenAI, Tools
+
+    model = os.environ["ENDPOINT_MODEL"]
+    base_url = os.environ["ENDPOINT_BASE_URL"]
+    start_page = "data:text/html," + urllib.parse.quote(
+        "&lt;body style='margin:0;background:#222;color:#ddd;font:28px system-ui;"
+        "display:grid;place-items:center;height:100vh'>Starting desktop...&lt;/body>"
+    )
+
+
+    def wait_for_endpoint() -> None:
+        deadline = time.monotonic() + int(os.environ["ENDPOINT_WARMUP_TIME"])
+        while True:
+            try:
+                urllib.request.urlopen(f"{base_url}/health", timeout=5).close()
+                return
+            except Exception:
+                pass
+            if time.monotonic() >= deadline:
+                raise TimeoutError("Timed out waiting for the model Endpoint.")
+            time.sleep(1)
+
+
+    async def main() -> None:
+        browser = Browser(
+            headless=False,
+            window_size={"width": 1280, "height": 720},
+            chromium_sandbox=False,
+            args=["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"],
+        )
+        await browser.start()
+        await browser.navigate_to(start_page)
+        Path(os.environ["DESKTOP_READY_PATH"]).write_text("1", encoding="utf-8")
+        await asyncio.to_thread(wait_for_endpoint)
+        llm = ChatOpenAI(
+            model=model,
+            api_key="unused",
+            base_url=f"{base_url}/v1",
+            reasoning_effort="none",
+            reasoning_models=[model],
+            timeout=3 * 60,
+        )
+        agent = Agent(
+            task=os.environ["AGENT_TASK"],
+            llm=llm,
+            tools=Tools(),
+            browser=browser,
+            use_thinking=False,
+            llm_timeout=3 * 60,
+        )
+        history = await agent.run()
+        result = history.final_result() or "Agent stopped without a final result."
+        print(os.environ["RESULT_PREFIX"] + json.dumps(result), flush=True)
+
+
+    asyncio.run(main())
+    """
+).strip()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="creating-the-shared-endpoint" class="group"><span><!--[--><!--[--><!---->Creating the shared Endpoint<!--]--><!--]--></span><!--[--> <a href="#creating-the-shared-endpoint" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The Endpoint can take time to become ready because its containers scale to zero.
+Startup waits in two places:</p> <ol><li><code>start_session</code> waits for a new Endpoint to register its Server and expose a URL.</li> <li>The Sandbox waits until the endpoint is ready before starting the agent.</li></ol> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def create_endpoint_if_missing() -> None:
+    command = [sys.executable, "-m", "modal", "endpoint"]
+    endpoints = json.loads(
+        subprocess.check_output([*command, "list", "--json"], text=True)
+    )
+    if any(endpoint["name"] == ENDPOINT_NAME for endpoint in endpoints):
+        print(f"Using existing Endpoint {ENDPOINT_NAME!r}.")
+        return
+    subprocess.run(
+        [
+            *command,
+            "create",
+            "--name",
+            ENDPOINT_NAME,
+            "--model",
+            ENDPOINT_MODEL,
+            "--routing-region",
+            ENDPOINT_ROUTING_REGION,
+            "--unauthenticated",
+        ],
+        check=True,
+    )
+    print(f"Created Endpoint {ENDPOINT_NAME!r}.")
+
+
+async def wait_for_endpoint_url(deadline: float) -> str:
+    while True:
+        try:
+            url = await endpoint_server.get_url.aio()
+        except modal.exception.NotFoundError:
+            url = None
+        if url:
+            return url
+        if time.monotonic() >= deadline:
+            raise TimeoutError(f"Timed out waiting for Endpoint {ENDPOINT_NAME!r}.")
+        await asyncio.sleep(1)
+
+
+def is_server_up(url: str) -> bool:
+    try:
+        with urllib.request.urlopen(url, timeout=5) as response:
+            return response.status == 200
+    except Exception:
+        return False</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="running-the-agent" class="group"><span><!--[--><!--[--><!---->Running the agent<!--]--><!--]--></span><!--[--> <a href="#running-the-agent" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>A request from the UI creates one Sandbox for one task. Its entrypoint starts
+the virtual desktop, paints Chromium, then runs Browser Use. <code>start_session</code> waits until the desktop-ready marker exists and the noVNC page responds, then
+returns the Sandbox ID and watch URL.</p> <p>The browser embeds that URL and polls the status route with the ID. When the
+agent exits, the Sandbox terminates and the status route returns its final
+result. A failed startup terminates the Sandbox before returning the error.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(image=web_image, timeout=SESSION_START_TIMEOUT + 30)
+async def start_session(task: str):
+    sandbox = None
+    try:
+        deadline = time.monotonic() + SESSION_START_TIMEOUT
+        await asyncio.to_thread(create_endpoint_if_missing)
+        endpoint_url = await wait_for_endpoint_url(deadline)
+        sandbox = await modal.Sandbox.create.aio(
+            "bash",
+            "-lc",
+            SANDBOX_COMMAND,
+            app=app,
+            image=sandbox_image,
+            experimental_options={"vm_runtime": True},
+            env={
+                "AGENT_SCRIPT": AGENT_SCRIPT,
+                "AGENT_TASK": task,
+                "DESKTOP_READY_PATH": DESKTOP_READY_PATH,
+                "ENDPOINT_BASE_URL": endpoint_url,
+                "ENDPOINT_MODEL": ENDPOINT_MODEL,
+                "ENDPOINT_WARMUP_TIME": str(ENDPOINT_WARMUP_TIME),
+                "RESULT_PREFIX": RESULT_PREFIX,
+            },
+            encrypted_ports=[VNC_PORT],
+            timeout=SANDBOX_TIMEOUT,
+            readiness_probe=modal.Probe.with_exec("test", "-f", DESKTOP_READY_PATH),
+        )
+        remaining = max(1, int(deadline - time.monotonic()))
+        await sandbox.wait_until_ready.aio(timeout=remaining)
+        remaining = max(1, int(deadline - time.monotonic()))
+        tunnel = (await sandbox.tunnels.aio(timeout=remaining))[VNC_PORT]
+        watch_url = (
+            f"{tunnel.url.rstrip('/')}/vnc.html?autoconnect=1&amp;resize=scale&amp;reconnect=1"
+        )
+        while not is_server_up(watch_url):
+            if time.monotonic() >= deadline:
+                raise TimeoutError("Timed out waiting for noVNC.")
+            await asyncio.sleep(1)
+        return {"sandbox_id": sandbox.object_id, "watch_url": watch_url}
+    except Exception:
+        if sandbox is not None:
+            await sandbox.terminate.aio()
+        raise
+    finally:
+        if sandbox is not None:
+            await sandbox.detach.aio()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="serve-the-web-ui" class="group"><span><!--[--><!--[--><!---->Serve the web UI<!--]--><!--]--></span><!--[--> <a href="#serve-the-web-ui" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The code below is a simple FastAPI app that serves the web UI and the API.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>web_app = fastapi.FastAPI()
+
+
+@web_app.get("/")
+async def index():
+    return HTMLResponse(Path(PAGE_REMOTE).read_text())
+
+
+@web_app.post("/api/session")
+async def create_session(body: dict):
+    task = str(body.get("task", "")).strip()
+    if not task:
+        raise fastapi.HTTPException(status_code=400, detail="Task must not be empty.")
+    try:
+        return await start_session.remote.aio(task)
+    except Exception as exc:
+        raise fastapi.HTTPException(500, f"Starting Sandbox: {exc}") from exc
+
+
+@web_app.get("/api/session/{sandbox_id}")
+async def session_status(sandbox_id: str):
+    try:
+        sandbox = await modal.Sandbox.from_id.aio(sandbox_id)
+    except modal.exception.NotFoundError as exc:
+        raise fastapi.HTTPException(404, "Session not found.") from exc
+
+    try:
+        returncode = await sandbox.poll.aio()
+        if returncode is None:
+            return {"state": "running"}
+        stdout = await sandbox.stdout.read.aio()
+        stderr = await sandbox.stderr.read.aio()
+    finally:
+        await sandbox.detach.aio()
+
+    if returncode == 0:
+        result = None
+        for line in reversed(stdout.splitlines()):
+            if line.startswith(RESULT_PREFIX):
+                result = json.loads(line.removeprefix(RESULT_PREFIX))
+                break
+        if result is None:
+            result = "Agent finished without a result."
+        return {"state": "succeeded", "result": result}
+    message = (stderr or stdout).strip()[-4000:]
+    return {
+        "state": "failed",
+        "result": message or f"Agent exited with code {returncode}.",
+    }
+
+
+@app.function(image=web_image)
+@modal.concurrent(max_inputs=100)
+@modal.asgi_app()
+def web():
+    return web_app</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="test-the-session-api" class="group"><span><!--[--><!--[--><!---->Test the session API<!--]--><!--]--></span><!--[--> <a href="#test-the-session-api" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We can test this example programmatically without the web UI.
+The entrypoint below hits <code>POST /api/session</code> on the ephemeral web App,
+asserts the Sandbox and noVNC URL came back,
+checks that <code>GET /api/session/{id}</code> reports a live session, and
+terminates the Sandbox.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.local_entrypoint()
+def test_session(
+    task: str = "Open https://example.com and report the page title in one line.",
+):
+    url: str | None = web.get_web_url()
+    if not url:
+        raise RuntimeError("web App has no URL.")
+    print(f"web url: {url}")
+
+    payload = json.dumps({"task": task}).encode()
+    request = urllib.request.Request(
+        f"{url.rstrip('/')}/api/session",
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    with urllib.request.urlopen(
+        request, timeout=SESSION_START_TIMEOUT + 60
+    ) as response:
+        session = json.loads(response.read().decode())
+
+    sandbox_id = session.get("sandbox_id")
+    watch_url = session.get("watch_url")
+    if not sandbox_id or not watch_url:
+        raise RuntimeError(f"Session response missing fields: {session}")
+    print(f"sandbox_id={sandbox_id}")
+    print(f"watch_url={watch_url}")
+
+    if not is_server_up(watch_url):
+        raise RuntimeError(f"noVNC not reachable at {watch_url}")
+
+    status_url = f"{url.rstrip('/')}/api/session/{sandbox_id}"
+    with urllib.request.urlopen(status_url, timeout=30) as response:
+        status = json.loads(response.read().decode())
+    print(f"status={status}")
+    if status.get("state") not in ("running", "succeeded"):
+        raise RuntimeError(f"Unexpected session state: {status}")
+
+    sandbox = modal.Sandbox.from_id(sandbox_id)
+    try:
+        sandbox.terminate()
+    finally:
+        sandbox.detach()
+    print("session start ok")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="cleaning-up" class="group"><span><!--[--><!--[--><!---->Cleaning up<!--]--><!--]--></span><!--[--> <a href="#cleaning-up" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Each Sandbox uses the agent process as its entrypoint, so it stops when the
+task finishes or its timeout expires. Startup failures terminate it
+immediately, and every code path detaches its local Sandbox handle. <code>test_session</code> also terminates the Sandbox after the API check.</p> <p>Stop <code>modal serve</code> with <code>Ctrl-C</code>. The shared Endpoint scales to zero when idle,
+but remains available for later prompts. Shut it down when you are done:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal endpoint stop example-computer-use-vnc</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-watch-a-browser-use-agent-drive-chromium-over-vnc" href="#watch-a-browser-use-agent-drive-chromium-over-vnc" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Watch a Browser Use agent drive Chromium over VNC</a><!--]--><!--[--><a id="toc-run-the-example" href="#run-the-example" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Run the example</a><!--]--><!--[--><a id="toc-set-up" href="#set-up" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Set up</a><!--]--><!--[--><a id="toc-set-up-a-shareable-virtual-desktop" href="#set-up-a-shareable-virtual-desktop" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Set up a shareable virtual desktop</a><!--]--><!--[--><a id="toc-driving-the-browser-with-an-agent-loop" href="#driving-the-browser-with-an-agent-loop" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Driving the browser with an agent loop</a><!--]--><!--[--><a id="toc-creating-the-shared-endpoint" href="#creating-the-shared-endpoint" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Creating the shared Endpoint</a><!--]--><!--[--><a id="toc-running-the-agent" href="#running-the-agent" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Running the agent</a><!--]--><!--[--><a id="toc-serve-the-web-ui" href="#serve-the-web-ui" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Serve the web UI</a><!--]--><!--[--><a id="toc-test-the-session-api" href="#test-the-session-api" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Test the session API</a><!--]--><!--[--><a id="toc-cleaning-up" href="#cleaning-up" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Cleaning up</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[--><div class="mt-16"><div class="text-c-gray-60 space-y-3 text-sm"><div class="font-medium"><h2 class="text-xl text-white">Try this on Modal!</h2></div> <p>You can run this example on Modal in 60 seconds.</p> <!--[--><div class="py-1"><a class="btn btn-outlined btn-primary w-full text-base" href="../../../signup/index.html">Create account to run</a></div> <p>After creating a free account, install the Modal Python package, and
+      create an API token.</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>pip install modal</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal setup</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!--]--> <p>Clone the <a class="text-c-gray-80 font-semibold hover:underline" href="https://github.com/modal-labs/modal-examples">modal-examples</a> repository and run:</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>git clone https://github.com/modal-labs/modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>cd modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal run 13_sandboxes/cua/computer_use_vnc.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div></div><!----></div><!--]--></div></div><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../../sdk/py/releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="dOMVZCWJQAzjBtbjCKa/+g==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 11, 128],
+							data: [{type:"data",data:{},uses:{}},null,null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

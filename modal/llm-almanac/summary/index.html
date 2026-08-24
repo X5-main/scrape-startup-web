@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="a3b0923e9f9b44a7bd61335bf6ce4543-96fd42182bd7e7b6"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=a3b0923e9f9b44a7bd61335bf6ce4543,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="A summary of LLM engines for technical executives thinking about inference."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="LLM Engineer's Almanac - Executive Summary"/> <meta property="og:description" content="A summary of LLM engines for technical executives thinking about inference."/> <!--[--><meta property="og:image" content="https://modal-cdn.com/llm-almanac/preview-image.png"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><!--18r7z67--><link rel="stylesheet" href="../../pgg5ill.css"/> <style>
+    :root {
+      color-scheme: light !important;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-color: transparent !important;
+      background-image:
+        linear-gradient(rgba(252, 252, 252, 0.98), rgba(252, 252, 252, 0.98)),
+        url('../paper-bg-heavy.png');
+    }</style><!----><title>LLM Engineer's Almanac - Executive Summary | Modal</title>
+		<link href="../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/27.D3BEXmcC.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/graph-utils.DsVGTZC2.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/SimpleSelect.Yy_rRuga.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/GraphBlock.BCNPi6gz.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/208.EaS3Ho_-.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="pointer-events-none invisible fixed -left-[9999px] top-0" aria-hidden="true"><div class="flex w-max flex-row gap-8 whitespace-nowrap text-lg font-medium"><!--[--><a href="../advisor/index.html" class="link svelte-19qoy6h"><!---->Advisor<!----></a><a href="index.html" class="link svelte-19qoy6h selected"><!---->Executive Summary<!----></a><a href="../how-to-benchmark/index.html" class="link svelte-19qoy6h"><!---->Benchmarking<!----></a><a href="../workloads/index.html" class="link svelte-19qoy6h"><!---->Workloads<!----></a><a href="../quant-formats/index.html" class="link svelte-19qoy6h"><!---->Quant Formats<!----></a><a href="../block-quants/index.html" class="link svelte-19qoy6h"><!---->Block Quants<!----></a><a href="../token-timing-simulator/index.html" class="link svelte-19qoy6h"><!---->Token Timing Simulator<!----></a><a href="../spec-dec-roofline/index.html" class="link svelte-19qoy6h"><!---->Spec Dec Roofline<!----></a><!--]--><!----></div> <div class="inline-flex w-max items-center gap-1 whitespace-nowrap text-lg font-medium">More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down h-4 w-4"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></div> <div class="w-max whitespace-nowrap text-lg"><span class="text-almanac-dark-green/80">Powered by <a href="../../index.html" target="_blank" class="hover:text-almanac-dark-green inline-flex items-center underline decoration-1 underline-offset-[3px] transition-colors">Modal <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right -mt-0.5 inline h-4 w-4"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></span><!----></div></div> <main class="font-guyot text-almanac-dark-green min-h-screen text-lg font-light"><div class="grid grid-cols-[1fr]"><div class="top-0 z-10 flex flex-col relative bg-transparent transition-transform duration-300 translate-y-0 svelte-18r7z67"><div class="relative flex items-center justify-between px-6 py-4"><!--[!--><!--]--> <a class="left-1/2 flex -translate-x-1/2 flex-col items-center relative" href="../advisor/index.html"><img src="../../_app/immutable/assets/logo.Ch-aUp_j.png" alt="LLM Engineer's Almanac" class="h-[88px]"/></a> <!--[!--><!--]--></div> <!--[--><div class="flex-1 flex-col gap-2 bg-transparent text-base svelte-18r7z67 hidden"><!--[!--><div class="flex flex-col gap-2"><hr class="svelte-18r7z67"/></div> <div class="relative flex flex-row items-center justify-center gap-8 text-lg font-medium"><!--[--><a href="../advisor/index.html" class="link svelte-19qoy6h"><!---->Advisor<!----></a><a href="index.html" class="link svelte-19qoy6h selected"><!---->Executive Summary<!----></a><a href="../how-to-benchmark/index.html" class="link svelte-19qoy6h"><!---->Benchmarking<!----></a><a href="../workloads/index.html" class="link svelte-19qoy6h"><!---->Workloads<!----></a><a href="../quant-formats/index.html" class="link svelte-19qoy6h"><!---->Quant Formats<!----></a><a href="../block-quants/index.html" class="link svelte-19qoy6h"><!---->Block Quants<!----></a><a href="../token-timing-simulator/index.html" class="link svelte-19qoy6h"><!---->Token Timing Simulator<!----></a><a href="../spec-dec-roofline/index.html" class="link svelte-19qoy6h"><!---->Spec Dec Roofline<!----></a><!--]--> <!--[!--><!--]--> <p class="text-almanac-dark-green/80 absolute right-4"><span class="text-almanac-dark-green/80">Powered by <a href="../../index.html" target="_blank" class="hover:text-almanac-dark-green inline-flex items-center underline decoration-1 underline-offset-[3px] transition-colors">Modal <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right -mt-0.5 inline h-4 w-4"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></span><!----></p></div> <div class="flex flex-col gap-2"><hr class="svelte-18r7z67"/></div><!--]--></div><!--]--></div> <div class="mt-6 min-w-0 max-w-[calc(min(100%,1000px)-4rem)] justify-self-center"><!--[!--><!----><div class="flex flex-col"><h1 class="mb-2 text-3xl font-bold">LLM Engines: An Executive Summary</h1> <img src="../illustration-engine.png" alt="" class="aspect-video max-h-[350px] self-center"/> <div class="page-body text-xlg flex flex-col"><p class="svelte-1sj2xwt">Nearly every serious application of computer systems includes relational
+      database management software, from local SQLite on phones to planet-scale
+      Spanner in cloud data centers. These systems all trace their lineage back
+      through <a href="https://people.eecs.berkeley.edu/~brewer/cs262/SystemR.pdf" class="svelte-1sj2xwt">IBM System R</a> to the <a href="https://www.ibm.com/docs/en/zos-basic-skills?topic=now-history-ims-beginnings-nasa" class="svelte-1sj2xwt">Information Management System</a> built to send humans to the Moon — or at least track all the bills of material
+      for the rockets that carried them. In place of behemoth proprietary software
+      built for specific systems at great expense, there is now a legion of open
+      source software.</p> <p class="svelte-1sj2xwt">Language models are still closer in their lifecycle to the <a href="https://ieeexplore.ieee.org/document/5388096" class="svelte-1sj2xwt">Peterlee Relational Test Vehicle</a> than to Postgres, but they hold the same promise: to be a part of nearly
+      every application of computer systems. When these applications need to store
+      and retrieve structured data, they currently deduce following the relational
+      algebra of Ted Codd; when they need to produce or process unstructured data,
+      they will infer with neural probabilistic models.</p> <p class="svelte-1sj2xwt">The weights for capable language models are now widely available under
+      permissive or open source licenses — the Llama, Qwen, DeepSeek, Mistral,
+      and Gemma model families, to name a few. Over the past year, these models
+      have rapidly improved, reaching the baseline of quality required for
+      inference to be useful. This is a key step enabling organizations to serve
+      their own language model applications. Below, we walk through the cases
+      we've seen where it makes sense to use these models in place of
+      proprietary systems.</p> <p class="svelte-1sj2xwt">But just as data needs a software system, the RDBMS, to manage storage and
+      execute queries, language models need a software system to drive their
+      inference, managing the storage of query caches and scheduling large
+      matrix multiplications on specialized hardware.</p> <p class="svelte-1sj2xwt">Like SQL database engines, there are open source "LLM engines" you can run
+      yourself. And like the models, this software stack has rapidly improved in
+      both usability and performance over the past year — reaching the baseline
+      of quality required for self-serve inference to be economical.</p> <p class="svelte-1sj2xwt">These engines are the primary subject of this report.</p> <p class="svelte-1sj2xwt">It answers the most common and most critical questions we hear asked by
+      technical leaders interested in running their own LLM engines. It is
+      informed by discussion with those leaders, with LLM engineers building
+      applications, and with the developers of LLM engines. It grounds its
+      claims in the same benchmarking work that supports our <a href="../advisor/index.html" class="svelte-1sj2xwt">LLM Engine Advisor</a>, which indicates baseline performance for engines on specific workloads
+      and provides starter code for running your own LLM engine on <a href="../../index.html" class="svelte-1sj2xwt">Modal's serverless cloud infrastructure</a>.</p> <h2 class="text-2xl font-semibold svelte-1sj2xwt">When should I use open weights language models instead of proprietary
+      services like OpenAI or Anthropic?</h2> <p>Many organizations are already building LLM applications based on
+      proprietary models that can't be self-hosted. So the first question to
+      consider is when and why they should switch away from those services.</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">The standard arguments for building technology in-house instead of buying
+      apply here.</h3> <p class="svelte-1sj2xwt">The most common concern is data governance, which frequently mandates
+      tight control of the servers that process user data. Worries about model
+      providers secretly training on data are overblown, but legitimate
+      requirements remain, especially in regulated industries.</p> <p class="svelte-1sj2xwt">The other most commonly-cited motivation is cost, familiar to anyone who
+      has considered self-hosting anything. Competition (including from open
+      models) has prevented any provider from charging too high of a premium.
+      But when LLM applications mature and the requirements become clearer, the
+      capabilities of the systems provided by frontier labs focused on
+      artificial general intelligence or superintelligence become unnecessary.
+      Those capabilities come at a cost, relative to a smaller model tuned or
+      prompted carefully. Think of it like rewriting code from JavaScript or
+      Python to Go or Rust once the feature velocity decreases. For details, see <a href="https://openpipe.ai/blog/a-founder-c-guide-to-ai-fine-tuning" class="svelte-1sj2xwt">this post</a> from one of our customers, OpenPipe, which provides post-training as a service.</p> <p class="svelte-1sj2xwt">This is just one instance of the kind of customization that's not possible
+      or not economical with proprietary models. Limits here are similar to
+      limits on extending proprietary software and we expect them to be
+      similarly durable. Models are, after all, valuable intellectual property,
+      and exposing them too much to tinkering and development risks leaking that
+      IP. We expect customization to only increase in importance over time, as
+      it has in domains like image generation, where open weights models are
+      more mature. Organizations that move now will be better prepared for this
+      future.</p> <p class="svelte-1sj2xwt">Finally, there is a less technical reason to consider this switch: the
+      movement of OpenAI and Anthropic into the application layer. Releases like
+      Claude Code and OpenAI Codex represent large steps away from language
+      modeling and towards applications of language models. And we've seen this
+      before: OpenAI's move to Chat Completions APIs (i.e. those for
+      instruction-tuned models designed for chat) represented a large step
+      towards applications relative to the original Completions APIs (i.e. those
+      for models trained just to predict text).</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">Use open weights models when there's such a thing as "smart enough".</h3> <p class="svelte-1sj2xwt">Collaborative, open source solutions tend to win out over competitive,
+      proprietary solutions when they <a href="http://www.catb.org/esr/writings/magic-cauldron/magic-cauldron.html" class="svelte-1sj2xwt">pool together labor and resources</a> to build non-differentiating capabilities — think programming languages,
+      operating systems, and databases. These are needed by everyone, and almost
+      no one gets enough competitive edge from building their own to make it worth
+      the effort.</p> <p class="svelte-1sj2xwt">We see the same phenomenon with open weights* language models. Basic
+      capabilities like code completion, assistant chat, and data extraction
+      have been commoditized by open weights models. In each case, there's a
+      maximum level of capability (or "intelligence") required to complete the
+      task satisfactorily. Each fixed level of capability has been reached by
+      the open weights models within a year, most recently by <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1-0528" class="svelte-1sj2xwt">DeepSeek-R1-0528</a>, which goes toe-to-toe with OpenAI's six-month-old o3 on a number of
+      benchmarks.</p> <p class="svelte-1sj2xwt">There are other cases where the demand for intelligence, like the demand
+      for RAM in computing systems, is effectively unbounded. These cases
+      include:</p> <div class="ml-8"><ul class="list-disc"><li>zero-sum competitive settings (politics, markets, &amp; other games)
+          and</li> <li>settings with high tail risk (like human-off-the-loop control of
+          computers, where <code>rm -rf ~/</code> is always only a few tokens away).</li></ul></div> <p class="svelte-1sj2xwt">There, we see a continued role for proprietary language models, just as
+      there is still a role for proprietary database systems like Oracle,
+      Microsoft SQL Server, and IBM Db2 (all in the top ten on <a href="http://db-engines.comhttps://db-engines.com/en/ranking" class="svelte-1sj2xwt">db-engines.com</a>).</p> <p class="svelte-1sj2xwt"><em>*We use the term "open weights" here instead of "open source", since in
+        most cases the source code required to produce the weight binaries is
+        not provided under an OSI-approved license (or at all). We expect this
+        distinction to matter more, not less, in the future.</em></p> <h2 class="text-2xl font-semibold svelte-1sj2xwt">How do I make the build vs buy decision for LLM inference?</h2> <p>Open source databases like Postgres are often offered as managed services
+      and used by everyone from startups to the Fortune 500. Open weights
+      language models are no different. Startups like <a href="https://www.together.ai/" class="svelte-1sj2xwt">Together</a> and hyperscalers like <a href="https://aws.amazon.com/bedrock/" class="svelte-1sj2xwt">Amazon</a> are already offering inference
+      as a service. So why run it yourself?</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">You can readily beat language model API providers on price if you're
+      running batch workloads on shorter contexts.</h3> <p class="svelte-1sj2xwt">Chatting and code completion are the most popular applications of large
+      language models, and they are both interactive. Engineering an
+      interactive, streaming, and latency-sensitive language model application
+      is challenging, just as it is for other computer systems (more on that
+      below).</p> <p class="svelte-1sj2xwt">But LLMs can also perform other tasks that are less latency-sensitive,
+      like extracting data from support chat logs or translating a large corpus
+      of documents. There, throughput is the most important factor — the name of
+      the game is queries per second. This setting is much easier to engineer
+      and optimize, as described below, and so it's easier to beat managed
+      services on price.</p> <p class="svelte-1sj2xwt">In one set of experiments, depicted below, we ran Meta's Llama 3.1 70B in
+      8bit floating point precision. The test data has more input tokens than
+      output tokens, as is common in retrieval-augmented generation (RAG) or
+      structured data extraction. In particular, the inputs have 1024 tokens
+      (about a page of text) and the outputs have 128 tokens (about a
+      paragraph).</p> <p class="svelte-1sj2xwt">Both vLLM and SGLang ran at ~17 QPS per 8xH100 replica without any tuning.
+      The chart below shows the median latency to first token as we varied the
+      request rate. Sacrificing interactivity (~200 ms end-to-end, leftmost
+      points) led to an 8x throughput increase (~4s end-to-end, rightmost
+      points). Details of our method are <a href="../../how-to-benchmark/index.html" class="svelte-1sj2xwt">here</a>.</p> <!--[!--><!--]--> <!----> <div class="vega-container aspect-2/1 relative min-h-[600px] max-w-full select-none self-center"><!--[--><div class="border-almanac-lime-green/10 text-almanac-dark-green/50 absolute inset-0 z-10 grid place-items-center rounded-md border-4 text-3xl animate-pulse">Loading...</div><!--]--> <div><div class="vega-container svelte-19r3i94"><div></div><!----></div><!----></div> <!--[!--><!--]--></div> <div class="grid min-w-0 sm:grid-cols-[minmax(auto,88px)_1fr]"><div class="mb-4 mt-8 flex flex-col items-center justify-center gap-4 self-center sm:col-start-2 lg:flex-row lg:gap-8"><div><label for="metric-group" class="mr-1 font-semibold">Metric:</label> <!--[--><select data-variant="transparent" id="metric-group" class="max-w-full svelte-nzuw0y"><!--[--><option value="ttft" selected selected>Time To First Token</option><option value="itl">Inter Token Latency</option><option value="ttlt">Time To Last Token</option><!--]--></select><!--]--><!----></div> <div><label for="aggregate" class="mr-1 font-semibold">Aggregate:</label> <!--[--><select data-variant="transparent" id="aggregate" class="max-w-full svelte-nzuw0y"><!--[--><option value="p50" selected selected>Median</option><option value="p90">p90</option><option value="p95">p95</option><!--]--></select><!--]--><!----></div></div></div> <!--[!--><!--]--> <div class="mt-8 hidden self-center"><button class="hover:bg-almanac-lime-green/5 flex items-center gap-1 rounded-[3px] px-2 py-1 text-sm transition-colors">Show Data <!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-down h-4 w-4"><!--[--><!----><path d="M12 5v14"><!----></path><!----><!----><path d="m19 12-7 7-7-7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></button></div> <!--[!--><!--]--><!----> <p class="svelte-1sj2xwt">Running this configuration on <a href="../../pricing/index.html" class="svelte-1sj2xwt">Modal's starter plan</a>,
+      which has purely usage-based pricing, you can set up a batch system that
+      processes ~20k tok/s with Llama 3.1 70B fp8 at ~50¢ per million tokens.
+      Modal's paid plans allow this to scale up to hundreds of replicas. This
+      compares favorably with published rates from API providers. For
+      performance data for other configurations, see the <a href="../advisor/index.html" class="svelte-1sj2xwt">LLM Engine Advisor</a> released along with this
+      summary.</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">Start by building your own batch "token factory" before you run a
+      streaming token service.</h3> <p class="svelte-1sj2xwt">Many of us were introduced to language models in an interactive system,
+      like OpenAI ChatGPT or Anthropic Claude, that streams the outputs. These
+      systems are harder to set up and to run economically than batch systems,
+      so start with batch.</p> <p class="svelte-1sj2xwt">This is typically the case in computing, where batch (say, Spotify
+      Discover Weekly) precedes streaming (say, TikTok feeds). Consider: early
+      computers started out as batch job machines, processing large bulks of
+      data like the U.S. Census or company payrolls. Users submitted very large
+      tasks, via punch cards, and then waited for them to finish. The
+      interactivity we are used to today, derived from time-sharing systems like
+      MULTICS/UNIX, was only added later.</p> <p class="svelte-1sj2xwt">It is in general better to start with the easier, batch case and then to
+      build the more difficult one afterwards, with the benefit of hard-won
+      experience. This is true both as a matter of your organization's internal
+      technical growth and the development of the broader field of open source
+      language model inference — i.e., outside of the handful of organizations
+      that have driven the frontier so far.</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">But don't write your own LLM engine (unless you're betting the company).</h3> <p class="svelte-1sj2xwt">If you're running the language model yourself, you need to think about the
+      software used to pass inputs through those weights to create outputs —
+      language model "inference" using an "LLM engine" or "LLM serving
+      framework".</p> <p class="svelte-1sj2xwt">LLM engines are less complex than database management systems, but they
+      are not simple software. Contemporary models are based on the Transformer
+      architecture, which is optimized for efficiency during training. This is
+      necessary to achieve the dizzying scale of frontier model training runs (<a href="https://epoch.ai/blog/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year" class="svelte-1sj2xwt">estimated</a> at 6 x 10<sup>25</sup>, or ~100 mol, FLOPs). But it means that running
+      this architecture efficiently when serving, say, chatbot requests is not
+      as simple as writing a few lines of PyTorch.</p> <p class="svelte-1sj2xwt">One reason for the complication is the primacy of performance. Running
+      large language models is expensive (often on the order of cents per
+      thousand user queries), which incentivizes close attention to performance.
+      Engineering for performance melts abstractions and reveals the thickets of
+      complexity hidden underneath.</p> <p class="svelte-1sj2xwt">But it is nowhere nearly the complexity and expense of training your own
+      model. If running LLMs is a key differentiating capability for your
+      organization, building your own engine is worth considering. A small,
+      talented team of engineers can start from published research and open
+      source code and develop just the features you need within a few months.
+      The primary technical risks are hum-drum: maintenance, churn, and tooling
+      compatibility in a rapidly-changing field.</p> <p class="svelte-1sj2xwt">But the same arguments about differentiation used above to argue the case
+      for using open weights also apply here. This is something many teams need
+      to do, and now a number of them are collaborating to build it together —
+      the topic of our next section. You can join them!</p> <h2 class="text-2xl font-semibold svelte-1sj2xwt">Which open source LLM engine should I choose?</h2> <p class="svelte-1sj2xwt">There are three main open source LLM engines: <a href="https://docs.vllm.ai/en/latest/" class="svelte-1sj2xwt">vLLM</a>, <a href="https://docs.sglang.ai/" class="svelte-1sj2xwt">SGLang</a>, and <a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/index.html" class="svelte-1sj2xwt">TensorRT-LLM</a>.</p> <p class="svelte-1sj2xwt">vLLM and SGLang are open source, open governance projects in the same
+      basic mold as Postgres — to the point of both also coming out of the
+      University of California, Berkeley. Contributions to these projects come
+      from the usual suspects in infrastructure: large organizations like Red
+      Hat, late-stage startups like Anyscale, and leading teams serving
+      proprietary models like xAI. Both build on Meta's <a href="https://docs.pytorch.org/docs/stable/index.html" class="svelte-1sj2xwt">PyTorch framework</a>.</p> <p class="svelte-1sj2xwt"><a href="https://nvidia.github.io/TensorRT-LLM/index.html" class="svelte-1sj2xwt">TensorRT-LLM</a> is an open source but closed governance project by NVIDIA. It builds on top
+      of NVIDIA's <a href="https://docs.nvidia.com/deeplearning/tensorrt/latest/index.html" class="svelte-1sj2xwt">TensorRT</a> framework.</p> <p class="svelte-1sj2xwt">We'll cover the differences between these projects and how to pick which
+      one to use below.</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">All the engines stand on the shoulders of giants. All will get better as
+      those giants get taller.</h3> <p class="svelte-1sj2xwt">Because of the high cost of large language model inference, performance is
+      the first factor used to evaluate LLM engines. There is less daylight here
+      than you might expect from the intensity of benchmark wars on social
+      media. This is due to the fact that all of them are building with the same
+      basic tools and constraints.</p> <p class="svelte-1sj2xwt">First, the limits of performance are set by the hardware. Hardware
+      engineers refer often to the "speed-of-light" — not literally, but as the
+      maximum speed at which the hardware can run, set by clock speeds and bus
+      widths. Almost all open source LLM inference is done on NVIDIA GPUs and so
+      has the same speed of light.</p> <p class="svelte-1sj2xwt">Unlike typical CPU workloads, <a href="../../blog/gpu-utilization-guide/index.html" class="svelte-1sj2xwt">LLM inference on GPUs frequently runs at a high fraction of the speed
+        of light</a>, set by either the arithmetic bandwidth of the matrix multiplication
+      hardware (<a href="../../gpu-glossary/device-hardware/tensor-core/index.html" class="svelte-1sj2xwt">Tensor Cores</a>) or the memory bandwidth between <a href="../../gpu-glossary/device-hardware/gpu-ram/index.html" class="svelte-1sj2xwt">GPU RAM</a> and the <a href="../../gpu-glossary/device-hardware/register-file/index.html" class="svelte-1sj2xwt">registers</a> of the <a href="../../gpu-glossary/device-hardware/streaming-multiprocessor/index.html" class="svelte-1sj2xwt">Streaming Multiprocessors</a>. This limits the domain for speedups to ~2-3x at most, absent
+      algorithmic differences, which are generally small, due to rapid diffusion
+      of innovations.</p> <p class="svelte-1sj2xwt">More deeply, the same basic stack is used by each of the engines — the <a href="../../gpu-glossary/host-software/cuda-software-platform/index.html" class="svelte-1sj2xwt">CUDA software platform</a>, the <a href="https://docs.nvidia.com/cuda/cublas/index.html" class="svelte-1sj2xwt">CUDA Basic Linear Algebra Subroutine</a> (cuBLAS) library, and the <a href="https://docs.nvidia.com/cutlass/index.html" class="svelte-1sj2xwt">CUDA Templates for Linear Algebra Subroutines</a> (CUTLASS) kernel framework. In addition, vLLM and SGLang both use PyTorch.
+      All of the engines stand to see their performance improve as new hardware is
+      released and these bedrock libraries update to take advantage of it.</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">vLLM and SGLang achieve comparable out-of-the-box performance. Other
+      factors should drive your decision.</h3> <p class="svelte-1sj2xwt">We ran both vLLM and SGLang, out of the box, on dozens of LLM inference
+      workloads. These workloads included models ranging in size from a few
+      billion to nearly a trillion parameters and on sequence lengths ranging
+      from one thousand to ten thousand tokens. The results were strikingly
+      similar across the two frameworks especially when looking at throughput
+      during batch processing -- see how closely the points hug the SGLang =
+      vLLM line in the plot below. Read more about our methodology <a href="../how-to-benchmark/index.html" class="svelte-1sj2xwt">here</a>.</p> <!--[!--><!--]--> <p class="svelte-1sj2xwt">That means you'll need to consider other factors in making your decision.
+      Because vLLM has been around for longer and has historically been faster
+      to market with new features, we have accumulated more experience with it.
+      But SGLang's recent rapid development is promising, and we're looking
+      closely at both. A little competition is good for everyone (else).</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">In our experience, vLLM is fastest to the market with new features.</h3> <p class="svelte-1sj2xwt">At time of completion of our first round of experiments in late May 2025,
+      TensorRT-LLM (<code>0.20.0.rc3</code>) did not support Gemma 3 or Qwen 3.</p> <p class="svelte-1sj2xwt">On SGLang (<code>0.4.6-post5-cu124</code>), we hit <a href="https://github.com/sgl-project/sglang/issues/6054" class="svelte-1sj2xwt">this issue</a> (resolved but not released) running DeepSeek-V3 in INT4 quant and CUDA OOMs
+      when running Qwen 3 235B A22B we couldn't resolve in time for release.</p> <p class="svelte-1sj2xwt">We didn't find any workloads of interest that we couldn't run on vLLM (<code>0.8.x</code> and then <code>0.9.x</code>). We did, however, discover that we couldn't
+      independently toggle CUDA graph capture and Torch graph compilation (also <a href="https://github.com/vllm-project/vllm/pull/17345" class="svelte-1sj2xwt">now resolved</a> but not released) as needed to match SGLang's behavior more closely. See the
+      next section.</p> <p class="svelte-1sj2xwt">Finally, at time of our first release in early June 2025, SGLang did not
+      have accelerated kernels for Blackwell GPUs like the <a href="../../blog/introducing-b200-h200/index.html" class="svelte-1sj2xwt">B200</a> in a stable release, as they were still on PyTorch 2.6. Kernels <a href="../../gpu-glossary/device-software/compute-capability/index.html" class="svelte-1sj2xwt">compiled for max performance</a> on the Blackwell <a href="../../gpu-glossary/device-hardware/streaming-multiprocessor-architecture/index.html" class="svelte-1sj2xwt">SM architecture</a> were only added to PyTorch wheels in 2.7. Blackwell support, including partially-optimized
+      kernels, was released for vLLM just as we wrapped up our work.</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">Startup times are slower with vLLM than with SGLang by default — mostly
+      due to Torch compilation.</h3> <p class="svelte-1sj2xwt">With the default settings, startup times for vLLM servers were much
+      longer, around five minutes for 8B models to SGLang's one minute. In both
+      cases, model weights were loaded from <a href="../../docs/guide/model-weights/index.html" class="svelte-1sj2xwt">our distributed model cache</a> at about the same rate, ~1 GB/s.</p> <p class="svelte-1sj2xwt">The primary difference is in the out-of-the-box configuration. vLLM turns
+      Torch graph compilation on by default. Compilation can improve
+      performance, in particular for models that don't have custom fused kernels
+      available, but it incurs a startup cost that is hard to manage with
+      cacheing (<a href="https://docs.pytorch.org/tutorials/recipes/torch_compile_caching_tutorial.html" class="svelte-1sj2xwt">docs</a>).</p> <p class="svelte-1sj2xwt">Separately, both frameworks use CUDA graph capture, which also reduces
+      latency, in particular at low (~3-5ms) inter-token latencies. CUDA graph
+      capture is simpler and faster than Torch graph compilation — as short as a
+      few seconds in recent versions of vLLM.</p> <p class="svelte-1sj2xwt">vLLM has recently <a href="https://docs.vllm.ai/en/latest/design/v1/torch_compile.html" class="svelte-1sj2xwt">bet heavily on Torch compilation</a>, while SGLang seems to have <a href="https://github.com/sgl-project/sglang/issues/4748" class="svelte-1sj2xwt">done the opposite</a>. Which choice turns out to be best will depend on the progress of that
+      project.</p> <h3 class="text-xl font-semibold svelte-1sj2xwt">TensorRT-LLM can provide big wins, especially at the lowest latencies —
+      but don't underestimate the engineering cost.</h3> <p class="svelte-1sj2xwt">While vLLM and SGLang are strikingly similar in many ways, TensorRT-LLM is
+      quite different. Its Python interface is a thinner wrapper over the
+      underlying <a href="../../gpu-glossary/host-software/cuda-c/index.html" class="svelte-1sj2xwt">CUDA C++</a> software
+      than theirs. TensorRT-LLM also requires the LLM engine be compiled ahead of
+      time per workload. These artifacts are stored on disk, which reduces startup
+      times, but this extra manual build step adds complexity. Our sample code for
+      running it on Modal is thus about three times longer, at 150 lines to 50 for
+      the other two frameworks.</p> <p class="svelte-1sj2xwt">And out of the box, we observe worse performance with TensorRT-LLM than
+      with vLLM or SGLang. This is to be expected, since there is no intention
+      by the developers that the default settings should be used in production
+      serving, but it makes an apples-to-apples benchmark challenging.</p> <p class="svelte-1sj2xwt">Instead, TensorRT-LLM's build step exposes a bewildering array of un- or
+      under-documented flags and parameters, like <code>--reduce-fusion</code> (presented as a strict improvement for end-to-end performance in the <a href="https://nvidia.github.io/TensorRT-LLM/commands/trtllm-build.html" class="svelte-1sj2xwt">docstring</a>, caveats explained <a href="https://nvidia.github.io/TensorRT-LLM/performance/performance-tuning-guide/useful-build-time-flags.html#reduce-norm-fusion-plugin-for-llama-models" class="svelte-1sj2xwt">elsewhere</a>). It is widely reported, and we have observed in a few cases, that the
+      proper setting of these flags can make a substantial difference in
+      performance, including going from much slower than the other engines to
+      much faster.</p> <p class="svelte-1sj2xwt">This is a tough challenge for engineers and engineering leaders — is it
+      worth it to pour a few weeks of very expensive engineering time into this
+      tuning? That depends on what speedup is possible. Reported numbers help,
+      but in our experience, the impact of configuration changes is very
+      sensitive to surprising features of workloads, including features that
+      might change during serving, so estimation is challenging and churn is
+      high.</p> <p class="svelte-1sj2xwt">Another engineering challenge arises from the TensorRT-LLM development
+      model. Until the release of <code>v0.19.0</code> in mid-May 2025, TensorRT-LLM's <a href="https://github.com/NVIDIA/TensorRT-LLM" class="svelte-1sj2xwt">source code on GitHub</a> was updated per release, many thousands of lines at a time. Seemingly, this
+      was done to mirror in bulk a large number of changes made to an internal GitLab
+      repo during actual development. This made it essentially impossible to connect
+      changes in code to changes in behavior (using tools like <code>git bisect</code>, for instance). These releases also offered no
+      backwards compatibility guarantee, so every update was a tedious, manual
+      process requiring careful review of documentation, examples, and code.
+      According to a <a href="https://github.com/NVIDIA/TensorRT-LLM/issues/3148" class="svelte-1sj2xwt">recent announcement</a>, they have officially adopted a "GitHub-first" development flow. Very
+      welcome! At time of writing in late July 2025, they have put out
+      candidates for a <code>1.0</code> release, which should reduce churn.</p> <p class="svelte-1sj2xwt">Our current practice when we approach a new workload is to try vLLM or
+      SGLang first, get benchmark numbers as quickly as possible, do some light
+      tuning, and compare results to latency objectives. If those frameworks
+      meet the objective, we presume that the performance benefits of
+      TensorRT-LLM aren't worth the extra complexity, brittleness, and delays in
+      time-to-market until proven otherwise.</p> <p class="svelte-1sj2xwt">Meanwhile, we are slowly accumulating and sharing optimized TensorRT-LLM
+      configurations as we discover them. We welcome contributions <a href="https://github.com/modal-labs/stopwatch/blob/main/CONTRIBUTING.md" class="svelte-1sj2xwt">here</a>. The biggest win we've seen so far came in a case where latency was at a
+      premium but cost efficiency was not — perhaps unsurprising for software
+      written by the hardware provider. That case is described in detail in our
+      docs <a href="../../docs/examples/trtllm_latency/index.html" class="svelte-1sj2xwt">here</a>.</p> <h2 class="text-2xl font-semibold svelte-1sj2xwt">What next?</h2> <p class="svelte-1sj2xwt">If you either know what workload you want to run or are curious to see our
+      results in more detail, check out the <a href="../advisor/index.html" class="svelte-1sj2xwt">LLM Engine Advisor</a>, which reports the latency numbers (time-to-first-token,
+      time-to-last-token, and inter-token latency) we observed across a variety
+      of request rate loads for popular open weights models run with vLLM,
+      SGLang, and TensorRT-LLM. Code snippets are included.</p> <p class="svelte-1sj2xwt">If you'd like to know more about how to think about and benchmark LLM
+      engine performance, check out our <a href="../how-to-benchmark/index.html" class="svelte-1sj2xwt">benchmarking guide</a>.</p></div></div><!----><!--]--><!----></div> <div class="hidden h-[200px] grid-cols-[1fr_auto_1fr] items-center gap-4 lg:grid"><hr class="border-t-2 svelte-18r7z67"/> <img src="../../_app/immutable/assets/footer-logo.DIFFZGxj.png" alt="" class="w-[260px] max-w-[40vw]"/> <hr class="border-t-2 svelte-18r7z67"/></div></div></main><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="UvGaXUgga1RsZ/Ponu50zw==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 27, 208],
+							data: [{type:"data",data:{},uses:{}},null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

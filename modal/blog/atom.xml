@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://modal.com/blog</id>
+  <title>Modal Blog</title>
+  <updated>2026-08-24T11:02:39.548Z</updated>
+  <link rel="self" href="https://modal.com/blog/atom.xml"/>
+  <link rel="alternate" href="https://modal.com/blog"/>
+  <entry>
+    <id>https://modal.com/blog/qwen3-8-2-4t-a95b-now-available-on-modal</id>
+    <title>Qwen3.8-2.4T-A95B now available on Modal</title>
+    <updated>2026-08-12T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/qwen3-8-2-4t-a95b-now-available-on-modal"/>
+    <summary type="text"><![CDATA[Qwen3.8-2.4T-A95B by Alibaba, with a 1M token context window, is now available via Modal Auto Endpoints.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/bringing-serverless-functions-closer-to-the-speed-of-wire</id>
+    <title>Bringing serverless functions closer to the speed of wire</title>
+    <updated>2026-08-04T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/bringing-serverless-functions-closer-to-the-speed-of-wire"/>
+    <summary type="text"><![CDATA[Modal’s Function Call data path is now >50ms faster. Our new routing layer is geographically distributed, so you can further reduce your network overhead.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/a-note-on-the-hugging-face-agent-incident</id>
+    <title>A note on the Hugging Face agent incident</title>
+    <updated>2026-07-29T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/a-note-on-the-hugging-face-agent-incident"/>
+    <summary type="text"><![CDATA[Hugging Face published a technical timeline of a recent agent intrusion. Modal's platform and isolation were not compromised in this incident.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/kimi-k3-by-moonshot-now-available-on-modal</id>
+    <title>Kimi K3 by Moonshot now available on Modal</title>
+    <updated>2026-07-27T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/kimi-k3-by-moonshot-now-available-on-modal"/>
+    <summary type="text"><![CDATA[Kimi K3, a 2.8 trillion parameter multimodal model by Moonshot, along with a custom-trained DFlash speculator, is now available on Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/devin-outposts-run-devin-in-modal-sandoxes</id>
+    <title>Devin Outposts on Modal</title>
+    <updated>2026-07-21T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/devin-outposts-run-devin-in-modal-sandoxes"/>
+    <summary type="text"><![CDATA[Devin, built by Cognition, is an AI software engineer: it plans, writes, tests, and ships code semi-autonomously. With Outposts, Devin can now run its work in Modal sandboxes.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/scaling-to-1-million-concurrent-sandboxes-in-seconds</id>
+    <title>Scaling to 1 million concurrent sandboxes in seconds</title>
+    <updated>2026-07-16T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/scaling-to-1-million-concurrent-sandboxes-in-seconds"/>
+    <summary type="text"><![CDATA[How (and why) we built a scheduling system that can scale to 1 million concurrent sandboxes (per workspace) in seconds.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal</id>
+    <title>Inkling by Thinking Machines now available on Modal</title>
+    <updated>2026-07-15T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/inkling-by-thinking-machines-labs-now-available-on-modal"/>
+    <summary type="text"><![CDATA[Inkling, a general-purpose multimodal model by Thinking Machines, along with a custom trained DFlash speculator, is now available on Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-is-a-computer</id>
+    <title>Modal is a computer</title>
+    <updated>2026-07-09T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-is-a-computer"/>
+    <summary type="text"><![CDATA[What is Modal? A machine that runs programs of arithmetic & logic operations on information.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/how-to-price-serverless</id>
+    <title>How to price serverless GPUs</title>
+    <updated>2026-07-06T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/how-to-price-serverless"/>
+    <summary type="text"><![CDATA[To compare rates for serverless and reserved GPUs, look at your application's peak-to-average ratio.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Matt Zebert</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/multi-token-residual-prediction</id>
+    <title>Multi-token Residual Prediction</title>
+    <updated>2026-07-01T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/multi-token-residual-prediction"/>
+    <summary type="text"><![CDATA[One tiny module, two ways to win on Diffusion LMs]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-integration-brings-scalable-compute-to-claude-science</id>
+    <title>Anthropic integration with Modal brings scalable compute to Claude Science</title>
+    <updated>2026-06-30T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-integration-brings-scalable-compute-to-claude-science"/>
+    <summary type="text"><![CDATA[Announcing our integration with Claude Science, bringing Modal's elastic compute to researchers when they need it.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/serverless-servers</id>
+    <title>Modal&apos;s serverless Servers</title>
+    <updated>2026-06-25T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/serverless-servers"/>
+    <summary type="text"><![CDATA[A deep dive inside our new ultra-low-latency primitive.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/achieve-sota-specdec</id>
+    <title>Achieve state-of-the-art inference latencies with speculative decoding</title>
+    <updated>2026-06-24T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/achieve-sota-specdec"/>
+    <summary type="text"><![CDATA[How Modal and Decagon worked together to cut inference latency - and you can too.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/introducing-auto-endpoints</id>
+    <title>Introducing Modal Auto Endpoints: Optimized inference you actually own</title>
+    <updated>2026-06-23T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/introducing-auto-endpoints"/>
+    <summary type="text"><![CDATA[LLM inference at SotA speeds and Modal quality, now available to everyone.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/unpacking-sandbox-startup-latency</id>
+    <title>Unpacking sandbox startup latency: why started ≠ ready</title>
+    <updated>2026-06-22T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/unpacking-sandbox-startup-latency"/>
+    <summary type="text"><![CDATA[Building performant sandbox systems goes way beyond the initial container boot. Here, we unpack what that means, and discuss some tools to help you manage the entire lifecycle.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/spec-is-all-u-need</id>
+    <title>Speculation Is All You Need</title>
+    <updated>2026-06-19T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/spec-is-all-u-need"/>
+    <summary type="text"><![CDATA[Why we're all-in on speculative decoding.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/product-updates-vm-sandboxes-domain</id>
+    <title>Product updates: VM Sandboxes, Lower latency routing, RBAC, and more</title>
+    <updated>2026-06-15T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/product-updates-vm-sandboxes-domain"/>
+    <summary type="text"><![CDATA[Recent product updates and news from around the community.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/flash-attention-4-faster</id>
+    <title>Making FlashAttention-4 faster for inference</title>
+    <updated>2026-06-11T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/flash-attention-4-faster"/>
+    <summary type="text"><![CDATA[What part of "dtype = 'fp8', num_splits = 0, pack_gqa = True, q_stage = 1, page_size = 1" do you not understand?]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Timothy Feng</name>
+    </author>
+    <author>
+      <name>David Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/reinforcement-learning-infrastructure-problem</id>
+    <title>Reinforcement learning is an infrastructure problem</title>
+    <updated>2026-06-01T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/reinforcement-learning-infrastructure-problem"/>
+    <summary type="text"><![CDATA[What we've seen helping teams run Reinforcement Learning at scale on Modal. Plus an open-source library to skip the scaffolding.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/role-based-access-control-for-humans-and-agents</id>
+    <title>Role-Based Access Control for humans and agents</title>
+    <updated>2026-05-27T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/role-based-access-control-for-humans-and-agents"/>
+    <summary type="text"><![CDATA[Introducing Role-Based Access Control for humans and agents, now available for all users on Teams and Enterprise plans.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-series-c</id>
+    <title>Modal&apos;s Series C: Raising $355M at a $4.65B valuation</title>
+    <updated>2026-05-21T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-series-c"/>
+    <summary type="text"><![CDATA[We've raised $355M at a $4.65B valuation to continue building the production cloud for AI.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/applied-compute-reinforcement-learning</id>
+    <title>Scaling reinforcement learning at Applied Compute</title>
+    <updated>2026-05-20T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/applied-compute-reinforcement-learning"/>
+    <summary type="text"><![CDATA[How Applied Compute trains custom agents with Reinforcement Learning for enterprises like DoorDash, Cognition, and Mercor on Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/introducing-claude-managed-agents-with-modal-sandboxes</id>
+    <title>Introducing Claude Managed Agents with Modal Sandboxes</title>
+    <updated>2026-05-19T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/introducing-claude-managed-agents-with-modal-sandboxes"/>
+    <summary type="text"/>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/truly-serverless-gpus</id>
+    <title>How we achieved truly serverless GPUs</title>
+    <updated>2026-05-12T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/truly-serverless-gpus"/>
+    <summary type="text"><![CDATA[A deep dive on Modal's deep tech for fast boots.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Jonathan Belotti</name>
+    </author>
+    <author>
+      <name>Erik Bernhardsson</name>
+    </author>
+    <author>
+      <name>Akshat Bubna</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/boosting-multimodal-inference-performance-by-greater-than-10-with-a-single-python-dictionary</id>
+    <title>Boosting multimodal inference performance by &gt;10% with a single Python dictionary</title>
+    <updated>2026-05-04T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/boosting-multimodal-inference-performance-by-greater-than-10-with-a-single-python-dictionary"/>
+    <summary type="text"><![CDATA[If we've said it once, we've said it once per millisecond: never block the GPU.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/building-an-rl-theorem-proving-workflow-on-modal</id>
+    <title>Building an RL theorem-proving workflow on Modal</title>
+    <updated>2026-04-29T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/building-an-rl-theorem-proving-workflow-on-modal"/>
+    <summary type="text"><![CDATA[Learn how AE Studio used evolutionary algorithms on Modal to efficiently improve Lean proof generation. ]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/building-with-modal-and-the-openai-agent-sdk</id>
+    <title>Building with Modal and the OpenAI Agents SDK</title>
+    <updated>2026-04-15T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/building-with-modal-and-the-openai-agent-sdk"/>
+    <summary type="text"><![CDATA[Modal is an official sandbox provider for the OpenAI Agents SDK.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/autoscaling-autoresearch</id>
+    <title>Autoscaling Autoresearch: Give your agents elastic GPUs on Modal</title>
+    <updated>2026-04-14T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/autoscaling-autoresearch"/>
+    <summary type="text"><![CDATA[Autoresearch automates AI research. Modal automates AI infrastructure.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/butter-is-joining-modal</id>
+    <title>Butter is joining Modal</title>
+    <updated>2026-04-10T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/butter-is-joining-modal"/>
+    <summary type="text"><![CDATA[Butter, a San Francisco-based AI sandbox technology, is joining Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/physical-intelligence-runs-real-time-remote-inference-for-robotic-control-on-modal</id>
+    <title>Real-time inference for robots at Physical Intelligence</title>
+    <updated>2026-04-08T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/physical-intelligence-runs-real-time-remote-inference-for-robotic-control-on-modal"/>
+    <summary type="text"><![CDATA[How Physical Intelligence runs remote, real-time, robotic inference on Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/product-updates-rtx-pro-6000-command-k-sandbox-fs-api-and-more</id>
+    <title>Product Updates: RTX Pro 6000 Blackwell, Command K, Sandbox FS API and more</title>
+    <updated>2026-04-07T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/product-updates-rtx-pro-6000-command-k-sandbox-fs-api-and-more"/>
+    <summary type="text"><![CDATA[Product updates, community highlights, and upcoming events.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/runway-chooses-modal-to-power-real-time-inference-for-runway-characters</id>
+    <title>Runway chooses Modal to power real-time inference for Runway Characters</title>
+    <updated>2026-03-26T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/runway-chooses-modal-to-power-real-time-inference-for-runway-characters"/>
+    <summary type="text"><![CDATA[Modal is proud to power real-time inference for Runway Characters.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/how-doppel-eliminated-ml-infrastructure-tax-with-modal</id>
+    <title>How Doppel eliminated ML infrastructure tax with Modal</title>
+    <updated>2026-03-25T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/how-doppel-eliminated-ml-infrastructure-tax-with-modal"/>
+    <summary type="text"><![CDATA[How Modal helped the ML team at Doppel parallelize experimentation and scale inference.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/product-updates-directory-snapshots-glm-5-billing-updates-and-more</id>
+    <title>Product Updates: Directory Snapshots, GLM-5, billing updates and more</title>
+    <updated>2026-03-04T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/product-updates-directory-snapshots-glm-5-billing-updates-and-more"/>
+    <summary type="text"><![CDATA[A roundup of everything we shipped in February: Directory Snapshots for Sandboxes, a free GLM-5 endpoint, new billing API, and more.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/accelerating-ai-research-case-study</id>
+    <title>Accelerating AI research that accelerates AI research</title>
+    <updated>2026-02-25T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/accelerating-ai-research-case-study"/>
+    <summary type="text"><![CDATA[Learn why researchers at Scaling Intelligence, Hazy Research, and other top labs are choosing Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/directory-snapshots-resumable-project-state-for-sandboxes</id>
+    <title>Directory Snapshots: Resumable project state for Sandboxes</title>
+    <updated>2026-02-24T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/directory-snapshots-resumable-project-state-for-sandboxes"/>
+    <summary type="text"><![CDATA[Introducing Directory Snapshots, a programatic way to snapshot a specific directory within a running Sandbox and mount it into another Sandbox later, independently of the base image and the rest of the filesystem.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/how-ramp-built-a-full-context-background-coding-agent-on-modal</id>
+    <title>How Ramp built a full context background coding agent on Modal</title>
+    <updated>2026-02-19T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/how-ramp-built-a-full-context-background-coding-agent-on-modal"/>
+    <summary type="text"/>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/try-glm-5</id>
+    <title>Try GLM-5.1, the new frontier of open intelligence, on Modal</title>
+    <updated>2026-02-11T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/try-glm-5"/>
+    <summary type="text"><![CDATA[GLM-5.1 establishes a new SotA for open models. Try it free today.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/product-updates-find-modal-in-aws-and-gcp-marketplaces-sandbox-improvements-and-more</id>
+    <title>Product Updates: Modal in AWS &amp; GCP marketplaces, Sandbox improvements, and more</title>
+    <updated>2026-01-28T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/product-updates-find-modal-in-aws-and-gcp-marketplaces-sandbox-improvements-and-more"/>
+    <summary type="text"><![CDATA[All the latest news across product, content, community, and events this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/seamless-computational-bio-at-chai-discovery</id>
+    <title>Seamless computational bio at Chai Discovery</title>
+    <updated>2026-01-15T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/seamless-computational-bio-at-chai-discovery"/>
+    <summary type="text"><![CDATA[Learn how Chai Discovery moves seamlessly from ML experimentation to production antibody pipelines with Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/gpu-health</id>
+    <title>Keeping 20,000 GPUs healthy</title>
+    <updated>2025-12-28T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/gpu-health"/>
+    <summary type="text"><![CDATA[How we do active and passive monitoring on hyperscalers and neoclouds.]]></summary>
+    <author>
+      <name>Jonathon Belotti</name>
+    </author>
+    <author>
+      <name>Amy Chang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/mistral-3</id>
+    <title>Modal + Mistral 3: 10x faster cold starts with GPU snapshotting</title>
+    <updated>2025-12-02T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/mistral-3"/>
+    <summary type="text"><![CDATA[We've partnered with Mistral to bring you Day 0 support for Mistral 3, with GPU-snapshot-optimized performance.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/agents-devex</id>
+    <title>Agents need good developer experience too</title>
+    <updated>2025-11-20T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/agents-devex"/>
+    <summary type="text"><![CDATA[Turns out, good devex for agents looks a lot like good devex for humans.]]></summary>
+    <author>
+      <name>Michael Waskom</name>
+    </author>
+    <author>
+      <name>Rebecka Storm</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/reducto-case-study</id>
+    <title>How Reducto improved enterprise-scale document processing latency by 3x</title>
+    <updated>2025-11-19T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/reducto-case-study"/>
+    <summary type="text"><![CDATA[Learn how Reducto used GPU memory snapshotting and flexible autoscaling to build fast multi-model pipelines.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/host-overhead-inference-efficiency</id>
+    <title>Host overhead is killing your inference efficiency</title>
+    <updated>2025-11-18T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/host-overhead-inference-efficiency"/>
+    <summary type="text"><![CDATA[Never block the GPU.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Nathan Wang</name>
+    </author>
+    <author>
+      <name>Timothy Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/decagon-case-study</id>
+    <title>How Decagon shipped real-time voice AI on Modal</title>
+    <updated>2025-11-13T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/decagon-case-study"/>
+    <summary type="text"><![CDATA[How Decagon and Modal made real-time voice AI possible, combining fine-tuned small models with a re-engineered inference runtime for sub-second latency.]]></summary>
+    <author>
+      <name>Richard Gong</name>
+    </author>
+    <author>
+      <name>Timothy Feng</name>
+    </author>
+    <author>
+      <name>Cyrus Asgari</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/low-latency-voice-bot</id>
+    <title>One-second voice-to-voice latency with Modal, Pipecat, and open models</title>
+    <updated>2025-11-04T09:00:00.000Z</updated>
+    <link href="https://modal.com/blog/low-latency-voice-bot"/>
+    <summary type="text"><![CDATA[How we built a real-time voice bot on Modal's distributed serverless platform.]]></summary>
+    <author>
+      <name>Ben Shababo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-oct-2025</id>
+    <title>Product updates: Updates to Volumes, JS and Go SDKs, and more</title>
+    <updated>2025-10-31T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-oct-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/datalab-and-modal</id>
+    <title>Modal + Datalab: Deploy high-throughput document intelligence in &lt;5 minutes</title>
+    <updated>2025-10-29T21:00:00.000Z</updated>
+    <link href="https://modal.com/blog/datalab-and-modal"/>
+    <summary type="text"><![CDATA[We've collaborated with Datalab, the creators of Marker and Surya, to make it faster than ever to deploy document intelligence workflows.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/announcing-our-series-b</id>
+    <title>Announcing our $87M Series B</title>
+    <updated>2025-09-29T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/announcing-our-series-b"/>
+    <summary type="text"><![CDATA[We’re excited to announce that we have raised more than $80M in a Series B round, led by Lux Capital. Our post-money valuation is $1.1B.]]></summary>
+    <author>
+      <name>Erik Bernhardsson</name>
+    </author>
+    <author>
+      <name>Akshat Bubna</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/reverse-engineer-flash-attention-4</id>
+    <title>We reverse-engineered Flash Attention 4</title>
+    <updated>2025-09-26T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/reverse-engineer-flash-attention-4"/>
+    <summary type="text"><![CDATA[Asynchrony, fast approximate exponents, and 10x more efficient softmax.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Nathan Wang</name>
+    </author>
+    <author>
+      <name>Timothy Feng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/justin-dignelli</id>
+    <title>Justin Dignelli joins Modal as VP of Sales</title>
+    <updated>2025-09-22T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/justin-dignelli"/>
+    <summary type="text"><![CDATA[We're excited to welcome Justin Dignelli to Modal. As VP of Sales, he will be leading our GTM efforts.]]></summary>
+    <author>
+      <name>Justin Dignelli</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-vibe</id>
+    <title>Build an AI coding platform that scales to millions of monthly sessions</title>
+    <updated>2025-09-22T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-vibe"/>
+    <summary type="text"><![CDATA[Modal Sandboxes: impeccable vibes meet incredible scale.]]></summary>
+    <author>
+      <name>Joy Liu</name>
+    </author>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-update-sep-2025</id>
+    <title>Product updates: Modal Notebooks, sandbox idle timeouts, and more</title>
+    <updated>2025-09-19T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-update-sep-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/notebooks-internals</id>
+    <title>Inside Modal Notebooks: How we built a cloud GPU notebook that boots in seconds</title>
+    <updated>2025-09-16T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/notebooks-internals"/>
+    <summary type="text"><![CDATA[Exploring the internals of our new product, a modern Jupyter notebook built for fast startup and real-time collaboration.]]></summary>
+    <author>
+      <name>Eric Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/notebooks</id>
+    <title>Introducing Notebooks</title>
+    <updated>2025-09-09T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/notebooks"/>
+    <summary type="text"><![CDATA[A collaborative environment for high-performance interactive computing on GPUs.]]></summary>
+    <author>
+      <name>Eric Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/zencastr-case-study</id>
+    <title>How Zencastr transcribed hundreds of years worth of audio in just a few days</title>
+    <updated>2025-08-28T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/zencastr-case-study"/>
+    <summary type="text"><![CDATA[Zencastr scaled up to 1,500 concurrent GPUs on Modal to process hundreds of years of podcast audio in just a few days. Today they run transcription, speaker detection, and audio enrichment for millions of podcast episodes on Modal, giving them cost efficiency, fast iteration, and zero DevOps overhead.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-update-aug-2025</id>
+    <title>Product updates: GPU memory snapshots, notebooks, service tokens, and more</title>
+    <updated>2025-08-11T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-update-aug-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/gpu-mem-snapshots</id>
+    <title>GPU Memory Snapshots: Supercharging sub-second startup</title>
+    <updated>2025-07-30T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/gpu-mem-snapshots"/>
+    <summary type="text"><![CDATA[Using GPU snapshots to enable sub-second container startup times.]]></summary>
+    <author>
+      <name>Luis Capelo</name>
+    </author>
+    <author>
+      <name>Colin Weld</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/what-is-ai-code-sandbox</id>
+    <title>What is an AI code sandbox?</title>
+    <updated>2025-07-24T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/what-is-ai-code-sandbox"/>
+    <summary type="text"><![CDATA[AI code sandboxes are seeing an explosion of adoption as the volume of LLM-generated code in the world grows.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/fast-cheap-batch-transcription</id>
+    <title>Transcribe speech 100x faster and 100x cheaper with open models</title>
+    <updated>2025-07-23T09:00:00.000Z</updated>
+    <link href="https://modal.com/blog/fast-cheap-batch-transcription"/>
+    <summary type="text"><![CDATA[How we transcribed one week of audio in one minute for under one dollar.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Ben Shababo</name>
+    </author>
+    <author>
+      <name>Lucy Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/dollars-per-token-considered-harmful</id>
+    <title>Dollars per token considered harmful</title>
+    <updated>2025-07-16T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/dollars-per-token-considered-harmful"/>
+    <summary type="text"><![CDATA[Engineers of language model applications should think about requests, not tokens.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-jul-2025</id>
+    <title>Product updates: Multi-node training clusters, B200 and H200s, and Client 1.0 release</title>
+    <updated>2025-07-11T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-jul-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/jamsocket-is-joining-modal</id>
+    <title>Jamsocket is joining Modal</title>
+    <updated>2025-07-10T21:00:00.000Z</updated>
+    <link href="https://modal.com/blog/jamsocket-is-joining-modal"/>
+    <summary type="text"><![CDATA[Jamsocket, a backend platform for building sync engines, is joining Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/lovable-case-study</id>
+    <title>How Modal powered 250,000 Lovable app creations in a weekend</title>
+    <updated>2025-07-07T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/lovable-case-study"/>
+    <summary type="text"><![CDATA[During a single weekend event, Lovable users built 250,000 new applications, all running in isolated development environments. Lovable used Modal to generate 1 million code sandboxes—with 20,000 running concurrently at peak—over just 48 hours.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/qart-codes-evals</id>
+    <title>How we used evals and inference-time compute scaling to generate beautiful QR codes that actually work</title>
+    <updated>2025-07-02T09:00:00.000Z</updated>
+    <link href="https://modal.com/blog/qart-codes-evals"/>
+    <summary type="text"><![CDATA[There's only one playbook for improving generative applications. Read about it here.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Will Shainin</name>
+    </author>
+    <author>
+      <name>Erik Dunteman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/quora-case-study</id>
+    <title>How Quora uses Modal to run thousands of Python sandboxes simultaneously</title>
+    <updated>2025-06-30T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/quora-case-study"/>
+    <summary type="text"><![CDATA[Quora is building Poe, a platform where anyone can deploy a public AI chatbot. Quora uses Modal Sandboxes at scale to safely run LLM-generated code in the context of user chats.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/flux-3x-faster</id>
+    <title>Run FLUX.1-dev three times faster</title>
+    <updated>2025-06-18T09:00:00.000Z</updated>
+    <link href="https://modal.com/blog/flux-3x-faster"/>
+    <summary type="text"><![CDATA[Price, performance, and control: pick three.]]></summary>
+    <author>
+      <name>Will Shainin</name>
+    </author>
+    <author>
+      <name>David Wang</name>
+    </author>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/introducing-client-1-0</id>
+    <title>Introducing: Modal 1.0</title>
+    <updated>2025-06-09T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/introducing-client-1-0"/>
+    <summary type="text"><![CDATA[We've released v1.0 of the Modal client, marking a new milestone of maturity and stability for our platform.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/introducing-b200-h200</id>
+    <title>Introducing: B200s and H200s on Modal</title>
+    <updated>2025-05-30T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/introducing-b200-h200"/>
+    <summary type="text"><![CDATA[We’re excited to be making Nvidia B200 and H200 GPUs available on Modal starting today!]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/twirl-is-joining-modal</id>
+    <title>Twirl is joining Modal</title>
+    <updated>2025-05-28T21:00:00.000Z</updated>
+    <link href="https://modal.com/blog/twirl-is-joining-modal"/>
+    <summary type="text"><![CDATA[Twirl, a Stockholm-based data orchestration platform, is joining Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/batch-processing</id>
+    <title>Introducing Modal Batch: Process 1 million jobs with 1 line of code</title>
+    <updated>2025-05-22T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/batch-processing"/>
+    <summary type="text"><![CDATA[Modal Batch is a new interface backed by a new durable queue system built specifically to make job processing easy, scalable, and fault-tolerant.]]></summary>
+    <author>
+      <name>Richard Gong</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/cache-dict-launch</id>
+    <title>Modal&apos;s serverless KV store gets its limit raised to infinity</title>
+    <updated>2025-05-20T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/cache-dict-launch"/>
+    <summary type="text"><![CDATA[We've supercharged our Dicts to support new caching and locking workflows—oh, and unlimited items.]]></summary>
+    <author>
+      <name>Daniel Shaar</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/resource-solver</id>
+    <title>Linear programming for fun and profit</title>
+    <updated>2025-05-07T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/resource-solver"/>
+    <summary type="text"><![CDATA[How we use an eighty-year-old algorithm to find arbitrages in the cloud market.]]></summary>
+    <author>
+      <name>Colin Weld</name>
+    </author>
+    <author>
+      <name>Irfan Sharif</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/sdk-javascript-go</id>
+    <title>Modal SDKs for JavaScript and Go (alpha)</title>
+    <updated>2025-04-30T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/sdk-javascript-go"/>
+    <summary type="text"><![CDATA[Today we're releasing lightweight client libraries for JavaScript and Go, making it easier to start sandboxes and call serverless functions — no Python required.]]></summary>
+    <author>
+      <name>Eric Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/lemon-slice-case-study</id>
+    <title>How Lemon Slice built real-time generative video with Modal and Daily</title>
+    <updated>2025-04-24T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/lemon-slice-case-study"/>
+    <summary type="text"><![CDATA[Modal + Daily + Pipecat is the best-in-class infra stack for real-time inference pipelines.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/sync-labs-case-study</id>
+    <title>How sync. uses Modal to lipsync 100 hours of video a day</title>
+    <updated>2025-04-18T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/sync-labs-case-study"/>
+    <summary type="text"><![CDATA[sync. is a research lab training foundational models to understand and manipulate humans in video. After outgrowing Google Colab, they partnered with Modal for efficient deployment, allowing rapid iteration and scaling to process over 100 hours of video daily.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-apr-2025</id>
+    <title>Product updates: Running batch jobs with 1M inputs, ephemeral apps, and a new TensorRT-LLM example</title>
+    <updated>2025-04-17T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-apr-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/our-first-brand-campaign</id>
+    <title>Our first brand campaign</title>
+    <updated>2025-04-15T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/our-first-brand-campaign"/>
+    <summary type="text"><![CDATA[Behind the scenes of updating our visual identity and launching our first-ever out-of-home campaign in San Francisco.]]></summary>
+    <author>
+      <name>Sona Dolasia</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-mar-2025</id>
+    <title>Product updates: Price drops, brand refresh, and image-to-video example</title>
+    <updated>2025-03-17T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-mar-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/gpu-utilization-guide</id>
+    <title>&apos;I paid for the whole GPU, I am going to use the whole GPU&apos;: A high-level guide to GPU utilization</title>
+    <updated>2025-02-24T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/gpu-utilization-guide"/>
+    <summary type="text"><![CDATA[A guide to maximizing the utilization of GPUs, from cloud allocations to FLOP/s.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/open-source-gpu-glossary</id>
+    <title>We open sourced the GPU Glossary</title>
+    <updated>2025-02-21T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/open-source-gpu-glossary"/>
+    <summary type="text"><![CDATA[GPU documentation for the people, now by the people.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-feb-2025</id>
+    <title>Product updates: Logs v2, live container profiling, and region selection on all plans</title>
+    <updated>2025-02-14T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-feb-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/mem-snapshots</id>
+    <title>Memory snapshots: Checkpoint/restore for sub-second startup</title>
+    <updated>2025-01-28T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/mem-snapshots"/>
+    <summary type="text"><![CDATA[Serializing container state to disk for aggressive cold start optimization.]]></summary>
+    <author>
+      <name>Jonathon Belotti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-jan-2025</id>
+    <title>Product updates: L40Ss, proxy auth tokens, and sandbox disk snapshotting</title>
+    <updated>2025-01-21T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-jan-2025"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/sandbox-launch</id>
+    <title>Modal Sandboxes are generally available</title>
+    <updated>2025-01-21T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/sandbox-launch"/>
+    <summary type="text"><![CDATA[Sandboxes are a new way to run code in Modal, with a focus on security and isolation.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/soc2type2</id>
+    <title>Modal is SOC 2 Type II compliant</title>
+    <updated>2025-01-02T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/soc2type2"/>
+    <summary type="text"><![CDATA[Modal is excited to announce its SOC 2 Type II certification.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-dec-2024</id>
+    <title>Product updates: memory snapshotting, OIDC, async job queues &amp; more</title>
+    <updated>2024-12-28T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-dec-2024"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/introducing-l40s</id>
+    <title>Introducing: L40S GPUs on Modal</title>
+    <updated>2024-12-19T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/introducing-l40s"/>
+    <summary type="text"><![CDATA[NVIDIA L40S GPUs available on Modal now!]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/llm-fine-tuning-overview</id>
+    <title>What is LLM fine-tuning?</title>
+    <updated>2024-12-10T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/llm-fine-tuning-overview"/>
+    <summary type="text"><![CDATA[An intro to fine-tuning large language models in 2025]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-hackathon</id>
+    <title>Dogfooding Modal: What we learned at our internal hackathon</title>
+    <updated>2024-12-09T21:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-hackathon"/>
+    <summary type="text"><![CDATA[Highlights from our 2024 internal hackathon, showcasing innovative projects built using Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/sports-case-study</id>
+    <title>How a top tier European soccer team sped up their data processing and reduced costs by 50%</title>
+    <updated>2024-12-04T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/sports-case-study"/>
+    <summary type="text"><![CDATA[Find out how a top tier European soccer team uses Modal for computer vision on game data]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/vprox</id>
+    <title>WireGuard at Modal: Static IPs for serverless containers</title>
+    <updated>2024-12-02T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/vprox"/>
+    <summary type="text"><![CDATA[Now your Modal containers around the world can have static outbound IPs. Featuring WireGuard, policy-based routing, and NAT.]]></summary>
+    <author>
+      <name>Eric Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/aws-partnership-press-release</id>
+    <title>Press release: Modal signs strategic collaboration agreement with AWS to deliver accelerated generative AI solutions</title>
+    <updated>2024-11-24T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/aws-partnership-press-release"/>
+    <summary type="text"><![CDATA[Announcing Modal's newest cloud partnership.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/openart-case-study</id>
+    <title>How OpenArt scaled their Gen AI art platform on hundreds of GPUs</title>
+    <updated>2024-11-20T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/openart-case-study"/>
+    <summary type="text"><![CDATA[Find out how OpenArt uses Modal to deploy highly customized ComfyUI workflows used by millions of customers]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-nov-2024</id>
+    <title>Product updates: Static IP proxies, Slack integration, live usage dashboard &amp; more</title>
+    <updated>2024-11-08T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-nov-2024"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/tidbyt-is-joining-modal</id>
+    <title>Tidbyt is joining Modal</title>
+    <updated>2024-11-07T21:00:00.000Z</updated>
+    <link href="https://modal.com/blog/tidbyt-is-joining-modal"/>
+    <summary type="text"><![CDATA[Tidbyt, a NYC-based hardware manufacturer, is joining Modal]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/the-future-of-ai-needs-more-flexible-gpu-capacity</id>
+    <title>The future of AI needs more flexible GPU capacity</title>
+    <updated>2024-10-25T19:00:00.000Z</updated>
+    <link href="https://modal.com/blog/the-future-of-ai-needs-more-flexible-gpu-capacity"/>
+    <summary type="text"><![CDATA[Why Modal is obsessed with serverless AI infrastructure]]></summary>
+    <author>
+      <name>Erik Bernhardsson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/mongodb-search-california</id>
+    <title>Hybrid search over California embeddings with Modal, MongoDB, and Clay</title>
+    <updated>2024-09-24T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/mongodb-search-california"/>
+    <summary type="text"><![CDATA[Build intelligent applications with Modal's serverless infrastructure and MongoDB Atlas's data platform.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/contextual-case-study</id>
+    <title>How Contextual AI automated CI with Modal GPUs</title>
+    <updated>2024-09-18T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/contextual-case-study"/>
+    <summary type="text"><![CDATA[Learn how Contextual AI accelerated their developer iteration speed by using Modal to run tests on GPUs.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/batching-whisper</id>
+    <title>Boost your throughput with dynamic batching</title>
+    <updated>2024-09-16T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/batching-whisper"/>
+    <summary type="text"><![CDATA[Learn how we used our new dynamic batching feature to improve throughput and reduce inference costs for the Whisper model with a single line of code!]]></summary>
+    <author>
+      <name>Cathy Zhou</name>
+    </author>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/analytics-stack</id>
+    <title>Building a cost-effective analytics stack with Modal, dlt, and dbt</title>
+    <updated>2024-09-10T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/analytics-stack"/>
+    <summary type="text"><![CDATA[A step-by-step guide to building a scalable analytics stack using Modal, dlt, and dbt for efficient data loading, transformation, and deployment.]]></summary>
+    <author>
+      <name>Kenny Ning</name>
+    </author>
+    <author>
+      <name>Kasper Ramström</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-sep-2024</id>
+    <title>Product updates: Rollbacks, batching, sandbox tunnels &amp; more</title>
+    <updated>2024-09-06T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-sep-2024"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/hipaa</id>
+    <title>Modal supports HIPAA compliance</title>
+    <updated>2024-09-04T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/hipaa"/>
+    <summary type="text"><![CDATA[You can now enter BAAs with Modal to run HIPAA-compliant workloads.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/playground</id>
+    <title>Inside the Modal code playground</title>
+    <updated>2024-08-16T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/playground"/>
+    <summary type="text"><![CDATA[How we built an in-browser code playground using Modal Sandboxes.]]></summary>
+    <author>
+      <name>Rachel Park</name>
+    </author>
+    <author>
+      <name>Eric Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/pricing-update-2024</id>
+    <title>GPU prices are falling...</title>
+    <updated>2024-08-06T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/pricing-update-2024"/>
+    <summary type="text"><![CDATA[...and we're passing the savings to you. 15-30% price cuts on GPUs and CPUs.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/llama-human-eval</id>
+    <title>Beat GPT-4o at Python by searching with 100 dumb LLaMAs</title>
+    <updated>2024-08-05T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/llama-human-eval"/>
+    <summary type="text"><![CDATA[Scale up smaller open models with search and evaluation to match frontier capabilities.]]></summary>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+    <author>
+      <name>Howard Halim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-july-2024</id>
+    <title>Product updates: Datadog integration, lower function latency &amp; more</title>
+    <updated>2024-07-09T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-july-2024"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/prompt-olympics-summer-2024</id>
+    <title>Competitive prompt engineering</title>
+    <updated>2024-07-03T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/prompt-olympics-summer-2024"/>
+    <summary type="text"><![CDATA[Learn how Basis partnered with Modal to bring the spirit of competitive programming to prompt engineering.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-airflow</id>
+    <title>Run GPU jobs from Airflow with Modal</title>
+    <updated>2024-06-20T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-airflow"/>
+    <summary type="text"><![CDATA[Isolate your tasks with Modal containers while using Airflow for orchestration.]]></summary>
+    <author>
+      <name>Kenny Ning</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/catching-cryptominers</id>
+    <title>How to catch crypto miners using syscall signatures</title>
+    <updated>2024-06-06T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/catching-cryptominers"/>
+    <summary type="text"><![CDATA[See how Modal combats cryptomining abuse with syscall-based program analysis, to secure GPUs for legitimate users.]]></summary>
+    <author>
+      <name>Jonathon Belotti</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/hunch-case-study</id>
+    <title>How Hunch supercharged AI workflows with Modal Sandboxes</title>
+    <updated>2024-05-23T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/hunch-case-study"/>
+    <summary type="text"><![CDATA[Find out how Hunch uses Modal to run AI code even its users don't trust.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/fine-tuning-stable-diffusion</id>
+    <title>Create an infinite icon library by fine-tuning Stable Diffusion</title>
+    <updated>2024-05-21T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/fine-tuning-stable-diffusion"/>
+    <summary type="text"><![CDATA[How we fine-tuned a Stable Diffusion model on the Heroicons library to generate all the icons we could dream of.]]></summary>
+    <author>
+      <name>Yiren Lu</name>
+    </author>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/substack-case-study</id>
+    <title>Why Substack moved their AI and ML pipelines to Modal</title>
+    <updated>2024-05-20T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/substack-case-study"/>
+    <summary type="text"><![CDATA[Learn how Substack sped up their developer iteration cycles by moving ML training and deployment to Modal from AWS SageMaker.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/region-selection-launch</id>
+    <title>Introducing: Region selection</title>
+    <updated>2024-05-13T00:00:00.000Z</updated>
+    <link href="https://modal.com/blog/region-selection-launch"/>
+    <summary type="text"><![CDATA[You can now specify which cloud region you would like to run your Functions in.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-may-2024</id>
+    <title>Product updates: Cloud buckets, Okta SSO &amp; more</title>
+    <updated>2024-05-07T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-may-2024"/>
+    <summary type="text"><![CDATA[Welcome to another round of Modal Product Updates! Here's what's new this month.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/fine-tuning-embeddings</id>
+    <title>Beating proprietary models with a quick fine-tune</title>
+    <updated>2024-04-26T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/fine-tuning-embeddings"/>
+    <summary type="text"><![CDATA[Fine-tune on just a few hundred examples and kick off your very own data flywheel.]]></summary>
+    <author>
+      <name>Jason Liu</name>
+    </author>
+    <author>
+      <name>Ivan Leo</name>
+    </author>
+    <author>
+      <name>Charles Frye</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/etl</id>
+    <title>Why you should move your ETL stack to Modal</title>
+    <updated>2024-04-18T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/etl"/>
+    <summary type="text"><![CDATA[Easily develop and deploy custom ETL jobs while saving 99% on sync costs.]]></summary>
+    <author>
+      <name>Kenny Ning</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/tech-30-list</id>
+    <title>Modal named to 2024 Enterprise Tech 30 list by Wing</title>
+    <updated>2024-04-10T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/tech-30-list"/>
+    <summary type="text"><![CDATA[Celebrating the best in enterprise tech.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/ramp-case-study</id>
+    <title>How Ramp automated receipt processing with fine-tuned LLMs</title>
+    <updated>2024-03-26T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/ramp-case-study"/>
+    <summary type="text"><![CDATA[Find out how Ramp uses Modal to customize open source LLMs to automate receipt processing.]]></summary>
+    <author>
+      <name>The Modal team</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/serverless-http</id>
+    <title>Lambda on hard mode: Inside Modal&apos;s web infrastructure</title>
+    <updated>2024-03-14T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/serverless-http"/>
+    <summary type="text"><![CDATA[In this post, we'll talk about how Modal handles real-time HTTP requests and WebSockets in serverless functions.]]></summary>
+    <author>
+      <name>Eric Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/websocket-launch</id>
+    <title>Introducing: WebSockets on Modal</title>
+    <updated>2024-02-27T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/websocket-launch"/>
+    <summary type="text"><![CDATA[Modal now supports WebSocket connections, enabling real-time, bidirectional data transfer between client and server.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/suno-case-study</id>
+    <title>How Suno shaved 4 months off their launch timeline with Modal</title>
+    <updated>2024-02-21T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/suno-case-study"/>
+    <summary type="text"><![CDATA[Find out how Suno uses Modal to scale inference and batch pre-processing to thousands of GPUs.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/modal-product-updates-feb-2024</id>
+    <title>Product updates: WebSocket support, interactive commands &amp; more</title>
+    <updated>2024-02-15T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/modal-product-updates-feb-2024"/>
+    <summary type="text"><![CDATA[We've been busy in 2024 so far, bringing you WebSockets, interactive commands, H100s and more. Learn about what's new at Modal.]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/introducing-h100</id>
+    <title>Introducing: H100s on Modal</title>
+    <updated>2024-02-06T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/introducing-h100"/>
+    <summary type="text"><![CDATA[We’re excited to be making Nvidia H100 GPUs available on Modal starting today!]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/embedding-wikipedia</id>
+    <title>Embedding English Wikipedia in under 15 minutes</title>
+    <updated>2024-01-23T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/embedding-wikipedia"/>
+    <summary type="text"><![CDATA[Leverage Modal’s parallel batch jobs and in-house storage features to quickly generate embeddings for billions of tokens.]]></summary>
+    <author>
+      <name>Jason Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/llm-fine-tuning-guide</id>
+    <title>How to fine-tune an LLM on Modal</title>
+    <updated>2023-12-20T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/llm-fine-tuning-guide"/>
+    <summary type="text"><![CDATA[An operational guide to fine-tuning an LLM on any dataset in minutes (ft. CodeLlama, Llama 2, Mistral, and more)]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/general-availability-and-series-a</id>
+    <title>Modal is now generally available</title>
+    <updated>2023-10-10T12:01:00.000Z</updated>
+    <link href="https://modal.com/blog/general-availability-and-series-a"/>
+    <summary type="text"><![CDATA[Modal offically launches today with no waitlist. And we also raised a Series A!]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/general-availability-and-series-a-press-release</id>
+    <title>Press release: Modal Labs announces Series A financing round</title>
+    <updated>2023-10-10T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/general-availability-and-series-a-press-release"/>
+    <summary type="text"><![CDATA[Modal Labs Announces Series A Financing Round, Securing $16 Million Investment to Launch Cloud-Based Infrastructure Platform, Build Towards End-to-End Enterprise Data Stack]]></summary>
+  </entry>
+  <entry>
+    <id>https://modal.com/blog/soc2</id>
+    <title>Modal is SOC2 compliant</title>
+    <updated>2023-06-15T12:00:00.000Z</updated>
+    <link href="https://modal.com/blog/soc2"/>
+    <summary type="text"><![CDATA[Modal is excited to announce that it has successfully completed a System and Organization Controls (SOC) 2 Type 1 audit.]]></summary>
+  </entry>
+</feed>

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="69b6b5edf1e340c9928b68de77ba7ab2-b7aa2a8c6f191457"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=69b6b5edf1e340c9928b68de77ba7ab2,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="Complete API reference for the Modal Python SDK. Documentation for App, Function, Image, Sandbox, Volume, and other Modal primitives."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Python SDK Reference"/> <meta property="og:description" content="Complete API reference for the Modal Python SDK. Documentation for App, Function, Image, Sandbox, Volume, and other Modal primitives."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Python+SDK+Reference&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Python SDK Reference | Modal Docs</title>
+		<link href="../../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+		<link href="../../../../_app/immutable/assets/Parameter.DSWU4pXP.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../../index.html" class="shrink-0 lg:mr-8"><img src="../../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../examples/index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="yEUajdfmZl" aria-expanded="false" data-state="closed" id="MCMrW_B_Jk" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb navlink-active">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[!--><a href="App/index.html" class="header svelte-14npiaw dumb">Python SDK Reference</a> <!--[--><a href="App/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>App</span> <!--[!--><!--]--></span></a><a href="Client/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Client</span> <!--[!--><!--]--></span></a><a href="CloudBucketMount/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>CloudBucketMount</span> <!--[!--><!--]--></span></a><a href="Cls/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cls</span> <!--[!--><!--]--></span></a><a href="Cron/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cron</span> <!--[!--><!--]--></span></a><a href="Dict/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Dict</span> <!--[!--><!--]--></span></a><a href="Environment/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Environment</span> <!--[!--><!--]--></span></a><a href="Error/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Error</span> <!--[!--><!--]--></span></a><a href="FilePatternMatcher/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>FilePatternMatcher</span> <!--[!--><!--]--></span></a><a href="Function/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Function</span> <!--[!--><!--]--></span></a><a href="FunctionCall/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>FunctionCall</span> <!--[!--><!--]--></span></a><a href="Image/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Image</span> <!--[!--><!--]--></span></a><a href="Period/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Period</span> <!--[!--><!--]--></span></a><a href="Probe/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Probe</span> <!--[!--><!--]--></span></a><a href="Proxy/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Proxy</span> <!--[!--><!--]--></span></a><a href="Queue/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Queue</span> <!--[!--><!--]--></span></a><a href="Retries/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Retries</span> <!--[!--><!--]--></span></a><a href="Sandbox/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Sandbox</span> <!--[!--><!--]--></span></a><a href="SandboxSnapshot/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SandboxSnapshot</span> <!--[!--><!--]--></span></a><a href="Secret/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Secret</span> <!--[!--><!--]--></span></a><a href="Server/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Server</span> <!--[!--><!--]--></span></a><a href="Tunnel/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tunnel</span> <!--[!--><!--]--></span></a><a href="Volume/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Volume</span> <!--[!--><!--]--></span></a><a href="Workspace/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Workspace</span> <!--[!--><!--]--></span></a><a href="asgi_app/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>asgi_app</span> <!--[!--><!--]--></span></a><a href="batched/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>batched</span> <!--[!--><!--]--></span></a><a href="billing/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>billing</span> <!--[!--><!--]--></span></a><a href="concurrent/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>concurrent</span> <!--[!--><!--]--></span></a><a href="config/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>config</span> <!--[!--><!--]--></span></a><a href="container_process/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>container_process</span> <!--[!--><!--]--></span></a><a href="current_function_call_id/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>current_function_call_id</span> <!--[!--><!--]--></span></a><a href="current_input_id/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>current_input_id</span> <!--[!--><!--]--></span></a><a href="enable_output/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>enable_output</span> <!--[!--><!--]--></span></a><a href="enter/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>enter</span> <!--[!--><!--]--></span></a><a href="exception/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>exception</span> <!--[!--><!--]--></span></a><a href="exit/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>exit</span> <!--[!--><!--]--></span></a><a href="fastapi_endpoint/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>fastapi_endpoint</span> <!--[!--><!--]--></span></a><a href="file_io/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>file_io</span> <!--[!--><!--]--></span></a><a href="forward/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>forward</span> <!--[!--><!--]--></span></a><a href="interact/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>interact</span> <!--[!--><!--]--></span></a><a href="io_streams/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>io_streams</span> <!--[!--><!--]--></span></a><a href="is_local/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>is_local</span> <!--[!--><!--]--></span></a><a href="method/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>method</span> <!--[!--><!--]--></span></a><a href="parameter/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>parameter</span> <!--[!--><!--]--></span></a><a href="types/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>types</span> <!--[!--><!--]--></span></a><a href="web_server/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>web_server</span> <!--[!--><!--]--></span></a><a href="wsgi_app/index.html" class="item svelte-14npiaw font-mono"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>wsgi_app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[--><!----><!----><!--[--><div class="text-c-gray-80"><!--[!--><!--[!--><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="y8M1rf0Fdj" aria-expanded="false" data-state="closed" id="MVLETsfJ6J" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><!----><h1 id="python-sdk-reference">Python SDK Reference</h1>
+<p>This is the API reference for the <a href="https://pypi.org/project/modal/"><code>modal</code></a>
+Python SDK, which allows you to programmatically interact with Modal.</p>
+<h2 id="application-construction">Application construction</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="App/index.html"><code>App</code></a></td>
+<td>The main unit of deployment for code on Modal</td>
+</tr>
+<tr>
+<td><a href="App/index.html"><code>App.function</code></a></td>
+<td>Decorator for registering a function with an App</td>
+</tr>
+<tr>
+<td><a href="App/index.html"><code>App.cls</code></a></td>
+<td>Decorator for registering a class with an App</td>
+</tr>
+<tr>
+<td><a href="App/index.html"><code>App.server</code></a></td>
+<td>Decorator for registering a server with an App</td>
+</tr>
+</tbody></table>
+<h2 id="serverless-execution">Serverless execution</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Function/index.html"><code>Function</code></a></td>
+<td>A serverless function backed by an autoscaling container pool</td>
+</tr>
+<tr>
+<td><a href="Cls/index.html"><code>Cls</code></a></td>
+<td>A serverless class supporting parametrization and lifecycle hooks</td>
+</tr>
+<tr>
+<td><a href="Server/index.html"><code>Server</code></a></td>
+<td>A serverless HTTP application with low-latency request routing</td>
+</tr>
+</tbody></table>
+<h2 id="extended-function-configuration">Extended Function configuration</h2>
+<h3 id="class-parametrization">Class parametrization</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="parameter/index.html"><code>parameter</code></a></td>
+<td>Used to define class parameters, akin to a Dataclass field</td>
+</tr>
+</tbody></table>
+<h3 id="lifecycle-hooks">Lifecycle hooks</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="enter/index.html"><code>enter</code></a></td>
+<td>Decorator for a method that will be executed during container startup</td>
+</tr>
+<tr>
+<td><a href="exit/index.html"><code>exit</code></a></td>
+<td>Decorator for a method that will be executed during container shutdown</td>
+</tr>
+<tr>
+<td><a href="method/index.html"><code>method</code></a></td>
+<td>Decorator for exposing a method as an invokable function</td>
+</tr>
+</tbody></table>
+<h3 id="web-integrations">Web integrations</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="fastapi_endpoint/index.html"><code>fastapi_endpoint</code></a></td>
+<td>Decorator for exposing a simple FastAPI-based endpoint</td>
+</tr>
+<tr>
+<td><a href="asgi_app/index.html"><code>asgi_app</code></a></td>
+<td>Decorator for functions that construct an ASGI web application</td>
+</tr>
+<tr>
+<td><a href="wsgi_app/index.html"><code>wsgi_app</code></a></td>
+<td>Decorator for functions that construct a WSGI web application</td>
+</tr>
+<tr>
+<td><a href="web_server/index.html"><code>web_server</code></a></td>
+<td>Decorator for functions that construct an HTTP web server</td>
+</tr>
+</tbody></table>
+<h3 id="function-semantics">Function semantics</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="batched/index.html"><code>batched</code></a></td>
+<td>Decorator that enables <a href="../../../guide/dynamic-batching/index.html">dynamic input batching</a></td>
+</tr>
+<tr>
+<td><a href="concurrent/index.html"><code>concurrent</code></a></td>
+<td>Decorator that enables <a href="../../../guide/concurrent-inputs/index.html">input concurrency</a></td>
+</tr>
+</tbody></table>
+<h3 id="scheduling">Scheduling</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Cron/index.html"><code>Cron</code></a></td>
+<td>A schedule that runs based on cron syntax</td>
+</tr>
+<tr>
+<td><a href="Period/index.html"><code>Period</code></a></td>
+<td>A schedule that runs at a fixed interval</td>
+</tr>
+</tbody></table>
+<h3 id="exception-handling">Exception handling</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Retries/index.html"><code>Retries</code></a></td>
+<td>Function retry policy for input failures</td>
+</tr>
+</tbody></table>
+<h2 id="sandboxed-execution">Sandboxed execution</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Sandbox/index.html"><code>Sandbox</code></a></td>
+<td>An interface for restricted code execution</td>
+</tr>
+<tr>
+<td><a href="container_process/index.html"><code>ContainerProcess</code></a></td>
+<td>An object representing a sandboxed process</td>
+</tr>
+<tr>
+<td><a href="file_io/index.html"><code>FileIO</code></a></td>
+<td>A handle for a file in the Sandbox filesystem</td>
+</tr>
+</tbody></table>
+<h2 id="container-configuration">Container configuration</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Image/index.html"><code>Image</code></a></td>
+<td>An API for specifying container images</td>
+</tr>
+<tr>
+<td><a href="Secret/index.html"><code>Secret</code></a></td>
+<td>A pointer to secrets that will be exposed as environment variables</td>
+</tr>
+</tbody></table>
+<h2 id="data-primitives">Data primitives</h2>
+<h3 id="persistent-storage">Persistent storage</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Volume/index.html"><code>Volume</code></a></td>
+<td>Distributed storage supporting highly performant parallel reads</td>
+</tr>
+<tr>
+<td><a href="CloudBucketMount/index.html"><code>CloudBucketMount</code></a></td>
+<td>Storage backed by a third-party cloud bucket (S3, etc.)</td>
+</tr>
+</tbody></table>
+<h3 id="in-memory-storage">In-memory storage</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Dict/index.html"><code>Dict</code></a></td>
+<td>A distributed key-value store</td>
+</tr>
+<tr>
+<td><a href="Queue/index.html"><code>Queue</code></a></td>
+<td>A distributed FIFO queue</td>
+</tr>
+</tbody></table>
+<h2 id="account-configuration">Account configuration</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Workspace/index.html"><code>Workspace</code></a></td>
+<td>Workspace-level configuration and observability</td>
+</tr>
+<tr>
+<td><a href="Environment/index.html"><code>Environment</code></a></td>
+<td>Manage workspace subdivisions</td>
+</tr>
+</tbody></table>
+<h2 id="networking">Networking</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="Proxy/index.html"><code>Proxy</code></a></td>
+<td>An object that provides a static outbound IP address for containers</td>
+</tr>
+<tr>
+<td><a href="forward/index.html"><code>forward</code></a></td>
+<td>A context manager for publicly exposing a port from a container</td>
+</tr>
+</tbody></table>
+<!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-python-sdk-reference" href="#python-sdk-reference" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Python SDK Reference</a><!--]--><!--[--><a id="toc-application-construction" href="#application-construction" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Application construction</a><!--]--><!--[--><a id="toc-serverless-execution" href="#serverless-execution" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Serverless execution</a><!--]--><!--[--><a id="toc-extended-function-configuration" href="#extended-function-configuration" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Extended Function configuration</a><!--]--><!--[--><a id="toc-class-parametrization" href="#class-parametrization" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Class parametrization</a><!--]--><!--[--><a id="toc-lifecycle-hooks" href="#lifecycle-hooks" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Lifecycle hooks</a><!--]--><!--[--><a id="toc-web-integrations" href="#web-integrations" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Web integrations</a><!--]--><!--[--><a id="toc-function-semantics" href="#function-semantics" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Function semantics</a><!--]--><!--[--><a id="toc-scheduling" href="#scheduling" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Scheduling</a><!--]--><!--[--><a id="toc-exception-handling" href="#exception-handling" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Exception handling</a><!--]--><!--[--><a id="toc-sandboxed-execution" href="#sandboxed-execution" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Sandboxed execution</a><!--]--><!--[--><a id="toc-container-configuration" href="#container-configuration" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Container configuration</a><!--]--><!--[--><a id="toc-data-primitives" href="#data-primitives" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Data primitives</a><!--]--><!--[--><a id="toc-persistent-storage" href="#persistent-storage" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Persistent storage</a><!--]--><!--[--><a id="toc-in-memory-storage" href="#in-memory-storage" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">In-memory storage</a><!--]--><!--[--><a id="toc-account-configuration" href="#account-configuration" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Account configuration</a><!--]--><!--[--><a id="toc-networking" href="#networking" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Networking</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[!--><!--]--></div></div><!----><!--]--><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../../../examples/index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="x2c2eNRpRxKBHJl/EmgMRw==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 13, 16, 132],
+							data: [{type:"data",data:{},uses:{}},null,null,{type:"data",data:{runtimeReferenceDocsEnabled:true,referenceSidebar:{items:[{label:"App",category:"class"},{label:"Client",category:"class"},{label:"CloudBucketMount",category:"class"},{label:"Cls",category:"class"},{label:"Cron",category:"class"},{label:"Dict",category:"class"},{label:"Environment",category:"class"},{label:"Error",category:"class"},{label:"FilePatternMatcher",category:"class"},{label:"Function",category:"class"},{label:"FunctionCall",category:"class"},{label:"Image",category:"class"},{label:"Period",category:"class"},{label:"Probe",category:"class"},{label:"Proxy",category:"class"},{label:"Queue",category:"class"},{label:"Retries",category:"class"},{label:"Sandbox",category:"class"},{label:"SandboxSnapshot",category:"class"},{label:"Secret",category:"class"},{label:"Server",category:"class"},{label:"Tunnel",category:"class"},{label:"Volume",category:"class"},{label:"Workspace",category:"class"},{label:"asgi_app",category:"function"},{label:"batched",category:"function"},{label:"billing",category:"module"},{label:"concurrent",category:"function"},{label:"config",category:"module"},{label:"container_process",category:"module"},{label:"current_function_call_id",category:"function"},{label:"current_input_id",category:"function"},{label:"enable_output",category:"function"},{label:"enter",category:"function"},{label:"exception",category:"module"},{label:"exit",category:"function"},{label:"fastapi_endpoint",category:"function"},{label:"file_io",category:"module"},{label:"forward",category:"function"},{label:"interact",category:"function"},{label:"io_streams",category:"module"},{label:"is_local",category:"function"},{label:"method",category:"function"},{label:"parameter",category:"function"},{label:"types",category:"module"},{label:"web_server",category:"function"},{label:"wsgi_app",category:"function"}]}},uses:{}},{type:"data",data:{runtimeReferenceDocsEnabled:true,docsRedirect:null,html:"\u003Ch1 id=\"python-sdk-reference\">Python SDK Reference\u003C/h1>\n\u003Cp>This is the API reference for the \u003Ca href=\"https://pypi.org/project/modal/\">\u003Ccode>modal\u003C/code>\u003C/a>\nPython SDK, which allows you to programmatically interact with Modal.\u003C/p>\n\u003Ch2 id=\"application-construction\">Application construction\u003C/h2>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/App\">\u003Ccode>App\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>The main unit of deployment for code on Modal\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/App#function\">\u003Ccode>App.function\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for registering a function with an App\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/App#cls\">\u003Ccode>App.cls\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for registering a class with an App\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/App#server\">\u003Ccode>App.server\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for registering a server with an App\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch2 id=\"serverless-execution\">Serverless execution\u003C/h2>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Function\">\u003Ccode>Function\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A serverless function backed by an autoscaling container pool\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Cls\">\u003Ccode>Cls\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A serverless class supporting parametrization and lifecycle hooks\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Server\">\u003Ccode>Server\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A serverless HTTP application with low-latency request routing\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch2 id=\"extended-function-configuration\">Extended Function configuration\u003C/h2>\n\u003Ch3 id=\"class-parametrization\">Class parametrization\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/parameter\">\u003Ccode>parameter\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Used to define class parameters, akin to a Dataclass field\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch3 id=\"lifecycle-hooks\">Lifecycle hooks\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/enter\">\u003Ccode>enter\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for a method that will be executed during container startup\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/exit\">\u003Ccode>exit\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for a method that will be executed during container shutdown\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/method\">\u003Ccode>method\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for exposing a method as an invokable function\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch3 id=\"web-integrations\">Web integrations\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/fastapi_endpoint\">\u003Ccode>fastapi_endpoint\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for exposing a simple FastAPI-based endpoint\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/asgi_app\">\u003Ccode>asgi_app\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for functions that construct an ASGI web application\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/wsgi_app\">\u003Ccode>wsgi_app\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for functions that construct a WSGI web application\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/web_server\">\u003Ccode>web_server\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator for functions that construct an HTTP web server\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch3 id=\"function-semantics\">Function semantics\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/batched\">\u003Ccode>batched\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator that enables \u003Ca href=\"/docs/guide/dynamic-batching\">dynamic input batching\u003C/a>\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/concurrent\">\u003Ccode>concurrent\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Decorator that enables \u003Ca href=\"/docs/guide/concurrent-inputs\">input concurrency\u003C/a>\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch3 id=\"scheduling\">Scheduling\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Cron\">\u003Ccode>Cron\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A schedule that runs based on cron syntax\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Period\">\u003Ccode>Period\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A schedule that runs at a fixed interval\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch3 id=\"exception-handling\">Exception handling\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Retries\">\u003Ccode>Retries\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Function retry policy for input failures\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch2 id=\"sandboxed-execution\">Sandboxed execution\u003C/h2>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Sandbox\">\u003Ccode>Sandbox\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>An interface for restricted code execution\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/container_process#containerprocess\">\u003Ccode>ContainerProcess\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>An object representing a sandboxed process\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/file_io#fileio\">\u003Ccode>FileIO\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A handle for a file in the Sandbox filesystem\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch2 id=\"container-configuration\">Container configuration\u003C/h2>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Image\">\u003Ccode>Image\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>An API for specifying container images\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Secret\">\u003Ccode>Secret\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A pointer to secrets that will be exposed as environment variables\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch2 id=\"data-primitives\">Data primitives\u003C/h2>\n\u003Ch3 id=\"persistent-storage\">Persistent storage\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Volume\">\u003Ccode>Volume\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Distributed storage supporting highly performant parallel reads\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/CloudBucketMount\">\u003Ccode>CloudBucketMount\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Storage backed by a third-party cloud bucket (S3, etc.)\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch3 id=\"in-memory-storage\">In-memory storage\u003C/h3>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Dict\">\u003Ccode>Dict\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A distributed key-value store\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Queue\">\u003Ccode>Queue\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A distributed FIFO queue\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch2 id=\"account-configuration\">Account configuration\u003C/h2>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Workspace\">\u003Ccode>Workspace\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Workspace-level configuration and observability\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Environment\">\u003Ccode>Environment\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>Manage workspace subdivisions\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n\u003Ch2 id=\"networking\">Networking\u003C/h2>\n\u003Ctable>\n\u003Cthead>\n\u003Ctr>\n\u003Cth>\u003C/th>\n\u003Cth>\u003C/th>\n\u003C/tr>\n\u003C/thead>\n\u003Ctbody>\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/Proxy\">\u003Ccode>Proxy\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>An object that provides a static outbound IP address for containers\u003C/td>\n\u003C/tr>\n\u003Ctr>\n\u003Ctd>\u003Ca href=\"/docs/sdk/py/latest/forward\">\u003Ccode>forward\u003C/code>\u003C/a>\u003C/td>\n\u003Ctd>A context manager for publicly exposing a port from a container\u003C/td>\n\u003C/tr>\n\u003C/tbody>\u003C/table>\n",toc:[{value:"Python SDK Reference",depth:1,id:"python-sdk-reference",children:[{value:"Application construction",depth:2,id:"application-construction",children:[]},{value:"Serverless execution",depth:2,id:"serverless-execution",children:[]},{value:"Extended Function configuration",depth:2,id:"extended-function-configuration",children:[{value:"Class parametrization",depth:3,id:"class-parametrization",children:[]},{value:"Lifecycle hooks",depth:3,id:"lifecycle-hooks",children:[]},{value:"Web integrations",depth:3,id:"web-integrations",children:[]},{value:"Function semantics",depth:3,id:"function-semantics",children:[]},{value:"Scheduling",depth:3,id:"scheduling",children:[]},{value:"Exception handling",depth:3,id:"exception-handling",children:[]}]},{value:"Sandboxed execution",depth:2,id:"sandboxed-execution",children:[]},{value:"Container configuration",depth:2,id:"container-configuration",children:[]},{value:"Data primitives",depth:2,id:"data-primitives",children:[{value:"Persistent storage",depth:3,id:"persistent-storage",children:[]},{value:"In-memory storage",depth:3,id:"in-memory-storage",children:[]}]},{value:"Account configuration",depth:2,id:"account-configuration",children:[]},{value:"Networking",depth:2,id:"networking",children:[]}]}],rawContent:"# Python SDK Reference\n\nThis is the API reference for the [`modal`](https://pypi.org/project/modal/)\nPython SDK, which allows you to programmatically interact with Modal.\n\n## Application construction\n\n|  |  |\n| --- | --- |\n| [`App`](/docs/sdk/py/latest/App) | The main unit of deployment for code on Modal |\n| [`App.function`](/docs/sdk/py/latest/App#function) | Decorator for registering a function with an App |\n| [`App.cls`](/docs/sdk/py/latest/App#cls) | Decorator for registering a class with an App |\n| [`App.server`](/docs/sdk/py/latest/App#server) | Decorator for registering a server with an App |\n\n## Serverless execution\n\n|  |  |\n| --- | --- |\n| [`Function`](/docs/sdk/py/latest/Function) | A serverless function backed by an autoscaling container pool |\n| [`Cls`](/docs/sdk/py/latest/Cls) | A serverless class supporting parametrization and lifecycle hooks |\n| [`Server`](/docs/sdk/py/latest/Server) | A serverless HTTP application with low-latency request routing |\n\n## Extended Function configuration\n\n### Class parametrization\n\n|  |  |\n| --- | --- |\n| [`parameter`](/docs/sdk/py/latest/parameter) | Used to define class parameters, akin to a Dataclass field |\n\n### Lifecycle hooks\n\n|  |  |\n| --- | --- |\n| [`enter`](/docs/sdk/py/latest/enter) | Decorator for a method that will be executed during container startup |\n| [`exit`](/docs/sdk/py/latest/exit) | Decorator for a method that will be executed during container shutdown |\n| [`method`](/docs/sdk/py/latest/method) | Decorator for exposing a method as an invokable function |\n\n### Web integrations\n\n|  |  |\n| --- | --- |\n| [`fastapi_endpoint`](/docs/sdk/py/latest/fastapi_endpoint) | Decorator for exposing a simple FastAPI-based endpoint |\n| [`asgi_app`](/docs/sdk/py/latest/asgi_app) | Decorator for functions that construct an ASGI web application |\n| [`wsgi_app`](/docs/sdk/py/latest/wsgi_app) | Decorator for functions that construct a WSGI web application |\n| [`web_server`](/docs/sdk/py/latest/web_server) | Decorator for functions that construct an HTTP web server |\n\n### Function semantics\n\n|  |  |\n| --- | --- |\n| [`batched`](/docs/sdk/py/latest/batched) | Decorator that enables [dynamic input batching](/docs/guide/dynamic-batching) |\n| [`concurrent`](/docs/sdk/py/latest/concurrent) | Decorator that enables [input concurrency](/docs/guide/concurrent-inputs) |\n\n### Scheduling\n\n|  |  |\n| --- | --- |\n| [`Cron`](/docs/sdk/py/latest/Cron) | A schedule that runs based on cron syntax |\n| [`Period`](/docs/sdk/py/latest/Period) | A schedule that runs at a fixed interval |\n\n### Exception handling\n\n|  |  |\n| --- | --- |\n| [`Retries`](/docs/sdk/py/latest/Retries) | Function retry policy for input failures |\n\n## Sandboxed execution\n\n|  |  |\n| --- | --- |\n| [`Sandbox`](/docs/sdk/py/latest/Sandbox) | An interface for restricted code execution |\n| [`ContainerProcess`](/docs/sdk/py/latest/container_process#containerprocess) | An object representing a sandboxed process |\n| [`FileIO`](/docs/sdk/py/latest/file_io#fileio) | A handle for a file in the Sandbox filesystem |\n\n## Container configuration\n\n|  |  |\n| --- | --- |\n| [`Image`](/docs/sdk/py/latest/Image) | An API for specifying container images |\n| [`Secret`](/docs/sdk/py/latest/Secret) | A pointer to secrets that will be exposed as environment variables |\n\n## Data primitives\n\n### Persistent storage\n\n|  |  |\n| --- | --- |\n| [`Volume`](/docs/sdk/py/latest/Volume) | Distributed storage supporting highly performant parallel reads |\n| [`CloudBucketMount`](/docs/sdk/py/latest/CloudBucketMount) | Storage backed by a third-party cloud bucket (S3, etc.) |\n\n### In-memory storage\n\n|  |  |\n| --- | --- |\n| [`Dict`](/docs/sdk/py/latest/Dict) | A distributed key-value store |\n| [`Queue`](/docs/sdk/py/latest/Queue) | A distributed FIFO queue |\n\n## Account configuration\n\n|  |  |\n| --- | --- |\n| [`Workspace`](/docs/sdk/py/latest/Workspace) | Workspace-level configuration and observability |\n| [`Environment`](/docs/sdk/py/latest/Environment) | Manage workspace subdivisions |\n\n## Networking\n\n|  |  |\n| --- | --- |\n| [`Proxy`](/docs/sdk/py/latest/Proxy) | An object that provides a static outbound IP address for containers |\n| [`forward`](/docs/sdk/py/latest/forward) | A context manager for publicly exposing a port from a container |\n",ogTitle:"Python SDK Reference",ogDescription:"Complete API reference for the Modal Python SDK. Documentation for App, Function, Image, Sandbox, Volume, and other Modal primitives.",ogImageUrl:"https://modal.com/docs/social-image.png?title=Python+SDK+Reference&socialType=docs",title:"Python SDK Reference | Modal Docs"},uses:{params:["id"],parent:1}}],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

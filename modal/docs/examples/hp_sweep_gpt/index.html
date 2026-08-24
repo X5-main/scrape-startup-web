@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="2a3057499bd845bb87536b149b7ecca0-98bf2d7d8242f05a"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=2a3057499bd845bb87536b149b7ecca0,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="When you want a language model that performs well on your task, there are three options, ordered by the degree of customization:"/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Train an SLM from scratch with early-stopping grid search over hyperparameters"/> <meta property="og:description" content="When you want a language model that performs well on your task, there are three options, ordered by the degree of customization:"/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Train+an+SLM+from+scratch+with+early-stopping+grid+search+over+hyperparameters&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Train an SLM from scratch with early-stopping grid search over hyperparameters | Modal Docs</title>
+		<link href="../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../index.html" class="shrink-0 lg:mr-8"><img src="../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb navlink-active" href="../index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="dqFRDql69o" aria-expanded="false" data-state="closed" id="639k5JNHIg" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../sdk/py/releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[--><!--[--><a href="../index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Featured</span> <!--[!--><!--]--></span></a><!--]--><!--[!--><a href="../hello_world/index.html" class="header svelte-14npiaw">Getting started</a> <!--[--><a href="../hello_world/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Hello, world</span> <!--[!--><!--]--></span></a><a href="../webscraper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Simple web scraper</span> <!--[!--><!--]--></span></a><a href="../basic_web/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serving Web Functions</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm_inference/index.html" class="header svelte-14npiaw">Large language models (LLMs)</a> <!--[--><a href="../llm_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy an OpenAI-compatible LLM service with vLLM</span> <!--[!--><!--]--></span></a><a href="../ministral3_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cut Ministral 3 cold start times by 10x with snapshots</span> <!--[!--><!--]--></span></a><a href="../vllm_throughput/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Maximize tokens per second in batch processing with vLLM</span> <!--[!--><!--]--></span></a><a href="../sglang_low_latency/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve an ultra-low-latency chatbot with SGLang</span> <!--[!--><!--]--></span></a><a href="../nemotron_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy Nemotron 3</span> <!--[!--><!--]--></span></a><a href="../inkling_small/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Inkling-Small with SGLang</span> <!--[!--><!--]--></span></a><a href="../deepseek_v4_flash/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve DeepSeek-V4-Flash</span> <!--[!--><!--]--></span></a><a href="../unsloth_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Efficient LLM Finetuning with Unsloth</span> <!--[!--><!--]--></span></a><a href="../chat_with_pdf_vision/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a multimodal RAG chatbot to answer questions about PDFs</span> <!--[!--><!--]--></span></a><a href="../llm-finetuning/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune an LLM to replace your CEO</span> <!--[!--><!--]--></span></a><a href="../mcp_server_stateless/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a stateless MCP with FastMCP</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../image_to_image/index.html" class="header svelte-14npiaw">Images, video, &amp; 3D</a> <!--[--><a href="../image_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Edit images with Flux Kontext</span> <!--[!--><!--]--></span></a><a href="../music-video-gen/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Wan2.1 video models on your face</span> <!--[!--><!--]--></span></a><a href="../flux/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Flux fast with torch.compile</span> <!--[!--><!--]--></span></a><a href="../diffusers_lora_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Flux with LoRA</span> <!--[!--><!--]--></span></a><a href="../image_to_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Animate images with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../ltx/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate video clips with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../text_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Stable Diffusion with a CLI, API, and web UI</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm-voice-chat/index.html" class="header svelte-14npiaw">Audio</a> <!--[--><a href="../llm-voice-chat/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Moshi voice chatbot</span> <!--[!--><!--]--></span></a><a href="../streaming_kyutai_stt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Stream transcripts at the speed of speech using Kyutai STT</span> <!--[!--><!--]--></span></a><a href="../generate_music/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Make music with ACE-Step</span> <!--[!--><!--]--></span></a><a href="../chatterbox_tts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate speech with Chatterbox</span> <!--[!--><!--]--></span></a><a href="../batched_whisper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run high throughput batched transcription with Whisper</span> <!--[!--><!--]--></span></a><a href="../fine_tune_asr/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Whisper to recognize new words</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../webrtc_yolo/index.html" class="header svelte-14npiaw">Real-time communication (WebRTC)</a> <!--[--><a href="../webrtc_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serverless WebRTC</span> <!--[!--><!--]--></span></a><a href="../fastrtc_flip_webcam/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>WebRTC quickstart with FastRTC</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../esmfold2_binder_design/index.html" class="header svelte-14npiaw">Computational biology</a> <!--[--><a href="../esmfold2_binder_design/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Design protein binders with ESMFold2</span> <!--[!--><!--]--></span></a><a href="../chai1/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Chai-1</span> <!--[!--><!--]--></span></a><a href="../esm3/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a protein-folding dashboard</span> <!--[!--><!--]--></span></a><a href="../boltz_predict/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Boltz-2</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../opencode_server/index.html" class="header svelte-14npiaw">Modal Sandboxes</a> <!--[--><a href="../opencode_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a background coding agent with OpenCode</span> <!--[!--><!--]--></span></a><a href="../modal-vibe/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a scalable AI coding platform</span> <!--[!--><!--]--></span></a><a href="../claude-slack-gif-creator/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Create GIFs from Slack using the Claude Agent SDK</span> <!--[!--><!--]--></span></a><a href="../agent/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a LangGraph agent's code in a secure GPU sandbox</span> <!--[!--><!--]--></span></a><a href="../computer_use_vnc/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Watch a computer-use agent work in real-time over VNC</span> <!--[!--><!--]--></span></a><a href="../harbor_evals/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run massively parallel evals on Modal Sandboxes</span> <!--[!--><!--]--></span></a><a href="../simple_code_interpreter/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a stateful, sandboxed code interpreter</span> <!--[!--><!--]--></span></a><a href="../safe_code_execution/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Node.js, Ruby, and more in a Sandbox</span> <!--[!--><!--]--></span></a><a href="../sandbox_pool/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Speed up Sandbox starts with warm pools</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../grpo_verl/index.html" class="header svelte-14npiaw">Reinforcement Learning</a> <!--[--><a href="../grpo_verl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve math problems using GRPO and verl</span> <!--[!--><!--]--></span></a><a href="../grpo_trl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve coding problems using GRPO and TRL</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../liquidai_embeddings_server/index.html" class="header svelte-14npiaw">Embeddings</a> <!--[--><a href="../liquidai_embeddings_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Liquid AI embeddings with Modal Servers</span> <!--[!--><!--]--></span></a><a href="../amazon_embeddings/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Embed millions of documents with TEI</span> <!--[!--><!--]--></span></a><a href="../mongodb-search/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Turn satellite images into vectors and store them in MongoDB</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hackernews_alerts/index.html" class="header svelte-14npiaw">Parallel processing and job scheduling</a> <!--[--><a href="../hackernews_alerts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Hacker News Slackbot</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_jobs/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a Document OCR job queue</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_webapp/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve a Document OCR web app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="index.html" class="header svelte-14npiaw">Training models from scratch</a> <!--[--><a href="index.html" class="item svelte-14npiaw active"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train an SLM with early-stopping grid search over hyperparameters</span> <!--[!--><!--]--></span></a><a href="../long-training/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run long, resumable training jobs</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../finetune_yolo/index.html" class="header svelte-14npiaw">Hosting popular libraries</a> <!--[--><a href="../finetune_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>YOLO: Fine-tune and serve computer vision models</span> <!--[!--><!--]--></span></a><a href="../blender_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Blender: Build a 3D render farm</span> <!--[!--><!--]--></span></a><a href="../serve_streamlit/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Streamlit: Run and deploy Streamlit apps</span> <!--[!--><!--]--></span></a><a href="../cron_datasette/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SQLite: Publish explorable data with Datasette</span> <!--[!--><!--]--></span></a><a href="../algolia_indexer/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Algolia: Build docsearch with a crawler</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../discord_bot/index.html" class="header svelte-14npiaw">Connecting to other APIs</a> <!--[--><a href="../discord_bot/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Discord: Deploy and run a Discord Bot</span> <!--[!--><!--]--></span></a><a href="../db_to_sheet/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Google Sheets: Sync databases and APIs to a Google Sheet</span> <!--[!--><!--]--></span></a><a href="../potus_speech_qanda/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>OpenAI: Run a RAG Q&amp;A chatbot</span> <!--[!--><!--]--></span></a><a href="../modal_tailscale/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tailscale: Add Modal Apps to your VPN</span> <!--[!--><!--]--></span></a><a href="../pushgateway/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Prometheus: Publish custom metrics with Pushgateway</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../s3_bucket_mount/index.html" class="header svelte-14npiaw">Managing data</a> <!--[--><a href="../s3_bucket_mount/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Mount S3 buckets in Modal Apps</span> <!--[!--><!--]--></span></a><a href="../dbt_duckdb/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build your own data warehouse with DuckDB, dbt, and Modal</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[--><a href="../miscellaneous/index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Miscellaneous</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[!--><!----><!----><div class="text-c-gray-80"><!--[!--><!--[--><div class="float-left mb-6 mt-6 pr-2 md:float-right md:mb-2 md:mt-12 md:pl-2 md:pr-0"><a class="btn btn-outlined bg-c-gray-5" href="https://github.com/modal-labs/modal-examples/blob/main/06_gpu_and_ml/hyperparameter-sweep/hp_sweep_gpt.py" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github text-c-gray-80 mr-2.5"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-80 text-sm">View on GitHub</span></a></div><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="PNIxi1csEV" aria-expanded="false" data-state="closed" id="utXZJCzGc7" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><h1 id="train-an-slm-from-scratch-with-early-stopping-grid-search-over-hyperparameters"><!--[--><!---->Train an SLM from scratch with early-stopping grid search over hyperparameters<!--]--></h1><!----> <p><img src="../../../_app/immutable/assets/shakespeare.Cu7OiGC9.jpg" alt="Split-Panel Image. Left: AI generated picture of Shakespeare. Right: SLM generated text" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <p>When you want a language model that performs well on your task, there are three options,
+ordered by the degree of customization:</p> <ul><li><p><a rel="nofollow" class="text-c-green-100 hover:underline" href="https://en.wikipedia.org/wiki/Prompt_engineering"><!--[--><strong>Prompt Engineering</strong><!--]--></a><!---->:
+large and capable language models understand tasks in natural language, so you can
+carefully design a natural language “prompt” to elicit the desired behavior.</p></li> <li><p><a rel="nofollow" class="text-c-green-100 hover:underline" href="../llm-finetuning/index.html"><!--[--><strong>Fine-Tuning</strong><!--]--></a><!---->:
+those same language models were trained by gradient descent on data sets representing tasks,
+and they can be further trained by gradient descent on data sets representative of your task.</p></li> <li><p><strong>Training from Scratch</strong>:
+if you have enough data for your task, you can throw the pretrained model away and make your own.</p></li></ul> <p>Each step adds additional engineering complexity, but also leads to a superior cost-performance Pareto frontier
+for your tasks. Fine-tuned models at one-tenth the size regularly outperform more generic models,
+and models trained from scratch outperform them.</p> <p>Because these models are so much smaller than the Large Language Models that power generic
+assistant chatbots like ChatGPT and Claude, they are often called <em>Small Language Models</em> (SLMs).</p> <p>In this example, we will explore training an SLM from scratch on Modal.</p> <p>In fact, we’ll train 8 SLMs in parallel with different hyperparameters
+and then select the best one for additional training.</p> <p>We’ll monitor this training live and serve our training and trained models
+as Web Functions and simple browser UIs.</p> <p>Along the way we’ll use many features of the Modal platform: <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->distributed Volumes<!--]--></a><!---->,
+multiple <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/webhooks/index.html"><!--[--><!---->Web Functions<!--]--></a><!---->,
+and <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/scale/index.html"><!--[--><!---->parallel container execution<!--]--></a><!---->.</p> <p>Together, these features give every machine learning and AI team
+the same infrastructural capabilities that the most sophisticated companies
+have in their internal platforms.</p> <!----><h2 id="basic-setup" class="group"><span><!--[--><!--[--><!---->Basic Setup<!--]--><!--]--></span><!--[--> <a href="#basic-setup" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>import logging as L
+import urllib.request
+from dataclasses import dataclass
+from pathlib import Path, PosixPath
+from typing import Optional
+
+import modal
+from pydantic import BaseModel
+
+MINUTES = 60  # seconds
+HOURS = 60 * MINUTES
+
+app_name = "example-hp-sweep-gpt"
+app = modal.App(app_name)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We’ll use A10G GPUs for training, which are able to train the model to recognizably improved performance
+in ~15 minutes while keeping costs under ~$1.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>gpu = "A10G"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="create-a-volume-to-store-data-weights-and-logs" class="group"><span><!--[--><!--[--><!---->Create a Volume to store data, weights, and logs<!--]--><!--]--></span><!--[--> <a href="#create-a-volume-to-store-data-weights-and-logs" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Since we’ll be coordinating training across multiple machines we’ll use a
+distributed <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->Volume<!--]--></a><!----> to store the data, checkpointed models, and TensorBoard logs.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>volume = modal.Volume.from_name("example-hp-sweep-gpt-volume", create_if_missing=True)
+volume_path = PosixPath("/vol/data")
+model_filename = "nano_gpt_model.pt"
+best_model_filename = "best_nano_gpt_model.pt"
+tb_log_path = volume_path / "tb_logs"
+model_save_path = volume_path / "models"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="define-dependencies-in-container-images" class="group"><span><!--[--><!--[--><!---->Define dependencies in container images<!--]--><!--]--></span><!--[--> <a href="#define-dependencies-in-container-images" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>The container image for training  is based on Modal’s default slim Debian Linux image with <code>torch</code> for defining and running our neural network and <code>tensorboard</code> for monitoring training.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>base_image = modal.Image.debian_slim(python_version="3.11").uv_pip_install(
+    "pydantic==2.9.1"
+)
+
+torch_image = base_image.uv_pip_install(
+    "torch==2.1.2",
+    "tensorboard==2.17.1",
+    "numpy&lt;2",
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We also have some local dependencies that we’ll need to import into the remote environment.
+We add them into the remote container.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>torch_image = torch_image.add_local_dir(
+    Path(__file__).parent / "src", remote_path="/root/src"
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We’ll serve a simple Web Function:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>web_image = base_image.uv_pip_install("fastapi[standard]==0.115.4", "starlette==0.41.2")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>And we’ll deploy a web UI for interacting with our trained models using Gradio.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>assets_path = Path(__file__).parent / "assets"
+ui_image = web_image.uv_pip_install("gradio~=4.44.0").add_local_dir(
+    assets_path, remote_path="/assets"
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We can also “pre-import” libraries that will be used by the functions we run on Modal in a given image
+using the <code>with image.imports</code> context manager.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>with torch_image.imports():
+    import glob
+    import os
+    from timeit import default_timer as timer
+
+    import tensorboard
+    import torch
+    from src.dataset import Dataset
+    from src.logs_manager import LogsManager
+    from src.model import AttentionModel
+    from src.tokenizer import Tokenizer</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="running-slm-training-on-modal" class="group"><span><!--[--><!--[--><!---->Running SLM training on Modal<!--]--><!--]--></span><!--[--> <a href="#running-slm-training-on-modal" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Here we define the training function, wrapping it in a decorator
+that specifies the infrastructural parameters, like the container <code>image</code> we want to use,
+which <code>volume</code> to mount where, the <code>gpu</code> we’re using, and so on.</p> <p>Training consists of specifying optimization parameters, loading the <code>dataset</code>, building the <code>model</code>, setting up TensorBoard logging &amp;
+checkpointing, and then finally executing the <code>training_loop</code> itself.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(
+    image=torch_image,
+    volumes={volume_path: volume},
+    gpu=gpu,
+    timeout=1 * HOURS,
+)
+def train_model(
+    node_rank,
+    n_nodes,
+    hparams,
+    experiment_name,
+    run_to_first_save=False,
+    n_steps=3000,
+    n_steps_before_eval=None,
+    n_steps_before_checkpoint=None,
+):
+    # optimizer, data, and model prep
+    batch_size = 64
+    learning_rate = 3e-4
+
+    n_eval_steps = 100
+    if n_steps_before_eval is None:
+        n_steps_before_eval = int(n_steps / 8)  # eval eight times per run
+    if n_steps_before_checkpoint is None:
+        n_steps_before_checkpoint = int(n_steps / 4)  # save four times per run
+
+    train_percent = 0.9
+
+    L.basicConfig(
+        level=L.INFO,
+        format=f"\033[0;32m%(asctime)s %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] [Node {node_rank + 1}] %(message)s\033[0m",
+        datefmt="%b %d %H:%M:%S",
+    )
+
+    # use GPU if available
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    L.info("Remote Device: %s // GPU: %s", device, gpu)
+
+    input_file_path = volume_path / "shakespeare_char.txt"
+    text = prepare_data(input_file_path, volume)
+
+    # construct tokenizer &amp; dataset
+    tokenizer = Tokenizer(text)
+    dataset = Dataset(
+        tokenizer.encode(text),
+        train_percent,
+        batch_size,
+        hparams.context_size,
+        device,
+    )
+
+    # build the model
+    model = build_model(hparams, tokenizer.vocab_size, device)
+    num_parameters = sum(p.numel() for p in model.parameters())
+    L.info(f"Num parameters: {num_parameters}")
+
+    optimizer = setup_optimizer(model, learning_rate)
+
+    # TensorBoard logging &amp; checkpointing prep
+    logs_manager = LogsManager(experiment_name, hparams, num_parameters, tb_log_path)
+    L.info(f"Model name: {logs_manager.model_name}")
+
+    model_save_dir = model_save_path / experiment_name / logs_manager.model_name
+    if model_save_dir.exists():
+        L.info("Loading model from checkpoint...")
+        checkpoint = torch.load(str(model_save_dir / model_filename))
+        is_best_model = not run_to_first_save
+        if is_best_model:
+            make_best_symbolic_link(model_save_dir, model_filename, experiment_name)
+        model.load_state_dict(checkpoint["model"])
+        start_step = checkpoint["steps"] + 1
+    else:
+        model_save_dir.mkdir(parents=True, exist_ok=True)
+        start_step = 0
+        checkpoint = init_checkpoint(model, tokenizer, optimizer, start_step, hparams)
+
+    checkpoint_path = model_save_dir / model_filename
+
+    out = training_loop(
+        start_step,
+        n_steps,
+        n_steps_before_eval,
+        n_steps_before_checkpoint,
+        n_eval_steps,
+        dataset,
+        tokenizer,
+        model,
+        optimizer,
+        logs_manager,
+        checkpoint,
+        checkpoint_path,
+        run_to_first_save,
+    )
+
+    return node_rank, float(out["val"]), hparams</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="launch-a-hyperparameter-sweep-from-a-local_entrypoint" class="group"><span><!--[--><!--[--><!---->Launch a hyperparameter sweep from a <code>local_entrypoint</code><!--]--><!--]--></span><!--[--> <a href="#launch-a-hyperparameter-sweep-from-a-local_entrypoint" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The main entry point coordinates the hyperparameter optimization.
+First we specify the default hyperparameters for the model, taken from <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://www.youtube.com/watch?v=kCc8FmEb1nY&amp;t=5976s"><!--[--><!---->Andrej Karpathy’s walkthrough<!--]--></a><!---->.
+For better performance, you can increase the <code>context_size</code> and scale up the GPU accordingly.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@dataclass
+class ModelHyperparameters:
+    n_heads: int = 6
+    n_embed: int = 384
+    n_blocks: int = 6
+    context_size: int = 256
+    dropout: float = 0.2</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Next we define the local entrypoint: the code we run locally to coordinate training.</p> <p>It will train 8 models in parallel across 8 containers, each
+with different hyperparameters, varying the number of heads (<code>n_heads</code>), the <code>context_size</code> (called the “block size” by Karpathy), and the dropout rate (<code>dropout</code>). To run in
+parallel we need to use the <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/scale/index.html"><!--[--><code>starmap</code> method<!--]--></a><!---->.</p> <p>We train all of the models until the first checkpoint and then stop early so we
+can compare the validation losses.</p> <p>Then we restart training for the best model and train it to completion.</p> <p>You can kick off training with the following command:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal run 06_gpu_and_ml/hyperparameter-sweep/hp_sweep_gpt.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>The output will look something like this:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>Sep 16 21:20:39 INFO [hp_sweep_gpt.py.train_model:127] [Node 1]  Remote Device: cuda // GPU: A10G
+Sep 16 21:20:40 INFO [hp_sweep_gpt.py.train_model:149] [Node 1]  Num parameters: 10693697
+Sep 16 21:20:40 INFO [hp_sweep_gpt.py.train_model:156] [Node 1]  Model Name: E2024-0916-142031.618259_context_size=8_n_heads=1_dropout=0.1
+Sep 16 21:20:41 INFO [hp_sweep_gpt.py.train_model:225] [Node 1]      0) //  1.03s // Train Loss: 3.58 // Val Loss: 3.60
+Sep 16 21:20:41 INFO [hp_sweep_gpt.py.train_model:127] [Node 2]  Remote Device: cuda // GPU: A10G
+...</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>The <code>local_entrypoint</code> code is below. Note that the arguments to it can also be passed via the command line.
+Use <code>--help</code> for details.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.local_entrypoint()
+def main(
+    n_steps: int = 3000,
+    n_steps_before_checkpoint: Optional[int] = None,
+    n_steps_before_eval: Optional[int] = None,
+):
+    from datetime import datetime
+    from itertools import product
+
+    experiment_name = f"E{datetime.now().strftime('%Y-%m-%d-%H%M%S.%f')}"
+    default_hparams = ModelHyperparameters()
+
+    # build list of hyperparameters to train &amp; validate
+    nheads_options = (1, default_hparams.n_heads)
+    context_size_options = (8, default_hparams.context_size)
+    dropout_options = (0.1, default_hparams.dropout)
+
+    hparams_list = [
+        ModelHyperparameters(n_heads=h, context_size=c, dropout=d)
+        for h, c, d in product(nheads_options, context_size_options, dropout_options)
+    ]
+
+    # run training for each hyperparameter setting
+    results = []
+    stop_early = True  # stop early so we can compare val losses
+    print(f"Testing {len(hparams_list)} hyperparameter settings")
+    n_nodes = len(hparams_list)
+    static_params = (
+        experiment_name,
+        stop_early,
+        n_steps,
+        n_steps_before_eval,
+        n_steps_before_checkpoint,
+    )
+    for result in train_model.starmap(
+        [(i, n_nodes, h, *static_params) for i, h in enumerate(hparams_list)],
+        order_outputs=False,
+    ):
+        # result = (node_rank, val_loss, hparams)
+        node_rank = result[0]
+        results.append(result)
+        print(
+            f"[Node {node_rank + 1}/{n_nodes}] Finished. Early stop val loss result: {result[1:]}"
+        )
+
+    # find the model and hparams with the lowest validation loss
+    best_result = min(results, key=lambda x: x[1])
+    print(f"Best early stop val loss result: {best_result}")
+    best_hparams = best_result[-1]
+
+    # finish training with best hparams
+    node_rank = 0
+    n_nodes = 1  # only one node for final training run
+    train_model.remote(
+        node_rank,
+        n_nodes,
+        best_hparams,
+        experiment_name,
+        not stop_early,
+        n_steps,
+        n_steps_before_eval,
+        n_steps_before_checkpoint,
+    )</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="monitor-experiments-with-tensorboard" class="group"><span><!--[--><!--[--><!---->Monitor experiments with TensorBoard<!--]--><!--]--></span><!--[--> <a href="#monitor-experiments-with-tensorboard" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>To monitor our training we will create a TensorBoard WSGI web app, which will
+display the progress of our training across all 8 models. We’ll use the latest
+logs for the most recent experiment written to the Volume.</p> <p>To ensure we have the latest data we add some <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://peps.python.org/pep-3333/"><!--[--><!---->WSGI Middleware<!--]--></a><!----> that checks the Modal Volume for updates when the page is reloaded.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>class VolumeMiddleware:
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        if (route := environ.get("PATH_INFO")) in ["/", "/modal-volume-reload"]:
+            try:
+                volume.reload()
+            except Exception as e:
+                print("Exception while re-loading traces: ", e)
+            if route == "/modal-volume-reload":
+                environ["PATH_INFO"] = "/"  # redirect
+        return self.app(environ, start_response)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>To ensure a unique color per experiment you can click the palette (🎨) icon
+under TensorBoard > Time Series > Run and use the Regex: <code>E(\d{4})-(\d{2})-(\d{2})-(\d{6})\.(\d{6})</code></p> <p>You can deploy this TensorBoard service by running</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal deploy 06_gpu_and_ml/hyperparameter-sweep/hp_sweep_gpt.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>and visit it at the URL that ends with <code>-monitor-training.modal.run</code>.</p> <p>After training finishes, your TensorBoard UI will look something like this:</p> <p><img src="../../../_app/immutable/assets/tensorboard.dLnBGsm0.png" alt="8 lines on a graph, validation loss on y-axis, time step on x-axis. All lines go down over the first 1000 time steps, and one goes to 5000 time steps with a final loss of 1.52" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <p>You can also find some sample text generated by the model in the “Text” tab.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(
+    image=torch_image,
+    volumes={volume_path: volume},
+)
+@modal.concurrent(max_inputs=100)
+@modal.wsgi_app()
+def monitor_training():
+    board = tensorboard.program.TensorBoard()
+    board.configure(logdir=str(tb_log_path))
+    (data_provider, deprecated_multiplexer) = board._make_data_provider()
+    wsgi_app = tensorboard.backend.application.TensorBoardWSGIApp(
+        board.flags,
+        board.plugin_loaders,
+        data_provider,
+        board.assets_zip_provider,
+        deprecated_multiplexer,
+        experimental_middlewares=[VolumeMiddleware],
+    )
+    return wsgi_app</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Notice that there are 8 models training, and the one with the lowest
+validation loss at step 600 continues training to 3000 steps.</p> <!----><h2 id="serving-slms-on-modal-during-and-after-training" class="group"><span><!--[--><!--[--><!---->Serving SLMs on Modal during and after training<!--]--><!--]--></span><!--[--> <a href="#serving-slms-on-modal-during-and-after-training" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Because our weights are stored in a distributed Volume,
+we can deploy an inference Function based off of them without any extra work —
+and we can even check in on models while we’re still training them! # For more on storing model weights on Modal, see <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/model-weights/index.html"><!--[--><!---->this guide<!--]--></a><!---->.</p> <!----><h3 id="remote-inference-with-modal-clses" class="group"><span><!--[--><!--[--><!---->Remote inference with Modal <code>Cls</code>es<!--]--><!--]--></span><!--[--> <a href="#remote-inference-with-modal-clses" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>We wrap our inference in a Modal <code>Cls</code> called <code>ModelInference</code>.
+The user of <code>ModelInference</code> can control which model is used by providing the <code>experiment_name</code>.  Each unique choice creates a separate <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/parameterized-functions/index.html"><!--[--><!---->auto-scaling deployment<!--]--></a><!---->.
+If the user does not specify an <code>experiment_name</code>, the latest experiment
+is used.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.cls(image=torch_image, volumes={volume_path: volume}, gpu=gpu)
+class ModelInference:
+    experiment_name: str = modal.parameter(default="")
+
+    def get_latest_available_model_dirs(self, n_last):
+        """Find the latest models that have a best model checkpoint saved."""
+        save_model_dirs = glob.glob(f"{model_save_path}/*")
+        sorted_model_dirs = sorted(save_model_dirs, key=os.path.getctime, reverse=True)
+
+        valid_model_dirs = []
+        for latest_model_dir in sorted_model_dirs:
+            if Path(f"{latest_model_dir}/{best_model_filename}").exists():
+                valid_model_dirs.append(Path(latest_model_dir))
+            if len(valid_model_dirs) >= n_last:
+                return valid_model_dirs
+        return valid_model_dirs
+
+    @modal.method()
+    def get_latest_available_experiment_names(self, n_last):
+        return [d.name for d in self.get_latest_available_model_dirs(n_last)]
+
+    def load_model_impl(self):
+        from .src.model import AttentionModel
+        from .src.tokenizer import Tokenizer
+
+        if self.experiment_name != "":  # user selected model
+            use_model_dir = f"{model_save_path}/{self.experiment_name}"
+        else:  # otherwise, pick latest
+            try:
+                use_model_dir = self.get_latest_available_model_dirs(1)[0]
+            except IndexError:
+                raise ValueError("No models available to load.")
+
+        if self.use_model_dir == use_model_dir and self.is_fully_trained:
+            return  # already loaded fully trained model.
+
+        print(f"Loading experiment: {Path(use_model_dir).name}...")
+        checkpoint = torch.load(f"{use_model_dir}/{best_model_filename}")
+
+        self.use_model_dir = use_model_dir
+        hparams = checkpoint["hparams"]
+        key = (  # for backwards compatibility
+            "unique_chars" if "unique_chars" in checkpoint else "chars"
+        )
+        unique_chars = checkpoint[key]
+        steps = checkpoint["steps"]
+        val_loss = checkpoint["val_loss"]
+        self.is_fully_trained = checkpoint["finished_training"]
+
+        print(
+            f"Loaded model with {steps} train steps"
+            f" and val loss of {val_loss:.2f}"
+            f" (fully_trained={self.is_fully_trained})"
+        )
+
+        self.tokenizer = Tokenizer(unique_chars)
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+
+        self.model = AttentionModel(self.tokenizer.vocab_size, hparams, self.device)
+        self.model.load_state_dict(checkpoint["model"])
+        self.model.to(self.device)
+
+    @modal.enter()
+    def load_model(self):
+        self.use_model_dir = None
+        self.is_fully_trained = False
+        self.load_model_impl()
+
+    @modal.method()
+    def generate(self, prompt):
+        self.load_model_impl()  # load updated model if available
+
+        n_new_tokens = 1000
+        return self.model.generate_from_text(self.tokenizer, prompt, n_new_tokens)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="adding-a-simple-web-function" class="group"><span><!--[--><!--[--><!---->Adding a simple Web Function<!--]--><!--]--></span><!--[--> <a href="#adding-a-simple-web-function" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>The <code>ModelInference</code> class above is available for use
+from any other Python environment with the right Modal credentials
+and the <code>modal</code> package installed — just use <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../reference/modal.Cls"><!--[--><code>lookup</code><!--]--></a><!---->.</p> <p>But we can also expose it as a Web Function for easy access
+from anywhere, including other programming languages or the command line.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>class GenerationRequest(BaseModel):
+    prompt: str
+
+
+@app.function(image=web_image)
+@modal.fastapi_endpoint(method="POST", docs=True)
+def web_generate(request: GenerationRequest):
+    output = ModelInference().generate.remote(request.prompt)
+    return {"output": output}</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>This Function can be deployed on Modal with <code>modal deploy</code>.
+That will allow us to generate text via a simple <code>curl</code> command like this:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>curl -X POST -H 'Content-Type: application/json' --data-binary '{"prompt": "\n"}' https://your-workspace-name--modal-nano-gpt-web-generate.modal.run</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>which will return something like:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>{
+"output":
+   "BRUTUS:
+    The broy trefore anny pleasory to
+    wip me state of villoor so:
+    Fortols listhey for brother beat the else
+    Be all, ill of lo-love in igham;
+    Ah, here all that queen and hould you father offer"
+}</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>It’s not exactly Shakespeare, but at least it shows our model learned something!</p> <p>You can choose which model to use by specifying the <code>experiment_name</code> in the query parameters of the request URL.</p> <!----><h3 id="serving-a-gradio-ui-with-asgi_app" class="group"><span><!--[--><!--[--><!---->Serving a Gradio UI with <code>asgi_app</code><!--]--><!--]--></span><!--[--> <a href="#serving-a-gradio-ui-with-asgi_app" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Second, we create a Gradio web app for generating text via a graphical user interface in the browser.
+That way our fellow team members and stakeholders can easily interact with the model and give feedback,
+even when we’re still training the model.</p> <p>You should see the URL for this UI in the output of <code>modal deploy</code> or on your <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../apps/index.html"><!--[--><!---->Modal app dashboard<!--]--></a><!----> for this app.</p> <p>The Gradio UI will look something like this:</p> <p><img src="../../../_app/immutable/assets/gradio.1X4m84IP.png" alt="Image of Gradio Web App. Top shows model selection dropdown. Left side shows input prompt textbox. Right side shows SLM generated output. Bottom has button for starting generation process" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(
+    image=ui_image,
+    max_containers=1,
+    volumes={volume_path: volume},
+)
+@modal.concurrent(max_inputs=100)
+@modal.asgi_app()
+def ui():
+    import gradio as gr
+    from fastapi import FastAPI
+    from fastapi.responses import FileResponse
+    from gradio.routes import mount_gradio_app
+
+    # call out to the inference in a separate Modal environment with a GPU
+    def generate(text="", experiment_name=""):
+        if not text:
+            text = "\n"
+        generated = ModelInference(experiment_name=experiment_name).generate.remote(
+            text
+        )
+        return text + generated
+
+    example_prompts = [
+        "DUKE OF YORK:\nWhere art thou Lucas?",
+        "ROMEO:\nWhat is a man?",
+        "CLARENCE:\nFair is foul and foul is fair, but who are you?",
+        "Brevity is the soul of wit, so what is the soul of foolishness?",
+    ]
+
+    web_app = FastAPI()
+
+    # custom styles: an icon, a background, and a theme
+    @web_app.get("/favicon.ico", include_in_schema=False)
+    async def favicon():
+        return FileResponse("/assets/favicon.svg")
+
+    @web_app.get("/assets/background.svg", include_in_schema=False)
+    async def background():
+        return FileResponse("/assets/background.svg")
+
+    with open("/assets/index.css") as f:
+        css = f.read()
+
+    n_last = 20
+    experiment_names = ModelInference().get_latest_available_experiment_names.remote(
+        n_last
+    )
+    theme = gr.themes.Default(
+        primary_hue="green", secondary_hue="emerald", neutral_hue="neutral"
+    )
+
+    # add a Gradio UI around inference
+    with gr.Blocks(theme=theme, css=css, title="SLM") as interface:
+        # title
+        gr.Markdown("# GPT-style Shakespeare text generation.")
+
+        # Model Selection
+        with gr.Row():
+            gr.Markdown("## Model Version")
+        with gr.Row():
+            experiment_dropdown = gr.Dropdown(
+                experiment_names, label="Select Model Version"
+            )
+
+        # input and output
+        with gr.Row():
+            with gr.Column():
+                gr.Markdown("## Input:")
+                input_box = gr.Textbox(  # input text component
+                    label="",
+                    placeholder="Write some Shakespeare like text or keep it empty!",
+                    lines=10,
+                )
+            with gr.Column():
+                gr.Markdown("## Output:")
+                output_box = gr.Textbox(  # output text component
+                    label="",
+                    lines=10,
+                )
+
+        # button to trigger inference and a link to Modal
+        with gr.Row():
+            generate_button = gr.Button("Generate", variant="primary", scale=2)
+            generate_button.click(
+                fn=generate,
+                inputs=[input_box, experiment_dropdown],
+                outputs=output_box,
+            )  # connect inputs and outputs with inference function
+
+            gr.Button(  # shameless plug
+                " Powered by Modal",
+                variant="secondary",
+                link="https://modal.com",
+            )
+
+        # example prompts
+        with gr.Column(variant="compact"):
+            # add in a few examples to inspire users
+            for ii, prompt in enumerate(example_prompts):
+                btn = gr.Button(prompt, variant="secondary")
+                btn.click(fn=lambda idx=ii: example_prompts[idx], outputs=input_box)
+
+    # mount for execution on Modal
+    return mount_gradio_app(
+        app=web_app,
+        blocks=interface,
+        path="/",
+    )</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="addenda" class="group"><span><!--[--><!--[--><!---->Addenda<!--]--><!--]--></span><!--[--> <a href="#addenda" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The remainder of this code is boilerplate.</p> <!----><h3 id="training-loop" class="group"><span><!--[--><!--[--><!---->Training Loop<!--]--><!--]--></span><!--[--> <a href="#training-loop" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>There’s quite a lot of code for just the training loop! If you’d rather not write this stuff yourself,
+consider a training framework like <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://lightning.ai/docs/pytorch/stable"><!--[--><!---->PyTorch Lightning<!--]--></a><!----> or <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/transformers/main_classes/trainer.html"><!--[--><!---->Hugging Face<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def training_loop(
+    start_step,
+    n_steps,
+    n_steps_before_eval,
+    n_steps_before_checkpoint,
+    n_eval_steps,
+    dataset,
+    tokenizer,
+    model,
+    optimizer,
+    logs_manager,
+    checkpoint,
+    checkpoint_path,
+    run_to_first_save,
+):
+    @torch.no_grad()
+    def eval_model(model, dataset, tokenizer, n_eval_steps):
+        """Evaluate model on train and validation data."""
+        out = {}
+        model.eval()  # Turn off gradients
+        for split in ("train", "val"):
+            losses = torch.zeros(n_eval_steps)
+            for k in range(n_eval_steps):
+                xb, yb = dataset.get_batch(split)
+                logits, loss = model.forward(xb, yb)
+                losses[k] = loss
+            out[split] = losses.mean()
+
+        # Generate some output samples
+        out["sample"] = model.generate_from_text(tokenizer, "\n", 1000)
+
+        model.train()  # Turn on gradients
+        return out
+
+    t_last = timer()
+    for step in range(start_step, n_steps + 1):
+        # sample a batch of data
+        xb, yb = dataset.get_batch("train")
+
+        # evaluate the loss, calculate &amp; apply gradients
+        logits, loss = model.forward(xb, yb)
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        optimizer.step()
+
+        # log training loss
+        logs_manager.add_train_scalar("Cross Entropy Loss", loss.item(), step)
+
+        # evaluate model on validation set
+        if step % n_steps_before_eval == 0:
+            out = eval_model(model, dataset, tokenizer, n_eval_steps)
+            log_evals(out, step, t_last, logs_manager)
+            t_last = timer()
+
+        # save model with checkpoint information
+        if step > 0 and step % n_steps_before_checkpoint == 0:
+            checkpoint["steps"] = step
+            checkpoint["val_loss"] = out["val"]
+
+            # mark as finished if we hit n steps.
+            checkpoint["finished_training"] = step >= n_steps
+
+            L.info(
+                f"Saving checkpoint to {checkpoint_path}\t {checkpoint['finished_training']})"
+            )
+            save_checkpoint(checkpoint, checkpoint_path)
+
+            if run_to_first_save:
+                L.info("Stopping early...")
+                break
+    return out
+
+
+def save_checkpoint(checkpoint, checkpoint_path):
+    torch.save(checkpoint, checkpoint_path)
+    volume.commit()
+
+
+def build_model(hparams, vocab_size, device):
+    """Initialize the model and move it to the device."""
+    model = AttentionModel(vocab_size, hparams, device)
+    model.to(device)
+    return model
+
+
+def setup_optimizer(model, learning_rate):
+    """Set up the optimizer for the model."""
+    return torch.optim.AdamW(model.parameters(), lr=learning_rate)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="miscellaneous" class="group"><span><!--[--><!--[--><!---->Miscellaneous<!--]--><!--]--></span><!--[--> <a href="#miscellaneous" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>The remaining code includes small helper functions for training the model.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def prepare_data(input_file_path: Path, volume: modal.Volume) -> str:
+    """Download and read the dataset."""
+    volume.reload()
+    if not input_file_path.exists():
+        L.info("Downloading Shakespeare dataset...")
+        data_url = "https://raw.githubusercontent.com/karpathy/char-rnn/master/data/tinyshakespeare/input.txt"
+        urllib.request.urlretrieve(data_url, input_file_path)
+        volume.commit()
+    return input_file_path.read_text()
+
+
+def make_best_symbolic_link(model_save_dir, model_filename, experiment_name):
+    # create symlink to the best model so it's easy to find for web serving
+    os.symlink(
+        str(model_save_dir / model_filename),
+        str(model_save_path / experiment_name / best_model_filename),
+    )
+    volume.commit()  # commit the symlink
+
+
+def init_checkpoint(model, tokenizer, optimizer, start_step, hparams):
+    return {
+        "model": model.state_dict(),
+        "unique_chars": tokenizer.unique_chars,
+        "optimizer": optimizer.state_dict(),
+        "val_loss": float("inf"),
+        "steps": start_step,
+        "hparams": hparams,
+        "finished_training": False,
+    }
+
+
+def log_evals(result, step, t_last, logs_manager):
+    runtime_s = timer() - t_last
+    L.info(
+        f"{step:5d}) // {runtime_s:>5.2f}s // Train Loss: {result['train']:.2f} // Val Loss: {result['val']:.2f}"
+    )
+    logs_manager.add_val_scalar("Cross Entropy Loss", result["val"], step)
+    logs_manager.add_val_text("Sample Output", result["sample"], step)
+    logs_manager.flush()
+    volume.commit()  # Make sure TensorBoard container will see it.
+
+    return result</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-train-an-slm-from-scratch-with-early-stopping-grid-search-over-hyperparameters" href="#train-an-slm-from-scratch-with-early-stopping-grid-search-over-hyperparameters" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Train an SLM from scratch with early-stopping grid search over hyperparameters</a><!--]--><!--[--><a id="toc-basic-setup" href="#basic-setup" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Basic Setup</a><!--]--><!--[--><a id="toc-create-a-volume-to-store-data-weights-and-logs" href="#create-a-volume-to-store-data-weights-and-logs" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Create a Volume to store data, weights, and logs</a><!--]--><!--[--><a id="toc-define-dependencies-in-container-images" href="#define-dependencies-in-container-images" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Define dependencies in container images</a><!--]--><!--[--><a id="toc-running-slm-training-on-modal" href="#running-slm-training-on-modal" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Running SLM training on Modal</a><!--]--><!--[--><a id="toc-launch-a-hyperparameter-sweep-from-a-local_entrypoint" href="#launch-a-hyperparameter-sweep-from-a-local_entrypoint" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Launch a hyperparameter sweep from a local_entrypoint</a><!--]--><!--[--><a id="toc-monitor-experiments-with-tensorboard" href="#monitor-experiments-with-tensorboard" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Monitor experiments with TensorBoard</a><!--]--><!--[--><a id="toc-serving-slms-on-modal-during-and-after-training" href="#serving-slms-on-modal-during-and-after-training" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Serving SLMs on Modal during and after training</a><!--]--><!--[--><a id="toc-remote-inference-with-modal-clses" href="#remote-inference-with-modal-clses" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Remote inference with Modal Clses</a><!--]--><!--[--><a id="toc-adding-a-simple-web-function" href="#adding-a-simple-web-function" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Adding a simple Web Function</a><!--]--><!--[--><a id="toc-serving-a-gradio-ui-with-asgi_app" href="#serving-a-gradio-ui-with-asgi_app" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Serving a Gradio UI with asgi_app</a><!--]--><!--[--><a id="toc-addenda" href="#addenda" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Addenda</a><!--]--><!--[--><a id="toc-training-loop" href="#training-loop" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Training Loop</a><!--]--><!--[--><a id="toc-miscellaneous" href="#miscellaneous" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Miscellaneous</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[--><div class="mt-16"><div class="text-c-gray-60 space-y-3 text-sm"><div class="font-medium"><h2 class="text-xl text-white">Try this on Modal!</h2></div> <p>You can run this example on Modal in 60 seconds.</p> <!--[--><div class="py-1"><a class="btn btn-outlined btn-primary w-full text-base" href="../../../signup/index.html">Create account to run</a></div> <p>After creating a free account, install the Modal Python package, and
+      create an API token.</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>pip install modal</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal setup</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!--]--> <p>Clone the <a class="text-c-gray-80 font-semibold hover:underline" href="https://github.com/modal-labs/modal-examples">modal-examples</a> repository and run:</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>git clone https://github.com/modal-labs/modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>cd modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal run 06_gpu_and_ml/hyperparameter-sweep/hp_sweep_gpt.py --n-steps 200 --n-steps-before-checkpoint 50 --n-steps-before-eval 50</code></pre></div></div><!--]--></div></div><!--]--><!----></div></div><!----></div><!--]--></div></div><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../../sdk/py/releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="HS+Sz+96Mytv2hw87+ji4A==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 11, 128],
+							data: [{type:"data",data:{},uses:{}},null,null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

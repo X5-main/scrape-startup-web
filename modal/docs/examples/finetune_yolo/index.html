@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="06532bc2767646099517d2e8dcd11f55-a19802a79c8b2a58"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=06532bc2767646099517d2e8dcd11f55,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="Example by @Erik-Dunteman and @AnirudhRahul."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Fine-tune open source YOLO models for object detection"/> <meta property="og:description" content="Example by @Erik-Dunteman and @AnirudhRahul."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Fine-tune+open+source+YOLO+models+for+object+detection&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Fine-tune open source YOLO models for object detection | Modal Docs</title>
+		<link href="../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../index.html" class="shrink-0 lg:mr-8"><img src="../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb navlink-active" href="../index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="A1wdyP3ftZ" aria-expanded="false" data-state="closed" id="8LLj9jg_kZ" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../sdk/py/releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[--><!--[--><a href="../index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Featured</span> <!--[!--><!--]--></span></a><!--]--><!--[!--><a href="../hello_world/index.html" class="header svelte-14npiaw">Getting started</a> <!--[--><a href="../hello_world/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Hello, world</span> <!--[!--><!--]--></span></a><a href="../webscraper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Simple web scraper</span> <!--[!--><!--]--></span></a><a href="../basic_web/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serving Web Functions</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm_inference/index.html" class="header svelte-14npiaw">Large language models (LLMs)</a> <!--[--><a href="../llm_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy an OpenAI-compatible LLM service with vLLM</span> <!--[!--><!--]--></span></a><a href="../ministral3_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cut Ministral 3 cold start times by 10x with snapshots</span> <!--[!--><!--]--></span></a><a href="../vllm_throughput/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Maximize tokens per second in batch processing with vLLM</span> <!--[!--><!--]--></span></a><a href="../sglang_low_latency/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve an ultra-low-latency chatbot with SGLang</span> <!--[!--><!--]--></span></a><a href="../nemotron_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy Nemotron 3</span> <!--[!--><!--]--></span></a><a href="../inkling_small/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Inkling-Small with SGLang</span> <!--[!--><!--]--></span></a><a href="../deepseek_v4_flash/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve DeepSeek-V4-Flash</span> <!--[!--><!--]--></span></a><a href="../unsloth_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Efficient LLM Finetuning with Unsloth</span> <!--[!--><!--]--></span></a><a href="../chat_with_pdf_vision/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a multimodal RAG chatbot to answer questions about PDFs</span> <!--[!--><!--]--></span></a><a href="../llm-finetuning/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune an LLM to replace your CEO</span> <!--[!--><!--]--></span></a><a href="../mcp_server_stateless/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a stateless MCP with FastMCP</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../image_to_image/index.html" class="header svelte-14npiaw">Images, video, &amp; 3D</a> <!--[--><a href="../image_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Edit images with Flux Kontext</span> <!--[!--><!--]--></span></a><a href="../music-video-gen/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Wan2.1 video models on your face</span> <!--[!--><!--]--></span></a><a href="../flux/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Flux fast with torch.compile</span> <!--[!--><!--]--></span></a><a href="../diffusers_lora_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Flux with LoRA</span> <!--[!--><!--]--></span></a><a href="../image_to_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Animate images with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../ltx/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate video clips with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../text_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Stable Diffusion with a CLI, API, and web UI</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm-voice-chat/index.html" class="header svelte-14npiaw">Audio</a> <!--[--><a href="../llm-voice-chat/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Moshi voice chatbot</span> <!--[!--><!--]--></span></a><a href="../streaming_kyutai_stt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Stream transcripts at the speed of speech using Kyutai STT</span> <!--[!--><!--]--></span></a><a href="../generate_music/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Make music with ACE-Step</span> <!--[!--><!--]--></span></a><a href="../chatterbox_tts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate speech with Chatterbox</span> <!--[!--><!--]--></span></a><a href="../batched_whisper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run high throughput batched transcription with Whisper</span> <!--[!--><!--]--></span></a><a href="../fine_tune_asr/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Whisper to recognize new words</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../webrtc_yolo/index.html" class="header svelte-14npiaw">Real-time communication (WebRTC)</a> <!--[--><a href="../webrtc_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serverless WebRTC</span> <!--[!--><!--]--></span></a><a href="../fastrtc_flip_webcam/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>WebRTC quickstart with FastRTC</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../esmfold2_binder_design/index.html" class="header svelte-14npiaw">Computational biology</a> <!--[--><a href="../esmfold2_binder_design/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Design protein binders with ESMFold2</span> <!--[!--><!--]--></span></a><a href="../chai1/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Chai-1</span> <!--[!--><!--]--></span></a><a href="../esm3/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a protein-folding dashboard</span> <!--[!--><!--]--></span></a><a href="../boltz_predict/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Boltz-2</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../opencode_server/index.html" class="header svelte-14npiaw">Modal Sandboxes</a> <!--[--><a href="../opencode_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a background coding agent with OpenCode</span> <!--[!--><!--]--></span></a><a href="../modal-vibe/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a scalable AI coding platform</span> <!--[!--><!--]--></span></a><a href="../claude-slack-gif-creator/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Create GIFs from Slack using the Claude Agent SDK</span> <!--[!--><!--]--></span></a><a href="../agent/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a LangGraph agent's code in a secure GPU sandbox</span> <!--[!--><!--]--></span></a><a href="../computer_use_vnc/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Watch a computer-use agent work in real-time over VNC</span> <!--[!--><!--]--></span></a><a href="../harbor_evals/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run massively parallel evals on Modal Sandboxes</span> <!--[!--><!--]--></span></a><a href="../simple_code_interpreter/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a stateful, sandboxed code interpreter</span> <!--[!--><!--]--></span></a><a href="../safe_code_execution/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Node.js, Ruby, and more in a Sandbox</span> <!--[!--><!--]--></span></a><a href="../sandbox_pool/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Speed up Sandbox starts with warm pools</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../grpo_verl/index.html" class="header svelte-14npiaw">Reinforcement Learning</a> <!--[--><a href="../grpo_verl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve math problems using GRPO and verl</span> <!--[!--><!--]--></span></a><a href="../grpo_trl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve coding problems using GRPO and TRL</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../liquidai_embeddings_server/index.html" class="header svelte-14npiaw">Embeddings</a> <!--[--><a href="../liquidai_embeddings_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Liquid AI embeddings with Modal Servers</span> <!--[!--><!--]--></span></a><a href="../amazon_embeddings/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Embed millions of documents with TEI</span> <!--[!--><!--]--></span></a><a href="../mongodb-search/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Turn satellite images into vectors and store them in MongoDB</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hackernews_alerts/index.html" class="header svelte-14npiaw">Parallel processing and job scheduling</a> <!--[--><a href="../hackernews_alerts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Hacker News Slackbot</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_jobs/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a Document OCR job queue</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_webapp/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve a Document OCR web app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hp_sweep_gpt/index.html" class="header svelte-14npiaw">Training models from scratch</a> <!--[--><a href="../hp_sweep_gpt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train an SLM with early-stopping grid search over hyperparameters</span> <!--[!--><!--]--></span></a><a href="../long-training/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run long, resumable training jobs</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="index.html" class="header svelte-14npiaw">Hosting popular libraries</a> <!--[--><a href="index.html" class="item svelte-14npiaw active"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>YOLO: Fine-tune and serve computer vision models</span> <!--[!--><!--]--></span></a><a href="../blender_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Blender: Build a 3D render farm</span> <!--[!--><!--]--></span></a><a href="../serve_streamlit/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Streamlit: Run and deploy Streamlit apps</span> <!--[!--><!--]--></span></a><a href="../cron_datasette/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SQLite: Publish explorable data with Datasette</span> <!--[!--><!--]--></span></a><a href="../algolia_indexer/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Algolia: Build docsearch with a crawler</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../discord_bot/index.html" class="header svelte-14npiaw">Connecting to other APIs</a> <!--[--><a href="../discord_bot/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Discord: Deploy and run a Discord Bot</span> <!--[!--><!--]--></span></a><a href="../db_to_sheet/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Google Sheets: Sync databases and APIs to a Google Sheet</span> <!--[!--><!--]--></span></a><a href="../potus_speech_qanda/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>OpenAI: Run a RAG Q&amp;A chatbot</span> <!--[!--><!--]--></span></a><a href="../modal_tailscale/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tailscale: Add Modal Apps to your VPN</span> <!--[!--><!--]--></span></a><a href="../pushgateway/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Prometheus: Publish custom metrics with Pushgateway</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../s3_bucket_mount/index.html" class="header svelte-14npiaw">Managing data</a> <!--[--><a href="../s3_bucket_mount/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Mount S3 buckets in Modal Apps</span> <!--[!--><!--]--></span></a><a href="../dbt_duckdb/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build your own data warehouse with DuckDB, dbt, and Modal</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[--><a href="../miscellaneous/index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Miscellaneous</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[!--><!----><!----><div class="text-c-gray-80"><!--[!--><!--[--><div class="float-left mb-6 mt-6 pr-2 md:float-right md:mb-2 md:mt-12 md:pl-2 md:pr-0"><a class="btn btn-outlined bg-c-gray-5" href="https://github.com/modal-labs/modal-examples/blob/main/06_gpu_and_ml/yolo/finetune_yolo.py" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github text-c-gray-80 mr-2.5"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-80 text-sm">View on GitHub</span></a></div><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="GeAXEkn14f" aria-expanded="false" data-state="closed" id="OqriceKfGJ" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><h1 id="fine-tune-open-source-yolo-models-for-object-detection"><!--[--><!---->Fine-tune open source YOLO models for object detection<!--]--></h1><!----> <p>Example by <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://github.com/erik-dunteman"><!--[--><!---->@Erik-Dunteman<!--]--></a><!----> and <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://github.com/AnirudhRahul/"><!--[--><!---->@AnirudhRahul<!--]--></a><!---->.</p> <p>The popular “You Only Look Once” (YOLO) model line provides high-quality object detection in an economical package.
+In this example, we use the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.ultralytics.com/models/yolov10/"><!--[--><!---->YOLOv10<!--]--></a><!----> model, released on May 23, 2024.</p> <p>We will:</p> <ul><li><p>Download two custom datasets from the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://roboflow.com/"><!--[--><!---->Roboflow<!--]--></a><!----> computer vision platform: a dataset of cats and a dataset of dogs</p></li> <li><p>Fine-tune the model on those datasets, in parallel, using the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.ultralytics.com/"><!--[--><!---->Ultralytics package<!--]--></a><!----></p></li> <li><p>Run inference with the fine-tuned models on single images and on streaming frames</p></li></ul> <p>For commercial use, be sure to consult the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.ultralytics.com/#yolo-licenses-how-is-ultralytics-yolo-licensed"><!--[--><!---->Ultralytics software license options<!--]--></a><!---->,
+which include AGPL-3.0.</p> <!----><h2 id="set-up-the-environment" class="group"><span><!--[--><!--[--><!---->Set up the environment<!--]--><!--]--></span><!--[--> <a href="#set-up-the-environment" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>import warnings
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+
+import modal</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Modal runs your code in the cloud inside containers. So to use it, we have to define the dependencies
+of our code as part of the container’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/custom-container/index.html"><!--[--><!---->image<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>image = (
+    modal.Image.debian_slim(python_version="3.10")
+    .apt_install(  # install system libraries for graphics handling, model download
+        ["libgl1-mesa-glx", "libglib2.0-0", "curl"]
+    )
+    .uv_pip_install(  # install python libraries for computer vision
+        ["ultralytics~=8.2.68", "roboflow~=1.1.37", "opencv-python~=4.10.0"]
+    )
+    .uv_pip_install(  # add an optional extra that renders images in the terminal
+        "term-image==0.7.1"
+    )
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We also create a persistent <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->Volume<!--]--></a><!----> for storing datasets, trained weights, and inference outputs. For more on storing model weights on Modal, see <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/model-weights/index.html"><!--[--><!---->this guide<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>volume = modal.Volume.from_name("example-yolo-finetune", create_if_missing=True)
+volume_path = (  # the path to the volume from within the container
+    Path("/root") / "data"
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We attach both of these to a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/apps/index.html"><!--[--><!---->App<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>app = modal.App("example-yolo-finetune", image=image, volumes={volume_path: volume})</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="download-a-dataset" class="group"><span><!--[--><!--[--><!---->Download a dataset<!--]--><!--]--></span><!--[--> <a href="#download-a-dataset" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We’ll be downloading our data from the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://roboflow.com/"><!--[--><!---->Roboflow<!--]--></a><!----> computer vision platform, so to follow along you’ll need to:</p> <ul><li><p>Create a free account on <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://app.roboflow.com/"><!--[--><!---->Roboflow<!--]--></a><!----></p></li> <li><p><a rel="nofollow" class="text-c-green-100 hover:underline" href="https://app.roboflow.com/settings/api"><!--[--><!---->Generate a Private API key<!--]--></a><!----></p></li> <li><p>Set up a Modal <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/secrets/index.html"><!--[--><!---->Secret<!--]--></a><!----> called <code>roboflow-api-key</code> in the Modal UI <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../secrets/index.html"><!--[--><!---->here<!--]--></a><!---->,
+setting the <code>ROBOFLOW_API_KEY</code> to the value of your API key.</p></li></ul> <p>You’re also free to bring your own dataset with a config in YOLOv10-compatible yaml format.</p> <p>We’ll be training on the medium size model, but you’re free to experiment with <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://docs.ultralytics.com/models/yolov10/#model-variants"><!--[--><!---->other model sizes<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@dataclass
+class DatasetConfig:
+    """Information required to download a dataset from Roboflow."""
+
+    workspace_id: str
+    project_id: str
+    version: int
+    format: str
+    target_class: str
+
+    @property
+    def id(self) -> str:
+        return f"{self.workspace_id}/{self.project_id}/{self.version}"
+
+
+@app.function(
+    secrets=[
+        modal.Secret.from_name("roboflow-api-key", required_keys=["ROBOFLOW_API_KEY"])
+    ]
+)
+def download_dataset(config: DatasetConfig):
+    import os
+
+    from roboflow import Roboflow
+
+    rf = Roboflow(api_key=os.getenv("ROBOFLOW_API_KEY"))
+    project = (
+        rf.workspace(config.workspace_id)
+        .project(config.project_id)
+        .version(config.version)
+    )
+    dataset_dir = volume_path / "dataset" / config.id
+    project.download(config.format, location=str(dataset_dir))</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="train-a-model" class="group"><span><!--[--><!--[--><!---->Train a model<!--]--><!--]--></span><!--[--> <a href="#train-a-model" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We train the model on a single A100 GPU. Training usually takes only a few minutes.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>MINUTES = 60
+
+TRAIN_GPU_COUNT = 1
+TRAIN_GPU = f"A100:{TRAIN_GPU_COUNT}"
+TRAIN_CPU_COUNT = 4
+
+
+@app.function(
+    gpu=TRAIN_GPU,
+    cpu=TRAIN_CPU_COUNT,
+    timeout=60 * MINUTES,
+)
+def train(
+    model_id: str,
+    dataset: DatasetConfig,
+    model_size="yolov10m.pt",
+    quick_check=False,
+):
+    from ultralytics import YOLO
+
+    volume.reload()  # make sure volume is synced
+
+    model_path = volume_path / "runs" / model_id
+    model_path.mkdir(parents=True, exist_ok=True)
+
+    data_path = volume_path / "dataset" / dataset.id / "data.yaml"
+
+    model = YOLO(model_size)
+    model.train(
+        # dataset config
+        data=data_path,
+        fraction=0.4
+        if not quick_check
+        else 0.04,  # fraction of dataset to use for training/validation
+        # optimization config
+        device=list(range(TRAIN_GPU_COUNT)),  # use the GPU(s)
+        epochs=8 if not quick_check else 1,  # pass over entire dataset this many times
+        batch=0.95,  # automatic batch size to target fraction of GPU util
+        seed=117,  # set seed for reproducibility
+        # data processing config
+        workers=max(
+            TRAIN_CPU_COUNT // TRAIN_GPU_COUNT, 1
+        ),  # split CPUs evenly across GPUs
+        cache=False,  # cache preprocessed images in RAM?
+        # model saving config
+        project=f"{volume_path}/runs",
+        name=model_id,
+        exist_ok=True,  # overwrite previous model if it exists
+        verbose=True,  # detailed logs
+    )</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="run-inference-on-single-inputs-and-on-streams" class="group"><span><!--[--><!--[--><!---->Run inference on single inputs and on streams<!--]--><!--]--></span><!--[--> <a href="#run-inference-on-single-inputs-and-on-streams" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We demonstrate two different ways to run inference — on single images and on a stream of images.</p> <p>The images we use for inference are loaded from the test set, which was added to our Volume when we downloaded the dataset.
+Each image read takes ~50ms, and inference can take ~5ms, so the disk read would be our biggest bottleneck if we just looped over the image paths.
+To avoid it, we parallelize the disk reads across many workers using Modal’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/scale/index.html"><!--[--><code>.map</code><!--]--></a><!---->,
+streaming the images to the model. This roughly mimics the behavior of an interactive object detection pipeline.
+This can increase throughput up to ~60 images/s, or ~17 milliseconds/image, depending on image size.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function()
+def read_image(image_path: str):
+    import cv2
+
+    source = cv2.imread(image_path)
+    return source</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>We use the <code>@enter</code> feature of <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/lifecycle-functions/index.html"><!--[--><code>modal.Cls</code><!--]--></a><!----> to load the model only once on container start and reuse it for future inferences.
+We use a generator to stream images to the model.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.cls(gpu="a10g")
+class Inference:
+    weights_path: str = modal.parameter()
+
+    @modal.enter()
+    def load_model(self):
+        from ultralytics import YOLO
+
+        self.model = YOLO(self.weights_path)
+
+    @modal.method()
+    def predict(self, model_id: str, image_path: str, display: bool = False):
+        """A simple method for running inference on one image at a time."""
+        results = self.model.predict(
+            image_path,
+            half=True,  # use fp16
+            save=True,
+            exist_ok=True,
+            project=f"{volume_path}/predictions/{model_id}",
+        )
+        if display:
+            from term_image.image import from_file
+
+            terminal_image = from_file(results[0].path)
+            terminal_image.draw()
+        # you can view the output file via the Volumes UI in the Modal dashboard -- https://modal.com/storage
+
+    @modal.method()
+    def streaming_count(self, batch_dir: str, threshold: float | None = None):
+        """Counts the number of objects in a directory of images.
+
+        Intended as a demonstration of high-throughput streaming inference."""
+        import os
+        import time
+
+        image_files = [os.path.join(batch_dir, f) for f in os.listdir(batch_dir)]
+
+        completed, start = 0, time.monotonic_ns()
+        for image in read_image.map(image_files):
+            # note that we run predict on a single input at a time.
+            # each individual inference is usually done before the next image arrives, so there's no throughput benefit to batching.
+            results = self.model.predict(
+                image,
+                half=True,  # use fp16
+                save=False,  # don't save to disk, as it slows down the pipeline significantly
+                verbose=False,
+            )
+            completed += 1
+            for res in results:
+                for conf in res.boxes.conf:
+                    if threshold is None:
+                        yield 1
+                        continue
+                    if conf.item() >= threshold:
+                        yield 1
+            yield 0
+
+        elapsed_seconds = (time.monotonic_ns() - start) / 1e9
+        print(
+            "Inferences per second:",
+            round(completed / elapsed_seconds, 2),
+        )</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="running-the-example" class="group"><span><!--[--><!--[--><!---->Running the example<!--]--><!--]--></span><!--[--> <a href="#running-the-example" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We’ll kick off our parallel training jobs and run inference from the command line.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal run finetune_yolo.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>This runs the training in <code>quick_check</code> mode, useful for debugging the pipeline and getting a feel for it.
+To do a longer run that actually meaningfully improves performance, use:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal run finetune_yolo.py --no-quick-check</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.local_entrypoint()
+def main(quick_check: bool = True, inference_only: bool = False):
+    """Run fine-tuning and inference on two datasets.
+
+    Args:
+        quick_check: fine-tune on a small subset. Lower quality results, but faster iteration.
+        inference_only: skip fine-tuning and only run inference
+    """
+
+    dogs = DatasetConfig(
+        workspace_id="cv-project-v2",
+        project_id="6-dog-breeds",
+        version=1,
+        format="yolov9",
+        target_class="🐶",
+    )
+    cats = DatasetConfig(
+        workspace_id="jus-workspace",
+        project_id="cats-w7ohy",
+        version=3,
+        format="yolov9",
+        target_class="🐱",
+    )
+    datasets = [dogs, cats]
+
+    # .for_each runs a function once on each element of the input iterators
+    # here, that means download each dataset, in parallel
+    if not inference_only:
+        download_dataset.for_each(datasets)
+
+    today = datetime.now().strftime("%Y-%m-%d")
+    model_ids = [dataset.id + f"/{today}" for dataset in datasets]
+
+    if not inference_only:
+        train.for_each(model_ids, datasets, kwargs={"quick_check": quick_check})
+
+    # let's run inference!
+    for model_id, dataset in zip(model_ids, datasets):
+        inference = Inference(
+            weights_path=str(volume_path / "runs" / model_id / "weights" / "best.pt")
+        )
+
+        # predict on a single image and save output to the volume
+        test_images = volume.listdir(
+            str(Path("dataset") / dataset.id / "test" / "images")
+        )
+        # run inference on the first 5 images
+        for ii, image in enumerate(test_images):
+            print(f"{model_id}: Single image prediction on image", image.path)
+            inference.predict.remote(
+                model_id=model_id,
+                image_path=f"{volume_path}/{image.path}",
+                display=(
+                    ii == 0  # display inference results only on first image
+                ),
+            )
+            if ii >= 4:
+                break
+
+        # streaming inference on images from the test set
+        print(f"{model_id}: Streaming inferences on all images in the test set...")
+        count = 0
+        for detection in inference.streaming_count.remote_gen(
+            batch_dir=f"{volume_path}/dataset/{dataset.id}/test/images"
+        ):
+            if detection:
+                print(f"{dataset.target_class}", end="")
+                count += 1
+            else:
+                print("🎞️", end="", flush=True)
+        print(f"\n{model_id}: Counted {count} {dataset.target_class}s!")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="addenda" class="group"><span><!--[--><!--[--><!---->Addenda<!--]--><!--]--></span><!--[--> <a href="#addenda" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The rest of the code in this example is utility code.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>warnings.filterwarnings(  # filter warning from the terminal image library
+    "ignore",
+    message="It seems this process is not running within a terminal. Hence, some features will behave differently or be disabled.",
+    category=UserWarning,
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-fine-tune-open-source-yolo-models-for-object-detection" href="#fine-tune-open-source-yolo-models-for-object-detection" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Fine-tune open source YOLO models for object detection</a><!--]--><!--[--><a id="toc-set-up-the-environment" href="#set-up-the-environment" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Set up the environment</a><!--]--><!--[--><a id="toc-download-a-dataset" href="#download-a-dataset" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Download a dataset</a><!--]--><!--[--><a id="toc-train-a-model" href="#train-a-model" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Train a model</a><!--]--><!--[--><a id="toc-run-inference-on-single-inputs-and-on-streams" href="#run-inference-on-single-inputs-and-on-streams" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Run inference on single inputs and on streams</a><!--]--><!--[--><a id="toc-running-the-example" href="#running-the-example" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Running the example</a><!--]--><!--[--><a id="toc-addenda" href="#addenda" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Addenda</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[--><div class="mt-16"><div class="text-c-gray-60 space-y-3 text-sm"><div class="font-medium"><h2 class="text-xl text-white">Try this on Modal!</h2></div> <p>You can run this example on Modal in 60 seconds.</p> <!--[--><div class="py-1"><a class="btn btn-outlined btn-primary w-full text-base" href="../../../signup/index.html">Create account to run</a></div> <p>After creating a free account, install the Modal Python package, and
+      create an API token.</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>pip install modal</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal setup</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!--]--> <p>Clone the <a class="text-c-gray-80 font-semibold hover:underline" href="https://github.com/modal-labs/modal-examples">modal-examples</a> repository and run:</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>git clone https://github.com/modal-labs/modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>cd modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal run 06_gpu_and_ml/yolo/finetune_yolo.py --no-quick-check</code></pre></div></div><!--]--></div></div><!--]--><!----></div></div><!----></div><!--]--></div></div><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../../sdk/py/releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="Zv7PStI0TuiMymbsf/GA7Q==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 11, 128],
+							data: [{type:"data",data:{},uses:{}},null,null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

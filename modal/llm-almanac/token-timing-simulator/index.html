@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="d5e730a39e8b46da98a650c1b9f88e82-8d9e5edd0a9aad02"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=d5e730a39e8b46da98a650c1b9f88e82,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="Simulate TTFT and TPOT to explore LLM UX"/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="LLM Engineer's Almanac - Token Timing Simulator"/> <meta property="og:description" content="Simulate TTFT and TPOT to explore LLM UX"/> <!--[--><meta property="og:image" content="https://modal-cdn.com/llm-almanac/preview-image.png"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><!--18r7z67--><link rel="stylesheet" href="../../pgg5ill.css"/> <style>
+    :root {
+      color-scheme: light !important;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-color: transparent !important;
+      background-image:
+        linear-gradient(rgba(252, 252, 252, 0.98), rgba(252, 252, 252, 0.98)),
+        url('../paper-bg-heavy.png');
+    }</style><!----><title>LLM Engineer's Almanac - Token Timing Simulator | Modal</title>
+		<link href="../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/27.D3BEXmcC.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/SimpleSelect.Yy_rRuga.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/209.D11texkJ.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="pointer-events-none invisible fixed -left-[9999px] top-0" aria-hidden="true"><div class="flex w-max flex-row gap-8 whitespace-nowrap text-lg font-medium"><!--[--><a href="../advisor/index.html" class="link svelte-19qoy6h"><!---->Advisor<!----></a><a href="../summary/index.html" class="link svelte-19qoy6h"><!---->Executive Summary<!----></a><a href="../how-to-benchmark/index.html" class="link svelte-19qoy6h"><!---->Benchmarking<!----></a><a href="../workloads/index.html" class="link svelte-19qoy6h"><!---->Workloads<!----></a><a href="../quant-formats/index.html" class="link svelte-19qoy6h"><!---->Quant Formats<!----></a><a href="../block-quants/index.html" class="link svelte-19qoy6h"><!---->Block Quants<!----></a><a href="index.html" class="link svelte-19qoy6h selected"><!---->Token Timing Simulator<!----></a><a href="../spec-dec-roofline/index.html" class="link svelte-19qoy6h"><!---->Spec Dec Roofline<!----></a><!--]--><!----></div> <div class="inline-flex w-max items-center gap-1 whitespace-nowrap text-lg font-medium">More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down h-4 w-4"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></div> <div class="w-max whitespace-nowrap text-lg"><span class="text-almanac-dark-green/80">Powered by <a href="../../index.html" target="_blank" class="hover:text-almanac-dark-green inline-flex items-center underline decoration-1 underline-offset-[3px] transition-colors">Modal <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right -mt-0.5 inline h-4 w-4"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></span><!----></div></div> <main class="font-guyot text-almanac-dark-green min-h-screen text-lg font-light"><div class="grid grid-cols-[1fr]"><div class="top-0 z-10 flex flex-col relative bg-transparent transition-transform duration-300 translate-y-0 svelte-18r7z67"><div class="relative flex items-center justify-between px-6 py-4"><!--[!--><!--]--> <a class="left-1/2 flex -translate-x-1/2 flex-col items-center relative" href="../advisor/index.html"><img src="../../_app/immutable/assets/logo.Ch-aUp_j.png" alt="LLM Engineer's Almanac" class="h-[88px]"/></a> <!--[!--><!--]--></div> <!--[--><div class="flex-1 flex-col gap-2 bg-transparent text-base svelte-18r7z67 hidden"><!--[!--><div class="flex flex-col gap-2"><hr class="svelte-18r7z67"/></div> <div class="relative flex flex-row items-center justify-center gap-8 text-lg font-medium"><!--[--><a href="../advisor/index.html" class="link svelte-19qoy6h"><!---->Advisor<!----></a><a href="../summary/index.html" class="link svelte-19qoy6h"><!---->Executive Summary<!----></a><a href="../how-to-benchmark/index.html" class="link svelte-19qoy6h"><!---->Benchmarking<!----></a><a href="../workloads/index.html" class="link svelte-19qoy6h"><!---->Workloads<!----></a><a href="../quant-formats/index.html" class="link svelte-19qoy6h"><!---->Quant Formats<!----></a><a href="../block-quants/index.html" class="link svelte-19qoy6h"><!---->Block Quants<!----></a><a href="index.html" class="link svelte-19qoy6h selected"><!---->Token Timing Simulator<!----></a><a href="../spec-dec-roofline/index.html" class="link svelte-19qoy6h"><!---->Spec Dec Roofline<!----></a><!--]--> <!--[!--><!--]--> <p class="text-almanac-dark-green/80 absolute right-4"><span class="text-almanac-dark-green/80">Powered by <a href="../../index.html" target="_blank" class="hover:text-almanac-dark-green inline-flex items-center underline decoration-1 underline-offset-[3px] transition-colors">Modal <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right -mt-0.5 inline h-4 w-4"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></span><!----></p></div> <div class="flex flex-col gap-2"><hr class="svelte-18r7z67"/></div><!--]--></div><!--]--></div> <div class="mt-6 min-w-0 max-w-[calc(min(100%,1000px)-4rem)] justify-self-center"><!--[!--><!----><div class="simulator flex flex-col overflow-hidden svelte-rqrazs" style="width: calc(min(100vw, 1000px) - 4rem)"><header class="mb-1 lg:mb-4"><div class="title-row mb-1 flex items-center gap-2 lg:mb-3 svelte-rqrazs"><h1 class="text-xl font-bold lg:text-3xl"><button type="button" class="title-toggle svelte-rqrazs" aria-label="Toggle controls">Token Timing Simulator <span class="ml-1 inline-block transition-transform sm:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></button></h1> <span class="title-help-icon svelte-rqrazs"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-circle-question-mark"><!--[--><!----><circle cx="12" cy="12" r="10"><!----></circle><!----><!----><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"><!----></path><!----><!----><path d="M12 17h.01"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></div> <div class="controls flex flex-wrap items-center gap-3 svelte-rqrazs controls-collapsed"><label class="text-almanac-dark-green/60 flex flex-col text-sm">Text <!--[--><select data-variant="default" class="max-w-full w-[180px] text-sm lg:w-auto lg:text-lg svelte-nzuw0y"><!--[--><option value="prose" selected selected>Prose (The Waste Land)</option><option value="lorem">Lorem ipsum</option><option value="code">Code (Python / Rust / Node stdlibs)</option><!--]--></select><!--]--><!----></label> <label class="text-almanac-dark-green/60 flex flex-col text-sm">Input tokens <input type="number" value="10" min="0" max="10000" step="10" class="border-almanac-dark-green/30 text-almanac-dark-green w-[80px] rounded-[3px] border px-1.5 py-0.5 svelte-rqrazs"/></label> <label class="text-almanac-dark-green/60 flex flex-col text-sm">Output tokens <input type="number" value="1000" min="1" max="10000" step="10" class="border-almanac-dark-green/30 text-almanac-dark-green w-[80px] rounded-[3px] border px-1.5 py-0.5 svelte-rqrazs"/></label> <button class="border-almanac-dark-green/30 ml-auto rounded-[3px] border px-2 py-1 transition-colors hover:bg-[#eef0ec]" title="Restart all"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-rotate-cw"><!--[--><!----><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"><!----></path><!----><!----><path d="M21 3v5h-5"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button></div></header> <main id="cards" class="svelte-rqrazs rows-hint"><!--[!--><!--]--> <!--[--><!--]--> <!--[--><!--[!--><!--[!--><!--[!--><!--]--><!--]--><!--]--><!--]--></main></div><!----><!--]--><!----></div> <div class="hidden h-[200px] grid-cols-[1fr_auto_1fr] items-center gap-4 lg:grid"><hr class="border-t-2 svelte-18r7z67"/> <img src="../../_app/immutable/assets/footer-logo.DIFFZGxj.png" alt="" class="w-[260px] max-w-[40vw]"/> <hr class="border-t-2 svelte-18r7z67"/></div></div></main><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="QUKYOSm4ntpBZzgiXwnA9g==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 27, 209],
+							data: [{type:"data",data:{},uses:{}},null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

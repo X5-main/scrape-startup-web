@@ -1,0 +1,9 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`3a2cad0d-cd24-4734-a3ba-914b649b1056`,e._sentryDebugIdIdentifier=`sentry-dbid-3a2cad0d-cd24-4734-a3ba-914b649b1056`)}catch{}})();import{$t as e,St as t,Tn as n,Tt as r,bt as i,c as a,d as o,en as s,tn as c,wn as l}from"./F_ixKBiO.js";import"./B1sc9Zdx.js";import"./Bb2deiU3.js";import{t as u}from"./DeWGVqas2.js";import{t as d}from"./5BgWPUvf.js";var f={title:`Customize your container`,layout:`tutorial`,toc:[],rawContent:`Let’s see how we can add arbitrary packages for the Modal Function you defined in the previous section:
+
+1. Define a [Modal Image](https://modal.com/docs/guide/images) that pip installs \`numpy\`
+2. Attach this Image to your App
+3. Import the library in your Function
+
+Click **Run** to see it in action!
+`,meta:{description:`Let’s see how we can add arbitrary packages for the Modal Function you defined in the previous section:`}},{title:p,layout:m,toc:h,rawContent:g,meta:_}=f,v=t(`<p>Let’s see how we can add arbitrary packages for the Modal Function you defined in the previous section:</p> <ol><li>Define a <!> that pip installs <code>numpy</code></li> <li>Attach this Image to your App</li> <li>Import the library in your Function</li></ol> <p>Click <strong>Run</strong> to see it in action!</p>`,1);function y(t,p){let m=a(p,[`children`,`$$slots`,`$$events`,`$$legacy`]);d(t,o(()=>m,()=>f,{children:(t,a)=>{var o=v(),d=c(s(o),2),f=e(d);u(c(e(f)),{href:`https://modal.com/docs/guide/images`,rel:`nofollow`,children:(e,t)=>{l(),i(e,r(`Modal Image`))},$$slots:{default:!0}}),l(2),n(f),l(4),n(d),l(2),i(t,o)},$$slots:{default:!0}}))}export{y as default,f as metadata};
+//# sourceMappingURL=DTY3l6GV.js.map

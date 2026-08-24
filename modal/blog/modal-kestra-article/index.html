@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="921a208264084f2e952d61a483048158-8143022341bffb77"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=921a208264084f2e952d61a483048158,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="Learn how to create interactive workflows that dynamically adapt to user inputs with Kestra’s open-source orchestration platform and Modal’s serverless infrastructure."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Build interactive workflows using Kestra and Modal"/> <meta property="og:description" content="Learn how to create interactive workflows that dynamically adapt to user inputs with Kestra’s open-source orchestration platform and Modal’s serverless infrastructure."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Build+interactive+workflows+using+Kestra+and+Modal&amp;socialType=blog"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><!--3qm88h--><style>
+    body {
+      background-color: var(--color-black) !important;
+      font-weight: 500;
+      letter-spacing: -0.36px;
+      color: var(--color-light-green) !important;
+    }</style><!----><!--1c845um--><link rel="alternate" type="application/atom+xml" title="Modal Blog Feed" href="../atom.xml"/><!----><!--1u3ajt9--><link rel="canonical" href="https://modal.com/blog/modal-kestra-article"/> <!--[!--><!--]--><!----><title>Build interactive workflows using Kestra and Modal</title>
+		<link href="../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/MarketingButton.D1_XTFZ2.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/4.DOjQPp1i.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/MouseTracker.Rqk-1Njd.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/MultiLine.DXixnPwO.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Tweet.Djnn6DVq.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/YoutubeEmbed.Cc3j3nNu.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/BlogPortableText.D6y9oyFa.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Parameter.DSWU4pXP.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Asciinema.BhbJPlmc.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/MetricChart.DzNvC7bQ.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/StackedTimeseriesChart.CDneCelA.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/Cta.EEgIHigK.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/CodeTabs.BR2qMtHl.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/how-to-price-serverless.CPViR3a8.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="min-h-screen overflow-x-clip"><!--[--><!--[--><div class="bg-c-green-100 relative flex items-center justify-between px-4 py-2 text-sm font-medium text-black sm:justify-center "><div class="flex flex-row items-center justify-between gap-x-2"><span class="text-balance">Runtime, the conference for engineers running AI in production. Oct. 1 in SF</span> <!--[--><span class="inline-flex shrink-0 items-center gap-x-1"><a href="../../runtime/index.html" class="underline">Apply now</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-right"><!--[--><!----><path d="M5 12h14"><!----></path><!----><!----><path d="m12 5 7 7-7 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!--]--></div> <!--[!--><!--]--></div><!--]--><!--]--> <div class="z-39 sticky top-0 pt-4 md:pt-6"><div class="marketing-container"><nav class="bg-dark-gray relative grid grid-cols-[1fr_auto_1fr] items-center rounded-full p-2.5 shadow-lg transition-all duration-300"><div class="relative ml-3"><a class="relative" href="../../index.html"><div role="presentation" class="h-[23px] w-[118px]"></div> <!--[--><img class="absolute top-0 h-[22px] w-[118px]" src="../../_app/immutable/assets/logo.lottie.CgmMXf1s.png" alt="Modal logo"/><!--]--></a> <span class="flex svelte-1xdl61d" aria-controls="fHKHI_UIJk" aria-expanded="false" data-state="closed" id="rygHdysfFj" tabindex="0" data-melt-dropdown-menu-trigger=""><!----></span> <!--[!--><!--]--><!----></div> <div class="hidden items-center justify-center gap-7 text-sm md:flex xl:gap-10"><!--[--><!--[--><div class="dropdown-container svelte-1dt9mv8">Product <!--[!--><!--]--></div><!--]--><!--[!--><!--[--><div class="dropdown-container svelte-1dt9mv8">Solutions <!--[!--><!--]--></div><!--]--><!--]--><!--[!--><!--[!--><!--[--><div class="dropdown-container svelte-1dt9mv8">Resources <!--[!--><!--]--></div><!--]--><!--]--><!--]--><!--[!--><!--[!--><!--[!--><a href="../../customers/index.html" class="hover:text-c-green-100">Customers</a><!--]--><!--]--><!--]--><!--[!--><!--[!--><!--[!--><a href="../../pricing/index.html" class="hover:text-c-green-100">Pricing</a><!--]--><!--]--><!--]--><!--[!--><!--[!--><!--[!--><a href="../../docs/index.html" class="hover:text-c-green-100">Docs</a><!--]--><!--]--><!--]--><!--]--></div> <div class="hidden items-center gap-7 justify-self-end text-sm md:flex"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-light-green col-start-3 mr-2 justify-self-end md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div></nav></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 72px; transition: opacity 350ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!----> <!--[--><!----><!--[--><!--[!--><!----><div class="max-w-(--breakpoint-lg) mx-auto mb-32 mt-16 w-screen px-4 lg:mt-20"><article class="mx-auto max-w-[800px]"><div class="mb-6 lg:hidden"><a href="../../articles/index.html" class="btn btn-sm inline-flex items-center gap-x-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-corner-down-right text-c-gray-30 -ml-1"><!--[--><!----><path d="m15 10 5 5-5 5"><!----></path><!----><!----><path d="M4 4v7a4 4 0 0 0 4 4h12"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-60">All posts</span></a></div> <div class="text-c-gray-60 relative flex items-center justify-start gap-x-4 text-sm"><a href="../../articles/index.html" class="btn btn-sm absolute -left-24 hidden items-center gap-x-1 lg:flex"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-left text-c-gray-30 -ml-1"><!--[--><!----><path d="m15 18-6-6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-60">Back</span></a> <!--[--><div class="border-light-green/30 ml-0.5 hidden rounded-full border px-2.5 py-0.5 text-white sm:block">Article</div><!--]--> <div class="flex gap-x-2"><time datetime="2024-10-15T12:00:00.000Z">October 15, 2024</time> <!--[--><span>•</span><span>15 minute read</span><!--]--></div></div> <h1 class="marketing-h3 mb-4 mt-8 text-white">Build interactive workflows using Kestra and Modal</h1> <!--[--><div class="flex flex-wrap items-start justify-between gap-4"><div class="grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3"><!--[--><!--[--><div class="flex min-w-0 items-start gap-3"><div class="blog-author-avatar mt-0.5 shrink-0 svelte-1u3ajt9"><div class="avatar-wrapper svelte-crun1t" style="width: 40px; height: 40px;"><!--[--><img class="avatar-icon svelte-crun1t has-border" style="width: 40px; height: 40px;" src="https://pbs.twimg.com/profile_images/1805968669228310528/cCC6Fy3M_400x400.jpg" alt="User avatar"/><!--]--> <!--[!--><!--]--></div><!----></div> <div class="min-w-0 leading-snug"><!--[--><a href="https://twitter.com/anna__geller" target="_blank" rel="noreferrer" class="text-c-gray-80 block truncate text-sm font-medium hover:text-white">Anna Geller</a><!--]--> <!--[--><div class="text-c-gray-40 text-xs">Product Lead, Kestra</div><!--]--> <!--[--><a href="https://twitter.com/anna__geller" target="_blank" rel="noreferrer" class="text-c-gray-40 block truncate text-xs hover:text-white">@anna__geller</a><!--]--></div></div><!--]--><!--]--></div> <!--[!--><!--]--></div><!--]--> <div class="mt-12"><!--[!--><!----><article class="blog"><!--[--><p>If you’ve ever needed to process a large dataset, you know how important it is to have sufficient compute resources at your disposal. Sometimes, you need more CPUs or a bigger disk, and other times, a GPU makes all the difference. Modal makes it effortless to provision compute resources on demand by defining the infrastructure requirements directly in your Python code.</p> <p>With <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://github.com/kestra-io/kestra"><!--[--><!---->Kestra<!--]--></a><!---->, you can easily configure and launch Modal functions directly from the UI, even when dealing with complex, dependent configurations. This allows you to adjust input parameters or resource allocations like GPU, CPU or memory dynamically at runtime, without needing to touch the underlying code.</p> <p>In this post, we’ll create a forecasting workflow using Kestra and Modal:</p> <ul><li><a rel="nofollow" class="text-c-green-100 hover:underline" href="https://kestra.io/"><!--[--><!---->Kestra<!--]--></a><!----> for workflow orchestration, handling interactive inputs, conditional logic, managing output artifacts, and scheduling — all from an intuitive UI.</li> <li><a class="text-c-green-100 hover:underline" href="../../index.html"><!--[--><!---->Modal<!--]--></a><!----> for serverless compute and dependency management, allowing you to run your Python code without having to worry about building Docker images or managing cloud servers.</li></ul> <p>Our workflow will use data stored as Parquet files on Hugging Face to train a predictive model for customer orders. We’ll output the model’s predictions as a Plotly chart and optionally trigger an alert in Slack.</p> <p><img src="../../article-assets/kestra-modal-forecast-app.png" alt="architecture diagram of forecasting app on Modal and Kestra" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <h2 id="what-are-kestra-and-modal">What are Kestra and Modal?</h2> <h3 id="kestra">Kestra</h3> <p>Kestra is an <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://github.com/kestra-io/kestra"><!--[--><!---->open-source<!--]--></a><!----> orchestration platform that lets you create workflows from an easy-to-use UI while keeping <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://youtu.be/dU3p6Jf5fMw?si=0lO1sh6JLzLRrH6L"><!--[--><!---->everything as code<!--]--></a><!----> under the hood. You can automate scheduled and event-driven data pipelines, infrastructure builds, human-in-the-loop business processes, and internal applications written in any language. You can create those workflows from the UI using an embedded code editor that provides syntax validation, autocompletion, and built-in docs.</p> <p>What makes Kestra stand out:</p> <ul><li><strong>Powerful UI</strong>: manage workflows across teams with varying levels of engineering expertise — low-code UI forms for business users and a full code editor for developers.</li> <li><strong>Everything as Code</strong>: define any workflow in a simple YAML configuration and deploy it from anywhere using Terraform, CI/CD, CLI, API or the Kestra UI.</li> <li><strong>Git integration</strong>: version control integration and revision history make it easy to track changes and roll back if needed.</li> <li><strong>Highly customizable inputs</strong>: add strongly typed inputs that can conditionally depend on each other — Kestra shows or hides downstream inputs based on what the user has entered previously.</li> <li><strong>Outputs &amp; Artifacts</strong>: store and track workflow artifacts and pass data across multiple tasks and flows.</li> <li><strong>Plugins</strong>: use one of over 500 integrations to avoid writing code from scratch for common tasks such as extracting data from popular source systems, executing SQL queries within a database, reacting to events from external message brokers or triggering external jobs or API calls.</li></ul> <h3 id="modal">Modal</h3> <p>Modal is a serverless platform that provides the compute resources needed for your Python apps without the pain of managing dependencies, containerization, or infrastructure. You can dynamically access GPUs or CPUs to run your code, and you only pay for what you use.</p> <p>What makes Modal stand out:</p> <ul><li><strong>Serverless compute</strong>: spin up cloud resources instantly when you need them.</li> <li><strong>Cost-effective</strong>: pay only for the time your resources are running, down to the second.</li> <li><strong>Pythonic</strong>: add a few Python decorators to your code to offload compute to Modal — no need to maintain CI/CD pipelines, Kubernetes manifests, or Docker images.</li> <li><strong>Dependency management</strong>: no need to worry about Dockerfiles or virtual environments — Modal handles all infrastructure-related processes as long as you define your dependencies directly in your Python code.</li></ul> <p>Now that you know a bit more about Kestra and Modal, let’s use them to build powerful interactive workflows.</p> <h2 id="building-a-forecasting-workflow-with-kestra-and-modal">Building a forecasting workflow with Kestra and Modal</h2> <p>In this example, we’ll build a <strong>time-series forecast</strong> to predict the order volume based on historical data. This is a timely use case just ahead of Black Friday and the holiday season! We’ll use a SARIMA model to forecast the number of orders expected over the next 180 days and visualize the results.</p> <p>This workflow will be <strong>interactive</strong>, allowing users to adjust parameters such as the dataset URL, S3 bucket path, the number of CPU cores, and memory. <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://gist.github.com/anna-geller/8c37a868939ea94a6c91f069dc4c215c"><!--[--><!---->The code that generates the forecast<!--]--></a><!----> will run on Modal.</p> <p>Here’s a <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://youtu.be/Wucyw4gRNiQ"><!--[--><!---->short video<!--]--></a><!----> showing the final result:</p> <div class="youtube-embed svelte-dbf4q2"><iframe src="https://www.youtube.com/embed/Wucyw4gRNiQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="svelte-dbf4q2"></iframe></div><!----> <h2 id="run-modal-from-kestra">Run Modal from Kestra</h2> <p>Before diving into the full example, we first need to launch Kestra. Follow the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://kestra.io/docs/getting-started/quickstart#start-kestra"><!--[--><!---->Quickstart Guide<!--]--></a><!----> to get Kestra up and running in 60 seconds and execute your first workflow.</p> <h3 id="hello-world-in-kestra">“Hello World” in Kestra</h3> <p>Here’s a basic code scaffold to launch a “hello-world” flow in Kestra:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>id: modal_hello_world
+namespace: company.team
+
+inputs:
+  - id: my_first_input
+    type: STRING
+    defaults: World
+
+tasks:
+  - id: hello
+    type: io.kestra.plugin.core.log.Log
+    message: Hello {{ inputs.my_first_input }} 🚀</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Go to the UI and click on the <code>Create</code> button. Paste the above code and <code>Save</code> the flow.</p> <p>Then, click the <code>Execute</code> button to launch the flow, and soon after you should see the output in the logs: <code>Hello World 🚀</code>.</p> <p><img src="../../article-assets/kestra-hello-world.png" alt="hello world from Kestra" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <p>Each workflow in Kestra consists of three required components:</p> <ul><li>a unique <code>id</code></li> <li>a <code>namespace</code> used for organization and governance</li> <li>a list of <code>tasks</code> that define the workflow logic.</li></ul> <p>Optionally, you can also define <code>inputs</code> to allow users to dynamically execute the flow with different parameter values. Try that yourself by changing the value “World” to your name.</p> <p><img src="../../article-assets/kestra-define-inputs.png" alt="defining inputs in Kestra" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <h3 id="hello-world-in-modal-triggered-from-kestra">“Hello World” in Modal triggered from Kestra</h3> <p>Now, let’s add a Hello-World Modal example that we’ll trigger from Kestra. You can get your Modal token ID and secret by following the <a class="text-c-green-100 hover:underline" href="../../docs/guide/index.html"><!--[--><!---->quickstart guide<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>id: modal_hello_world
+namespace: company.team
+tasks:
+  - id: hello
+    type: io.kestra.plugin.modal.cli.ModalCLI
+    env:
+      MODAL_TOKEN_ID: "your_modal_token_id"
+      MODAL_TOKEN_SECRET: "your_modal_token_secret"
+    commands:
+      - modal run gpu.py
+    inputFiles:
+      gpu.py: |
+        import modal
+
+        app = modal.App(
+            "example-gpu",
+            image=modal.Image.debian_slim().pip_install(
+                "torch", find_links="https://download.pytorch.org/whl/cu117"
+            ),
+        )
+
+        @app.function(gpu="any")
+        def print_gpu_info():
+            import torch
+            import subprocess
+
+            subprocess.run(["nvidia-smi"])
+            print("Torch version:", torch.__version__)
+            print("CUDA available:", torch.cuda.is_available())
+            print("CUDA device count:", torch.cuda.device_count())
+            print("CUDA device name:", torch.cuda.get_device_name(0))
+            print("CUDA device index:", torch.cuda.current_device())</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>When you point the cursor anywhere in the Modal plugin configuration and switch to the documentation tab, you will see the explanation of all Modal plugin properties and examples how to use it.</p> <p><img src="../../article-assets/kestra-modal-flow.png" alt="running modal in a flow on kestra" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <h2 id="interactive-workflows">Interactive Workflows</h2> <p>Let’s extend the previous code example by adding an input allowing to choose the compute type needed for the Modal task. The <code>dependsOn</code> property in the <code>inputs</code> section ensures that the GPU option is only shown if the user chooses to use GPU acceleration in the Modal function. When the GPU option is selected, the dropdown shows the list of available GPUs, allowing only valid values to be selected:</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>id: modal_hello_world
+namespace: company.team
+
+inputs:
+  - id: compute_type
+    displayName: CPU or GPU
+    description: Whether to use CPU or GPU compute type
+    type: SELECT
+    values:
+      - CPU
+      - GPU
+    defaults: CPU
+
+  - id: gpu
+    type: SELECT
+    displayName: GPU request
+    description: The GPU resources to allocate to the job
+    defaults: "any"
+    values: ["any", "t4", "l4", "a100", "h100", "a10g"]
+    dependsOn:
+      inputs:
+        - compute_type
+      condition: "{{ inputs.compute_type == 'GPU' }}"
+
+  - id: cpu
+    type: SELECT
+    displayName: CPU request
+    description: The number of CPU cores to allocate to the job
+    defaults: "0.25"
+    values: ["0.25", "0.5", "0.75", "1.0", "1.5", "2.0", "4.0", "8.0", "16.0"]
+    dependsOn:
+      inputs:
+        - compute_type
+      condition: "{{ inputs.compute_type == 'CPU' }}"
+
+tasks:
+  - id: run_modal
+    type: io.kestra.plugin.modal.cli.ModalCLI
+    env:
+      MODAL_TOKEN_ID: "{{ kv('MODAL_TOKEN_ID') }}"
+      MODAL_TOKEN_SECRET: "{{ kv('MODAL_TOKEN_SECRET') }}"
+      GPU: "{{ inputs.gpu }}"
+      CPU: "{{ inputs.cpu }}"
+    commands:
+      - modal run cpu_or_gpu.py --compute-type "{{ inputs.compute_type }}"
+    inputFiles:
+      cpu_or_gpu.py: |
+        import os
+
+        import modal
+
+        app = modal.App(
+            "example-cpu-gpu",
+            secrets=[modal.Secret.from_local_environ(env_keys=["GPU", "CPU"])],
+        )
+
+        cpu_image = modal.Image.debian_slim().pip_install("torch", "psutil")
+        gpu_image = modal.Image.debian_slim().pip_install(
+            "torch", find_links="https://download.pytorch.org/whl/cu117"
+        )
+
+        @app.function(image=cpu_image, cpu=float(os.getenv("CPU", 0.25)))
+        def print_cpu_info():
+            import torch
+            import platform
+            import psutil
+
+            print("Torch version:", torch.__version__)
+            print("CUDA available:", torch.cuda.is_available())  # Should return False for CPU
+            print("CPU count:", psutil.cpu_count(logical=True))
+            print("CPU frequency:", psutil.cpu_freq().current, "MHz")
+            print("CPU architecture:", platform.architecture()[0])
+            print("Platform:", platform.system(), platform.release())
+            print("Total memory (RAM):", psutil.virtual_memory().total // (1024**2), "MB")
+
+        @app.function(image=gpu_image, gpu=os.getenv("GPU", "any"))
+        def print_gpu_info():
+            import torch
+            import subprocess
+
+            subprocess.run(["nvidia-smi"])
+            print("Torch version:", torch.__version__)
+            print("CUDA available:", torch.cuda.is_available())
+            print("CUDA device count:", torch.cuda.device_count())
+            print("CUDA device name:", torch.cuda.get_device_name(0))
+            print("CUDA device index:", torch.cuda.current_device())
+
+        @app.local_entrypoint()
+        def main(compute_type: str = "CPU"):
+            if compute_type == "GPU":
+                print_gpu_info.remote()
+            else:
+                print_cpu_info.remote()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>This example shows how to run Modal code as part of a Kestra workflow:</p> <ul><li>Use the <code>commands</code> property in the <code>ModalCLI</code> plugin to run <code>modal</code> CLI commands (like <code>modal run cpu_or_gpu.py</code>)</li> <li>Use the <code>env</code> property to provide the necessary environment variables for authenticating with Modal and external services or to pass variables to Modal function decorators</li> <li>Set the <code>namespaceFiles.enabled</code> property to <code>true</code> if you want to store your Python code as a separate file in the built-in Code Editor rather than inline in YAML</li> <li>Override the <code>containerImage</code> property if you need to use a custom Modal version — the default is the <code>latest</code> version.</li></ul> <p><img src="../../article-assets/kestra-pick-modal-gpu.png" alt="pick Modal CPU or GPU compute on Kestra" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <h2 id="adding-secrets">Adding Secrets</h2> <p>Now that we have the basic structure in place, let’s build out our order forecasting workflow.</p> <p>To securely manage sensitive data such as Modal tokens or AWS credentials in Kestra, you can use <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://kestra.io/docs/concepts/secret"><!--[--><!---->Secrets<!--]--></a><!---->. Adding secrets requires some additional setup, so to keep things simple for now, you can store them in the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://kestra.io/docs/concepts/kv-store"><!--[--><!---->KV Store<!--]--></a><!---->. Replace the placeholders with your actual credentials and execute the <code>curl</code> commands shown below (<em>the double quotes are necessary</em>). Alternatively, you can also add your KV pairs directly from the UI by navigating to the namespace <code>company.team</code> and adding the key-value pairs from the <code>KV Store</code> tab.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>curl -X PUT -H "Content-Type: application/json" http://localhost:8080/api/v1/namespaces/company.team/kv/MODAL_TOKEN_ID -d '"your_credential"'
+curl -X PUT -H "Content-Type: application/json" http://localhost:8080/api/v1/namespaces/company.team/kv/MODAL_TOKEN_SECRET -d '"your_credential"'
+curl -X PUT -H "Content-Type: application/json" http://localhost:8080/api/v1/namespaces/company.team/kv/AWS_ACCESS_KEY_ID -d '"your_credential"'
+curl -X PUT -H "Content-Type: application/json" http://localhost:8080/api/v1/namespaces/company.team/kv/AWS_SECRET_ACCESS_KEY -d '"your_credential"'
+curl -X PUT -H "Content-Type: application/json" http://localhost:8080/api/v1/namespaces/company.team/kv/AWS_DEFAULT_REGION -d '"us-east-1"'</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Now you can reference those values in your flow using the <code>{{ kv('KEY_NAME') }}</code> syntax.</p> <h2 id="adding-data-and-a-model">Adding data and a model</h2> <p>At this point, we’ve got the entire skeleton in place. From here, every workflow built with Modal and Kestra together will look different: different data, different models, different actions.</p> <p><a rel="nofollow" class="text-c-green-100 hover:underline" href="https://gist.github.com/anna-geller/8c37a868939ea94a6c91f069dc4c215c"><!--[--><!---->This GitHub Gist<!--]--></a><!----> includes the full workflow definition for our time-series forecasting use case if you’d like to try it for yourself. Simply copy the Gist’s raw content and paste it in Kestra UI when creating a new flow.</p> <p>We just want to call out one last feature. The <code>dependsOn</code> property in the <code>inputs</code> is what lets us create interactive workflows that adjust based on previous user inputs. When you click on the <code>Execute</code> button in the Kestra UI, you’ll see the available input options allowing you to adjust whether or not you want to customize the forecast, the amount of CPU, memory, and more. Depending on those choices, you will see other inputs appear or disappear.</p> <p><img src="../../article-assets/kestra-forecast-execute.png" alt="executing the data forecast flow on Kestra" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <p>Run the above flow and navigate to the <code>Outputs</code> tab of the Execution page. From here, you’ll be able to <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://youtu.be/Wucyw4gRNiQ"><!--[--><!---->download and view<!--]--></a><!----> the <code>plotly</code> report exported as an HTML file showing a forecasted order volume for each day of the forecast.</p> <h2 id="automate-workflows-with-triggers">Automate Workflows with Triggers</h2> <p>You can extend the workflow by adding a <code>trigger</code>. This way, you can automatically run the flow:</p> <ul><li>on a schedule</li> <li>event-driven e.g. when a file is uploaded to an S3 bucket</li> <li>from an external application via a webhook.</li></ul> <p>Check Kestra’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://kestra.io/docs/workflow-components/triggers"><!--[--><!---->triggers documentation<!--]--></a><!----> to learn more.</p> <h2 id="next-steps">Next steps</h2> <p>Using Kestra and Modal together allows you to create interactive data workflows that adapt to user’s inputs and to your compute needs.</p> <p>Kestra is open-source, so if you enjoy the project, give us a <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://github.com/kestra-io/kestra"><!--[--><!---->GitHub star<!--]--></a><!----> ⭐️ and join <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://kestra.io/slack"><!--[--><!---->our community<!--]--></a><!----> to ask questions or share feedback.</p><!--]--></article><!----><!--]--><!----></div></article></div><!----><!--]--><!--]--><!----><!--]--><!----> <section class="marketing-container my-16"><div class="grid gap-x-5 gap-y-10 md:grid-cols-2"><video loop muted playsinline disablepictureinpicture class="h-full w-full " poster="../../marketing-website-assets/modal_footer_poster.jpg" style="object-fit: contain;"><!--[--><source src="../../marketing-website-assets/modal_footer_no_alpha_h264.mp4" type="video/mp4"/><!--]--></video><!----> <div class="flex flex-col items-center justify-center md:items-start"><h2 class="marketing-h2 mb-7 max-w-lg text-center md:mb-14 md:text-left">Ship your first app in minutes. <!--[!--><!--]--></h2> <!----><a class="btn-marketing btn-primary btn-dark svelte-14i4nz" href="../../signup/index.html"><div class="contents svelte-14i4nz"><!---->Get Started<!----> <!--[!--><!--]--></div> <!--[!--><!--]--><!----></a><!----><!----> <!--[--><p class="text-light-green/60 mt-6 text-sm">$30 / month free compute</p><!--]--></div></div></section><!----> <!----><footer class="relative "><div aria-hidden="true" class="pointer-events-none absolute bottom-0 left-1/2 -z-10 hidden w-[180vw] md:block" style="height: 440px; transform-origin: bottom center; transform: translateX(-50%) scaleY(0.34); opacity: 0.5; filter: blur(130px); background: radial-gradient(ellipse 165% 110% at 50% 100%, rgba(128, 238, 100, 0.40) 0%, rgba(128, 238, 100, 0.22) 22%, rgba(128, 238, 100, 0.10) 42%, rgba(128, 238, 100, 0.03) 65%, rgba(128, 238, 100, 0) 92%);"></div> <div class="relative " style="transform: translateY(0px);"><div class="marketing-container pb-24 pt-10 md:pb-32 md:pt-12 lg:pb-40 lg:pt-16"><div class="flex flex-col items-center gap-14 lg:flex-row lg:items-end lg:justify-between lg:gap-16"><div class="flex flex-col items-center gap-10 text-center lg:w-[312px] lg:shrink-0 lg:items-start lg:text-left"><div class="flex flex-col items-center gap-6 lg:items-start"><a href="../../index.html" class="block"><img src="../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal" class="block h-[30px] w-auto"/></a> <p class="text-light-green font-goga text-[28px] font-medium leading-[28px] tracking-normal"><span class="text-c-green-100">AI infrastructure</span> that<br/> developers love</p></div> <div class="flex flex-col items-center gap-5 lg:items-start"><div class="flex flex-wrap items-center justify-center gap-5"><!--[--><a href="https://x.com/modal" target="_blank" rel="noreferrer" aria-label="X" class="social-btn svelte-kscrqp"><svg width="14" height="14" viewBox="0 0 300 271" xmlns="http://www.w3.org/2000/svg"><path d="m236 0h46l-101 115 118 156h-92.6l-72.5-94.8-83 94.8h-46l107-123-113-148h94.9l65.5 86.6zm-16.1 244h25.5l-165-218h-27.4z"></path></svg><!----></a><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="social-btn svelte-kscrqp"><svg width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 310 310"><path d="M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73
+      C77.16,101.969,74.922,99.73,72.16,99.73z"></path><path d="M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4
+      c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z"></path><path d="M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599
+      c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319
+      c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995
+      C310,145.43,300.549,94.761,230.454,94.761z"></path></svg><!----></a><a href="../../slack/index.html" target="_blank" rel="noreferrer" aria-label="Slack" class="social-btn svelte-kscrqp"><svg width="16" height="16" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M126.12,315.1A47.06,47.06,0,1,1,79.06,268h47.06Z"></path><path d="M149.84,315.1a47.06,47.06,0,0,1,94.12,0V432.94a47.06,47.06,0,1,1-94.12,0Z"></path><path d="M196.9,126.12A47.06,47.06,0,1,1,244,79.06v47.06Z"></path><path d="M196.9,149.84a47.06,47.06,0,0,1,0,94.12H79.06a47.06,47.06,0,0,1,0-94.12Z"></path><path d="M385.88,196.9A47.06,47.06,0,1,1,432.94,244H385.88Z"></path><path d="M362.16,196.9a47.06,47.06,0,0,1-94.12,0V79.06a47.06,47.06,0,1,1,94.12,0Z"></path><path d="M315.1,385.88A47.06,47.06,0,1,1,268,432.94V385.88Z"></path><path d="M315.1,362.16a47.06,47.06,0,0,1,0-94.12H432.94a47.06,47.06,0,1,1,0,94.12Z"></path></svg><!----></a><a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" aria-label="GitHub" class="social-btn svelte-kscrqp"><svg width="16" height="16" viewBox="0 0.5 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21Z"></path></svg><!----></a><a href="https://www.youtube.com/channel/UC477UdoLR2Js3RHhRWSXsQA" target="_blank" rel="noreferrer" aria-label="YouTube" class="social-btn svelte-kscrqp"><svg width="14" height="14" viewBox="0 0 28.57 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z
+    M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z"></path></svg><!----></a><!--]--></div> <p class="text-light-green/60 text-sm lg:ml-0.5"><!--[!-->© Modal 2026<!--]--><!----></p></div></div> <div class="grid grid-cols-2 gap-x-8 gap-y-10 text-sm sm:grid-cols-4 sm:gap-x-10 lg:flex lg:items-start lg:gap-x-[88px]"><!--[--><div class="flex flex-col gap-[11px]"><p class="text-light-green font-medium">Products</p> <!--[--><a class="footer-link svelte-kscrqp" href="../../products/inference/index.html">Inference</a><a class="footer-link svelte-kscrqp" href="../../products/sandboxes/index.html">Sandboxes</a><a class="footer-link svelte-kscrqp" href="../../products/training/index.html">Training</a><a class="footer-link svelte-kscrqp" href="../../products/notebooks/index.html">Notebooks</a><a class="footer-link svelte-kscrqp" href="../../products/batch/index.html">Batch</a><a class="footer-link svelte-kscrqp" href="../../products/platform/index.html">Core Platform</a><!--]--></div><div class="flex flex-col gap-[11px]"><p class="text-light-green font-medium">Resources</p> <!--[--><a class="footer-link svelte-kscrqp" href="../../docs/guide/index.html">Documentation</a><a class="footer-link svelte-kscrqp" href="../../pricing/index.html">Pricing</a><a class="footer-link svelte-kscrqp" href="../../slack/index.html">Slack Community</a><a class="footer-link svelte-kscrqp" href="../../articles/index.html">Articles</a><a class="footer-link svelte-kscrqp" href="../../gpu-glossary/index.html">GPU Glossary</a><a class="footer-link svelte-kscrqp" href="../../llm-almanac/index.html">LLM Engine Advisor</a><a class="footer-link svelte-kscrqp" href="../../library/index.html">Model Library</a><!--]--></div><div class="flex flex-col gap-[11px]"><p class="text-light-green font-medium">Company</p> <!--[--><a class="footer-link svelte-kscrqp" href="../../company/index.html">About</a><a class="footer-link svelte-kscrqp" href="../index.html">Blog</a><a class="footer-link svelte-kscrqp" href="../../careers/index.html">Careers</a><a class="footer-link svelte-kscrqp" href="../../events/index.html">Events</a><a class="footer-link svelte-kscrqp" href="../../legal/privacy-policy/index.html">Privacy Policy</a><a class="footer-link svelte-kscrqp" href="../../docs/guide/security/index.html">Security &amp; Privacy</a><a class="footer-link svelte-kscrqp" href="../../legal/terms/index.html">Terms</a><!--]--></div><div class="flex flex-col gap-[11px]"><p class="text-light-green font-medium">Popular Examples</p> <!--[--><a class="footer-link svelte-kscrqp" href="../../docs/examples/llm_inference/index.html">Serve your own LLM API</a><a class="footer-link svelte-kscrqp" href="../../docs/examples/diffusers_lora_finetune/index.html">Create custom art of your pet</a><a class="footer-link svelte-kscrqp" href="../../docs/examples/opencode_server/index.html">Deploy OpenCode agents in a cloud Sandbox</a><!--]--></div><!--]--></div></div></div><!----></div><!----></footer><!----><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="oFiEk6Qf/Mo+zuvHq0M43g==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 4, 5, 64],
+							data: [{type:"data",data:{},uses:{}},{type:"data",data:{flags:{},announcementBanner:{_createdAt:"2026-08-14T13:22:40Z",_id:"61a08d89-bc9c-49f8-8949-76e0a1f757fe",_rev:"9I1TyPaxC6m0CvrgBmm8JQ",_system:{base:{id:"61a08d89-bc9c-49f8-8949-76e0a1f757fe",rev:"S5cUUMsZa96UQf9Qu9FBq2"}},_type:"announcementBanner",_updatedAt:"2026-08-14T16:11:35Z",endDate:"2026-09-25T16:07:00.000Z",linkText:"Apply now",linkUrl:"/runtime",message:"Runtime, the conference for engineers running AI in production. Oct. 1 in SF",showInDashboard:false,startDate:"2026-08-14T16:08:00.000Z"}},uses:{dependencies:["app:announcement-banner"]}},null,{type:"data",data:{page:null},uses:{params:["slug"]}}],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

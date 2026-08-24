@@ -1,0 +1,2 @@
+/*! tailwindcss v4.2.2 | MIT License | https://tailwindcss.com */
+.btn-group.svelte-lkavdh{isolation:isolate;display:inline-flex}.btn-group.svelte-lkavdh .btn{min-height:34px;position:relative}.btn-group.svelte-lkavdh .btn~.btn{border-top-left-radius:0;border-bottom-left-radius:0;margin-left:-1px}.btn-group.svelte-lkavdh .btn:has(~.btn){border-top-right-radius:0;border-bottom-right-radius:0}.btn-group.svelte-lkavdh .btn:hover:not(:disabled),.btn-group.svelte-lkavdh .btn:active:not(:disabled),.btn-group.svelte-lkavdh .btn:focus-visible{z-index:1}

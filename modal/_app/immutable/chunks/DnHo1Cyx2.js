@@ -1,0 +1,2 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`22a0d24e-ced2-466e-9c0a-782192072678`,e._sentryDebugIdIdentifier=`sentry-dbid-22a0d24e-ced2-466e-9c0a-782192072678`)}catch{}})();var e=`/_app/immutable/assets/LovableTestimonial.C1kHoavl.svg`;export{e as t};
+//# sourceMappingURL=DnHo1Cyx2.js.map

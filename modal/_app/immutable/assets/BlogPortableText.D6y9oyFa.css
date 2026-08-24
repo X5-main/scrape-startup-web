@@ -1,0 +1,2 @@
+/*! tailwindcss v4.2.2 | MIT License | https://tailwindcss.com */
+@layer properties{@supports (((-webkit-hyphens:none)) and (not (margin-trim:inline))) or ((-moz-orient:inline) and (not (color:rgb(from red r g b)))){*,:before,:after,::backdrop{--tw-border-style:solid}}}.blog-author-avatar.svelte-1u3ajt9 .avatar-icon{border-radius:.25rem}.blog-author-avatar.svelte-1u3ajt9 .avatar-icon.has-border{border-style:var(--tw-border-style);border-width:1px;border-color:var(--color-c-gray-10,#2f2f2f)}@property --tw-border-style{syntax:"*";inherits:false;initial-value:solid}

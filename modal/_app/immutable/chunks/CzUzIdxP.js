@@ -1,0 +1,23 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`12748e16-9c12-4c1b-9a20-09b2633643b9`,e._sentryDebugIdIdentifier=`sentry-dbid-12748e16-9c12-4c1b-9a20-09b2633643b9`)}catch{}})();var e=`{"version": 2, "width": 212, "height": 69, "timestamp": 1744229158, "env": {"TERM=xterm-256color": null}}
+[0.795684, "o", "\\u001b[?25l"]
+[0.796465, "o", "\\u001b[34m⠋\\u001b[0m Initializing..."]
+[0.796588, "o", "\\r\\u001b[2K\\u001b[32m✓\\u001b[0m Initialized. \\u001b[38;5;249mView run at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m\\r\\n\\u001b[34m⠋\\u001b[0m Initializing..."]
+[0.797035, "o", "\\r\\u001b[2K\\u001b[34m⠋\\u001b[0m Initializing...\\r\\n\\u001b[?25h\\r\\u001b[1A\\u001b[2K"]
+[0.797181, "o", "\\u001b[?25l"]
+[0.79746, "o", "\\u001b[34m⠋\\u001b[0m Creating objects..."]
+[1.017772, "o", "\\r\\u001b[2K\\u001b[34m⠹\\u001b[0m Creating objects...\\r\\n\\u001b[38;5;244m├── \\u001b[0m🔨 Created mount /get_started.py\\r\\n\\u001b[38;5;244m└── \\u001b[0m🔨 Created function square.\\r\\n\\u001b[?25h\\r\\u001b[1A\\u001b[2K\\u001b[1A\\u001b[2K\\u001b[1A\\u001b[2K"]
+[1.01849, "o", "\\u001b[32m✓\\u001b[0m Created objects.\\r\\n\\u001b[38;5;244m├── \\u001b[0m🔨 Created mount /get_started.py\\r\\n\\u001b[38;5;244m└── \\u001b[0m🔨 Created function square.\\r\\n"]
+[1.098019, "o", "\\u001b[?25l"]
+[1.098289, "o", "\\u001b[34m⠋\\u001b[0m Running app..."]
+[1.354718, "o", "\\r\\u001b[2K\\u001b[34m⠸\\u001b[0m Running app..."]
+[1.610752, "o", "\\r\\u001b[2K\\u001b[34m⠦\\u001b[0m \\u001b[34mRunning...\\u001b[0m \\u001b[38;5;249mView app at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m"]
+[1.866398, "o", "\\r\\u001b[2K\\u001b[34m⠏\\u001b[0m \\u001b[34mLoading images (1 containers initializing)...\\u001b[0m \\u001b[38;5;249mView app at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m"]
+[2.122702, "o", "\\r\\u001b[2K\\u001b[34m⠹\\u001b[0m \\u001b[34mLoading images (1 containers initializing)...\\u001b[0m \\u001b[38;5;249mView app at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m"]
+[2.376606, "o", "\\r\\u001b[2K\\u001b[34m⠴\\u001b[0m \\u001b[34mLoading images (1 containers initializing)...\\u001b[0m \\u001b[38;5;249mView app at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m"]
+[2.632923, "o", "\\r\\u001b[2K\\u001b[34m⠏\\u001b[0m \\u001b[34mRunning (1/1 containers active)...\\u001b[0m \\u001b[38;5;249mView app at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m"]
+[2.678394, "o", "\\r\\u001b[2K\\u001b[34m⠏\\u001b[0m\\u001b[34m \\u001b[0m\\u001b[34mRunning (1/1 containers active)...\\u001b[0m\\u001b[34m \\u001b[0m\\u001b[38;5;249mView app at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m"]
+[2.679194, "o", "\\r\\u001b[2K\\u001b[34m⠏\\u001b[0m \\u001b[34mRunning (1/1 containers active)...\\u001b[0m \\u001b[38;5;249mView app at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m\\r\\n\\u001b[?25h\\r\\u001b[1A\\u001b[2K"]
+[2.732761, "o", "\\u001b[34mThe square of 2 is 4\\r\\n\\u001b[0m"]
+[3.818738, "o", "\\u001b[33mStopping app - local entrypoint completed.\\r\\n\\u001b[0m"]
+[4.625194, "o", "\\u001b[32m✓\\u001b[0m App completed. \\u001b[38;5;249mView run at \\u001b[0m\\u001b[4;38;5;249mhttps://modal.com/playground\\u001b[0m\\r\\n"]`;export{e as default};
+//# sourceMappingURL=CzUzIdxP.js.map

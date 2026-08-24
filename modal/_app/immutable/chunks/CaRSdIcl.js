@@ -1,0 +1,2 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`8b8b93f8-b66b-434b-ae13-c4e6f941ec9f`,e._sentryDebugIdIdentifier=`sentry-dbid-8b8b93f8-b66b-434b-ae13-c4e6f941ec9f`)}catch{}})();var e=`/_app/immutable/assets/logotype-dark.D862MXBL.svg`;export{e as t};
+//# sourceMappingURL=CaRSdIcl.js.map

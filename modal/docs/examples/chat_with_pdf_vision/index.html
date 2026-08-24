@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="0044f1e0cd074d019b221187ba56d2d9-a299106b4ce73aab"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=0044f1e0cd074d019b221187ba56d2d9,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="In this example, we demonstrate how to use the the ColQwen2 model to build a simple “Chat with PDF” retrieval-augmented generation (RAG) app. The ColQwen2 model is based on ColPali but uses the Qwen2-VL-2B-Instruct vision-language model. ColPali is in turn based on the late-interaction embedding approach pioneered in ColBERT."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Chat with PDF: RAG with ColQwen2"/> <meta property="og:description" content="In this example, we demonstrate how to use the the ColQwen2 model to build a simple “Chat with PDF” retrieval-augmented generation (RAG) app. The ColQwen2 model is based on ColPali but uses the Qwen2-VL-2B-Instruct vision-language model. ColPali is in turn based on the late-interaction embedding approach pioneered in ColBERT."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Chat+with+PDF%3A+RAG+with+ColQwen2&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Chat with PDF: RAG with ColQwen2 | Modal Docs</title>
+		<link href="../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../index.html" class="shrink-0 lg:mr-8"><img src="../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb navlink-active" href="../index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="n00DF53gsr" aria-expanded="false" data-state="closed" id="4gcaHcDtkz" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../sdk/py/releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[--><!--[--><a href="../index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Featured</span> <!--[!--><!--]--></span></a><!--]--><!--[!--><a href="../hello_world/index.html" class="header svelte-14npiaw">Getting started</a> <!--[--><a href="../hello_world/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Hello, world</span> <!--[!--><!--]--></span></a><a href="../webscraper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Simple web scraper</span> <!--[!--><!--]--></span></a><a href="../basic_web/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serving Web Functions</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm_inference/index.html" class="header svelte-14npiaw">Large language models (LLMs)</a> <!--[--><a href="../llm_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy an OpenAI-compatible LLM service with vLLM</span> <!--[!--><!--]--></span></a><a href="../ministral3_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cut Ministral 3 cold start times by 10x with snapshots</span> <!--[!--><!--]--></span></a><a href="../vllm_throughput/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Maximize tokens per second in batch processing with vLLM</span> <!--[!--><!--]--></span></a><a href="../sglang_low_latency/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve an ultra-low-latency chatbot with SGLang</span> <!--[!--><!--]--></span></a><a href="../nemotron_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy Nemotron 3</span> <!--[!--><!--]--></span></a><a href="../inkling_small/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Inkling-Small with SGLang</span> <!--[!--><!--]--></span></a><a href="../deepseek_v4_flash/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve DeepSeek-V4-Flash</span> <!--[!--><!--]--></span></a><a href="../unsloth_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Efficient LLM Finetuning with Unsloth</span> <!--[!--><!--]--></span></a><a href="index.html" class="item svelte-14npiaw active"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a multimodal RAG chatbot to answer questions about PDFs</span> <!--[!--><!--]--></span></a><a href="../llm-finetuning/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune an LLM to replace your CEO</span> <!--[!--><!--]--></span></a><a href="../mcp_server_stateless/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a stateless MCP with FastMCP</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../image_to_image/index.html" class="header svelte-14npiaw">Images, video, &amp; 3D</a> <!--[--><a href="../image_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Edit images with Flux Kontext</span> <!--[!--><!--]--></span></a><a href="../music-video-gen/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Wan2.1 video models on your face</span> <!--[!--><!--]--></span></a><a href="../flux/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Flux fast with torch.compile</span> <!--[!--><!--]--></span></a><a href="../diffusers_lora_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Flux with LoRA</span> <!--[!--><!--]--></span></a><a href="../image_to_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Animate images with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../ltx/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate video clips with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../text_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Stable Diffusion with a CLI, API, and web UI</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm-voice-chat/index.html" class="header svelte-14npiaw">Audio</a> <!--[--><a href="../llm-voice-chat/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Moshi voice chatbot</span> <!--[!--><!--]--></span></a><a href="../streaming_kyutai_stt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Stream transcripts at the speed of speech using Kyutai STT</span> <!--[!--><!--]--></span></a><a href="../generate_music/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Make music with ACE-Step</span> <!--[!--><!--]--></span></a><a href="../chatterbox_tts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate speech with Chatterbox</span> <!--[!--><!--]--></span></a><a href="../batched_whisper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run high throughput batched transcription with Whisper</span> <!--[!--><!--]--></span></a><a href="../fine_tune_asr/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Whisper to recognize new words</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../webrtc_yolo/index.html" class="header svelte-14npiaw">Real-time communication (WebRTC)</a> <!--[--><a href="../webrtc_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serverless WebRTC</span> <!--[!--><!--]--></span></a><a href="../fastrtc_flip_webcam/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>WebRTC quickstart with FastRTC</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../esmfold2_binder_design/index.html" class="header svelte-14npiaw">Computational biology</a> <!--[--><a href="../esmfold2_binder_design/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Design protein binders with ESMFold2</span> <!--[!--><!--]--></span></a><a href="../chai1/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Chai-1</span> <!--[!--><!--]--></span></a><a href="../esm3/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a protein-folding dashboard</span> <!--[!--><!--]--></span></a><a href="../boltz_predict/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Boltz-2</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../opencode_server/index.html" class="header svelte-14npiaw">Modal Sandboxes</a> <!--[--><a href="../opencode_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a background coding agent with OpenCode</span> <!--[!--><!--]--></span></a><a href="../modal-vibe/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a scalable AI coding platform</span> <!--[!--><!--]--></span></a><a href="../claude-slack-gif-creator/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Create GIFs from Slack using the Claude Agent SDK</span> <!--[!--><!--]--></span></a><a href="../agent/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a LangGraph agent's code in a secure GPU sandbox</span> <!--[!--><!--]--></span></a><a href="../computer_use_vnc/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Watch a computer-use agent work in real-time over VNC</span> <!--[!--><!--]--></span></a><a href="../harbor_evals/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run massively parallel evals on Modal Sandboxes</span> <!--[!--><!--]--></span></a><a href="../simple_code_interpreter/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a stateful, sandboxed code interpreter</span> <!--[!--><!--]--></span></a><a href="../safe_code_execution/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Node.js, Ruby, and more in a Sandbox</span> <!--[!--><!--]--></span></a><a href="../sandbox_pool/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Speed up Sandbox starts with warm pools</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../grpo_verl/index.html" class="header svelte-14npiaw">Reinforcement Learning</a> <!--[--><a href="../grpo_verl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve math problems using GRPO and verl</span> <!--[!--><!--]--></span></a><a href="../grpo_trl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve coding problems using GRPO and TRL</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../liquidai_embeddings_server/index.html" class="header svelte-14npiaw">Embeddings</a> <!--[--><a href="../liquidai_embeddings_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Liquid AI embeddings with Modal Servers</span> <!--[!--><!--]--></span></a><a href="../amazon_embeddings/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Embed millions of documents with TEI</span> <!--[!--><!--]--></span></a><a href="../mongodb-search/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Turn satellite images into vectors and store them in MongoDB</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hackernews_alerts/index.html" class="header svelte-14npiaw">Parallel processing and job scheduling</a> <!--[--><a href="../hackernews_alerts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Hacker News Slackbot</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_jobs/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a Document OCR job queue</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_webapp/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve a Document OCR web app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hp_sweep_gpt/index.html" class="header svelte-14npiaw">Training models from scratch</a> <!--[--><a href="../hp_sweep_gpt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train an SLM with early-stopping grid search over hyperparameters</span> <!--[!--><!--]--></span></a><a href="../long-training/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run long, resumable training jobs</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../finetune_yolo/index.html" class="header svelte-14npiaw">Hosting popular libraries</a> <!--[--><a href="../finetune_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>YOLO: Fine-tune and serve computer vision models</span> <!--[!--><!--]--></span></a><a href="../blender_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Blender: Build a 3D render farm</span> <!--[!--><!--]--></span></a><a href="../serve_streamlit/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Streamlit: Run and deploy Streamlit apps</span> <!--[!--><!--]--></span></a><a href="../cron_datasette/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SQLite: Publish explorable data with Datasette</span> <!--[!--><!--]--></span></a><a href="../algolia_indexer/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Algolia: Build docsearch with a crawler</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../discord_bot/index.html" class="header svelte-14npiaw">Connecting to other APIs</a> <!--[--><a href="../discord_bot/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Discord: Deploy and run a Discord Bot</span> <!--[!--><!--]--></span></a><a href="../db_to_sheet/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Google Sheets: Sync databases and APIs to a Google Sheet</span> <!--[!--><!--]--></span></a><a href="../potus_speech_qanda/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>OpenAI: Run a RAG Q&amp;A chatbot</span> <!--[!--><!--]--></span></a><a href="../modal_tailscale/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tailscale: Add Modal Apps to your VPN</span> <!--[!--><!--]--></span></a><a href="../pushgateway/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Prometheus: Publish custom metrics with Pushgateway</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../s3_bucket_mount/index.html" class="header svelte-14npiaw">Managing data</a> <!--[--><a href="../s3_bucket_mount/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Mount S3 buckets in Modal Apps</span> <!--[!--><!--]--></span></a><a href="../dbt_duckdb/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build your own data warehouse with DuckDB, dbt, and Modal</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[--><a href="../miscellaneous/index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Miscellaneous</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[!--><!----><!----><div class="text-c-gray-80"><!--[!--><!--[--><div class="float-left mb-6 mt-6 pr-2 md:float-right md:mb-2 md:mt-12 md:pl-2 md:pr-0"><a class="btn btn-outlined bg-c-gray-5" href="https://github.com/modal-labs/modal-examples/blob/main/06_gpu_and_ml/llm-serving/chat_with_pdf_vision.py" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github text-c-gray-80 mr-2.5"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-80 text-sm">View on GitHub</span></a></div><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="m5XW9JmnRx" aria-expanded="false" data-state="closed" id="KYHcoesWzy" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><h1 id="chat-with-pdf-rag-with-colqwen2"><!--[--><!---->Chat with PDF: RAG with ColQwen2<!--]--></h1><!----> <p>In this example, we demonstrate how to use the the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/vidore/colqwen2-v0.1"><!--[--><!---->ColQwen2<!--]--></a><!----> model to build a simple
+“Chat with PDF” retrieval-augmented generation (RAG) app.
+The ColQwen2 model is based on <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/blog/manu/colpali"><!--[--><!---->ColPali<!--]--></a><!----> but uses the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct"><!--[--><!---->Qwen2-VL-2B-Instruct<!--]--></a><!----> vision-language model.
+ColPali is in turn based on the late-interaction embedding approach pioneered in <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://dl.acm.org/doi/pdf/10.1145/3397271.3401075"><!--[--><!---->ColBERT<!--]--></a><!---->.</p> <p>Vision-language models with high-quality embeddings obviate the need for complex pre-processing pipelines.
+See <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://blog.vespa.ai/announcing-colbert-embedder-in-vespa/"><!--[--><!---->this blog post from Jo Bergum of Vespa<!--]--></a><!----> for more.</p> <!----><h2 id="setup" class="group"><span><!--[--><!--[--><!---->Setup<!--]--><!--]--></span><!--[--> <a href="#setup" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>First, we’ll import the libraries we need locally and define some constants.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>from pathlib import Path
+from typing import Optional
+from urllib.request import urlopen
+from uuid import uuid4
+
+import modal
+
+MINUTES = 60  # seconds
+
+app = modal.App("example-chat-with-pdf-vision")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="setting-up-dependencies" class="group"><span><!--[--><!--[--><!---->Setting up dependencies<!--]--><!--]--></span><!--[--> <a href="#setting-up-dependencies" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>In Modal, we define <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/custom-container/index.html"><!--[--><!---->container images<!--]--></a><!----> that run our serverless workloads.
+We install the packages required for our application in those images.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>CACHE_DIR = "/hf-cache"
+
+model_image = (
+    modal.Image.debian_slim(python_version="3.12")
+    .apt_install("git")
+    .uv_pip_install(
+        [
+            "colpali-engine==0.3.5",
+            "transformers>=4.45.0",
+            "torch>=2.0.0",
+            "huggingface-hub==0.36.0",
+            "qwen-vl-utils==0.0.8",
+            "torchvision==0.19.1",
+        ]
+    )
+    .env({"HF_XET_HIGH_PERFORMANCE": "1", "HF_HUB_CACHE": CACHE_DIR})
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>These dependencies are only installed remotely, so we can’t import them locally.
+Use the <code>.imports</code> context manager to import them only on Modal instead.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>with model_image.imports():
+    import torch
+    from colpali_engine.models import ColQwen2, ColQwen2Processor
+    from qwen_vl_utils import process_vision_info
+    from transformers import AutoProcessor, Qwen2VLForConditionalGeneration</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="specifying-the-colqwen2-model" class="group"><span><!--[--><!--[--><!---->Specifying the ColQwen2 model<!--]--><!--]--></span><!--[--> <a href="#specifying-the-colqwen2-model" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Vision-language models (VLMs) for embedding and generation add another layer of simplification
+to RAG apps based on vector search: we only need one model.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>MODEL_NAME = "Qwen/Qwen2-VL-2B-Instruct"
+MODEL_REVISION = "aca78372505e6cb469c4fa6a35c60265b00ff5a4"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="managing-state-with-modal-volumes-and-dicts" class="group"><span><!--[--><!--[--><!---->Managing state with Modal Volumes and Dicts<!--]--><!--]--></span><!--[--> <a href="#managing-state-with-modal-volumes-and-dicts" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Chat services are stateful:
+the response to an incoming user message depends on past user messages in a session.</p> <p>RAG apps add even more state:
+the documents being retrieved from and the index over those documents,
+e.g. the embeddings.</p> <p>Modal Functions are stateless in and of themselves.
+They don’t retain information from input to input.
+That’s what enables Modal Functions to automatically scale up and down <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/cold-start/index.html"><!--[--><!---->based on the number of incoming requests<!--]--></a><!---->.</p> <!----><h3 id="managing-chat-sessions-with-modal-dicts" class="group"><span><!--[--><!--[--><!---->Managing chat sessions with Modal Dicts<!--]--><!--]--></span><!--[--> <a href="#managing-chat-sessions-with-modal-dicts" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>In this example, we use a <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/dicts-and-queues/index.html"><!--[--><code>modal.Dict</code><!--]--></a><!----> to store state information between Function calls.</p> <p>Modal Dicts behave similarly to Python dictionaries,
+but they are backed by remote storage and accessible to all of your Modal Functions.
+They can contain any Python object
+that can be serialized using <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://github.com/cloudpipe/cloudpickle"><!--[--><code>cloudpickle</code><!--]--></a><!---->.</p> <p>A Dict can hold a few gigabytes across keys of size up to 100 MiB,
+so it works well for our chat session state, which is a few KiB per session,
+and for our embeddings, which are a few hundred KiB per PDF page,
+up to about 100,000 pages of PDFs.</p> <p>At a larger scale, we’d need to replace this with a database, like Postgres,
+or push more state to the client.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>sessions = modal.Dict.from_name("colqwen-chat-sessions", create_if_missing=True)
+
+
+class Session:
+    def __init__(self):
+        self.images = None
+        self.messages = []
+        self.pdf_embeddings = None</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="storing-pdfs-on-a-modal-volume" class="group"><span><!--[--><!--[--><!---->Storing PDFs on a Modal Volume<!--]--><!--]--></span><!--[--> <a href="#storing-pdfs-on-a-modal-volume" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Images extracted from PDFs are larger than our session state or embeddings
+— low tens of MiB per page.</p> <p>So we store them on a <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->Modal Volume<!--]--></a><!---->,
+which can store terabytes (or more!) of data across tens of thousands of files.</p> <p>Volumes behave like a remote file system:
+we read and write from them much like a local file system.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>pdf_volume = modal.Volume.from_name("colqwen-chat-pdfs", create_if_missing=True)
+PDF_ROOT = Path("/vol/pdfs/")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="caching-the-model-weights" class="group"><span><!--[--><!--[--><!---->Caching the model weights<!--]--><!--]--></span><!--[--> <a href="#caching-the-model-weights" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>We’ll also use a Volume to cache the model weights.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>cache_volume = modal.Volume.from_name("hf-hub-cache", create_if_missing=True)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Running this function will download the model weights to the cache volume.
+Otherwise, the model weights will be downloaded on the first query. For more on storing model weights on Modal, see <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/model-weights/index.html"><!--[--><!---->this guide<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.function(
+    image=model_image, volumes={CACHE_DIR: cache_volume}, timeout=20 * MINUTES
+)
+def download_model():
+    from huggingface_hub import snapshot_download
+
+    result = snapshot_download(
+        MODEL_NAME,
+        revision=MODEL_REVISION,
+        ignore_patterns=["*.pt", "*.bin"],  # using safetensors
+    )
+    print(f"Downloaded model weights to {result}")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="defining-a-chat-with-pdf-service" class="group"><span><!--[--><!--[--><!---->Defining a Chat with PDF service<!--]--><!--]--></span><!--[--> <a href="#defining-a-chat-with-pdf-service" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>To deploy an autoscaling “Chat with PDF” vision-language model service on Modal,
+we just need to wrap our Python logic in a <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/apps/index.html"><!--[--><!---->Modal App<!--]--></a><!---->:</p> <p>It uses <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/lifecycle-functions/index.html"><!--[--><!---->Modal <code>@app.cls</code><!--]--></a><!----> decorators
+to organize the “lifecycle” of the app:
+loading the model on container start (<code>@modal.enter</code>) and running inference on request (<code>@modal.method</code>).</p> <p>We include in the arguments to the <code>@app.cls</code> decorator
+all the information about this service’s infrastructure:
+the container image, the remote storage, and the GPU requirements.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.cls(
+    image=model_image,
+    gpu="A100-80GB",
+    scaledown_window=10 * MINUTES,  # spin down when inactive
+    volumes={"/vol/pdfs/": pdf_volume, CACHE_DIR: cache_volume},
+)
+class Model:
+    @modal.enter()
+    def load_models(self):
+        self.colqwen2_model = ColQwen2.from_pretrained(
+            "vidore/colqwen2-v0.1",
+            torch_dtype=torch.bfloat16,
+            device_map="cuda:0",
+        )
+        self.colqwen2_processor = ColQwen2Processor.from_pretrained(
+            "vidore/colqwen2-v0.1"
+        )
+        self.qwen2_vl_model = Qwen2VLForConditionalGeneration.from_pretrained(
+            MODEL_NAME,
+            revision=MODEL_REVISION,
+            torch_dtype=torch.bfloat16,
+        )
+        self.qwen2_vl_model.to("cuda:0")
+        self.qwen2_vl_processor = AutoProcessor.from_pretrained(
+            "Qwen/Qwen2-VL-2B-Instruct", trust_remote_code=True
+        )
+
+    @modal.method()
+    def index_pdf(self, session_id, target: bytes | list):
+        # We store concurrent user chat sessions in a modal.Dict
+
+        # For simplicity, we assume that each user only runs one session at a time
+
+        session = sessions.get(session_id)
+        if session is None:
+            session = Session()
+
+        if isinstance(target, bytes):
+            images = convert_pdf_to_images.remote(target)
+        else:
+            images = target
+
+        # Store images on a Volume for later retrieval
+        session_dir = PDF_ROOT / f"{session_id}"
+        session_dir.mkdir(exist_ok=True, parents=True)
+        for ii, image in enumerate(images):
+            filename = session_dir / f"{str(ii).zfill(3)}.jpg"
+            image.save(filename)
+
+        # Generated embeddings from the image(s)
+        BATCH_SZ = 4
+        pdf_embeddings = []
+        batches = [images[i : i + BATCH_SZ] for i in range(0, len(images), BATCH_SZ)]
+        for batch in batches:
+            batch_images = self.colqwen2_processor.process_images(batch).to(
+                self.colqwen2_model.device
+            )
+            pdf_embeddings += list(self.colqwen2_model(**batch_images).to("cpu"))
+
+        # Store the image embeddings in the session, for later retrieval
+        session.pdf_embeddings = pdf_embeddings
+
+        # Write embeddings back to the modal.Dict
+        sessions[session_id] = session
+
+    @modal.method()
+    def respond_to_message(self, session_id, message):
+        session = sessions.get(session_id)
+        if session is None:
+            session = Session()
+
+        pdf_volume.reload()  # make sure we have the latest data
+
+        images = (PDF_ROOT / str(session_id)).glob("*.jpg")
+        images = list(sorted(images, key=lambda p: int(p.stem)))
+
+        # Nothing to chat about without a PDF!
+        if not images:
+            return "Please upload a PDF first"
+        elif session.pdf_embeddings is None:
+            return "Indexing PDF..."
+
+        # RAG, Retrieval-Augmented Generation, is two steps:
+
+        # _Retrieval_ of the most relevant data to answer the user's query
+        relevant_image = self.get_relevant_image(message, session, images)
+
+        # _Generation_ based on the retrieved data
+        output_text = self.generate_response(message, session, relevant_image)
+
+        # Update session state for future chats
+        append_to_messages(message, session, user_type="user")
+        append_to_messages(output_text, session, user_type="assistant")
+        sessions[session_id] = session
+
+        return output_text
+
+    # Retrieve the most relevant image from the PDF for the input query
+    def get_relevant_image(self, message, session, images):
+        import PIL
+
+        batch_queries = self.colqwen2_processor.process_queries([message]).to(
+            self.colqwen2_model.device
+        )
+        query_embeddings = self.colqwen2_model(**batch_queries)
+
+        # This scores our query embedding against the image embeddings from index_pdf
+        scores = self.colqwen2_processor.score_multi_vector(
+            query_embeddings, session.pdf_embeddings
+        )[0]
+
+        # Select the best matching image
+        max_index = max(range(len(scores)), key=lambda index: scores[index])
+        return PIL.Image.open(images[max_index])
+
+    # Pass the query and retrieved image along with conversation history into the VLM for a response
+    def generate_response(self, message, session, image):
+        chatbot_message = get_chatbot_message_with_image(message, image)
+        query = self.qwen2_vl_processor.apply_chat_template(
+            [*session.messages, chatbot_message],
+            tokenize=False,
+            add_generation_prompt=True,
+        )
+        image_inputs, _ = process_vision_info([chatbot_message])
+        inputs = self.qwen2_vl_processor(
+            text=[query],
+            images=image_inputs,
+            padding=True,
+            return_tensors="pt",
+        )
+        inputs = inputs.to("cuda:0")
+
+        generated_ids = self.qwen2_vl_model.generate(**inputs, max_new_tokens=512)
+        generated_ids_trimmed = [
+            out_ids[len(in_ids) :]
+            for in_ids, out_ids in zip(inputs.input_ids, generated_ids)
+        ]
+        output_text = self.qwen2_vl_processor.batch_decode(
+            generated_ids_trimmed,
+            skip_special_tokens=True,
+            clean_up_tokenization_spaces=False,
+        )[0]
+        return output_text</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="loading-pdfs-as-images" class="group"><span><!--[--><!--[--><!---->Loading PDFs as images<!--]--><!--]--></span><!--[--> <a href="#loading-pdfs-as-images" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Vision-Language Models operate on images, not PDFs directly,
+so we need to convert our PDFs into images first.</p> <p>We separate this from our indexing and chatting logic —
+we run on a different container with different dependencies.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>pdf_image = (
+    modal.Image.debian_slim(python_version="3.12")
+    .apt_install("poppler-utils")
+    .uv_pip_install("pdf2image==1.17.0", "pillow==10.4.0")
+)
+
+
+@app.function(image=pdf_image)
+def convert_pdf_to_images(pdf_bytes):
+    from pdf2image import convert_from_bytes
+
+    images = convert_from_bytes(pdf_bytes, fmt="jpeg")
+    return images</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="chatting-with-a-pdf-from-the-terminal" class="group"><span><!--[--><!--[--><!---->Chatting with a PDF from the terminal<!--]--><!--]--></span><!--[--> <a href="#chatting-with-a-pdf-from-the-terminal" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Before deploying in a UI, we can test our service from the terminal.</p> <p>Just run</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal run chat_with_pdf_vision.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>and optionally pass in a path to or URL of a PDF with the <code>--pdf-path</code> argument
+and specify a question with the <code>--question</code> argument.</p> <p>Continue a previous chat by passing the session ID printed to the terminal at start
+with the <code>--session-id</code> argument.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.local_entrypoint()
+def main(
+    question: Optional[str] = None,
+    pdf_path: Optional[str] = None,
+    session_id: Optional[str] = None,
+):
+    model = Model()
+    if session_id is None:
+        session_id = str(uuid4())
+        print("Starting a new session with id", session_id)
+
+        if pdf_path is None:
+            pdf_path = "https://arxiv.org/pdf/1706.03762"  # all you need
+
+        if pdf_path.startswith("http"):
+            pdf_bytes = urlopen(pdf_path).read()
+        else:
+            pdf_bytes = Path(pdf_path).read_bytes()
+
+        print("Indexing PDF from", pdf_path)
+        model.index_pdf.remote(session_id, pdf_bytes)
+    else:
+        if pdf_path is not None:
+            raise ValueError("Start a new session to chat with a new PDF")
+        print("Resuming session with id", session_id)
+
+    if question is None:
+        question = "What is this document about?"
+
+    print("QUESTION:", question)
+    print(model.respond_to_message.remote(session_id, question))</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="a-hosted-gradio-interface" class="group"><span><!--[--><!--[--><!---->A hosted Gradio interface<!--]--><!--]--></span><!--[--> <a href="#a-hosted-gradio-interface" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>With the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://gradio.app"><!--[--><!---->Gradio<!--]--></a><!----> library, we can create a simple web interface around our class in Python,
+then use Modal to host it for anyone to try out.</p> <p>To deploy your own, run</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>modal deploy chat_with_pdf_vision.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>and navigate to the URL that appears in your teriminal.
+If you’re editing the code, use <code>modal serve</code> instead to see changes hot-reload.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>web_image = pdf_image.uv_pip_install(
+    "fastapi[standard]==0.115.4",
+    "pydantic==2.9.2",
+    "starlette==0.41.2",
+    "gradio==4.44.1",
+    "pillow==10.4.0",
+    "gradio-pdf==0.0.15",
+    "pdf2image==1.17.0",
+)
+
+
+@app.function(
+    image=web_image,
+    # gradio requires sticky sessions
+    # so we limit the number of concurrent containers to 1
+    # and allow it to scale to 1000 concurrent inputs
+    max_containers=1,
+)
+@modal.concurrent(max_inputs=100)
+@modal.asgi_app()
+def ui():
+    import uuid
+
+    import gradio as gr
+    from fastapi import FastAPI
+    from gradio.routes import mount_gradio_app
+    from gradio_pdf import PDF
+    from pdf2image import convert_from_path
+
+    web_app = FastAPI()
+
+    # Since this Gradio app is running from its own container,
+    # allowing us to run the inference service via .remote() methods.
+    model = Model()
+
+    def upload_pdf(path, session_id):
+        if session_id == "" or session_id is None:
+            # Generate session id if new client
+            session_id = str(uuid.uuid4())
+
+        images = convert_from_path(path)
+        # Call to our remote inference service to index the PDF
+        model.index_pdf.remote(session_id, images)
+
+        return session_id
+
+    def respond_to_message(message, _, session_id):
+        # Call to our remote inference service to run RAG
+        return model.respond_to_message.remote(session_id, message)
+
+    with gr.Blocks(theme="soft") as demo:
+        session_id = gr.State("")
+
+        gr.Markdown("# Chat with PDF")
+        with gr.Row():
+            with gr.Column(scale=1):
+                gr.ChatInterface(
+                    fn=respond_to_message,
+                    additional_inputs=[session_id],
+                    retry_btn=None,
+                    undo_btn=None,
+                    clear_btn=None,
+                )
+            with gr.Column(scale=1):
+                pdf = PDF(
+                    label="Upload a PDF",
+                )
+                pdf.upload(upload_pdf, [pdf, session_id], session_id)
+
+    return mount_gradio_app(app=web_app, blocks=demo, path="/")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="addenda" class="group"><span><!--[--><!--[--><!---->Addenda<!--]--><!--]--></span><!--[--> <a href="#addenda" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The remainder of this code consists of utility functions and boiler plate used in the
+main code above.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def get_chatbot_message_with_image(message, image):
+    return {
+        "role": "user",
+        "content": [
+            {"type": "image", "image": image},
+            {"type": "text", "text": message},
+        ],
+    }
+
+
+def append_to_messages(message, session, user_type="user"):
+    session.messages.append(
+        {
+            "role": user_type,
+            "content": {"type": "text", "text": message},
+        }
+    )</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-chat-with-pdf-rag-with-colqwen2" href="#chat-with-pdf-rag-with-colqwen2" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Chat with PDF: RAG with ColQwen2</a><!--]--><!--[--><a id="toc-setup" href="#setup" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Setup</a><!--]--><!--[--><a id="toc-setting-up-dependencies" href="#setting-up-dependencies" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Setting up dependencies</a><!--]--><!--[--><a id="toc-specifying-the-colqwen2-model" href="#specifying-the-colqwen2-model" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Specifying the ColQwen2 model</a><!--]--><!--[--><a id="toc-managing-state-with-modal-volumes-and-dicts" href="#managing-state-with-modal-volumes-and-dicts" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Managing state with Modal Volumes and Dicts</a><!--]--><!--[--><a id="toc-managing-chat-sessions-with-modal-dicts" href="#managing-chat-sessions-with-modal-dicts" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Managing chat sessions with Modal Dicts</a><!--]--><!--[--><a id="toc-storing-pdfs-on-a-modal-volume" href="#storing-pdfs-on-a-modal-volume" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Storing PDFs on a Modal Volume</a><!--]--><!--[--><a id="toc-caching-the-model-weights" href="#caching-the-model-weights" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Caching the model weights</a><!--]--><!--[--><a id="toc-defining-a-chat-with-pdf-service" href="#defining-a-chat-with-pdf-service" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Defining a Chat with PDF service</a><!--]--><!--[--><a id="toc-loading-pdfs-as-images" href="#loading-pdfs-as-images" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Loading PDFs as images</a><!--]--><!--[--><a id="toc-chatting-with-a-pdf-from-the-terminal" href="#chatting-with-a-pdf-from-the-terminal" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Chatting with a PDF from the terminal</a><!--]--><!--[--><a id="toc-a-hosted-gradio-interface" href="#a-hosted-gradio-interface" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">A hosted Gradio interface</a><!--]--><!--[--><a id="toc-addenda" href="#addenda" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Addenda</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[--><div class="mt-16"><div class="text-c-gray-60 space-y-3 text-sm"><div class="font-medium"><h2 class="text-xl text-white">Try this on Modal!</h2></div> <p>You can run this example on Modal in 60 seconds.</p> <!--[--><div class="py-1"><a class="btn btn-outlined btn-primary w-full text-base" href="../../../signup/index.html">Create account to run</a></div> <p>After creating a free account, install the Modal Python package, and
+      create an API token.</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>pip install modal</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal setup</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!--]--> <p>Clone the <a class="text-c-gray-80 font-semibold hover:underline" href="https://github.com/modal-labs/modal-examples">modal-examples</a> repository and run:</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>git clone https://github.com/modal-labs/modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>cd modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal run 06_gpu_and_ml/llm-serving/chat_with_pdf_vision.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div></div><!----></div><!--]--></div></div><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../../sdk/py/releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="Tms4qIGyaT/Qp33X5+mGSQ==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 11, 128],
+							data: [{type:"data",data:{},uses:{}},null,null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

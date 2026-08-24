@@ -58,7 +58,10 @@ for (let y = 0; y < 200000; ) {
 await pmsg("Runtime.evaluate", { expression: `scrollTo(0, document.body.scrollHeight)` });
 await new Promise(r => setTimeout(r, 900));
 await pmsg("Runtime.evaluate", { expression: `scrollTo(0, 0)` });
-await new Promise(r => setTimeout(r, 1200));
+// top settle: env knob SETTLE_TOP_MS (default 1200). WebGL heroes need longer to raster.
+const settleTop = parseInt(process.env.SETTLE_TOP_MS || "1200", 10);
+await pmsg("Runtime.evaluate", { expression: `new Promise(r => { requestAnimationFrame(() => requestAnimationFrame(r)); })`, awaitPromise: true });
+await new Promise(r => setTimeout(r, settleTop));
 
 const h = (await pmsg("Runtime.evaluate", {
   expression: "document.body.scrollHeight", returnByValue: true })).result.result.value;

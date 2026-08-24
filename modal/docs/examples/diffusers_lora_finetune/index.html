@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+<meta name="sentry-trace" content="4d2521caa07d439a9cef00e8897da885-ad17e88c785efc9d"/>
+<meta name="baggage" content="sentry-environment=production,sentry-release=f99fcf9f0a844cc9bd13fdc8e5782b84,sentry-public_key=d75f7cb747cd4fe8ac03973ae3d39fec,sentry-trace_id=4d2521caa07d439a9cef00e8897da885,sentry-org_id=1108641"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="icon" href="../../../assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="../../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../../../jcd8ppx.css" />
+
+    <!-- Establish CSS layer order before Vite injects component styles.
+         Without this, Svelte component <style> tags may load before app.css
+         in dev mode, inverting the cascade (components < base) and breaking
+         layered component styles like Button borders. -->
+    <style>
+      @layer properties, base, components, utilities;
+    </style>
+
+    <!--12qhfyh--><!----><!--nt6m8f--><meta name="description" content="This example finetunes the Flux.1-dev model on images of a pet (by default, a puppy named Qwerty) using a technique called textual inversion from the “Dreambooth” paper. Effectively, it teaches a general image generation model a new “proper noun”, allowing for the personalized generation of art and photos. We supplement textual inversion with low-rank adaptation (LoRA) for increased efficiency during training."/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="Modal"/> <meta property="og:title" content="Fine-tune Flux on your pet using LoRA"/> <meta property="og:description" content="This example finetunes the Flux.1-dev model on images of a pet (by default, a puppy named Qwerty) using a technique called textual inversion from the “Dreambooth” paper. Effectively, it teaches a general image generation model a new “proper noun”, allowing for the personalized generation of art and photos. We supplement textual inversion with low-rank adaptation (LoRA) for increased efficiency during training."/> <!--[--><meta property="og:image" content="https://modal.com/docs/social-image.png?title=Fine-tune+Flux+on+your+pet+using+LoRA&amp;socialType=docs"/><!--]--> <meta name="twitter:card" content="summary_large_image"/><!----><title>Fine-tune Flux on your pet using LoRA | Modal Docs</title>
+		<link href="../../../_app/immutable/assets/A.Dzg1hRn-.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/toast.DKwZeWQ_.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Chip.CJWcQ74a.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/0.bA3axuK6.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Search.DpHo6zuf.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Footer.DpReRcp3.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Hamburger.CxY2FvH1.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Dropdown.BsJdqRmM.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DropdownItem.ufPplQ6C.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/7.DAVaoqh2.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/ThreeColumn.DE-B58UC.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/Button.CRI-4v0v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/CodeSample.Dx0ElT-v.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/h6.fM_NaIDz.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/SkeletonPulse.BmaWAC0s.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/MinimalTable.B9FvoEvY.css" rel="stylesheet">
+		<link href="../../../_app/immutable/assets/DocsLayout.DtLgHS19.css" rel="stylesheet">
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div><!--[--><!--[--><!----><!----> <!----> <!--[!--><!--]--><!----> <!----><!----><!--[!--><!--]--><!----><!----><!----><!----> <!--[--><!----><div class="flex min-h-screen flex-col"><header class="sticky top-0 z-10 w-full before:absolute before:h-full before:w-full before:backdrop-blur-sm before:transition-colors before:duration-500  before:-z-1"><!--[--><div class="border-c-gray-10 flex items-center gap-x-4 border-b px-4 py-3 sm:gap-x-7"><a href="../../index.html" class="shrink-0 lg:mr-8"><img src="../../../_app/immutable/assets/logotype-docs._cZdhNtZ.svg" alt="Modal logo" width="140px"/></a> <div class="hidden h-full items-center gap-7 md:flex"><!--[--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../guide/index.html">Guide</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb navlink-active" href="../index.html">Examples</a><!--]--><!--[--><div class="navbar-dropdown flex h-full items-center svelte-1okwfsb"><span class="flex svelte-1xdl61d" aria-controls="cpnd7n6B5f" aria-expanded="false" data-state="closed" id="v3n74ZtijZ" tabindex="0" data-melt-dropdown-menu-trigger=""><span class="navlink text-c-gray-80 hover:text-c-green-100 relative flex items-center gap-1 text-sm transition-colors svelte-1okwfsb">Reference <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span><!----></span> <!--[!--><!--]--><!----></div><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../sdk/py/releases/index.html">Releases</a><!--]--><!--[!--><a class="navlink text-c-gray-80 hover:text-c-green-100 relative text-sm transition-colors svelte-1okwfsb" href="../../../playground/index.html">Playground</a><!--]--><!--]--></div> <div class="ml-auto"><div></div><!----></div> <div class="hidden md:block"><!--[--><div class="flex flex-row items-center justify-between gap-x-4 text-lg md:text-sm"><a href="../../../login/index__next-2Fapps.html" class="text-light-green hover:text-raw-dark-green-90 flex items-center whitespace-nowrap">Log In</a> <a class="text-raw-dark-green-90 group relative flex items-center gap-2.5 overflow-hidden rounded-full pl-3" href="../../../signup/index__next-2Fapps.html"><span class="bg-accent-bold absolute inset-0 origin-right scale-x-0 transform rounded-full transition-transform duration-150 ease-out group-hover:scale-x-100"></span> <span class="text-raw-dark-green-90 group-hover:text-accent-bold relative z-10 whitespace-nowrap transition-colors duration-150 ease-in-out">Sign Up</span> <span class="bg-accent-bold z-10 inline-block h-7 w-7 rounded-full p-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-arrow-up-right icon-accent-bold h-full w-full"><!--[--><!----><path d="M7 7h10v10"><!----></path><!----><!----><path d="M7 17 17 7"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></span></a></div><!--]--><!----></div> <div class="text-c-gray-80 block md:hidden"><svelte-css-wrapper style="display: contents; --color: currentColor; --layer-height: 1.5px; --layer-width: 18px; --layer-spacing: 5px; --padding: 4px;"><button title="Hamburger menu" aria-label="Hamburger menu" aria-expanded="false" class="hamburger hamburger--spin svelte-1wldtup"><span class="hamburger-box svelte-1wldtup"><span class="hamburger-inner svelte-1wldtup"></span></span></button><!----></svelte-css-wrapper></div> <div class="bg-c-surface-base-gray-transparent fixed inset-0 -z-10 flex h-full flex-col overflow-y-auto opacity-0 backdrop-blur-xl md:hidden pointer-events-none" style="padding-top: 57px; transition: opacity 300ms linear;"><!--[!--><!--]--> <!--[--><!--]--></div><!----></div><!--]--></header><!----> <!--[--><!--[--><!----><main class="mx-4 -mb-24"><div class="grid md:grid-cols-[minmax(16rem,2fr)_minmax(0,8fr)] 2xl:grid-cols-[22rem_minmax(0,11fr)]"><div class="pb-8"><div class="scroller sidebar h-56 md:h-[calc(100vh-98px)] svelte-1pe7mt0"><!--[--><!--[--><!--[--><a href="../index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Featured</span> <!--[!--><!--]--></span></a><!--]--><!--[!--><a href="../hello_world/index.html" class="header svelte-14npiaw">Getting started</a> <!--[--><a href="../hello_world/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Hello, world</span> <!--[!--><!--]--></span></a><a href="../webscraper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Simple web scraper</span> <!--[!--><!--]--></span></a><a href="../basic_web/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serving Web Functions</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm_inference/index.html" class="header svelte-14npiaw">Large language models (LLMs)</a> <!--[--><a href="../llm_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy an OpenAI-compatible LLM service with vLLM</span> <!--[!--><!--]--></span></a><a href="../ministral3_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Cut Ministral 3 cold start times by 10x with snapshots</span> <!--[!--><!--]--></span></a><a href="../vllm_throughput/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Maximize tokens per second in batch processing with vLLM</span> <!--[!--><!--]--></span></a><a href="../sglang_low_latency/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve an ultra-low-latency chatbot with SGLang</span> <!--[!--><!--]--></span></a><a href="../nemotron_inference/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy Nemotron 3</span> <!--[!--><!--]--></span></a><a href="../inkling_small/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Inkling-Small with SGLang</span> <!--[!--><!--]--></span></a><a href="../deepseek_v4_flash/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve DeepSeek-V4-Flash</span> <!--[!--><!--]--></span></a><a href="../unsloth_finetune/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Efficient LLM Finetuning with Unsloth</span> <!--[!--><!--]--></span></a><a href="../chat_with_pdf_vision/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a multimodal RAG chatbot to answer questions about PDFs</span> <!--[!--><!--]--></span></a><a href="../llm-finetuning/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune an LLM to replace your CEO</span> <!--[!--><!--]--></span></a><a href="../mcp_server_stateless/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a stateless MCP with FastMCP</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../image_to_image/index.html" class="header svelte-14npiaw">Images, video, &amp; 3D</a> <!--[--><a href="../image_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Edit images with Flux Kontext</span> <!--[!--><!--]--></span></a><a href="../music-video-gen/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Wan2.1 video models on your face</span> <!--[!--><!--]--></span></a><a href="../flux/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Flux fast with torch.compile</span> <!--[!--><!--]--></span></a><a href="index.html" class="item svelte-14npiaw active"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Flux with LoRA</span> <!--[!--><!--]--></span></a><a href="../image_to_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Animate images with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../ltx/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate video clips with LTX-Video</span> <!--[!--><!--]--></span></a><a href="../text_to_image/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Stable Diffusion with a CLI, API, and web UI</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../llm-voice-chat/index.html" class="header svelte-14npiaw">Audio</a> <!--[--><a href="../llm-voice-chat/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Moshi voice chatbot</span> <!--[!--><!--]--></span></a><a href="../streaming_kyutai_stt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Stream transcripts at the speed of speech using Kyutai STT</span> <!--[!--><!--]--></span></a><a href="../generate_music/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Make music with ACE-Step</span> <!--[!--><!--]--></span></a><a href="../chatterbox_tts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Generate speech with Chatterbox</span> <!--[!--><!--]--></span></a><a href="../batched_whisper/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run high throughput batched transcription with Whisper</span> <!--[!--><!--]--></span></a><a href="../fine_tune_asr/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fine-tune Whisper to recognize new words</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../webrtc_yolo/index.html" class="header svelte-14npiaw">Real-time communication (WebRTC)</a> <!--[--><a href="../webrtc_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serverless WebRTC</span> <!--[!--><!--]--></span></a><a href="../fastrtc_flip_webcam/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>WebRTC quickstart with FastRTC</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../esmfold2_binder_design/index.html" class="header svelte-14npiaw">Computational biology</a> <!--[--><a href="../esmfold2_binder_design/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Design protein binders with ESMFold2</span> <!--[!--><!--]--></span></a><a href="../chai1/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Chai-1</span> <!--[!--><!--]--></span></a><a href="../esm3/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a protein-folding dashboard</span> <!--[!--><!--]--></span></a><a href="../boltz_predict/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Fold proteins with Boltz-2</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../opencode_server/index.html" class="header svelte-14npiaw">Modal Sandboxes</a> <!--[--><a href="../opencode_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a background coding agent with OpenCode</span> <!--[!--><!--]--></span></a><a href="../modal-vibe/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a scalable AI coding platform</span> <!--[!--><!--]--></span></a><a href="../claude-slack-gif-creator/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Create GIFs from Slack using the Claude Agent SDK</span> <!--[!--><!--]--></span></a><a href="../agent/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a LangGraph agent's code in a secure GPU sandbox</span> <!--[!--><!--]--></span></a><a href="../computer_use_vnc/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Watch a computer-use agent work in real-time over VNC</span> <!--[!--><!--]--></span></a><a href="../harbor_evals/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run massively parallel evals on Modal Sandboxes</span> <!--[!--><!--]--></span></a><a href="../simple_code_interpreter/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build a stateful, sandboxed code interpreter</span> <!--[!--><!--]--></span></a><a href="../safe_code_execution/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run Node.js, Ruby, and more in a Sandbox</span> <!--[!--><!--]--></span></a><a href="../sandbox_pool/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Speed up Sandbox starts with warm pools</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../grpo_verl/index.html" class="header svelte-14npiaw">Reinforcement Learning</a> <!--[--><a href="../grpo_verl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve math problems using GRPO and verl</span> <!--[!--><!--]--></span></a><a href="../grpo_trl/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train a model to solve coding problems using GRPO and TRL</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../liquidai_embeddings_server/index.html" class="header svelte-14npiaw">Embeddings</a> <!--[--><a href="../liquidai_embeddings_server/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve Liquid AI embeddings with Modal Servers</span> <!--[!--><!--]--></span></a><a href="../amazon_embeddings/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Embed millions of documents with TEI</span> <!--[!--><!--]--></span></a><a href="../mongodb-search/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Turn satellite images into vectors and store them in MongoDB</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hackernews_alerts/index.html" class="header svelte-14npiaw">Parallel processing and job scheduling</a> <!--[--><a href="../hackernews_alerts/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Deploy a Hacker News Slackbot</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_jobs/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run a Document OCR job queue</span> <!--[!--><!--]--></span></a><a href="../doc_ocr_webapp/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Serve a Document OCR web app</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../hp_sweep_gpt/index.html" class="header svelte-14npiaw">Training models from scratch</a> <!--[--><a href="../hp_sweep_gpt/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Train an SLM with early-stopping grid search over hyperparameters</span> <!--[!--><!--]--></span></a><a href="../long-training/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Run long, resumable training jobs</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../finetune_yolo/index.html" class="header svelte-14npiaw">Hosting popular libraries</a> <!--[--><a href="../finetune_yolo/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>YOLO: Fine-tune and serve computer vision models</span> <!--[!--><!--]--></span></a><a href="../blender_video/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Blender: Build a 3D render farm</span> <!--[!--><!--]--></span></a><a href="../serve_streamlit/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Streamlit: Run and deploy Streamlit apps</span> <!--[!--><!--]--></span></a><a href="../cron_datasette/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>SQLite: Publish explorable data with Datasette</span> <!--[!--><!--]--></span></a><a href="../algolia_indexer/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Algolia: Build docsearch with a crawler</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../discord_bot/index.html" class="header svelte-14npiaw">Connecting to other APIs</a> <!--[--><a href="../discord_bot/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Discord: Deploy and run a Discord Bot</span> <!--[!--><!--]--></span></a><a href="../db_to_sheet/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Google Sheets: Sync databases and APIs to a Google Sheet</span> <!--[!--><!--]--></span></a><a href="../potus_speech_qanda/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>OpenAI: Run a RAG Q&amp;A chatbot</span> <!--[!--><!--]--></span></a><a href="../modal_tailscale/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Tailscale: Add Modal Apps to your VPN</span> <!--[!--><!--]--></span></a><a href="../pushgateway/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Prometheus: Publish custom metrics with Pushgateway</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[!--><a href="../s3_bucket_mount/index.html" class="header svelte-14npiaw">Managing data</a> <!--[--><a href="../s3_bucket_mount/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Mount S3 buckets in Modal Apps</span> <!--[!--><!--]--></span></a><a href="../dbt_duckdb/index.html" class="item svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Build your own data warehouse with DuckDB, dbt, and Modal</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--[--><a href="../miscellaneous/index.html" class="header svelte-14npiaw"><span class="flex flex-wrap items-center gap-x-1.5 gap-y-1"><span>Miscellaneous</span> <!--[!--><!--]--></span></a><!--]--><!--]--><!--]--></div></div> <div class="w-90 visible md:hidden"><hr class="h-px border-none" style="background: radial-gradient(rgba(255, 255, 255, 0.3) 20%, transparent 65%);"/><!----></div> <div class="border-c-gray-10 flex w-full justify-center md:border-l"><div class="max-w-(--breakpoint-xl) grid w-full grid-cols-1 md:pl-8 md:pr-4 lg:grid-cols-[minmax(0,8fr)_minmax(0,3fr)] lg:gap-4 lg:pr-0"><!--[--><!--[--><!--[!--><!----><!----><div class="text-c-gray-80"><!--[!--><!--[--><div class="float-left mb-6 mt-6 pr-2 md:float-right md:mb-2 md:mt-12 md:pl-2 md:pr-0"><a class="btn btn-outlined bg-c-gray-5" href="https://github.com/modal-labs/modal-examples/blob/main/06_gpu_and_ml/dreambooth/diffusers_lora_finetune.py" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github text-c-gray-80 mr-2.5"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----> <span class="text-c-gray-80 text-sm">View on GitHub</span></a></div><!--]--> <!--[--><div class="float-left mb-6 mt-6 pl-0 md:float-right md:mb-2 md:mt-12 md:pl-2"><!--[--><span class="flex svelte-1xdl61d" aria-controls="2Kieheaj_n" aria-expanded="false" data-state="closed" id="3FhfeQspaB" tabindex="0" data-melt-dropdown-menu-trigger=""><button class="btn btn-outlined bg-c-gray-5" title="Copy page"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-copy text-c-gray-80 mr-2.5"><!--[--><!----><rect width="14" height="14" x="8" y="8" rx="2" ry="2"><!----></rect><!----><!----><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--> <span class="text-c-gray-80 text-sm">Copy page</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-chevron-down text-c-gray-80 ml-1.5"><!--[--><!----><path d="m6 9 6 6 6-6"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></button><!----></span> <!--[!--><!--]--><!--]--><!----></div> <article class="svelte-1g3ym6x"><!--[--><h1 id="fine-tune-flux-on-your-pet-using-lora"><!--[--><!---->Fine-tune Flux on your pet using LoRA<!--]--></h1><!----> <p>This example finetunes the <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/black-forest-labs/FLUX.1-dev"><!--[--><!---->Flux.1-dev model<!--]--></a><!----> on images of a pet (by default, a puppy named Qwerty)
+using a technique called textual inversion from <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://dreambooth.github.io/"><!--[--><!---->the “Dreambooth” paper<!--]--></a><!---->.
+Effectively, it teaches a general image generation model a new “proper noun”,
+allowing for the personalized generation of art and photos.
+We supplement textual inversion with low-rank adaptation (LoRA)
+for increased efficiency during training.</p> <p>It then makes the model shareable with others — without costing $25/day for a GPU server—
+by hosting a <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://gradio.app/"><!--[--><!---->Gradio app<!--]--></a><!----> on Modal.</p> <p>It demonstrates a simple, productive, and cost-effective pathway
+to building on large pretrained models using Modal’s building blocks, like <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/gpu/index.html"><!--[--><!---->GPU-accelerated<!--]--></a><!----> Modal Functions for compute-intensive work, <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><!---->Volumes<!--]--></a><!----> for storage,
+and <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/webhooks/index.html"><!--[--><!---->Web Functions<!--]--></a><!----> for serving.</p> <p>And with some light customization, you can use it to generate images of your pet!</p> <p><img src="../../../_app/immutable/assets/gradio-image-generate.DJVgtpVQ.png" alt="Gradio.app image generation interface" class="mx-auto my-6"/> <!--[!--><!--]--><!----></p> <p>You can find a video walkthrough of this example on the Modal YouTube channel <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://www.youtube.com/watch?v=df-8fiByXMI"><!--[--><!---->here<!--]--></a><!---->.</p> <!----><h2 id="imports-and-setup" class="group"><span><!--[--><!--[--><!---->Imports and setup<!--]--><!--]--></span><!--[--> <a href="#imports-and-setup" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>We start by importing the necessary libraries and setting up the environment.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>from dataclasses import dataclass
+from pathlib import Path
+
+import modal</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="building-up-the-environment" class="group"><span><!--[--><!--[--><!---->Building up the environment<!--]--><!--]--></span><!--[--> <a href="#building-up-the-environment" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>Machine learning environments are complex, and the dependencies can be hard to manage.
+Modal makes creating and working with environments easy via <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/custom-container/index.html"><!--[--><!---->containers and container images<!--]--></a><!---->.</p> <p>We start from a base image and specify all of our dependencies.
+We’ll call out the interesting ones as they come up below.
+Note that these dependencies are not installed locally
+— they are only installed in the remote environment where our Modal App runs.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>app = modal.App(name="example-diffusers-lora-finetune")
+
+image = modal.Image.debian_slim(python_version="3.10").uv_pip_install(
+    "accelerate==0.31.0",
+    "datasets~=2.13.0",
+    "fastapi[standard]==0.115.4",
+    "ftfy~=6.1.0",
+    "gradio~=5.5.0",
+    "huggingface-hub==0.36.0",
+    "numpy&lt;2",
+    "peft==0.11.1",
+    "pydantic==2.9.2",
+    "sentencepiece>=0.1.91,!=0.1.92",
+    "smart_open~=6.4.0",
+    "starlette==0.41.2",
+    "transformers~=4.41.2",
+    "torch~=2.2.0",
+    "torchvision~=0.16",
+    "triton~=2.2.0",
+    "wandb==0.17.6",
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="downloading-scripts-and-installing-a-git-repo-with-run_commands" class="group"><span><!--[--><!--[--><!---->Downloading scripts and installing a git repo with <code>run_commands</code><!--]--><!--]--></span><!--[--> <a href="#downloading-scripts-and-installing-a-git-repo-with-run_commands" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>We’ll use an example script from the <code>diffusers</code> library to train the model.
+We acquire it from GitHub and install it in our environment with a series of commands.
+The container environments Modal Functions run in are highly flexible —
+see <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/custom-container/index.html"><!--[--><!---->the docs<!--]--></a><!----> for more details.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>GIT_SHA = "e649678bf55aeaa4b60bd1f68b1ee726278c0304"  # specify the commit to fetch
+
+image = (
+    image.apt_install("git")
+    # Perform a shallow fetch of just the target `diffusers` commit, checking out
+    # the commit in the container's home directory, /root. Then install `diffusers`
+    .run_commands(
+        "cd /root &amp;&amp; git init .",
+        "cd /root &amp;&amp; git remote add origin https://github.com/huggingface/diffusers",
+        f"cd /root &amp;&amp; git fetch --depth=1 origin {GIT_SHA} &amp;&amp; git checkout {GIT_SHA}",
+        "cd /root &amp;&amp; pip install -e .",
+    )
+)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="configuration-with-dataclasses" class="group"><span><!--[--><!--[--><!---->Configuration with <code>dataclass</code>es<!--]--><!--]--></span><!--[--> <a href="#configuration-with-dataclasses" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Machine learning apps often have a lot of configuration information.
+We collect up all of our configuration into dataclasses to avoid scattering special/magic values throughout code.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@dataclass
+class SharedConfig:
+    """Configuration information shared across project components."""
+
+    # The instance name is the "proper noun" we're teaching the model
+    instance_name: str = "Qwerty"
+    # That proper noun is usually a member of some class (person, bird),
+    # and sharing that information with the model helps it generalize better.
+    class_name: str = "Golden Retriever"
+    # identifier for pretrained models on Hugging Face
+    model_name: str = "black-forest-labs/FLUX.1-dev"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="storing-data-created-by-our-app-with-modalvolume" class="group"><span><!--[--><!--[--><!---->Storing data created by our app with <code>modal.Volume</code><!--]--><!--]--></span><!--[--> <a href="#storing-data-created-by-our-app-with-modalvolume" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>The tools we’ve used so far work well for fetching external information,
+which defines the environment our app runs in,
+but what about data that we create or modify during the app’s execution?
+A persisted <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/volumes/index.html"><!--[--><code>modal.Volume</code><!--]--></a><!----> can store and share data across Modal Apps and Functions.</p> <p>We’ll use one to store both the original and fine-tuned weights we create during training
+and then load them back in for inference. For more on storing model weights on Modal, see <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/model-weights/index.html"><!--[--><!---->this guide<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>volume = modal.Volume.from_name(
+    "dreambooth-finetuning-volume-flux", create_if_missing=True
+)
+MODEL_DIR = "/model"</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>Note that access to the Flux.1-dev model on Hugging Face is <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/docs/hub/en/models-gated"><!--[--><!---->gated by a license agreement<!--]--></a><!----> which
+you must agree to <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/black-forest-labs/FLUX.1-dev"><!--[--><!---->here<!--]--></a><!---->.
+After you have accepted the license, <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../secrets/index.html"><!--[--><!---->create a Modal Secret<!--]--></a><!----> with the name <code>huggingface-secret</code> following the instructions in the template.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>huggingface_secret = modal.Secret.from_name(
+    "huggingface-secret", required_keys=["HF_TOKEN"]
+)
+
+image = image.env(
+    {"HF_XET_HIGH_PERFORMANCE": "1"}  # turn on faster downloads from HF
+)
+
+
+@app.function(
+    volumes={MODEL_DIR: volume},
+    image=image,
+    secrets=[huggingface_secret],
+    timeout=600,  # 10 minutes
+)
+def download_models(config):
+    import torch
+    from diffusers import DiffusionPipeline
+    from huggingface_hub import snapshot_download
+
+    snapshot_download(
+        config.model_name,
+        local_dir=MODEL_DIR,
+        ignore_patterns=["*.pt", "*.bin"],  # using safetensors
+    )
+
+    DiffusionPipeline.from_pretrained(MODEL_DIR, torch_dtype=torch.bfloat16)</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h3 id="load-fine-tuning-dataset" class="group"><span><!--[--><!--[--><!---->Load fine-tuning dataset<!--]--><!--]--></span><!--[--> <a href="#load-fine-tuning-dataset" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>Part of the magic of the low-rank fine-tuning is that we only need 3-10 images for fine-tuning.
+So we can fetch just a few images, stored on consumer platforms like Imgur or Google Drive,
+whenever we need them — no need for expensive, hard-to-maintain data pipelines.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>def load_images(image_urls: list[str]) -> Path:
+    import PIL.Image
+    from smart_open import open
+
+    img_path = Path("/img")
+
+    img_path.mkdir(parents=True, exist_ok=True)
+    for ii, url in enumerate(image_urls):
+        with open(url, "rb") as f:
+            image = PIL.Image.open(f)
+            image.save(img_path / f"{ii}.png")
+    print(f"{ii + 1} images loaded")
+
+    return img_path</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="low-rank-adaptation-lora-fine-tuning-for-a-text-to-image-model" class="group"><span><!--[--><!--[--><!---->Low-Rank Adaptation (LoRA) fine-tuning for a text-to-image model<!--]--><!--]--></span><!--[--> <a href="#low-rank-adaptation-lora-fine-tuning-for-a-text-to-image-model" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>The base model we start from is trained to do a sort of “reverse <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://en.wikipedia.org/wiki/Ekphrasis"><!--[--><!---->ekphrasis<!--]--></a><!---->”:
+it attempts to recreate a visual work of art or image from only its description.</p> <p>We can use the model to synthesize wholly new images
+by combining the concepts it has learned from the training data.</p> <p>We use a pretrained model, the Flux model from Black Forest Labs.
+In this example, we “finetune” Flux, making only small adjustments to the weights.
+Furthermore, we don’t change all the weights in the model.
+Instead, using a technique called <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://arxiv.org/abs/2106.09685"><!--[--><em>low-rank adaptation</em><!--]--></a><!---->,
+we change a much smaller matrix that works “alongside” the existing weights, nudging the model in the direction we want.</p> <p>We can get away with such a small and simple training process because we’re just teach the model the meaning of a single new word: the name of our pet.</p> <p>The result is a model that can generate novel images of our pet:
+as an astronaut in space, as painted by Van Gogh or Bastiat, etc.</p> <!----><h3 id="finetuning-with-hugging-face--diffusers-and-accelerate" class="group"><span><!--[--><!--[--><!---->Finetuning with Hugging Face 🧨 Diffusers and Accelerate<!--]--><!--]--></span><!--[--> <a href="#finetuning-with-hugging-face--diffusers-and-accelerate" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h3><!----><!----> <p>The model weights, training libraries, and training script are all provided by <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co"><!--[--><!---->🤗 Hugging Face<!--]--></a><!---->.</p> <p>You can kick off a training job with the command <code>modal run dreambooth_app.py::app.train</code>.
+It should take about ten minutes.</p> <p>Training machine learning models takes time and produces a lot of metadata —
+metrics for performance and resource utilization,
+metrics for model quality and training stability,
+and model inputs and outputs like images and text.
+This is especially important if you’re fiddling around with the configuration parameters.</p> <p>This example can optionally use <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://wandb.ai"><!--[--><!---->Weights &amp; Biases<!--]--></a><!----> to track all of this training information.
+Just sign up for an account, switch the flag below, and add your API key as a <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../../secrets/index.html"><!--[--><!---->Modal Secret<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>USE_WANDB = False</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <p>You can see an example W&amp;B dashboard <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://wandb.ai/cfrye59/dreambooth-lora-sd-xl"><!--[--><!---->here<!--]--></a><!---->.
+Check out <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://wandb.ai/cfrye59/dreambooth-lora-sd-xl/runs/ca3v1lsh?workspace=user-cfrye59"><!--[--><!---->this run<!--]--></a><!---->,
+which <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://wandb.ai/cfrye59/dreambooth-lora-sd-xl/runs/ca3v1lsh/system"><!--[--><!---->despite having high GPU utilization<!--]--></a><!----> suffered from numerical instability during training and produced only black images — hard to debug without experiment management logs!</p> <p>You can read more about how the values in <code>TrainConfig</code> are chosen and adjusted <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://huggingface.co/blog/dreambooth"><!--[--><!---->in this blog post on Hugging Face<!--]--></a><!---->.
+To run training on images of your own pet, upload the images to separate URLs and edit the contents of the file at <code>TrainConfig.instance_example_urls_file</code> to point to them.</p> <p>Tip: if the results you’re seeing don’t match the prompt too well, and instead produce an image
+of your subject without taking the prompt into account, the model has likely overfit. In this case, repeat training with a lower
+value of <code>max_train_steps</code>. If you used W&amp;B, look back at results earlier in training to determine where to stop.
+On the other hand, if the results don’t look like your subject, you might need to increase <code>max_train_steps</code>.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@dataclass
+class TrainConfig(SharedConfig):
+    """Configuration for the finetuning step."""
+
+    # training prompt looks like `{PREFIX} {INSTANCE_NAME} the {CLASS_NAME} {POSTFIX}`
+    prefix: str = "a photo of"
+    postfix: str = ""
+
+    # locator for plaintext file with urls for images of target instance
+    instance_example_urls_file: str = str(
+        Path(__file__).parent / "instance_example_urls.txt"
+    )
+
+    # Hyperparameters/constants from the huggingface training example
+    resolution: int = 512
+    train_batch_size: int = 3
+    rank: int = 16  # lora rank
+    gradient_accumulation_steps: int = 1
+    learning_rate: float = 4e-4
+    lr_scheduler: str = "constant"
+    lr_warmup_steps: int = 0
+    max_train_steps: int = 500
+    checkpointing_steps: int = 1000
+    seed: int = 117
+
+
+@app.function(
+    image=image,
+    gpu="A100-80GB",  # fine-tuning is VRAM-heavy and requires a high-VRAM GPU
+    volumes={MODEL_DIR: volume},  # stores fine-tuned model
+    timeout=1800,  # 30 minutes
+    secrets=[huggingface_secret]
+    + (
+        [modal.Secret.from_name("wandb-secret", required_keys=["WANDB_API_KEY"])]
+        if USE_WANDB
+        else []
+    ),
+)
+def train(instance_example_urls, config):
+    import subprocess
+
+    from accelerate.utils import write_basic_config
+
+    # load data locally
+    img_path = load_images(instance_example_urls)
+
+    # set up hugging face accelerate library for fast training
+    write_basic_config(mixed_precision="bf16")
+
+    # define the training prompt
+    instance_phrase = f"{config.instance_name} the {config.class_name}"
+    prompt = f"{config.prefix} {instance_phrase} {config.postfix}".strip()
+
+    # the model training is packaged as a script, so we have to execute it as a subprocess, which adds some boilerplate
+    def _exec_subprocess(cmd: list[str]):
+        """Executes subprocess and prints log to terminal while subprocess is running."""
+        process = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+        )
+        with process.stdout as pipe:
+            for line in iter(pipe.readline, b""):
+                line_str = line.decode()
+                print(f"{line_str}", end="")
+
+        if exitcode := process.wait() != 0:
+            raise subprocess.CalledProcessError(exitcode, "\n".join(cmd))
+
+    # run training -- see huggingface accelerate docs for details
+    print("launching dreambooth training script")
+    _exec_subprocess(
+        [
+            "accelerate",
+            "launch",
+            "examples/dreambooth/train_dreambooth_lora_flux.py",
+            "--mixed_precision=bf16",  # half-precision floats most of the time for faster training
+            f"--pretrained_model_name_or_path={MODEL_DIR}",
+            f"--instance_data_dir={img_path}",
+            f"--output_dir={MODEL_DIR}",
+            f"--instance_prompt={prompt}",
+            f"--resolution={config.resolution}",
+            f"--train_batch_size={config.train_batch_size}",
+            f"--gradient_accumulation_steps={config.gradient_accumulation_steps}",
+            f"--learning_rate={config.learning_rate}",
+            f"--lr_scheduler={config.lr_scheduler}",
+            f"--lr_warmup_steps={config.lr_warmup_steps}",
+            f"--max_train_steps={config.max_train_steps}",
+            f"--checkpointing_steps={config.checkpointing_steps}",
+            f"--seed={config.seed}",  # increased reproducibility by seeding the RNG
+        ]
+        + (
+            [
+                "--report_to=wandb",
+                # validation output tracking is useful, but currently broken for Flux LoRA training
+                # f"--validation_prompt={prompt} in space",  # simple test prompt
+                # f"--validation_epochs={config.max_train_steps // 5}",
+            ]
+            if USE_WANDB
+            else []
+        ),
+    )
+    # The trained model information has been output to the volume mounted at `MODEL_DIR`.
+    # To persist this data for use in our web app, we 'commit' the changes
+    # to the volume.
+    volume.commit()</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="running-our-model" class="group"><span><!--[--><!--[--><!---->Running our model<!--]--><!--]--></span><!--[--> <a href="#running-our-model" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>To generate images from prompts using our fine-tuned model, we define a Modal Function called <code>inference</code>.</p> <p>Naively, this would seem to be a bad fit for the flexible, serverless infrastructure of Modal:
+wouldn’t you need to include the steps to load the model and spin it up in every function call?</p> <p>In order to initialize the model just once on container startup,
+we use Modal’s <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/lifecycle-functions/index.html"><!--[--><!---->container lifecycle<!--]--></a><!----> features, which require the function to be part
+of a class. Note that the <code>modal.Volume</code> we saved the model to is mounted here as well,
+so that the fine-tuned model created  by <code>train</code> is available to us.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.cls(image=image, gpu="A100", volumes={MODEL_DIR: volume})
+class Model:
+    @modal.enter()
+    def load_model(self):
+        import torch
+        from diffusers import DiffusionPipeline
+
+        # Reload the modal.Volume to ensure the latest state is accessible.
+        volume.reload()
+
+        # set up a hugging face inference pipeline using our model
+        pipe = DiffusionPipeline.from_pretrained(
+            MODEL_DIR,
+            torch_dtype=torch.bfloat16,
+        ).to("cuda")
+        pipe.load_lora_weights(MODEL_DIR)
+        self.pipe = pipe
+
+    @modal.method()
+    def inference(self, text, config):
+        image = self.pipe(
+            text,
+            num_inference_steps=config.num_inference_steps,
+            guidance_scale=config.guidance_scale,
+        ).images[0]
+
+        return image</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="wrap-the-trained-model-in-a-gradio-web-ui" class="group"><span><!--[--><!--[--><!---->Wrap the trained model in a Gradio web UI<!--]--><!--]--></span><!--[--> <a href="#wrap-the-trained-model-in-a-gradio-web-ui" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p><a rel="nofollow" class="text-c-green-100 hover:underline" href="https://gradio.app"><!--[--><!---->Gradio<!--]--></a><!----> makes it super easy to expose a model’s functionality
+in an easy-to-use, responsive web interface.</p> <p>This model is a text-to-image generator,
+so we set up an interface that includes a user-entry text box
+and a frame for displaying images.</p> <p>We also provide some example text inputs to help
+guide users and to kick-start their creative juices.</p> <p>And we couldn’t resist adding some Modal style to it as well!</p> <p>You can deploy the app on Modal with the command <code>modal deploy dreambooth_app.py</code>.
+You’ll be able to come back days, weeks, or months later and find it still ready to go,
+even though you don’t have to pay for a server to run while you’re not using it.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@dataclass
+class AppConfig(SharedConfig):
+    """Configuration information for inference."""
+
+    num_inference_steps: int = 50
+    guidance_scale: float = 6
+
+
+web_image = image.add_local_dir(
+    # Add local web assets to the image
+    Path(__file__).parent / "assets",
+    remote_path="/assets",
+)
+
+
+@app.function(
+    image=web_image,
+    max_containers=1,
+)
+@modal.concurrent(max_inputs=100)
+@modal.asgi_app()
+def fastapi_app():
+    import gradio as gr
+    from fastapi import FastAPI
+    from fastapi.responses import FileResponse
+    from gradio.routes import mount_gradio_app
+
+    web_app = FastAPI()
+
+    # Call out to the inference in a separate Modal environment with a GPU
+    def go(text=""):
+        if not text:
+            text = example_prompts[0]
+        return Model().inference.remote(text, config)
+
+    # set up AppConfig
+    config = AppConfig()
+
+    instance_phrase = f"{config.instance_name} the {config.class_name}"
+
+    example_prompts = [
+        f"{instance_phrase}",
+        f"a painting of {instance_phrase.title()} With A Pearl Earring, by Vermeer",
+        f"oil painting of {instance_phrase} flying through space as an astronaut",
+        f"a painting of {instance_phrase} in cyberpunk city. character design by cory loftis. volumetric light, detailed, rendered in octane",
+        f"drawing of {instance_phrase} high quality, cartoon, path traced, by studio ghibli and don bluth",
+    ]
+
+    modal_docs_url = "https://modal.com/docs"
+    modal_example_url = f"{modal_docs_url}/examples/dreambooth_app"
+
+    description = f"""Describe what they are doing or how a particular artist or style would depict them. Be fantastical! Try the examples below for inspiration.
+
+### Learn how to make a "Dreambooth" for your own pet [here]({modal_example_url}).
+    """
+
+    # custom styles: an icon, a background, and a theme
+    @web_app.get("/favicon.ico", include_in_schema=False)
+    async def favicon():
+        return FileResponse("/assets/favicon.svg")
+
+    @web_app.get("/assets/background.svg", include_in_schema=False)
+    async def background():
+        return FileResponse("/assets/background.svg")
+
+    with open("/assets/index.css") as f:
+        css = f.read()
+
+    theme = gr.themes.Default(
+        primary_hue="green", secondary_hue="emerald", neutral_hue="neutral"
+    )
+
+    # add a gradio UI around inference
+    with gr.Blocks(
+        theme=theme,
+        css=css,
+        title=f"Generate images of {config.instance_name} on Modal",
+    ) as interface:
+        gr.Markdown(
+            f"# Generate images of {instance_phrase}.\n\n{description}",
+        )
+        with gr.Row():
+            inp = gr.Textbox(  # input text component
+                label="",
+                placeholder=f"Describe the version of {instance_phrase} you'd like to see",
+                lines=10,
+            )
+            out = gr.Image(  # output image component
+                height=512, width=512, label="", min_width=512, elem_id="output"
+            )
+        with gr.Row():
+            btn = gr.Button("Dream", variant="primary", scale=2)
+            btn.click(
+                fn=go, inputs=inp, outputs=out
+            )  # connect inputs and outputs with inference function
+
+            gr.Button(  # shameless plug
+                "⚡️ Powered by Modal",
+                variant="secondary",
+                link="https://modal.com",
+            )
+
+        with gr.Column(variant="compact"):
+            # add in a few examples to inspire users
+            for ii, prompt in enumerate(example_prompts):
+                btn = gr.Button(prompt, variant="secondary")
+                btn.click(fn=lambda idx=ii: example_prompts[idx], outputs=inp)
+
+    # mount for execution on Modal
+    return mount_gradio_app(
+        app=web_app,
+        blocks=interface,
+        path="/",
+    )</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----> <!----><h2 id="running-your-fine-tuned-model-from-the-command-line" class="group"><span><!--[--><!--[--><!---->Running your fine-tuned model from the command line<!--]--><!--]--></span><!--[--> <a href="#running-your-fine-tuned-model-from-the-command-line" role="button" class="copy-link-parent relative pr-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 svelte-iuxai6" aria-label="Copy link to section"><!--[!--><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-link"><!--[--><!----><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"><!----></path><!----><!----><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!--]--></a><!--]--><!----></h2><!----><!----> <p>You can use the <code>modal</code> command-line interface to set up, customize, and deploy this app:</p> <ul><li><code>modal run diffusers_lora_finetune.py</code> will train the model. Change the <code>instance_example_urls_file</code> to point to your own pet’s images.</li> <li><code>modal serve diffusers_lora_finetune.py</code> will <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/webhooks/index.html"><!--[--><!---->serve<!--]--></a><!----> the Gradio interface at a temporary location. Great for iterating on code!</li> <li><code>modal shell diffusers_lora_finetune.py</code> is a convenient helper to open a bash <a rel="nofollow" class="text-c-green-100 hover:underline" href="../../guide/developing-debugging/index.html"><!--[--><!---->shell<!--]--></a><!----> in our image. Great for debugging environment issues.</li></ul> <p>Remember, once you’ve trained your own fine-tuned model, you can deploy it permanently — for no cost when it is not being used! —
+using <code>modal deploy diffusers_lora_finetune.py</code>.</p> <p>If you just want to try the app out, you can find our deployment <a rel="nofollow" class="text-c-green-100 hover:underline" href="https://modal-labs--example-diffusers-lora-finetune-fastapi-app.modal.run"><!--[--><!---->here<!--]--></a><!---->.</p> <div class="not-prose my-6"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[!--><!--]--> <div class="content"><pre class="px-3.5"><code>@app.local_entrypoint()
+def run(  # add more config params here to make training configurable
+    max_train_steps: int = 250,
+):
+    print("🎨 loading model")
+    download_models.remote(SharedConfig())
+    print("🎨 setting up training")
+    config = TrainConfig(max_train_steps=max_train_steps)
+    instance_example_urls = (
+        Path(TrainConfig.instance_example_urls_file).read_text().splitlines()
+    )
+    train.remote(instance_example_urls, config)
+    print("🎨 training finished")</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!----><!--]--></article><!--]--><!--]--></div><!----> <div class="text-c-gray-80 hidden pl-6 lg:block"><div class="sticky top-[98px] flex flex-col pb-10"><div class="scroller flex max-h-[calc(100vh-166px)] flex-col svelte-1rrlldk"><!--[--><!--[--><a id="toc-fine-tune-flux-on-your-pet-using-lora" href="#fine-tune-flux-on-your-pet-using-lora" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 16px;">Fine-tune Flux on your pet using LoRA</a><!--]--><!--[--><a id="toc-imports-and-setup" href="#imports-and-setup" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Imports and setup</a><!--]--><!--[--><a id="toc-building-up-the-environment" href="#building-up-the-environment" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Building up the environment</a><!--]--><!--[--><a id="toc-downloading-scripts-and-installing-a-git-repo-with-run_commands" href="#downloading-scripts-and-installing-a-git-repo-with-run_commands" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Downloading scripts and installing a git repo with run_commands</a><!--]--><!--[--><a id="toc-configuration-with-dataclasses" href="#configuration-with-dataclasses" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Configuration with dataclasses</a><!--]--><!--[--><a id="toc-storing-data-created-by-our-app-with-modalvolume" href="#storing-data-created-by-our-app-with-modalvolume" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Storing data created by our app with modal.Volume</a><!--]--><!--[--><a id="toc-load-fine-tuning-dataset" href="#load-fine-tuning-dataset" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Load fine-tuning dataset</a><!--]--><!--[--><a id="toc-low-rank-adaptation-lora-fine-tuning-for-a-text-to-image-model" href="#low-rank-adaptation-lora-fine-tuning-for-a-text-to-image-model" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Low-Rank Adaptation (LoRA) fine-tuning for a text-to-image model</a><!--]--><!--[--><a id="toc-finetuning-with-hugging-face--diffusers-and-accelerate" href="#finetuning-with-hugging-face--diffusers-and-accelerate" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 48px;">Finetuning with Hugging Face 🧨 Diffusers and Accelerate</a><!--]--><!--[--><a id="toc-running-our-model" href="#running-our-model" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Running our model</a><!--]--><!--[--><a id="toc-wrap-the-trained-model-in-a-gradio-web-ui" href="#wrap-the-trained-model-in-a-gradio-web-ui" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Wrap the trained model in a Gradio web UI</a><!--]--><!--[--><a id="toc-running-your-fine-tuned-model-from-the-command-line" href="#running-your-fine-tuned-model-from-the-command-line" class="shrink-0 overflow-x-hidden text-ellipsis svelte-1rrlldk" style="padding-left: 32px;">Running your fine-tuned model from the command line</a><!--]--><!--]--></div> <!--[!--><!--]--> <!--[--><div class="mt-16"><div class="text-c-gray-60 space-y-3 text-sm"><div class="font-medium"><h2 class="text-xl text-white">Try this on Modal!</h2></div> <p>You can run this example on Modal in 60 seconds.</p> <!--[--><div class="py-1"><a class="btn btn-outlined btn-primary w-full text-base" href="../../../signup/index.html">Create account to run</a></div> <p>After creating a free account, install the Modal Python package, and
+      create an API token.</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>pip install modal</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal setup</code></pre></div></div><!--]--></div></div><!--]--><!----></div><!--]--> <p>Clone the <a class="text-c-gray-80 font-semibold hover:underline" href="https://github.com/modal-labs/modal-examples">modal-examples</a> repository and run:</p> <div class="py-1"><!--[!--><div class="relative"><div class="code scroller default svelte-1it3623"><!--[--><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>git clone https://github.com/modal-labs/modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>cd modal-examples</code></pre></div></div><div class="relative flex min-w-0"><!--[--><div class="symbol svelte-1it3623" role="presentation">$</div><!--]--> <div class="content"><pre class="px-3.5"><code>modal run 06_gpu_and_ml/dreambooth/diffusers_lora_finetune.py</code></pre></div></div><!--]--></div></div><!--]--><!----></div></div><!----></div><!--]--></div></div><!----><!----><!----><!--]--><!--]--><!--]--></div></div></div></main><!----><!--]--><!--]--> <div class="pointer-events-none mt-24"></div> <footer class="mt-auto"><div class="border-secondary flex flex-col gap-y-[27px] border-t px-4 py-6 lg:flex-row lg:items-center"><div class="flex items-center gap-x-3"><img src="../../../_app/immutable/assets/logotype.CAx-nu9G.svg" alt="Modal logo" class="logotype logotype-default h-[18px] svelte-s7o1xz"/> <img src="../../../_app/immutable/assets/logotype-dark.D862MXBL.svg" alt="Modal logo" class="logotype logotype-light h-[18px] svelte-s7o1xz"/> <span class="text-tertiary whitespace-nowrap text-xs"><!--[!-->© Modal 2026<!--]--><!----></span></div> <div class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:ml-auto lg:mr-14 lg:flex"><a class="link svelte-s7o1xz" href="../../../company/index.html">About</a> <a class="link svelte-s7o1xz" href="https://status.modal.com/" target="_blank" rel="noopener noreferrer">Status</a> <a class="link svelte-s7o1xz" href="../../sdk/py/releases/index.html">Releases</a> <a class="link svelte-s7o1xz" href="../../guide/index.html">Documentation</a> <a class="link svelte-s7o1xz" href="../../../slack/index.html" target="_blank" rel="noopener noreferrer">Slack Community</a> <a class="link svelte-s7o1xz" href="../../../pricing/index.html">Pricing</a> <a class="link svelte-s7o1xz" href="../index.html">Examples</a></div> <div class="flex space-x-4"><a href="https://www.linkedin.com/company/modal-labs/" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-linkedin fill-current stroke-none"><!--[--><!----><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"><!----></path><!----><!----><rect width="4" height="12" x="2" y="9"><!----></rect><!----><!----><circle cx="4" cy="4" r="2"><!----></circle><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://x.com/modal" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-twitter fill-current stroke-none"><!--[--><!----><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a> <a href="https://github.com/modal-labs" target="_blank" rel="noreferrer" class="social-link svelte-s7o1xz"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-icon lucide lucide-github fill-current stroke-none"><!--[--><!----><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"><!----></path><!----><!----><path d="M9 18c-4.51 2-5-2-7-2"><!----></path><!----><!--]--><!--[--><!--[--><!--]--><!--]--></svg><!----></a></div> <div></div></div></footer><!----></div><!----><!--]--><!----><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script nonce="mtALxni218lprLzCh8odsQ==">
+				{
+					__sveltekit_ckx13p = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.Dw4ATkKq.js"),
+						import("/_app/immutable/entry/app.BaGT8L9r.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 7, 11, 128],
+							data: [{type:"data",data:{},uses:{}},null,null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+  </body>
+</html>

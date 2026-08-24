@@ -1,0 +1,2 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`bd0b44e4-050e-4006-a3e6-a3c4279c56d6`,e._sentryDebugIdIdentifier=`sentry-dbid-bd0b44e4-050e-4006-a3e6-a3c4279c56d6`)}catch{}})();var e=`/_app/immutable/assets/CognitionTestimonial.CCERqs-a.svg`;export{e as t};
+//# sourceMappingURL=BnMQCqNq2.js.map

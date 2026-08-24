@@ -1,0 +1,2 @@
+(function(){try{var e=typeof window<`u`?window:typeof global<`u`?global:typeof globalThis<`u`?globalThis:typeof self<`u`?self:{};e.SENTRY_RELEASE={id:`f99fcf9f0a844cc9bd13fdc8e5782b84`};var t=new e.Error().stack;t&&(e._sentryDebugIds=e._sentryDebugIds||{},e._sentryDebugIds[t]=`7eaf4fc9-42b7-4b1f-aaa7-3d5f74d8ed52`,e._sentryDebugIdIdentifier=`sentry-dbid-7eaf4fc9-42b7-4b1f-aaa7-3d5f74d8ed52`)}catch{}})();var e=`/_app/immutable/assets/logotype.CAx-nu9G.svg`;export{e as t};
+//# sourceMappingURL=BP5nYQKV.js.map
