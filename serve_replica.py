@@ -314,6 +314,13 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             # live; the base dir lookup only covers `dir/index.html`.
             full = full + ".html"
         if os.path.isdir(full):
+            # Directory without an index (mirror crawler never discovered the
+            # route, e.g. a top-level index hidden behind a live redirect or a
+            # live-404 nav route): 404 like live instead of the raw file
+            # listing (parity, #d43). Faithful: live Next.js 404s these paths.
+            if not os.path.isfile(os.path.join(full, "index.html")):
+                self.send_error(404, "Not Found")
+                return
             # SimpleHTTPRequestHandler serves index.html for a directory; we
             # must transform those bytes too, so resolve before the suffix check.
             full = os.path.join(full, "index.html")

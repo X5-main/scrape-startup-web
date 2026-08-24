@@ -31,7 +31,7 @@ async function probe(ws, url) {
   await new Promise((r,j) => { pws.onopen = r; pws.onerror = j; });
   await pmsg("Page.enable"); await pmsg("Runtime.enable");
   await pmsg("Emulation.setDeviceMetricsOverride", { width: 1280, height: 720, deviceScaleFactor: 1, mobile: false });
-  await new Promise(r => setTimeout(r, 3500));
+  await new Promise(r => setTimeout(r, 9000));
   const r = await pmsg("Runtime.evaluate", { expression: SCRIPT, returnByValue: true });
   const val = r.result?.result?.value;
   pws.close();
@@ -41,7 +41,9 @@ async function probe(ws, url) {
 
 for (const p of paths) {
   try {
-    const [lv, rp] = await Promise.all([probe(bws, liveBase + p), probe(bws, repBase + p)]);
+    const lv = await probe(bws, liveBase + p);
+    await new Promise(r => setTimeout(r, 750));
+    const rp = await probe(bws, repBase + p);
     const same = lv.t === rp.t && lv.h1 === rp.h1 && lv.chars === rp.chars && lv.it === rp.it;
     console.log(`${p}: title ${lv.t === rp.t ? "==" : "!="} | h1 ${lv.h1 === rp.h1 ? "==" : lv.h1 + " vs " + rp.h1} | innerText ${lv.chars}->${rp.chars} ${lv.chars === rp.chars ? "==" : "!!"} | lines ${lv.lines}->${rp.lines} | height ${lv.h}->${rp.h} | ${same ? "MATCH" : "DIFF"}`);
   } catch (e) {
