@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head><script src="../../livereload__mindelay-10-v-2-port-1313-path-livereload.js" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Burgers Equation — Lanyon.AI</title>
+  <meta name="description" content="We study the simplest nonlinear scalar hyperbolic PDE, the Burgers Equation, and show how shocks and rarefaction waves form.">
+  <link rel="icon" type="image/png" sizes="340x340" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/hugo.css">
+  
+  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]],displayMath:[["\\[","\\]"],["$$","$$"]],processEscapes:true},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+</head>
+<body>
+  <header class="site-header"><div class="shell nav-wrap">
+  <a class="brand" href="../../index.html" aria-label="Lanyon home"><img src="../../lanyon-mark.png" width="38" height="38" alt=""><span>Lanyon.AI</span></a>
+  <nav aria-label="Main navigation">
+    <a href="../../index.html">Home</a>
+    <a href="../../company/index.html">Company</a>
+    <a href="../../blog/index.html">Blog</a>
+    <a href="../index.html" class="active">Research Notes</a>
+  </nav>
+  <a class="contact-link" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+  <details class="mobile-menu">
+    <summary aria-label="Toggle navigation menu"><span class="menu-icon" aria-hidden="true"></span></summary>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../company/index.html">Company</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="../index.html" class="active">Research Notes</a>
+      <a class="mobile-contact" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+    </nav>
+  </details>
+</div></header>
+
+  <main><article class="prose research-prose full-note shell"><p class="tag">Research note  · Numerical methods</p><h1>The Burgers Equation</h1><p class="article-deck">We study the simplest nonlinear scalar hyperbolic PDE, the Burgers Equation, and show how shocks and rarefaction waves form.</p><div class="author-line"><span>Ammar Hakim</span><span>July 2026</span><span>13 minute read</span></div><hr><div class="markdown-body"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-theory">The Theory</a></li>
+    <li><a href="#the-numerics">The Numerics</a></li>
+    <li><a href="#the-proofs">The Proofs</a></li>
+    <li><a href="#the-results">The Results</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#references-and-footnotes">References and Footnotes</a></li>
+  </ul>
+</nav>
+
+<h2 id="the-theory">The Theory</h2>
+<p>Burgers&rsquo; equation is the simplest scalar nonlinear <a href="../formulary/index.html">hyperbolic equation</a>
+(in the inviscid limit). It has a quadratic nonlinearity and serves as
+a model for more complex equations like the Euler and Navier-Stokes
+equations. Denoting the scalar as $f(x,t)$ the inviscid Burgers&rsquo; equation is
+written as</p>
+$$
+\frac{\partial f}{\partial t} + \frac{\partial}{\partial x} 
+\left(
+\frac{1}{2} f^2
+\right) = 0.
+$$<p>The flux function is $F(f) = f^2/2$. Hence, it has a single
+eigenvalue, $\partial F/\partial f = f$. As the eigenvalue depends on
+the solution itself, the system admits more complex features like
+shocks and rarefactions, even if the initial condition is smooth.</p>
+<p>To understand how shocks and rarefactions form, first consider the
+scalar <a href="../formulary/index.html">quasilinear PDE</a></p>
+$$
+  \frac{\partial V}{\partial t} + a(V)\frac{{\partial V}}{\partial x} = 0
+$$<p>for $-\infty &lt; x &lt; \infty$. For this system we simply have a single
+eigenvalue, $\lambda^1 = a(V)$. This equation also indicates that if
+we define <em>characteristics</em> in the $(x,t)$ plane:</p>
+$$
+  x = \lambda^1 t + C = a(V) t + C
+$$<p>where $C$ is some constant, then the solution will remain constant
+along those characteristics. (Of course, different characteristics
+will, in general, have different values of $V$).</p>
+<p>We can use this <em>method of characteristics</em> to solve the Burgers
+equation with initial conditions $f(x,0) = f_0(x)$. Here the
+characteristic speed is just $f$, and hence the characteristics are $x
+= f t + C$. Now consider some point $x_0$ at $t=0$. Then we must have
+$C = x_0$. As the characteristic velocity at that point is $f_0(x_0)$,
+the characteristic must be</p>
+$$
+  x  = f_0(x_0) t + x_0.
+$$<p>This is an equation of a straight line in the $(x,t)$ plane. The slope
+of the line is $f_0(x_0)$, and hence, for different characteristics this slope
+may be different.  As the solution remains constant along
+characteristics, the exact solution to Burgers&rsquo; equation can be easily
+written as</p>
+$$
+  f(x,t) = f_0(x_0)
+$$<p>where $x_0$ is determined from $x = f_0(x_0) t + x_0$. One can think
+of this process as tracing the characteristics <em>backwards in time</em>: at
+some spacetime point $(x,t)$ we find the characteristic that passes
+through that point, thus determining the solution at that point. At this point we
+may think we have found a general solution to the 1D Burgers
+equation. However, it is not so: this &ldquo;trace backwards in time&rdquo; method
+only works if there is a <em>unique characteristic</em> passing through each
+$(x,t)$ point. This need not be the case for nonlinear equations.</p>
+
+<figure><img src="../../figs/burgers/burgers-shock.png" alt="Burgers Characteristic Velocity"><figcaption>To avoid multi-valued solutions due to converging characteristics (right) we must allow *discontinuous* solutions to Burgers&#39; equation. These *shock solutions* (left) are only defined *weakly*, in the sense that they satisfy the weak form of the equation and not the strong form.</figcaption></figure>
+
+<p>Consider the case shown in the figure above. Here we see that
+characteristics <em>intersect</em> after some finite time. As the solutions
+are constant along characteristics this would mean that the solution
+at the point of intersection is multi-valued! To avoid this
+undesirable situation we must introduce <em>shock solutions</em>, that is,
+solutions that are <em>discontinuous</em>. Note that this property in which
+characteristics intersect after finite time is a feature of nonlinear
+hyperbolic PDEs: even with smooth initial conditions, shocks and other
+discontinuous solutions can form after a finite time.</p>
+<p>Discontinuous solutions, of course, do not have well-defined
+derivatives (their derivatives are <em>distributions</em>, or delta
+functions). Hence, we are led to consider the notion of <em>weak
+solutions</em> of hyperbolic PDEs. These are derived<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> by multiplying
+the general hyperbolic PDE for $Q(x,t)$ by a compact, smooth function
+$\phi(x,t)$ (that is, a function that has smooth derivatives and
+vanishes outside some bounded region) and integrating over all time
+and space:</p>
+$$
+\int_0^\infty  \int_{-\infty}^\infty \phi(x,t) \bigg[\frac{\partial Q}{\partial t} + \frac{\partial F}{\partial x}\bigg]\thinspace dx\thinspace dt = 0.
+$$<p>Integrating by parts we get the weak form</p>
+$$
+\int_0^\infty  \int_{-\infty}^\infty  \bigg[\frac{\partial \phi}{\partial t} Q + \frac{\partial \phi}{\partial x} F\bigg]\thinspace    dx\thinspace dt    =   - \int_{-\infty}^\infty \phi(x,0) Q(x,0) dx.
+$$<p>Notice that in this equation there are no derivatives on $Q(x,t)$, and
+as $\phi(x,t)$ is smooth it can be safely differentiated.
+We can now define the notion of a <em>weak solution</em>:</p>
+<p>[<strong>Weak Solution</strong>] A function $Q(x,t)$ is said to be a weak solution
+if it satisfies the weak form above for all compact and smooth
+$\phi(x,t)$.</p>
+<p>A shock solution to a hyperbolic PDE is one that satisfies the weak
+form. Let $s$ be the shock-speed and the point $x$ and time $t$
+be where the discontinuity appears. Taking a small space-time interval around
+$(x,t)$ we can show that the jump in $Q$, $Q_R-Q_L$, and jump in flux
+$F$, ${F}_R-{F}_L$, must be related by the <em>Rankine-Hugoniot jump
+condition</em></p>
+$$
+  s({Q}_R-{Q}_L) = {F}_R-{F}_L.
+$$<p>Plugging in the specific case for Burgers&rsquo; equation we get</p>
+$$
+  s(f_R - f_L) = \frac{1}{2}( f_R^2 - f_L^2 )
+$$<p>or that</p>
+$$
+s = \frac{1}{2}( f_R + f_L ).
+$$<p>Hence, a shock front in Burgers&rsquo; equation will move with the <em>mean</em> of
+the characteristic speeds computed from the left/right states.</p>
+
+<figure><img src="../../figs/burgers/burgers-rarefaction.png" alt="Burgers Characteristic Velocity"><figcaption>Diverging charactertics (right) leave behind a ``void&#39;&#39; in the $(x,t)$ plane, allowing us to fill it in many possible ways. This *non-uniqueness* of solutions is solved by introducing *entropy*, a scalar quantity that must be  *non-increasing* for all valid solutions of the PDE.</figcaption></figure>
+
+<p>Rather unfortunately, the weak form of the solution does not uniquely
+determine all solutions to hyperbolic PDEs. This is again seen in the
+Burgers equations already, in the case when the characteristics
+<em>diverge</em>. See the figure above. This shows that when the
+characteristics diverge they leave behind a &ldquo;void&rdquo; in the $(x,t)$
+plane. We could fill this void in many ways yet satisfy the weak form of
+the PDE. Hence, diverging characteristics lead to non-uniqueness of
+solutions!</p>
+<p>One way to fix this non-uniqueness is to introduce an <em>entropy</em>
+function. This is a scalar function, $S = S(Q)$ that satisfies
+the PDE</p>
+$$
+  \frac{\partial S}{\partial t} + \frac{\partial {F}_s}{\partial x} \le 0
+$$<p>where ${F}_s = {F}_s\big(S({Q})\big)$ is an <em>entropy flux</em>. That is,
+the entropy is a <em>non-increasing</em> function of time. Imposing that
+entropy be <em>decreasing</em><sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> picks out a unique solution across the
+across diverging characteristics. Often, the entropy function occurs
+naturally from thermodynamic considerations, for example, in the Euler
+equations. For the Burgers equation the entropy-decaying solution is
+called a <em>rarefaction</em> wave, and is shown on the left of the figure
+above.</p>
+<p>Another way to restore uniqueness is to introduce <em>viscosity</em> and then
+take the limit as the viscosity goes to zero. That is, we write</p>
+$$
+\frac{\partial f}{\partial t} + \frac{\partial}{\partial x} 
+\left(
+\frac{1}{2} f^2
+\right) = \nu \frac{\partial^2 f}{\partial x^2}
+$$<p>where $\nu$ is the viscosity coefficient. To construct unique
+solutions now one can instead solve this equation and then take the
+limit as $\nu \rightarrow 0$. As one can show this approach will also
+give the correct entropy decreasing rarefaction solution.</p>
+<p>In summary, the solution to the 1D Burgers equation will either be
+<em>smooth</em>, in which case it can be constructed from the method of
+characteristics, or consist of shocks and/or rarefactions. Of course,
+depending on the initial conditions all three types of features may
+occur.</p>
+<h2 id="the-numerics">The Numerics</h2>
+<p>For nonlinear equations like the Burgers equation, in which shocks and
+rarefaction can occur, one must use a <em>shock-capturing
+scheme</em>. Without such schemes, when the solution starts to steepen,
+spurious oscillations (high-$k$ modes) will form, potentially leading
+to highly inaccurate results. Further, one needs to ensure that one
+gets the correct <em>entropy-decaying</em> solution in the case of rarefaction
+waves.</p>
+<p>In the <a href="../maxwell-equations/index.html">Maxwell equations</a>
+deep dive we discussed the concept of fluctuations and waves and how
+these can be used to construct <a href="../maxwell-equations/index.html">first-order schemes</a>. Unlike the Maxwell equations, it
+is not clear how to construct these fluctuations and waves because we have
+two values of $f$ at each interface and the eigenvalue may switch signs: which one
+should we pick, and on what basis? To resolve this difficulty, first let us write the
+fluctuations in the form</p>
+$$
+\begin{align}
+A^+\Delta Q &= \lambda^+ (f_R - f_L) \\
+A^-\Delta Q &= \lambda^- (f_R - f_L)
+\end{align}
+$$<p>where, as before, $\lambda^+ = \max(\lambda, 0)$, $\lambda^- =
+\min(\lambda, 0)$, and where $\lambda = \lambda^+ + \lambda^-$ is the
+yet unknown eigenvalue we must find. As discussed in the Maxwell
+equations deep dive the fluctuations must satisfy the flux-jump
+condition, which for the Burgers equation is</p>
+$$
+A^+\Delta Q + A^-\Delta Q = \lambda (f_R - f_L) = F(f_R) - F(f_L) = \frac{1}{2}(f_R^2 - f_L^2)
+$$<p>From this we see that to satisfy this expression we <strong>must</strong> choose</p>
+$$
+\lambda = \frac{1}{2} (f_R + f_L).
+$$<p>Only this choice satisfies the flux-jump condition. We call this
+choice of the averaging the <strong>Roe averaging</strong>, and the resulting
+numerical flux the <strong>Roe flux</strong>. Roe averaging and Roe solvers are a
+fundamental discovery that revolutionized the development of
+shock-capturing schemes for hyperbolic PDEs. The original paper<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> by
+Phil Roe has thousands of citations, and is a landmark in the history
+of modern computational methods. As we shall see in later Research
+Notes, Roe averaging for more complicated systems like the Euler
+equations and ideal MHD is not so simple and requires a lot more work
+to derive. However, in all cases one must ensure that the flux-jump
+condition is satisfied. The flux-jump condition is a key property that
+Lanyon checks, as otherwise the resulting numerical scheme is not
+consistent.</p>
+<p>Once $\lambda$ is determined using Roe averaging then the
+fluctuations, and hence the numerical flux, are determined, allowing us
+construct the first-order scheme. Second- and higher-order schemes can
+be constructed using a reconstruction approach.</p>
+<h2 id="the-proofs">The Proofs</h2>
+<p>The inviscid and viscous Burgers equations are nonlinear, and so they add a new layer
+complexity to the proof generators. The overall structure of the
+proofs remain the same but more care needs to be taken to account of
+the nonlinear structure, as symbolic gradients and Jacobians need to
+be computed. Lanyon-generated proofs are presented on our <a href="https://github.com/lanyonai/BurgersEquation">Lanyon
+GitHub repo</a>. This repo
+also contains the Lanyon-generated C code and Lisp DSL.</p>
+<p>The complete proofs and C code for 1D-3D Burgers equations, including
+viscous Burgers, are generated in just over 100 seconds. Lanyon
+generates more than 9000 lines of Lean 4 code, and just under 8000
+lines of formally verified C code. Over 430 total definitions are
+constructed and used to prove 282 theorems.</p>
+<p>As an example, the <a href="https://github.com/lanyonai/BurgersEquation/blob/main/proofs/inviscid_burgers_1d.lean#L100">proof of
+hyperbolicity</a>
+of the $x$-direction flux requires computing the eigenvalue from the
+flux Jacobian. In the previously studied
+<a href="../advection-diffusion/index.html">advection-diffusion</a> and
+<a href="{https:/lanyon.ai/research/maxwell-equations/index.html">Maxwell equations</a> the flux Jacobian
+was not needed as those equations are <em>linear</em>.</p>
+<h2 id="the-results">The Results</h2>
+<p>We now look at two problems that illustrate the key feature of the
+solution to the Burgers equation that we described above. First, we
+instruct Lanyon to build us a solver:</p>
+<blockquote>
+<p>/specify Create a 1D solver for the Burgers equation</p>
+</blockquote>
+<p>This will create a second-order finite volume solver, ensuring that
+limiters are applied to ensure we can capture shocks correctly. Once
+the solver is created and verified (using the <code>/verify</code> command) and
+compiled (using the <code>/compile</code> command), we can run a few
+simulations.</p>
+<p>In the first simulation we start with a single $\sin$-wave on a
+periodic domain. As the characteristics are directed towards the
+center of the domain, the $\sin$-wave will steepen and eventually will
+form a shock and go into an $N$-wave configuration. This will slowly
+decay away, and in the long time limit the solution will simply go to
+a constant $f=0$. To run this simulation we run the following prompt:</p>
+<blockquote>
+<p>/simulate Simulate a single sin wave on a periodic domain</p>
+</blockquote>
+<p>Lanyon will create the simulation driver and run the calculation,
+producing a set of plots and diagnostic outputs. These show, for
+example, that the integrated $f$ in the domain remains conserved, and
+that the $L_2$ norm (entropy/energy) of the solution decays in time,
+rapidly when the wave breaks and limiters are turned on. The following
+plot shows the solution at different times showing the formation of
+the shock and the $N$-wave structure.</p>
+
+<figure><img src="../../figs/burgers/burgers-sin-evolve.png" alt="1D Burgers Equation"><figcaption>Evolution of a single mode: notice the steepening of the wave, eventually resulting in wave breaking and the formation of a N-wave solution.</figcaption></figure>
+
+<p>The above figure shows the impact of limiters: when the wave breaks
+(the shock forms) the limiters ensure that the solution remains
+monotonic and that no spurious high-$k$ mode develop. Also seen is the
+gradual decay of the $N$-wave that will eventually lead to the $f=0$
+solution in the limit $t\rightarrow \infty$.</p>
+<p>The second simulation is for the evolution of an initial flat-top
+profile. This simulation illustrates both the propagation of the
+shock, as well as the formation of the entropy-decaying rarefaction
+wave. The prompt to run this is:</p>
+<blockquote>
+<p>/simulate Simulate the evolution of a square profile. Let the
+profile top be 1.0 and the rest be at 0.0. Use open boundary
+conditions</p>
+</blockquote>
+<p>Again, Lanyon creates the simulation drivers and runs the calculation,
+producing a series of diagnostics. For this problem we see that the
+$L_2$ norm decays monotonically as the shock and rarefaction both
+decay entropy. Further, as seen in the figure below, the shock is
+captured without any spurious oscillations and propagates at the
+correct shock-speed of $0.5$. Once the rarefaction wave hits the shock
+front a wedge is created that will eventually decay and be advected
+out of the domain.</p>
+
+<figure><img src="../../figs/burgers/burgers-step.png" alt="1D Burgers Equation"><figcaption>Evolution of flat-top profile. Seen are the formation of the rarefaction wave and the propagation of the shock. The exact solutions are also shown. The exact and Lanyon-computed solutions are essentially identical.</figcaption></figure>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>The Burgers equation is the simplest nonlinear hyperbolic PDE. It
+displays two new key features beyond linear hyperbolic PDEs: shocks
+and rarefactions. Correctly simulating these and ensuring uniqueness
+requires introducing weak solutions and an entropy function. These
+allow us to compute shock-speeds, and pick out a unique solution when
+the characteristics diverge. The flux-jump conditions determine the
+eigenvalue for use in the numerical flux. The numerical flux is then
+used to construct a second-order scheme. Limiters are required to
+ensure spurious oscillations do not occur when shocks form. We showed
+how Lanyon can create the solver, generate the proofs, and run
+simulations from a single prompt.</p>
+<p>Though simple, the Burgers equation is a good model for more complex
+nonlinear equations like the Euler equations and ideal MHD
+equations. Shocks and rarefactions also occur, and an entropy function
+is needed to select an unique solution. In future Research Notes we
+will use Lanyon to explore such systems which form the basis of
+complex physics and engineering applications, from supersonic and
+hypersonic flight, flows in rocket engines, and, with relativistic
+extensions, the environments around neutron stars and black holes.</p>
+<h2 id="references-and-footnotes">References and Footnotes</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Strictly speaking this is not a derivation: the class of weak
+solutions is broader (as weak solutions can be discontinuous)
+than the class of the solutions supported by the PDE
+itself. Hence, in a way, the integral form is more general, and
+one should really derive the PDE from it by assuming smoothness.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>In applied mathematics and the theory of hyperbolic PDEs the
+entropy is considered to <em>decrease</em>, unlike the physics
+convention in which the entropy of a closed system always
+<em>increases</em>. This merely reflects a choice of the opposite sign
+between the two fields.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>See &ldquo;Approximate Riemann solvers, parameter vectors, and
+difference schemes&rdquo;, P. Roe, <a href="https://doi.org/10.1016/0021-9991(81)90128-5">Journal of Computational Physics,
+1981</a>. This is a
+truly fundamental paper and a landmark in the development of
+modern computational fluid dynamics.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div></article></main>
+  <footer><div class="shell footer-grid">
+  <div><div class="brand footer-brand"><img src="../../lanyon-mark.png" width="34" height="34" alt=""><span>Lanyon.AI</span></div><p>Formal Verification for a Computable Universe</p></div>
+  <div><p class="footer-label">Explore</p><a href="../../company/index.html">Company</a><a href="../../blog/index.html">Blog</a><a href="../index.html">Research Notes</a></div>
+  <div><p class="footer-label">Connect</p><a href="mailto:contact@lanyon.ai">contact@lanyon.ai</a><a href="https://github.com/lanyonai/" rel="noreferrer">GitHub ↗</a></div>
+</div><div class="shell legal"><span>© 2026 Lanyon AI, Inc.</span><span>Correctness by construction</span></div></footer>
+
+</body>
+</html>

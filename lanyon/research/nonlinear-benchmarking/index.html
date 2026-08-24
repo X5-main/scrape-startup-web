@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+<head><script src="../../livereload__mindelay-10-v-2-port-1313-path-livereload.js" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benchmarking Lanyon against Frontier Models: Nonlinear PDEs — Lanyon.AI</title>
+  <meta name="description" content="In this technical deep dive, we extend previous benchmarking by comparing the current frontier models against Lanyon in terms of accuracy and cost for the solutions to *nonlinear* partial differential equations.">
+  <link rel="icon" type="image/png" sizes="340x340" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/hugo.css">
+  
+  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]],displayMath:[["\\[","\\]"],["$$","$$"]],processEscapes:true},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+</head>
+<body>
+  <header class="site-header"><div class="shell nav-wrap">
+  <a class="brand" href="../../index.html" aria-label="Lanyon home"><img src="../../lanyon-mark.png" width="38" height="38" alt=""><span>Lanyon.AI</span></a>
+  <nav aria-label="Main navigation">
+    <a href="../../index.html">Home</a>
+    <a href="../../company/index.html">Company</a>
+    <a href="../../blog/index.html">Blog</a>
+    <a href="../index.html" class="active">Research Notes</a>
+  </nav>
+  <a class="contact-link" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+  <details class="mobile-menu">
+    <summary aria-label="Toggle navigation menu"><span class="menu-icon" aria-hidden="true"></span></summary>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../company/index.html">Company</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="../index.html" class="active">Research Notes</a>
+      <a class="mobile-contact" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+    </nav>
+  </details>
+</div></header>
+
+  <main><article class="prose research-prose full-note shell"><p class="tag">Research note  · Benchmarking</p><h1>Benchmarking Lanyon against Frontier Models: Nonlinear PDEs</h1><p class="article-deck">In this technical deep dive, we extend previous benchmarking by comparing the current frontier models against Lanyon in terms of accuracy and cost for the solutions to *nonlinear* partial differential equations.</p><div class="author-line"><span>Jimmy Juno</span><span>August 2026</span><span>14 minute read</span></div><hr><div class="markdown-body"><p>Having seen how the current frontier models perform for creating solvers for linear hyperbolic
+PDEs, we turn now to the question of how these frontier models compare to Lanyon for nonlinear
+hyperbolic PDEs. Lanyon&rsquo;s capabilities are increasingly clear in comparison to the new challenges
+the frontier models must solve: shocks, rarefaction waves, and even more complex nonlinear structures which must be correctly and stably solved for by their numerical schemes. As we will
+see, many more mistakes can creep into the implementations of discretizations of nonlinear hyperbolic PDEs compared to linear hyperbolic PDEs. The power of a neurosymbolic
+architecture which produces formally verified code is made manifest as our models approach
+the needed sophistication to simulate the physical world.</p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-benchmarks">The benchmarks</a></li>
+    <li><a href="#burgers-equation-top-line-results">Burgers&rsquo; equation: top-line results</a></li>
+    <li><a href="#burgers-equation-results-breakdown">Burgers&rsquo; equation: results breakdown</a></li>
+    <li><a href="#euler-equations-top-line-results">Euler equations: top-line results</a></li>
+    <li><a href="#euler-equations-results-breakdown">Euler equations: results breakdown</a></li>
+    <li><a href="#final-discussion">Final discussion</a></li>
+    <li><a href="#references-and-footnotes">References and Footnotes</a></li>
+  </ul>
+</nav>
+
+<h2 id="the-benchmarks">The benchmarks</h2>
+<p>As before, our benchmarking is divided into two different cases based on the capabilities of
+Lanyon shown in our discussion of <a href="../burgers-equation/index.html">Burgers&rsquo; equation</a>
+and the corresponding <a href="https://github.com/lanyonai/BurgersEquation">GitHub repository</a> and the
+<a href="../euler-equations/index.html">Euler equations for compressible hydrodynamics</a>
+and the corresponding <a href="https://github.com/lanyonai/CompressibleEuler">GitHub respository</a>.
+We evaluate the same five frontier models:</p>
+<ul>
+<li>Kimi K3</li>
+<li>Claude Opus 4.8<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>Claude Fable 5</li>
+<li>GPT-5.5</li>
+<li>GPT-5.6 Sol<br><br></li>
+</ul>
+<p>and again sub-divide between a <em>detailed</em> and <em>terse</em> prompt for three separate trials to
+evaluate the frontier models under different run conditions and characterize variation
+run to run. Further details on how the differing prompts are constructed and the rubric
+for evaluation can be found in our benchmarking for
+<a href="../linear-benchmarking/index.html">linear hyperbolic PDEs</a>.</p>
+<p>The two problems we evaluate are:</p>
+<ul>
+<li><a href="../burgers-equation/index.html">Burgers&rsquo; equation sine wave shock steepening and step function rarefaction wave</a></li>
+<li><a href="../euler-equations/index.html">2D Riemann problem with the Euler equations</a></li>
+</ul>
+<h2 id="burgers-equation-top-line-results">Burgers&rsquo; equation: top-line results</h2>
+<table>
+	<thead>
+			<tr>
+					<th>variant</th>
+					<th>config</th>
+					<th>cost/trial</th>
+					<th>wallclock</th>
+					<th>mech</th>
+					<th>hygiene</th>
+					<th>panel</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>detailed</td>
+					<td>claude-fable-5</td>
+					<td>\$10.31 ± 1.72</td>
+					<td>28.8 ± 2.6 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>claude-opus-4-8</td>
+					<td>\$7.29 ± 1.31</td>
+					<td>30.3 ± 4.0 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.5</td>
+					<td>\$2.05 ± 0.29</td>
+					<td>7.7 ± 2.1 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.6-sol</td>
+					<td>\$1.94 ± 0.46</td>
+					<td>10.3 ± 1.8 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>kimi-k3</td>
+					<td>\$3.08 ± 0.55</td>
+					<td>54.5 ± 2.0 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-fable-5</td>
+					<td>\$8.94 ± 1.07</td>
+					<td>27.3 ± 2.5 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x2, partial x1</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-opus-4-8</td>
+					<td>\$4.40 ± 0.88</td>
+					<td>22.1 ± 2.7 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>partial x3</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.5</td>
+					<td>\$1.30 ± 0.21</td>
+					<td>7.0 ± 2.3 min</td>
+					<td><strong>2/3</strong></td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.6-sol</td>
+					<td>\$1.32 ± 0.27</td>
+					<td>6.8 ± 1.4 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>kimi-k3</td>
+					<td>\$3.75 ± 0.93</td>
+					<td>69.6 ± 18.8 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+	</tbody>
+</table>
+<p>As before, in the &ldquo;mech&rdquo; column, we are checking all three of: does the C code compile, does the
+C code run, and does the Lean code type check, for each of the three trials. For the &ldquo;hygiene&rdquo;
+column we are checking for zero use of <code>sorry</code>/<code>admit</code>, zero <code>axiom</code> declarations, and zero
+use of <code>native_decide</code> for each of the three trials. <strong>Note again that a score of faithful in our
+automated scoring here is a measure of &ldquo;does the Lean match the C&rdquo; and not a measure of
+faithful implementation of the prompt.</strong></p>
+<p>For assessing cost, we likewise again focus on the token usage:</p>
+<table>
+	<thead>
+			<tr>
+					<th>variant</th>
+					<th>config</th>
+					<th>output tokens (mean, vendor-billed)</th>
+					<th>cumulative input (mean)</th>
+					<th>cache-hit share</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>detailed</td>
+					<td>claude-fable-5</td>
+					<td>140k</td>
+					<td>2.03M</td>
+					<td>93%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>claude-opus-4-8</td>
+					<td>142k</td>
+					<td>4.58M</td>
+					<td>94%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.5</td>
+					<td>28k</td>
+					<td>1.11M</td>
+					<td>84%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.6-sol</td>
+					<td>28k</td>
+					<td>1.67M</td>
+					<td>96%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>kimi-k3</td>
+					<td>not reported; per-trial bounds (see below)</td>
+					<td>not reported</td>
+					<td>not reported</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-fable-5</td>
+					<td>116k</td>
+					<td>1.94M</td>
+					<td>94%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-opus-4-8</td>
+					<td>105k</td>
+					<td>1.93M</td>
+					<td>93%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.5</td>
+					<td>21k</td>
+					<td>0.60M</td>
+					<td>85%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.6-sol</td>
+					<td>22k</td>
+					<td>0.91M</td>
+					<td>95%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>kimi-k3</td>
+					<td>not reported; per-trial bounds (see below)</td>
+					<td>not reported</td>
+					<td>not reported</td>
+			</tr>
+	</tbody>
+</table>
+<p>Kimi per-trial bounds (floor-ceiling, trial cost in parens):</p>
+<ul>
+<li>detailed — t1: 15k-163k (\$2.44); t2: 22k-222k (\$3.32); t3: 17k-231k (\$3.47)</li>
+<li>terse — t1: 24k-308k (\$4.62); t2: 15k-184k (\$2.76); t3: 19k-257k (\$3.86)<br><br></li>
+</ul>
+<p>with these Kimi bounds computed as a floor from visible content
+in the transcript (assistant text + tool-call arguments at ~3.5 chars/token)
+to a ceiling from the trial&rsquo;s entire billed cost converted at the \$15/MTok output rate
+as if input were free.</p>
+<p>And finally the assessment of the C code:</p>
+<table>
+	<thead>
+			<tr>
+					<th>variant</th>
+					<th>config</th>
+					<th>t1</th>
+					<th>t2</th>
+					<th>t3</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>detailed</td>
+					<td>claude-fable-5</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>claude-opus-4-8</td>
+					<td><strong>2nd / TVD</strong></td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.5</td>
+					<td><strong>1st</strong></td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.6-sol</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>kimi-k3</td>
+					<td>2nd / TVD</td>
+					<td><strong>1st</strong></td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-fable-5</td>
+					<td>2nd / no-TVD</td>
+					<td>2nd / no-TVD</td>
+					<td>2nd / no-TVD</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-opus-4-8</td>
+					<td>2nd / TVD</td>
+					<td>2nd / no-TVD</td>
+					<td>2nd / no-TVD</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.5</td>
+					<td><strong>1st</strong></td>
+					<td>1st</td>
+					<td>1st</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.6-sol</td>
+					<td>1st</td>
+					<td>1st</td>
+					<td>1st</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>kimi-k3</td>
+					<td>1st</td>
+					<td>1st</td>
+					<td>1st</td>
+			</tr>
+	</tbody>
+</table>
+<p>The bolding here corresponds to two failure modes; in the detailed cases, there were explicit
+prompt violations, either not implementing a second order method, or not implementing a
+wave propagation scheme which made use of the left- and right-going fluctuations. In the
+one terse case, we are flagging specific Lean check failures, where we find the lakefile
+declares a <code>lean_lib</code> whose root module file does not exist, and no <code>.lake/build</code> exists in
+the workspace in which we had the agents work. In other words, for the GPT 5.5 t1 terse trial,
+the Lean does not build. Note that a separate analysis revealed the Lean produced does type
+check and that it (mostly) matches the implementation in C, so that we were able to separately
+grade the faithfulness of the Lean verification.</p>
+<h2 id="burgers-equation-results-breakdown">Burgers&rsquo; equation: results breakdown</h2>
+<p>Our reference Lanyon (inviscid) Burgers&rsquo; equation solver in one dimension took $\sim 6$ seconds
+to generate and utilized $663$ output tokens. The prompts utilized to generate both the sine wave shock and step function rarefaction wave are described in our
+<a href="../burgers-equation/index.html">Burgers&rsquo; equation deep dive</a>.
+As before, there is a significant cost-advantage in terms of time and output tokens&mdash;
+identical to the Maxwell equations analysis, upwards of a factor of 30-200 cost reduction
+in output tokens.</p>
+<p>Where the nonlinear tests begin to complicate the formal verification is how the models
+sidestep verification under the strain of harder problems, identical to the failure mode
+first demonstrated in our analysis of <a href="../linear-benchmarking/index.html">the Maxwell equations benchmarks</a>. In this case, in multiple
+instances across Fable 5 and Opus 4.8 runs, the Lean only verifies the first order update
+and does not include anything about the second order reconstruction. Further, a new failure
+mode has appeared in nonlinear hyperbolic PDEs: proof of the total variation diminishing (TVD)
+property for a second order scheme depends on the type of limiter utilized and whether
+or not the limiter satisfies <a href="https://epubs.siam.org/doi/10.1137/0721062">Sweby&rsquo;s criteria</a>&mdash;see
+the work of <a href="https://arxiv.org/abs/2503.13877">Gorard and Hakim (2025)</a> on a discussion of the
+verification of Sweby&rsquo;s criteria&mdash;in addition to the choice of CFL. So in a number of terse
+Fable 5 and Opus 4.8 runs, without the guidance to utilize a minmod limiter, the agents chose
+to use more anti-diffusive limiters such as monotonized-center. While these limiters can be
+Sweby, without a sufficiently small CFL, these limiters will not be TVD, and thus oscillations
+can be introduced around the generated shock in the sine wave shock problem.</p>
+<p>These failure modes are not present within Lanyon. As before, our verification pipeline
+<em>reliably</em> tracks the implemented C code, including a desired default second order TVD
+implementation, by construction. The proof and the code derive from the same artifact.
+While in these initial demonstrations Lanyon&rsquo;s informed choices do utilize more aggressive
+limiters, such as minmod, to ensure the subsequent TVD property, ongoing work continues to
+push the capabilities of Lanyon to verify increasingly sophisticated limiters and provide
+a balance between robustness and numerical diffusion.</p>
+<h2 id="euler-equations-top-line-results">Euler equations: top-line results</h2>
+<table>
+	<thead>
+			<tr>
+					<th>variant</th>
+					<th>config</th>
+					<th>cost/trial</th>
+					<th>wallclock</th>
+					<th>mech</th>
+					<th>hygiene</th>
+					<th>panel</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>detailed</td>
+					<td>claude-fable-5</td>
+					<td>\$19.46 ± 2.22</td>
+					<td>50.4 ± 10.8 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>claude-opus-4-8</td>
+					<td>\$11.48 ± 3.99</td>
+					<td>46.7 ± 12.9 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>partial x2, faithful x1</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.5</td>
+					<td>\$4.40 ± 1.16</td>
+					<td>12.3 ± 0.7 min</td>
+					<td><strong>2/3</strong></td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.6-sol</td>
+					<td>\$2.28 ± 0.61</td>
+					<td>11.3 ± 1.9 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x3</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>kimi-k3</td>
+					<td>\$6.25 ± 2.58</td>
+					<td>91.3 ± 32.3 min</td>
+					<td><strong>2/3 (1 DNF)</strong></td>
+					<td>3/3</td>
+					<td>partial x2, faithful x1</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-fable-5</td>
+					<td>\$14.73 ± 2.97</td>
+					<td>44.6 ± 10.5 min</td>
+					<td>3/3</td>
+					<td><strong>2/3</strong></td>
+					<td>faithful x1, partial x1, misformalized x1</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-opus-4-8</td>
+					<td>\$8.35 ± 2.89</td>
+					<td>43.6 ± 15.6 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>partial x3</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.5</td>
+					<td>\$2.72 ± 0.49</td>
+					<td>7.7 ± 1.0 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>partial x3</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.6-sol</td>
+					<td>\$1.60 ± 0.45</td>
+					<td>7.4 ± 1.5 min</td>
+					<td>3/3</td>
+					<td>3/3</td>
+					<td>faithful x2, partial x1</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>kimi-k3</td>
+					<td>\$4.48 ± 1.62</td>
+					<td>84.6 ± 13.3 min</td>
+					<td>3/3</td>
+					<td><strong>1/3</strong></td>
+					<td>misformalized x2, partial x1</td>
+			</tr>
+	</tbody>
+</table>
+<p>Note that for this particular demonstration, one Kimi K3 detailed run did not finish in an
+allotted two hour time window, which we marked as a failure, one GPT 5.5 detailed run did not
+ship Lean proofs which built (the agent never utilized <code>lake build</code> to determine that the
+Lean correctly type checks), and two Kimi K3 terse runs and one Fable 5 terse run utilized
+<code>native_decide</code> to skirt a careful type checking of their proofs.</p>
+<p>Again, we examine cost in terms of output tokens:</p>
+<table>
+	<thead>
+			<tr>
+					<th>variant</th>
+					<th>config</th>
+					<th>output tokens (mean, vendor-billed)</th>
+					<th>cumulative input (mean)</th>
+					<th>cache-hit share</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>detailed</td>
+					<td>claude-fable-5</td>
+					<td>209k</td>
+					<td>6.72M</td>
+					<td>97%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>claude-opus-4-8</td>
+					<td>219k</td>
+					<td>8.12M</td>
+					<td>95%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.5</td>
+					<td>41k</td>
+					<td>2.12M</td>
+					<td>77%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.6-sol</td>
+					<td>35k</td>
+					<td>1.91M</td>
+					<td>97%</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>kimi-k3</td>
+					<td>not reported; per-trial bounds (see below)</td>
+					<td>not reported</td>
+					<td>not reported</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-fable-5</td>
+					<td>155k</td>
+					<td>4.62M</td>
+					<td>95%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-opus-4-8</td>
+					<td>157k</td>
+					<td>5.39M</td>
+					<td>94%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.5</td>
+					<td>30k</td>
+					<td>1.07M</td>
+					<td>72%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.6-sol</td>
+					<td>27k</td>
+					<td>1.11M</td>
+					<td>95%</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>kimi-k3</td>
+					<td>not reported; per-trial bounds (see below)</td>
+					<td>not reported</td>
+					<td>not reported</td>
+			</tr>
+	</tbody>
+</table>
+<p>Kimi per-trial bounds (floor-ceiling, trial cost in parens):</p>
+<ul>
+<li>detailed — t1: 11k-238k (\$3.57); t2: 28k-432k (\$6.47); t3: 33k-581k (\$8.71, DNF)</li>
+<li>terse — t1: 28k-287k (\$4.31); t2: 35k-412k (\$6.18); t3: 18k-197k (\$2.96)</li>
+</ul>
+<p>And the C implementation:</p>
+<table>
+	<thead>
+			<tr>
+					<th>variant</th>
+					<th>config</th>
+					<th>t1</th>
+					<th>t2</th>
+					<th>t3</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>detailed</td>
+					<td>claude-fable-5</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>claude-opus-4-8</td>
+					<td>2nd / TVD</td>
+					<td><strong>X</strong></td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.5</td>
+					<td><strong>X</strong></td>
+					<td><strong>X</strong></td>
+					<td><strong>2nd / OSC FE</strong></td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>gpt-5.6-sol</td>
+					<td><strong>2nd / OSC FE</strong></td>
+					<td><strong>2nd / OSC FE</strong></td>
+					<td><strong>X</strong></td>
+			</tr>
+			<tr>
+					<td>detailed</td>
+					<td>kimi-k3</td>
+					<td><strong>X</strong></td>
+					<td><strong>2nd / OSC FE</strong></td>
+					<td>2nd / TVD <strong>DNF</strong></td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-fable-5</td>
+					<td>2nd / TVD</td>
+					<td><strong>2nd / TVD nd=2</strong></td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>claude-opus-4-8</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+					<td>2nd / TVD</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.5</td>
+					<td>1st</td>
+					<td>1st</td>
+					<td>1st</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>gpt-5.6-sol</td>
+					<td>1st</td>
+					<td>1st</td>
+					<td>1st</td>
+			</tr>
+			<tr>
+					<td>terse</td>
+					<td>kimi-k3</td>
+					<td><strong>2nd / TVD nd=1</strong></td>
+					<td><strong>2nd / TVD nd=5</strong></td>
+					<td>2nd / TVD</td>
+			</tr>
+	</tbody>
+</table>
+<p>Here, we have bolded new failure modes. <strong>X</strong> corresponds to a completely incorrect solver,
+even if there is a successful Lean verification of the first order update in one dimension,
+the resulting 2D Riemann solution had pathological issues related to an incorrect use of the
+second order correction, and <strong>2nd / OSC FE</strong> corresponds to a second-order-in-space, unstable
+first order in time update.</p>
+<h2 id="euler-equations-results-breakdown">Euler equations: results breakdown</h2>
+<p>Our reference 2D Euler solver produced with Lanyon required $\sim 23$ seconds to construct and
+utilized $2940$ output tokens. The specific prompt utilized for this non-trivial 2D Riemann
+problem is described in <a href="../euler-equations/index.html">the Euler equations deep dive</a>. While the cost of Lanyon for the increased complexity of the Euler
+equations in multiple dimensions has increased, the results are still a fraction of the frontier
+models. Even in the best case, the GPT-5.6 Sol terse and detailed runs, where the output tokens
+generated are a factor of $\sim 10$ larger, no GPT-5.6 Sol run, detailed or terse, compares
+favorably with Lanyon&rsquo;s output. The solution is either wrong, linearly unstable, or at best,
+only first order in space and time, compared to the uniformly second order methods which
+heuristically satisfy TVD due to their solution structure even in the abscence of formal
+proofs of TVD for vector nonlinear hyperbolic PDEs.</p>
+
+<figure><img src="../../figs/nonlinear-benchmarking/nonlinear-benchmarking.png" alt="Nonlinear benchmarks"><figcaption>Two distinct failure modes in nonlinear benchmarking: an incorrect solution (left) produced by inaccurately handling the in-cell flux correction term from the limited states, and an oscillatory solution (right) produced by utilizing a first order forward Euler method for the time stepping, which is linearly unstable in smooth regions. </figcaption></figure>
+
+<p>In fact, the only model which came even close to Lanyon in terms of accuracy for this particular
+test was Fable 5, and only with the detailed prompt, at $\sim 70$ times as many output tokens and
+$&gt;130$ times the wallclock time. Every other model encountered new pathologies which go beyond
+cheating at verification or triaging difficult components of the proofs. A variety of
+failure modes previously encountered still occur in our benchmarking of the more complex Euler
+equations, such as uses of <code>native_decide</code>, or proofs not matching the implemented solvers
+and only partial <em>post hoc</em> formalization of the code. Indeed, these previously observed
+failure modes became more pronounced for the Euler equations due to the <em>terse</em> prompt leaving
+it to the agent&rsquo;s discretion for which Riemann solver to use. Certain runs, such as the <em>terse</em>
+Fable 5 t2 and t3 trials, and the <em>terse</em> Opus 4.8 t1 and t2 trials, utilized a
+<a href="../euler-equations/index.html">Roe solve</a>, a more accurate
+but much more complicated Riemann solver to verify. The agents&rsquo; verification choices included
+failure modes such as not actually utilizing Roe averages, building the proofs with $\sqrt{\rho}$ as
+a free variable to avoid the conditional nature of the Roe proofs that require careful accounting
+of $\rho &gt; 0$, or specific uses of <code>native_decide</code> to try to bridge the proofs to finite
+precision arithmetic.</p>
+<p>However, the more striking feature of this culmination of benchmarking into a test of agent
+performance on a system of nonlinear hyperbolic PDEs is that the failure modes are so dramatic;
+<strong>models outright failed to produce the correct solution or implemented linearly unstable
+schemes.</strong>. Some of these failure modes are perhaps unsurprising. The consistent story with the
+incorrect solution is that the models failed to account for the intra-cell flux correction
+which arises when utilizing a limited second order reconstruction of the state, an error Lanyon
+avoids with its built in knowledge of the most general form of the numerical flux in terms of
+the average of the fluxes and jump in the fluctuations. Likewise, the oscillatory behavior is
+the result of the frontier models, despite all of their capabilities, ultimately not using
+knowledge that forward Euler is linearly unstable for these problems in smooth regions.
+Thus, the subsequent time stepper must be some higher order scheme, something like a full
+Lax-Wendroff or strong-stability-preserving Runge-Kutta method. In the end, where Lanyon&rsquo;s
+reliability was previously a measure of its consistency, it is now the case that Lanyon&rsquo;s
+reliability corresponds to a measurable <strong>quality</strong> increase in the solvers produced.</p>
+<h2 id="final-discussion">Final discussion</h2>
+<p>Our central thesis from our <a href="../../blog/welcome/index.html">announcement post</a>: &ldquo;Code is now
+abundant, but correctness remains scarce,&rdquo; is vindicated. While through the scalar PDE benchmarking
+we were merely posing the question, i.e., could the frontier models produce something
+approximating our formally verified solvers, we are now confronted with the reality that the
+frontier models can regularly fail at constructing solvers for more complicated systems of PDEs:
+the same complicated PDEs which can be used to describe the physical world. This consistency
+of failure is mirrored by the consistency Lanyon provides with its neurosymbolic architecture
+and the distillation of decades of collective experience in computational physics into an
+agent that is making informed decisions to create correct-by-construction solvers for
+numerically integrating these complex systems of PDEs.</p>
+<p>The addition of more physics in these systems of PDEs is unlikely to make things easier for
+any of these frontier models. Dissipative terms such as viscosity and thermal conduction that
+transform the Euler equations into the Navier-Stokes equations, electromagnetic forces which
+extend the Euler equations to the equations of magnetohydrodynamics, and reactive sources to
+capture the physics of e.g., disassociative processes in hyper-sonic vehicle re-entry or
+chemical reactions in propulsion problems, all introduce new failure modes in the abscence of
+formal verification. The fact that we experienced a genuine phase transition in failure
+testing the frontier capabilities in writing solvers for the Euler equations demonstrates
+the <strong>need</strong> for Lanyon. Formally verified solvers, composed of any number of formally verified
+pieces, e.g., starting with the Euler equations and adding more and more physics, are the
+only path forward for building trust in the output of computational models of the physical world.
+<strong>Lanyon provides that trust.</strong></p>
+<h2 id="references-and-footnotes">References and Footnotes</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>To facilitate consistency with the previous benchmarking run, we have elected to
+continue to utilize Opus 4.8 instead of Opus 5 for this comparison. This decision is
+also partially made in light of Opus 5&rsquo;s inconsistency in performance at higher effort,
+with some benchmarks showing degradation of performance at the maximum effort.
+Because we are ultimately interested in whether or not the frontier models can successfully
+implement numerical solvers, irrespective of cost, we do not complicate this analysis
+with an &ldquo;effort&rdquo; axis and have elected not to extensively explore a model like Opus 5&rsquo;s
+performance along this axis.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div></article></main>
+  <footer><div class="shell footer-grid">
+  <div><div class="brand footer-brand"><img src="../../lanyon-mark.png" width="34" height="34" alt=""><span>Lanyon.AI</span></div><p>Formal Verification for a Computable Universe</p></div>
+  <div><p class="footer-label">Explore</p><a href="../../company/index.html">Company</a><a href="../../blog/index.html">Blog</a><a href="../index.html">Research Notes</a></div>
+  <div><p class="footer-label">Connect</p><a href="mailto:contact@lanyon.ai">contact@lanyon.ai</a><a href="https://github.com" rel="noreferrer">GitHub ↗</a></div>
+</div><div class="shell legal"><span>© 2026 Lanyon AI, Inc.</span><span>Correctness by construction</span></div></footer>
+
+</body>
+</html>

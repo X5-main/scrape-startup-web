@@ -1,0 +1,107 @@
+/* Hugo-specific content wrappers; the main visual system is in site.css. */
+.markdown-body figure { margin: 55px 0; }
+.markdown-body figure img { display: block; width: 100%; height: auto; background: #fff; }
+.markdown-body figcaption { margin-top: 12px; color: var(--muted); font-family: var(--sans); font-size: 11px; line-height: 1.5; text-transform: uppercase; letter-spacing: .08em; }
+.markdown-body mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; margin: 34px 0 !important; padding: 28px 30px; background: var(--paper-2); border-left: 2px solid var(--red); }
+.markdown-body .footnotes { margin-top: 75px; padding-top: 25px; border-top: 1px solid var(--line); color: var(--muted); }
+.markdown-body ul {
+  list-style: disc;
+  padding-left: 1.5em;
+}
+
+.markdown-body ol {
+  list-style: decimal;
+  padding-left: 1.5em;
+}
+
+.markdown-body ul ul {
+  list-style: circle;
+}
+
+.markdown-body ul ul ul {
+  list-style: square;
+}
+
+.markdown-body ol ol {
+  list-style: lower-alpha;
+}
+
+.markdown-body li + li {
+  margin-top: 0.5em;
+}
+
+.markdown-body p {
+  margin-bottom: 1.4em;
+}
+.markdown-body .footnotes ol { list-style: decimal; padding-left: 24px; }
+.markdown-body .footnotes li { margin-bottom: 12px; }
+
+.section-index {
+  font-size: 15px;
+}
+.author-line {
+  font-size: 15px;
+}
+@media(max-width:560px){.markdown-body mjx-container[display="true"]{padding:22px 14px}}
+
+/* Responsive navigation. The desktop header is unchanged above 900px. */
+.mobile-menu { display: none; }
+.mobile-menu summary { list-style: none; }
+.mobile-menu summary::-webkit-details-marker { display: none; }
+
+@media (max-width: 900px) {
+  .nav-wrap > nav,
+  .nav-wrap > .contact-link { display: none; }
+  .mobile-menu { display: block; margin-left: auto; position: relative; }
+  .mobile-menu summary {
+    align-items: center;
+    border: 1px solid var(--line);
+    cursor: pointer;
+    display: flex;
+    height: 42px;
+    justify-content: center;
+    width: 42px;
+  }
+  .menu-icon,
+  .menu-icon::before,
+  .menu-icon::after {
+    background: var(--ink);
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    transition: transform .2s ease, opacity .2s ease;
+    width: 17px;
+  }
+  .menu-icon { position: relative; }
+  .menu-icon::before { transform: translateY(-5px); }
+  .menu-icon::after { transform: translateY(5px); }
+  .mobile-menu[open] .menu-icon { background: transparent; }
+  .mobile-menu[open] .menu-icon::before { transform: rotate(45deg); }
+  .mobile-menu[open] .menu-icon::after { transform: rotate(-45deg); }
+  .nav-wrap .mobile-nav {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    box-shadow: 0 22px 45px rgba(19, 19, 19, .13);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 8px 20px 12px;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: min(330px, calc(100vw - 32px));
+  }
+  .nav-wrap .mobile-nav a {
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 14px;
+    padding: 15px 0;
+    width: 100%;
+  }
+  .nav-wrap .mobile-nav a::after { display: none; }
+  .nav-wrap .mobile-nav a.active { color: var(--red); }
+  .nav-wrap .mobile-nav .mobile-contact { border-bottom: 0; }
+  .mobile-contact span { color: var(--red); margin-left: 8px; }
+}

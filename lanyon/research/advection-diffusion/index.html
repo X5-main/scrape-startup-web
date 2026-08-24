@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head><script src="../../livereload__mindelay-10-v-2-port-1313-path-livereload.js" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Advection-Diffusion Equation — Lanyon.AI</title>
+  <meta name="description" content="In this numerics deep dive we look at a fundamental equation of mathematical physics: the advection-diffusion equation.">
+  <link rel="icon" type="image/png" sizes="340x340" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/hugo.css">
+  
+  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]],displayMath:[["\\[","\\]"],["$$","$$"]],processEscapes:true},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+</head>
+<body>
+  <header class="site-header"><div class="shell nav-wrap">
+  <a class="brand" href="../../index.html" aria-label="Lanyon home"><img src="../../lanyon-mark.png" width="38" height="38" alt=""><span>Lanyon.AI</span></a>
+  <nav aria-label="Main navigation">
+    <a href="../../index.html">Home</a>
+    <a href="../../company/index.html">Company</a>
+    <a href="../../blog/index.html">Blog</a>
+    <a href="../index.html" class="active">Research Notes</a>
+  </nav>
+  <a class="contact-link" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+  <details class="mobile-menu">
+    <summary aria-label="Toggle navigation menu"><span class="menu-icon" aria-hidden="true"></span></summary>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../company/index.html">Company</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="../index.html" class="active">Research Notes</a>
+      <a class="mobile-contact" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+    </nav>
+  </details>
+</div></header>
+
+  <main><article class="prose research-prose full-note shell"><p class="tag">Research note  · Numerical methods</p><h1>The Advection-Diffusion Equation</h1><p class="article-deck">In this numerics deep dive we look at a fundamental equation of mathematical physics: the advection-diffusion equation.</p><div class="author-line"><span>Ammar Hakim</span><span>July 2026</span><span>15 minute read</span></div><hr><div class="markdown-body"><p><a href="https://github.com/lanyonai/AdvectionDiffusion">Corresponding GitHub Repository</a></p>
+<p>In this numerics deep dive we look at a fundamental equation of
+mathematical physics: the advection-diffusion equation. This equation
+appears in a diverse variety of applications, including fluid flow and
+kinetic physics. Several properties of this equations are discussed
+and some examples of using Lanyon to generate proofs and simulation results
+are shown.</p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-theory">The Theory</a>
+      <ul>
+        <li><a href="#properties-of-the-advection-diffusion-equation">Properties of the Advection-Diffusion Equation</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-numerics">The Numerics</a></li>
+    <li><a href="#the-proofs">The Proofs</a></li>
+    <li><a href="#results-fv">The Results: Second-Order Methods</a>
+      <ul>
+        <li><a href="#1d-advection-diffusion">1D Advection-Diffusion</a></li>
+        <li><a href="#2d-advection-diffusion">2D Advection-Diffusion</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+    <li><a href="#references-and-footnotes">References and Footnotes</a></li>
+  </ul>
+</nav>
+
+<h2 id="the-theory">The Theory</h2>
+<p>The advection-diffusion equation is a fundamental equation that
+describes the transport of a scalar field: the motion of the scalar is
+due to advection in a velocity field, and due to diffusion. The
+advection velocity and the diffusion tensor can either be specified or
+computed from other equations.</p>
+<p>The advection-diffusion equation, despite its apparent simplicity,
+forms the backbone of many other complex systems. For example, in
+fluid flow the density and energy of the fluid advect with the fluid
+velocity, leading to extremely complex mixing processes that are often
+chaotic.</p>
+<p>More interestingly, if we allow the flow and diffusion to be
+in <em>phase-space</em> (a higher-dimension space that combines both the
+spatial and momentum coordinates) then it can describe, with
+appropriate choices of advection velocities and diffusion tensors,
+kinetic physics. For example, the motion of matter under gravity (the
+Boltzmann equation), the path of charged particles in electromagnetic
+fields (the Vlasov-Maxwell equations), and plasma turbulence in magnetic
+confinement devices (the gyrokinetic equations) are all described by
+specialized forms of advection-diffusion equations.</p>
+<p>For the purposes of this numerics deep dive we will look at the
+equation written in the form</p>
+$$
+	\frac{\partial f}{\partial t}
+	+
+    \nabla\cdot(\mathbf{u} f)
+     =
+    \nabla\cdot(\mathbf{D}\cdot\nabla f).
+$$<p>In this equation \( \mathbf{u} \) is the advection velocity, \(
+\mathbf{D} \) is the diffusion <em>tensor</em>, and \( f(x,t) \) is the
+advected scalar quantity. We will assume that the advection velocity
+and diffusion tensor are <em>specified</em> as functions of space and time.</p>
+<h3 id="properties-of-the-advection-diffusion-equation">Properties of the Advection-Diffusion Equation</h3>
+<p>We will begin by deriving some important properties of this
+equation. One would want some or all these properties to be preserved
+by the numerical method we choose. A general approach to deriving
+properties of a large class of conservation laws is to first derive the
+<em>weak form</em> of the equation. We do this by multiplying by a smooth
+function \( w \) and integrating over an arbitrary volume \( \Omega \)
+to get, after using integration by parts,</p>
+$$
+  \int_\Omega w \frac{\partial f}{\partial t}\thinspace d\mathbf{x}^3
+  +
+  \oint_{\partial\Omega}
+  w \mathbf{n}\cdot (\mathbf{u} f - \mathbf{D}\cdot \nabla f) \thinspace ds -
+  \int_\Omega \nabla w \cdot (\mathbf{u} f - \mathbf{D}\cdot \nabla
+  f)\thinspace  d\mathbf{x}^3 = 0.
+$$<p>In a certain sense this weak form of the equation is more fundamental
+than the original partial differential equation (PDE) as it involves
+fewer derivatives, allowing for a broader class of solutions. For
+example, in the absence of any diffusion the weak form permits the
+propagation of <em>shocks</em>. The ability to capture shocks is critical for
+many applications. Specialized <em>shock-capturing</em> methods have been
+developed for such situations, and Lanyon uses such schemes by
+default.</p>
+<p>The trick to proving properties is to choose different values of the
+weight function \( w \). We can prove, for example, by choosing \( w =
+1 \) that the total amount of &ldquo;stuff&rdquo; in the control volume is
+conserved:</p>
+$$
+  \frac{d}{dt} \int_\Omega  f d\mathbf{x}^3
+  +
+  \oint_{\partial\Omega}
+  \mathbf{n} \cdot (\mathbf{u} f - \mathbf{D}\cdot \nabla f)\thinspace ds
+  = 0.
+$$<p>This is a <em>conservation law</em>, that is, it says that the total
+integrated quantity in the volume \( \Omega \) can only change due to
+<em>flux</em> passing through the boundary \( \partial\Omega \).</p>
+<p>We can derive another important property in the special case in
+which the flow velocity is <em>incompressible</em>, that is, when \(
+\nabla\cdot \mathbf{u} = 0 \). This incompressibility condition occurs
+very frequently in applications. For example, in most problems in
+phase-space (galactic dynamics, plasma physics, low-density fluid
+flows) the <em>phase-space velocity</em> is incompressible. We choose \( w =
+f \), that is, the solution itself as the test function. A little
+vector algebra shows that</p>
+$$
+  \frac{d}{dt}\int_\Omega \frac{1}{2}f^2 \thinspace d\mathbf{x}^3
+    +
+  \oint_{\partial\Omega}
+  \mathbf{n} \cdot (\mathbf{u} \frac{1}{2} f^2 - \mathbf{D}\cdot \nabla \frac{1}{2} f^2)  \thinspace ds
+  = -\int_\Omega (\nabla f \cdot \mathbf{D} \cdot \nabla f) \thinspace d\mathbf{x}^3.
+$$<p>This expression shows that, under the condition of incompressibility,
+as long as \( \nabla f \cdot \mathbf{D} \cdot \nabla f > 0\) the \(
+L_2 \)-norm of the solution decays monotonically. Of course, the \(
+L_2 \)-norm will remain conserved if there is no diffusion. This
+condition for decay (or conservation) is satisfied if the diffusion
+tensor is <em>positive semi-definite</em>.</p>
+<p>The monotonic decay of the \( L_2 \)-norm is important to preserve in
+a numerical scheme: it ensure that the scheme remains <em>stable</em>.</p>
+<p>A final important property that we can show is that if initially the
+scalar quantity is positive, \( f(x,0) > 0 \), then it always remains
+positive, \( f(x,t) > 0 \). It is very hard for a numerical scheme to
+ensure this property, unfortunately.</p>
+<p>In summary, the advection-diffusion equation conserves the quantity
+being advected, monotonically decays the \( L_2 \)-norm of the
+solution when the flow is incompressible and the diffusion tensor is
+positive semi-definite, and maintains positivity of the solution if
+initial conditions are positive. In constructing good numerical scheme
+we need to ensure that some or all of these properties are satisfied
+by the discrete scheme we construct. This is not always possible, and
+usually a balance must be found in accuracy of the scheme and its
+<em>robustness</em> properties: in general, the more accurate a scheme the
+less robust it is.</p>
+<h2 id="the-numerics">The Numerics</h2>
+<p>Now that we have studied a few properties of the advection-diffusion
+system we wish to discretize we can switch to constructing the
+discrete scheme. Notice that we have a <em>time-dependent</em> equations with
+first-order time-derivatives, and first and second-order spatial
+derivatives, including cross-derivative terms. Hence, Lanyon must:</p>
+<ul>
+<li>
+<p>Choose a <em>computational grid or mesh</em> that is appropriate for the
+problem we wish to solve. In this deep-dive Lanyon will assume
+simple, rectangular domains and so will use a uniform, rectangular
+mesh.</p>
+</li>
+<li>
+<p>Once we choose the mesh, we use a <em>discrete approximation</em> to the
+spatial derivative terms that appear in the equation. For this, one
+needs to carefully consider where on the mesh to compute the various
+quantities that appear in our equation, and from this construct a
+discrete derivative operator of sufficient accuracy. The discrete
+derivative operators will be different, for example, if we use a
+curvilinear mesh or a triangular mesh.</p>
+</li>
+<li>
+<p>Lanyon then needs to decide how to advance the solution in time: it
+will replace the time derivative with a discrete approximation and
+<em>advance</em> or <em>march</em> the solution forward in time using a ODE
+solver. We will of course need to prescribe initial conditions and
+apply the appropriate <em>boundary conditions</em>.</p>
+</li>
+</ul>
+<p>Each of these steps - mesh generation, constructing spatial discrete
+operators, and choosing a time-stepper - are complicated and impact
+the quality of the numerical solution Lanyon will obtain. Once it has
+made all these choices, executable proofs of correctness for various
+properties (certificates) are generated, for example using the Lean
+proof assistant language. Though Lanyon presently uses Lean as its
+default proof assistant, we intend to support other theorem-provers such as Rocq and Agda in
+the future. Not all properties of the continuous
+equations are inherited by the discrete scheme. Depending on the set
+of problems we wish to study, we may want to ensure some key
+properties of the continuous scheme are inherited by the discrete
+scheme.</p>
+<p>In general, as described in The Theory section above, we will also
+find that there is a tradeoff between accuracy of the scheme and
+<em>robustness</em>. For example, a highly accurate scheme could violate
+positivity, or will develop spurious high-\( k \) modes when the
+spatial scales of the solution approach the grid spacing. In general,
+some form of <em>regularization</em>, for example, <em>limiters</em> or extra
+diffusion, may be needed to obtain a stable and useful solver.</p>
+<p>For the purposes of this numerics deep-dive Lanyon will make the following
+choices:</p>
+<ul>
+<li>
+<p>It will choose a <em>finite-volume</em> method for the advective term,
+using <em>upwinding</em> to determine the numerical flux at each cell
+interface.</p>
+</li>
+<li>
+<p>To prevent oscillations when the structures in the solution get
+comparable to the grid size (high-\( k \) modes) it will choose an
+appropriate limiter that ensures that such modes do not cause
+serious errors.</p>
+</li>
+<li>
+<p>For the diffusion term Lanyon will choose a properly centered
+finite-difference scheme: recall that there is no preferred direction
+in diffusion and so one should not use upwinding here. There are
+subtle issues when the diffusion tensor is highly
+anisotropic. Further, analogous to problems with high-\( k \) modes,
+for diffusion terms other subtleties like thermodynamic consistency
+of the scheme arise. We shall address these topics later.</p>
+</li>
+</ul>
+<p>Lanyon uses a reconstruction approach to determine surface fluxes from
+both the advective and diffusive terms, and a special hierarchical
+selection to ensure robustness. At present, it does not correct for
+positivity violations or thermodynamic inconsistencies in the
+diffusion terms.</p>
+<h2 id="the-proofs">The Proofs</h2>
+<p>The complete sequence of steps to run Lanyon is described below. As
+part of the code generation process Lanyon produces
+formal proofs (e.g. in <a href="https://lean-lang.org/">Lean</a>) to check the correctness of
+various properties of the solvers it builds. Example proofs for the
+1D, 2D and 3D advection-diffusion equations, and the generated C code,
+are available on the <a href="https://github.com/lanyonai/AdvectionDiffusion">Lanyon GitHub
+repo</a>.</p>
+<p>As we describe in detail on GitHub, Lanyon takes <strong>less than three
+minutes</strong> to generate all the Lean and C code. It creates nearly 10,000
+lines of Lean and nearly 9,000 lines of C code. The Lean code proves
+the correctness of our algorithms, and Lanyon will refuse to generate
+C if the <code>/verify</code> step (see below) fails. Some examples of the Lean
+definitions and theorems are listed below.</p>
+<ul>
+<li>
+<p>Example Definition: Lanyon generates the <a href="https://github.com/lanyonai/AdvectionDiffusion/blob/main/proofs/advection_diffusion_full_2d.lean#L191">definition of the eigenvalues of the flux Jacobians</a>. These
+eigenvalues need to be real. See the <a href="../formulary/index.html">definition of hyperbolic PDEs</a> in the Lanyon Formulary. For the advection equations the eigenvalues are simply the
+components of the flow velocity.</p>
+</li>
+<li>
+<p>Example Theorem: Lanyon generates a theorem that shows that the
+$x$-direction <a href="https://github.com/lanyonai/AdvectionDiffusion/blob/main/proofs/advection_diffusion_full_2d.lean#L197">advective flux is hyperbolic</a>. In the same way, Lanyon will generate proofs that the $y$-
+and $z$-direction advective fluxes are also hyperbolic.</p>
+</li>
+<li>
+<p>Other examples of theorems are those that show <a href="https://github.com/lanyonai/AdvectionDiffusion/blob/main/proofs/advection_diffusion_full_2d.lean#L262">consistency of the diffusive
+flux in each direction</a>, that the flux-jump relations (<a href="../formulary/index.html">see</a>) <a href="https://github.com/lanyonai/AdvectionDiffusion/blob/main/proofs/advection_diffusion_full_3d.lean#L1024">are satisfied in the $x$-direction</a>.
+Many other theorems and definitions are provided, and one should consult
+the <a href="https://github.com/lanyonai/AdvectionDiffusion">GitHub
+repo</a> for more details.</p>
+</li>
+</ul>
+<h2 id="results-fv">The Results: Second-Order Methods</h2>
+<p>In this section we show a sequence of results for the
+advection-diffusion equation sytem in 1D and 2D. For each problem set
+we also give the prompts that we used in Lanyon to generate the code
+and simulation. In general, to construct a solver one needs to run three
+steps. These are:</p>
+<ul>
+<li>
+<p><strong>Step 1</strong>: Run the <code>/specify</code> command (see examples) to tell Lanyon
+what equation system you wish to solve, in which dimension. You can
+also add other details as desired. For more complex equation
+systems you may have to run the <code>/deepthought</code> command. An example of
+a <a href="https://github.com/lanyonai/AdvectionDiffusion/blob/main/specifications/advection_diffusion_full_2d.rkt">generated DSL
+specification</a>
+can be viewed on our Github repo.</p>
+</li>
+<li>
+<p><strong>Step 2</strong>: Once Lanyon completes the specify step you should ensure
+that the generated specification is syntactically correct by running
+the <code>/verify</code> command. This command takes no parameters. If the
+<code>/verify</code> command fails then you may need to rerun the <code>/specify</code>
+command with some variation, or use the <code>/deepthought</code>
+command. Lanyon will refuse to build the actual simulation code if
+<code>/verify</code> does not pass.</p>
+</li>
+<li>
+<p><strong>Step 3</strong> Once <code>/verify</code> passes, then you must run the <code>/compile</code>
+command. This takes no options and will produce the C code for the
+solver you specified in the <code>/specify</code> command. Examples of
+<a href="https://github.com/lanyonai/AdvectionDiffusion/blob/main/implementations/advection_diffusion_full_2d.c">generated C
+kernels</a>
+are on our Github.</p>
+</li>
+</ul>
+<p>Once these steps are completed, you then run the <code>/simulate</code> command,
+describing in detail the specific simulation you want to run. Many
+examples are given below.</p>
+<h3 id="1d-advection-diffusion">1D Advection-Diffusion</h3>
+<p>For the first test we will build a 1D advection-diffusion solver. The
+prompt to Lanyon is:</p>
+<blockquote>
+<p>/specify Create a 1D advection-diffusion solver</p>
+</blockquote>
+<p>Note the simplicity of the prompt: you do not need to specify the
+scheme, the limiter or any other parameters. Lanyon will choose
+appropriate defaults for you. At this point you will see some messages
+fly by, with a Lisp DSL fragment that describes the system of
+equatiosn. Run <code>/verify</code> to ensure this fragment is <em>syntactically
+correct</em>. Note that the <code>/verify</code> step <strong>does not</strong> check if the
+equation or proofs of correctness are <em>semantically
+correct</em><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Semantic correctness is ensured by our sophisticated
+RAG pipeline that embodies deep knowledge of physics and applied
+mathematics. This meta-level checking is, in general, not 100%
+foolproof as Lanyon has no way to know (especially in complex
+situations) what exactly the user had in mind. Such capabilities
+remain an active area of research for us.</p>
+<p>Now, we are ready to run our first simulation! This is the problem of
+advecting two periods of a sine wave: the initial condition is $\sin(x)$ on a
+periodic domain, with an advection speed of $1.0$ and a constant
+diffusion coefficient of $0.01$.</p>
+<blockquote>
+<p>/simulate Simulate the advection of two periods of a sin wave with
+advection velocity 1 and diffusion coefficient 0.01. Use 32 cells on
+a periodic domain.</p>
+</blockquote>
+<p>That&rsquo;s it! Lanyon now will create the simulation based on the verified C
+code and run it for you, producing a large amount of output, including
+diagnostics.</p>
+
+<figure><img src="../../figs/ad-1d-nx-32-cmp.png" alt="1D Advection-Diffusion"><figcaption>1D Advection-diffusion solution on a periodic domain with 32 cells.</figcaption></figure>
+
+<p>In the figure above the blue line is the solution computed by Lanyon: the
+scheme it chose here uses limiters and is run at a smaller CFL number,
+leading to some excessive numerical damping. The extra flattening of
+the tops of the waves is due to the limiters: use of higher-order
+methods with maxima/minima-preserving limiters will eliminate this
+issue, and we will explore this later in the Research Note.</p>
+<p>However, we can run the same simulation on a finer grid:</p>
+<blockquote>
+<p>/simulate Simulate the advection of two periods of a sin wave with
+advection velocity 1 and diffusion coefficient 0.01. Use 64 cells on
+a periodic domain.</p>
+</blockquote>
+<p>With this higher resolution we now get a far less numerically damped
+solution as seen in the following figure</p>
+
+<figure><img src="../../figs/ad-1d-nx-64-cmp.png" alt="1D Advection-Diffusion"><figcaption>1D Advection-diffusion solution on a periodic domain with 64 cells.</figcaption></figure>
+
+<p>As a final test in 1D we will advect a square flat-top profile twice
+across a periodic domain:</p>
+<blockquote>
+<p>/simulate Simulate the advection of a square flat-top, with unit
+height on a periodic domain. Set the diffusion to 0.0. Use 64 cells
+on a periodic domain.</p>
+</blockquote>
+<p>This simulation checks the efficacy of the limiters (in this case the
+default min-mod limiter).</p>
+
+<figure><img src="../../figs/ad-1d-flat-top.png" alt="1D Advection-Diffusion"><figcaption>1D Advection of a flat-top on a periodic domain.</figcaption></figure>
+
+<h3 id="2d-advection-diffusion">2D Advection-Diffusion</h3>
+<p>For this set of problems we will create a 2D advection-diffusion
+solver using the following simple prompt:</p>
+<blockquote>
+<p>/specify Create a 2D advection-diffusion solver</p>
+</blockquote>
+<p>Once the solver is created and we have run <code>/verify</code> and <code>/compile</code>, we
+can run simulations. The first simulation we shall run is the
+advection of a &ldquo;cosine hump&rdquo; in a rigid-body rotating flow. This flow
+has flow-velocity given by</p>
+$$
+\begin{align}
+u_x &= -y+1/2 \\
+u_y &= x-1/2.
+\end{align} 
+$$<p>This represents a counter-clockwise rigid body rotation about
+$(x_c,y_c)=(1/2,1/2)$ with period $2\pi$. Hence, structures will
+perform a circular motion about $(x_c,y_c)$, returning to their
+original position at $t=2\pi$. We will choose the initial condition:</p>
+$$
+  f(x,y,0) = \frac{1}{4} \left[ 1 + \cos(\pi r) \right]
+$$<p>where</p>
+$$
+  r(x,y) = \min(\sqrt{(x-x_0)^2 + (y-y_0)^2}, r_0)/r_0
+$$<p>The prompt we will give Lanyon is</p>
+<blockquote>
+<p>/simulate Simulate 2D advection in a flow with x-velocity -y+1/2 and
+y-velocity x-1/2 on a domain that is unit length in each
+direction. Set diffusion to zero. Run till time of 2 pi. Use a
+&ldquo;cosine hump&rdquo; initial condition as described in
+<a href="https://ammar-hakim.org/sj/je/je12/je12-poisson-bracket.html#rigid-body-rotating-flow">https://ammar-hakim.org/sj/je/je12/je12-poisson-bracket.html#rigid-body-rotating-flow</a></p>
+</blockquote>
+<p>Note a few features of this prompt: we are telling Lanyon the
+advection speed to use and pointing it to another webpage (or a paper)
+for the specific form of the initial conditions to use. The RAG
+pipeline will ensure the advection speed is correctly set and will
+attempt to use the initial conditions from the specified webpage.</p>
+<p>The figures below show snapshots of the solutions and a lineout of the
+final and the exact solutions. Note that the limiter leads to some
+flattening of the maxima of the &ldquo;cosine hump&rdquo;.</p>
+
+<figure><img src="../../figs/2d-rigid-body-flow.png" alt="2D Advection-Diffusion"><figcaption>2D Advection of a cosine-hump in a rigid-body flow.</figcaption></figure>
+
+
+<figure><img src="../../figs/2d-rigid-body-flow-1d-cmp.png" alt="2D Advection-Diffusion"><figcaption>2D Advection of a cosine-hump in a rigid-body flow. Comparison of exact and numerical solution.</figcaption></figure>
+
+<p>We now illustrate the ability to specify an anisotropic diffusion
+coefficient using the following prompt to the simulate command:</p>
+<blockquote>
+<p>/simulate Simulate 2D diffusion only along the Y-direction. Set
+advection velocity to zero. Start with a Gaussian initial condition
+in the center of a domain and use periodic boundary conditions.</p>
+</blockquote>
+<p>This prompt will set a default diffusion coefficent in $y$-direction,
+and set the diffusion in $x$-direction to zero. The figures below show
+the lineout in the $y$- and $x$-directions. The anisotropic diffusion
+causes the Gaussian to diffuse only the $y$-direction, leaving the
+$x$-direction shape completely unchanged.</p>
+
+<figure><img src="../../figs/ad-y-diffusion-y-lineout.png" alt="2D Advection-Diffusion"><figcaption>2D Advection of a cosine-hump in a rigid-body flow.</figcaption></figure>
+
+
+<figure><img src="../../figs/ad-y-diffusion-x-lineout.png" alt="2D Advection-Diffusion"><figcaption>2D Advection of a cosine-hump in a rigid-body flow.</figcaption></figure>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>In this Research Note we have discussed a fundamental equation of
+mathematical physics: the advection-diffusion equation. We discussed
+some of the properties of the equation and describe a general
+technique for how to derive these properties in a systematic
+way. Using a second-order method we solved a number of problems in 1D
+and 2D. All Lanyon prompts were given, with sample simulation outputs.</p>
+<p>We should mention that for linear smooth problems the types of methods
+that we used above are not the best ones possible. The presence of
+limiters adds more diffusion than is desirable. However, these
+limiters are <em>essential</em> for discontinous solutions, for example, the
+square flat-top. See the <a href="../formulary/index.html">No Free-Lunch Principle</a>. Going to higher-order methods, such as
+discontinous Galerkin schemes, helps, and we intend to explore
+this option in Lanyon (and update this Research Note when we do).</p>
+<h2 id="references-and-footnotes">References and Footnotes</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>The reason why <em>semantic correctness</em> is hard (or impossible) to
+check is that <em>different users may mean different things by the
+same set of words</em>. For example, when someone says &ldquo;advection
+equation&rdquo;, they may actually intend to include the diffusion
+term also. Another user may intend that this would <em>not</em> include
+the diffusive term.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div></article></main>
+  <footer><div class="shell footer-grid">
+  <div><div class="brand footer-brand"><img src="../../lanyon-mark.png" width="34" height="34" alt=""><span>Lanyon.AI</span></div><p>Formal Verification for a Computable Universe</p></div>
+  <div><p class="footer-label">Explore</p><a href="../../company/index.html">Company</a><a href="../../blog/index.html">Blog</a><a href="../index.html">Research Notes</a></div>
+  <div><p class="footer-label">Connect</p><a href="mailto:contact@lanyon.ai">contact@lanyon.ai</a><a href="https://github.com/lanyonai/" rel="noreferrer">GitHub ↗</a></div>
+</div><div class="shell legal"><span>© 2026 Lanyon AI, Inc.</span><span>Correctness by construction</span></div></footer>
+
+</body>
+</html>

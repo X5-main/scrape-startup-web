@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head><script src="../../livereload__mindelay-10-v-2-port-1313-path-livereload.js" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Euler Equations of Gas Dynamics — Lanyon.AI</title>
+  <meta name="description" content="In this deep dive we study the Euler equations. These are a fundamental set of equations that describe inviscid fluid flow. They also form the basis of the Navier-Stokes equations.">
+  <link rel="icon" type="image/png" sizes="340x340" href="../../favicon.png">
+  <link rel="apple-touch-icon" href="../../favicon.png">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <link rel="stylesheet" href="../../assets/hugo.css">
+  
+  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"],["$","$"]],displayMath:[["\\[","\\]"],["$$","$$"]],processEscapes:true},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  
+</head>
+<body>
+  <header class="site-header"><div class="shell nav-wrap">
+  <a class="brand" href="../../index.html" aria-label="Lanyon home"><img src="../../lanyon-mark.png" width="38" height="38" alt=""><span>Lanyon.AI</span></a>
+  <nav aria-label="Main navigation">
+    <a href="../../index.html">Home</a>
+    <a href="../../company/index.html">Company</a>
+    <a href="../../blog/index.html">Blog</a>
+    <a href="../index.html" class="active">Research Notes</a>
+  </nav>
+  <a class="contact-link" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+  <details class="mobile-menu">
+    <summary aria-label="Toggle navigation menu"><span class="menu-icon" aria-hidden="true"></span></summary>
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <a href="../../index.html">Home</a>
+      <a href="../../company/index.html">Company</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="../index.html" class="active">Research Notes</a>
+      <a class="mobile-contact" href="mailto:contact@lanyon.ai">Contact <span>↗</span></a>
+    </nav>
+  </details>
+</div></header>
+
+  <main><article class="prose research-prose full-note shell"><p class="tag">Research note  · Numerical methods</p><h1>The Euler Equations of Gas Dynamics</h1><p class="article-deck">In this deep dive we study the Euler equations. These are a fundamental set of equations that describe inviscid fluid flow. They also form the basis of the Navier-Stokes equations.</p><div class="author-line"><span>Ammar Hakim</span><span>July 2026</span><span>23 minute read</span></div><hr><div class="markdown-body"><p><a href="https://github.com/lanyonai/CompressibleEuler">Corresponding GitHub Repository</a></p>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-theory">The Theory</a>
+      <ul>
+        <li><a href="#riemann-problems-for-the-euler-equations">Riemann Problems for the Euler Equations</a></li>
+        <li><a href="#the-isothermal-euler-equations">The Isothermal Euler Equations</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-numerics">The Numerics</a></li>
+    <li><a href="#the-proofs">The Proofs</a></li>
+    <li><a href="#the-results">The Results</a>
+      <ul>
+        <li><a href="#1d-riemann-problems">1D Riemann Problems</a></li>
+        <li><a href="#2d-riemann-problem">2D Riemann Problem</a></li>
+        <li><a href="#mach-2-flow-over-two-cylinders">Mach 2 Flow over Two Cylinders</a></li>
+        <li><a href="#mach-4-flow-over-a-free-cylinder">Mach 4 Flow Over a Free Cylinder</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusions">Conclusions</a></li>
+    <li><a href="#references-and-footnotes">References and Footnotes</a></li>
+  </ul>
+</nav>
+
+<h2 id="the-theory">The Theory</h2>
+<p>The Euler equations are arguably the most important example of a system of
+hyperbolic PDEs. They describe the flow of compressible, inviscid
+fluids. Though they do not contain non-ideal effects like viscosity
+and heat conduction, they do allow the use of a general <em>equation of
+state</em> (EOS), and can hence describe a vast array of flow
+phenomena. The importance in applications primarily stem from their
+use in fluid problems, for example, the flow of air around aircraft,
+inside rocket engines, gas and wind turbines, etc. With extensions to
+include relativistic effects, they can describe the flow of gas around
+black holes and neutron stars, and, with the appropriate EOS, even the
+structure of a neutron star itself. The Euler equations also form the
+basis of other, even more complex systems of equations. Most
+importantly, allowing the fluid to be electrically conductive leads to
+the magnetohydrodyamic equations (MHD), and with addition of viscosity
+and heat conduction, the Navier-Stokes equations. It can safely be
+said that modern physics and engineering relies on obtaining a deep
+understanding of the Euler equations.</p>
+<p>The equations consist of the <em>continuity equation</em></p>
+$$
+  \frac{\partial\rho}{\partial t} + \nabla\cdot(\rho\mathbf{u}) = 0,
+$$<p>the <em>momentum equation</em></p>
+$$
+  \frac{\partial}{\partial t}(\rho\mathbf{u}) + \nabla\cdot \left( \rho\mathbf{u}\otimes\mathbf{u} + p\mathbf{g} \right) = 0,
+$$<p>and the <em>energy equation</em></p>
+$$
+  \frac{\partial \mathcal{E}}{\partial t} + \nabla\cdot \left[ \mathbf{u}(\mathcal{E}+p) \right] = 0.
+$$<p>The total energy $\mathcal{E}$ contains two contributions, one from
+the kinetic energy and the other from the internal energy:</p>
+$$
+  \mathcal{E} = \frac{1}{2} \rho\mathbf{u}\cdot\mathbf{u} + \rho\varepsilon
+$$<p>where $\varepsilon$ is the internal energy density of the fluid. In
+these equations we have more unknowns than equations: we need to find
+a way to compute the pressure. To do this we must introduce the EOS</p>
+$$
+p = p(\varepsilon, \rho).
+$$<p>In general, the EOS is determined from other physics (for example,
+nuclear physics), and for many important problems it may only be
+available as a table of experimentally measured values. The simplest
+EOS is the <em>ideal gas EOS</em>, for which $p = (\gamma - 1)
+\rho\varepsilon$. Here, $\gamma$ is the ratio of specific heats.  For
+air it is $1.4$, while for a hydrogen plasma of electrons and protons
+(with non-relativistic temperatures) it is $5/3$.</p>
+<p>It is clear that this is a highly nonlinear system of equations. We
+can show that this system is <a href="../formulary/index.html">hyperbolic</a>, at least for well-behaved EOS. This is
+a non-trivial task and is best done in the <a href="../formulary/index.html">quasilinear form</a> and with the help of a
+computer algebra system. We summarize the results below.</p>
+<p>Consider the 1D Euler equations</p>
+$$
+  \frac{\partial}{\partial{t}} 
+    \begin{bmatrix}
+      \rho \\
+      \rho u \\
+      \rho v \\
+      \rho w \\
+      E
+    \end{bmatrix}
+  +
+  \frac{\partial}{\partial{x}}
+    \begin{bmatrix}
+      \rho u \\
+      \rho u^2 + p \\
+      \rho uv \\
+      \rho uw \\
+      (E+p)u
+    \end{bmatrix} = 0.
+$$<p>In these equations, $u, v, w$ are the components of the velocity
+vector $\mathbf{u}$ along global Cartesian basis vectors. The
+eigenvalues of the flux Jacobian are</p>
+$$
+  \lambda^1, \lambda^2, \lambda^3, \lambda^4, \lambda^5 = u-c_s, u, u, u, u+c_s,
+$$<p>where $c_s$ is the sound speed. These expressions show that the
+eigenvalues are just the flow velocity in the $x$-direction, with two
+modified by the sound speed. The right eigenvectors of the flux
+Jacobian are given by the columns of the matrix</p>
+$$
+R =
+    \begin{bmatrix}
+      1 & 0 & 0 & 1 & 1 \\
+      u-c_s & 0 & 0 & u & u+c_s \\
+      v & 1 & 0 & v & v \\
+      w & 0 & 1 & w & w \\
+      h-uc_s & v & w & h-c_s^2/b & h+uc_s
+    \end{bmatrix}
+$$<p>Here</p>
+$$
+\begin{align}
+  h &= (E+p)/\rho \\
+  c_s &= \sqrt{\frac{\partial p}{\partial \rho} 
+    + \frac{p}{\rho^2}\frac{\partial p}{\partial \varepsilon}}
+\end{align}
+$$<p>are the <em>enthalpy</em> and the sound speed respectively. Also,</p>
+$$
+  b = \frac{1}{\rho}\frac{\partial p}{\partial \varepsilon}.
+$$<p>These expressions show that the necessary condition for hyperbolicity is that
+the <em>sound speed remain real</em>. This puts constraints on the allowable
+EOS. For an ideal gas EOS</p>
+$$
+\begin{align}
+  h &= \frac{c^2}{\gamma-1} + \frac{1}{2}q^2 \\
+  c_s &= \sqrt{\frac{\gamma p}{\rho}}
+\end{align}
+$$<p>and $b = \gamma-1$. Hence, the system remains hyperbolic as long as
+$p&gt;0$ and $\rho&gt;0$, which must be true from physical considerations
+for normal matter.</p>
+<p>For reference, we list the left eigenvectors of the flux Jacobian</p>
+$$
+  L =
+  \frac{b}{2c^2}
+    \begin{bmatrix}
+      \theta+uc_s/b & -u-c_s/b & -v & -w & 1 \\
+      -2vc_s^2/b & 0 & 2c_s^2/b & 0 & 0 \\
+      -2wc_s^2/b & 0 & 0 & 2c_s^2/b & 0 \\
+      2h-2q^2 & 2u & 2v & 2w & -2 \\
+      \theta-uc_s/b & -u+c_s/b & -v & -w & 1
+    \end{bmatrix}
+$$<p>where $q^2 = \mathbf{u}\cdot\mathbf{u} = u^2 + v^2 + w^2$ and</p>
+$$
+  \theta = q^2 - \frac{E}{\rho} 
+    + \rho\frac{\partial p / \partial \rho}{\partial p / \partial \varepsilon}
+$$<p>which, for an ideal gas EOS reduces to $q^2/2$.</p>
+<p>The eigenvalues indicate that small disturbances in a uniform, static
+fluid propagate at the speed of sound. Of course, when the
+disturbances are <em>large</em>, far more complex (and surprising) phenomena
+can occur. We saw two such possibilities in the <a href="../burgers-equation/index.html">Burgers equation deep
+dive</a>: that is, shocks and
+rarefactions. Euler equations show far more complex nonlinear
+structures. Besides shocks and rarefactions, <em>contact discontinuities</em>
+can form and all of these can interact in a complicated and non-intuitive
+way. In higher dimensions the structure of the flow, especially when
+the flow velocity transitions from subsonic to supersonic, can be
+become quite intricate, with shocks interacting with each other, slip
+lines forming leading to instabilities, and even the
+transition to turbulence<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. With the inclusion of viscosity
+(Navier-Stokes equations) further phenomena can occur, for example,
+the interaction of shocks and boundary layers. These interactions can
+have serious deleterious effects on, e.g., the performance of rocket engines<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<h3 id="riemann-problems-for-the-euler-equations">Riemann Problems for the Euler Equations</h3>
+<br>
+<p>To get a feel for the kinds of solutions we can get, we will look at a
+few <a href="../formulary/index.html">Riemann Problems</a> for
+the Euler equations. In each problem we specify the left and right
+states and then compute the solution to the problem at a later
+time. Somewhat incredibly, one can construct an exact solution to the
+Euler Riemann problem. This is a highly non-trivial exercise. The
+resulting exact solution requires numerical root finding, and hence is
+not <em>analytical</em> in the sense that there is no closed-form solution
+in terms of elementary or (standard) special functions. In the problems below, we use
+an exact Riemann solver to construct the exact solutions (modulo the
+errors in the root finder).</p>
+<p>The first problem the classic <em>Sod Shock</em> problem. For this problem, the
+left/right initial states are</p>
+$$
+    \begin{bmatrix}
+      \rho_l \\
+      u_l \\
+      p_l
+    \end{bmatrix} = 
+    \begin{bmatrix}
+      1 \\
+      0.0 \\
+      1.0
+    \end{bmatrix},
+  \qquad
+    \begin{bmatrix}
+      \rho_r \\
+      u_r \\
+      p_r
+    \end{bmatrix} = 
+    \begin{bmatrix}
+      0.125 \\
+      0.0 \\
+      0.1
+    \end{bmatrix}.
+$$<p>The domain is $x \in [-1,1]$ and the discontinuity is at $x=0$. The
+resulting exact solution at $t=0.2$ is shown in the figure
+below. Three key features are seen in this plot: the rarefaction wave
+(R), the shock (S), and the contact discontinuity (C). We already saw
+rarefactions and shocks in the <a href="../burgers-equation/index.html">Burgers equation deep dive</a>. The contact is something new. Essentially,
+the contact discontinuity is a solution to the Euler equation across
+which only the density has a jump. The velocity and pressure remain
+continuous across a contact. Across the shock the <a href="../formulary/index.html">Rankine-Hugoniot
+conditions</a> are
+satisfied.</p>
+
+<figure><img src="../../figs/euler-equations/sod.png" alt="Sod Shock"><figcaption>Euler Riemann Problem: The Sod Shock. Seen is the rarefaction wave (R), the shock (S) and the contact discontinuity (C).</figcaption></figure>
+
+<p>In the second problem left/right initial states are set so that a
+near-vacuum state forms in the middle of the domain. The domain is $x
+\in [0,1]$ and the discontinuity is at $x=0.5$. The initial states are</p>
+$$
+    \begin{bmatrix}
+      \rho_l \\
+      u_l \\
+      p_l
+    \end{bmatrix} = 
+    \begin{bmatrix}
+      1 \\
+      -2.0 \\
+      0.4
+    \end{bmatrix},
+  \qquad
+    \begin{bmatrix}
+      \rho_r \\
+      u_r \\
+      p_r
+    \end{bmatrix} = 
+    \begin{bmatrix}
+      1.0 \\
+      2.0 \\
+      0.4
+    \end{bmatrix}.
+$$<p>The exact solution at $t=0.15$ is shown in the following figure. This
+solution shows that as the fluid moves away from $x=0.5$ it leaves
+behind a near-vacuum state that connects to the unperturbed fluid with
+a rarefaction. In general, many numerical methods have a hard time
+with such problems. The pressure tends to go negative and the fluid
+shows spurious heating.</p>
+
+<figure><img src="../../figs/euler-equations/vac.png" alt="Near-Vacuum Solution"><figcaption>Euler Riemann Problem: The oppositely directed initial velocity means a near-vacuum state forms in the middle of the domain that is connected to the unperturbed state by a rarefaction.</figcaption></figure>
+
+<p>The next problem we look at is the Noh problem: in this two slabs of
+very low-density gas are counter-propagating into each other. This
+leads to an instantaneous conversion of kinetic energy into pressure
+which rises by 6 orders of magnitude. The domain is $x\in [0, 1]$ and
+the initial states are</p>
+$$
+    \begin{bmatrix}
+      \rho_l \\
+      u_l \\
+      p_l
+    \end{bmatrix} = 
+    \begin{bmatrix}
+      1 \\
+      1.0 \\
+      10^{-6}
+    \end{bmatrix},
+  \qquad
+    \begin{bmatrix}
+      \rho_r \\
+      u_r \\
+      p_r
+    \end{bmatrix} = 
+    \begin{bmatrix}
+      1.0 \\
+      -1.0 \\
+     10^{-6}
+    \end{bmatrix}.
+$$<p>The exact solution at $t=1$ is shown in the figure below.</p>
+
+<figure><img src="../../figs/euler-equations/noh.png" alt="Noh Problem"><figcaption>Euler Riemann Problem: The Noh Problem. In this two low pressure slabs of gas smash into each other creating a high pressure stationary state in the middle.</figcaption></figure>
+
+<p>The final problem we look at is a shock in which the density and
+pressure have a sharp spike. The initial state is</p>
+$$
+    \begin{bmatrix}
+      \rho_l \\
+      u_l \\
+      p_l
+    \end{bmatrix} =
+    \begin{bmatrix}
+      0.1261192 \\
+      8.9047029 \\
+      782.92899
+    \end{bmatrix},
+  \qquad
+    \begin{bmatrix}
+      \rho_r \\
+      u_r \\
+      p_r
+    \end{bmatrix} =
+    \begin{bmatrix}
+      6.591493 \\
+      2.2654207 \\
+      3.1544874
+    \end{bmatrix}.
+$$<p>The domain for this problem is $x \in [0.0, 0.5]$ with initial
+discontinuity at $x=0.4$. The exact solution is computed at $t=0.0039$
+and is shown below.</p>
+
+<figure><img src="../../figs/euler-equations/spike.png" alt="Spike Problem"><figcaption>Euler Riemann Problem: The Density Spike Problem. In this a sharp spike occurs in the density profile due to the strong shock.</figcaption></figure>
+
+<p>These exact solutions to the Riemann problem for the 1D Euler
+equations show the complexity of flow patterns that can emerge due to
+the nonlinearities. Clearly, designing numerical methods that can
+simulate such features is a highly challenging task. Lanyon constructs
+shock-capturing schemes for such problems. One major feature seen
+above is the formation of very low density and pressure
+regions. Though these remain positive in the continuous system,
+numerical methods have a hard time ensuring <em>positivity</em> of density
+and pressure. In general, one must trade accuracy for positivity: a
+positivity-preserving scheme is more diffusive. However, with very
+careful and dynamic choice of numerical fluxes one can reduce or
+eliminate positivity errors (except in some pathological cases).</p>
+<p>As can be imagined from the simple 1D exact solutions, the 2D and 3D
+Euler equations will display an extremely complex and rich
+structure. In multiple dimensions shocks and other features can
+interact with each other, complex flow-shear driven instabilities can
+form, and turbulence can be triggered<sup id="fnref1:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. As there are few or no
+non-trivial exact solutions in multiple dimensions we will study these
+numerically using Lanyon in the results section below.</p>
+<h3 id="the-isothermal-euler-equations">The Isothermal Euler Equations</h3>
+<br>
+<p>An approximation of the Euler equations that is often useful is the
+<em>isothermal</em> Euler equations. In this approximation the temperature of
+the fluid is assumed to be a constant and so an energy equation is not
+needed, nor is an equation of state. (In fact, this is the primary
+limitation of this approximation: it is not possible to describe
+situations in which the temperature evolves and the thermodynamics is
+complicated).</p>
+<p>To obtain this approximation we simply drop the energy equation above
+and postulate that the pressure is $p = \rho a^2$, where $a&gt;0$ is a
+constant with units of speed. In fact, this turns out to be the sound
+speed. With this the 1D isothermal Euler equations become</p>
+$$
+  \frac{\partial}{\partial{t}} 
+    \begin{bmatrix}
+      \rho \\
+      \rho u \\
+    \end{bmatrix}
+  +
+  \frac{\partial}{\partial{x}}
+    \begin{bmatrix}
+      \rho u \\
+      \rho u^2 + \rho a^2 \\
+    \end{bmatrix} = 0.
+$$<p>We can easily rewrite this in <a href="../formulary/index.html">quasilinear form</a></p>
+$$
+  \frac{\partial}{\partial{t}} 
+    \begin{bmatrix}
+      \rho \\
+      u \\
+    \end{bmatrix}
+  +
+  \begin{bmatrix}
+      u & \rho \\
+      a^2/\rho & u \\
+  \end{bmatrix}
+  \frac{\partial}{\partial{x}}
+    \begin{bmatrix}
+      \rho \\
+      u \\
+    \end{bmatrix} = 0.
+$$<p>The eigenvalues of the quasilinear matrix, as is easy to see, are
+simply $\lambda^{1,2} = u \pm a$. We can show that this system
+maintains hyperbolicity as long as $a &gt; 0$.</p>
+<p>There is an interesting limit of the isothermal Euler equation, that
+is the <em>cold</em> limit $a=0$. In this case there is a single, repeated
+eigenvalue $\lambda^{1,2} = u$. In this limit the flux Jacobian does
+not possess a complete set of right eigenvectors, and hence the system
+is not hyperbolic. In fact, this limit leads to many strange
+solutions, including delta functions!</p>
+<p>It may appear that this cold limit is useless. However, it is not
+so. There are many cases in which at least one component of the system
+can be treated as cold (or more accurately, as pressure-less). For
+example, when simulating volcanic explosions the hot ash (somewhat
+paradoxically) can be treated as &ldquo;cold&rdquo; (i.e., pressure-less). This is because the ash
+particles do not collide with each other but are merely advected due
+to density gradients and drag from air. Another, perhaps more
+important, case is that of a <em>cold relativistic charged fluid</em>. This
+is a very important limit for understanding laser-plasma
+experiments<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>, in which ultra-intense laser pulses are fired into a
+plasma. As the laser energy is extremely large compared to the plasma
+temperature, to a very good approximation, the plasma can be treated as
+a cold fluid. However, the plasma is accelerated to such intense
+momenta that one must incorporate relativistic effects, making this
+problem highly nonlinear and complicated. We shall explore such
+laser-plasma problems with Lanyon at a later point.</p>
+<h2 id="the-numerics">The Numerics</h2>
+<p>As for the <a href="../formulary/index.html">Burgers equation</a> we
+need to use a shock-capturing scheme to ensure we can robustly capture
+the kinds of structures we see in the example exact Riemann solutions
+shown above. The simplest numerical flux we can choose (see the
+numerics section of the <a href="../maxwell-equations/index.html">Maxwell Equations deep
+dive</a> for
+details) is the <em>Lax flux</em></p>
+$$
+{\mathbf{G}}(\mathbf{Q}_R,\mathbf{Q}_L) = \frac{1}{2}\big[\mathbf{F}(\mathbf{Q}_R)+\mathbf{F}(\mathbf{Q}_L)\big] - \frac{1}{2} a_\mathrm{max}\left[ \mathbf{Q}_R - \mathbf{Q}_L \right]
+$$<p>where $a_\mathrm{max} = \max_{i=1,\ldots,5} | \lambda^i|$, where
+$\lambda^i$ are the eigenvalues determined above. This numerical flux
+is robust and simple to implement, but for finite volume schemes adds
+excess numerical diffusion to the solution<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.</p>
+<p>Another (related) disadvantage of Lax fluxes is that they do not
+account for the complete eigenstructure of the Euler equations&rsquo; flux
+Jacobian: only the largest eigenvalue is used and no eigenvectors are
+used at all. The key issue here is that to build a more delicate
+numerical flux we need to compute the fluctuations in a way that the
+<a href="../formulary/index.html">Flux-Jump Identity</a>
+is satisfied. As the Burgers equation is a <em>scalar</em> equation we saw
+that the flux-jump identity gave us a unique prescription for
+<a href="../burgers-equation/index.html">computing the
+eigenvalue</a>
+at an interface to use in constructing the fluctuations. How can we
+compute the fluctuations for the Euler equations, which are a <em>system</em>
+of nonlinear equations, to ensure that the flux-jump identity is satisfied?</p>
+<p>Phil Roe answered this question in a <a href="https://doi.org/10.1016/0021-9991(81)90128-5">landmark
+paper</a> in 1981. This
+paper ushered in modern <em>high-resolution</em> methods, in which the
+complete eigenstructure of nonlinear hyperbolic systems of equations
+could be used to compute the numerical fluxes. Though Roe originally
+discovered this <em>Roe averaging</em> for Euler equations, his approach was
+quickly extended to many other equation systems, including the <a href="../formulary/index.html">ideal
+MHD</a>
+equations, and 10-moment equations.</p>
+<p>Roe&rsquo;s key innovation was to introduce a <em>parameter vector</em> $w$ in
+terms of which the conserved variables and fluxes can be expressed as
+quadratic functions. The specific parameter vector Roe discovered is:</p>
+$$
+\mathbf{w} = \sqrt{\rho}\begin{bmatrix} 1, u, v, w, h \end{bmatrix}^T
+$$<p>where $h$ is the enthalpy defined above. In terms of this, Roe then
+expressed $\mathbf{Q} = \mathbf{Q}(\mathbf{w})$ and $\mathbf{F} = \mathbf{F}(\mathbf{Q}) = \mathbf{F}(\mathbf{Q}(\mathbf{w})) = \mathbf{F}(\mathbf{w})$, where the
+functional dependence is quadratic. Somewhat miraculously, Roe showed
+that if one computed the eigenvalues and the right and left
+eigenvectors using <em>arithmetic mean</em> of the parameter vector, then
+fluctuations constructed from them (as described in the Maxwell
+equations deep dive) would satisfy the flux-jump condition! Note that
+arithmetic mean of $\mathbf{w}$ is not the same as the arithmetic mean of
+$\mathbf{Q}$. For example, we can quickly see that the <em>Roe averaged</em> velocity
+at the interface becomes</p>
+$$
+\mathbf{u} = \frac{\sqrt{\rho_L} \mathbf{u}_L + \sqrt{\rho_R} \mathbf{u}_R}{\sqrt{\rho_L} + \sqrt{\rho_R}}.
+$$<p>One can clearly see this is a non-trivial expression. Hence, by using Roe
+averages one can construct a numerical flux, the <em>Roe flux</em>, that can
+then be used to construct the update equation for finite volume and
+higher-order schemes.</p>
+<p>Extending the Lanyon proof system to check for flux-jump conditions for
+Roe fluxes is a highly non-trivial task, as can be seen in the
+complexity of constructing the Roe averaging above. Besides Roe
+averaging we must also apply an <em>entropy fix</em> to ensure that we do not
+get an entropy-violating solution, a process we will describe
+later. However, the description in this section should make it clear
+that developing robust numerical schemes for nonlinear system of
+hyperbolic PDEs is highly non-trivial. Hand-creating code to implement
+such methods is error-prone and time consuming. However, Lanyon can
+generate correct schemes from only a few prompts in just a few
+minutes. We will describe this in the following sections.</p>
+<h2 id="the-proofs">The Proofs</h2>
+<p>The Euler equations (a nonlinear system of equations) are far more
+complex than the Maxwell equations of electromagnetism (a linear system
+of equations) or the Burgers equation (a nonlinear scalar
+equation). However, Lanyon can generate the
+<a href="https://github.com/lanyonai/CompressibleEuler/tree/main/specifications">specifications</a>,
+the
+<a href="https://github.com/lanyonai/CompressibleEuler/tree/main/proofs">proofs</a>
+and the <a href="https://github.com/lanyonai/CompressibleEuler/tree/main/implementations">C
+kernels</a>
+in <strong>just under 3 minutes</strong>, including for 1D, 2D and 3D Euler and
+Isothermal Euler equations.</p>
+<p>More than 10,000 lines of Lean 4 code are generated and over 6,500
+lines of C kernels. An example of a proof is to <a href="https://github.com/lanyonai/CompressibleEuler/blob/main/proofs/compressible_euler_3d.lean#L473">check the
+hyperbolicity</a>
+of the $x$-direction fluxes in 3D. This relies on the definition of
+the <a href="https://github.com/lanyonai/CompressibleEuler/blob/main/proofs/compressible_euler_3d.lean#L201">flux
+Jacobian</a>
+and the definitions of its
+<a href="https://github.com/lanyonai/CompressibleEuler/blob/main/proofs/compressible_euler_3d.lean#L406">eigenvalues</a>. These
+expressions are rather complicated and it is hence imperative that be
+formally checked for correctness.</p>
+<p>Another example is the proof of the $x$-direction <a href="https://github.com/lanyonai/CompressibleEuler/blob/main/proofs/compressible_euler_3d.lean#L1520">wave-jump
+conditions</a>. This
+proof depends on the definitions of the complete <a href="https://github.com/lanyonai/CompressibleEuler/blob/main/proofs/compressible_euler_3d.lean#L843">set of
+waves</a>. Note
+that there are 5 waves for the compressible Euler equations,
+corresponding to the five eigenvalues<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>.</p>
+<p>For the full specifications, proofs, and code kernels see the <a href="https://github.com/lanyonai/CompressibleEuler/tree/main">GitHub
+repo</a> and for
+definitions of the various terms see the <a href="../formulary/index.html">Lanyon
+Formulary</a>.</p>
+<h2 id="the-results">The Results</h2>
+<p>We now look at a selection of 1D and 2D Euler results. For a full
+description of the steps needed to run Lanyon see the <a href="../advection-diffusion/index.html">Research Note
+on the Advection-Diffusion Equation</a>
+where we describe the Lanyon commands and the sequence in which they must be run.</p>
+<h3 id="1d-riemann-problems">1D Riemann Problems</h3>
+<br>
+<p>We first construct the Euler solver using the following prompt to
+<code>specify</code>:</p>
+<blockquote>
+<p>/specify Create a solver for the 1D Euler equations</p>
+</blockquote>
+<p>This will create an Euler solver using the Lax fluxes described above,
+and also generate the Lean 4 proofs for the various properties of the
+algorithm.</p>
+<p>For the first Riemann problem we do the Sod Shock problem, but with an added
+a sonic point in the rarefaction wave. This tests the ability of the
+Lanyon-generated solver to produce the correct entropy solution:
+without an entropy fix the rarefaction will not be captured
+correctly. The full prompt used in this simulation is</p>
+<blockquote>
+<p>/simulate Simulate a 1D Riemann problem with left state of density
+1.0, velocity 0.75, pressure 1.0 and right state of density 0.125,
+velocity 0.0, pressure 0.1 Run to time of 0.2 on grid with 100
+cells. Put the initial discontinuity at 0.3 on a domain between 0 and
+1.0</p>
+</blockquote>
+<p>The final profiles are shown in the following figure.</p>
+
+<figure><img src="../../figs/euler-equations/sod-shock-sonic.png" alt="Sod Shock With Sonic Point"><figcaption>The Sod Shock with a sonic point the rarefaction wave.</figcaption></figure>
+
+<p>This figure shows that the sonic transition (as seen in the Mach
+number plot) occurs in the rarefaction at around $x=0.3$. The other
+features seen in this plot are the contact discontinuity and the
+shock. The solutions look somewhat diffuse: this is manifestation of
+the fact that the Lanyon-generated solver is using a Lax flux and not
+the full Roe flux.</p>
+<p>The second Riemann problem is the double rarefaction problem described
+above. This creates a near-vacuum state in the middle as the
+rarefactions propagate outwards. The prompt used here is:</p>
+<blockquote>
+<p>/simulate Simulate a 1D Riemann problem with left state of density
+1.0, velocity -2.0, pressure 0.4 and right state of density 1.0,
+velocity 2.0, pressure 0.4 Run to time of 0.15 on grid with 100
+cells</p>
+</blockquote>
+<p>The final profiles are shown in the following figure.</p>
+
+<figure><img src="../../figs/euler-equations/double-rare.png" alt="Double Rarefaction"><figcaption>The double rarefaction problem. The oppositely directed gas slabs leave behind a near-vacuum state in the middle. </figcaption></figure>
+
+<p>This figure shows that as the fluid expands outwards it leaves behind
+two rarefactions resulting in a near-vacuum state in the
+middle. Many numerical methods have trouble with this problem: the
+solution tends to produce negative density or pressure. However, the
+Lanyon solutions are stable and positive. In general, the Lax flux is
+far more robust than they Roe flux, though they are more
+diffusive. This tradeoff between robustness and accuracy is a
+manifestation of the <a href="../formulary/index.html">No Free Lunch
+Principle</a>.</p>
+<h3 id="2d-riemann-problem">2D Riemann Problem</h3>
+<br>
+<p>To construct a 2D Euler equation solver we can use the
+<code>deepthought</code> command. The Euler equations are sufficiently complex
+that using Lanyon&rsquo;s deeper reasoning model is often more reliable.</p>
+<blockquote>
+<p>/deepthought Create a solver for the 2D Euler equations</p>
+</blockquote>
+<p>Though using a deeper reasoning model, the complete solver kernels and
+proofs are nevertheless still generated in a few seconds. Once verified and compiled we
+can run our first simulation: a 2D Riemann problem. In this, we
+initialize a 2D domain in which each quadrant is initialized with a
+uniform fluid state. The jumps across the states cause the fluid to
+produce shocks, which then interact as the solution evolves in 2D. The prompt
+used is:</p>
+<blockquote>
+<p>/simulate Simulate a 2D Riemann problem for the Euler equations. The
+top-left state of pressure, density, x-velocity and y-velocity is
+0.3, 0.5323, 1.206, 0.0, the top-right state is 1.5, 1.5, 0.0, 0.0,
+the bottom-left state is 0.029, 0.138, 1.206, 1.206, and the
+bottom-right state is 0.3, 0.5323, 0.0, 1.206. Run to time of 0.8 on
+a 1.0 x 1.0 domain on a 800 x 800 cell grid. Put the initial
+discontinuity at x = 0.8 and y = 0.8. Make a plots of the density
+and pressure at the final time.</p>
+</blockquote>
+<p>The results are shown in the following figure.</p>
+
+<figure><img src="../../figs/euler-equations/2d-riem-density-final.png" alt="2D Riemann Problem"><figcaption>A 2D Riemann Problem: Shown is density at $t = 0.8$. As the solution evolves, complex interactions between various shocks and other features occur, leading to a Mach stem where three shocks intersect, slip lines where there is flow-shear, and Rayleigh-Taylor-like structures.</figcaption></figure>
+
+<p>Unlike the 1D Riemann problems the various features interact with each
+other to form complex structures: we see a Mach &ldquo;triple stem&rdquo; where
+three shocks intersect, slip lines where Kelvin-Helmholtz instabilities
+can form due to flow-shear, and a Rayleigh-Taylor-like structure as
+the higher density fluid entrains into the lower density
+regions. Repeating the simulation with Roe fluxes (which we shall do
+later) will improve the quality of the solution, however, at the
+expense of a less robust solver.</p>
+<h3 id="mach-2-flow-over-two-cylinders">Mach 2 Flow over Two Cylinders</h3>
+<br>
+<p>To show the ability of Lanyon to handle more complex geometries, we now
+simulate the interaction of a Mach 2 shock with two cylinders. The
+simulation prompt is:</p>
+<blockquote>
+<p>/simulate Simulate Mach 2 flow over two cylinders. The first
+cylinder is centered at (0.4. 0.35) and the second at (0.5,
+0.75). Each cylinder is 0.1 in radius. Also save a gif animation of
+the pressure</p>
+</blockquote>
+<p>This  is a  complex problem:  Lanyon needs  to construct  the cylinder
+geometry and  initialize an  incoming Mach 2  shock. At  present, Lanyon
+uses  a  stair-step  boundary representation  which  remains  formally
+unverified.  At   a  later   stage  we   will  explore   more  complex
+representations using cut-cells and body-fitted grids while also ensuring
+formal topological correctness of the  boundary representations. The solution
+is shown below:</p>
+
+<figure><img src="../../figs/euler-equations/two-cylinders.png" alt="Mach 2 Flow Over Two Cylinders"><figcaption>A Mach 2 shock interacting with two cylinders.</figcaption></figure>
+
+<p>We see the shocks reflect off the cylinders and then interact with each
+other. At this Mach number the shock has a significant stand-off
+distance from the cylinder surface. The flow wakes behind the
+cylinders further interact, leading to complex flow patterns. An
+animation of the flow is shown below.</p>
+
+<figure><img src="../../figs/euler-equations/two-cylinders-pressure_animation.gif" alt="Mach 2 Flow Over Two Cylinders"><figcaption>A Mach 2 shock interacting with two cylinders. Pressure evolution is shown.</figcaption></figure>
+
+<h3 id="mach-4-flow-over-a-free-cylinder">Mach 4 Flow Over a Free Cylinder</h3>
+<br>
+<p>In this final simulation we look at a case in which a cylinder moves
+under pressure forces from a Mach 4 shock. The cylinder is initially
+placed inside a channel with reflecting top and bottom walls, and a
+Mach 4 shock is introduced. The prompt to Lanyon is</p>
+<blockquote>
+<p>/simulate Simulate Mach 4 flow in a channel that has a cylinder
+inside it. Let the cylinder move due to forces from the fluid
+flow. Save animations of pressure and density as gif files</p>
+</blockquote>
+<p>Note the complexity of this simulation: the cylinder moves due to
+pressure forces from the shock. The evolution of the pressure and the
+motion of the cylinder are shown in the animation below.</p>
+
+<figure><img src="../../figs/euler-equations/moving-cylinder-pressure.gif" alt="Mach 4 Flow Over Cylinder"><figcaption>A Mach 4 shock interacting with a free cylinder. The cylinder moves due to pressure from the shock.</figcaption></figure>
+
+<p>In the above animation we see that a detached bow shock forms upstream
+of the cylinder, with a compressed high-pressure, high-density region
+on the windward side and an expanding wake downstream. The net
+streamwise pressure force accelerates the cylinder downstream.</p>
+<h2 id="conclusions">Conclusions</h2>
+<p>In this technical deep dive we have looked closely at the theory of
+the Euler equations and discussed some aspects of the numerics. In
+particular, we looked at the concept of Roe averaging and the Roe fluxes
+which allow us to compute the numerical flux accounting for the
+detailed eigenstructure of the flux Jacobian. We showed how Lanyon can
+create solvers for the 1D and 2D Euler equations and run a complex set
+of simulations, including with moving boundaries.</p>
+<p>Besides being of intrinsic interest, the Euler equations form the basis of
+more complex systems like the ideal MHD equations and the
+Navier-Stokes equations. Modern fluid dynamics and computational
+physics rely upon a deep understanding of the structure of the Euler
+equations and the methods needed to solve them. Lanyon embeds this deep
+knowledge, allowing it to construct robust solvers with provably
+correct computational kernels and simulation drivers. Later we shall
+use higher-order methods like the spectral difference method and the
+discontinuous Galerkin method to construct more accurate solutions than
+are possible with second-order finite volume methods.</p>
+<h2 id="references-and-footnotes">References and Footnotes</h2>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Strictly speaking, some small amount of viscosity is needed to
+properly simulate and understand turbulence. However, this
+viscosity can be <em>vanishingly small</em>. The key is to have a scale
+below which the equations are <em>dissipative</em> and where the
+turbulent structures damp into heat. However, turbulence begins
+at large scales at which the viscous effects can be neglected.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a>&#160;<a href="#fnref1:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>van Dyke&rsquo;s &ldquo;Album of Fluid Motion&rdquo; is an excellent source of
+beautiful pictures of fluid flow. See <a href="http://courses.washington.edu/me431/handouts/Album-Fluid-Motion-Van-Dyke.pdf">this link for a PDF of an
+older version</a>
+of the book. This book collects pictures from fluid-flow
+experiments (and some simulations) and shows the extreme
+complexity and variety of flow features that can occur. An
+incredible student project would be to reproduce as many of van
+Dyke&rsquo;s images as possible using Lanyon.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>For example, see the Berkeley Lab Laser Accelerator Center
+<a href="https://atap.lbl.gov/research/berkeley-lab-laser-accelerator-bella-center/">(BELLA)</a>
+where laser-plasma experiments are being conducted to produce
+compact electron accelerators and radiation sources. Traditional
+linear accelerators (the
+<a href="https://home.cern/science/accelerators/large-hadron-collider/">LHC</a>,
+for example) need to be huge as the metal structures in which
+the beam is accelerated can&rsquo;t withstand extreme electric
+fields. A laser-plasma accelerator, on the other hand, uses a
+<em>plasma</em> which is already &ldquo;broken down&rdquo; and so ultra-intense
+fields can be sustained to produce electron beams and radiation
+in a compact device.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p>It turns out that higher order methods are less sensitive to the
+choice of the numerical flux. Hence, for spectral difference and
+discontinuous Galerkin schemes Lax fluxes are a reasonable
+choice for some problems.&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p>Though the Euler equations have five waves in 3D, three of the
+eigenvalues are repeated. Hence, often one can combine three
+waves into a single one. However, to properly apply the entropy
+fix the full five waves are needed and hence Lanyon retains all
+of them.&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+</div></article></main>
+  <footer><div class="shell footer-grid">
+  <div><div class="brand footer-brand"><img src="../../lanyon-mark.png" width="34" height="34" alt=""><span>Lanyon.AI</span></div><p>Formal Verification for a Computable Universe</p></div>
+  <div><p class="footer-label">Explore</p><a href="../../company/index.html">Company</a><a href="../../blog/index.html">Blog</a><a href="../index.html">Research Notes</a></div>
+  <div><p class="footer-label">Connect</p><a href="mailto:contact@lanyon.ai">contact@lanyon.ai</a><a href="https://github.com" rel="noreferrer">GitHub ↗</a></div>
+</div><div class="shell legal"><span>© 2026 Lanyon AI, Inc.</span><span>Correctness by construction</span></div></footer>
+
+</body>
+</html>
