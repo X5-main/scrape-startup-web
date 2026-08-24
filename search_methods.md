@@ -1090,4 +1090,61 @@ render probes — the dual-URL variant hung on its second target; split per URL)
 
 **Tools added this turn**: `.tmp_tools/axelrod_sweep.py` (per-site af_sweep derivative).
 
-**Screening methodology note (post-D34 advisory, applies D35+)**: the first-judge vision pass on FULL-PAGE shots can underrate long-scroll sites — premium heroes buried under a long page score ≤6 even when the hero band itself is top-tier (repeat D33: top band 7 vs full-page caps). From next cycle: after the full-page first judge, take the **top 2-3 candidates** and re-judge a **viewport-top band variant** (existing `d31_bands.mjs` / `fab_cdp_shot.mjs` at scale 3, identical framing) before finalizing the winner. D34 closed unaffected: axelrod is single-viewport (scrollHeight 720), band == full-page, judged 7 live / 8 replica.
+
+## Method 8: frozen-batch pipeline (D35 refinement of Method 1)
+
+- **Rosters drift while frozen, so re-pull every cycle.** Between D33 (2026-08-23)
+  and D35 (2026-08-24) the S26 roster grew 236 → 237 companies (1 new entry).
+  The four in-window batches are small enough to re-pull in ~25 s; never reuse a
+  cached roster file across cycles.
+- **Pagination contract (confirmed D35):** `https://api.ycombinator.com/v0.1/companies?batch=<F25|W26|S26|F26>&limit=50&page=N`
+  with envelope `{"companies":[…],"page":N,"totalPages":M}` — iterate `page` 1..M,
+  stop at `page >= totalPages`, not on empty pages. `limit=500` caps at 20/page;
+  `limit=50` is the efficient sweet spot (8 pages for F25, 10 for W26, 12 for S26, 1 for F26).
+- **Fresh pull counts (D35):** F25 146 + W26 199 + S26 237 + F26 18 = 600 raw,
+  599 unique domains (one cross-batch dup — keep first-batch occurrence, note the dup).
+- **Pool-build recipe (reusable):** normalize domain (strip scheme/`www.`/path),
+  key by domain only, then exclude every repo subfolder name — match by slug OR
+  domain first-label OR full domain, case-folded, to catch renamed-www instances.
+  D35 exclusion set = 35 dirs → 578 unmirrored candidates.
+- **Ranking pipeline is fixed-cost and reusable:** `.tmp_tools/d33_rank.py pool.json --top N`
+  — robots gate (404/empty = allow; `Disallow: /`; AI-crawler content-signal;
+  401/403) → SSR gate (≥1 h1 + ≥1000 body text chars) → `design_signal.score()`
+  → ranked JSON (written to `/tmp/d33_ranked.json`) + console top-N. ~575 pool
+  entries ≈ 4-6 min at 20 workers. Copy/rename per cycle if the hardcoded
+  output path is an issue (it is only a staging file).
+- **Capturing gate precedence:** while the rank runs, verify the capture Chrome
+  (port 9344) is alive — it is the vehicle for the flush-capture + vision legs.
+## D35 close — Cardboard (www.usecardboard.com)
+
+- **Winner:** YC W26 "Agentic video editor in your browser" (YC badge on-page +
+  batch record = ≤24-mo funding; AI focus). 8 public routes mirrored; `/app`,
+  `/blog`, `/faq` excluded — Clerk auth walls (robots passes only via the
+  307→/login false-allow; dynamic auth-walled routes out of scope per D-series
+  rule).
+- **Turbopack dpl quirk:** live HTML refs chunks as `/<name>.js?dpl=dpl_Gb3Lzw…`;
+  the crawler stores them as `<name>__dpl-….js` and serve_replica maps URL stem
+  → baked name (verified 200 on chunk probes). The real trap: one chunk
+  (`15rgaz_mhqsn6.js`, 3432 B) exists ONLY in the webpack runtime chunk-map —
+  no HTML src ref, so crawl AND HTML-ref sweeps both miss it; the browser then
+  renders the 103-char "Application error: a client-side exception" shell while
+  every static check stays green. Fix: vendor from live with byte-identity check
+  (md5 98a707f7; query-vs-bare identical); final arbiter = CDP runtime
+  network-failure probe, not static sweeps.
+- **A/B CTA separation:** live pricing shows an annual-promo overlay ("3 days
+  free, then $384/yr" / "Start 3-day free trial" / "Cancel anytime") while a
+  fresh live curl SSR == replica SSR (both "For solo creators…") → PostHog-flag
+  runtime overlay, NOT localStorage (cleared-storage re-run still showed the
+  CTA on live). Parity = SSR identity + interactive toggle behavior (replica:
+  Monthly flips $32→$40/$120→$150, Annual stays).
+- **Clerk signup page:** runtime form is a third-party Clerk widget
+  (`clerk.usecardboard.com/npm/@clerk/clerk-js@5/…` → 307); parity target is
+  SSR identity — saved static text byte-equal to fresh live SSR (109 chars both).
+- **Vision judge variance is real:** home top-band capture pair was 2160/2160
+  rows BYTE-IDENTICAL yet scored 6 (live) vs 5 (replica); re-judging the SAME
+  file scored 7 then 7 → ±1 on identical pixels is model noise, not parity
+  failure. Binding evidence is the pixel audit: home top+bottom bands 100%
+  identical, full-page 96.7% with every diff row a playing-video frame (mean Δ
+  40-112/255), pricing 90.4% with diffs confined to the A/B promo-card region
+  (+3 px height delta). Pricing vision 7/7; screening binding held (full-page
+  8, top band 7).
