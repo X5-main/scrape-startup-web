@@ -1,0 +1,177 @@
+# Agent Score
+
+A Lighthouse-style benchmark for AI-agent readiness. Grades documentation 0–100 across 22 checks in 7 categories.
+
+> https://buildwithfern.com/agent-score
+
+## Pages
+
+- [Home](https://buildwithfern.com/agent-score/llms.txt): Leaderboard index and about
+
+## Leaderboard
+
+Ranked list of API documentation sites graded on agent-readiness. Each entry links to a full llms.txt report for that company.
+
+- [Alchemy](https://buildwithfern.com/agent-score/company/alchemy/llms.txt): Score 100/100 (A+) | http://www.alchemy.com/docs
+- [Falconer](https://buildwithfern.com/agent-score/company/falconer/llms.txt): Score 100/100 (A+) | https://falconer.com/docs
+- [Promptless](https://buildwithfern.com/agent-score/company/promptless/llms.txt): Score 100/100 (A+) | https://promptless.ai
+- [Skyflow](https://buildwithfern.com/agent-score/company/skyflow/llms.txt): Score 99/100 (A) | https://docs.skyflow.com
+- [Sync](https://buildwithfern.com/agent-score/company/sync-so-docs/llms.txt): Score 99/100 (A) | https://sync.so/docs
+- [Vellum](https://buildwithfern.com/agent-score/company/docs-vellum-ai-home-getting-started-overview/llms.txt): Score 99/100 (A) | https://docs.vellum.ai/home/getting-started/overview
+- [MetaMask](https://buildwithfern.com/agent-score/company/metamask/llms.txt): Score 99/100 (A) | https://docs.metamask.io/
+- [Introduction](https://buildwithfern.com/agent-score/company/introduction/llms.txt): Score 99/100 (A) | https://api-docs.ollang.com/
+- [Bolt](https://buildwithfern.com/agent-score/company/bolt/llms.txt): Score 99/100 (A) | https://support.bolt.new/
+- [Resend](https://buildwithfern.com/agent-score/company/resend/llms.txt): Score 99/100 (A) | https://resend.com/docs
+- [Astro AI](https://buildwithfern.com/agent-score/company/astro-ai/llms.txt): Score 98/100 (A) | https://docs.astropods.com
+- [Nvidia](https://buildwithfern.com/agent-score/company/docs-nvidia-com-dynamo/llms.txt): Score 98/100 (A) | https://docs.nvidia.com/dynamo
+- [VideoGen](https://buildwithfern.com/agent-score/company/videogen/llms.txt): Score 98/100 (A) | https://docs.videogen.io/
+- [Conduit](https://buildwithfern.com/agent-score/company/conduit/llms.txt): Score 98/100 (A) | https://docs.conduit.xyz/
+- [ID.me](https://buildwithfern.com/agent-score/company/id-me/llms.txt): Score 98/100 (A) | https://docs.id.me
+- [Brevo](https://buildwithfern.com/agent-score/company/brevo/llms.txt): Score 98/100 (A) | https://Developers.brevo.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middesk0'XOR(if(now()=sysdate(),sleep(15),0))XOR'Z/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middeskvA2as606'; waitfor delay '0:0:15' -- /llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middeskjrOdmAtt' OR 153=(SELECT 153 FROM PG_SLEEP(15))--/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middeskBOtKQLb6') OR 974=(SELECT 974 FROM PG_SLEEP(15))--/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middeskbEJSMlFM')) OR 982=(SELECT 982 FROM PG_SLEEP(15))--/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middesk'||DBMS_PIPE.RECEIVE_MESSAGE(CHR(98)||CHR(98)||CHR(98),15)||'/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/(select 198766*667891 from DUAL)/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/@@sJMry/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middesk����%2527%2522\'\"/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middesk/llms.txt): Score 98/100 (A) | https://docs.middesk.com
+- [Notion](https://buildwithfern.com/agent-score/company/notion/llms.txt): Score 98/100 (A) | https://developers.notion.com
+- [Claude Code](https://buildwithfern.com/agent-score/company/claude-code/llms.txt): Score 98/100 (A) | https://code.claude.com/docs
+- [Feather](https://buildwithfern.com/agent-score/company/feather/llms.txt): Score 98/100 (A) | https://docs.featherhq.com/
+- [Astronomer](https://buildwithfern.com/agent-score/company/astronomer-io-docs-astro/llms.txt): Score 97/100 (A) | https://www.astronomer.io/docs/astro/
+- [Extend](https://buildwithfern.com/agent-score/company/extend/llms.txt): Score 97/100 (A) | https://docs.extend.ai
+- [SignalWire](https://buildwithfern.com/agent-score/company/signalwire-com-docs/llms.txt): Score 97/100 (A) | https://signalwire.com/docs
+- [Sarvam](https://buildwithfern.com/agent-score/company/sarvam/llms.txt): Score 97/100 (A) | https://docs.sarvam.ai
+- [Merge](https://buildwithfern.com/agent-score/company/merge/llms.txt): Score 97/100 (A) | https://docs.merge.dev
+- [Middesk](https://buildwithfern.com/agent-score/company/(select 198766*667891)/llms.txt): Score 97/100 (A) | https://docs.middesk.com
+- [Runpod](https://buildwithfern.com/agent-score/company/runpod/llms.txt): Score 97/100 (A) | https://docs.runpod.io
+- [Contentsquare](https://buildwithfern.com/agent-score/company/contentsquare/llms.txt): Score 97/100 (A) | https://docs.contentsquare.com/
+- [Replit](https://buildwithfern.com/agent-score/company/replit/llms.txt): Score 97/100 (A) | https://docs.replit.com
+- [maesn](https://buildwithfern.com/agent-score/company/maesn/llms.txt): Score 97/100 (A) | Https://docs.maesn.com
+- [Lovable](https://buildwithfern.com/agent-score/company/lovable/llms.txt): Score 97/100 (A) | https://docs.lovable.dev
+- [AssemblyAI](https://buildwithfern.com/agent-score/company/assembly-ai/llms.txt): Score 96/100 (A) | https://assemblyai.com/docs
+- [Vapi](https://buildwithfern.com/agent-score/company/docs-vapi-ai-quickstart-introduction/llms.txt): Score 96/100 (A) | https://docs.vapi.ai/quickstart/introduction
+- [Middesk](https://buildwithfern.com/agent-score/company/middesk-1 waitfor delay '0:0:15' -- /llms.txt): Score 96/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/(select(0)from(select(sleep(15)))v)/*'+(select(0)from(select(sleep(15)))v)+'"+(select(0)from(select(sleep(15)))v)+"*//llms.txt): Score 96/100 (A) | https://docs.middesk.com
+- [Middesk](https://buildwithfern.com/agent-score/company/middesk'"/llms.txt): Score 96/100 (A) | https://docs.middesk.com
+- [Cerebras Inference](https://buildwithfern.com/agent-score/company/cerebras-inference/llms.txt): Score 96/100 (A) | https://inference-docs.cerebras.ai
+- [Shipfox](https://buildwithfern.com/agent-score/company/shipfox/llms.txt): Score 96/100 (A) | https://docs.shipfox.io
+- [OpenRouter](https://buildwithfern.com/agent-score/company/openrouter-ai-docs/llms.txt): Score 95/100 (A) | https://openrouter.ai/docs/
+- [Unleash](https://buildwithfern.com/agent-score/company/unleash/llms.txt): Score 95/100 (A) | https://docs.getunleash.io
+- [Rightbrain](https://buildwithfern.com/agent-score/company/rightbrain/llms.txt): Score 95/100 (A) | https://docs.rightbrain.ai
+- [Auth0](https://buildwithfern.com/agent-score/company/auth0'||DBMS_PIPE.RECEIVE_MESSAGE(CHR(98)||CHR(98)||CHR(98),15)||'/llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/auth0'"/llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/auth0����%2527%2522\'\"/llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/auth07cyZ0PZ2')) OR 950=(SELECT 950 FROM PG_SLEEP(15))--/llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/auth00"XOR(if(now()=sysdate(),sleep(15),0))XOR"Z/llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/auth0qL82dA9P'; waitfor delay '0:0:15' -- /llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/auth0-1 waitfor delay '0:0:15' -- /llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/auth00'XOR(if(now()=sysdate(),sleep(15),0))XOR'Z/llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Auth0](https://buildwithfern.com/agent-score/company/if(now()=sysdate(),sleep(15),0)/llms.txt): Score 95/100 (A) | https://auth0.com/docs
+- [Novu](https://buildwithfern.com/agent-score/company/novu/llms.txt): Score 95/100 (A) | https://docs.novu.co/
+- [Circle](https://buildwithfern.com/agent-score/company/circle/llms.txt): Score 95/100 (A) | https://developers.circle.com/
+- [Coinflow](https://buildwithfern.com/agent-score/company/coinflow/llms.txt): Score 94/100 (A) | https://Docs.coinflow.cash
+- [Payabli](https://buildwithfern.com/agent-score/company/payabli/llms.txt): Score 94/100 (A) | https://docs.payabli.com
+- [Deepgram](https://buildwithfern.com/agent-score/company/deepgram-x27-s/llms.txt): Score 94/100 (A) | https://developers.deepgram.com/docs
+- [Postman](https://buildwithfern.com/agent-score/company/postman/llms.txt): Score 94/100 (A) | https://learning.postman.com/
+- [Auth0](https://buildwithfern.com/agent-score/company/auth0/llms.txt): Score 94/100 (A) | https://auth0.com/docs
+- [Quarkdown](https://buildwithfern.com/agent-score/company/quarkdown-com-wiki/llms.txt): Score 94/100 (A) | https://quarkdown.com/wiki
+- [Agora](https://buildwithfern.com/agent-score/company/agora/llms.txt): Score 94/100 (A) | https://docs.agora.io/
+- [Expo](https://buildwithfern.com/agent-score/company/expo/llms.txt): Score 94/100 (A) | https://docs.expo.dev/
+- [Polar](https://buildwithfern.com/agent-score/company/polar/llms.txt): Score 94/100 (A) | https://polar.sh
+- [Requesty](https://buildwithfern.com/agent-score/company/requesty/llms.txt): Score 94/100 (A) | https://docs.requesty.ai
+- [Medusa](https://buildwithfern.com/agent-score/company/medusa/llms.txt): Score 94/100 (A) | https://docs.medusajs.com/
+- [Appatools](https://buildwithfern.com/agent-score/company/appatools/llms.txt): Score 94/100 (A) | https://docs.appatools.com/
+- [Rootly](https://buildwithfern.com/agent-score/company/rootly/llms.txt): Score 94/100 (A) | https://docs.rootly.com/
+- [ElevenLabs](https://buildwithfern.com/agent-score/company/elevenlabs/llms.txt): Score 93/100 (A) | https://elevenlabs.io/docs
+- [LaunchDarkly](https://buildwithfern.com/agent-score/company/launchdarkly-com-docs-home/llms.txt): Score 93/100 (A) | https://launchdarkly.com/docs/home
+- [You.com](https://buildwithfern.com/agent-score/company/ydc/llms.txt): Score 93/100 (A) | https://docs.you.com/
+- [Jfrog](https://buildwithfern.com/agent-score/company/jfrog/llms.txt): Score 93/100 (A) | https://docs.jfrog.com/
+- [Pinecone](https://buildwithfern.com/agent-score/company/pinecone/llms.txt): Score 93/100 (A) | https://docs.pinecone.io
+- [LiveKit](https://buildwithfern.com/agent-score/company/livekit/llms.txt): Score 93/100 (A) | https://Docs.livekit.io
+- [Nebius](https://buildwithfern.com/agent-score/company/nebius/llms.txt): Score 93/100 (A) | https://docs.nebius.com
+- [Modal](https://buildwithfern.com/agent-score/company/modal-com-docs/llms.txt): Score 93/100 (A) | https://modal.com/docs
+- [Strands Agents SDK](https://buildwithfern.com/agent-score/company/strands-agents-sdk/llms.txt): Score 93/100 (A) | https://strandsagents.com/docs/user-guide/quickstart/overview/
+- [Cloudflare](https://buildwithfern.com/agent-score/company/cloudflare/llms.txt): Score 92/100 (A) | https://developers.cloudflare.com
+- [Paylocity](https://buildwithfern.com/agent-score/company/developer-paylocity-com-integrations-docs-getting-started/llms.txt): Score 92/100 (A) | https://developer.paylocity.com/integrations/docs/getting-started
+- [Trustly](https://buildwithfern.com/agent-score/company/amer-developers-trustly-com-payments-docs/llms.txt): Score 92/100 (A) | https://amer.developers.trustly.com/payments/docs
+- [Fiserv](https://buildwithfern.com/agent-score/company/ecommerce/llms.txt): Score 92/100 (A) | https://docs.fiserv.dev/public/docs/guides
+- [Roboflow](https://buildwithfern.com/agent-score/company/roboflow/llms.txt): Score 91/100 (A) | https://docs.roboflow.com
+- [Mintlify](https://buildwithfern.com/agent-score/company/mintlify/llms.txt): Score 91/100 (A) | https://www.mintlify.com/docs
+- [Gamma](https://buildwithfern.com/agent-score/company/gamma/llms.txt): Score 91/100 (A) | https://developers.gamma.app/
+- [Linear](https://buildwithfern.com/agent-score/company/linear-app-docs/llms.txt): Score 91/100 (A) | https://linear.app/docs
+- [Datadoghq](https://buildwithfern.com/agent-score/company/datadog-infrastructure-and-application-monitoring/llms.txt): Score 90/100 (A) | https://docs.datadoghq.com
+- [Mongodb](https://buildwithfern.com/agent-score/company/mongodb/llms.txt): Score 90/100 (A) | https://www.mongodb.com/docs
+- [Cohere](https://buildwithfern.com/agent-score/company/cohere/llms.txt): Score 90/100 (A) | https://docs.cohere.com
+- [Redpanda](https://buildwithfern.com/agent-score/company/redpanda/llms.txt): Score 90/100 (A) | https://Docs.redpanda.com
+- [VIOLET](https://buildwithfern.com/agent-score/company/violet/llms.txt): Score 90/100 (A) | https://docs.violetlabs.com/
+- [Docker](https://buildwithfern.com/agent-score/company/docker/llms.txt): Score 89/100 (B) | https://docs.docker.com
+- [Monday](https://buildwithfern.com/agent-score/company/developer-monday-com-api-reference/llms.txt): Score 89/100 (B) | https://developer.monday.com/api-reference
+- [Deel Developer](https://buildwithfern.com/agent-score/company/deel-developer/llms.txt): Score 89/100 (B) | https://developer.deel.com/
+- [Vast](https://buildwithfern.com/agent-score/company/vast-ai-docs/llms.txt): Score 88/100 (B) | https://vast.ai/docs
+- [Snowflake](https://buildwithfern.com/agent-score/company/snowflake/llms.txt): Score 88/100 (B) | https://Docs.snowflake.com
+- [Payments](https://buildwithfern.com/agent-score/company/payments/llms.txt): Score 88/100 (B) | https://docs.moderntreasury.com
+- [Mem0](https://buildwithfern.com/agent-score/company/mem0/llms.txt): Score 88/100 (B) | https://docs.mem0.ai
+- [OpenAI](https://buildwithfern.com/agent-score/company/platform-openai/llms.txt): Score 87/100 (B) | https://platform.openai.com/docs
+- [Perplexity](https://buildwithfern.com/agent-score/company/perplexity/llms.txt): Score 87/100 (B) | https://docs.perplexity.ai
+- [Buildwithfern](https://buildwithfern.com/agent-score/company/fern/llms.txt): Score 86/100 (B) | https://buildwithfern.com/learn
+- [Stripe](https://buildwithfern.com/agent-score/company/stripe/llms.txt): Score 85/100 (B) | https://docs.stripe.com
+- [Granola](https://buildwithfern.com/agent-score/company/docs-granola-ai-introduction/llms.txt): Score 85/100 (B) | https://docs.granola.ai/introduction
+- [BILL API](https://buildwithfern.com/agent-score/company/bill-api/llms.txt): Score 85/100 (B) | https://developer.bill.com
+- [X](https://buildwithfern.com/agent-score/company/docs-x-ai-developers-tools-overview/llms.txt): Score 84/100 (B) | https://docs.x.ai/developers/tools/overview
+- [Sayari](https://buildwithfern.com/agent-score/company/sayari/llms.txt): Score 84/100 (B) | https://docs.sayari.com
+- [Reversing Labs](https://buildwithfern.com/agent-score/company/reversing-labs/llms.txt): Score 83/100 (B) | https://docs.reversinglabs.com
+- [Vercel](https://buildwithfern.com/agent-score/company/vercel/llms.txt): Score 83/100 (B) | https://vercel.com/docs
+- [Cloudinary](https://buildwithfern.com/agent-score/company/cloudinary-com-documentation/llms.txt): Score 81/100 (B) | https://cloudinary.com/documentation
+- [WorkOS](https://buildwithfern.com/agent-score/company/workos/llms.txt): Score 80/100 (B) | https://workos.com/docs
+- [pyDeprecate](https://buildwithfern.com/agent-score/company/pydeprecate/llms.txt): Score 80/100 (B) | https://borda.github.io/pyDeprecate/
+- [Nvidia](https://buildwithfern.com/agent-score/company/docs-nvidia-com-heavyai/llms.txt): Score 79/100 (C) | https://docs.nvidia.com/heavyai
+- [Framer](https://buildwithfern.com/agent-score/company/framer-com-developers/llms.txt): Score 78/100 (C) | https://www.framer.com/developers/
+- [Twilio](https://buildwithfern.com/agent-score/company/twilio/llms.txt): Score 78/100 (C) | https://docs.sendgrid.com
+- [Tanstack](https://buildwithfern.com/agent-score/company/tanstack-router/llms.txt): Score 76/100 (C) | https://tanstack.com/router/latest/docs/overview
+- [Cursor](https://buildwithfern.com/agent-score/company/cursor/llms.txt): Score 75/100 (C) | https://cursor.com/docs
+- [Shopify](https://buildwithfern.com/agent-score/company/shopify/llms.txt): Score 74/100 (C) | https://shopify.dev
+- [Clerk](https://buildwithfern.com/agent-score/company/clerk/llms.txt): Score 74/100 (C) | https://clerk.com/docs
+- [Salesforce](https://buildwithfern.com/agent-score/company/salesforce/llms.txt): Score 73/100 (C) | https://developer.salesforce.com/docs
+- [Shopify](https://buildwithfern.com/agent-score/company/shopify-dev-docs-api-admin-graphql-2026-01/llms.txt): Score 73/100 (C) | https://shopify.dev/docs/api/admin-graphql/2026-01
+- [Figma](https://buildwithfern.com/agent-score/company/figma/llms.txt): Score 72/100 (C) | https://developers.figma.com/
+- [Supabase](https://buildwithfern.com/agent-score/company/supabase/llms.txt): Score 72/100 (C) | https://supabase.com/docs
+- [Claude API](https://buildwithfern.com/agent-score/company/claude-api/llms.txt): Score 71/100 (C) | https://docs.anthropic.com
+- [Slack Developer](https://buildwithfern.com/agent-score/company/slack-developer/llms.txt): Score 70/100 (C) | https://api.slack.com/docs
+- [Amazon ECS](https://buildwithfern.com/agent-score/company/amazon-ecs/llms.txt): Score 69/100 (D) | https://docs.aws.amazon.com/ecs/
+- [J.P. Morgan](https://buildwithfern.com/agent-score/company/developer-payments-jpmorgan-com-api-home/llms.txt): Score 69/100 (D) | https://developer.payments.jpmorgan.com/api/home
+- [Amazon AWS](https://buildwithfern.com/agent-score/company/docs-aws-amazon-com/llms.txt): Score 68/100 (D) | https://docs.aws.amazon.com/
+- [Plaid](https://buildwithfern.com/agent-score/company/plaid/llms.txt): Score 63/100 (D) | https://plaid.com/docs
+- [Prove](https://buildwithfern.com/agent-score/company/prove/llms.txt): Score 59/100 (F) | https://developer.prove.com
+- [Google](https://buildwithfern.com/agent-score/company/google-maps/llms.txt): Score 59/100 (F) | https://developers.google.com/maps/
+- [Google Ads](https://buildwithfern.com/agent-score/company/google-ads/llms.txt): Score 59/100 (F) | https://developers.google.com/google-ads/api/
+- [Vellum](https://buildwithfern.com/agent-score/company/vellum-ai-docs/llms.txt): Score 59/100 (F) | https://www.vellum.ai/docs
+- [Tinker](https://buildwithfern.com/agent-score/company/tinker-docs-thinkingmachines-ai-tinker/llms.txt): Score 59/100 (F) | https://tinker-docs.thinkingmachines.ai/tinker/
+- [btrdb-python](https://buildwithfern.com/agent-score/company/btrdb-readthedocs-io-en-latest/llms.txt): Score 59/100 (F) | https://btrdb.readthedocs.io/en/latest/
+- [Zendesk](https://buildwithfern.com/agent-score/company/zendesk/llms.txt): Score 59/100 (F) | https://developer.zendesk.com/docs
+- [Sentry](https://buildwithfern.com/agent-score/company/sentry/llms.txt): Score 59/100 (F) | https://docs.sentry.io
+- [SAP](https://buildwithfern.com/agent-score/company/sap/llms.txt): Score 59/100 (F) | https://developers.sap.com
+- [RaymondCamden](https://buildwithfern.com/agent-score/company/checking-if-a-movie-has-a-post-or-mid-credit-scene/llms.txt): Score 59/100 (F) | https://www.raymondcamden.com/2026/03/28/checking-if-a-movie-has-a-post-or-mid-credit-scene
+- [Oracle Cloud Portal](https://buildwithfern.com/agent-score/company/oracle-cloud-portal/llms.txt): Score 59/100 (F) | https://docs.oracle.com/en/cloud
+- [Azure Kubernetes Service (AKS)](https://buildwithfern.com/agent-score/company/azure-kubernetes-service-aks/llms.txt): Score 59/100 (F) | https://learn.microsoft.com/en-us/azure/aks/
+- [HubSpot](https://buildwithfern.com/agent-score/company/hubspot/llms.txt): Score 54/100 (F) | https://developers.hubspot.com/docs
+- [Coda](https://buildwithfern.com/agent-score/company/coda/llms.txt): Score 54/100 (F) | https://coda.io/developers/apis/v1#tag/Docs/operation/listDocs
+- [Ups](https://buildwithfern.com/agent-score/company/ups/llms.txt): Score 50/100 (F) | https://developer.ups.com/
+- [Fedex](https://buildwithfern.com/agent-score/company/developer-fedex-com-api-en-us-catalog-ship-docs-html/llms.txt): Score 48/100 (F) | https://developer.fedex.com/api/en-us/catalog/ship/docs.html
+- [Support](https://buildwithfern.com/agent-score/company/support/llms.txt): Score 47/100 (F) | https://support.weglot.com/fr
+- [Sonatype Nexus Repository](https://buildwithfern.com/agent-score/company/sonatype-nexus-repository/llms.txt): Score 45/100 (F) | https://help.sonatype.com/en/sonatype-nexus-repository.html
+- [Airtable](https://buildwithfern.com/agent-score/company/airtable/llms.txt): Score 41/100 (F) | https://airtable.com/developers/web/api/introduction
+- [Avalara](https://buildwithfern.com/agent-score/company/avalara/llms.txt): Score 40/100 (F) | https://developer.avalara.com/documentation/
+- [Stackby](https://buildwithfern.com/agent-score/company/stackby-developer-api-v1/llms.txt): Score 38/100 (F) | https://documenter.getpostman.com/view/7317658/2sAYkGLz1i
+- [Google Cloud](https://buildwithfern.com/agent-score/company/google-cloud/llms.txt): Score 35/100 (F) | https://docs.cloud.google.com
+- [Foggyhq.com](https://buildwithfern.com/agent-score/company/foggyhq-com/llms.txt): Score 24/100 (F) | https://Docs.foggyhq,com
+- [REST Directory](https://buildwithfern.com/agent-score/company/workday-restapi/llms.txt): Score 0/100 (F) | https://community.workday.com/sites/default/files/file-hosting/restapi/
+
+## About
+
+Agent Score is built by Fern Labs in partnership with Dachary Carey, creator of the AFDocs standard.
+The scoring engine is open-source at https://github.com/agent-ecosystem/afdocs
+Every check is transparent and community-reviewable.

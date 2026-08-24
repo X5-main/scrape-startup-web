@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Fern</title>
+    <link>https://buildwithfern.com</link>
+    <description>Start with OpenAPI. Generate SDKs in multiple languages, interactive API documentation, and an agent-first CLI.</description>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Aug 2026 04:22:38 GMT</lastBuildDate>
+    <item>
+      <title>Top API authentication integration tools for OAuth and complex auth (August 2026)</title>
+      <link>https://buildwithfern.com/post/api-authentication-integration-tools-oauth-claude</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/api-authentication-integration-tools-oauth-claude</guid>
+      <description>Compare the top API authentication tools for OAuth integration and complex auth across authorization servers, gateways, and generated clients in August 2026.</description>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>Stopping schema drift: a guide to coupling SDKs with documentation (August 2026)</title>
+      <link>https://buildwithfern.com/post/stopping-schema-drift-coupling-sdks-documentation-claude</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/stopping-schema-drift-coupling-sdks-documentation-claude</guid>
+      <description>Documentation drift starts when SDKs and API docs are maintained apart from the schema. A guide to coupling them in one pipeline in August 2026.</description>
+      <pubDate>Fri, 21 Aug 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>Top automated package publishing platforms for SDK distribution (August 2026)</title>
+      <link>https://buildwithfern.com/post/automated-package-publishing-platforms-sdk-distribution</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/automated-package-publishing-platforms-sdk-distribution</guid>
+      <description>Compare the top automated package publishing platforms for SDK distribution, from npm publishing automation to PyPI automation, in August 2026.</description>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>sdks</category>
+    </item>
+    <item>
+      <title>How to migrate your developer portal to docs as code (August 2026)</title>
+      <link>https://buildwithfern.com/post/migrate-developer-portal-to-docs-as-code</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/migrate-developer-portal-to-docs-as-code</guid>
+      <description>Migrate to docs as code without breaking your developer portal: a dev portal migration playbook for content, URLs, CI, and cutover in August 2026.</description>
+      <pubDate>Fri, 14 Aug 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs</category>
+    </item>
+    <item>
+      <title>How to write technical documentation: a complete guide (August 2026)</title>
+      <link>https://buildwithfern.com/post/how-to-write-technical-documentation</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/how-to-write-technical-documentation</guid>
+      <description>How to write technical documentation that stays accurate: audience mapping, a reusable template, generated reference, CI style checks, and examples in August 2026.</description>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs</category>
+    </item>
+    <item>
+      <title>OpenAPI types: a guide to data types and formats (August 2026)</title>
+      <link>https://buildwithfern.com/post/openapi-types-data-types-formats</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/openapi-types-data-types-formats</guid>
+      <description>OpenAPI types explained: data types, formats, enum, oneOf, and constraints, and how each choice changes the SDKs and docs generated from your spec in August 2026.</description>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>How I ship Fern&apos;s marketing content using skills</title>
+      <link>https://buildwithfern.com/post/content-marketing-agents</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/content-marketing-agents</guid>
+      <description>I own marketing content at Fern: case studies, launch posts, engineering blogs, and the monthly changelog. Most of it starts as output from a Claude skill, and none of it ships without my edits.</description>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <author>Devin Logan</author>
+      <category>strategy</category><category>company</category>
+    </item>
+    <item>
+      <title>AsyncAPI documentation generator: complete guide (July 2026)</title>
+      <link>https://buildwithfern.com/post/asyncapi-documentation-generator</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/asyncapi-documentation-generator</guid>
+      <description>How an AsyncAPI documentation generator works, which tools to evaluate, and how to document event-driven APIs and WebSocket channels in July 2026.</description>
+      <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>Best multi-protocol API development platforms supporting REST and gRPC (July 2026)</title>
+      <link>https://buildwithfern.com/post/multi-protocol-api-platforms-rest-grpc</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/multi-protocol-api-platforms-rest-grpc</guid>
+      <description>Compare the best multi-protocol API platforms supporting REST and gRPC, with cross-protocol SDK generation and transcoding options evaluated in July 2026.</description>
+      <pubDate>Fri, 31 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>How I run six figures of paid ads</title>
+      <link>https://buildwithfern.com/post/paid-ads-agent</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/paid-ads-agent</guid>
+      <description>I set up an agent-friendly marketing engine that doubled demos, took 90% search impression share, and increased site traffic by 202%.</description>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <author>Kapil Gowru</author>
+      <category>strategy</category><category>company</category>
+    </item>
+    <item>
+      <title>gRPC and REST unified documentation: a complete guide (July 2026)</title>
+      <link>https://buildwithfern.com/post/grpc-rest-unified-documentation</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/grpc-rest-unified-documentation</guid>
+      <description>gRPC and REST unified documentation explained: how to document both protocols from one source of truth and generate SDKs in July 2026.</description>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>How to manage partner-only API documentation without building a second portal (July 2026)</title>
+      <link>https://buildwithfern.com/post/manage-partner-only-api-documentation</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/manage-partner-only-api-documentation</guid>
+      <description>Partner API documentation without a second portal: use audience filtering and RBAC to gate partner-only API docs from a single source in July 2026.</description>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs</category>
+    </item>
+    <item>
+      <title>How I perfected Midjourney prompts for our marketing assets</title>
+      <link>https://buildwithfern.com/post/midjourney-blog-art</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/midjourney-blog-art</guid>
+      <description>The process of landing on a Midjourney prompt that generates beautiful, on-brand background imagery for our marketing assets.</description>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+      <author>Kapil Gowru</author>
+      <category>design</category><category>company</category>
+    </item>
+    <item>
+      <title>From Fern customer to Fern sales engineer</title>
+      <link>https://buildwithfern.com/post/fernie-adi</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/fernie-adi</guid>
+      <description>Adi joined Fern as a sales engineer in June &apos;26 after using Fern as a customer at a software analytics company. He walks through why he made the switch and the RBAC preview feature he shipped soon after.</description>
+      <pubDate>Tue, 21 Jul 2026 00:00:00 GMT</pubDate>
+      <author>Adi David</author>
+      <category>company</category>
+    </item>
+    <item>
+      <title>API documentation for insurance carriers: a vendor comparison (July 2026)</title>
+      <link>https://buildwithfern.com/post/insurance-api-documentation-platforms-comparison</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/insurance-api-documentation-platforms-comparison</guid>
+      <description>Compare insurance API documentation platforms in July 2026 on ACORD-scale specs, partner access controls, audit logging, and private deployment for carriers.</description>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>Reducing time-to-hello-world for enterprise partners (July 2026)</title>
+      <link>https://buildwithfern.com/post/reduce-time-to-hello-world-enterprise-partners</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/reduce-time-to-hello-world-enterprise-partners</guid>
+      <description>Reduce time to hello world for enterprise partners in July 2026 with generated SDKs, runnable docs, self-service access, and the dev onboarding metrics that prove it.</description>
+      <pubDate>Fri, 17 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>GitLab-integrated API documentation platforms for self-hosted enterprises (July 2026)</title>
+      <link>https://buildwithfern.com/post/gitlab-api-documentation-platforms-self-hosted</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/gitlab-api-documentation-platforms-self-hosted</guid>
+      <description>Compare GitLab API documentation platforms for self-hosted enterprises: GitLab self-managed integration, on-prem deployment, and spec-driven sync in July 2026.</description>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>docs-sdks</category>
+    </item>
+    <item>
+      <title>What is an API CLI generator? A complete guide for developers (July 2026)</title>
+      <link>https://buildwithfern.com/post/what-is-an-api-cli-generator</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/what-is-an-api-cli-generator</guid>
+      <description>An API CLI generator turns your OpenAPI spec into a command-line tool. Complete guide to how it works, benefits, and tradeoffs in July 2026.</description>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>sdks</category>
+    </item>
+    <item>
+      <title>How to build a CLI for your API without writing it from scratch (July 2026)</title>
+      <link>https://buildwithfern.com/post/how-to-build-a-cli-for-your-api</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/how-to-build-a-cli-for-your-api</guid>
+      <description>How to build a CLI for your API in July 2026: design commands, auth, and output, then generate the whole tool from your OpenAPI spec instead of hand-coding it.</description>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>sdks</category>
+    </item>
+    <item>
+      <title>OpenAPI Generator CLI vs Fern: what&apos;s the difference? (July 2026)</title>
+      <link>https://buildwithfern.com/post/openapi-generator-cli-vs-fern</link>
+      <guid isPermaLink="true">https://buildwithfern.com/post/openapi-generator-cli-vs-fern</guid>
+      <description>Compare openapi-generator-cli vs Fern CLI in July 2026: template-based generation you maintain yourself versus idiomatic SDKs and synced docs from one spec.</description>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 GMT</pubDate>
+      
+      <category>educational</category><category>sdks</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+  <g clip-path="url(#ruby-clip)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12.3805 10.5509L3.25684 15.9685L15.0703 15.1669L15.9801 3.25488L12.3805 10.5509Z" fill="url(#ruby-grad-0)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.0897 15.1585L14.0743 8.15039L11.3086 11.8024L15.0897 15.1585Z" fill="url(#ruby-grad-1)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.1031 15.1582L7.66441 14.5742L3.29614 15.9527L15.1031 15.1582Z" fill="url(#ruby-grad-2)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.30684 15.954L5.16513 9.86621L1.07593 10.7406L3.30684 15.954Z" fill="url(#ruby-grad-3)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.3078 11.8216L9.59792 5.12402L4.70459 9.71086L11.3078 11.8216Z" fill="url(#ruby-grad-4)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.5921 5.21928L10.9665 1.44141L9.67847 5.60561L15.5921 5.21928Z" fill="url(#ruby-grad-5)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.429 0.0943824L10.7085 1.59779L8.99219 0.0742188L13.429 0.0943824Z" fill="url(#ruby-grad-6)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.7831L1.13965 10.7046L0.217768 8.22852L0 12.7831Z" fill="url(#ruby-grad-7)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0.156494 8.15013L1.08402 10.7811L5.11434 9.87687L9.7157 5.60055L11.0142 1.47595L8.96956 0.0322266L5.49334 1.33319C4.39813 2.35186 2.27288 4.36742 2.19625 4.40533C2.12044 4.44404 0.79286 6.95321 0.156494 8.15013Z" fill="white"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.41325 3.42371C5.78692 1.0702 8.84696 -0.320287 10.0213 0.864531C11.1949 2.04935 9.95032 4.92872 7.57665 7.28142C5.20298 9.63412 2.18085 11.1012 1.00732 9.91642C-0.167015 8.7324 1.03958 5.77641 3.41325 3.42371Z" fill="url(#ruby-grad-8)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.30688 15.9519L5.15065 9.84473L11.274 11.8119C9.05999 13.888 6.5976 15.643 3.30688 15.9519Z" fill="url(#ruby-grad-9)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.72363 5.58874L11.2956 11.8153C13.145 9.8707 14.8049 7.78013 15.6178 5.19434L9.72363 5.58874Z" fill="url(#ruby-grad-10)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6018 5.22569C16.2309 3.32707 16.3761 0.603362 13.4095 0.0976562L10.9753 1.44217L15.6018 5.22569Z" fill="url(#ruby-grad-11)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 12.7559C0.0871072 15.8894 2.34786 15.9361 3.31088 15.9636L1.08642 10.7686L0 12.7559Z" fill="#9E1209"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.73242 5.59855C11.1536 6.47204 14.0177 8.22628 14.0758 8.25854C14.166 8.30935 15.3106 6.32847 15.5703 5.20898L9.73242 5.59855Z" fill="url(#ruby-grad-12)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M5.14819 9.84473L7.613 14.6001C9.07043 13.8097 10.2117 12.8467 11.257 11.8151L5.14819 9.84473Z" fill="url(#ruby-grad-13)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.07677 10.7745L0.727539 14.933C1.38649 15.8331 2.29305 15.9114 3.24397 15.8412C2.55598 14.1289 1.18163 10.7051 1.07677 10.7745Z" fill="url(#ruby-grad-14)"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9609 1.45198L15.8575 2.13915C15.5962 1.03176 14.7937 0.317164 13.4257 0.09375L10.9609 1.45198Z" fill="url(#ruby-grad-15)"/>
+  </g>
+  <defs>
+    <linearGradient id="ruby-grad-0" x1="14.0399" y1="17.4178" x2="10.6687" y2="11.4658" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB7655"/>
+      <stop offset="0.41" stop-color="#E42B1E"/>
+      <stop offset="0.99" stop-color="#990000"/>
+      <stop offset="1" stop-color="#990000"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-1" x1="15.7193" y1="12.4176" x2="11.3746" y2="9.50211" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#871101"/>
+      <stop offset="0.99" stop-color="#911209"/>
+      <stop offset="1" stop-color="#911209"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-2" x1="12.2428" y1="17.5976" x2="7.89828" y2="14.6821" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#871101"/>
+      <stop offset="0.99" stop-color="#911209"/>
+      <stop offset="1" stop-color="#911209"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-3" x1="3.12103" y1="10.3066" x2="3.79455" y2="14.6838" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="0.23" stop-color="#E57252"/>
+      <stop offset="0.46" stop-color="#DE3B20"/>
+      <stop offset="0.99" stop-color="#A60003"/>
+      <stop offset="1" stop-color="#A60003"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-4" x1="7.75357" y1="6.21894" x2="8.00172" y2="10.6861" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="0.23" stop-color="#E4714E"/>
+      <stop offset="0.56" stop-color="#BE1A0D"/>
+      <stop offset="0.99" stop-color="#A80D00"/>
+      <stop offset="1" stop-color="#A80D00"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-5" x1="11.8645" y1="2.09076" x2="12.6074" y2="5.29237" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="0.18" stop-color="#E46342"/>
+      <stop offset="0.4" stop-color="#C82410"/>
+      <stop offset="0.99" stop-color="#A80D00"/>
+      <stop offset="1" stop-color="#A80D00"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-6" x1="9.59598" y1="0.963155" x2="12.7974" y2="-0.637544" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="0.54" stop-color="#C81F11"/>
+      <stop offset="0.99" stop-color="#BF0905"/>
+      <stop offset="1" stop-color="#BF0905"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-7" x1="0.31482" y1="9.19111" x2="0.578311" y2="11.8292" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white"/>
+      <stop offset="0.31" stop-color="#DE4024"/>
+      <stop offset="0.99" stop-color="#BF190B"/>
+      <stop offset="1" stop-color="#BF190B"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-8" x1="-1.49667" y1="12.5421" x2="10.8896" y2="-0.194409" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BD0012"/>
+      <stop offset="0.07" stop-color="white"/>
+      <stop offset="0.17" stop-color="white"/>
+      <stop offset="0.27" stop-color="#C82F1C"/>
+      <stop offset="0.33" stop-color="#820C01"/>
+      <stop offset="0.46" stop-color="#A31601"/>
+      <stop offset="0.72" stop-color="#B31301"/>
+      <stop offset="0.99" stop-color="#E82609"/>
+      <stop offset="1" stop-color="#E82609"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-9" x1="7.99089" y1="13.8269" x2="4.26004" y2="12.9061" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8C0C01"/>
+      <stop offset="0.54" stop-color="#990C00"/>
+      <stop offset="0.99" stop-color="#A80D0E"/>
+      <stop offset="1" stop-color="#A80D0E"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-10" x1="14.3989" y1="9.34923" x2="11.0845" y2="6.37867" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7E110B"/>
+      <stop offset="0.99" stop-color="#9E0C00"/>
+      <stop offset="1" stop-color="#9E0C00"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-11" x1="15.6166" y1="3.89867" x2="13.9656" y2="2.13369" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#79130D"/>
+      <stop offset="0.99" stop-color="#9E120B"/>
+      <stop offset="1" stop-color="#9E120B"/>
+    </linearGradient>
+    <radialGradient id="ruby-grad-12" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(11.6006 6.4356) scale(4.06158)">
+      <stop stop-color="#A80D00"/>
+      <stop offset="0.99" stop-color="#7E0E08"/>
+      <stop offset="1" stop-color="#7E0E08"/>
+    </radialGradient>
+    <radialGradient id="ruby-grad-13" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(5.9759 11.7878) scale(5.39933 5.39933)">
+      <stop stop-color="#A30C00"/>
+      <stop offset="0.99" stop-color="#800E08"/>
+      <stop offset="1" stop-color="#800E08"/>
+    </radialGradient>
+    <linearGradient id="ruby-grad-14" x1="2.15109" y1="15.9481" x2="0.80567" y2="11.3836" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8B2114"/>
+      <stop offset="0.43" stop-color="#9E100A"/>
+      <stop offset="0.99" stop-color="#B3100C"/>
+      <stop offset="1" stop-color="#B3100C"/>
+    </linearGradient>
+    <linearGradient id="ruby-grad-15" x1="12.4725" y1="0.821893" x2="15.4888" y2="2.15334" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B31000"/>
+      <stop offset="0.44" stop-color="#910F08"/>
+      <stop offset="0.99" stop-color="#791C12"/>
+      <stop offset="1" stop-color="#791C12"/>
+    </linearGradient>
+    <clipPath id="ruby-clip">
+      <rect width="16" height="15.936" fill="white" transform="translate(0 0.0322266)"/>
+    </clipPath>
+  </defs>
+</svg>

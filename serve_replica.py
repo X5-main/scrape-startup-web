@@ -205,6 +205,25 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             vmap = _v_alternatives(parsed.path.lstrip("/"), ver)
             if vmap:
                 self.path = "/" + vmap
+        # DOCROOT is relative and the server chdir'd into it at startup, so
+        # resolve against CWD (like SimpleHTTPRequestHandler.translate_path).
+        rsc_file = os.path.join(os.getcwd(), "_rsc_index.bin")
+        if os.path.isfile(rsc_file) and (
+            self.headers.get("RSC") == "1" or "_rsc" in q
+        ):
+            if parsed.path in ("/", "/_index"):
+                with open(rsc_file, "rb") as fh:
+                    body = fh.read()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/x-component")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+                return
+        if parsed.path == "/_not-found":
+            # live serves 200 for the not-found doc; mirror so prefetch 200s
+            self.path = "/"
+            return super().do_GET()
         if parsed.path.startswith("/_next/image"):
             # serve the underlying image file for next/image optimizer requests
             raw = ""
@@ -263,6 +282,15 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             return
         if parsed.path == "/api/status":
             body = b'{"operational":true}'
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
+        if parsed.path == "/api/time":
+            import time as _time
+            body = b'{"now":%d}' % int(_time.time() * 1000)
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.send_header("Content-Length", str(len(body)))
