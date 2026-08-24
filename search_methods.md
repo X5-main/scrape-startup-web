@@ -1053,3 +1053,22 @@ Active). Dropped below bar: flick, wardstone, origin, mochi.
 derivative), `ndea_probe_one.mjs` / `ndea_render_probe.mjs` (single-side CDP
 render probes — the dual-URL variant hung on its second target; split per URL).
 
+
+## Ossus (www.ossus.com — 33rd pick, 2026-08-24)
+
+**Discovery lane (D33)**: YC batch roster refresh (F25=146, W26=199, S26=236, F26=18 → 599, pool 574) screened with `d33_rank.py` (design_signal h1-gate → 288 ranked) + flushed captures + vision judge. 75+ sites captured/judged, all ≤6 except **ossus.com 7/7/6 live bands** ("genuinely premium": custom display serif, painterly classical-architecture scenes, asymmetric editorial grid). amulet.so 7→6 + robots disallow-all skip; lantern rejected 6/6/6.
+
+**Funding re-verify (advisory gate, 2026-08-24)**: YC W26 roster entry has no funding metadata → external check. Ossus = **formerly Librar Labs** (founder LinkedIn: "We've changed our name from Librar to Ossus (YC W26) and have raised $6 million", Jun-Jul 2026; YC company profile W26 "AI-native operating system for school and public libraries"; edsheet newsletter "Ossus raises $6M", investors undisclosed; Dealroom lists a $125k YC financing entry Jan 2026 — treat $6M as company-reported). Confirms the mirrored ossus.com ILS/Librar site IS the YC startup (name change), not the pre-existing open-source OSSUS ILS brand.
+
+**Lane**:
+1. **Gates**: apex `ossus.com` 308 → `www.ossus.com` (canonical); robots allow-all on www; SSR-clean Vercel build.
+2. **Crawl**: `mirror_site.py https://www.ossus.com ./ossus --depth 6` → 228 files on disk, "no missing referenced assets". 15 HTML routes.
+3. **Duplicate-detection rule (this turn's lesson)**: `ossus.com` also matches the pre-existing OSSUS ILS open-source library-software brand — distinct company; the site itself is the YC startup (Librar→Ossus rename).
+4. **Residual sweep** (`ossus_sweep.py`, per-site af_sweep derivative): `pages=22 refs=752 residual_uniq=0`; runtime lazy-chunk sweep (CDP 9344 scroll-wave + fetch/XMLHttpRequest hook): zero fetch failures.
+5. **Text parity**: `af_parity.mjs 9344 https://www.ossus.com http://127.0.0.1:8931` — **15/15 MATCH** (byte-identical innerText/lines/title/h1 on all 15 routes; home height 5896==5896; /ils 3554 vs 3602 = lazy-image timing only, text identical).
+6. **Mid-cycle deploy race (D33 lesson — cache-pollution rule fired)**: at 00:04:20Z 2026-08-24 Vercel re-encoded both `brand/scene-*.jpg` (252KB→673KB portal, 345KB→817KB valley; md5 39b1c…/c064c… → a223fcc8…/bb0a8649…) and updated every page body (~150 B; home +467). The crawler returned byte-identical PRE-deploy trees on three consecutive runs (ossus2/ossus3/final) minutes after curl AND a byte-for-byte identical urllib probe returned fresh — edge purge/POP or HTTP/1.1-vs-2 variance; crawler output during a deploy window is not trustworthy alone. **Verify**: (a) byte-compare assets with live, (b) treat saved-HTML md5-vs-live as meaningless — saved HTML is the intended rewritten form and 100% of its diffs vs raw live are URL-triaged slashes, zero content deltas.
+7. **Pixel audit (post-repair)**: bands via `d33_modal_band.mjs 9344` (dismiss-consent variant of d31_bands). Live vs replica: no global tint (signed Δ ≈ 0/255), per-pixel Δ 1-2/255 everywhere except bot-band rows 0-200 (Δ 3.4-3.9 = nav/footer over scene: new-JPEG decode dither); the pre-repair frosted-nav-band cluster (rows 25-280, Δ 89) resolved once the mirror served the post-deploy scenes. Layout identical (same 5896 px height, same band geometry); mid 43% byte-identical rows with sparse ≤2/255 deltas.
+8. **Vision judge (3 viewport bands, ≥7 binding)**: live 8/7/7-8 (top/mid/bot), replica 8/7/7 — all ≥7, content per band identical; mid 6-vs-7 swings are prompt framing on identical crops (crop artifact, not replica fault).
+9. **Ports**: replica `serve_replica.py` **8931**; capture vehicle headless CDP 9344; relay bridge 9224 (4 leftover probe tabs closed after verdict).
+
+**Tools added this turn**: `.tmp_tools/d33_rank.py` (h1-gated design_signal ranking), `d33_modal_band.mjs` (band capture + consent dismiss), `d33_relay_live.mjs` (live relay band probe via 9224), `d33_settle.mjs`, `ossus_sweep.py`.

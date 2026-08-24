@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The OSSUS blog</title>
+    <link>https://ossus.com/blog</link>
+    <atom:link href="https://ossus.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <description>Writing on intelligence and the institutions that keep culture alive. Published by OSSUS.</description>
+    <language>en</language>
+    <lastBuildDate>Fri, 14 Aug 2026 09:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Stories from the Inside</title>
+      <link>https://ossus.com/blog/stories-from-the-inside</link>
+      <guid isPermaLink="true">https://ossus.com/blog/stories-from-the-inside</guid>
+      <description>How a handful of activists trying to get books to one jailed friend became thirty thousand books a year, and why that floor is now cracking.</description>
+      <dc:creator>Karin Wannerud</dc:creator>
+      <category>field-notes</category>
+      <pubDate>Fri, 14 Aug 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Thirty Years &amp; Two Metres Under</title>
+      <link>https://ossus.com/blog/thirty-years-two-metres-under</link>
+      <guid isPermaLink="true">https://ossus.com/blog/thirty-years-two-metres-under</guid>
+      <description>A shy girl hiding fairy books behind the encyclopedias, a man with 23,600 stolen volumes, and the two metre gap where a book can vanish for thirty years.</description>
+      <dc:creator>Karin Wannerud</dc:creator>
+      <category>field-notes</category>
+      <pubDate>Fri, 07 Aug 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Pride &amp; Prejudice</title>
+      <link>https://ossus.com/blog/pride-prejudice</link>
+      <guid isPermaLink="true">https://ossus.com/blog/pride-prejudice</guid>
+      <description>From a Swedish sorority party to armed anime librarians, the many afterlives of the woman in the mousy cardigan.</description>
+      <dc:creator>Karin Wannerud</dc:creator>
+      <category>culture</category>
+      <pubDate>Fri, 31 Jul 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Is There Really A Reading Crisis? </title>
+      <link>https://ossus.com/blog/is-there-really-a-reading-crisis</link>
+      <guid isPermaLink="true">https://ossus.com/blog/is-there-really-a-reading-crisis</guid>
+      <description>Sweden still scores above average in reading, and that is exactly what the numbers are hiding.</description>
+      <dc:creator>Karin Wannerud</dc:creator>
+      <category>field-notes</category>
+      <pubDate>Thu, 23 Jul 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>AI &amp; Fingerspitzengefühl</title>
+      <link>https://ossus.com/blog/ai-fingerspitzengefuhl</link>
+      <guid isPermaLink="true">https://ossus.com/blog/ai-fingerspitzengefuhl</guid>
+      <description>Why the anger I expected at ALA never came, and why we’d refuse to sell Librar to anyone replacing a librarian.</description>
+      <dc:creator>Karin Wannerud</dc:creator>
+      <category>field-notes</category>
+      <pubDate>Fri, 17 Jul 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>On Borrowed Time</title>
+      <link>https://ossus.com/blog/borrowed-time</link>
+      <guid isPermaLink="true">https://ossus.com/blog/borrowed-time</guid>
+      <description>On school librarians, the hours that get away from them, and what they would do with just one more.</description>
+      <dc:creator>Karin Wannerud</dc:creator>
+      <category>institutions</category>
+      <pubDate>Tue, 07 Jul 2026 09:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Notes from a first ALA</title>
+      <link>https://ossus.com/blog/notes-from-a-first-ala</link>
+      <guid isPermaLink="true">https://ossus.com/blog/notes-from-a-first-ala</guid>
+      <description>First impressions from four days on the floor of the ALA conference in Chicago.</description>
+      <dc:creator>Karin Wannerud</dc:creator>
+      <category>field-notes</category>
+      <pubDate>Thu, 02 Jul 2026 09:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>
