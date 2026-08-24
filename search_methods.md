@@ -10,6 +10,11 @@ startup-website library. Ordered by usefulness per effort.
   complete than scraping the HTML directory; validated on S26 (Nex found here).
 - Batch codes: `F25`, `W26`, `S26`, `F26`; each cohort's Demo Day date is the
   recency ceiling (batch acceptance always inside the 24-month window).
+> **Contract update (D35, authoritative now):** paginate `page` 1..M stopping at
+> `page >= totalPages` (envelope field — "until an empty page" and "220 for S26"
+> are obsolete; `limit=500` silently caps at 20/page), and re-pull the rosters
+> every cycle — D35 fresh counts: F25 146 + W26 199 + S26 237 + F26 18 = 600
+> raw / 599 unique / 578 unmirrored. Full recipe in **Method 8** below.
 
 ## Method 2: TechCrunch funding tracker
 
