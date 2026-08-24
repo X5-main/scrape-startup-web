@@ -1155,7 +1155,7 @@ render probes — the dual-URL variant hung on its second target; split per URL)
   8, top band 7).
 ## D36 close — Stilta (stilta.com)
 
-- **Winner:** YC S25 "Agentic AI for high-stakes patent work" (on-page YC badge +
+- **Winner:** YC W26 "Agentic AI for high-stakes patent work" (on-page YC badge +
   batch record = ≤24-mo funding; AI/IP focus ✓). 15 on-disk files mirrored
   (4.0 MB), served on **8934** (replicas 8918-8933 = prior cycles). robots.txt
   allow-all; Framer site → framerusercontent.com assets + events.framer.com
