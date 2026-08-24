@@ -1071,4 +1071,21 @@ render probes — the dual-URL variant hung on its second target; split per URL)
 8. **Vision judge (3 viewport bands, ≥7 binding)**: live 8/7/7-8 (top/mid/bot), replica 8/7/7 — all ≥7, content per band identical; mid 6-vs-7 swings are prompt framing on identical crops (crop artifact, not replica fault).
 9. **Ports**: replica `serve_replica.py` **8931**; capture vehicle headless CDP 9344; relay bridge 9224 (4 leftover probe tabs closed after verdict).
 
-**Tools added this turn**: `.tmp_tools/d33_rank.py` (h1-gated design_signal ranking), `d33_modal_band.mjs` (band capture + consent dismiss), `d33_relay_live.mjs` (live relay band probe via 9224), `d33_settle.mjs`, `ossus_sweep.py`.
+## Axelrod (axelrod.live — 34th pick, 2026-08-24)
+
+**Discovery lane (D34)**: YC batch roster refresh (F25=146, W26=199, S26=236, F26=18 → 599, pool 574) → `design_signal --live` h1 gate + flushed captures (scale 3) + vision judge. Top-10 unmirrored candidates, all ≤6 except **axelrod.live 7 (WINNER)**: capveon 6, hyperprobe 6 (capture showed an incident.io-branded page — suspicious but moot), alkera 4, ritivel 3 (showed "effivo" + washed lower half — artifact suspicion, moot), usechamber 5, eigenpal 5, thehog 2, whitespacehq 5, unsiloed 6.5 (identical neutral framing across all).
+
+**Funding re-verify (advisory gate, 2026-08-24)**: YC roster entry → external check. Axelrod = **YC S26**, "Boutique Hotels that run themselves" — an operating layer for boutique hotels; founders Adrian Stoica + Saman Sayahpour; standard **$500k** YC deal (Summer 2026 batch → ≤18 mo gate PASSES). YC badge in site footer corroborates.
+
+**Lane**:
+1. **Gates**: robots.txt `User-Agent: * / Allow: /` (Disallow `/api/` only); real sitemap (20 URLs); SSR-clean Vercel static build, no consent modal.
+2. **Single-viewport landing finding**: home is `document.body.scrollHeight === 720` — every viewport "band" is identical; the 8.5MB full-page PNG IS the whole site. All real content weight is in the 19 guide pages.
+3. **Crawl**: `python3 mirror_site.py https://axelrod.live/ axelrod --sitemap auto --depth 3 --asset-hosts fonts.googleapis.com,fonts.gstatic.com` → 20 sitemap seeds, 45 files, 43 on disk, 3.1 MB. The 3 "MISSING REFERENCED FILES" all confirmed **404 on live** (`/chatgpt-guides/beds24/worker-starter/src/...` MCP-SDK paths — illustrative literals inside guide code blocks, never fetched by browsers; D16 class). `.origin` = `https://axelrod.live/`.
+4. **Sweep-after-server lesson (D34)**: the first residual sweep ran BEFORE the replica server was up → `residual_uniq=64`, all spurious (every ref flags non-200). Restarted with `serve_replica.py 8932` up: `axelrod_sweep.py` → **pages=21 refs=678 residual_uniq=0**.
+5. **Text parity**: `af_parity.mjs 9344 https://axelrod.live http://127.0.0.1:8932` over all 20 sitemap paths → **20/20 MATCH** (byte-identical title/h1/innerText/line counts/heights; home 357==357 chars height 720==720; beds24 guide 10171==10171 chars height 10915==10915; guides index 4393==4393 / 3752==3752).
+6. **Assets**: 9/9 byte-identical vs live (hero-wood-lobby jpg/webp/-1280.webp, adrian/saman founder jpgs, og-home/og-chatgpt-guides pngs, beds24 guide PDF, favicon.svg). No `data:image/webp` anywhere in HTML.
+7. **Fonts (closed out)**: local `css2/index__family-JetBrains-Mono-wght-400-500-display-swap.html` (4790 B) vs live css2 (5042 B) — the 252 B delta is **only** the absolute→relative rewrite (6× gstatic URL → `../s/jetbrainsmono/...`) plus the UA/URL-subset variant; content equal. All **6 `s/jetbrainsmono/*.woff2` byte-identical** vs gstatic (`md5 -q` match, 1.33 s). CDP probe: `document.fonts.check("500 16px JetBrains Mono")` **true on BOTH sides**; 70 mono-styled elements each side; identical computed font stacks. (Chrome accepts the `.html`-suffixed css2 stylesheet — it lists in `document.styleSheets` and fonts load.)
+8. **Pixel evidence — MD5-identical captures**: replica full-page PNG (scale 3, 3840×2160, 8 545 941 B) vs live equals byte-for-byte (`md5` 92c5ade11f2543c6cf0f05f07f026806 == both). Strongest possible parity proof; vision judge on the replica with identical framing = **8** (live scored 7) — ≥7 binding holds both ways.
+9. **Ports**: replica `serve_replica.py` **8932** (hub `axelrod-replica`, pid 29007); capture vehicle headless CDP 9344. Hub readiness log pattern never matched even though the port LISTENED + HTTP 200 — probe port/curl, not the log pattern.
+
+**Tools added this turn**: `.tmp_tools/axelrod_sweep.py` (per-site af_sweep derivative).

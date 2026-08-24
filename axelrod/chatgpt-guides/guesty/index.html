@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Connect Guesty to ChatGPT | Axelrod guide</title>
+<meta name="description" content="Connect Guesty to ChatGPT with this no-code API guide — a read-only setup for your bookings, guests, and calendar, then Axelrod for managed ops." />
+<link rel="canonical" href="https://axelrod.live/chatgpt-guides/guesty" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta property="og:title" content="Connect Guesty to ChatGPT | Axelrod guide" />
+<meta property="og:description" content="Connect Guesty to ChatGPT with this no-code API guide — a read-only setup for your bookings, guests, and calendar, then Axelrod for managed ops." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://axelrod.live/chatgpt-guides/guesty" />
+<meta property="og:site_name" content="Axelrod" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="https://axelrod.live/assets/og-chatgpt-guides.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Connect Guesty to ChatGPT | Axelrod guide" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Connect Guesty to ChatGPT | Axelrod guide" />
+<meta name="twitter:description" content="Connect Guesty to ChatGPT with this no-code API guide — a read-only setup for your bookings, guests, and calendar, then Axelrod for managed ops." />
+<meta name="twitter:image" content="https://axelrod.live/assets/og-chatgpt-guides.png" />
+<meta name="theme-color" content="#0B0B0B" />
+<link rel="icon" href="../../favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png" />
+<link rel="preconnect" href="../../index.html" />
+<link rel="preconnect" href="../../index.html" crossorigin />
+<link href="../../css2/index__family-JetBrains-Mono-wght-400-500-display-swap.html" rel="stylesheet" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://axelrod.live/#organization","name":"Axelrod Labs Inc.","alternateName":"Axelrod","url":"https://axelrod.live/","email":"adrian@axelrod.live","logo":{"@type":"ImageObject","url":"https://axelrod.live/assets/logo.png","width":720,"height":200},"sameAs":["https://www.linkedin.com/company/axelrod-labs/"]},{"@type":"WebSite","@id":"https://axelrod.live/#website","name":"Axelrod","url":"https://axelrod.live/","publisher":{"@id":"https://axelrod.live/#organization"}},{"@type":"HowTo","@id":"https://axelrod.live/chatgpt-guides/guesty#howto","name":"Connect Guesty to ChatGPT","description":"Set up a read-only ChatGPT connection to Guesty using Guesty client ID and client secret.","image":"https://axelrod.live/assets/og-chatgpt-guides.png","totalTime":"PT90M","supply":[{"@type":"HowToSupply","name":"Guesty client ID and client secret"},{"@type":"HowToSupply","name":"A paid ChatGPT plan with Developer mode"},{"@type":"HowToSupply","name":"A free Cloudflare account"}],"tool":[{"@type":"HowToTool","name":"ChatGPT"},{"@type":"HowToTool","name":"Guesty"}],"step":[{"@type":"HowToStep","position":1,"name":"Get your Guesty credentials","itemListElement":[{"@type":"HowToDirection","text":"Open Guesty with account-owner access."},{"@type":"HowToDirection","text":"Create an API application for read access to listings, reservations, and guests."},{"@type":"HowToDirection","text":"Copy the client ID and client secret into the setup form."}]},{"@type":"HowToStep","position":2,"name":"Set up the private connection","itemListElement":[{"@type":"HowToDirection","text":"Use a private Cloudflare Worker or managed setup path so PMS credentials stay outside ChatGPT."},{"@type":"HowToDirection","text":"Paste your Guesty client ID and client secret into the prompted fields."},{"@type":"HowToDirection","text":"Deploy the private connection and open the generated health page."},{"@type":"HowToDirection","text":"Confirm it says Connected to Guesty before continuing."}]},{"@type":"HowToStep","position":3,"name":"Add it to ChatGPT","itemListElement":[{"@type":"HowToDirection","text":"Open ChatGPT settings."},{"@type":"HowToDirection","text":"Go to Apps, open Advanced settings, and enable Developer mode."},{"@type":"HowToDirection","text":"Create a custom app from the remote server URL shown on the health page."},{"@type":"HowToDirection","text":"Complete the OAuth authorization screen."}]},{"@type":"HowToStep","position":4,"name":"Try operational prompts","itemListElement":[{"@type":"HowToDirection","text":"Open a new chat and select the app from Developer mode."},{"@type":"HowToDirection","text":"Start with arrivals, departures, missing guest details, and occupancy questions."}]}],"publisher":{"@id":"https://axelrod.live/#organization"}},{"@type":"BreadcrumbList","@id":"https://axelrod.live/chatgpt-guides/guesty#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://axelrod.live/"},{"@type":"ListItem","position":2,"name":"ChatGPT guides","item":"https://axelrod.live/chatgpt-guides"},{"@type":"ListItem","position":3,"name":"Connect Guesty to ChatGPT","item":"https://axelrod.live/chatgpt-guides/guesty"}]},{"@type":"FAQPage","@id":"https://axelrod.live/chatgpt-guides/guesty#faq","mainEntity":[{"@type":"Question","name":"Is it safe to connect Guesty to ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"Yes, when you keep it read-only. Your Guesty client ID and client secret stays in a private connection you control, not inside ChatGPT, and this setup only reads data; it cannot create, change, or cancel reservations. Remove the ChatGPT app and delete the private connection to revoke access at any time."}},{"@type":"Question","name":"What do I need to connect Guesty to ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"Three things: a paid ChatGPT plan with Developer mode (or custom MCP connectors) enabled, Guesty admin access to obtain Guesty client ID and client secret, and a free Cloudflare account for the private connection."}},{"@type":"Question","name":"Can ChatGPT change or cancel my Guesty reservations?","acceptedAnswer":{"@type":"Answer","text":"No. This guide sets up a read-only connection, so ChatGPT can answer questions about your Guesty bookings, guests, and calendar but cannot modify anything."}},{"@type":"Question","name":"How long does it take to set up?","acceptedAnswer":{"@type":"Answer","text":"Plan on about 45-90 minutes if your Guesty client ID and client secret is ready. It can take longer when Guesty requires API approval, partner access, or workspace admin approval before ChatGPT can scan the connector."}},{"@type":"Question","name":"Why is ChatGPT returning empty or unauthorized results from Guesty?","acceptedAnswer":{"@type":"Answer","text":"Most common Guesty issue: the API app was created without reservation read scope. Guesty credentials can be scoped narrowly; missing scopes produce empty-looking answers."}}]},{"@type":"TechArticle","@id":"https://axelrod.live/chatgpt-guides/guesty#article","headline":"Connect Guesty to ChatGPT","description":"Connect Guesty to ChatGPT with a no-code, read-only setup.","inLanguage":"en","datePublished":"2026-05-15","dateModified":"2026-06-05","url":"https://axelrod.live/chatgpt-guides/guesty","mainEntityOfPage":"https://axelrod.live/chatgpt-guides/guesty","image":"https://axelrod.live/assets/og-chatgpt-guides.png","author":{"@id":"https://axelrod.live/#organization"},"publisher":{"@id":"https://axelrod.live/#organization"},"isPartOf":{"@id":"https://axelrod.live/#website"},"breadcrumb":{"@id":"https://axelrod.live/chatgpt-guides/guesty#breadcrumb"},"about":"Guesty ChatGPT integration","keywords":"Guesty ChatGPT integration, connect Guesty to ChatGPT, Guesty API, ChatGPT Guesty integration, no-code, read-only"}]}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#F8F6F2;--ink:#141210;
+  --dim:rgba(20,18,16,.52);--faint:rgba(20,18,16,.34);--line:rgba(20,18,16,.15);
+  --soft:color-mix(in srgb,var(--ink) 4%,var(--paper));
+  --sans:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --hero:clamp(34px,5.4vw,66px);--h2:clamp(24px,3vw,38px);--body:15px;--label:9.5px;--nav:52px
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 20px}}
+.top{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--line)}
+.top-inner{height:var(--nav);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.34em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.nav{display:flex;gap:22px;align-items:center}
+.nav-link{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color 180ms ease}
+.nav-link:hover{border-bottom-color:var(--ink)}
+.eyebrow,.label,.region{font-family:var(--mono);font-size:var(--label);letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.hero{border-bottom:1px solid var(--line)}
+.hero-grid{min-height:520px;display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.72fr);gap:56px;align-items:center;padding:clamp(48px,8vh,84px) 0}
+h1{font-family:var(--sans);font-size:var(--hero);line-height:1;font-weight:400;letter-spacing:-.028em;max-width:15ch;margin-top:22px;text-wrap:balance}
+.lead{font-family:var(--sans);font-size:clamp(16px,1.4vw,19px);line-height:1.55;max-width:46ch;color:var(--dim);margin-top:24px;text-wrap:pretty}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+.chip{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);border:1px solid var(--line);border-radius:999px;padding:8px 14px}
+a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.guide-card:active,.file-link:active{transform:scale(0.995)}
+.demo{border:1px solid var(--line);background:#f7f7f5;border-radius:16px;overflow:hidden}
+.demo-shell{min-height:424px;display:grid;grid-template-columns:116px minmax(0,1fr);background:var(--paper)}
+.demo-sidebar{background:#f7f7f8;border-right:1px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:12px}
+.demo-sidebar-brand{height:30px;display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500}
+.demo-mark{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#101010;color:#fff;font-size:12px;font-weight:600}
+.demo-new{height:32px;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;padding:0 9px;color:rgba(11,11,11,.72);font-size:11px}
+.demo-history{display:grid;gap:6px;margin-top:4px}
+.demo-thread{height:22px;border-radius:6px;background:rgba(11,11,11,.05)}
+.demo-thread:nth-child(2){width:78%}.demo-thread:nth-child(3){width:64%}
+.demo-main{min-width:0;display:flex;flex-direction:column;background:var(--paper)}
+.demo-top{height:48px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 16px}
+.demo-model{font-size:14px;font-weight:500;letter-spacing:0;color:var(--ink)}
+.demo-app-pill{border:1px solid var(--line);border-radius:999px;padding:6px 9px;font-size:11px;color:rgba(11,11,11,.62);white-space:nowrap}
+.demo-chat{flex:1;display:grid;align-content:start;gap:18px;padding:22px 18px}
+.demo-message{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start}
+.demo-message.user{display:flex;justify-content:flex-end}
+.demo-avatar{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#10a37f;color:#fff;font-size:12px;font-weight:600}
+.bubble{border:1px solid var(--line);border-radius:18px 18px 18px 4px;background:var(--paper);padding:14px 15px;font-size:14px;line-height:1.55}
+.bubble strong{font-weight:500}
+.bubble.answer strong{display:block;margin-bottom:6px}
+.bubble.user{max-width:88%;border:0;border-radius:18px 18px 4px 18px;background:#f4f4f4}
+.bubble.answer{border:0;padding:2px 0 0;background:transparent}
+.bubble p+p{margin-top:8px}
+.demo-tool{display:flex;width:fit-content;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:5px 8px;margin-bottom:12px;color:rgba(11,11,11,.58);font-size:11px}
+.demo-tool-dot{width:7px;height:7px;border-radius:50%;background:#10a37f}
+.demo-composer{margin:0 16px 16px;border:1px solid var(--line);border-radius:18px;min-height:46px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 12px;color:rgba(11,11,11,.42);font-size:13px;background:var(--paper)}
+.demo-send{border:1px solid var(--line);border-radius:999px;padding:5px 8px;color:rgba(11,11,11,.64);font-size:11px}
+.demo-note{border-top:1px solid var(--line);padding:12px 16px;color:var(--dim);font-size:12px;line-height:1.5;background:#f7f7f5}
+section{padding:clamp(56px,9vh,84px) 0;border-bottom:1px solid var(--line)}
+h2{font-family:var(--sans);font-size:var(--h2);line-height:1.12;font-weight:400;letter-spacing:-.02em;max-width:24ch;margin-top:12px;text-wrap:balance}
+.section-body{font-family:var(--sans);max-width:60ch;color:var(--dim);line-height:1.6;margin-top:14px;text-wrap:pretty}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
+.card{border:1px solid var(--line);border-radius:12px;padding:22px;background:var(--paper)}
+.card strong{font-weight:500}
+.card p{color:var(--dim);font-size:14px;line-height:1.6;margin-top:14px}
+.notice{border:1px solid var(--ink);border-radius:12px;background:var(--soft);padding:22px;margin-top:28px}
+.notice strong{font-weight:500}
+.file-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:28px}
+.file-link{border:1px solid var(--line);border-radius:10px;padding:16px;text-decoration:none;display:flex;justify-content:space-between;gap:16px;align-items:center;background:var(--paper);transition:background 160ms ease,color 160ms ease}
+.file-link:hover{background:var(--ink);color:var(--paper)}
+.file-link span:first-child{font-weight:500}
+.file-link span:last-child{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:currentColor;opacity:.66}
+.guide-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.guide-card{min-height:220px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:20px;text-decoration:none;background:var(--paper);color:var(--ink);transition:background 160ms ease,color 160ms ease}
+.guide-card:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.guide-card .mark{border-color:currentColor}
+.guide-card .region,.guide-card .section-body{color:currentColor;opacity:.6}
+.guide-card .label{color:currentColor;opacity:.82}
+.card-title{font-family:var(--sans);font-weight:400;line-height:1.12;letter-spacing:-.02em;color:currentColor}
+.crumbs{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:18px}
+.crumbs a{color:var(--dim);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px}
+.crumbs a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.crumbs span{opacity:.5}
+.mark{width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:10px;font-family:var(--mono);font-size:12px;font-weight:700}
+.steps{display:grid;gap:12px;margin-top:28px}
+.step{border:1px solid var(--line);border-radius:12px;padding:22px;display:grid;grid-template-columns:64px minmax(0,1fr);gap:22px}
+.step h3{font-family:var(--sans);font-weight:500;font-size:16px;letter-spacing:-.01em}
+.num{width:48px;height:48px;border:1px solid var(--ink);border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-size:12px}
+.list{margin-top:14px;display:grid;gap:8px;color:var(--dim);font-size:14px;line-height:1.6}
+.list li{margin-left:18px}
+.cta{background:var(--ink);color:var(--paper);border:0}
+.cta a{display:inline-flex;margin-top:18px;border:1px solid var(--paper);color:var(--paper);text-decoration:none;padding:12px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;transition:background 160ms ease,color 160ms ease}
+.cta a:hover{background:var(--paper);color:var(--ink)}
+.resource{display:flex;justify-content:space-between;gap:16px;border:1px solid var(--line);padding:16px;text-decoration:none;background:var(--paper);transition:background 160ms ease,color 160ms ease}
+.resource:hover{background:var(--ink);color:var(--paper)}
+.lead-gate{border:1px solid var(--ink);background:var(--soft);padding:28px;margin-top:28px}
+.lead-gate strong{font-weight:500}
+.lead-gate-form{display:flex;align-items:stretch;max-width:560px;margin-top:22px;border-bottom:1px solid var(--ink)}
+.lead-gate-form input{flex:1;min-width:0;background:transparent;border:0;outline:0;padding:13px 0;font-family:var(--mono);font-size:13px;letter-spacing:.02em;color:var(--ink)}
+.lead-gate-form input::placeholder{color:var(--faint)}
+.lead-gate-form button{background:transparent;border:0;cursor:pointer;padding:13px 0 13px 18px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+.lead-gate-form button:hover{text-decoration:underline;text-underline-offset:4px}
+.lead-gate-form button[disabled]{opacity:.55;cursor:default;text-decoration:none}
+.gate-note{min-height:1em;margin-top:13px;font-family:var(--mono);color:var(--dim);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase}
+.gated-content{display:none}.guide-unlocked .gated-content{display:block}.guide-unlocked .lead-gate{display:none}
+.footer{padding:0}
+.footer-row{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:var(--nav);flex-wrap:wrap;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.footer-row a{color:var(--dim);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:color 180ms ease,border-color 180ms ease}
+.footer-row a:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.footer-legal{display:flex;align-items:center;gap:18px}
+.social-link{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);border-bottom:0;padding-bottom:0}
+.social-link:hover{opacity:.62;border-bottom:0}
+.social-link svg{width:17px;height:17px;display:block;fill:currentColor}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;min-height:auto;padding:54px 0}.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.nav{gap:14px}.nav-link{letter-spacing:.15em}.grid,.guide-grid,.file-list{grid-template-columns:1fr}.step{grid-template-columns:1fr}.lead-gate-form{display:block}.lead-gate-form button{padding-left:0}.hero-grid{padding:42px 0}.demo-shell{grid-template-columns:1fr;min-height:0}.demo-sidebar{display:none}.demo-chat{padding:18px 14px}.demo-top{padding:0 14px}.demo-app-pill{max-width:48%;overflow:hidden;text-overflow:ellipsis}.footer-row{gap:10px}}</style>
+</head>
+<body>
+<nav class="top"><div class="wrap top-inner"><a class="brand" href="../../index.html">AXELROD</a><div class="nav"><a class="nav-link" href="../index.html">Guides</a><a class="nav-link" href="../../index.html">Talk to us</a></div></div></nav>
+<main>
+    <header class="hero"><div class="wrap hero-grid"><div>
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="../../index.html">Home</a><span>/</span><a href="../index.html">Guides</a><span>/</span><span>Guesty</span></nav>
+      <div class="eyebrow">ChatGPT Guesty integration</div>
+      <h1>Connect Guesty to ChatGPT.</h1>
+      <p class="lead">Ask your Guesty bookings, guests, and calendar questions in plain English. This guide shows the self-serve path first, then explains when Axelrod is the managed option.</p>
+      <p class="section-body" style="margin-top:14px">For US and global property managers with larger Guesty portfolios.</p>
+      <div class="chips"><span class="chip">About 45-90 minutes</span><span class="chip">Connector required</span><span class="chip">Read-only setup</span><span class="chip">Guesty client ID and client secret</span></div>
+      <p class="eyebrow" style="margin-top:20px">By Axelrod Labs &middot; Updated June 2026</p>
+    </div><figure class="demo">
+    <div class="demo-shell">
+      <aside class="demo-sidebar" aria-hidden="true">
+        <div class="demo-sidebar-brand"><span class="demo-mark">C</span><span>ChatGPT</span></div>
+        <div class="demo-new">New chat</div>
+        <div class="demo-history"><div class="demo-thread"></div><div class="demo-thread"></div><div class="demo-thread"></div></div>
+      </aside>
+      <div class="demo-main">
+        <div class="demo-top"><span class="demo-model">ChatGPT</span><span class="demo-app-pill">Guesty connected</span></div>
+        <div class="demo-chat">
+          <div class="demo-message user"><div class="bubble user">Use Guesty to brief me on today's operations across the portfolio.</div></div>
+          <div class="demo-message"><div class="demo-avatar">G</div><div class="bubble answer"><div class="demo-tool"><span class="demo-tool-dot"></span><span>Used Guesty</span></div><strong>Read from Guesty</strong><p>6 arrivals, 4 departures, and 2 same-day turnovers.</p><p>One VIP guest arrives after 21:00.</p><p>Two reservations are missing arrival-time notes.</p></div></div>
+        </div>
+        <div class="demo-composer" aria-hidden="true"><span>Message ChatGPT</span><span class="demo-send">Send</span></div>
+      </div>
+    </div>
+    <figcaption class="demo-note">Example ChatGPT-style output. Your live answer depends on the records and permissions available in Guesty.</figcaption>
+  </figure></div></header>
+    <section><div class="wrap"><div id="what" style="scroll-margin-top:82px"><div class="eyebrow">What this lets you do</div><h2>Ask Guesty operational questions without opening another dashboard.</h2></div>
+      <div class="grid"><div class="card"><strong>"Which Guesty listings are occupied tonight?"</strong><p>Occupied listing table with guest and checkout date.</p></div><div class="card"><strong>"Show reservations missing guest emails."</strong><p>Contact-data cleanup list.</p></div><div class="card"><strong>"What changed since yesterday?"</strong><p>New, modified, and cancelled reservations.</p></div><div class="card"><strong>"Give me a 7-day revenue and occupancy summary."</strong><p>Portfolio-level snapshot suitable for a morning brief.</p></div></div>
+      <div class="card" style="margin-top:12px;background:var(--soft)"><strong>How does this work?</strong><p>ChatGPT uses a small private web connection to ask Guesty read-only questions. You own that connection; it only talks to Guesty when you ask ChatGPT something.</p></div>
+    </div></section>
+    <section><div class="wrap"><div id="faq" style="scroll-margin-top:82px"><div class="eyebrow">FAQ</div><h2>Connecting Guesty to ChatGPT</h2></div>
+      <div class="steps"><div class="card"><strong>Is it safe to connect Guesty to ChatGPT?</strong><p>Yes, when you keep it read-only. Your Guesty client ID and client secret stays in a private connection you control, not inside ChatGPT, and this setup only reads data; it cannot create, change, or cancel reservations. Remove the ChatGPT app and delete the private connection to revoke access at any time.</p></div><div class="card"><strong>What do I need to connect Guesty to ChatGPT?</strong><p>Three things: a paid ChatGPT plan with Developer mode (or custom MCP connectors) enabled, Guesty admin access to obtain Guesty client ID and client secret, and a free Cloudflare account for the private connection.</p></div><div class="card"><strong>Can ChatGPT change or cancel my Guesty reservations?</strong><p>No. This guide sets up a read-only connection, so ChatGPT can answer questions about your Guesty bookings, guests, and calendar but cannot modify anything.</p></div><div class="card"><strong>How long does it take to set up?</strong><p>Plan on about 45-90 minutes if your Guesty client ID and client secret is ready. It can take longer when Guesty requires API approval, partner access, or workspace admin approval before ChatGPT can scan the connector.</p></div><div class="card"><strong>Why is ChatGPT returning empty or unauthorized results from Guesty?</strong><p>Most common Guesty issue: the API app was created without reservation read scope. Guesty credentials can be scoped narrowly; missing scopes produce empty-looking answers.</p></div></div>
+    </div></section>
+    <section><div class="wrap"><div id="before" style="scroll-margin-top:82px"><div class="eyebrow">Before you start</div><h2>Have these ready.</h2><p class="section-body">Budget about an hour for connector setup once credentials are ready. Add more time if you need API approval, partner access, or workspace admin approval.</p></div>
+      <div class="grid"><div class="card"><strong>A paid ChatGPT plan with Developer mode or custom MCP connectors enabled. Workspace plans may require admin approval.</strong></div><div class="card"><strong>Guesty admin access to create or copy Guesty client ID and client secret.</strong></div><div class="card"><strong>A free Cloudflare account for the private connection.</strong></div></div>
+    </div></section>
+    <section><div class="wrap"><div id="safe" style="scroll-margin-top:82px"><div class="eyebrow">Is this safe?</div><h2>Keep the first version boring and read-only.</h2></div>
+      <div class="grid"><div class="card"><strong>Guesty credentials live in your private connection, not inside ChatGPT.</strong></div><div class="card"><strong>The v1 guide is read-only: no creating, changing, or cancelling reservations.</strong></div><div class="card"><strong>To undo access, remove the ChatGPT app and delete the private connection.</strong></div><div class="card"><strong>Do not paste payment-card data, passports, or private owner notes into test prompts.</strong></div></div>
+    </div></section>
+
+
+    <section><div class="wrap"><div id="steps" style="scroll-margin-top:82px"><div class="eyebrow">Setup</div><h2>Connect Guesty to ChatGPT in 4 steps.</h2></div>
+      <div class="steps"><div class="step"><div class="num">01</div><div><h3>Get your Guesty credentials</h3><ul class="list"><li>Open Guesty with account-owner access.</li><li>Create an API application for read access to listings, reservations, and guests.</li><li>Copy the client ID and client secret into the setup form.</li></ul></div></div><div class="step"><div class="num">02</div><div><h3>Set up the private connection</h3><ul class="list"><li>Use a private Cloudflare Worker or managed setup path so PMS credentials stay outside ChatGPT.</li><li>Paste your Guesty client ID and client secret into the prompted fields.</li><li>Deploy the private connection and open the generated health page.</li><li>Confirm it says Connected to Guesty before continuing.</li></ul></div></div><div class="step"><div class="num">03</div><div><h3>Add it to ChatGPT</h3><ul class="list"><li>Open ChatGPT settings.</li><li>Go to Apps, open Advanced settings, and enable Developer mode.</li><li>Create a custom app from the remote server URL shown on the health page.</li><li>Complete the OAuth authorization screen.</li></ul></div></div><div class="step"><div class="num">04</div><div><h3>Try operational prompts</h3><ul class="list"><li>Open a new chat and select the app from Developer mode.</li><li>Start with arrivals, departures, missing guest details, and occupancy questions.</li></ul></div></div></div>
+    </div></section>
+    <section><div class="wrap"><div id="try" style="scroll-margin-top:82px"><div class="eyebrow">Try it</div><h2>Start with operational questions, not vague chatbot prompts.</h2></div>
+      <div class="steps"><div class="card"><strong>Which Guesty listings are occupied tonight?</strong></div><div class="card"><strong>Show reservations missing guest emails.</strong></div><div class="card"><strong>What changed since yesterday?</strong></div></div>
+      <p class="section-body">Expected result: ChatGPT should answer with specific Guesty records: property names, reservation dates, guest fields it is allowed to read, and a clear note when data is missing.</p>
+    </div></section>
+
+    <section class="cta"><div class="wrap">
+      <div class="eyebrow" style="color:rgba(255,255,255,.64)">After it works</div>
+      <h2>Good for one property. Thin for a real portfolio.</h2>
+      <p class="section-body" style="color:rgba(255,255,255,.74)">ChatGPT can answer Guesty questions. Axelrod turns the same booking data into morning briefs, guest-message drafts, housekeeping handoffs, pricing nudges, and an approval queue across your stack.</p>
+      <a href="../../index.html">Talk to Axelrod</a>
+    </div></section>
+    <section><div class="wrap"><div id="resources" style="scroll-margin-top:82px"><div class="eyebrow">Official resources</div><h2>Check Guesty's current API docs before connecting anything.</h2><p class="section-body">PMS settings and API permissions change. Use these links to confirm the exact credential names in the account you are working with.</p></div>
+      <div class="grid"><a class="resource" href="https://open-api-docs.guesty.com/docs" target="_blank" rel="noreferrer"><span>Guesty Open API docs</span><span aria-hidden="true">-></span></a><a class="resource" href="https://www.guesty.com/api/" target="_blank" rel="noreferrer"><span>Guesty API overview</span><span aria-hidden="true">-></span></a></div>
+    </div></section>
+    <section><div class="wrap"><div id="troubleshooting" style="scroll-margin-top:82px"><div class="eyebrow">Troubleshooting</div><h2>Guesty issues first, generic OAuth issues second.</h2></div>
+      <div class="steps"><div class="card"><p style="margin-top:0">Guesty credentials can be scoped narrowly; missing scopes produce empty-looking answers.</p></div><div class="card"><p style="margin-top:0">Multi-account operators should confirm which Guesty account the app belongs to before deploying.</p></div><div class="card"><p style="margin-top:0">Most common Guesty issue: the API app was created without reservation read scope.</p></div><div class="card"><p style="margin-top:0">Developer mode is missing: confirm the ChatGPT account or workspace can create custom apps, and ask the workspace admin if the option is hidden.</p></div><div class="card"><p style="margin-top:0">OAuth popup blocked: allow popups for ChatGPT, then reconnect the app.</p></div><div class="card"><p style="margin-top:0">The app returns empty results: check that the PMS user or token can read all properties, reservations, and guests.</p></div><div class="card"><p style="margin-top:0">The app returns unauthorized: rotate the PMS credential, redeploy the private connection, then reconnect ChatGPT.</p></div></div>
+    </div></section>
+    <section><div class="wrap"><div id="next" style="scroll-margin-top:82px"><div class="eyebrow">Other guides</div><h2>Connect a different PMS.</h2></div>
+      <div class="guide-grid"><a class="guide-card" href="../smoobu/index.html"><div><span class="mark">SM</span><div class="card-title" style="font-size:22px;margin-top:24px">Smoobu</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../hostaway/index.html"><div><span class="mark">HA</span><div class="card-title" style="font-size:22px;margin-top:24px">Hostaway</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../lodgify/index.html"><div><span class="mark">LG</span><div class="card-title" style="font-size:22px;margin-top:24px">Lodgify</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../beds24/index.html"><div><span class="mark">B24</span><div class="card-title" style="font-size:22px;margin-top:24px">Beds24</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../ownerrez/index.html"><div><span class="mark">OR</span><div class="card-title" style="font-size:22px;margin-top:24px">OwnerRez</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../hostfully/index.html"><div><span class="mark">HF</span><div class="card-title" style="font-size:22px;margin-top:24px">Hostfully</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../eviivo/index.html"><div><span class="mark">EV</span><div class="card-title" style="font-size:22px;margin-top:24px">eviivo</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../mews/index.html"><div><span class="mark">MW</span><div class="card-title" style="font-size:22px;margin-top:24px">Mews</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../cloudbeds/index.html"><div><span class="mark">CB</span><div class="card-title" style="font-size:22px;margin-top:24px">Cloudbeds</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../apaleo/index.html"><div><span class="mark">AP</span><div class="card-title" style="font-size:22px;margin-top:24px">Apaleo</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../track/index.html"><div><span class="mark">TRK</span><div class="card-title" style="font-size:22px;margin-top:24px">Track</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../uplisting/index.html"><div><span class="mark">UP</span><div class="card-title" style="font-size:22px;margin-top:24px">Uplisting</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../tokeet/index.html"><div><span class="mark">TK</span><div class="card-title" style="font-size:22px;margin-top:24px">Tokeet</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../avantio/index.html"><div><span class="mark">AV</span><div class="card-title" style="font-size:22px;margin-top:24px">Avantio</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../hospitable/index.html"><div><span class="mark">HS</span><div class="card-title" style="font-size:22px;margin-top:24px">Hospitable</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../rms/index.html"><div><span class="mark">RMS</span><div class="card-title" style="font-size:22px;margin-top:24px">RMS Cloud</div></div><span class="label">Open guide</span></a><a class="guide-card" href="../littlehotelier/index.html"><div><span class="mark">LH</span><div class="card-title" style="font-size:22px;margin-top:24px">Little Hotelier</div></div><span class="label">Open guide</span></a></div>
+    </div></section>
+  </main>
+<footer class="footer"><div class="wrap footer-row"><span>Axelrod Labs Inc.</span><a class="social-link" href="https://www.linkedin.com/company/axelrod-labs/" target="_blank" rel="noopener" aria-label="Axelrod Labs on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0ZM7.12 20.45H3.56V9h3.56v11.45ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm15.11 13.02h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28Z" /></svg></a></div></footer>
+
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script><script defer src="../../_vercel/insights/script.js"></script>
+</body>
+</html>

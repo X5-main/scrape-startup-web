@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "beds24-chatgpt-mcp",
+  "main": "src/index.js",
+  "compatibility_date": "2026-06-05",
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "BEDS24_API_BASE": "https://beds24.com/api/v2"
+  }
+}

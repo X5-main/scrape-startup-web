@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Axelrod | Operating layer for boutique hotels</title>
+<meta name="description" content="Axelrod coordinates the work behind boutique, independent, and luxury hotels and resorts across the systems and teams already in place." />
+<link rel="canonical" href="index.html" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="theme-color" content="#F8F6F2" />
+<meta property="og:title" content="Axelrod | Operating layer for boutique hotels" />
+<meta property="og:description" content="Axelrod coordinates the work behind boutique, independent, and luxury hotels and resorts across the systems and teams already in place." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://axelrod.live/" />
+<meta property="og:site_name" content="Axelrod" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="https://axelrod.live/assets/og-home.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Axelrod, the operating layer for boutique hotels" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Axelrod | Operating layer for boutique hotels" />
+<meta name="twitter:description" content="Axelrod coordinates the work behind boutique, independent, and luxury hotels and resorts across the systems and teams already in place." />
+<meta name="twitter:image" content="https://axelrod.live/assets/og-home.png" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://axelrod.live/#organization",
+      "name": "Axelrod Labs Inc.",
+      "alternateName": "Axelrod",
+      "url": "https://axelrod.live/",
+      "description": "Axelrod coordinates the work behind boutique, independent, and luxury hotels and resorts across the systems and teams already in place.",
+      "sameAs": [
+        "https://www.linkedin.com/company/axelrod-labs/"
+      ],
+      "email": "adrian@axelrod.live",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1111B S Governors Ave, Suite 91018",
+        "addressLocality": "Dover",
+        "addressRegion": "DE",
+        "postalCode": "19904",
+        "addressCountry": "US"
+      },
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://axelrod.live/assets/logo.png",
+        "width": 720,
+        "height": 200
+      },
+      "founder": [
+        { "@id": "https://axelrod.live/#adrian" },
+        { "@id": "https://axelrod.live/#saman" }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://axelrod.live/#website",
+      "name": "Axelrod",
+      "url": "https://axelrod.live/",
+      "publisher": {
+        "@id": "https://axelrod.live/#organization"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://axelrod.live/#adrian",
+      "name": "Adrian Stoica",
+      "jobTitle": "Co-Founder",
+      "image": "https://axelrod.live/assets/adrian-founder.jpg",
+      "worksFor": { "@id": "https://axelrod.live/#organization" },
+      "sameAs": ["https://www.linkedin.com/in/stoicaadrian/"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://axelrod.live/#saman",
+      "name": "Saman Sayahpour",
+      "jobTitle": "Co-Founder",
+      "image": "https://axelrod.live/assets/saman-founder.jpg",
+      "worksFor": { "@id": "https://axelrod.live/#organization" },
+      "sameAs": ["https://www.linkedin.com/in/sayahpour/"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://axelrod.live/#webpage",
+      "url": "https://axelrod.live/",
+      "name": "Axelrod | Operating layer for boutique hotels",
+      "description": "Axelrod coordinates the work behind boutique, independent, and luxury hotels and resorts across the systems and teams already in place.",
+      "isPartOf": { "@id": "https://axelrod.live/#website" },
+      "about": { "@id": "https://axelrod.live/#organization" },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
+
+<link rel="icon" href="favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+<link rel="preconnect" href="index.html" />
+<link rel="preconnect" href="index.html" crossorigin />
+<link href="css2/index__family-JetBrains-Mono-wght-400-500-display-swap.html" rel="stylesheet" />
+
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+  :root{
+    /* ── Strict monochrome, warmed: ink on bone, hairlines, no accents ── */
+    --paper:#F8F6F2;
+    --ink:#141210;
+    --dim:rgba(20,18,16,0.62);       /* hints + placeholders only; holds 4.5:1 on paper */
+    --dim-text:rgba(20,18,16,0.66);  /* micro-labels: holds AA at small sizes */
+    --line:rgba(20,18,16,0.15);
+
+    --sans:"Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+    --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --ease-out:cubic-bezier(0.22,1,0.36,1);
+    --t-fast:160ms;
+    --t-med:180ms;
+
+    --nav:64px;
+  }
+
+  html{ -webkit-text-size-adjust:100%; overflow-x:hidden; }
+  a, button{ -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+  }
+
+  ::selection{ background:var(--ink); color:#FFFFFF; }
+
+  /* ── House focus ─────────────────────────────────────── */
+  :focus{ outline:none; }
+  :focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:3px;
+  }
+  .hero :focus-visible{ outline-color:#FFFFFF; }
+
+  /* ── Shared link idiom: hairline underline → ink ─────── */
+  .u-draw{
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    padding-bottom:1px;
+    transition:border-color var(--t-med) var(--ease-out), opacity 160ms var(--ease-out);
+  }
+  .u-draw:focus-visible{ border-bottom-color:var(--ink); }
+  .u-draw:active{ opacity:0.55; }
+  @media (hover: hover) and (pointer: fine){
+    .u-draw:hover{ border-bottom-color:var(--ink); }
+  }
+
+  /* ── Nav ─────────────────────────────────────────────── */
+  nav.top{
+    height:var(--nav);
+    position:absolute; top:0; left:0; right:0; z-index:60;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 clamp(20px,3.4vw,48px);
+    background:transparent;
+  }
+  nav.top .mark{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.34em;
+    color:#FFFFFF;
+    text-shadow:0 1px 12px rgba(0,0,0,0.35);
+    background:none; border:0; cursor:pointer;
+    padding:10px 2px; margin:-10px -2px;
+    line-height:1;
+  }
+  nav.top .nav-right{ display:flex; align-items:center; gap:clamp(14px,2.4vw,34px); }
+  .navlink{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.2em;
+    text-transform:uppercase; color:rgba(255,255,255,0.96); background:none; border:0;
+    text-shadow:0 1px 12px rgba(0,0,0,0.35);
+    cursor:pointer;
+    padding:10px 3px 2px; margin:-10px -3px 0;
+    line-height:1;
+    border-bottom:1px solid transparent;
+  }
+  nav.top .u-draw:focus-visible{ border-bottom-color:#FFFFFF; }
+  @media (hover: hover) and (pointer: fine){
+    nav.top .u-draw:hover{ border-bottom-color:#FFFFFF; }
+  }
+  nav.top :focus-visible{ outline-color:#FFFFFF; }
+
+  /* ── Hero ────────────────────────────────────────────── */
+  main.hero-main{ flex:1 1 auto; display:flex; min-height:0; }
+  .hero{
+    position:relative;
+    flex:1 1 auto;
+    min-height:520px;
+    overflow:hidden;
+    isolation:isolate;
+    background:#0B0B0B;
+  }
+  .hero-media{
+    position:absolute; inset:0; z-index:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:50% 42%;
+    display:block;
+    filter:saturate(1.02) brightness(1.06) contrast(1.01);
+  }
+  .hero-scrim{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(10,8,6,0.52) 0%, rgba(10,8,6,0.2) 14%, rgba(10,8,6,0) 34%, rgba(10,8,6,0.5) 72%, rgba(10,8,6,0.7) 100%),
+      linear-gradient(100deg, rgba(10,8,6,0.44) 0%, rgba(10,8,6,0.12) 44%, rgba(10,8,6,0) 68%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    min-height:100%;
+    width:min(100%,1560px);
+    margin:0 auto;
+    padding:clamp(40px,6vh,72px) clamp(24px,6.4vw,104px);
+    display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start;
+    color:#FFFFFF;
+  }
+  .hero-title{
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:clamp(40px,5.2vw,76px);
+    line-height:1.1;
+    letter-spacing:-0.005em;
+    max-width:15ch;
+    text-wrap:balance;
+    color:#FFFFFF;
+    text-shadow:0 2px 30px rgba(0,0,0,0.3);
+  }
+  .hero-copy{
+    margin-top:clamp(16px,2.4vh,24px);
+    max-width:44ch;
+    color:rgba(255,255,255,0.85);
+    font-family:var(--sans);
+    font-size:clamp(15px,1.25vw,19px);
+    font-weight:400;
+    line-height:1.5;
+    text-wrap:pretty;
+    text-shadow:0 1px 18px rgba(0,0,0,0.4);
+  }
+  .hero-cta{
+    margin-top:clamp(26px,4vh,40px);
+    display:inline-flex; align-items:center; gap:14px;
+    background:none;
+    color:#FFFFFF;
+    border:0;
+    border-bottom:1px solid rgba(255,255,255,0.42);
+    padding:0 2px 9px;
+    font-family:var(--mono);
+    font-size:10.5px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    line-height:1;
+    text-shadow:0 1px 12px rgba(0,0,0,0.35);
+    cursor:pointer;
+    transition:border-color var(--t-med) var(--ease-out),
+               opacity 160ms var(--ease-out);
+  }
+  .hero-cta .cta-arrow{
+    display:inline-block;
+    letter-spacing:0;
+    transition:transform var(--t-med) var(--ease-out);
+  }
+  .hero-cta:focus-visible{ border-bottom-color:#FFFFFF; }
+  .hero-cta:focus-visible .cta-arrow{ transform:translateX(4px); }
+  @media (hover: hover) and (pointer: fine){
+    .hero-cta:hover{ border-bottom-color:#FFFFFF; }
+    .hero-cta:hover .cta-arrow{ transform:translateX(4px); }
+  }
+  .hero-cta:active{ opacity:0.7; }
+  .hero-foot{
+    align-self:stretch;
+    margin-top:clamp(26px,4vh,40px);
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:18px 48px; flex-wrap:wrap;
+  }
+  .hero-foot .hero-cta{ margin-top:0; }
+  .hero-cred{
+    margin:0;
+    font-family:var(--sans);
+    font-size:clamp(12px,1.1vw,15px);
+    font-weight:400;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    line-height:1.7;
+    color:rgba(255,255,255,0.85);
+    text-shadow:0 1px 14px rgba(0,0,0,0.45);
+  }
+  .hero-cred strong{
+    font-weight:600;
+    color:#FFFFFF;
+  }
+
+  /* ── Footer ──────────────────────────────────────────── */
+  footer.site{
+    flex:none;
+    padding:24px clamp(20px,3.4vw,48px);
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px 32px;
+    flex-wrap:wrap;
+    position:relative; z-index:60;
+  }
+  .foot-left{
+    display:flex; align-items:baseline; flex-wrap:wrap; gap:8px 14px;
+    min-width:0;
+  }
+  .foot-company{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--ink);
+    white-space:nowrap;
+  }
+  .yc-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    color:var(--ink); text-decoration:none;
+    padding:8px 2px; margin:-8px -2px;
+  }
+  .yc-badge-mark{ width:16px; height:16px; display:block; flex:none; border-radius:3px; }
+  .yc-badge-text{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.14em;
+    text-transform:uppercase; white-space:nowrap;
+    border-bottom:1px solid transparent; padding-bottom:2px;
+    transition:border-color var(--t-med) var(--ease-out);
+  }
+  .yc-badge:focus-visible .yc-badge-text{ border-bottom-color:var(--ink); }
+  @media (hover: hover) and (pointer: fine){
+    .yc-badge:hover .yc-badge-text{ border-bottom-color:var(--ink); }
+  }
+  .foot-right{
+    display:flex; align-items:center; gap:clamp(18px,2.4vw,30px);
+  }
+  .foot-right button{
+    background:none; border:0; cursor:pointer;
+    font-family:var(--sans); font-size:14px; color:var(--ink);
+    padding:8px 2px 2px; margin:-8px -2px 0;
+    line-height:1.2;
+    border-bottom:1px solid transparent;
+    transition:border-color var(--t-med) var(--ease-out);
+  }
+  .foot-right button:focus-visible{ border-bottom-color:var(--ink); }
+  .foot-right button:active{ opacity:0.55; }
+  .social-link{
+    display:inline-flex; align-items:center; justify-content:center;
+    color:var(--ink);
+    padding:8px; margin:-8px;
+    transition:opacity var(--t-fast) var(--ease-out);
+  }
+  .social-link:active{ opacity:0.35; }
+  @media (hover: hover) and (pointer: fine){
+    .foot-right button:hover{ border-bottom-color:var(--ink); }
+    .social-link:hover{ opacity:0.55; }
+  }
+  .social-link svg{ width:17px; height:17px; display:block; fill:currentColor; }
+
+  /* ── Overlays: white rooms behind hairline bars ──────── */
+  .overlay{
+    position:fixed; inset:0; z-index:80;
+    background:var(--paper);
+    visibility:hidden;
+    opacity:0;
+    transition:opacity 200ms var(--ease-out), visibility 0s linear 200ms;
+    overflow-y:auto;
+    display:flex; flex-direction:column;
+  }
+  .overlay:focus{ outline:none; }
+  .overlay > *{
+    opacity:0;
+    transition:opacity var(--t-fast) var(--ease-out);
+  }
+  .overlay.open{
+    visibility:visible;
+    opacity:1;
+    transition:opacity 280ms var(--ease-out), visibility 0s;
+  }
+  .overlay.open > *{
+    opacity:1;
+    transition:opacity 200ms var(--ease-out);
+  }
+  .overlay .ov-anim{
+    transform:translateY(18px) scale(0.99);
+    transition:transform 200ms var(--ease-out);
+  }
+  .overlay.open .ov-anim{
+    transform:none;
+    transition:transform 440ms var(--ease-out) 30ms;
+  }
+  .ov-bar{
+    position:sticky; top:0; z-index:5; height:var(--nav);
+    flex:none;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 clamp(20px,3.4vw,48px);
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .ov-tag{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--dim-text);
+    display:inline-flex; align-items:center; gap:12px;
+  }
+  .ov-tag::before{
+    content:""; width:20px; height:1px; background:var(--ink);
+  }
+  .ov-close{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--ink); background:none;
+    border:0; border-bottom:1px solid transparent;
+    cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 3px 2px; margin:-10px -3px 0;
+    line-height:1;
+    transition:border-color var(--t-med) var(--ease-out), opacity 160ms var(--ease-out);
+  }
+  .ov-close:focus-visible{ border-bottom-color:var(--ink); }
+  .ov-close:active{ opacity:0.55; }
+  @media (hover: hover) and (pointer: fine){
+    .ov-close:hover{ border-bottom-color:var(--ink); }
+  }
+  .ov-inner{
+    width:100%; max-width:1200px; margin:auto;
+    padding:clamp(36px,6vh,72px) clamp(24px,6vw,80px) clamp(44px,7vh,80px);
+  }
+  .statement{
+    font-family:var(--sans); font-weight:500;
+    font-size:clamp(34px,4.4vw,60px);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    max-width:16ch;
+    text-wrap:balance;
+    color:var(--ink);
+  }
+
+  /* ── Room widths (Team / Contact) ── */
+  .team-inner{ max-width:960px; }
+  .contact-inner{ max-width:720px; }
+
+  /* About */
+  .about-inner{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:clamp(44px,7vw,110px);
+    align-items:start;
+  }
+  .about-copy{
+    font-family:var(--sans);
+    font-size:clamp(16px,1.35vw,19px);
+    line-height:1.5;
+    letter-spacing:-0.01em;
+    max-width:38ch;
+    text-wrap:pretty;
+    color:var(--ink);
+  }
+  .about-rows{
+    margin-top:clamp(26px,4.5vh,40px);
+    border-top:1px solid var(--line);
+  }
+  .about-row{
+    display:grid;
+    grid-template-columns:132px 1fr;
+    gap:24px;
+    padding:14px 0 16px;
+    border-bottom:1px solid var(--line);
+  }
+  .about-row .k{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--dim-text);
+    padding-top:4px;
+  }
+  .about-row .v{
+    font-family:var(--sans); font-size:15px; line-height:1.62;
+    color:var(--ink);
+  }
+  /* Team masthead rows */
+  .team-rows{
+    margin-top:clamp(30px,5vh,48px);
+    border-top:1px solid var(--line);
+  }
+  .person{
+    display:grid;
+    grid-template-columns:clamp(128px,15vw,168px) 1fr;
+    gap:clamp(24px,4.5vw,60px);
+    padding:clamp(30px,5vh,48px) 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .p-photo{
+    position:relative; overflow:hidden;
+    aspect-ratio:4/5; width:100%;
+    background:var(--paper);
+  }
+  .p-photo img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(1) sepia(0.12) contrast(1.05);
+  }
+  .p-photo.ph-adrian img{ object-position:50% 18%; transform:scale(1.16); transform-origin:50% 20%; }
+  .p-photo.ph-saman img{ object-position:52% 28%; transform:scale(1.62); transform-origin:52% 17%; }
+  .p-name{
+    font-family:var(--sans); font-weight:300;
+    font-size:clamp(26px,2.8vw,36px);
+    line-height:1.08; letter-spacing:-0.015em;
+    color:var(--ink);
+  }
+  .p-role{
+    margin-top:10px;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--dim-text);
+  }
+  .p-bio{
+    margin-top:clamp(14px,2.2vh,20px);
+    font-family:var(--sans); font-size:clamp(15px,1.2vw,17px);
+    line-height:1.55; color:var(--ink);
+    max-width:42ch; text-wrap:pretty;
+  }
+  .p-links{
+    margin-top:clamp(18px,2.8vh,26px);
+    display:flex; align-items:center; gap:10px 18px; flex-wrap:wrap;
+  }
+  .p-mail{
+    display:inline-block;
+    font-family:var(--sans); font-size:14px; color:var(--ink);
+    padding:6px 2px 2px; margin:-6px -2px 0;
+  }
+
+  /* Contact letter and form */
+  .ct-line{
+    font-family:var(--sans); font-weight:500;
+    font-size:clamp(28px,3.6vw,44px);
+    line-height:1.08; letter-spacing:-0.02em;
+    text-wrap:balance;
+    color:var(--ink);
+  }
+  .ct-sub{
+    margin-top:clamp(14px,2.2vh,20px);
+    font-family:var(--sans); font-size:clamp(15px,1.2vw,17px);
+    line-height:1.55; color:var(--dim-text);
+    max-width:52ch; text-wrap:pretty;
+  }
+  form.signup{
+    margin-top:clamp(28px,4.5vh,44px);
+  }
+  .f-label{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--dim-text);
+    margin-bottom:2px;
+  }
+  .f-label .f-opt{
+    color:var(--dim);
+    text-transform:none; letter-spacing:0.03em;
+  }
+  form.signup .f-group + .f-group{ margin-top:20px; }
+  form.signup .field{
+    display:flex; align-items:stretch;
+    border-bottom:1px solid var(--line);
+    transition:border-color var(--t-fast) var(--ease-out);
+  }
+  form.signup .field:focus-within{ border-color:var(--ink); }
+  form.signup .field input{
+    flex:1; min-width:0;
+    background:transparent; border:0;
+    padding:10px 2px 11px;
+    font-family:var(--sans); font-size:16px; color:var(--ink);
+  }
+  form.signup .field input::placeholder{ color:var(--dim); }
+  form.signup .field.invalid{ border-color:var(--ink); }
+  .field-send{
+    flex:none; align-self:center;
+    background:none; border:0; cursor:pointer;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.3em;
+    text-transform:uppercase; color:var(--ink);
+    display:inline-flex; align-items:center; gap:10px;
+    padding:10px 2px 10px 16px;
+    line-height:1;
+    transition:opacity 160ms var(--ease-out);
+  }
+  .field-send .cta-arrow{
+    display:inline-block; letter-spacing:0;
+    transition:transform var(--t-med) var(--ease-out);
+  }
+  .field-send:focus-visible .cta-arrow{ transform:translateX(4px); }
+  @media (hover: hover) and (pointer: fine){
+    .field-send:hover .cta-arrow{ transform:translateX(4px); }
+  }
+  .field-send:active{ opacity:0.55; }
+  .field-send[disabled]{ opacity:0.45; cursor:default; }
+  .signup-note{
+    margin-top:12px;
+    font-family:var(--sans); font-size:14px; color:var(--ink);
+    min-height:1.5em;
+    opacity:0; transform:translateY(5px);
+    transition:opacity var(--t-med) var(--ease-out), transform var(--t-med) var(--ease-out);
+  }
+  .signup-note.show{ opacity:1; transform:none; }
+  .signup-note a{ color:var(--ink); }
+  .ct-direct{
+    margin-top:clamp(22px,3.5vh,30px);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--dim-text);
+  }
+  .ct-rows{
+    margin-top:12px;
+    border-top:1px solid var(--line);
+  }
+  .ct-row{
+    display:grid; grid-template-columns:minmax(0,1fr) auto;
+    gap:3px 24px;
+    align-items:baseline;
+    padding:17px 0 19px;
+    border-bottom:1px solid var(--line);
+    text-decoration:none; color:var(--ink);
+    transition:opacity 160ms var(--ease-out);
+  }
+  .ct-row:active{ opacity:0.55; }
+  .ctr-name{
+    font-family:var(--sans); font-size:16px; line-height:1.3;
+  }
+  .ctr-role{
+    grid-column:1; grid-row:2;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--dim-text);
+  }
+  .ctr-mail{
+    grid-column:2; grid-row:1;
+    font-family:var(--sans); font-size:14px;
+    border-bottom:1px solid var(--line); padding-bottom:1px;
+    transition:border-color var(--t-med) var(--ease-out);
+  }
+  .ct-row:focus-visible .ctr-mail{ border-bottom-color:var(--ink); }
+  @media (hover: hover) and (pointer: fine){
+    .ct-row:hover .ctr-mail{ border-bottom-color:var(--ink); }
+  }
+
+  /* Legal (Imprint / Privacy) */
+  .legal-inner{ max-width:860px; margin:auto; }
+  .legal-meta{
+    margin-top:16px;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.16em;
+    text-transform:uppercase; color:var(--dim-text);
+  }
+  .legal-head{
+    display:flex; align-items:flex-start; justify-content:space-between;
+    gap:24px 40px; flex-wrap:wrap;
+  }
+  .legal-rows{ margin-top:clamp(34px,6vh,52px); border-top:1px solid var(--line); }
+  .legal-row{
+    display:grid; grid-template-columns:150px 1fr; gap:24px;
+    padding:20px 0 22px; border-bottom:1px solid var(--line);
+  }
+  .legal-row .k{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--dim-text); padding-top:4px;
+  }
+  .legal-row .v{
+    font-family:var(--sans); font-size:15px; line-height:1.7; color:var(--ink);
+  }
+  .legal-row .v a, .legal-section p a{
+    color:var(--ink); text-decoration:none;
+    border-bottom:1px solid var(--line); padding-bottom:1px;
+    transition:border-color var(--t-fast) var(--ease-out);
+  }
+  .legal-row .v a:focus-visible, .legal-section p a:focus-visible{ border-bottom-color:var(--ink); }
+  @media (hover: hover) and (pointer: fine){
+    .legal-row .v a:hover, .legal-section p a:hover{ border-bottom-color:var(--ink); }
+  }
+  .legal-section{ margin-top:clamp(32px,5vh,48px); }
+  .legal-section + .legal-section{
+    padding-top:clamp(32px,5vh,48px); border-top:1px solid var(--line);
+  }
+  .legal-section h3{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.2em;
+    text-transform:uppercase; color:var(--dim-text); margin-bottom:16px;
+    font-weight:500;
+  }
+  .legal-section p{
+    font-family:var(--sans); font-size:15px; line-height:1.65;
+    color:var(--ink); max-width:62ch; text-wrap:pretty;
+  }
+  .legal-section p + p{ margin-top:14px; }
+  .legal-section p button.u-draw{
+    background:none; border:0; border-bottom:1px solid var(--line);
+    font:inherit; color:inherit; cursor:pointer;
+    padding:0 0 1px;
+  }
+
+  /* ── Entrance choreography (motion-safe only) ──────────
+     Tight transform-only stagger: every intermediate frame stays
+     fully legible; settled ~850ms. */
+  @media (prefers-reduced-motion: no-preference){
+    /* Hover lift: interactive text grows a breath, larger targets rise */
+    nav.top .mark, .navlink, .hero-cta, .ov-close, .field-send,
+    .foot-right button,
+    .p-links .p-mail, .yc-badge, .social-link, .ct-row{
+      transition:border-color var(--t-med) var(--ease-out),
+                 opacity 160ms var(--ease-out),
+                 transform var(--t-med) var(--ease-out);
+    }
+    .hero-cta, .field-send, .p-links .p-mail{ transform-origin:left center; }
+    .navlink:focus-visible, .ov-close:focus-visible,
+    .foot-right button:focus-visible{
+      transform:scale(1.06);
+    }
+    nav.top .mark:focus-visible, .yc-badge:focus-visible{
+      transform:scale(1.04);
+    }
+    .hero-cta:focus-visible, .field-send:focus-visible,
+    .p-links .p-mail:focus-visible{
+      transform:scale(1.04);
+    }
+    .social-link:focus-visible{ transform:scale(1.12); opacity:1; }
+    .social-link:active{ transform:scale(1.05); opacity:0.35; }
+    .ct-row:focus-visible{ transform:translateY(-1px); }
+    /* Hover lift only where hover is real; touch taps stay still */
+    @media (hover: hover) and (pointer: fine){
+      .navlink:hover, .ov-close:hover,
+      .foot-right button:hover{
+        transform:scale(1.06);
+      }
+      nav.top .mark:hover, .yc-badge:hover{
+        transform:scale(1.04);
+      }
+      .hero-cta:hover, .field-send:not([disabled]):hover,
+      .p-links .p-mail:hover{
+        transform:scale(1.04);
+      }
+      .social-link:hover{ transform:scale(1.12); opacity:1; }
+      .ct-row:hover{ transform:translateY(-1px); }
+    }
+
+    .hero-media{
+      animation:heroSettle 900ms var(--ease-out) both;
+    }
+    @keyframes heroSettle{
+      from{ transform:scale(1.035); }
+      to{ transform:scale(1); }
+    }
+    .rise{
+      animation:rise 520ms var(--ease-out) both;
+    }
+    .rise-1{ animation-delay:60ms; }
+    .rise-2{ animation-delay:150ms; }
+    .rise-3{ animation-delay:240ms; }
+    .rise-4{ animation-delay:330ms; }
+    @keyframes rise{
+      from{ transform:translateY(16px); }
+      to{ transform:none; }
+    }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{
+      animation:none !important;
+      transition:none !important;
+      scroll-behavior:auto !important;
+    }
+  }
+
+  /* ── Responsive ─────────────────────────────────────── */
+  @media (max-width:960px){
+    .about-inner{ grid-template-columns:1fr; gap:44px; }
+  }
+  @media (max-width:640px){
+    .ct-row{ grid-template-columns:1fr; gap:4px; }
+    .ctr-role{ grid-row:auto; }
+    .ctr-mail{ grid-column:1; grid-row:auto; justify-self:start; }
+  }
+  @media (max-width:820px){
+    :root{ --nav:56px; }
+    nav.top .mark{ font-size:12px; letter-spacing:0.26em; }
+    .navlink{ font-size:9.5px; letter-spacing:0.14em; }
+    nav.top .nav-right{ gap:14px; }
+    .hero-scrim{
+      background:
+        linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.76) 42%, rgba(0,0,0,0.60) 68%, rgba(0,0,0,0.08) 100%),
+        linear-gradient(180deg, rgba(10,8,6,0.6) 0%, rgba(10,8,6,0.24) 12%, rgba(10,8,6,0) 24%),
+        linear-gradient(90deg, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.05) 100%);
+    }
+    .hero-content{
+      padding:36px 22px 44px;
+    }
+    .hero-copy{ max-width:30ch; }
+    footer.site{
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      gap:16px;
+      padding:26px 22px 30px;
+    }
+    .foot-left{ justify-content:center; }
+    .foot-right{ justify-content:center; }
+  }
+  @media (max-width:520px){
+    .hero{ min-height:480px; }
+    .person{ grid-template-columns:104px 1fr; gap:18px; padding:26px 0; }
+    .p-bio{ max-width:none; }
+    .foot-left{ flex-direction:column; align-items:center; gap:6px; }
+  }
+  @media (max-width:360px){
+    nav.top .mark{ letter-spacing:0.2em; }
+    .hero{ min-height:440px; }
+    .person{ grid-template-columns:88px 1fr; gap:14px; padding:22px 0; }
+  }
+  @media (max-height:600px){
+    .hero-content{ padding-top:28px; padding-bottom:26px; }
+    .hero-copy{ margin-top:12px; }
+    .hero-foot, .hero-cta{ margin-top:18px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <button type="button" class="mark" data-scrolltop aria-label="Axelrod, back to top">AXELROD</button>
+  <div class="nav-right">
+    <button type="button" class="navlink u-draw" data-overlay="about">About</button>
+    <button type="button" class="navlink u-draw" data-overlay="team">Team</button>
+    <button type="button" class="navlink u-draw" data-overlay="contact">Contact</button>
+  </div>
+</nav>
+
+<main class="hero-main">
+  <section class="hero" aria-labelledby="hero-title">
+    <picture>
+      <source type="image/webp" srcset="assets/hero-wood-lobby-1280.webp 1280w, assets/hero-wood-lobby.webp 2400w" sizes="100vw" />
+      <img class="hero-media" src="assets/hero-wood-lobby.jpg" alt="" aria-hidden="true" width="2400" height="1351" fetchpriority="high" decoding="async" />
+    </picture>
+    <div class="hero-scrim" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1 class="hero-title rise rise-1" id="hero-title">The operating layer for boutique hotels</h1>
+      <p class="hero-copy rise rise-2">Axelrod runs the daily operations of hotels and resorts, from boutique to luxury, inside the systems and teams already in place.</p>
+      <div class="hero-foot rise rise-3">
+        <button type="button" class="hero-cta" data-overlay="contact">See where Axelrod starts <span class="cta-arrow" aria-hidden="true">&rarr;</span></button>
+        <p class="hero-cred">Powering <strong>Michelin Key</strong> awarded and <strong>Marriott Luxury Collection</strong> properties</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site" aria-label="Footer">
+  <div class="foot-left">
+    <span class="foot-company">Axelrod Labs Inc.</span>
+  </div>
+  <a class="yc-badge" href="https://www.ycombinator.com/companies/axelrod" target="_blank" rel="noopener" aria-label="Backed by Y Combinator">
+    <svg class="yc-badge-mark" viewBox="4.83 4 34 34" aria-hidden="true" focusable="false">
+      <rect x="4.83" y="4" width="34" height="34" rx="4" fill="#FB651E" />
+      <path fill="#fff" d="M20.684 23.224 14.85 12.292h2.667l3.433 6.918c.052.123.114.251.184.383.07.132.133.269.185.41a.81.81 0 0 1 .08.145c.017.044.035.083.052.119.088.175.168.347.238.514.07.168.132.322.185.463.14-.3.295-.621.462-.964.167-.344.339-.7.515-1.07l3.485-6.918h2.483l-5.889 11.064v7.05h-2.244v-7.182Z" />
+    </svg>
+    <span class="yc-badge-text">Backed by Y Combinator</span>
+  </a>
+  <div class="foot-right">
+    <button type="button" class="u-draw" data-overlay="imprint">Imprint</button>
+    <button type="button" class="u-draw" data-overlay="terms">Terms</button>
+    <button type="button" class="u-draw" data-overlay="privacy">Privacy</button>
+    <a class="social-link" href="https://www.linkedin.com/company/axelrod-labs/" target="_blank" rel="noopener" aria-label="Axelrod Labs on LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.21 0 22.23 0ZM7.12 20.45H3.56V9h3.56v11.45ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm15.11 13.02h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28Z" />
+      </svg>
+    </a>
+  </div>
+</footer>
+
+<section class="overlay" id="ov-about" aria-hidden="true" role="dialog" aria-modal="true" aria-label="About" tabindex="-1">
+  <div class="ov-bar">
+    <span class="ov-tag">About</span>
+    <button type="button" class="ov-close" data-close><span>Close</span> <span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="ov-inner about-inner ov-anim">
+    <div>
+      <h2 class="statement">An operating layer for the work behind every stay.</h2>
+    </div>
+    <div>
+      <p class="about-copy">Axelrod sits above the systems already in place, coordinating the operational work that moves between guests, rooms, teams, owners, and channels.</p>
+      <div class="about-rows">
+        <div class="about-row">
+          <div class="k">For</div>
+          <div class="v">Boutique hotels<br />Independent hotels<br />Luxury hotels<br />Resorts</div>
+        </div>
+        <div class="about-row">
+          <div class="k">Across</div>
+          <div class="v">Arrivals<br />Rooms<br />Rates<br />Access<br />Maintenance<br />Supplies<br />Owner reporting</div>
+        </div>
+        <div class="about-row">
+          <div class="k">Through</div>
+          <div class="v">PMS<br />Channels<br />Pricing<br />Messaging<br />Accounting</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="overlay" id="ov-team" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Team" tabindex="-1">
+  <div class="ov-bar">
+    <span class="ov-tag">Team</span>
+    <button type="button" class="ov-close" data-close><span>Close</span> <span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="ov-inner team-inner ov-anim">
+    <h2 class="statement">Founders.</h2>
+    <div class="team-rows">
+      <div class="person">
+        <div class="p-photo ph-adrian">
+          <img src="assets/adrian-founder.jpg" alt="Adrian Stoica" loading="lazy" decoding="async" />
+        </div>
+        <div>
+          <h3 class="p-name">Adrian Stoica</h3>
+          <div class="p-role">Co-Founder</div>
+          <p class="p-bio">Grew up in Berlin cleaning guest apartments.</p>
+          <div class="p-links">
+            <a class="p-mail u-draw" href="mailto:adrian@axelrod.live">adrian@axelrod.live</a>
+            <a class="p-mail u-draw" href="https://www.linkedin.com/in/stoicaadrian/" target="_blank" rel="noopener" aria-label="Adrian on LinkedIn">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="person">
+        <div class="p-photo ph-saman">
+          <img src="assets/saman-founder.jpg" alt="Saman Sayahpour" loading="lazy" decoding="async" />
+        </div>
+        <div>
+          <h3 class="p-name">Saman Sayahpour</h3>
+          <div class="p-role">Co-Founder</div>
+          <p class="p-bio">Grew up behind the reception of a Vienna hotel.</p>
+          <div class="p-links">
+            <a class="p-mail u-draw" href="mailto:saman@axelrod.live">saman@axelrod.live</a>
+            <a class="p-mail u-draw" href="https://www.linkedin.com/in/sayahpour/" target="_blank" rel="noopener" aria-label="Saman on LinkedIn">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="overlay" id="ov-imprint" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Imprint" tabindex="-1">
+  <div class="ov-bar">
+    <span class="ov-tag">Imprint</span>
+    <button type="button" class="ov-close" data-close><span>Close</span> <span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="ov-inner legal-inner ov-anim">
+    <div class="legal-head">
+      <div>
+          <h2 class="statement">Imprint.</h2>
+        <div class="legal-meta">Legal notice, last updated June 3, 2026</div>
+      </div>
+    </div>
+    <div class="legal-rows">
+      <div class="legal-row">
+        <div class="k">Company</div>
+        <div class="v">Axelrod Labs Inc.<br />Delaware C corporation</div>
+      </div>
+      <div class="legal-row">
+        <div class="k">Address</div>
+        <div class="v">1111B S Governors Ave<br />Suite 91018<br />Dover, DE 19904<br />United States</div>
+      </div>
+      <div class="legal-row">
+        <div class="k">Contact</div>
+        <div class="v"><a href="mailto:adrian@axelrod.live">adrian@axelrod.live</a><br /><a href="tel:+19785209179">+1 (978) 520-9179</a></div>
+      </div>
+      <div class="legal-row">
+        <div class="k">Website</div>
+        <div class="v"><a href="index.html">axelrod.live</a></div>
+      </div>
+      <div class="legal-row">
+        <div class="k">Public name</div>
+        <div class="v">Axelrod Labs, Inc.<br />Statement descriptor: AXELROD LABS, INC.</div>
+      </div>
+      <div class="legal-row">
+        <div class="k">Responsible</div>
+        <div class="v">Axelrod Labs Inc.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="overlay" id="ov-terms" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Terms" tabindex="-1">
+  <div class="ov-bar">
+    <span class="ov-tag">Terms</span>
+    <button type="button" class="ov-close" data-close><span>Close</span> <span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="ov-inner legal-inner ov-anim">
+    <div>
+      <h2 class="statement">Terms of service.</h2>
+      <div class="legal-meta">Last updated July 26, 2026</div>
+    </div>
+    <div class="legal-section">
+      <h3>Who these terms are with</h3>
+      <p>Axelrod Labs Inc., 1111B S Governors Ave, Suite 91018, Dover, DE 19904, United States. These terms cover the use of this website.</p>
+      <p>The Axelrod service is provided under a written agreement with each customer. That agreement, not this page, governs how the service runs for your operation.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Connected accounts</h3>
+      <p>Customers connect systems their hotel already runs, such as a mailbox or a property management system, by signing in to the provider and granting access. Only connect accounts you are authorised to connect. Access can be withdrawn at the provider at any time, and withdrawing it ends our access.</p>
+      <p>Content from connected accounts belongs to the customer. How we handle it is set out in our <button type="button" class="u-draw" data-overlay="privacy">privacy notice</button> and in the customer agreement. We do not sell it, and we do not use one customer's data to serve another.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Acceptable use</h3>
+      <p>Do not use this website or the service to send unlawful, misleading, or unsolicited messages, or to interfere with the operation of the site.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Availability and liability</h3>
+      <p>We work to keep the service running and secure, but we provide it as it is and cannot guarantee uninterrupted or error free operation. Nothing in these terms limits liability that cannot be limited by law. Where a paid agreement is in place, the liability terms in that agreement apply.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Changes and contact</h3>
+      <p>We may update these terms, and the date above shows the last revision. Questions can be sent to <a href="mailto:adrian@axelrod.live">adrian@axelrod.live</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="overlay" id="ov-privacy" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Privacy" tabindex="-1">
+  <div class="ov-bar">
+    <span class="ov-tag">Privacy</span>
+    <button type="button" class="ov-close" data-close><span>Close</span> <span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="ov-inner legal-inner ov-anim">
+    <div>
+      <h2 class="statement">Privacy.</h2>
+      <div class="legal-meta">Last updated June 3, 2026</div>
+    </div>
+    <div class="legal-section">
+      <h3>Controller</h3>
+      <p>Axelrod Labs Inc., 1111B S Governors Ave, Suite 91018, Dover, DE 19904, United States. Questions about this notice or your data can be sent to <a href="mailto:adrian@axelrod.live">adrian@axelrod.live</a>.</p>
+    </div>
+    <div class="legal-section">
+      <h3>What we collect</h3>
+      <p>If you contact us or submit the signup form, we collect the email address you provide and any context you choose to share with us. The signup form also sends basic page/source metadata so we can understand where the request came from.</p>
+      <p>Like most websites, our hosting and infrastructure providers may process technical data such as IP address, browser type, device information, requested URLs, timestamps, and server logs needed to deliver and secure the site.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Why we use it</h3>
+      <p>We use contact and signup information to respond to inbound requests, understand whether Axelrod may be useful for an operation, and maintain a record of early customer conversations. We use technical data to operate, secure, debug, and improve the website.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Services</h3>
+      <p>The site is hosted on Vercel and uses Vercel Insights and PostHog for aggregate website analytics. PostHog runs in cookieless mode and stores no identifiers on your device. Signup emails are delivered through Resend. Fonts are loaded through Google Fonts. If you follow a LinkedIn link, LinkedIn processes that visit under its own terms and privacy policy.</p>
+      <p>We do not use Google Analytics, advertising pixels, or sell personal information from this website.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Retention</h3>
+      <p>We keep contact and signup information for as long as needed to respond and maintain the business relationship, generally up to 24 months unless a longer period is required for legal, security, or operational reasons. You can ask us to delete your information earlier.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Your rights</h3>
+      <p>Depending on where you live, you may have the right to request access, correction, deletion, restriction, portability, or objection to certain processing of your personal data. You may also have the right to lodge a complaint with your local data protection authority.</p>
+    </div>
+    <div class="legal-section">
+      <h3>Contact</h3>
+      <p>For privacy requests, write to <a href="mailto:adrian@axelrod.live">adrian@axelrod.live</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="overlay" id="ov-contact" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Contact" tabindex="-1">
+  <div class="ov-bar">
+    <span class="ov-tag">Contact</span>
+    <button type="button" class="ov-close" data-close><span>Close</span> <span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="ov-inner contact-inner ov-anim">
+    <h2 class="ct-line">Show us how your operation runs.</h2>
+    <p class="ct-sub">Leave your name, property, and email and we will come back with where Axelrod can start for your operation.</p>
+    <form class="signup" id="signup" novalidate>
+      <div class="f-group">
+        <label class="f-label" for="signup-name">Name</label>
+        <div class="field" id="signup-name-field">
+          <input type="text" name="name" id="signup-name" placeholder="Your name" autocomplete="name" required aria-describedby="signup-note" />
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="signup-company"><span>Company</span> <span class="f-opt">Optional</span></label>
+        <div class="field" id="signup-company-field">
+          <input type="text" name="company" id="signup-company" placeholder="Your property or company" autocomplete="organization" />
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="signup-phone"><span>Phone</span> <span class="f-opt">Optional</span></label>
+        <div class="field" id="signup-phone-field">
+          <input type="tel" name="phone" id="signup-phone" placeholder="+1 555 000 0000" autocomplete="tel" />
+        </div>
+      </div>
+      <div class="f-group">
+        <label class="f-label" for="signup-email">Email</label>
+        <div class="field" id="signup-field">
+          <input type="email" name="email" id="signup-email" placeholder="you@yourproperty.com" autocomplete="email" required aria-describedby="signup-note" />
+          <button type="submit" id="signup-submit" class="field-send">Send <span class="cta-arrow" aria-hidden="true">&rarr;</span></button>
+        </div>
+      </div>
+    </form>
+    <div class="signup-note" id="signup-note" aria-live="polite"></div>
+    <p class="ct-direct">Or write to us</p>
+    <div class="ct-rows" role="group" aria-label="Founders">
+      <a class="ct-row" href="mailto:adrian@axelrod.live">
+        <span class="ctr-name">Adrian Stoica</span>
+        <span class="ctr-role">Co-Founder</span>
+        <span class="ctr-mail">adrian@axelrod.live</span>
+      </a>
+      <a class="ct-row" href="mailto:saman@axelrod.live">
+        <span class="ctr-name">Saman Sayahpour</span>
+        <span class="ctr-role">Co-Founder</span>
+        <span class="ctr-mail">saman@axelrod.live</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="_vercel/insights/script.js"></script>
+
+<script>
+  (function () {
+    var key = "phc_rz2MMSchAC8XchBRFKjwVkdzVkZgHjWut33rTDVSs4dT";
+    if (!key || key.slice(0, 2) === "__") return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "/ingest/static/array.js";
+    s.onload = function () {
+      if (!window.posthog || !window.posthog.init) return;
+      window.posthog.init(key, {
+        api_host: "/ingest",
+        ui_host: "https://us.posthog.com",
+        defaults: "2025-05-24",
+        persistence: "memory",
+        person_profiles: "identified_only"
+      });
+    };
+    document.head.appendChild(s);
+  })();
+</script>
+
+<script>
+  (function(){
+    var openId=null, lastTrigger=null;
+    var reduceMotion=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function track(name){
+      if(window.va) window.va('event', { name:name });
+    }
+    function setBackgroundInert(on){
+      var parts=document.querySelectorAll('nav.top, main.hero-main, footer.site');
+      parts.forEach(function(p){
+        if(on){ p.setAttribute('inert',''); }
+        else{ p.removeAttribute('inert'); }
+      });
+    }
+    function open(id, viaHash){
+      var el=document.getElementById('ov-'+id); if(!el) return;
+      if(openId===id) return;
+      if(openId&&openId!==id) closeCurrent(true);
+      if(!viaHash && document.activeElement && document.activeElement!==document.body){
+        lastTrigger=document.activeElement;
+      }
+      el.classList.add('open'); el.setAttribute('aria-hidden','false');
+      var sbw=window.innerWidth-document.documentElement.clientWidth;
+      if(sbw>0){ document.body.style.paddingRight=sbw+'px'; }
+      document.body.style.overflow='hidden'; openId=id;
+      setBackgroundInert(true);
+      el.focus();
+      if(!viaHash){
+        try{ history.pushState(null,'','#'+id); }catch(e){}
+      }
+      if(id==='contact') track('contact_open');
+    }
+    function closeCurrent(switching){
+      if(!openId) return;
+      var el=document.getElementById('ov-'+openId);
+      if(el){ el.classList.remove('open'); el.setAttribute('aria-hidden','true'); }
+      openId=null;
+      if(!switching){
+        document.body.style.overflow='';
+        document.body.style.paddingRight='';
+        setBackgroundInert(false);
+        try{ history.replaceState(null,'',location.pathname+location.search); }catch(e){}
+        var ovParent=lastTrigger&&lastTrigger.closest?lastTrigger.closest('.overlay'):null;
+        if(lastTrigger&&document.contains(lastTrigger)&&(!ovParent||ovParent.classList.contains('open'))){ lastTrigger.focus(); }
+        else{ var m=document.querySelector('nav.top .mark'); if(m) m.focus(); }
+        lastTrigger=null;
+      }
+    }
+    function close(){ closeCurrent(false); }
+
+    document.querySelectorAll('[data-overlay]').forEach(function(b){
+      b.addEventListener('click', function(){ lastTrigger=b; open(b.getAttribute('data-overlay')); });
+    });
+    document.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', close); });
+    document.querySelectorAll('.overlay').forEach(function(ov){
+      ov.addEventListener('click', function(e){ if(e.target===ov) close(); });
+    });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    document.querySelectorAll('[data-scrolltop]').forEach(function(st){
+      st.addEventListener('click', function(){
+        close();
+        window.scrollTo({ top:0, behavior:(reduceMotion?'auto':'smooth') });
+      });
+    });
+
+    function openFromHash(initial){
+      // Accept both plain keys (#privacy) and the section ids (#ov-privacy).
+      // External links, including the Microsoft OAuth consent screen, point at
+      // the id form, which previously fell through and just showed the home page.
+      var h=(location.hash||'').replace(/^#/,'').replace(/^ov-/,'').toLowerCase();
+      var map={ contact:'contact', talk:'contact', about:'about', team:'team', imprint:'imprint', privacy:'privacy', terms:'terms' };
+      if(map[h]){
+        if(initial){
+          // Seed a clean entry below the overlay so the system Back gesture
+          // dismisses the overlay instead of leaving the site.
+          try{
+            history.replaceState(null,'',location.pathname+location.search);
+            history.pushState(null,'','#'+map[h]);
+          }catch(e){}
+        }
+        open(map[h], true);
+      }else if(openId){
+        closeCurrent(false);
+      }
+    }
+    openFromHash(true);
+    window.addEventListener('hashchange', function(){ openFromHash(false); });
+
+    var f=document.getElementById('signup'),
+        n=document.getElementById('signup-note'),
+        sb=document.getElementById('signup-submit'),
+        fe=document.getElementById('signup-email'),
+        fw=document.getElementById('signup-field'),
+        fn=document.getElementById('signup-name'),
+        fnw=document.getElementById('signup-name-field'),
+        fc=document.getElementById('signup-company'),
+        fp=document.getElementById('signup-phone');
+    var messages={
+      noname:'Enter your name',
+      invalid:'Enter a valid email',
+      sending:'Sending...',
+      thanks:'Thank you. We will be in touch.'
+    };
+    function setNote(k){
+      if(!n) return;
+      if(!k){ n.classList.remove('show'); n.textContent=''; return; }
+      n.classList.remove('show');
+      if(k==='error'){
+        n.textContent='We could not send this. Write to ';
+        var a=document.createElement('a');
+        a.href='mailto:adrian@axelrod.live';
+        a.textContent='adrian@axelrod.live';
+        a.className='u-draw';
+        n.appendChild(a);
+      }else{
+        n.textContent=messages[k];
+      }
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ n.classList.add('show'); });
+      });
+    }
+    if(f){
+      f.addEventListener('submit', async function(e){
+        e.preventDefault();
+        var nameV=(fn&&fn.value||'').trim();
+        var companyV=(fc&&fc.value||'').trim();
+        var v=(fe.value||'').trim();
+        if(fn&&!nameV){
+          setNote('noname');
+          fn.setAttribute('aria-invalid','true');
+          if(fnw) fnw.classList.add('invalid');
+          fn.focus();
+          return;
+        }
+        if(fn) fn.removeAttribute('aria-invalid');
+        if(fnw) fnw.classList.remove('invalid');
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){
+          setNote('invalid');
+          fe.setAttribute('aria-invalid','true');
+          if(fw) fw.classList.add('invalid');
+          fe.focus();
+          return;
+        }
+        fe.removeAttribute('aria-invalid');
+        if(fw) fw.classList.remove('invalid');
+        setNote('sending'); sb.disabled=true;
+        var phoneV=(fp&&fp.value||'').trim();
+        var payload={ email:v, name:nameV, company:companyV, phone:phoneV, source:'axelrod landing page', page:window.location.pathname };
+        try{
+          var r=await fetch('/api/signup', {
+            method:'POST',
+            headers:{ 'Content-Type':'application/json' },
+            body:JSON.stringify(payload)
+          });
+          if(!r.ok) throw new Error('bad status');
+          setNote('thanks');
+          track('signup');
+          f.reset();
+        }catch(err){
+          setNote('error');
+        }finally{
+          sb.disabled=false;
+        }
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
