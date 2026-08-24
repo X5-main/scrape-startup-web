@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="110" viewBox="0 0 200 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="crystal-gradient" x1="50" y1="0" x2="50" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22D3EE" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+
+    <linearGradient id="line-gradient" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22D3EE" />
+      <stop offset="50%" stop-color="#818CF8" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+
+    <linearGradient id="text-gradient" x1="0" y1="0" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Logo Icon -->
+  <g transform="translate(10, 14)">
+    <!-- Pillars Group -->
+    <g transform="translate(0, -2)">
+      <!-- Left Pillar -->
+      <path
+        d="M32 30 L32 60 L42 60 L42 22 L32 30Z"
+        fill="url(#crystal-gradient)"
+        opacity="0.9"
+      />
+      <!-- Middle Pillar -->
+      <path
+        d="M45 60 L45 20 L50 12 L55 20 L55 60 Z"
+        fill="url(#crystal-gradient)"
+      />
+      <!-- Right Pillar -->
+      <path
+        d="M58 22 L68 30 L68 60 L58 60 L58 22Z"
+        fill="url(#crystal-gradient)"
+        opacity="0.9"
+      />
+    </g>
+
+    <!-- Wavy Lines -->
+    <g transform="translate(0, 0)">
+      <!-- Top Wave -->
+      <path
+        d="M25 65 C 35 65, 35 72, 50 72 C 65 72, 65 65, 75 65"
+        stroke="url(#line-gradient)"
+        stroke-width="3"
+        stroke-linecap="round"
+        fill="none"
+      />
+      <!-- Bottom Wave -->
+      <path
+        d="M25 75 C 35 75, 35 82, 50 82 C 65 82, 65 75, 75 75"
+        stroke="url(#line-gradient)"
+        stroke-width="3"
+        stroke-linecap="round"
+        fill="none"
+      />
+
+      <!-- End Dots -->
+      <circle cx="25" cy="65" r="2.5" fill="#22D3EE" />
+      <circle cx="75" cy="65" r="2.5" fill="#22D3EE" />
+      <circle cx="25" cy="75" r="2.5" fill="#22D3EE" />
+      <circle cx="75" cy="75" r="2.5" fill="#22D3EE" />
+
+      <!-- Flowing Dots Animation -->
+      <circle r="2" fill="#fff" filter="url(#glow)">
+        <animateMotion
+          dur="3s"
+          repeatCount="indefinite"
+          path="M25 65 C 35 65, 35 72, 50 72 C 65 72, 65 65, 75 65"
+        />
+      </circle>
+
+      <circle r="2" fill="#fff" filter="url(#glow)">
+        <animateMotion
+          dur="3s"
+          begin="1.5s"
+          repeatCount="indefinite"
+          path="M25 75 C 35 75, 35 82, 50 82 C 65 82, 65 75, 75 75"
+        />
+      </circle>
+    </g>
+  </g>
+
+  <!-- Text -->
+  <text x="100" y="55" font-family="Inter Tight, sans-serif" font-size="24" font-weight="500" fill="url(#text-gradient)">KayIQ AI</text>
+</svg>
