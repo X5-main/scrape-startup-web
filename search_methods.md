@@ -1153,3 +1153,35 @@ render probes — the dual-URL variant hung on its second target; split per URL)
   40-112/255), pricing 90.4% with diffs confined to the A/B promo-card region
   (+3 px height delta). Pricing vision 7/7; screening binding held (full-page
   8, top band 7).
+## D36 close — Stilta (stilta.com)
+
+- **Winner:** YC S25 "Agentic AI for high-stakes patent work" (on-page YC badge +
+  batch record = ≤24-mo funding; AI/IP focus ✓). 15 on-disk files mirrored
+  (4.0 MB), served on **8934** (replicas 8918-8933 = prior cycles). robots.txt
+  allow-all; Framer site → framerusercontent.com assets + events.framer.com
+  analytics left external per cross-host rule (established); index.html ~648 KB
+  inline critical CSS, Framer runtime hydrates from CDN.
+- **Computer-use leg = cua-driver + real Chrome** (new D-series method for the
+  same-window comparison): opened live + replica as tabs in David's
+  relay-driven Chrome (window 46026), then per-tab `Target.activateTarget` →
+  `get_window_state` (AX tree + screenshot) under identical geometry. Both
+  pages share the AX WebArea title (document.title identical). AX diff:
+  29/1635 (role,label) lines differ (~98.2% identical) — every diff is browser
+  chrome (tab-strip radio reorder produced by the activation swap itself,
+  Zoom:80% button, AXMenuItem order) or marquee logo-slice timing: live shows
+  EIP + Mannheimer Swartling per frame, replica shows KUKA; replica HTML holds
+  all 10 logo alts incl. Husqvarna → viewport-intersection slice, live-dynamic,
+  NOT a parity defect. Cua vision pair (identical phrasing): live 7/10,
+  replica 7/10; no broken images/glitches either side.
+- **Rest of battery (established lanes):** render probe 8 routes match exactly
+  at settle, single identical ERR_BLOCKED_BY_ORB both sides, zero console
+  errors; text parity 15/15 routes (18559 chars raw text identical; 6 DIFFs =
+  content-visibility timing artifacts); pixel audit scale-3 identical framing:
+  bottom band md5-pixel-identical, top band 2057/2160 rows (95.2%) with
+  localized low-magnitude deltas; vision full-page 7/7 + top band 7/7
+  (screening binding held); 404 parity faithful (`/news/ptab-ai-prior-art-benchmark`
+  404s identically on live, unmirrored).
+- **Framer + marquee lesson:** Framer marquee strips are scroll-driven animation
+  — the AX-visible logo subset tracks viewport timing, so upstream/downstream
+  capture skew shows different named clients per load. Compare against the
+  HTML alt inventory, not the captured frame; runtime slice ≠ parity failure.
