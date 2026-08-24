@@ -1088,4 +1088,6 @@ render probes — the dual-URL variant hung on its second target; split per URL)
 8. **Pixel evidence — MD5-identical captures**: replica full-page PNG (scale 3, 3840×2160, 8 545 941 B) vs live equals byte-for-byte (`md5` 92c5ade11f2543c6cf0f05f07f026806 == both). Strongest possible parity proof; vision judge on the replica with identical framing = **8** (live scored 7) — ≥7 binding holds both ways.
 9. **Ports**: replica `serve_replica.py` **8932** (hub `axelrod-replica`, pid 29007); capture vehicle headless CDP 9344. Hub readiness log pattern never matched even though the port LISTENED + HTTP 200 — probe port/curl, not the log pattern.
 
+**Tools added this turn**: `.tmp_tools/axelrod_sweep.py` (per-site af_sweep derivative).
+
 **Screening methodology note (post-D34 advisory, applies D35+)**: the first-judge vision pass on FULL-PAGE shots can underrate long-scroll sites — premium heroes buried under a long page score ≤6 even when the hero band itself is top-tier (repeat D33: top band 7 vs full-page caps). From next cycle: after the full-page first judge, take the **top 2-3 candidates** and re-judge a **viewport-top band variant** (existing `d31_bands.mjs` / `fab_cdp_shot.mjs` at scale 3, identical framing) before finalizing the winner. D34 closed unaffected: axelrod is single-viewport (scrollHeight 720), band == full-page, judged 7 live / 8 replica.
