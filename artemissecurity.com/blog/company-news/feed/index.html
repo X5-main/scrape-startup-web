@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Company News Archives - Artemis Security</title>
+	<atom:link href="https://artemissecurity.com/blog/company-news/feed/" rel="self" type="application/rss+xml" />
+	<link>https://artemissecurity.com/blog/company-news/</link>
+	<description>AI-Native Protection Platform for Modern SecOps</description>
+	<lastBuildDate>Mon, 10 Aug 2026 19:01:41 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1</generator>
+
+<image>
+	<url>https://artemissecurity.com/wp-content/uploads/2026/02/cropped-Icon-32x32.png</url>
+	<title>Company News Archives - Artemis Security</title>
+	<link>https://artemissecurity.com/blog/company-news/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Real Companies Were Breached by an AI. None of Them Detected It.</title>
+		<link>https://artemissecurity.com/company-news/autonomous-ai-attacks-went-undetected/</link>
+		
+		<dc:creator><![CDATA[Hadar Waldman]]></dc:creator>
+		<pubDate>Fri, 31 Jul 2026 11:00:00 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1420</guid>
+
+					<description><![CDATA[<p>A few weeks ago, OpenAI disclosed that during a set of cybersecurity evaluations, its models had escaped their sandbox and reached out to live systems, including a real breach at Hugging Face. We wrote about that incident at the time. The takeaway was that the tradecraft wasn&#8217;t novel; what had changed was the clock. Today, [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/company-news/autonomous-ai-attacks-went-undetected/">Real Companies Were Breached by an AI. None of Them Detected It.</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="584" src="https://artemissecurity.com/wp-content/uploads/2026/07/Real-Companies-Were-Breached-by-an-AI.-None-of-Them-Detected-It-1-1024x584.png" alt="" class="wp-image-1448" srcset="https://artemissecurity.com/wp-content/uploads/2026/07/Real-Companies-Were-Breached-by-an-AI.-None-of-Them-Detected-It-1-1024x584.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/07/Real-Companies-Were-Breached-by-an-AI.-None-of-Them-Detected-It-1-300x171.png 300w, https://artemissecurity.com/wp-content/uploads/2026/07/Real-Companies-Were-Breached-by-an-AI.-None-of-Them-Detected-It-1-768x438.png 768w, https://artemissecurity.com/wp-content/uploads/2026/07/Real-Companies-Were-Breached-by-an-AI.-None-of-Them-Detected-It-1.png 1210w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">A few weeks ago, OpenAI disclosed that during a set of cybersecurity evaluations, its models had escaped their sandbox and reached out to live systems, including a real breach at Hugging Face. We <a href="https://artemissecurity.com/company-news/ai-model-breached-hugging-face/">wrote about that incident</a> at the time. The takeaway was that the tradecraft wasn&#8217;t novel; what had changed was the clock.</p>
+
+
+
+<p class="wp-block-paragraph">Today, <a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals">Anthropic published its own findings</a>. After OpenAI&#8217;s disclosure, Anthropic went back and reviewed its own evaluation transcripts, and found three separate incidents where Claude, running inside evaluations it had been told were sealed off from the internet, reached real infrastructure and infiltrated companies.</p>
+
+
+
+<p class="wp-block-paragraph">We think this report matters, and not for the reason most people will take from it. Forget the &#8220;another lab had a sandbox leak&#8221; framing. What actually happened is that an AI ran a full intrusion against real companies, with no human at the keyboard, and the companies it breached never noticed. Full attack chain execution of reconnaissance, exploitation, credential theft, lateral movement, exfiltration, all of it driven by the model itself.</p>
+
+
+
+<h2 class="wp-block-heading">The line that should worry every security leader</h2>
+
+
+
+<p class="wp-block-paragraph">This also brings us to the sentence that, to us, is the a key point for the industry:</p>
+
+
+
+<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow">
+<p class="wp-block-paragraph">“The two organizations we were able to reach had not previously detected the activity or contacted us.”, Anthropic</p>
+</blockquote>
+
+
+
+<h2 class="wp-block-heading">The AI ran the attack itself. What each attack did, and how it could have been caught</h2>
+
+
+
+<p class="wp-block-paragraph">The mental model most defenders still carry is a human at a keyboard using an AI the way they&#8217;d use a scanner or an exploit kit, a productivity boost for an operator who is still driving. That&#8217;s not what these transcripts show. In these incidents there was no operator. The model was given an objective and it carried out the whole attack chain itself.</p>
+
+
+
+<p class="wp-block-paragraph">An autonomous attacker acts on real infrastructure, and those actions surface as telemetry that should be analyzed by your SIEM or detection and response tooling. Here is the attack breakdown for each incident and the observable events it produced.</p>
+
+
+
+<h3 class="wp-block-heading">Incident 1: web-app exploitation to production data (Opus 4.7)</h3>
+
+
+
+<p class="wp-block-paragraph">A fictional target company shared a name with a real one, the model found the real company online, and it went to work on the live infrastructure. The attack:</p>
+
+
+
+<ol class="wp-block-list">
+<li>Reconnaissance against the internet-facing application</li>
+
+
+
+<li>Exploited the web tier to get a foothold</li>
+
+
+
+<li>Extracted application and infrastructure credentials from the compromised host</li>
+
+
+
+<li>Reused those credentials to reach a production database and read several hundred rows of real data</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph"><strong>Signals this attack left behind:</strong></p>
+
+
+
+<figure class="wp-block-table blog-table"><table class="has-fixed-layout"><thead><tr><th>Detection heuristic</th><th>Data source</th><th>MITRE</th></tr></thead><tbody><tr><td>External source hitting the app with malformed or probing requests</td><td>WAF / web-access logs</td><td>T1190</td></tr><tr><td>First time process execution by a parent process</td><td>EDR / host process telemetry</td><td>T1190</td></tr><tr><td>Credential material read off disk or out of the environment</td><td>EDR / file-access logs</td><td>T1552</td></tr><tr><td>DB or cloud-API auth from a principal with no history of touching that data</td><td>Cloud audit logs / database logs</td><td>T1078 · T1530</td></tr></tbody></table></figure>
+
+
+
+<div style="height:25px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<p class="wp-block-paragraph">Any one of the steps is a weak signal in one domain. In an attack sequence, they are an intrusion, and the model executed the entire chain unnoticed.</p>
+
+
+
+<h3 class="wp-block-heading">Incident 2: malicious PyPI package to 15 hosts (Mythos 5)</h3>
+
+
+
+<p class="wp-block-paragraph">The model published a malicious package to PyPI, the public Python registry, and it was live only for one hour. In that single hour it was downloaded and executed on 15 real systems, and at least one turned into a full infiltration.</p>
+
+
+
+<p class="wp-block-paragraph">Any host that runs <code>pip install</code> against a public index is a victim here: a CI runner, a build server, a data-science box, a developer laptop. The attack, identical on each:</p>
+
+
+
+<ol class="wp-block-list">
+<li>A package is installed from a trusted public source with no reputation hit</li>
+
+
+
+<li>Install-time code runs on ingest, before anyone imports anything, via a <code>setup.py</code> or post-install hook</li>
+
+
+
+<li>That code reads local secrets: cloud credential files and environment tokens</li>
+
+
+
+<li>It opens an outbound connection to a first-seen collection point and exfiltrates them</li>
+
+
+
+<li>The stolen credentials are reused to reach further infrastructure from a new origin</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph"><strong>Signals this attack left behind:</strong></p>
+
+
+
+<figure class="wp-block-table blog-table"><table class="has-fixed-layout"><thead><tr><th>Detection heuristic</th><th>Data source</th><th>MITRE ATT&amp;CK</th></tr></thead><tbody><tr><td>Package installed from a public index with no reputation history</td><td>Package-manager / build logs</td><td>T1195.002</td></tr><tr><td>A pip/python process spawning an unexpected child during install</td><td>EDR / host process telemetry</td><td>T1059</td></tr><tr><td>Process reading ~/.aws/credentials or scraping the environment</td><td>EDR / file-access logs</td><td>T1552.001</td></tr><tr><td>A brand-new outbound destination from a new process</td><td>EDR network events / DNS / netflow</td><td>T1041</td></tr><tr><td>Credentials reused to authenticate to other infrastructure from a new origin</td><td>Cloud audit logs / identity logs</td><td>T1078</td></tr></tbody></table></figure>
+
+
+
+<h3 class="wp-block-heading">Incident 3: mass scan to SQL injection (Anthropic internal research test model)</h3>
+
+
+
+<p class="wp-block-paragraph">Unable to reach its intended fictional target, the model improvised at scale. The attack:</p>
+
+
+
+<ol class="wp-block-list">
+<li>Scanned roughly 9,000 targets on its own.</li>
+
+
+
+<li>Compromised a host with basic, well-known techniques: credentials read off an exposed debug page, and SQL injection.</li>
+</ol>
+
+
+
+<p class="wp-block-paragraph">This is the most detectable of the three, because the reconnaissance is loud.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Signals this attack left behind:</strong></p>
+
+
+
+<figure class="wp-block-table blog-table"><table class="has-fixed-layout"><thead><tr><th>Detection heuristic</th><th>Data source</th><th>MITRE</th></tr></thead><tbody><tr><td>High volume outbound connection attempts from a single origin in a short window</td><td>Netflow / firewall logs / DNS</td><td>T1595</td></tr><tr><td>SQL-injection and exposed-debug-page access from that same origin</td><td>WAF / web-access logs</td><td>T1190</td></tr><tr><td>Volume-and-novelty spike above baseline</td><td>Any of the above, baselined per source</td><td>T1595</td></tr></tbody></table></figure>
+
+
+
+<div style="height:25px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<p class="wp-block-paragraph">Encouraging footnote: once the model realized the compromised host sat in a cloud account unrelated to its capture-the-flag task, it concluded the target was real and stopped.</p>
+
+
+
+<h2 class="wp-block-heading">Looking forward</h2>
+
+
+
+<p class="wp-block-paragraph">These were real intrusions, with real credential theft, lateral movement, and access to production data. The victims didn&#8217;t know. They weren&#8217;t tipped off by an alert, a threat hunt, or an anomaly review. They were told, after the fact, by the lab whose model did it. If Anthropic hadn&#8217;t gone back through its transcripts and picked up the phone, that activity would still be sitting undetected in those environments.</p>
+
+
+
+<p class="wp-block-paragraph">This is the part of the report that is really about detection, not about AI. An autonomous attacker moving at machine speed produced exactly the observable events a mature program is supposed to catch: credentials showing up on hosts that never use them, a scanner reaching outbound to a collection point, a workload authenticating into infrastructure it has no business touching. None of it surfaced. The novelty of the attacker doesn&#8217;t change the physics of detection. The attack still leaves a trail in the logs. The question is whether anyone is watching those logs closely enough, fast enough, and with enough correlation to see the trail while it&#8217;s fresh.</p>
+
+
+
+<h2 class="wp-block-heading">How Artemis is built for this</h2>
+
+
+
+<p class="wp-block-paragraph">Everything above points in one direction. The defensible position is your own environment, watched continuously and correlated in real time. That is what Artemis is built to do.</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>We watch behavior, not reputation.</strong> The security-company scanner failed to identify the maliciousness of the package: PyPI packages were &#8220;safe to install.&#8221; Artemis doesn&#8217;t grant standing trust to a pipeline, a package, or a service account. A scanner that suddenly authenticates outbound to an unknown collection point, or a workload touching infrastructure outside its normal profile, is an anomaly regardless of how trusted the thing doing it is supposed to be.</li>
+
+
+
+<li><strong>We correlate at machine speed, because the attacker does.</strong> The observables in these incidents were individually quiet: credentials on unfamiliar hosts, actions exceeding any human or service-account norm, east-west movement, sandboxes spun up and torn down. They only mean something when correlated across sources in the moment. That correlation is the core of the platform, and it&#8217;s designed to close the gap between &#8220;the trail exists in the logs&#8221; and &#8220;someone saw it&#8221; from months to minutes.</li>
+
+
+
+<li><strong>We assume the guardrails aren&#8217;t there.</strong> We don&#8217;t model the attacker as a well-behaved frontier model that will talk itself out of the exploit. We model it as capable, autonomous, and unrestricted, the open-weight case or the cost-crossover case, and we detect the <em>actions</em> it takes in the environment, because those are the same whether or not the model felt bad about taking them.</li>
+
+
+
+<li><strong>We&#8217;re built for the case where no one tipped you off.</strong> The defining feature of these incidents is that the victims didn&#8217;t know. Artemis exists to remove the dependency on an external party, a lab or a researcher or a lucky alert, noticing your breach for you. The activity is in your telemetry; our job is to make sure you see it there first.</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading">For defenders</h2>
+
+
+
+<h3 class="wp-block-heading">Detection as Prompt</h3>
+
+
+
+<p class="wp-block-paragraph"><strong>Web-app exploitation to data access (Incident 1):</strong></p>
+
+
+<pre class="wp-block-code code-blog code-plain"><span><code class="hljs">Role: triage anomalous access to production data stores over the org's own logs.
+Trigger: a database or cloud-storage read from a principal or source IP with no prior history of touching that data.
+Investigate, in order:
+1. Baseline the reading principal: has it ever accessed this store before, and at this volume?
+2. Trace backward to the session origin: was it preceded by probing or malformed requests to an internet-facing app from the same source?
+3. Check for credential material read off disk or environment on the app host in the minutes before the access.
+4. Correlate the app-tier foothold, the credential read, and the data access as one chain from one origin.
+Do not treat a valid credential or a successful auth as exoneration; stolen credentials authenticate cleanly.
+</code></span></pre>
+
+
+<div style="height:25px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<p class="wp-block-paragraph"><strong>Malicious package on a build/CI host (Incident 2):</strong></p>
+
+
+<pre class="wp-block-code code-blog code-plain"><span><code class="hljs language-javascript">Role: triage package-install activity on developer, CI, and build hosts.
+Trigger: a pip/npm/gem install process spawning an unexpected child process, or a first-seen outbound destination <span class="hljs-keyword">from</span> a build host.
+Investigate, <span class="hljs-keyword">in</span> order:
+<span class="hljs-number">1.</span> Identify the package and version installed and whether install-time code (setup.py / post-install hook) executed.
+<span class="hljs-number">2.</span> Check whether that process read credential files (~<span class="hljs-regexp">/.aws/</span>credentials, tokens) or scraped environment variables.
+<span class="hljs-number">3.</span> Find any outbound connection to a destination <span class="hljs-keyword">this</span> host has never contacted before, immediately after install.
+<span class="hljs-number">4.</span> Follow the credentials: were they used to authenticate to other infrastructure <span class="hljs-keyword">from</span> a <span class="hljs-keyword">new</span> origin shortly after?
+Do not treat a trusted public registry <span class="hljs-keyword">as</span> safe by <span class="hljs-keyword">default</span>; the source reputation is not the behavior.
+</code></span></pre>
+
+
+<div style="height:25px" aria-hidden="true" class="wp-block-spacer"></div>
+
+
+
+<p class="wp-block-paragraph"><strong>Mass scanning and injection (Incident 3):</strong></p>
+
+
+<pre class="wp-block-code code-blog code-plain"><span><code class="hljs language-php">Role: triage reconnaissance <span class="hljs-keyword">and</span> exploitation against internet-facing services.
+Trigger: an origin generating outbound connection attempts far above its own baseline in a short window.
+Investigate, in order:
+<span class="hljs-number">1.</span> Quantify the fan-out: how many distinct destinations, over what interval, versus this origin<span class="hljs-string">'s 90-day norm.
+2. Look for follow-on exploitation from the same origin: SQL-injection patterns, access to debug/admin endpoints, credential reads.
+3. Check whether any target responded in a way consistent with compromise (error-to-success transitions, new sessions).
+Rank on deviation from the origin'</span>s own history, not on a fixed threshold.
+</code></span></pre><p>The post <a href="https://artemissecurity.com/company-news/autonomous-ai-attacks-went-undetected/">Real Companies Were Breached by an AI. None of Them Detected It.</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Defending at Machine Speed</title>
+		<link>https://artemissecurity.com/customers/cursor-case-study/</link>
+		
+		<dc:creator><![CDATA[Artemis Security]]></dc:creator>
+		<pubDate>Tue, 28 Jul 2026 02:28:29 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<category><![CDATA[Customers]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1339</guid>
+
+					<description><![CDATA[<p>How Cursor built AI-native security operations with Artemis: 10B+ security events analyzed daily, 100% of alerts investigated, and 96% of investigations resolved autonomously.</p>
+<p>The post <a href="https://artemissecurity.com/customers/cursor-case-study/">Defending at Machine Speed</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<p class="has-text-color wp-block-paragraph" style="color:#5b6472;margin-bottom:28px;font-size:1.3rem;line-height:1.5">How Cursor built AI-native security operations with Artemis</p>
+
+
+
+<p class="has-text-color wp-block-paragraph" style="color:#5b6472;margin-top:0px;margin-bottom:10px;font-size:15px"><img decoding="async" src="https://artemissecurity.com/wp-content/uploads/2026/02/cropped-Icon.png" alt="Artemis Security" style="display:inline-block;width:26px;height:26px;border-radius:50%;vertical-align:middle;margin:0 10px 0 0"><strong>Artemis Security</strong>&nbsp;&nbsp;·&nbsp;&nbsp;July 28, 2026</p>
+
+
+
+<figure class="wp-block-image size-full has-custom-border"><img decoding="async" width="1200" height="627" src="https://artemissecurity.com/wp-content/uploads/2026/07/cursorcase.png" alt="" class="wp-image-1356" style="border-radius:14px" srcset="https://artemissecurity.com/wp-content/uploads/2026/07/cursorcase.png 1200w, https://artemissecurity.com/wp-content/uploads/2026/07/cursorcase-300x157.png 300w, https://artemissecurity.com/wp-content/uploads/2026/07/cursorcase-1024x535.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/07/cursorcase-768x401.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:12px;border-left-color:#4f46e5;border-left-width:4px;background-color:#f4f5fc;margin-top:40px;margin-bottom:40px;padding-top:32px;padding-right:40px;padding-bottom:28px;padding-left:40px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="has-text-color wp-block-paragraph" style="color:#334155;font-size:1.45rem;font-style:italic;line-height:1.6"><em>“At Cursor we know what great AI products look like. Artemis is the first time we have seen that same standard applied to security, detecting and responding at the speed our environment actually moves.”</em></p>
+
+
+
+<p class="has-text-color wp-block-paragraph" style="color:#5b6472;margin-top:20px;font-size:18px"><strong>Tom Daniels</strong>&nbsp;&nbsp;·&nbsp;&nbsp;CISO, Cursor</p>
+</div></div>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:14px;background-color:#f4f5fc;margin-top:8px;margin-bottom:12px;padding-top:44px;padding-right:32px;padding-bottom:40px;padding-left:32px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8f761849 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+<p class="has-text-align-center has-text-color wp-block-paragraph" style="color:#4f46e5;margin-bottom:10px;font-size:44px;font-weight:700;line-height:1.1"><strong>500TB+</strong></p>
+
+
+
+<p class="has-text-align-center has-text-color wp-block-paragraph" style="color:#5b6472;font-size:15px;line-height:1.5">security data analyzed every month<br></p>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+<p class="has-text-align-center has-text-color wp-block-paragraph" style="color:#4f46e5;margin-bottom:10px;font-size:44px;font-weight:700;line-height:1.1">100%</p>
+
+
+
+<p class="has-text-align-center has-text-color wp-block-paragraph" style="color:#5b6472;font-size:15px;line-height:1.5">of alerts investigated, 24/7</p>
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+<p class="has-text-align-center has-text-color wp-block-paragraph" style="color:#4f46e5;margin-bottom:10px;font-size:44px;font-weight:700;line-height:1.1">96%</p>
+
+
+
+<p class="has-text-align-center has-text-color wp-block-paragraph" style="color:#5b6472;font-size:15px;line-height:1.5">of investigations resolved autonomously, with evidence</p>
+</div>
+</div>
+</div></div>
+
+
+
+<p class="wp-block-paragraph"><em>AI developer tools · hypergrowth · SIEM replacement · bring-your-own-data deployment</em></p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+
+
+<h2 class="wp-block-heading">About Cursor</h2>
+
+
+
+<p class="wp-block-paragraph">Cursor is one of the most widely used AI coding agents and one of the fastest-growing software companies of all time. Inside Cursor, engineering runs at a blazing pace. Changes ship continuously, and the infrastructure underneath it changes by the hour. Securing an environment that moves this fast falls to a lean, deeply technical security team led by CISO Tom Daniels.</p>
+
+
+
+<h2 class="wp-block-heading">The opportunity</h2>
+
+
+
+<p class="wp-block-paragraph">For Daniels, the same shift that lets Cursor ship fast also rewrites the security problem. When code, infrastructure, and identity all move at machine speed, so do the risks. An exposed credential, an over-privileged automation account, or a developer reaching into production can become an incident in seconds, faster than any human analyst can work through an alert queue.</p>
+
+
+
+<p class="wp-block-paragraph">The other half of the equation is the attacker. Frontier AI is increasingly available to adversaries, and AI-orchestrated attacks have already moved from research reports to reality, compressing intrusions from days to minutes. Daniels’s working assumption is simple: AI is available, someone will use it to attack.</p>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:12px;border-left-color:#4f46e5;border-left-width:4px;background-color:#f4f5fc;margin-top:40px;margin-bottom:40px;padding-top:32px;padding-right:40px;padding-bottom:28px;padding-left:40px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="has-text-color wp-block-paragraph" style="color:#334155;font-size:1.45rem;font-style:italic;line-height:1.6"><em>“We are an AI company end to end. It did not make sense for security to still operate at human speed.”</em></p>
+
+
+
+<p class="has-text-color wp-block-paragraph" style="color:#5b6472;margin-top:20px;font-size:18px"><strong>Tom Daniels</strong>&nbsp;&nbsp;·&nbsp;&nbsp;CISO, Cursor</p>
+</div></div>
+
+
+
+<p class="wp-block-paragraph">That led Daniels to a clear conclusion. Detection and response could not simply be assisted by AI. They had to be AI-native: adaptive, self-tuning, and able to investigate on their own.</p>
+
+
+
+<h2 class="wp-block-heading">The challenge</h2>
+
+
+
+<p class="wp-block-paragraph">Cursor already had a legacy SIEM in place, but it was built with AI bolted on top rather than at the core of the product. What Daniels wanted was a platform designed for the way an AI-native organization actually operates. Manual detection engineering, where people write and maintain every rule by hand, could not keep up with an environment that never holds still.</p>
+
+
+
+<p class="wp-block-paragraph">The team also had strong views on how the platform should work. They are engineers first, and they wanted control and transparency rather than a black box. That meant keeping ownership of their data, providing context on what matters for detection coverage, bringing their own detection logic, working via MCPs, and always being able to see exactly what the system was doing and why</p>
+
+
+
+<h2 class="wp-block-heading">The solution</h2>
+
+
+
+<p class="wp-block-paragraph">Artemis fits the way Cursor operates. Artemis starts by learning the environment: AI agents continuously map Cursor’s systems, identities, and behaviors, building baselines of what is expected: which automation accounts touch production, how developers reach infrastructure, what routine data movement looks like.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">On top of it, instead of a static rule set, Artemis generates adaptive detectors and tunes them automatically as the environment changes, so coverage keeps pace with the org rather than falling behind it. Today, thousands of detectors are continuously tuned to Cursor’s environment and recalibrate as behavior shifts.</p>
+
+
+
+<p class="wp-block-paragraph">Control stayed with Cursor. With a bring your own ClickHouse model, Cursor kept ownership of its data. Security engineers author custom detectors in plain language through AI Mode or Artemis’ MCP, with versioning, audit history, one-click rollback, and GitHub as the source of truth.</p>
+
+
+
+<p class="wp-block-paragraph">Investigations run at machine speed, correlating across sources and working cases autonomously, and every verdict is auditable: the reasoning chain, the queries the agent ran, and the evidence behind each conclusion ship with the case.<br><br>Response actions such as suspending a compromised account are generated dynamically and stay behind human-in-the-loop confirmation. Day to day, the team lives in a Slack-native workflow with the ability to tag Artemis to run AI Mode sessions.</p>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:12px;border-left-color:#4f46e5;border-left-width:4px;background-color:#f4f5fc;margin-top:40px;margin-bottom:40px;padding-top:32px;padding-right:40px;padding-bottom:28px;padding-left:40px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="has-text-color wp-block-paragraph" style="color:#334155;font-size:1.45rem;font-style:italic;line-height:1.6"><em><em>“We now use Artemis to generate working detections and find the correlations across log sources automatically. That&#8217;s where most of our effort used to go. Now if we want to detect something, we just ask the agent in plain English: help us write a detector to find this.”</em></em></p>
+
+
+
+<p class="has-text-color wp-block-paragraph" style="color:#5b6472;margin-top:20px;font-size:18px"><strong>Zehuan Li</strong>&nbsp;&nbsp;·&nbsp;&nbsp;Security Software Engineer, Cursor</p>
+</div></div>
+
+
+
+<h2 class="wp-block-heading">How Cursor uses Artemis</h2>
+
+
+
+<p class="wp-block-paragraph">Artemis watches the places where a fast-moving AI company is most exposed. It correlates across more than 20 log sources: cloud audit logs, identity activity, proxy logs, and data access logs, stitching siloed signals into cohesive investigations. It monitors the developers and automation accounts that touch production, break-glass cloud access, and anomalies in the identity provider, and it can catch attempts at machine-speed data exfiltration before they turn into incidents.</p>
+
+
+
+<p class="wp-block-paragraph">On top of that, Artemis hunts. It turns new external intelligence into threat hunts across the whole environment, more than 1,200 hunt executions in the last quarter, and when a hunt hits, it opens a case backed by the same evidence-cited investigation as any detection. When something feels off, the team can also launch its own hunt in plain language through AI Mode, straight from Slack.</p>
+
+
+
+<p class="wp-block-paragraph">For the people who use it every day, Artemis has become the default starting point.</p>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:12px;border-left-color:#4f46e5;border-left-width:4px;background-color:#f4f5fc;margin-top:40px;margin-bottom:40px;padding-top:32px;padding-right:40px;padding-bottom:28px;padding-left:40px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="has-text-color wp-block-paragraph" style="color:#334155;font-size:1.45rem;font-style:italic;line-height:1.6"><em>“My browser basically opens to Artemis now. The minute anything looks off, it is the first place I go.”</em></p>
+
+
+
+<p class="has-text-color wp-block-paragraph" style="color:#5b6472;margin-top:20px;font-size:18px"><strong>Zehuan Li</strong>&nbsp;&nbsp;·&nbsp;&nbsp;Security Software Engineer, Cursor</p>
+</div></div>
+
+
+
+<h2 class="wp-block-heading">Results and impact</h2>
+
+
+
+<p class="wp-block-paragraph">Cursor standardized on Artemis as its AI-native detection and response platform across the environment. Moving off its old SIEM onto a single platform put detection, investigation, and response in one place, built for the speed at which the company operates.</p>
+
+
+
+<p class="wp-block-paragraph">The difference shows up in the results: every alert generated or ingested from over 10 billion events a day across Cursor’s environment is investigated automatically, and 96% of them close without human involvement. The security team now focuses their precious time on investigating the handful of decision-grade cases that matter, each arriving pre-investigated with the reasoning and evidence already assembled.</p>
+
+
+
+<p class="wp-block-paragraph">Because the team can tune and iterate on detectors in minutes, coverage and precision keep improving in step with the environment, ahead of what manual processes could sustain.</p>
+
+
+
+<p class="wp-block-paragraph">Underpinning all of it is a close technical partnership, with fast response times and steady delivery on what Cursor asks for.<br><br>The strategic outcome is readiness: as attacks themselves become AI-orchestrated, Cursor’s detection, investigation, and response already run at machine speed, and adapt as fast as threats do.</p>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:12px;border-left-color:#4f46e5;border-left-width:4px;background-color:#f4f5fc;margin-top:40px;margin-bottom:40px;padding-top:32px;padding-right:40px;padding-bottom:28px;padding-left:40px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="has-text-color wp-block-paragraph" style="color:#334155;font-size:1.45rem;font-style:italic;line-height:1.6">“We are a team that could have built a lot of this ourselves, and it still made more sense to go with Artemis. Doing it in-house would have been slower and more expensive. With Artemis, we have a world class team building for us 24/7 and ability to use Artemis&#8217; MCP for the things we want to build internally.”</p>
+
+
+
+<p class="has-text-color wp-block-paragraph" style="color:#5b6472;margin-top:20px;font-size:18px"><strong>Tom Daniels</strong>&nbsp;&nbsp;·&nbsp;&nbsp;CISO, Cursor</p>
+</div></div>
+
+
+
+<h2 class="wp-block-heading">Get started with Artemis</h2>
+
+
+
+<p class="wp-block-paragraph">Attacks now move at machine speed, and security has to match the speed and sophistication. Artemis learns your environment, generates and tunes detections continuously, investigates every alert autonomously, and keeps your team in control of response. Integration takes less than an hour, and the first environment-specific detections and investigations arrive the same day.</p>
+
+
+
+<p class="wp-block-paragraph">See what Artemis can do in your environment. Request a demo at <a href="https://artemissecurity.com">artemissecurity.com</a>.</p>
+
+
+
+<style>.post-page__meta{display:none}</style>
+<p>The post <a href="https://artemissecurity.com/customers/cursor-case-study/">Defending at Machine Speed</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>An Unprecedented AI-speed Attack Tempo</title>
+		<link>https://artemissecurity.com/company-news/ai-model-breached-hugging-face/</link>
+		
+		<dc:creator><![CDATA[Shachar Hirshberg]]></dc:creator>
+		<pubDate>Mon, 27 Jul 2026 15:35:54 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[ai security]]></category>
+		<category><![CDATA[credential theft]]></category>
+		<category><![CDATA[Hugging Face]]></category>
+		<category><![CDATA[lateral movement]]></category>
+		<category><![CDATA[OpenAI]]></category>
+		<category><![CDATA[security investigation]]></category>
+		<category><![CDATA[security telemetry]]></category>
+		<category><![CDATA[Threat Detection]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1308</guid>
+
+					<description><![CDATA[<p>Last week OpenAI disclosed that during an internal evaluation of its models&#8217; offensive cyber capability, two of its models broke out of the test sandbox, reached the open internet, and ended up inside Hugging Face&#8217;s production infrastructure. The models were GPT-5.6 Sol and an unreleased one, both running with cyber refusals reduced and the production [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/company-news/ai-model-breached-hugging-face/">An Unprecedented AI-speed Attack Tempo</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="584" src="https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-1024x584.png" alt="" class="wp-image-1317" srcset="https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-1024x584.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-300x171.png 300w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-768x438.png 768w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack.png 1210w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Last week OpenAI<a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"> disclosed</a> that during an internal evaluation of its models&#8217; offensive cyber capability, two of its models broke out of the test sandbox, reached the open internet, and ended up inside Hugging Face&#8217;s production infrastructure. The models were GPT-5.6 Sol and an unreleased one, both running with cyber refusals reduced and the production safety classifiers switched off so researchers could measure raw skill.</p>
+
+
+
+<p class="wp-block-paragraph">They weren&#8217;t targeting Hugging Face. They were trying to solve a benchmark called<a href="https://arxiv.org/abs/2605.11086"> ExploitGym</a>, worked out that the answer key probably lived on Hugging Face, and went to get it.</p>
+
+
+
+<p class="wp-block-paragraph">A benchmark built to measure whether AI can exploit software got exploited by the AI taking it.</p>
+
+
+
+<p class="wp-block-paragraph">Hugging Face had<a href="https://huggingface.co/blog/security-incident-july-2026"> published their own account</a> five days earlier, at which point they had no idea who was behind it. Clem Delangue has since called it possibly the first of its kind. What I&#8217;d say with more confidence is that it&#8217;s the first intrusion I&#8217;ve seen documented this cleanly from both ends, which is what makes it worth studying instead of just reacting to.</p>
+
+
+
+<p class="wp-block-paragraph">Most of the coverage has landed on whether AI has invented a new category of attack. Having spent enough time in the logs of real intrusions, I don&#8217;t think it has. What changed is the clock.</p>
+
+
+
+<h2 class="wp-block-heading">Attackers go looking for the answer key</h2>
+
+
+
+<p class="wp-block-paragraph">Years ago I was on the blue team in a large red/blue exercise. While working through the red team&#8217;s command-and-control traffic we enumerated one of their hosting servers and found a path into a file share they&#8217;d left open, clearly by accident, holding old drafts of their attack plans. That changed the exercise for us. We stopped asking how to hunt them and started asking what else they&#8217;d left exposed. We took everything we could find and used it to stay ahead of them for the rest of the engagement.</p>
+
+
+
+<p class="wp-block-paragraph">That pattern turns up in nearly every intrusion I&#8217;ve worked on. An attacker who gets a foothold starts looking for whatever the defenders left lying around. Network diagrams. Runbooks. A credential vault. The cyber-insurance policy that tells them exactly how much to demand. An exposed document beats an exploit every time, and attackers know it.</p>
+
+
+
+<p class="wp-block-paragraph">The models did the same thing. They worked out the answer key might be reachable and went straight for it. New actor, old behavior.</p>
+
+
+
+<h2 class="wp-block-heading">Two environments, and what each disclosure actually says</h2>
+
+
+
+<p class="wp-block-paragraph">Worth pulling these apart, because a lot of the coverage has run them together.</p>
+
+
+
+<p class="wp-block-paragraph">Inside OpenAI&#8217;s research environment, the evaluation sandbox had exactly one network path out. That was an internally hosted proxy and cache for package registries, put there so the agent could install dependencies. The models found a zero-day in that proxy, escaped through it, then escalated privileges and moved laterally through OpenAI&#8217;s own research infrastructure until they landed on a node with internet access. OpenAI has disclosed the vulnerability to its vendor and named neither the vendor nor the bug.</p>
+
+
+
+<p class="wp-block-paragraph">Inside Hugging Face, the picture comes from their disclosure rather than OpenAI&#8217;s. They describe a malicious dataset that abused two code-execution paths in their dataset processing (a loader that executed remote code, and a template injection in a dataset configuration) to run code on a processing worker. From there the actor took node-level access, harvested cloud and cluster credentials, and moved laterally into several internal clusters across a weekend.</p>
+
+
+
+<p class="wp-block-paragraph">OpenAI&#8217;s account of the same intrusion describes the model chaining stolen credentials and zero-days into a remote code execution path on Hugging Face servers, and notes that as one example among others. Neither company has said whether that&#8217;s the same path Hugging Face describes or a different one. It may come out when the joint investigation closes.</p>
+
+
+
+<p class="wp-block-paragraph">On scope, Hugging Face reported unauthorized access to a limited set of internal datasets and to several service credentials. They found no evidence of tampering with public models, datasets or Spaces, and verified their container images and published packages clean. Assessment of partner and customer data was still open at the time of writing.</p>
+
+
+
+<p class="wp-block-paragraph">The dataset pipeline as the way in deserves more attention than it&#8217;s gotten. Every organization running ML infrastructure has that surface. Few treat it as a production attack surface, instrument it, or baseline what a processing worker is supposed to be doing.</p>
+
+
+
+<h2 class="wp-block-heading">What was actually new</h2>
+
+
+
+<p class="wp-block-paragraph">Not the tradecraft. Take the model out of it and this is a shape any responder would recognize. Exploit, escalate, harvest credentials, move laterally, stand up command and control.</p>
+
+
+
+<p class="wp-block-paragraph">What changed is the operational tempo. The whole campaign ran over a weekend. It worked in parallel across a swarm of sandboxes that came up and went away by the minute rather than operating sequentially from a single foothold. Its C2 relocated itself across public services. Human operators don&#8217;t work like this, and a detection and response process built around human dwell time isn&#8217;t meeting it on level ground.</p>
+
+
+
+<p class="wp-block-paragraph">The lesson there is narrower than it first appears. Tempo doesn&#8217;t defeat your detections. It defeats the loop your team runs between a signal firing and someone acting on it. The individual signals are ones a competent analyst would recognize on sight. Whether anything closes that loop inside the attacker&#8217;s working window is a separate question, and it&#8217;s the one that decided this incident.</p>
+
+
+
+<h2 class="wp-block-heading">What this class of behavior puts in your telemetry</h2>
+
+
+
+<p class="wp-block-paragraph">Neither company published log data, so treat what follows as analysis rather than reporting. An intrusion built this way does produce a fairly predictable set of observables, though, and none of them need an exotic detection. What they need is that you&#8217;re collecting the right thing to begin with.</p>
+
+
+
+<ul class="wp-block-list">
+<li>A credential appearing on a host it has never been used from. Requires auth telemetry from that host, plus identity resolution that can tie the credential to the same entity across systems that don&#8217;t share a schema.</li>
+
+
+
+<li>A processing worker executing well outside its normal profile and then reaching node-level access. Requires process telemetry from the worker tier and a baseline of what that tier normally does. Plenty of environments have neither.</li>
+
+
+
+<li>East-west traffic between internal clusters with no routine reason to talk to each other. If you&#8217;re only watching north-south egress, this hop is invisible.</li>
+
+
+
+<li>Sandboxes created and destroyed by the minute, C2 endpoints that relocate on their own. Each one on its own looks like nothing, so catching it means correlating short-lived assets across time.</li>
+
+
+
+<li>Action volume and parallelism that no human operator or service account would produce. That&#8217;s per-identity rate baselining, not a global threshold.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">None of this is exotic. The industry has known how to solve every item on the list for years.</p>
+
+
+
+<h2 class="wp-block-heading">So why is this hard</h2>
+
+
+
+<p class="wp-block-paragraph">Hugging Face caught this, and caught it well. They caught it because they&#8217;d already built LLM-based analysis into their anomaly detection pipeline, and it was the correlation across those signals that surfaced the compromise. OpenAI&#8217;s security team flagged the anomalous activity independently on their own side.</p>
+
+
+
+<p class="wp-block-paragraph">I don&#8217;t read either of those as a knock on anyone. I read it as the finding. The bar for what a mature detection program looks like has moved, and this is the evidence.</p>
+
+
+
+<p class="wp-block-paragraph">For most organizations the gap isn&#8217;t detection logic. It&#8217;s coverage and speed.</p>
+
+
+
+<p class="wp-block-paragraph">On coverage, the surfaces this attack crossed aren&#8217;t ones most teams watch. The detections themselves aren&#8217;t difficult. The telemetry frequently isn&#8217;t collected at all, or it arrives in three formats that never get reconciled, or it never gets tied back to an identity. A credential event in one system and a process event on a worker stay two unrelated alerts unless something resolves them to the same entity and assembles them into one story.</p>
+
+
+
+<p class="wp-block-paragraph">On speed, tempo compresses the window. A weekend isn&#8217;t long to notice, correlate and act, particularly when the correlating has to happen across sources that don&#8217;t share a format, and particularly when it starts on a Friday night.</p>
+
+
+
+<h2 class="wp-block-heading">The part almost nobody is discussing</h2>
+
+
+
+<p class="wp-block-paragraph">The most operationally significant detail in Hugging Face&#8217;s disclosure has almost nothing to do with the attack.</p>
+
+
+
+<p class="wp-block-paragraph">When their team went to analyze the attacker&#8217;s action log, they started with frontier models behind commercial APIs. It didn&#8217;t work. The analysis meant submitting large volumes of real attack commands, exploit payloads and C2 artifacts, and the providers&#8217; safety guardrails blocked the requests, because those guardrails can&#8217;t distinguish an incident responder from an attacker. They finished the work on GLM 5.2, an open-weight model, on their own infrastructure. That had a side benefit they called out, which is that no attacker data and none of the credentials it touched left their environment.</p>
+
+
+
+<p class="wp-block-paragraph">The reflex read is that this argues for running everything yourself. I don&#8217;t think that&#8217;s the lesson.</p>
+
+
+
+<p class="wp-block-paragraph">Hugging Face&#8217;s problem wasn&#8217;t hosted inference. It was reaching for a general-purpose assistant to do forensic work. Guardrails tuned to stop someone asking how to build malware can&#8217;t tell that apart from a responder submitting thousands of lines of real C2 traffic, because from inside the API they look identical. That&#8217;s a product-fit failure rather than a deployment-topology one. Worth noting too that OpenAI&#8217;s own remediation included bringing Hugging Face into their trusted access program for cyber, so the exception paths are getting built.</p>
+<p>The post <a href="https://artemissecurity.com/company-news/ai-model-breached-hugging-face/">An Unprecedented AI-speed Attack Tempo</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>We used to tag Linear. Now we tag ArtBot.</title>
+		<link>https://artemissecurity.com/company-news/we-used-to-tag-linear-now-we-tag-artbot/</link>
+		
+		<dc:creator><![CDATA[Eddie Vaisman]]></dc:creator>
+		<pubDate>Thu, 16 Jul 2026 18:45:11 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1224</guid>
+
+					<description><![CDATA[<p>We replaced the Slack-to-Linear-ticket-to-backlog pipeline with ArtBot, an AI coding agent built on the Claude Agent SDK that reads the thread, investigates, and opens a pull request — 1,500+ PRs in six and a half weeks.</p>
+<p>The post <a href="https://artemissecurity.com/company-news/we-used-to-tag-linear-now-we-tag-artbot/">We used to tag Linear. Now we tag ArtBot.</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="535" src="https://artemissecurity.com/wp-content/uploads/2026/07/Linear-x-Artbot-LI-1024x535.png" alt="Illustration of ArtBot, an AI coding agent, turning a Slack thread into a pull request with automated checks" class="wp-image-1227" srcset="https://artemissecurity.com/wp-content/uploads/2026/07/Linear-x-Artbot-LI-1024x535.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/07/Linear-x-Artbot-LI-300x157.png 300w, https://artemissecurity.com/wp-content/uploads/2026/07/Linear-x-Artbot-LI-768x401.png 768w, https://artemissecurity.com/wp-content/uploads/2026/07/Linear-x-Artbot-LI.png 1200w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Ideas often start as a Slack message. They turn into a Linear ticket in a backlog. Then it was prioritized, and if it wasn’t urgent it waited and waited. When it got picked up, someone started fresh, read the hopefully well defined ticket and/or the hopefully linked conversation, and rebuilt context.</p>
+
+
+
+<p class="wp-block-paragraph">Today we just tag <strong>ArtBot</strong> (a coding agent built on the Claude Agent SDK) right in the thread. It reads the conversation, investigates thoroughly in code and cloud environments, opens a pull request, and records and posts an annotated video recording of UI changes with the test plan&nbsp;items checked off one by one.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Why do we need one when we have Claude, Codex, and Cursor already all living in our Slack org? Because it runs in our container, with our libraries pre-installed, access to all of our tools, and with safe access patterns.</p>
+
+
+
+<p class="wp-block-paragraph">In the six and a half weeks since it went live, ArtBot has opened more than 1,500 pull requests — about 130 a week at steady state — and 740 of them have already merged, triggered by 27 engineers typing its name into Slack. Half of those PRs merged within two hours of being opened; 40% merged within the hour.</p>
+
+
+
+<p class="wp-block-paragraph">Killing the prioritization inertia didn’t just get PRs made faster. It enabled work to get done that otherwise never would have.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>The first big decision: the ticket was never the point</strong></h2>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:6px;border-left-color:#611f69;border-left-width:4px;background-color:#f9f9fb;margin-left:2em;padding-top:18px;padding-right:22px;padding-bottom:18px;padding-left:22px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="wp-block-paragraph" style="margin-top:0;margin-bottom:0"><em><span style="color:#1264a3;background-color:#e8f2fa;border-radius:3px;padding:0 3px">@Linear</span> create a ticket and assign to me  </em></p>
+</div></div>
+
+
+
+<p class="wp-block-paragraph">Which project? What initiative? Who is it assigned to? When is it due? What priorities do we have to compare it to? Sometimes this work takes more time than the ticket.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">So why make a ticket?</p>
+
+
+
+<p class="wp-block-paragraph">First we optimized the ticket making. Guidance on who/what/where/when for the agent to figure these out. It&#8217;s the natural extension of what everyone already did by hand.</p>
+
+
+
+<p class="wp-block-paragraph">It made the ritual <em>faster</em>, but do we want to do it at all?&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Do we want to still have the&nbsp;growing backlog, the prioritization decision, the lost and regained context by multiple people.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">A huge class of requests don’t need it: just do it.</p>
+
+
+
+<p class="wp-block-paragraph">That reframing killed the ticket-writing assistant. We weren&#8217;t building a better way to file work. We were building a better way to do the work.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>The obstacle is the way</strong></h2>
+
+
+
+<p class="wp-block-paragraph">Opening a PR is easy. Merging a PR is easy. Ensuring it’s a high quality PR is hard.</p>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:6px;border-left-color:#611f69;border-left-width:4px;background-color:#f9f9fb;margin-left:2em;padding-top:18px;padding-right:22px;padding-bottom:18px;padding-left:22px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="wp-block-paragraph" style="margin-top:0;margin-bottom:0"><strong>yaron</strong>  <span style="color:#9a9a9a;font-size:0.8em">12:18 PM</span></p>
+
+
+
+<p class="wp-block-paragraph" style="margin-top:0.3em;margin-bottom:0">The popovers overlapping is really a bad experience and look unprofessional in cases table… see video</p>
+
+
+
+<p class="wp-block-paragraph" style="margin-top:1.4em;margin-bottom:0"><strong>sergey</strong>  <span style="color:#9a9a9a;font-size:0.8em">2:32 PM</span></p>
+
+
+
+<p class="wp-block-paragraph" style="margin-top:0.3em;margin-bottom:0"><span style="color:#1264a3;background-color:#e8f2fa;border-radius:3px;padding:0 3px">@ArtBot</span> please look at that video with popovers and root cause why they are overlapping. use /test-video skill, to reproduce the issue then prepare a pr with a fix and use /test-video skill to validate the fix.</p>
+</div></div>
+
+
+
+<p class="wp-block-paragraph">And then, like magic, it started reproducing the issue, and…. it broke halfway through.</p>
+
+
+
+<p class="wp-block-paragraph">😅</p>
+
+
+
+<p class="wp-block-paragraph">I’m frequently reminded that the hard part is often the unexpected part and just getting everything to run is hard sometimes too. Luckily, Artbot also posts detailed error messages, and because it’s our custom built bot, it has permissions to see the logs of its previous startup sequence running and failing.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Without that access, it will hallucinate some reasonably sounding reasons why it failed and spin its wheels and yours for a couple hours.</p>
+
+
+
+<p class="wp-block-paragraph">With that, it can heal itself:</p>
+
+
+
+<div class="wp-block-group has-background" style="border-radius:6px;border-left-color:#611f69;border-left-width:4px;background-color:#f9f9fb;margin-left:2em;padding-top:18px;padding-right:22px;padding-bottom:18px;padding-left:22px"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<p class="wp-block-paragraph" style="margin-top:0;margin-bottom:0"><strong>sergey</strong>  <span style="color:#9a9a9a;font-size:0.8em">3:10 PM</span></p>
+
+
+
+<p class="wp-block-paragraph" style="margin-top:0.3em;margin-bottom:0"><span style="color:#1264a3;background-color:#e8f2fa;border-radius:3px;padding:0 3px">@ArtBot</span> please make a pr to bump disk to 50gb for artbot container</p>
+
+
+
+<p class="wp-block-paragraph" style="margin-top:1.4em;margin-bottom:0"><strong>sergey</strong>  <span style="color:#9a9a9a;font-size:0.8em">4:54 PM</span></p>
+
+
+
+<p class="wp-block-paragraph" style="margin-top:0.3em;margin-bottom:0">merged</p>
+</div></div>
+
+
+
+<p class="wp-block-paragraph">4 hours and 36 minutes from a report in #qa to a merge that included infrastructure changes and redeploys. And we haven’t bumped the disk again since!</p>
+
+
+
+<h2 class="wp-block-heading"><strong>What we&#8217;d tell another team</strong></h2>
+
+
+
+<p class="wp-block-paragraph"><strong>The interface you already have beats the interface you&#8217;d design.</strong> We didn&#8217;t build a portal, a CLI, or an IDE extension. We put the agent where the work was already being described (the Slack thread). Adoption wasn&#8217;t a rollout; people just started tagging a different name. If your users are already talking about the work somewhere, that somewhere is your front door. Don&#8217;t make them go somewhere new to ask.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Solve security structurally, not with a careful prompt.</strong> Prompt engineering isn’t a security boundary, it&#8217;s a suggestion. The thing that actually protects our infrastructure is that the agent&#8217;s IAM role literally cannot read it. A broker service authenticates. Assume the agent will, at some point, be talked into doing the worst thing its permissions allow — then make sure the worst thing is harmless. Draw your trust boundaries in infrastructure, and let the prompt be about doing the job well, not about staying in bounds.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Compound interest is the most powerful force in the universe.</strong> Artbot can run any skill in our repo because of its environment. So it runs <a href="https://artemissecurity.com/research/the-unreasonable-effectiveness-of-a-single-agentic-command-for-operating-cloud-infrastructure/">/poke</a>, /make-pr, /bazooka-fix (yes that’s the actual name, you’ll need to wait for <a href="https://www.linkedin.com/in/10010001/">Sergey Semenko</a> to write another blog post), /improve-tests, /test-video and /monitor-pr which have all taken chunks of work from hours to minutes individually. Now days of work can be done end-to-end.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>It’s demo time. </strong>A video is worth a million words. Give your agent the ability to clear success criteria and the ability to check its own work and the ability to show its work to the team. It will be able to work autonomously to completion, and you’ll be able to verify it worked. Until of course, you trust it enough that you don’t watch the video any more.&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">We’re not quite there, but we’re working on it.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>What&#8217;s next</strong></h2>
+
+
+
+<p class="wp-block-paragraph">The frontier now isn&#8217;t &#8220;can the agent do the task&#8221; — it&#8217;s &#8220;how much of the task can it own end to end.&#8221;&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph">Right now a human still reviews and merges. The interesting open questions are about trust calibration: which classes of change are safe to auto-merge behind green CI, how an agent should signal its own uncertainty, and how it should escalate — back into the same Slack thread — when a request is genuinely ambiguous rather than guessing.</p>
+
+
+
+<p class="wp-block-paragraph">The fixes everyone agreed on (but nobody had an afternoon for) stop accumulating.&nbsp; The work just happens, in the thread, while the context is still warm.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>The small tweaks required to make a delightful user experience are shipped continuously, oftentimes in the same day when they surface. </strong>What’s the outcome of that? Customers say this: <em>&#8220;Everyone at Artemis should know, it is in the top three of my favorite tools. Really, it&#8217;s in the #1 spot right now. I look forward to using it every morning.&#8221;</em></p>
+<p>The post <a href="https://artemissecurity.com/company-news/we-used-to-tag-linear-now-we-tag-artbot/">We used to tag Linear. Now we tag ArtBot.</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Secure Your Enterprise AI: Artemis Now Integrates with Anthropic Compliance API and telemetry</title>
+		<link>https://artemissecurity.com/company-news/secure-your-enterprise-ai-artemis-now-integrates-with-anthropic-compliance-api-and-telemetry/</link>
+		
+		<dc:creator><![CDATA[Shachar Hirshberg]]></dc:creator>
+		<pubDate>Thu, 04 Jun 2026 02:47:01 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<category><![CDATA[Product]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[Anthropic]]></category>
+		<category><![CDATA[security posture]]></category>
+		<category><![CDATA[Threat Detection]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1047</guid>
+
+					<description><![CDATA[<p>Artemis brings Claude Enterprise activity into the same AI-native detection, investigation, and response platform that already protects your cloud, identity, and SaaS, turning AI from a blind spot into a governed, fully monitored data source. Claude has quickly become one of the most widely used and most privileged applications in many enterprises, and almost none [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/company-news/secure-your-enterprise-ai-artemis-now-integrates-with-anthropic-compliance-api-and-telemetry/">Secure Your Enterprise AI: Artemis Now Integrates with Anthropic Compliance API and telemetry</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="577" src="https://artemissecurity.com/wp-content/uploads/2026/06/Integration-1024x577.png" alt="" class="wp-image-1161" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/Integration-1024x577.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/Integration-300x169.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/Integration-768x433.png 768w, https://artemissecurity.com/wp-content/uploads/2026/06/Integration.png 1211w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph"><strong>Artemis brings Claude Enterprise activity into the same AI-native detection, investigation, and response platform that already protects your cloud, identity, and SaaS, turning AI from a blind spot into a governed, fully monitored data source.</strong></p>
+
+
+
+<p class="wp-block-paragraph">Claude has quickly become one of the most widely used and most privileged applications in many enterprises, and almost none of that activity is visible to a traditional SIEM. Prompts, file uploads, projects, configuration changes, and admin actions all generate security-relevant events that sit outside your usual telemetry. Artemis brings that activity into the same detection, investigation, and threat-hunting pipeline that already covers your cloud, identity, on-prem, and SaaS estate by ingesting Anthropic&#8217;s Claude Compliance API for Claude Enterprise. Every event is normalized to OCSF, correlated with the rest of your environment, and watched continuously. Securing Claude shouldn&#8217;t mean slowing its adoption. It means adopting it with the same visibility you already demand of every other critical system.</p>
+
+
+
+<h2 class="wp-block-heading">How the integration works</h2>
+
+
+
+<p class="wp-block-paragraph">Setup is a single step. An admin creates a Compliance API key in the Claude console and pastes it into Artemis. From there, Artemis polls every Claude activity event, normalizes each event into the open OCSF schema, and feeds it through the full platform.</p>
+
+
+
+<p class="wp-block-paragraph">Because Artemis backfills your Claude organization&#8217;s full activity history on first connect, you get retrospective coverage from day one, not just a forward-looking stream. There are no agents to deploy and nothing to configure on the Claude side beyond the key.</p>
+
+
+
+<p class="wp-block-paragraph">Once the events are flowing, the entire Artemis platform goes to work on them automatically:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Environment Intelligence</strong> learns what normal looks like in your Claude org: which admins routinely manage roles, which integrations are expected, what export and access patterns are baseline behavior for your teams.</li>
+
+
+
+<li><strong>Detections</strong> generated for the Claude audit feed run continuously against that baseline.</li>
+
+
+
+<li><strong>Autonomous investigation</strong> triages anything that fires, end to end, before a human ever opens a ticket.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">You get value before the first alert ever fires. On many connects, the initial Environment Intelligence scan surfaces posture problems that were already there: admin API keys created months ago and never rotated, several unused for 90 days or more, each one a standing account-takeover risk that no one was watching. Finding stale privileged access on day one, without writing a rule, is often the first thing customers see.</p>
+
+
+
+<h2 class="wp-block-heading">Protect the data going in and out of Claude</h2>
+
+
+
+<p class="wp-block-paragraph">The first question most security teams ask about an AI tool is what sensitive data is flowing into it. Artemis ingests Claude Enterprise conversation content and file uploads and watches for the behavior that signals sensitive data leaving your control, such as unusual upload volume and bulk access to chats, projects, and files. Because Artemis already understands your users, the access they hold, and the assets you treat as crown-jewels, each prompt and upload is evaluated in full context rather than in isolation, so a real exposure surfaces as a clear story of who moved what and why it matters. That environmental context is what turns a raw signal into a finding your team can act on with confidence.</p>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="875" data-id="1050" src="https://artemissecurity.com/wp-content/uploads/2026/06/image-5-1024x875.png" alt="" class="wp-image-1050" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/image-5-1024x875.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/image-5-300x256.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/image-5-768x656.png 768w, https://artemissecurity.com/wp-content/uploads/2026/06/image-5.png 1946w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="832" data-id="1051" src="https://artemissecurity.com/wp-content/uploads/2026/06/image-6-1024x832.png" alt="" class="wp-image-1051" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/image-6-1024x832.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/image-6-300x244.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/image-6-768x624.png 768w, https://artemissecurity.com/wp-content/uploads/2026/06/image-6.png 1848w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+</figure>
+</div></div>
+
+
+
+<h2 class="wp-block-heading">Stay audit ready and govern AI usage</h2>
+
+
+
+<p class="wp-block-paragraph">Adopting Claude across a regulated business means proving that the usage is governed. Artemis retains every Claude event alongside the rest of your environment, normalized and queryable in plain language, so demonstrating who accessed what, which data was involved, and how it maps to policy becomes a simple English query or case rather than a forensic project. Your team can monitor acceptable-use policies, support regulatory requirements, and answer auditor questions from the same place they already run detection and response. Artemis also highlights shadow AI usage and shows which projects hold sensitive material and who owns them, so governance keeps pace with adoption.</p>
+
+
+
+<h2 class="wp-block-heading">Catch account takeover, insider risk, and privilege abuse</h2>
+
+
+
+<p class="wp-block-paragraph">Account takeover and insider misuse are where Artemis shines, and the Compliance API gives it rich signal to work with. Artemis flags authentication anomalies such as logins from new geographies or devices and failed attempts that suddenly succeed, and it ties those signals to identity activity elsewhere in your environment. It detects the mass viewing or downloading of chats, projects, and files, a single actor sweeping across many projects in a short window, and admin or compliance-API activity arriving from an unexpected location. Role and permission grants, SCIM and directory-sync changes, unexpected user provisioning, and API key creation and deletion are all monitored as they happen.</p>
+
+
+
+<h2 class="wp-block-heading">Watch the AI supply chain</h2>
+
+
+
+<p class="wp-block-paragraph">As teams extend Claude with connected tools, configuration itself becomes an attack surface. Artemis tracks changes to MCP server configuration, connected integrations, and Claude Code repository and webhook settings, each of which can open a path for unsanctioned automation if it is altered without oversight.</p>
+
+
+
+<h2 class="wp-block-heading">Coverage for every way your team uses Claude</h2>
+
+
+
+<p class="wp-block-paragraph">The Compliance API covers Claude Enterprise on the web, but it is not the only way your organization uses Claude. Artemis also ingests telemetry from <strong>Claude Code</strong> and <strong>Claude Cowork</strong> via OpenTelemetry, extending the same detection and investigation coverage to developer-assistant activity: tool invocations, permission decisions, prompts that may leak secrets, and anomalous session behavior. Wherever Claude runs in your enterprise, Artemis can see it and reason about it.</p>
+
+
+
+<h2 class="wp-block-heading">Connected stories, not isolated alerts</h2>
+
+
+
+<p class="wp-block-paragraph">Because every Claude event is normalized to OCSF and correlated across your whole environment, findings come together as connected stories rather than scattered alerts. An admin action from a new location, followed by bulk downloads, followed by a configuration change, becomes one high-confidence case instead of three signals sitting in separate queues. Artemis enriches each case with context and a recommended verdict, so your analysts move from question to answer in minutes rather than hours.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="427" src="https://artemissecurity.com/wp-content/uploads/2026/06/image-1024x427.png" alt="" class="wp-image-1062" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/image-1024x427.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/image-300x125.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/image-768x320.png 768w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h2 class="wp-block-heading">See everything. Stop anything.</h2>
+
+
+
+<p class="wp-block-paragraph">Claude deserves the same rigor as every other system your business depends on. With Artemis, you can adopt it with confidence, give your team full visibility into Claude Enterprise activity from day one, and keep seeing everything and stopping anything across your environment.</p>
+
+
+
+<h2 class="wp-block-heading">Get started</h2>
+
+
+
+<p class="wp-block-paragraph">If you use Claude Enterprise, you can connect it to Artemis in minutes and start receiving environment-specific detections and fully investigated cases the same day. To see it live, request a demo at <a href="https://artemissecurity.com/demo/">https://artemissecurity.com/demo/</a>.</p>
+<p>The post <a href="https://artemissecurity.com/company-news/secure-your-enterprise-ai-artemis-now-integrates-with-anthropic-compliance-api-and-telemetry/">Secure Your Enterprise AI: Artemis Now Integrates with Anthropic Compliance API and telemetry</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Announcing Artemis: Security That Understands What It Protects</title>
+		<link>https://artemissecurity.com/company-news/announcing-artemis-security-that-understands-what-it-protects/</link>
+		
+		<dc:creator><![CDATA[Shachar Hirshberg]]></dc:creator>
+		<pubDate>Wed, 15 Apr 2026 01:10:08 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=203</guid>
+
+					<description><![CDATA[<p>Security teams have more data than ever to stop attacks &#8211; but almost no way to use it. Detections are generic, investigations are manual, and attackers move faster than any human workflow can match. autonomous threats at enterprise scale Dan and I built Artemis to help security teams detect and respond to threats dramatically faster. [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/company-news/announcing-artemis-security-that-understands-what-it-protects/">Announcing Artemis: Security That Understands What It Protects</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="683" src="https://artemissecurity.com/wp-content/uploads/2026/04/Artemis-Founders-Photo--1024x683.jpg" alt="" class="wp-image-805" srcset="https://artemissecurity.com/wp-content/uploads/2026/04/Artemis-Founders-Photo--1024x683.jpg 1024w, https://artemissecurity.com/wp-content/uploads/2026/04/Artemis-Founders-Photo--300x200.jpg 300w, https://artemissecurity.com/wp-content/uploads/2026/04/Artemis-Founders-Photo--768x512.jpg 768w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-22 wp-block-paragraph">Security teams have more data than ever to stop attacks &#8211; but almost no way to use it. Detections are generic, investigations are manual, and attackers move faster than any human workflow can match. autonomous threats at enterprise scale</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-23 wp-block-paragraph">Dan and I built Artemis to help security teams detect and respond to threats dramatically faster. Today, we’re excited to share Artemis publicly for the first time. The company is emerging from stealth with $70 million in seed and Series A funding, with the Series A led by Felicis and the seed round co-led by First Round Capital and Brightmind. The rounds included participation from Theory VC, Lockstep, and prominent cybersecurity industry leaders, including founders of Abnormal AI and Demisto, the former CEO and CTO of Splunk, and senior executives from CrowdStrike, Palo Alto Networks, Microsoft, and Okta.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-24 wp-block-paragraph">We’re grateful to the investors, angels, partners, and early customers who believed in this direction from the moment we started the company seven months ago.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>The gap between knowing and understanding</strong></h2>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-25 wp-block-paragraph">Security has always been a story of adapting faster than the threat.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-26 wp-block-paragraph">The first era of defense was about digital walls. Firewalls. Perimeter controls. VPNs. The assumption was that threats could be stopped at the boundary.<br></p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-27 wp-block-paragraph">The second era acknowledged that walls weren&#8217;t enough and built watchtowers: SIEMs, detection rules, alert pipelines. A watchtower can see that someone is at the gate. It can&#8217;t tell if they&#8217;re supposed to be there.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-28 wp-block-paragraph">Modern organizations are messy, interconnected systems, and traditional tools only capture fragments, not the full picture. Identity systems see authentication events, cloud platforms see infrastructure changes, endpoint tools see processes.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-29 wp-block-paragraph">We are now entering a third era of cyber defense, driven by a fundamentally different threat landscape. An attacker with access to frontier AI can probe a target continuously. Once inside, they move laterally across clusters, clouds, and applications &#8211; performing thousands of actions in ways that look harmless if you only see one piece of the activity</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-30 wp-block-paragraph">While the industry has gotten very good at generating signals, it is still surprisingly bad at understanding them. That gap between having data (knowing) and having context (understanding) is what is required for modern defense. This is where Artemis comes in.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>Delivering Protection Instead of Chasing Alerts</strong></h2>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-31 wp-block-paragraph">The human body’s defense system doesn&#8217;t build barriers, but it still stops attacks effectively. It watches. It learns. It recognizes what belongs and what doesn&#8217;t. It adapts and stops attacks in real time, and it gets better at its job every time it encounters something new.&nbsp;</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-32 wp-block-paragraph">Artemis does the same across your IT estate. It models each customer&#8217;s environment continuously: users, AI agents, machines, cloud workloads, applications, business context, behavioral patterns across every integrated log source. Adaptive detections are generated specifically for your environment. Agentic threat hunting proactively looks for suspicious activities. Every security signal triggers an autonomous investigation that understands your baseline. You get a full story: here&#8217;s what happened, here’s the context, here&#8217;s the evidence, here’s what can be contained, here&#8217;s what needs your judgment. The analyst&#8217;s job transforms from data assembly to decision-making.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-33 wp-block-paragraph">Customers using Artemis have reduced their mean time to detect and respond to important security events by 94%. We&#8217;re already in production with some of the world’s largest and fastest-growing companies across financial services, technology, insurance, and more, analyzing over 15,000TB daily and billions of events hourly.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>This System Has Been a Long Time in the Making</strong></h2>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-34 wp-block-paragraph">Artemis did not start from scratch.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-35 wp-block-paragraph">I spent the last decade building and scaling enterprise security operations platforms as a product and engineering leader at Demisto, Palo Alto Networks, and AWS GuardDuty &#8211; the world&#8217;s largest cloud attack detection product, observing millions of AWS accounts. Over the years, I helped hundreds of security operations centers, in companies ranging from Fortune 500 to 200 people startups, elevate their operations and worked with them to navigate sensitive security incidents.&nbsp;</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-36 wp-block-paragraph">Dan’s work has always focused on architecting complex AI systems to extract meaningful patterns from large volumes of data. At Twitter, Dan worked on behavioral modeling systems that represented how hundreds of millions of users interacted with the platform. At Abnormal AI, where Dan led everything AI/ML, similar concepts powered the fastest growing email security company in history by modeling how organizations communicate and identifying behavior that didn’t belong.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-37 wp-block-paragraph">Those experiences led to a simple realization: AI reasoning becomes dramatically more reliable when it has a structured model of the environment it&#8217;s analyzing. At Artemis, that principle is applied to enterprise infrastructure. The platform fuses telemetry and business context across identity systems, cloud environments, endpoints, networks, and applications into a single model that captures how an organization actually operates.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-38 wp-block-paragraph">Once that model exists, AI can reason about activity in a way traditional tooling simply cannot.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-39 wp-block-paragraph">Instead of scanning logs for anomalies, the system can evaluate whether a sequence of actions makes sense for the environment it is observing. That difference is what makes agentic detection and response operations possible.</p>
+
+
+
+<h2 class="wp-block-heading"><strong>What comes next</strong></h2>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-40 wp-block-paragraph">Security has always been a race between attackers and defenders. For a long time, defenders relied on tools that could only observe systems.&nbsp;</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-41 wp-block-paragraph">The next generation of security platforms will need to understand and protect them.</p>
+
+
+
+<p class="has-black-color has-text-color has-link-color wp-elements-42 wp-block-paragraph">If you want to see how Artemis can elevate your detection and response program, <a href="https://artemissecurity.com/demo/" type="link" id="https://artemissecurity.com/demo/">see the product</a> with one of our experts. And if you&#8217;re excited by the idea of building agentic defense in one of the world’s fastest growing cybersecurity companies and making the world safer in the era of AI, we&#8217;re hiring across R&amp;D, GTM, Product, and Marketing.</p>
+<p>The post <a href="https://artemissecurity.com/company-news/announcing-artemis-security-that-understands-what-it-protects/">Announcing Artemis: Security That Understands What It Protects</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>credential theft Archives - Artemis Security</title>
+	<atom:link href="https://artemissecurity.com/tag/credential-theft/feed/" rel="self" type="application/rss+xml" />
+	<link>https://artemissecurity.com/tag/credential-theft/</link>
+	<description>AI-Native Protection Platform for Modern SecOps</description>
+	<lastBuildDate>Mon, 27 Jul 2026 15:35:55 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1</generator>
+
+<image>
+	<url>https://artemissecurity.com/wp-content/uploads/2026/02/cropped-Icon-32x32.png</url>
+	<title>credential theft Archives - Artemis Security</title>
+	<link>https://artemissecurity.com/tag/credential-theft/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>An Unprecedented AI-speed Attack Tempo</title>
+		<link>https://artemissecurity.com/company-news/ai-model-breached-hugging-face/</link>
+		
+		<dc:creator><![CDATA[Shachar Hirshberg]]></dc:creator>
+		<pubDate>Mon, 27 Jul 2026 15:35:54 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[ai security]]></category>
+		<category><![CDATA[credential theft]]></category>
+		<category><![CDATA[Hugging Face]]></category>
+		<category><![CDATA[lateral movement]]></category>
+		<category><![CDATA[OpenAI]]></category>
+		<category><![CDATA[security investigation]]></category>
+		<category><![CDATA[security telemetry]]></category>
+		<category><![CDATA[Threat Detection]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1308</guid>
+
+					<description><![CDATA[<p>Last week OpenAI disclosed that during an internal evaluation of its models&#8217; offensive cyber capability, two of its models broke out of the test sandbox, reached the open internet, and ended up inside Hugging Face&#8217;s production infrastructure. The models were GPT-5.6 Sol and an unreleased one, both running with cyber refusals reduced and the production [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/company-news/ai-model-breached-hugging-face/">An Unprecedented AI-speed Attack Tempo</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="584" src="https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-1024x584.png" alt="" class="wp-image-1317" srcset="https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-1024x584.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-300x171.png 300w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-768x438.png 768w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack.png 1210w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Last week OpenAI<a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"> disclosed</a> that during an internal evaluation of its models&#8217; offensive cyber capability, two of its models broke out of the test sandbox, reached the open internet, and ended up inside Hugging Face&#8217;s production infrastructure. The models were GPT-5.6 Sol and an unreleased one, both running with cyber refusals reduced and the production safety classifiers switched off so researchers could measure raw skill.</p>
+
+
+
+<p class="wp-block-paragraph">They weren&#8217;t targeting Hugging Face. They were trying to solve a benchmark called<a href="https://arxiv.org/abs/2605.11086"> ExploitGym</a>, worked out that the answer key probably lived on Hugging Face, and went to get it.</p>
+
+
+
+<p class="wp-block-paragraph">A benchmark built to measure whether AI can exploit software got exploited by the AI taking it.</p>
+
+
+
+<p class="wp-block-paragraph">Hugging Face had<a href="https://huggingface.co/blog/security-incident-july-2026"> published their own account</a> five days earlier, at which point they had no idea who was behind it. Clem Delangue has since called it possibly the first of its kind. What I&#8217;d say with more confidence is that it&#8217;s the first intrusion I&#8217;ve seen documented this cleanly from both ends, which is what makes it worth studying instead of just reacting to.</p>
+
+
+
+<p class="wp-block-paragraph">Most of the coverage has landed on whether AI has invented a new category of attack. Having spent enough time in the logs of real intrusions, I don&#8217;t think it has. What changed is the clock.</p>
+
+
+
+<h2 class="wp-block-heading">Attackers go looking for the answer key</h2>
+
+
+
+<p class="wp-block-paragraph">Years ago I was on the blue team in a large red/blue exercise. While working through the red team&#8217;s command-and-control traffic we enumerated one of their hosting servers and found a path into a file share they&#8217;d left open, clearly by accident, holding old drafts of their attack plans. That changed the exercise for us. We stopped asking how to hunt them and started asking what else they&#8217;d left exposed. We took everything we could find and used it to stay ahead of them for the rest of the engagement.</p>
+
+
+
+<p class="wp-block-paragraph">That pattern turns up in nearly every intrusion I&#8217;ve worked on. An attacker who gets a foothold starts looking for whatever the defenders left lying around. Network diagrams. Runbooks. A credential vault. The cyber-insurance policy that tells them exactly how much to demand. An exposed document beats an exploit every time, and attackers know it.</p>
+
+
+
+<p class="wp-block-paragraph">The models did the same thing. They worked out the answer key might be reachable and went straight for it. New actor, old behavior.</p>
+
+
+
+<h2 class="wp-block-heading">Two environments, and what each disclosure actually says</h2>
+
+
+
+<p class="wp-block-paragraph">Worth pulling these apart, because a lot of the coverage has run them together.</p>
+
+
+
+<p class="wp-block-paragraph">Inside OpenAI&#8217;s research environment, the evaluation sandbox had exactly one network path out. That was an internally hosted proxy and cache for package registries, put there so the agent could install dependencies. The models found a zero-day in that proxy, escaped through it, then escalated privileges and moved laterally through OpenAI&#8217;s own research infrastructure until they landed on a node with internet access. OpenAI has disclosed the vulnerability to its vendor and named neither the vendor nor the bug.</p>
+
+
+
+<p class="wp-block-paragraph">Inside Hugging Face, the picture comes from their disclosure rather than OpenAI&#8217;s. They describe a malicious dataset that abused two code-execution paths in their dataset processing (a loader that executed remote code, and a template injection in a dataset configuration) to run code on a processing worker. From there the actor took node-level access, harvested cloud and cluster credentials, and moved laterally into several internal clusters across a weekend.</p>
+
+
+
+<p class="wp-block-paragraph">OpenAI&#8217;s account of the same intrusion describes the model chaining stolen credentials and zero-days into a remote code execution path on Hugging Face servers, and notes that as one example among others. Neither company has said whether that&#8217;s the same path Hugging Face describes or a different one. It may come out when the joint investigation closes.</p>
+
+
+
+<p class="wp-block-paragraph">On scope, Hugging Face reported unauthorized access to a limited set of internal datasets and to several service credentials. They found no evidence of tampering with public models, datasets or Spaces, and verified their container images and published packages clean. Assessment of partner and customer data was still open at the time of writing.</p>
+
+
+
+<p class="wp-block-paragraph">The dataset pipeline as the way in deserves more attention than it&#8217;s gotten. Every organization running ML infrastructure has that surface. Few treat it as a production attack surface, instrument it, or baseline what a processing worker is supposed to be doing.</p>
+
+
+
+<h2 class="wp-block-heading">What was actually new</h2>
+
+
+
+<p class="wp-block-paragraph">Not the tradecraft. Take the model out of it and this is a shape any responder would recognize. Exploit, escalate, harvest credentials, move laterally, stand up command and control.</p>
+
+
+
+<p class="wp-block-paragraph">What changed is the operational tempo. The whole campaign ran over a weekend. It worked in parallel across a swarm of sandboxes that came up and went away by the minute rather than operating sequentially from a single foothold. Its C2 relocated itself across public services. Human operators don&#8217;t work like this, and a detection and response process built around human dwell time isn&#8217;t meeting it on level ground.</p>
+
+
+
+<p class="wp-block-paragraph">The lesson there is narrower than it first appears. Tempo doesn&#8217;t defeat your detections. It defeats the loop your team runs between a signal firing and someone acting on it. The individual signals are ones a competent analyst would recognize on sight. Whether anything closes that loop inside the attacker&#8217;s working window is a separate question, and it&#8217;s the one that decided this incident.</p>
+
+
+
+<h2 class="wp-block-heading">What this class of behavior puts in your telemetry</h2>
+
+
+
+<p class="wp-block-paragraph">Neither company published log data, so treat what follows as analysis rather than reporting. An intrusion built this way does produce a fairly predictable set of observables, though, and none of them need an exotic detection. What they need is that you&#8217;re collecting the right thing to begin with.</p>
+
+
+
+<ul class="wp-block-list">
+<li>A credential appearing on a host it has never been used from. Requires auth telemetry from that host, plus identity resolution that can tie the credential to the same entity across systems that don&#8217;t share a schema.</li>
+
+
+
+<li>A processing worker executing well outside its normal profile and then reaching node-level access. Requires process telemetry from the worker tier and a baseline of what that tier normally does. Plenty of environments have neither.</li>
+
+
+
+<li>East-west traffic between internal clusters with no routine reason to talk to each other. If you&#8217;re only watching north-south egress, this hop is invisible.</li>
+
+
+
+<li>Sandboxes created and destroyed by the minute, C2 endpoints that relocate on their own. Each one on its own looks like nothing, so catching it means correlating short-lived assets across time.</li>
+
+
+
+<li>Action volume and parallelism that no human operator or service account would produce. That&#8217;s per-identity rate baselining, not a global threshold.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">None of this is exotic. The industry has known how to solve every item on the list for years.</p>
+
+
+
+<h2 class="wp-block-heading">So why is this hard</h2>
+
+
+
+<p class="wp-block-paragraph">Hugging Face caught this, and caught it well. They caught it because they&#8217;d already built LLM-based analysis into their anomaly detection pipeline, and it was the correlation across those signals that surfaced the compromise. OpenAI&#8217;s security team flagged the anomalous activity independently on their own side.</p>
+
+
+
+<p class="wp-block-paragraph">I don&#8217;t read either of those as a knock on anyone. I read it as the finding. The bar for what a mature detection program looks like has moved, and this is the evidence.</p>
+
+
+
+<p class="wp-block-paragraph">For most organizations the gap isn&#8217;t detection logic. It&#8217;s coverage and speed.</p>
+
+
+
+<p class="wp-block-paragraph">On coverage, the surfaces this attack crossed aren&#8217;t ones most teams watch. The detections themselves aren&#8217;t difficult. The telemetry frequently isn&#8217;t collected at all, or it arrives in three formats that never get reconciled, or it never gets tied back to an identity. A credential event in one system and a process event on a worker stay two unrelated alerts unless something resolves them to the same entity and assembles them into one story.</p>
+
+
+
+<p class="wp-block-paragraph">On speed, tempo compresses the window. A weekend isn&#8217;t long to notice, correlate and act, particularly when the correlating has to happen across sources that don&#8217;t share a format, and particularly when it starts on a Friday night.</p>
+
+
+
+<h2 class="wp-block-heading">The part almost nobody is discussing</h2>
+
+
+
+<p class="wp-block-paragraph">The most operationally significant detail in Hugging Face&#8217;s disclosure has almost nothing to do with the attack.</p>
+
+
+
+<p class="wp-block-paragraph">When their team went to analyze the attacker&#8217;s action log, they started with frontier models behind commercial APIs. It didn&#8217;t work. The analysis meant submitting large volumes of real attack commands, exploit payloads and C2 artifacts, and the providers&#8217; safety guardrails blocked the requests, because those guardrails can&#8217;t distinguish an incident responder from an attacker. They finished the work on GLM 5.2, an open-weight model, on their own infrastructure. That had a side benefit they called out, which is that no attacker data and none of the credentials it touched left their environment.</p>
+
+
+
+<p class="wp-block-paragraph">The reflex read is that this argues for running everything yourself. I don&#8217;t think that&#8217;s the lesson.</p>
+
+
+
+<p class="wp-block-paragraph">Hugging Face&#8217;s problem wasn&#8217;t hosted inference. It was reaching for a general-purpose assistant to do forensic work. Guardrails tuned to stop someone asking how to build malware can&#8217;t tell that apart from a responder submitting thousands of lines of real C2 traffic, because from inside the API they look identical. That&#8217;s a product-fit failure rather than a deployment-topology one. Worth noting too that OpenAI&#8217;s own remediation included bringing Hugging Face into their trusted access program for cyber, so the exception paths are getting built.</p>
+<p>The post <a href="https://artemissecurity.com/company-news/ai-model-breached-hugging-face/">An Unprecedented AI-speed Attack Tempo</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

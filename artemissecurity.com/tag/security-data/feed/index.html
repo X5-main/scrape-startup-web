@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>security data Archives - Artemis Security</title>
+	<atom:link href="https://artemissecurity.com/tag/security-data/feed/" rel="self" type="application/rss+xml" />
+	<link>https://artemissecurity.com/tag/security-data/</link>
+	<description>AI-Native Protection Platform for Modern SecOps</description>
+	<lastBuildDate>Tue, 14 Jul 2026 17:24:35 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1</generator>
+
+<image>
+	<url>https://artemissecurity.com/wp-content/uploads/2026/02/cropped-Icon-32x32.png</url>
+	<title>security data Archives - Artemis Security</title>
+	<link>https://artemissecurity.com/tag/security-data/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>The Security Posture You Think You Have vs. The One You Actually Have</title>
+		<link>https://artemissecurity.com/research/the-security-posture-you-think-you-have-vs-the-one-you-actually-have/</link>
+		
+		<dc:creator><![CDATA[Hadar Waldman]]></dc:creator>
+		<pubDate>Thu, 07 May 2026 15:23:01 +0000</pubDate>
+				<category><![CDATA[AI]]></category>
+		<category><![CDATA[Product]]></category>
+		<category><![CDATA[Research]]></category>
+		<category><![CDATA[Security]]></category>
+		<category><![CDATA[ai security]]></category>
+		<category><![CDATA[environment intelligence]]></category>
+		<category><![CDATA[security data]]></category>
+		<category><![CDATA[security investigation]]></category>
+		<category><![CDATA[security posture]]></category>
+		<category><![CDATA[security telemetry]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=958</guid>
+
+					<description><![CDATA[<p>Posture as Behavior, Not Configuration The security industry has spent the last decade building tools that evaluate posture by examining configuration. CSPM platforms scan cloud settings for misalignment with CIS benchmarks. SSPM tools audit SaaS application permissions against policy baselines. Compliance scanners verify that MFA is enabled, that encryption is turned on, that network security [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/research/the-security-posture-you-think-you-have-vs-the-one-you-actually-have/">The Security Posture You Think You Have vs. The One You Actually Have</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="577" src="https://artemissecurity.com/wp-content/uploads/2026/05/The-Security-Posture-1-1024x577.png" alt="" class="wp-image-1164" srcset="https://artemissecurity.com/wp-content/uploads/2026/05/The-Security-Posture-1-1024x577.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/05/The-Security-Posture-1-300x169.png 300w, https://artemissecurity.com/wp-content/uploads/2026/05/The-Security-Posture-1-768x433.png 768w, https://artemissecurity.com/wp-content/uploads/2026/05/The-Security-Posture-1.png 1211w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h2 class="wp-block-heading">Posture as Behavior, Not Configuration</h2>
+
+
+
+<p class="wp-block-paragraph">The security industry has spent the last decade building tools that evaluate posture by examining configuration. CSPM platforms scan cloud settings for misalignment with CIS benchmarks. SSPM tools audit SaaS application permissions against policy baselines. Compliance scanners verify that MFA is enabled, that encryption is turned on, that network security groups follow expected rules. These tools answer an important question: <em>is this environment configured correctly?</em></p>
+
+
+
+<p class="wp-block-paragraph">But configuration is not behavior. MFA can be enabled while forty percent of authentications bypass it through legacy protocols. An IAM role can be scoped correctly on paper while being assumed by unexpected principals in practice. A GitHub repository can have branch protection enabled while a pattern of manual overrides erodes its intent. The gap between what an environment is configured to do and what it actually does is where real risk lives — and until now, that gap has been largely invisible at enterprise scale.</p>
+
+
+
+<p class="wp-block-paragraph">Closing that gap requires reasoning over activity data — millions of events per day from CloudTrail, Okta, Entra, GitHub, CrowdStrike, and dozens of other sources. No human team can do this comprehensively across an entire enterprise environment. Static posture tools never tried — analyzing behavioral data at scale required a kind of judgment that only humans possessed and could not deliver at volume.</p>
+
+
+
+<figure class="wp-block-table"><table class="has-fixed-layout"><thead><tr><th>Security Control</th><th>What Configuration Tools See</th><th>What Activity Data Reveals</th></tr></thead><tbody><tr><td>MFA Policy</td><td>✅ Enabled</td><td>40% of auth bypasses MFA via legacy protocols</td></tr><tr><td>S3 Encryption</td><td>✅ Enabled</td><td>3 unauthorized principals accessing production buckets</td></tr><tr><td>Branch Protection</td><td>✅ Enabled</td><td>73% of overrides are manual, not CI/CD automation</td></tr><tr><td>IAM Role Scoping</td><td>✅ Compliant</td><td>Service account accessing 12 services beyond intended scope</td></tr><tr><td>Network Segmentation</td><td>✅ Enforced</td><td>142 accumulated exceptions eroding segmentation intent</td></tr></tbody></table></figure>
+
+
+
+<p class="wp-block-paragraph"><em>Same environment. Same controls. Different picture.</em></p>
+
+
+
+<p class="wp-block-paragraph">AI changes this equation. Artemis’ Environment Intelligence deploys autonomous AI agents that ingest twenty-four hours of security telemetry across every connected source and produce a comprehensive behavioral portrait of the environment: how identities are actually being used, how access patterns are actually distributed, how security controls are actually performing in practice. The goal is to reflect back to security teams a clear, evidence-backed picture of their environment&#8217;s real operating behavior, so they can make informed decisions about where posture is strong, where it is degrading, and where the gap between intent and reality demands attention.</p>
+
+
+
+<h2 class="wp-block-heading">Inside the Pipeline: From Raw Telemetry to Behavioral Portrait</h2>
+
+
+
+<figure class="wp-block-image size-full is-style-default"><img decoding="async" width="2560" height="660" src="https://artemissecurity.com/wp-content/uploads/2026/05/Screenshot-2026-05-07-at-12.02.35-PM-scaled.png" alt="" class="wp-image-996" srcset="https://artemissecurity.com/wp-content/uploads/2026/05/Screenshot-2026-05-07-at-12.02.35-PM-scaled.png 2560w, https://artemissecurity.com/wp-content/uploads/2026/05/Screenshot-2026-05-07-at-12.02.35-PM-300x77.png 300w, https://artemissecurity.com/wp-content/uploads/2026/05/Screenshot-2026-05-07-at-12.02.35-PM-1024x264.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/05/Screenshot-2026-05-07-at-12.02.35-PM-768x198.png 768w" sizes="(max-width: 2560px) 100vw, 2560px" /></figure>
+
+
+
+<p class="wp-block-paragraph">To make this concrete, let us trace a single analysis through the system — from raw log data to a finding that a security team can act on.</p>
+
+
+
+<h3 class="wp-block-heading">Step 1: Structured Data Extraction</h3>
+
+
+
+<p class="wp-block-paragraph">The pipeline begins by executing over one hundred source-type-specific queries against the security data lake. These are not generic searches. Each query is purpose-built to extract a specific behavioral signal. For example, this query extracts the identity type distribution from AWS CloudTrail:</p>
+
+
+<pre class="wp-block-code"><span><code class="hljs language-php">SELECT
+    userIdentity.type <span class="hljs-keyword">AS</span> identity_type,
+    COUNT(*) <span class="hljs-keyword">AS</span> event_count,
+    COUNT(DISTINCT userIdentity.arn) <span class="hljs-keyword">AS</span> unique_identities
+FROM cloudtrail_logs
+WHERE eventTime &gt;= {start_time}
+  <span class="hljs-keyword">AND</span> eventTime &lt;= {end_time}
+  <span class="hljs-keyword">AND</span> userIdentity.type IS NOT <span class="hljs-keyword">NULL</span>
+GROUP BY userIdentity.type
+ORDER BY event_count DESC
+</code></span></pre>
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">The result is not a dashboard metric — it is the raw material for understanding how identity actually operates in this environment. How many identities are long-lived IAM users versus short-lived assumed roles? What is the session-to-identity ratio? Is this environment using modern credential patterns or relying on static keys?</p>
+
+
+
+<h3 class="wp-block-heading">Step 2: Domain-Expert Interpretation</h3>
+
+
+
+<p class="wp-block-paragraph">Raw query results are meaningless without contextual interpretation. A session-to-identity ratio of fifty-to-one could indicate identity sprawl or exemplary short-lived credential hygiene — the difference depends entirely on context.</p>
+
+
+
+<p class="wp-block-paragraph">Each AI agent is equipped with a source-type-specific interpretation guide that encodes the domain knowledge required to read the data correctly. For AWS CloudTrail, the guide includes rules such as:</p>
+
+
+
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8f761849 wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<ul class="wp-block-list">
+<li><strong>Session vs. Identity counts:</strong> AssumedRole sessions can be 50–700x higher than base identities — this is normal for automated environments and indicates proper short-lived credential use, NOT identity sprawl.</li>
+</ul>
+</div></div>
+</div>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<ul class="wp-block-list">
+<li><strong>ASIA</strong>| keys = Temporary STS credentials (good practice). AKIA\ keys* = Long-term IAM keys (monitor for rotation).</li>
+</ul>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-flow wp-block-group-is-layout-flow">
+<ul class="wp-block-list">
+<li><strong>Root account usage:</strong> Root activity is critical-severity when unexpected, but some organizations have documented root usage procedures. If root usage aligns with known procedures and comes from expected IPs, note it as a posture observation rather than a critical finding.</li>
+</ul>
+</div></div>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">For Okta, the guide encodes similar calibration:</p>
+
+
+
+<div class="wp-block-group is-nowrap is-layout-flex wp-container-core-group-is-layout-8f761849 wp-block-group-is-layout-flex">
+<ul class="wp-block-list">
+<li><strong>MFA factor analysis must distinguish phishing-resistant from non-resistant factors.</strong> An environment reporting 98% MFA coverage looks healthy — until the activity data reveals that 80% of those MFA-protected authentications use SMS or TOTP, which are vulnerable to real-time phishing and SIM-swap attacks. Only WebAuthn/FIDO2 factors are phishing-resistant. The headline metric hides the real posture.</li>
+</ul>
+</div>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">These guides prevent the most common failure mode in AI-driven analysis: technically correct observations that are contextually wrong.</p>
+
+
+
+<h3 class="wp-block-heading">Step 3: Independent Investigation</h3>
+
+
+
+<p class="wp-block-paragraph">Pre-computed queries provide breadth, but they do not always contain the full story. A query might surface that a specific IAM role has an unusually high error rate — but the pre-computed data alone cannot tell you which principals are assuming that role, what operations they are attempting, or whether the pattern started recently. The insight is a lead, not a conclusion.</p>
+
+
+
+<p class="wp-block-paragraph">To close that gap, each agent can independently query the data lake ad hoc — formulating its own follow-up questions, executing them, and incorporating the results. If the pre-computed data shows a spike in failed <code>secretsmanager:GetSecretValue</code> calls, the agent can query for the specific roles involved, the secret ARNs being requested, and the time window over which the failures began. This turns a surface-level observation into a grounded finding: not just &#8220;something is failing&#8221; but &#8220;this specific role has been misconfigured against the wrong environment since last Tuesday, causing 2,873 retry failures per day across four Lambda functions.&#8221;</p>
+
+
+
+<p class="wp-block-paragraph">This independent investigation capability is what separates behavioral intelligence from a reporting layer on top of pre-built queries. The pre-computed data tells the agent where to look. The investigation tells the agent what is actually happening.</p>
+
+
+
+<h3 class="wp-block-heading">Step 4: Synthesis and Cross-Source Correlation</h3>
+
+
+
+<p class="wp-block-paragraph">Each source-type agent produces a structured assessment of how that system is actually being used. A dedicated cross-source agent then synthesizes these portraits into a unified view, surfacing patterns that only become visible when multiple systems are examined together — such as an identity whose authentication patterns in Okta are inconsistent with its activity patterns in AWS, suggesting the credentials may be shared or the account serves a different function than its directory entry implies.</p>
+
+
+
+<p class="wp-block-paragraph">Every observation is documented with a complete investigation trail: the specific queries executed, the data examined, the reasoning applied, and the conclusion reached. This trail is the mechanism by which security teams verify that the behavioral portrait is accurate and grounded in evidence.</p>
+
+
+
+<h2 class="wp-block-heading">What This Reveals in Practice</h2>
+
+
+
+<p class="wp-block-paragraph">In one engagement, the system identified that 60% of a customer&#8217;s CloudTrail volume consisted of repeated failed decrypt calls from a deprecated service. No configuration check would have flagged this — the KMS key existed, the IAM permissions were valid, the service was still registered. Only the activity data revealed that a decommissioned system was generating millions of pointless API calls per day. Resolving that single finding eliminated almost $1M in annual CloudTrail, S3, and SIEM ingestion costs.</p>
+
+
+
+<p class="wp-block-paragraph">That is not an anomaly the system was designed to detect. It is what becomes visible when you finally see how an environment actually operates — the MFA policies that a subset of authentications bypass through legacy paths, the privilege that has drifted beyond its intended scope through organic growth, the architectural assumptions that quietly stopped being true. Configuration tools will never surface these patterns because they evaluate settings, not activity. Behavioral analysis surfaces them as a matter of course.</p>
+
+
+
+<h2 class="wp-block-heading">Lessons from Building AI That Reasons Over Security Data</h2>
+
+
+
+<p class="wp-block-paragraph">Building a system that produces trustworthy behavioral analysis at enterprise scale required solving several problems that have no precedent in traditional security automation. The lessons we learned apply broadly to anyone deploying AI agents over large operational datasets.</p>
+
+
+
+<h3 class="wp-block-heading">Don&#8217;t Give an AI Agent Raw Data</h3>
+
+
+
+<p class="wp-block-paragraph">An AI agent cannot reason effectively over four million raw events — signal degrades as volume increases, regardless of context window size. The key architectural decision is that agents never see raw logs. They reason over structured, pre-computed query results that extract specific behavioral dimensions. When deeper investigation is needed, the agent executes targeted follow-up queries starting from a specific hypothesis, not open-ended exploration. This is not just a performance optimization — it is the primary mechanism that keeps analysis focused and grounded.</p>
+
+
+
+<h3 class="wp-block-heading">Ensuring Results Are Evidence-Based, Not Hallucinated</h3>
+
+
+
+<p class="wp-block-paragraph">The central risk in applying AI to security analysis is hallucination — findings that sound plausible but are not grounded in actual data. We mitigate this through prompt design that makes it structurally difficult for the agent to produce ungrounded output.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Force specificity.</strong> The agent is instructed to never make a claim without citing the specific numbers, entities, and queries behind it. A vague finding like &#8220;there were many API calls across several services&#8221; is rejected by the prompt itself. The required standard is explicit: &#8220;Observed 847,293 events across 45 services. Top services: Service1 (312K calls, 37%), Service2 (198K calls, 23%).&#8221; When every statement must be backed by a concrete metric, the agent cannot fabricate — it either has the data or it has nothing to say.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Require an investigation trail.</strong> Every finding must include the full chain of reasoning that produced it: the query that was executed, the data that was returned, the observation drawn from that data, and the conclusion reached. This is not documentation generated after the fact — it is the structure through which the agent works. If the agent cannot populate the trail with real queries and real results, the finding does not get saved.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Validate before storing.</strong> Findings pass through a quality gate before they reach the database. Each must clear three tests: Would a senior analyst already know this? Is there a concrete action to take? Is this actually abnormal for this specific environment? Findings that restate the obvious, lack actionable recommendations, or flag normal-for-this-org patterns are filtered out. Additionally, agents are explicitly prohibited from creating findings about absent data — if a log source is not connected, that is a business decision, not a security gap.</p>
+
+
+
+<p class="wp-block-paragraph">The combined effect is a system where hallucination is not merely discouraged but structurally constrained. The agent must show specific numbers, show the query that produced them, and survive a quality gate — leaving very little room for plausible-sounding fiction.</p>
+
+
+
+<h3 class="wp-block-heading">Maintaining Consistency Over Time</h3>
+
+
+
+<p class="wp-block-paragraph">Security teams need to trust that changes in the behavioral portrait reflect actual changes in the environment, not drift in how the AI interprets data. We achieve this through three mechanisms. First, the interpretation guides are deterministic — the same contextual rules apply to every analysis, ensuring that a session-to-identity ratio of fifty-to-one is always read as healthy credential practice, not reinterpreted based on the agent&#8217;s mood. Second, the structured query layer is stable — the same queries extract the same behavioral dimensions every day, providing a consistent analytical surface. Third, the investigation trail creates accountability — if a finding appears or disappears between assessments, the trail documents exactly what data changed and how the reasoning followed.</p>
+
+
+
+<h2 class="wp-block-heading">What This Means for Your Security Strategy</h2>
+
+
+
+<p class="wp-block-paragraph">If you are a CISO reading this, the practical starting point is simple: pick one security control you believe is working — MFA, network segmentation, privileged access management — and ask not whether it is configured correctly, but what the activity data says about how it actually performs. If you cannot answer that question today, you have a behavioral visibility gap that no configuration scanner will close.</p>
+
+
+
+<p class="wp-block-paragraph">Environment Intelligence is not a replacement for CSPM, SSPM, or compliance tooling. Those tools verify that the right controls are in place. Behavioral intelligence reveals whether those controls are performing as designed in the real operating environment. Neither is sufficient alone. And this approach has real limitations — it depends on the quality and completeness of the telemetry sources connected to it, and AI-driven interpretation, despite every safeguard we have built, can still miss nuance that a domain expert with organizational context would catch. The investigation trail exists precisely so that security teams can verify, challenge, and override the system&#8217;s conclusions.</p>
+
+
+
+<p class="wp-block-paragraph">What behavioral posture assessment offers is a feedback loop that has never existed at this scale: deploy a control, then see — in the activity data, every day — whether it is actually doing what you intended. That feedback loop transforms security governance from a periodic audit exercise into a continuous measurement of whether your investments are delivering results. The organizations that adopt it will know not just what their security controls are, but what those controls actually do.</p>
+<p>The post <a href="https://artemissecurity.com/research/the-security-posture-you-think-you-have-vs-the-one-you-actually-have/">The Security Posture You Think You Have vs. The One You Actually Have</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

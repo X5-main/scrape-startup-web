@@ -1,0 +1,9 @@
+<!-- PLACEHOLDER LOGO — replace with the official VMware Carbon Black / Broadcom SVG.
+     Could not fetch the official asset from this sandboxed environment (vectorlogo.zone,
+     worldvectorlogo, wikimedia, brandfetch all blocked). A human should swap this for the
+     real press-kit SVG, preserving the 32x32 viewBox to match the other logos in this dir. -->
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="6" fill="#000000"/>
+  <circle cx="16" cy="16" r="9" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+  <circle cx="16" cy="16" r="3" fill="#FFFFFF"/>
+</svg>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Threat Detection Archives - Artemis Security</title>
+	<atom:link href="https://artemissecurity.com/tag/threat-detection/feed/" rel="self" type="application/rss+xml" />
+	<link>https://artemissecurity.com/tag/threat-detection/</link>
+	<description>AI-Native Protection Platform for Modern SecOps</description>
+	<lastBuildDate>Mon, 27 Jul 2026 15:35:55 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1</generator>
+
+<image>
+	<url>https://artemissecurity.com/wp-content/uploads/2026/02/cropped-Icon-32x32.png</url>
+	<title>Threat Detection Archives - Artemis Security</title>
+	<link>https://artemissecurity.com/tag/threat-detection/</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>An Unprecedented AI-speed Attack Tempo</title>
+		<link>https://artemissecurity.com/company-news/ai-model-breached-hugging-face/</link>
+		
+		<dc:creator><![CDATA[Shachar Hirshberg]]></dc:creator>
+		<pubDate>Mon, 27 Jul 2026 15:35:54 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[ai security]]></category>
+		<category><![CDATA[credential theft]]></category>
+		<category><![CDATA[Hugging Face]]></category>
+		<category><![CDATA[lateral movement]]></category>
+		<category><![CDATA[OpenAI]]></category>
+		<category><![CDATA[security investigation]]></category>
+		<category><![CDATA[security telemetry]]></category>
+		<category><![CDATA[Threat Detection]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1308</guid>
+
+					<description><![CDATA[<p>Last week OpenAI disclosed that during an internal evaluation of its models&#8217; offensive cyber capability, two of its models broke out of the test sandbox, reached the open internet, and ended up inside Hugging Face&#8217;s production infrastructure. The models were GPT-5.6 Sol and an unreleased one, both running with cyber refusals reduced and the production [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/company-news/ai-model-breached-hugging-face/">An Unprecedented AI-speed Attack Tempo</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img fetchpriority="high" decoding="async" width="1024" height="584" src="https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-1024x584.png" alt="" class="wp-image-1317" srcset="https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-1024x584.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-300x171.png 300w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack-768x438.png 768w, https://artemissecurity.com/wp-content/uploads/2026/07/huggingface-hack.png 1210w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph">Last week OpenAI<a href="https://openai.com/index/hugging-face-model-evaluation-security-incident/"> disclosed</a> that during an internal evaluation of its models&#8217; offensive cyber capability, two of its models broke out of the test sandbox, reached the open internet, and ended up inside Hugging Face&#8217;s production infrastructure. The models were GPT-5.6 Sol and an unreleased one, both running with cyber refusals reduced and the production safety classifiers switched off so researchers could measure raw skill.</p>
+
+
+
+<p class="wp-block-paragraph">They weren&#8217;t targeting Hugging Face. They were trying to solve a benchmark called<a href="https://arxiv.org/abs/2605.11086"> ExploitGym</a>, worked out that the answer key probably lived on Hugging Face, and went to get it.</p>
+
+
+
+<p class="wp-block-paragraph">A benchmark built to measure whether AI can exploit software got exploited by the AI taking it.</p>
+
+
+
+<p class="wp-block-paragraph">Hugging Face had<a href="https://huggingface.co/blog/security-incident-july-2026"> published their own account</a> five days earlier, at which point they had no idea who was behind it. Clem Delangue has since called it possibly the first of its kind. What I&#8217;d say with more confidence is that it&#8217;s the first intrusion I&#8217;ve seen documented this cleanly from both ends, which is what makes it worth studying instead of just reacting to.</p>
+
+
+
+<p class="wp-block-paragraph">Most of the coverage has landed on whether AI has invented a new category of attack. Having spent enough time in the logs of real intrusions, I don&#8217;t think it has. What changed is the clock.</p>
+
+
+
+<h2 class="wp-block-heading">Attackers go looking for the answer key</h2>
+
+
+
+<p class="wp-block-paragraph">Years ago I was on the blue team in a large red/blue exercise. While working through the red team&#8217;s command-and-control traffic we enumerated one of their hosting servers and found a path into a file share they&#8217;d left open, clearly by accident, holding old drafts of their attack plans. That changed the exercise for us. We stopped asking how to hunt them and started asking what else they&#8217;d left exposed. We took everything we could find and used it to stay ahead of them for the rest of the engagement.</p>
+
+
+
+<p class="wp-block-paragraph">That pattern turns up in nearly every intrusion I&#8217;ve worked on. An attacker who gets a foothold starts looking for whatever the defenders left lying around. Network diagrams. Runbooks. A credential vault. The cyber-insurance policy that tells them exactly how much to demand. An exposed document beats an exploit every time, and attackers know it.</p>
+
+
+
+<p class="wp-block-paragraph">The models did the same thing. They worked out the answer key might be reachable and went straight for it. New actor, old behavior.</p>
+
+
+
+<h2 class="wp-block-heading">Two environments, and what each disclosure actually says</h2>
+
+
+
+<p class="wp-block-paragraph">Worth pulling these apart, because a lot of the coverage has run them together.</p>
+
+
+
+<p class="wp-block-paragraph">Inside OpenAI&#8217;s research environment, the evaluation sandbox had exactly one network path out. That was an internally hosted proxy and cache for package registries, put there so the agent could install dependencies. The models found a zero-day in that proxy, escaped through it, then escalated privileges and moved laterally through OpenAI&#8217;s own research infrastructure until they landed on a node with internet access. OpenAI has disclosed the vulnerability to its vendor and named neither the vendor nor the bug.</p>
+
+
+
+<p class="wp-block-paragraph">Inside Hugging Face, the picture comes from their disclosure rather than OpenAI&#8217;s. They describe a malicious dataset that abused two code-execution paths in their dataset processing (a loader that executed remote code, and a template injection in a dataset configuration) to run code on a processing worker. From there the actor took node-level access, harvested cloud and cluster credentials, and moved laterally into several internal clusters across a weekend.</p>
+
+
+
+<p class="wp-block-paragraph">OpenAI&#8217;s account of the same intrusion describes the model chaining stolen credentials and zero-days into a remote code execution path on Hugging Face servers, and notes that as one example among others. Neither company has said whether that&#8217;s the same path Hugging Face describes or a different one. It may come out when the joint investigation closes.</p>
+
+
+
+<p class="wp-block-paragraph">On scope, Hugging Face reported unauthorized access to a limited set of internal datasets and to several service credentials. They found no evidence of tampering with public models, datasets or Spaces, and verified their container images and published packages clean. Assessment of partner and customer data was still open at the time of writing.</p>
+
+
+
+<p class="wp-block-paragraph">The dataset pipeline as the way in deserves more attention than it&#8217;s gotten. Every organization running ML infrastructure has that surface. Few treat it as a production attack surface, instrument it, or baseline what a processing worker is supposed to be doing.</p>
+
+
+
+<h2 class="wp-block-heading">What was actually new</h2>
+
+
+
+<p class="wp-block-paragraph">Not the tradecraft. Take the model out of it and this is a shape any responder would recognize. Exploit, escalate, harvest credentials, move laterally, stand up command and control.</p>
+
+
+
+<p class="wp-block-paragraph">What changed is the operational tempo. The whole campaign ran over a weekend. It worked in parallel across a swarm of sandboxes that came up and went away by the minute rather than operating sequentially from a single foothold. Its C2 relocated itself across public services. Human operators don&#8217;t work like this, and a detection and response process built around human dwell time isn&#8217;t meeting it on level ground.</p>
+
+
+
+<p class="wp-block-paragraph">The lesson there is narrower than it first appears. Tempo doesn&#8217;t defeat your detections. It defeats the loop your team runs between a signal firing and someone acting on it. The individual signals are ones a competent analyst would recognize on sight. Whether anything closes that loop inside the attacker&#8217;s working window is a separate question, and it&#8217;s the one that decided this incident.</p>
+
+
+
+<h2 class="wp-block-heading">What this class of behavior puts in your telemetry</h2>
+
+
+
+<p class="wp-block-paragraph">Neither company published log data, so treat what follows as analysis rather than reporting. An intrusion built this way does produce a fairly predictable set of observables, though, and none of them need an exotic detection. What they need is that you&#8217;re collecting the right thing to begin with.</p>
+
+
+
+<ul class="wp-block-list">
+<li>A credential appearing on a host it has never been used from. Requires auth telemetry from that host, plus identity resolution that can tie the credential to the same entity across systems that don&#8217;t share a schema.</li>
+
+
+
+<li>A processing worker executing well outside its normal profile and then reaching node-level access. Requires process telemetry from the worker tier and a baseline of what that tier normally does. Plenty of environments have neither.</li>
+
+
+
+<li>East-west traffic between internal clusters with no routine reason to talk to each other. If you&#8217;re only watching north-south egress, this hop is invisible.</li>
+
+
+
+<li>Sandboxes created and destroyed by the minute, C2 endpoints that relocate on their own. Each one on its own looks like nothing, so catching it means correlating short-lived assets across time.</li>
+
+
+
+<li>Action volume and parallelism that no human operator or service account would produce. That&#8217;s per-identity rate baselining, not a global threshold.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">None of this is exotic. The industry has known how to solve every item on the list for years.</p>
+
+
+
+<h2 class="wp-block-heading">So why is this hard</h2>
+
+
+
+<p class="wp-block-paragraph">Hugging Face caught this, and caught it well. They caught it because they&#8217;d already built LLM-based analysis into their anomaly detection pipeline, and it was the correlation across those signals that surfaced the compromise. OpenAI&#8217;s security team flagged the anomalous activity independently on their own side.</p>
+
+
+
+<p class="wp-block-paragraph">I don&#8217;t read either of those as a knock on anyone. I read it as the finding. The bar for what a mature detection program looks like has moved, and this is the evidence.</p>
+
+
+
+<p class="wp-block-paragraph">For most organizations the gap isn&#8217;t detection logic. It&#8217;s coverage and speed.</p>
+
+
+
+<p class="wp-block-paragraph">On coverage, the surfaces this attack crossed aren&#8217;t ones most teams watch. The detections themselves aren&#8217;t difficult. The telemetry frequently isn&#8217;t collected at all, or it arrives in three formats that never get reconciled, or it never gets tied back to an identity. A credential event in one system and a process event on a worker stay two unrelated alerts unless something resolves them to the same entity and assembles them into one story.</p>
+
+
+
+<p class="wp-block-paragraph">On speed, tempo compresses the window. A weekend isn&#8217;t long to notice, correlate and act, particularly when the correlating has to happen across sources that don&#8217;t share a format, and particularly when it starts on a Friday night.</p>
+
+
+
+<h2 class="wp-block-heading">The part almost nobody is discussing</h2>
+
+
+
+<p class="wp-block-paragraph">The most operationally significant detail in Hugging Face&#8217;s disclosure has almost nothing to do with the attack.</p>
+
+
+
+<p class="wp-block-paragraph">When their team went to analyze the attacker&#8217;s action log, they started with frontier models behind commercial APIs. It didn&#8217;t work. The analysis meant submitting large volumes of real attack commands, exploit payloads and C2 artifacts, and the providers&#8217; safety guardrails blocked the requests, because those guardrails can&#8217;t distinguish an incident responder from an attacker. They finished the work on GLM 5.2, an open-weight model, on their own infrastructure. That had a side benefit they called out, which is that no attacker data and none of the credentials it touched left their environment.</p>
+
+
+
+<p class="wp-block-paragraph">The reflex read is that this argues for running everything yourself. I don&#8217;t think that&#8217;s the lesson.</p>
+
+
+
+<p class="wp-block-paragraph">Hugging Face&#8217;s problem wasn&#8217;t hosted inference. It was reaching for a general-purpose assistant to do forensic work. Guardrails tuned to stop someone asking how to build malware can&#8217;t tell that apart from a responder submitting thousands of lines of real C2 traffic, because from inside the API they look identical. That&#8217;s a product-fit failure rather than a deployment-topology one. Worth noting too that OpenAI&#8217;s own remediation included bringing Hugging Face into their trusted access program for cyber, so the exception paths are getting built.</p>
+<p>The post <a href="https://artemissecurity.com/company-news/ai-model-breached-hugging-face/">An Unprecedented AI-speed Attack Tempo</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Secure Your Enterprise AI: Artemis Now Integrates with Anthropic Compliance API and telemetry</title>
+		<link>https://artemissecurity.com/company-news/secure-your-enterprise-ai-artemis-now-integrates-with-anthropic-compliance-api-and-telemetry/</link>
+		
+		<dc:creator><![CDATA[Shachar Hirshberg]]></dc:creator>
+		<pubDate>Thu, 04 Jun 2026 02:47:01 +0000</pubDate>
+				<category><![CDATA[Company News]]></category>
+		<category><![CDATA[Product]]></category>
+		<category><![CDATA[AI]]></category>
+		<category><![CDATA[Anthropic]]></category>
+		<category><![CDATA[security posture]]></category>
+		<category><![CDATA[Threat Detection]]></category>
+		<guid isPermaLink="false">https://artemissecurity.com/?p=1047</guid>
+
+					<description><![CDATA[<p>Artemis brings Claude Enterprise activity into the same AI-native detection, investigation, and response platform that already protects your cloud, identity, and SaaS, turning AI from a blind spot into a governed, fully monitored data source. Claude has quickly become one of the most widely used and most privileged applications in many enterprises, and almost none [&#8230;]</p>
+<p>The post <a href="https://artemissecurity.com/company-news/secure-your-enterprise-ai-artemis-now-integrates-with-anthropic-compliance-api-and-telemetry/">Secure Your Enterprise AI: Artemis Now Integrates with Anthropic Compliance API and telemetry</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></description>
+										<content:encoded><![CDATA[
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="577" src="https://artemissecurity.com/wp-content/uploads/2026/06/Integration-1024x577.png" alt="" class="wp-image-1161" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/Integration-1024x577.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/Integration-300x169.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/Integration-768x433.png 768w, https://artemissecurity.com/wp-content/uploads/2026/06/Integration.png 1211w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<p class="wp-block-paragraph"><strong>Artemis brings Claude Enterprise activity into the same AI-native detection, investigation, and response platform that already protects your cloud, identity, and SaaS, turning AI from a blind spot into a governed, fully monitored data source.</strong></p>
+
+
+
+<p class="wp-block-paragraph">Claude has quickly become one of the most widely used and most privileged applications in many enterprises, and almost none of that activity is visible to a traditional SIEM. Prompts, file uploads, projects, configuration changes, and admin actions all generate security-relevant events that sit outside your usual telemetry. Artemis brings that activity into the same detection, investigation, and threat-hunting pipeline that already covers your cloud, identity, on-prem, and SaaS estate by ingesting Anthropic&#8217;s Claude Compliance API for Claude Enterprise. Every event is normalized to OCSF, correlated with the rest of your environment, and watched continuously. Securing Claude shouldn&#8217;t mean slowing its adoption. It means adopting it with the same visibility you already demand of every other critical system.</p>
+
+
+
+<h2 class="wp-block-heading">How the integration works</h2>
+
+
+
+<p class="wp-block-paragraph">Setup is a single step. An admin creates a Compliance API key in the Claude console and pastes it into Artemis. From there, Artemis polls every Claude activity event, normalizes each event into the open OCSF schema, and feeds it through the full platform.</p>
+
+
+
+<p class="wp-block-paragraph">Because Artemis backfills your Claude organization&#8217;s full activity history on first connect, you get retrospective coverage from day one, not just a forward-looking stream. There are no agents to deploy and nothing to configure on the Claude side beyond the key.</p>
+
+
+
+<p class="wp-block-paragraph">Once the events are flowing, the entire Artemis platform goes to work on them automatically:</p>
+
+
+
+<ul class="wp-block-list">
+<li><strong>Environment Intelligence</strong> learns what normal looks like in your Claude org: which admins routinely manage roles, which integrations are expected, what export and access patterns are baseline behavior for your teams.</li>
+
+
+
+<li><strong>Detections</strong> generated for the Claude audit feed run continuously against that baseline.</li>
+
+
+
+<li><strong>Autonomous investigation</strong> triages anything that fires, end to end, before a human ever opens a ticket.</li>
+</ul>
+
+
+
+<p class="wp-block-paragraph">You get value before the first alert ever fires. On many connects, the initial Environment Intelligence scan surfaces posture problems that were already there: admin API keys created months ago and never rotated, several unused for 90 days or more, each one a standing account-takeover risk that no one was watching. Finding stale privileged access on day one, without writing a rule, is often the first thing customers see.</p>
+
+
+
+<h2 class="wp-block-heading">Protect the data going in and out of Claude</h2>
+
+
+
+<p class="wp-block-paragraph">The first question most security teams ask about an AI tool is what sensitive data is flowing into it. Artemis ingests Claude Enterprise conversation content and file uploads and watches for the behavior that signals sensitive data leaving your control, such as unusual upload volume and bulk access to chats, projects, and files. Because Artemis already understands your users, the access they hold, and the assets you treat as crown-jewels, each prompt and upload is evaluated in full context rather than in isolation, so a real exposure surfaces as a clear story of who moved what and why it matters. That environmental context is what turns a raw signal into a finding your team can act on with confidence.</p>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img decoding="async" width="1024" height="875" data-id="1050" src="https://artemissecurity.com/wp-content/uploads/2026/06/image-5-1024x875.png" alt="" class="wp-image-1050" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/image-5-1024x875.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/image-5-300x256.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/image-5-768x656.png 768w, https://artemissecurity.com/wp-content/uploads/2026/06/image-5.png 1946w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="832" data-id="1051" src="https://artemissecurity.com/wp-content/uploads/2026/06/image-6-1024x832.png" alt="" class="wp-image-1051" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/image-6-1024x832.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/image-6-300x244.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/image-6-768x624.png 768w, https://artemissecurity.com/wp-content/uploads/2026/06/image-6.png 1848w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+</figure>
+</div></div>
+
+
+
+<h2 class="wp-block-heading">Stay audit ready and govern AI usage</h2>
+
+
+
+<p class="wp-block-paragraph">Adopting Claude across a regulated business means proving that the usage is governed. Artemis retains every Claude event alongside the rest of your environment, normalized and queryable in plain language, so demonstrating who accessed what, which data was involved, and how it maps to policy becomes a simple English query or case rather than a forensic project. Your team can monitor acceptable-use policies, support regulatory requirements, and answer auditor questions from the same place they already run detection and response. Artemis also highlights shadow AI usage and shows which projects hold sensitive material and who owns them, so governance keeps pace with adoption.</p>
+
+
+
+<h2 class="wp-block-heading">Catch account takeover, insider risk, and privilege abuse</h2>
+
+
+
+<p class="wp-block-paragraph">Account takeover and insider misuse are where Artemis shines, and the Compliance API gives it rich signal to work with. Artemis flags authentication anomalies such as logins from new geographies or devices and failed attempts that suddenly succeed, and it ties those signals to identity activity elsewhere in your environment. It detects the mass viewing or downloading of chats, projects, and files, a single actor sweeping across many projects in a short window, and admin or compliance-API activity arriving from an unexpected location. Role and permission grants, SCIM and directory-sync changes, unexpected user provisioning, and API key creation and deletion are all monitored as they happen.</p>
+
+
+
+<h2 class="wp-block-heading">Watch the AI supply chain</h2>
+
+
+
+<p class="wp-block-paragraph">As teams extend Claude with connected tools, configuration itself becomes an attack surface. Artemis tracks changes to MCP server configuration, connected integrations, and Claude Code repository and webhook settings, each of which can open a path for unsanctioned automation if it is altered without oversight.</p>
+
+
+
+<h2 class="wp-block-heading">Coverage for every way your team uses Claude</h2>
+
+
+
+<p class="wp-block-paragraph">The Compliance API covers Claude Enterprise on the web, but it is not the only way your organization uses Claude. Artemis also ingests telemetry from <strong>Claude Code</strong> and <strong>Claude Cowork</strong> via OpenTelemetry, extending the same detection and investigation coverage to developer-assistant activity: tool invocations, permission decisions, prompts that may leak secrets, and anomalous session behavior. Wherever Claude runs in your enterprise, Artemis can see it and reason about it.</p>
+
+
+
+<h2 class="wp-block-heading">Connected stories, not isolated alerts</h2>
+
+
+
+<p class="wp-block-paragraph">Because every Claude event is normalized to OCSF and correlated across your whole environment, findings come together as connected stories rather than scattered alerts. An admin action from a new location, followed by bulk downloads, followed by a configuration change, becomes one high-confidence case instead of three signals sitting in separate queues. Artemis enriches each case with context and a recommended verdict, so your analysts move from question to answer in minutes rather than hours.</p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" decoding="async" width="1024" height="427" src="https://artemissecurity.com/wp-content/uploads/2026/06/image-1024x427.png" alt="" class="wp-image-1062" srcset="https://artemissecurity.com/wp-content/uploads/2026/06/image-1024x427.png 1024w, https://artemissecurity.com/wp-content/uploads/2026/06/image-300x125.png 300w, https://artemissecurity.com/wp-content/uploads/2026/06/image-768x320.png 768w" sizes="auto, (max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<h2 class="wp-block-heading">See everything. Stop anything.</h2>
+
+
+
+<p class="wp-block-paragraph">Claude deserves the same rigor as every other system your business depends on. With Artemis, you can adopt it with confidence, give your team full visibility into Claude Enterprise activity from day one, and keep seeing everything and stopping anything across your environment.</p>
+
+
+
+<h2 class="wp-block-heading">Get started</h2>
+
+
+
+<p class="wp-block-paragraph">If you use Claude Enterprise, you can connect it to Artemis in minutes and start receiving environment-specific detections and fully investigated cases the same day. To see it live, request a demo at <a href="https://artemissecurity.com/demo/">https://artemissecurity.com/demo/</a>.</p>
+<p>The post <a href="https://artemissecurity.com/company-news/secure-your-enterprise-ai-artemis-now-integrates-with-anthropic-compliance-api-and-telemetry/">Secure Your Enterprise AI: Artemis Now Integrates with Anthropic Compliance API and telemetry</a> appeared first on <a href="https://artemissecurity.com">Artemis Security</a>.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

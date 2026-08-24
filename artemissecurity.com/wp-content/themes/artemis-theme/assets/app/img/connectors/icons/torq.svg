@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Official Torq mark from torq.io — three offset horizontal bars -->
+  <g transform="translate(-77.16, 0.14) scale(0.226)">
+    <path d="M465.22,29.35c0-4.78-5.29-9.17-10.7-9.17h-47.74v22.48h58.4l.04-13.31Z" fill="currentColor"/>
+    <rect x="359.34" y="58.92" width="105.85" height="22.5" fill="currentColor"/>
+    <path d="M359.41,97.69v12.97c0,4.91,5.3,9.51,10.74,9.51h48.7v-22.49h-59.44Z" fill="currentColor"/>
+  </g>
+</svg>

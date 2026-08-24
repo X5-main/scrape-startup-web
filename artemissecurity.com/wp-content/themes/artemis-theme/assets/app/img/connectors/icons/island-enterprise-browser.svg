@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="18 17 207 207" width="80" height="80" fill="none">
+  <defs>
+    <linearGradient id="island-linear-gradient" x1="121.63" y1="26.77" x2="121.63" y2="124.02" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#136342"/>
+      <stop offset="0.17" stop-color="#176846" stop-opacity="0.94"/>
+      <stop offset="0.39" stop-color="#227653" stop-opacity="0.78"/>
+      <stop offset="0.65" stop-color="#358e68" stop-opacity="0.5"/>
+      <stop offset="0.92" stop-color="#4fae85" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#57b98e" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="island-radial-gradient" cx="56.96" cy="119.93" r="158.78" gradientTransform="translate(113.63 201.21) rotate(-179.8) scale(1 0.68)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#57b98e"/>
+      <stop offset="1" stop-color="#136342"/>
+    </radialGradient>
+  </defs>
+  <circle cx="121.63" cy="120" r="102.79" fill="#ffffff"/>
+  <path d="M35.15,135.65c.26-4.43,2.07-8.94,5.59-11.64,4.18-3.2,9.86-3.36,15.13-3.39q32.88-.18,65.76-.16t65.77.16c5.26,0,10.94.19,15.12,3.39,3.53,2.7,5.33,7.21,5.6,11.64A32.18,32.18,0,0,1,206.38,147a88.93,88.93,0,1,0-169.49,0A32,32,0,0,1,35.15,135.65Z" fill="url(#island-linear-gradient)"/>
+  <path d="M208.12,135.65c-.27-4.43-2.07-8.94-5.6-11.64-4.18-3.2-9.86-3.36-15.12-3.39q-32.9-.18-65.77-.16t-65.76.16c-5.27,0-10.95.19-15.13,3.39-3.52,2.7-5.33,7.21-5.59,11.64s.86,8.83,2.29,13a88.9,88.9,0,0,0,119.93,52.85,90.11,90.11,0,0,0,48.46-52.85C207.25,144.48,208.38,140.08,208.12,135.65Z" fill="url(#island-radial-gradient)"/>
+</svg>
