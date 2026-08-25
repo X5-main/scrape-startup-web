@@ -9,7 +9,7 @@
   "boilerplate": [
     "squarespace"
   ],
-  "candidate": "d55_stability",
+  "candidate": "stability-ai (D55 backup; DATED FOLLOW-UP 2026-08-26, not D55 evidence)",
   "canvas": 4,
   "dark_body": false,
   "dark_scheme": false,
@@ -28,6 +28,7 @@
   "imgs": 58,
   "logo_wall": 5,
   "nav": 4,
+  "note": "Live fetch 2026-08-26. Stability was never mirrored/snapshotted during D55; HTML may have drifted from the D55-era page. D55-era record = vision score 5 only.",
   "score": 6.9,
   "source": "https://stability.ai/",
   "tex_chars": 6351,
