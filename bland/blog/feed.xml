@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bland AI Blog</title>
+    <link>https://www.bland.ai/blog</link>
+    <description>Insights, strategies, and stories shaping the future of enterprise voice AI.</description>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Aug 2026 15:34:22 GMT</lastBuildDate>
+    <atom:link href="https://www.bland.ai/blog/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What Is Voice Biometrics Authentication and How It Works</title>
+      <link>https://www.bland.ai/blog/voice-biometrics-authentication</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/voice-biometrics-authentication</guid>
+      <pubDate>Wed, 12 Aug 2026 12:49:00 GMT</pubDate>
+      <description>Voice biometrics authentication helps regulated contact centers stop fraud before it compounds into costly investigations, fines, and compliance exposure.</description>
+    </item>
+    <item>
+      <title>What Is IVR Payment? The Complete Guide to How It Works</title>
+      <link>https://www.bland.ai/blog/what-is-ivr-payment</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/what-is-ivr-payment</guid>
+      <pubDate>Tue, 11 Aug 2026 10:37:00 GMT</pubDate>
+      <description>What is IVR payment, and is yours hiding compliance risk? Built for regulated enterprise buyers ready to replace legacy systems before failures surface.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>What Is Call Recording Compliance and Why It Matters</title>
+      <link>https://www.bland.ai/blog/call-recording-compliance</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/call-recording-compliance</guid>
+      <pubDate>Tue, 11 Aug 2026 10:31:00 GMT</pubDate>
+      <description>Call recording compliance goes beyond consent. See how a purpose-built platform helps regulated enterprises avoid HIPAA penalties and CMS violations.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>Voice AI in Banking: How It Works and Where It&apos;s Headed</title>
+      <link>https://www.bland.ai/blog/voice-ai-in-banking</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/voice-ai-in-banking</guid>
+      <pubDate>Mon, 10 Aug 2026 10:13:00 GMT</pubDate>
+      <description>Voice AI for banking ends IVR transfer loops, helping regulated institutions resolve inquiries faster and frustration-free.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>The Ultimate Call Center Compliance Guide for 2026</title>
+      <link>https://www.bland.ai/blog/call-center-compliance</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/call-center-compliance</guid>
+      <pubDate>Mon, 10 Aug 2026 10:07:00 GMT</pubDate>
+      <description>Call center compliance built for enterprise scale helps regulated operations avoid per-call fines, stacked frameworks, and eight-figure liability in 2026.</description>
+    </item>
+    <item>
+      <title>TCPA Violation Fines Explained: What You Could Owe</title>
+      <link>https://www.bland.ai/blog/tcpa-violation-fines</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/tcpa-violation-fines</guid>
+      <pubDate>Sun, 09 Aug 2026 11:47:00 GMT</pubDate>
+      <description>TCPA violation fines multiply fast with no cap. Learn what enterprise legal teams owe per call and how to avoid costly exposure</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>TCPA Compliance for Call Centers: 12 Rules to Follow</title>
+      <link>https://www.bland.ai/blog/tcpa-compliance-for-call-centers</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/tcpa-compliance-for-call-centers</guid>
+      <pubDate>Sun, 09 Aug 2026 10:26:00 GMT</pubDate>
+      <description>TCPA compliance for call centers built for enterprise teams who need airtight call controls to avoid costly violations at scale.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>TCPA Calling Hours Compliance Guide: What Businesses Must Know</title>
+      <link>https://www.bland.ai/blog/tcpa-calling-hours</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/tcpa-calling-hours</guid>
+      <pubDate>Sat, 08 Aug 2026 09:43:00 GMT</pubDate>
+      <description>TCPA calling hours rules create per-call liability enterprises can&apos;t afford. See how compliant call controls protect high-volume campaigns.
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>TCPA Autodialer Rules Explained: What Businesses Must Know</title>
+      <link>https://www.bland.ai/blog/tcpa-autodialer-rules</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/tcpa-autodialer-rules</guid>
+      <pubDate>Sat, 08 Aug 2026 09:39:00 GMT</pubDate>
+      <description>Enterprise compliance teams master TCPA Autodialer Rules with self-hosted AI calling built for regulated industries to stay fully defensible.
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>Is Voice AI Safe? Honest Verdict on Risks and Scams</title>
+      <link>https://www.bland.ai/blog/is-voice-ai-safe</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/is-voice-ai-safe</guid>
+      <pubDate>Fri, 07 Aug 2026 00:29:00 GMT</pubDate>
+      <description>Is voice AI safe for regulated industries? Learn the real infrastructure risks so enterprise buyers can avoid compliance failures before they happen.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>How to Use Audio Redaction to Protect Sensitive Data</title>
+      <link>https://www.bland.ai/blog/audio-redaction</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/audio-redaction</guid>
+      <pubDate>Thu, 06 Aug 2026 10:46:00 GMT</pubDate>
+      <description>Audio redaction gaps expose regulated enterprises before storage ever runs. Learn where risk actually lives and how to close it.</description>
+    </item>
+    <item>
+      <title>Is Google Voice HIPAA Compliant? The 2026 Verdict</title>
+      <link>https://www.bland.ai/blog/is-google-voice-hipaa-compliant</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/is-google-voice-hipaa-compliant</guid>
+      <pubDate>Thu, 06 Aug 2026 10:39:00 GMT</pubDate>
+      <description>Is Google Voice HIPAA compliant, really? Compliance teams, avoid costly gaps built for regulated industries with this 2026 verdict.</description>
+    </item>
+    <item>
+      <title>How to Handle PCI Compliance for Credit Card Over Phone</title>
+      <link>https://www.bland.ai/blog/pci-compliance-credit-card-over-phone</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/pci-compliance-credit-card-over-phone</guid>
+      <pubDate>Wed, 05 Aug 2026 10:05:00 GMT</pubDate>
+      <description>PCI compliance for credit card over phone has built-in traps enterprise teams miss. Learn what puts your CDE at risk and how to avoid a failed audit.</description>
+    </item>
+    <item>
+      <title>How to Prepare for a PCI DSS Compliance Audit in 2026</title>
+      <link>https://www.bland.ai/blog/pci-dss-compliance-audit</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/pci-dss-compliance-audit</guid>
+      <pubDate>Wed, 05 Aug 2026 09:56:00 GMT</pubDate>
+      <description>Built for regulated enterprises, this 2026 PCI DSS compliance audit guide helps you avoid costly findings before the QSA is already in the room.</description>
+    </item>
+    <item>
+      <title>Introducing Bland Speech v3: The first Human Speech Engine</title>
+      <link>https://www.bland.ai/blog/bland-speech-v3-audio-realism-bench</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/bland-speech-v3-audio-realism-bench</guid>
+      <pubDate>Tue, 04 Aug 2026 17:00:00 GMT</pubDate>
+      <description>A text-to-speech platform trained on real human conversations, for developers building voice AI that sounds just like a person.</description>
+      <dc:creator>Cole Baker</dc:creator>
+    </item>
+    <item>
+      <title>GDPR Call Recording Consent: What You Need to Know to Comply</title>
+      <link>https://www.bland.ai/blog/gdpr-call-recording-consent</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/gdpr-call-recording-consent</guid>
+      <pubDate>Tue, 04 Aug 2026 10:51:00 GMT</pubDate>
+      <description>GDPR call recording consent rules catch enterprise teams off guard. Learn the lawful basis pitfalls built for regulated industries to avoid costly fines.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>How to Do PHI Redaction the Right Way for HIPAA</title>
+      <link>https://www.bland.ai/blog/phi-redaction</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/phi-redaction</guid>
+      <pubDate>Tue, 04 Aug 2026 10:44:00 GMT</pubDate>
+      <description>PHI redaction for enterprise teams stops exposure at capture, avoid HIPAA failures auditors look for.</description>
+    </item>
+    <item>
+      <title>Call Center HIPAA Compliance: The Complete Guide (2026)</title>
+      <link>https://www.bland.ai/blog/call-center-hipaa-compliance</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/call-center-hipaa-compliance</guid>
+      <pubDate>Mon, 03 Aug 2026 10:31:00 GMT</pubDate>
+      <description>Call center HIPAA compliance goes beyond a signed BAA. Enterprise buyers built for regulated industries avoid costly OCR violations with this 2026 guide.</description>
+    </item>
+    <item>
+      <title>Contact Center Compliance Explained: Key Rules to Know</title>
+      <link>https://www.bland.ai/blog/contact-center-compliance</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/contact-center-compliance</guid>
+      <pubDate>Mon, 03 Aug 2026 10:26:00 GMT</pubDate>
+      <description>Contact center compliance for enterprise - avoid costly TCPA exposure with call controls built for regulated industries.
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>The Loudest Guy in the Room</title>
+      <link>https://www.bland.ai/blog/the-loudest-guy-in-the-room</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/the-loudest-guy-in-the-room</guid>
+      <pubDate>Mon, 03 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Nine months after a stroke took his speech, James Piazza ordered his own lunch – in his own voice, rebuilt from five seconds of home video.</description>
+      <dc:creator>Max Gibbons</dc:creator>
+    </item>
+    <item>
+      <title>Are Phone Calls HIPAA Compliant? Rules You Must Follow</title>
+      <link>https://www.bland.ai/blog/are-phone-calls-hipaa-compliant</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/are-phone-calls-hipaa-compliant</guid>
+      <pubDate>Sun, 02 Aug 2026 06:52:00 GMT</pubDate>
+      <description>Are phone calls HIPAA compliant at your org. Learn the exact rules healthcare compliance teams must follow to avoid costly enforcement gaps.
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>8 Best HIPAA Compliant Voice AI Platforms for Healthcare 2026</title>
+      <link>https://www.bland.ai/blog/hipaa-compliant-voice-ai</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/hipaa-compliant-voice-ai</guid>
+      <pubDate>Sat, 01 Aug 2026 08:03:00 GMT</pubDate>
+      <description>HIPAA compliant voice AI platforms built for enterprise healthcare buyers, ranked so you avoid PHI exposure beyond the contract layer.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>9 Security Risks of AI Voice Technology You Face in 2026</title>
+      <link>https://www.bland.ai/blog/security-risks-of-ai-voice</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/security-risks-of-ai-voice</guid>
+      <pubDate>Sat, 01 Aug 2026 08:03:00 GMT</pubDate>
+      <description> Enterprise teams face 9 security risks of AI voice technology in 2026. Self-hosted architecture keeps regulated call data inside your perimeter</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>50 TCPA Best Practices Checklist to Stay Compliant in 2026</title>
+      <link>https://www.bland.ai/blog/tcpa-best-practices</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/tcpa-best-practices</guid>
+      <pubDate>Fri, 31 Jul 2026 02:48:00 GMT</pubDate>
+      <description>TCPA best practices built for enterprise call operations, so you avoid the per-call penalties that turn one bad consent flow into nine-figure exposure.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>14 Best HIPAA Compliant Call Recording Solutions for 2026</title>
+      <link>https://www.bland.ai/blog/hipaa-compliant-call-recording</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/hipaa-compliant-call-recording</guid>
+      <pubDate>Fri, 31 Jul 2026 02:39:00 GMT</pubDate>
+      <description>HIPAA compliant call recording for enterprise teams, avoid costly breaches with self-hosted architecture for regulated industries.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 PCI Compliance Violations and Their Consequences</title>
+      <link>https://www.bland.ai/blog/pci-compliance-violations</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/pci-compliance-violations</guid>
+      <pubDate>Thu, 30 Jul 2026 11:35:00 GMT</pubDate>
+      <description>Built for regulated industries, this guide on PCI compliance violations helps enterprise teams avoid costly penalties with self-hosted architecture.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 PCI Call Center Compliance Requirements How-To Guide</title>
+      <link>https://www.bland.ai/blog/pci-call-center-compliance-requirements</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/pci-call-center-compliance-requirements</guid>
+      <pubDate>Thu, 30 Jul 2026 11:32:00 GMT</pubDate>
+      <description>Master PCI call center compliance requirements built for enterprise teams, so your architecture avoids scope creep and costly audit findings.</description>
+    </item>
+    <item>
+      <title>13 Best Voice AI for Claim Intake Automation in 2026</title>
+      <link>https://www.bland.ai/blog/best-voice-ai-for-claim-intake-automation</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/best-voice-ai-for-claim-intake-automation</guid>
+      <pubDate>Wed, 29 Jul 2026 11:08:00 GMT</pubDate>
+      <description>Find the best voice AI for claim intake automation in 2026 and eliminate compliance gaps with secure self-hosted enterprise architecture.
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 Best Voice AI Systems for Patient Call Automation 2026</title>
+      <link>https://www.bland.ai/blog/voice-ai-systems-for-patient-call-automation</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/voice-ai-systems-for-patient-call-automation</guid>
+      <pubDate>Wed, 29 Jul 2026 11:00:00 GMT</pubDate>
+      <description>Built for enterprise healthcare, these 13 voice AI systems for patient call automation help ops leaders avoid hidden data risks with self-hosted control.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 Best Rated Voice AI for Compliance Tools in 2026</title>
+      <link>https://www.bland.ai/blog/best-rated-voice-ai-for-compliance</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/best-rated-voice-ai-for-compliance</guid>
+      <pubDate>Tue, 28 Jul 2026 11:11:00 GMT</pubDate>
+      <description>The 13 best rated voice AI for compliance tools built specifically for enterprise buyers in regulated industries, so your call data stays protected.
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 Best Use Cases for Voice AI in Healthcare (2026)</title>
+      <link>https://www.bland.ai/blog/best-use-cases-for-voice-ai-in-healthcare</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/best-use-cases-for-voice-ai-in-healthcare</guid>
+      <pubDate>Tue, 28 Jul 2026 10:56:00 GMT</pubDate>
+      <description>Discover the best use cases for voice AI in healthcare and find compliant, self-hosted solutions built to scale beyond pilot for enterprise buyers.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 Cognigy Alternatives for AI Voice &amp; Customer Automation</title>
+      <link>https://www.bland.ai/blog/cognigy-alternatives</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/cognigy-alternatives</guid>
+      <pubDate>Fri, 10 Jul 2026 00:47:00 GMT</pubDate>
+      <description>Compare the best Cognigy Alternatives for AI voice and customer automation. Explore features, use cases, and top options for your team. </description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 Best Vapi Alternatives for Enterprise AI Voice Automation</title>
+      <link>https://www.bland.ai/blog/vapi-alternatives</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/vapi-alternatives</guid>
+      <pubDate>Fri, 10 Jul 2026 00:42:00 GMT</pubDate>
+      <description>Compare the 13 best Vapi Alternatives for enterprise AI voice automation. Explore features, scalability, and top platform options.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>Top 15 ElevenLabs Alternatives for AI Voice Generation</title>
+      <link>https://www.bland.ai/blog/elevenlabs-alternatives</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/elevenlabs-alternatives</guid>
+      <pubDate>Fri, 10 Jul 2026 00:37:00 GMT</pubDate>
+      <description>Compare the top ElevenLabs Alternatives for AI voice generation. Find tools with realistic voices, features, and flexible pricing. </description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 Synthflow Alternatives for AI Voice Automation in 2026</title>
+      <link>https://www.bland.ai/blog/synthflow-alternatives</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/synthflow-alternatives</guid>
+      <pubDate>Fri, 10 Jul 2026 00:32:00 GMT</pubDate>
+      <description>Compare the best Synthflow Alternatives for AI voice automation in 2026. Explore features, use cases, and top options for your needs.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>Side-By-Side Leaping AI vs Retell AI for High-Volume Calls</title>
+      <link>https://www.bland.ai/blog/leaping-ai-vs-retell-ai</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/leaping-ai-vs-retell-ai</guid>
+      <pubDate>Thu, 09 Jul 2026 09:41:00 GMT</pubDate>
+      <description>A direct comparison of Leaping AI vs Retell AI gives businesses a clear, honest look at how each platform holds up when call capacity and consistency are non-negotiable.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>In-Depth Vapi vs ElevenLabs Conversational AI Comparison</title>
+      <link>https://www.bland.ai/blog/vapi-vs-elevenlabs</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/vapi-vs-elevenlabs</guid>
+      <pubDate>Thu, 09 Jul 2026 09:36:00 GMT</pubDate>
+      <description>Compare Vapi vs ElevenLabs for features, voice quality, integrations, and use cases to help you choose the right conversational AI.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>In-Depth Retell AI vs ElevenLabs Comparison for Outbound Calls</title>
+      <link>https://www.bland.ai/blog/retell-ai-vs-elevenlabs</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/retell-ai-vs-elevenlabs</guid>
+      <pubDate>Thu, 09 Jul 2026 09:28:00 GMT</pubDate>
+      <description>Compare Retell AI vs ElevenLabs for outbound calls. Explore voice quality, features, integrations, and ideal use cases. 
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>Head-To-Head Synthflow AI vs Vapi for Business Calls</title>
+      <link>https://www.bland.ai/blog/synthflow-vs-vapi</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/synthflow-vs-vapi</guid>
+      <pubDate>Wed, 08 Jul 2026 09:26:00 GMT</pubDate>
+      <description>Compare Synthflow vs Vapi for business calls. See features, integrations, and which AI voice platform fits your needs. </description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>10 Best AI Voice Agents for Law Firms to Boost Client Intake</title>
+      <link>https://www.bland.ai/blog/ai-voice-agents-for-law-firms</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agents-for-law-firms</guid>
+      <pubDate>Wed, 08 Jul 2026 09:19:00 GMT</pubDate>
+      <description>Discover the 10 best AI Voice Agents for Restaurants to improve customer calls, reservations, and service with smart automation. 
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>12 Best AI Voice Agents for Restaurants to Capture More Orders</title>
+      <link>https://www.bland.ai/blog/ai-voice-agents-for-restaurants</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agents-for-restaurants</guid>
+      <pubDate>Wed, 08 Jul 2026 09:12:00 GMT</pubDate>
+      <description>Compare the 12 best AI Voice Agents for Restaurants to capture more orders, reduce missed calls, and improve customer service. </description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>14 AI Voice Agents for Healthcare to Automate Patient Calls</title>
+      <link>https://www.bland.ai/blog/ai-voice-agents-for-healthcare</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agents-for-healthcare</guid>
+      <pubDate>Tue, 07 Jul 2026 10:15:00 GMT</pubDate>
+      <description>For teams ready to move forward, Bland&apos;s conversational AI is built to handle exactly this kind of high-volume, patient-facing communication at scale.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>14 AI Voice Agents for Marketing to Automate Lead Generation</title>
+      <link>https://www.bland.ai/blog/ai-voice-agents-for-marketing</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agents-for-marketing</guid>
+      <pubDate>Tue, 07 Jul 2026 10:09:00 GMT</pubDate>
+      <description>Discover 14 AI Voice Agents for Marketing that automate lead generation, qualify prospects, and improve customer engagement. </description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>7 Best AI Voice Agents for Plumbers to Never Miss Calls</title>
+      <link>https://www.bland.ai/blog/ai-voice-agents-for-plumbers</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agents-for-plumbers</guid>
+      <pubDate>Tue, 07 Jul 2026 10:02:00 GMT</pubDate>
+      <description>Discover the 7 best AI Voice Agents for Plumbers to answer calls, book jobs, and reduce missed customer opportunities.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>14 Best AI Voice Agents for Student Enrollment &amp; Faster Admissions</title>
+      <link>https://www.bland.ai/blog/best-ai-voice-agents-for-student-enrollment</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/best-ai-voice-agents-for-student-enrollment</guid>
+      <pubDate>Mon, 06 Jul 2026 08:02:00 GMT</pubDate>
+      <description>Compare the Best AI Voice Agents for Student Enrollment to speed admissions, automate inquiries, and improve applicant support. </description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>10 Best AI Voice Agents for Travel Agencies That Answer Every Call</title>
+      <link>https://www.bland.ai/blog/ai-voice-agent-for-travel-agencies</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agent-for-travel-agencies</guid>
+      <pubDate>Mon, 06 Jul 2026 07:56:00 GMT</pubDate>
+      <description>Compare the 10 best AI Voice Agent for Travel Agencies options that answer every call, improve response times, and reduce missed bookings.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>10 Best AI Voice Agents for Salons for 24/7 Appointment Booking</title>
+      <link>https://www.bland.ai/blog/ai-voice-agent-for-salons</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agent-for-salons</guid>
+      <pubDate>Mon, 06 Jul 2026 07:50:00 GMT</pubDate>
+      <description>For salons ready to reduce missed calls and fill more appointments, Bland&apos;s conversational AI offers a practical starting point.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>15 Best AI Voice Assistants for Business Communication</title>
+      <link>https://www.bland.ai/blog/ai-voice-assistant-for-business</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-assistant-for-business</guid>
+      <pubDate>Sun, 05 Jul 2026 11:48:00 GMT</pubDate>
+      <description>Compare the best AI Voice Assistant for Business solutions to improve customer calls, automate tasks, and support your team. 
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 Best AI Voice Agents for Retail to Improve Customer Service</title>
+      <link>https://www.bland.ai/blog/ai-voice-agents-for-retail</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agents-for-retail</guid>
+      <pubDate>Sun, 05 Jul 2026 11:36:00 GMT</pubDate>
+      <description>Compare the 13 best AI Voice Agents for Retail to improve customer service, reduce wait times, and handle customer inquiries.
+</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+    <item>
+      <title>13 AI Voice Agents for Real Estate to Boost Lead Generation</title>
+      <link>https://www.bland.ai/blog/ai-voice-agent-for-real-estate</link>
+      <guid isPermaLink="true">https://www.bland.ai/blog/ai-voice-agent-for-real-estate</guid>
+      <pubDate>Sun, 05 Jul 2026 11:32:00 GMT</pubDate>
+      <description>Discover 13 AI voice agents for real estate that automate lead generation, qualify prospects, schedule showings, and help agents close more deals.</description>
+      <dc:creator>Ethan Clouser</dc:creator>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,92 @@
+# Bland AI
+
+> Bland is an enterprise voice AI platform for high-volume, regulated, and complex phone workflows. Healthcare networks, insurance carriers, financial services firms, and logistics operators use Bland to build, deploy, and monitor AI voice agents that sound human and operate at scale. Customers include Samsara and a top-10 US bank.
+
+Bland owns the full voice AI stack: telephony, speech-to-text, language model, text-to-speech, and pathway orchestration. The platform delivers sub-400ms latency, 1 million concurrent calls, and supports 40+ languages out of the box. Per-minute pricing covers LLM, TTS, STT, and telephony in a single line item. There are no per-token charges, no per-feature surcharges, and no separate vendor invoices to reconcile. A dedicated Forward Deployed Engineer team builds the customer's first agent end to end.
+
+Bland holds SOC 2 Type I, SOC 2 Type II, HIPAA, GDPR, and PCI DSS certifications. Self-hosted and on-premises deployments are available for regulated industries.
+
+## Product
+
+- [Product overview](https://www.bland.ai/product): The full Bland platform — voice, pathways, SMS, and chat in a single stack.
+- [Pricing](https://www.bland.ai/pricing): Per-minute pricing including LLM, TTS, STT, and telephony. No per-token charges.
+- [Integrations](https://www.bland.ai/integrations): Native connectors for Salesforce, HubSpot, Zendesk, Slack, and more.
+- [Norm](https://www.bland.ai/norm): Bland's agent-building copilot.
+
+## Documentation
+
+- [Documentation home](https://docs.bland.ai): Quickstarts, tutorials, SDK reference, and full REST API documentation.
+- [Pathways tutorial](https://docs.bland.ai/tutorials/pathways): How to build branching, multi-turn conversation flows with state and tool calls.
+- [Batch calls tutorial](https://docs.bland.ai/tutorials/batch-calls): How to dispatch large volumes of outbound calls programmatically.
+- [Build your own voice (BTTS)](https://docs.bland.ai/tutorials/btts): How to clone or design custom voices for production agents.
+- [Chat widget tutorial](https://docs.bland.ai/tutorials/chat-widget): How to embed a Bland chat agent on a website.
+- [Custom Twilio integration](https://docs.bland.ai/tutorials/custom-twilio): How to bring your own Twilio number and provision it for Bland.
+- [Outcomes](https://docs.bland.ai/tutorials/outcomes): How to measure and classify call results for analytics and routing.
+- [Memories](https://docs.bland.ai/tutorials/memories): How to give an agent persistent context across calls.
+- [Guard rails](https://docs.bland.ai/tutorials/guard-rails): How to constrain agent behavior with policy rules.
+- [CLI SDK](https://docs.bland.ai/sdks/cli): Bland command-line tool for managing agents, calls, and pathways.
+- [Web Agent SDK](https://docs.bland.ai/sdks/web-agent-sdk): Embed Bland agents directly in browser applications.
+- [Dev Terminal SDK](https://docs.bland.ai/sdks/dev-terminal): Local development environment for building and testing agents.
+- [REST API: Send a call](https://docs.bland.ai/api-v1/post/calls): Endpoint for placing an outbound call from your application.
+- [Platform billing](https://docs.bland.ai/platform/billing): How Bland pricing, invoicing, and usage tracking work.
+
+## Enterprise features
+
+- [SSO](https://docs.bland.ai/enterprise-features/SSO): Single sign-on integration for enterprise teams.
+- [SIP integration](https://docs.bland.ai/enterprise-features/SIP-integration): Connect Bland to existing SIP infrastructure.
+- [JWT authentication](https://docs.bland.ai/enterprise-features/jwt-authentication): Token-based auth for secure agent API access.
+- [Custom dialing](https://docs.bland.ai/enterprise-features/custom-dialing): Carrier and dial-plan configuration for enterprise telephony.
+- [Citations](https://docs.bland.ai/enterprise-features/citations): How agents cite knowledge base sources during conversations.
+- [Custom code node](https://docs.bland.ai/enterprise-features/custom-code-node): Run custom logic inside a pathway during a live call.
+- [Scheduling node](https://docs.bland.ai/enterprise-features/scheduling-node): Native scheduling primitive for booking inside a call.
+- [Studio flow integration](https://docs.bland.ai/enterprise-features/studio-flow-integration): Bridge Bland agents with Twilio Studio flows.
+- [Infrastructure and releases](https://docs.bland.ai/enterprise-features/infrastructure-and-releases): How Bland operates production infrastructure for enterprise customers.
+
+## Use cases
+
+- [Use cases overview](https://www.bland.ai/solutions): How enterprises use Bland across inbound, outbound, intake, and verification.
+- [Appointment booking](https://www.bland.ai/solutions/appointment-booking): AI agents that schedule, confirm, reschedule, and remind for healthcare, services, and field operations.
+- [Inbound call handling](https://www.bland.ai/solutions/inbound-call-handling): 24/7 AI receptionist that answers, routes, qualifies, and books without human staff.
+- [Financial intakes](https://www.bland.ai/solutions/financial-intakes): Compliant intake automation for banks, lenders, and insurance carriers under SOC 2, PCI DSS, and FDCPA.
+- [Logistics ID verification](https://www.bland.ai/solutions/logistics-id-verification): Driver and dispatch verification at scale for transportation and logistics operations.
+
+## Solutions
+
+- [AI receptionist](https://www.bland.ai/solutions/ai-receptionist): Always-on inbound voice agent for businesses that need to answer every call.
+- [Enterprise platform](https://www.bland.ai/enterprise): End-to-end voice AI platform with compliance, scale, and dedicated implementation support.
+
+## Trust and compliance
+
+- [Trust and security](https://www.bland.ai/trust-security): SOC 2 Type I and Type II, HIPAA, PCI DSS, GDPR. Self-hosted infrastructure and data residency controls.
+- [AI information](https://www.bland.ai/ai-information): How Bland's AI models work, their training data, and customer data isolation guarantees.
+- [Privacy policy](https://www.bland.ai/legal/privacy)
+- [Terms of service](https://www.bland.ai/legal/terms)
+- [Data processing agreement](https://www.bland.ai/legal/dpa)
+- [Subprocessors](https://www.bland.ai/legal/subprocessors)
+- [Model governance](https://www.bland.ai/legal/model-governance)
+
+## Resources
+
+- [Blog](https://www.bland.ai/blog): Engineering deep dives, product announcements, and enterprise case studies.
+- [Customers](https://www.bland.ai/customers): Case studies and customer stories from Bland's enterprise customers. Individual stories live at https://www.bland.ai/customers/[slug].
+- [Changelog](https://www.bland.ai/changelog): Platform release notes and product updates.
+- [Contact sales](https://www.bland.ai/contact): Enterprise inquiries and Forward Deployed Engineer team introduction.
+- [Book a demo](https://www.bland.ai/book-a-demo): Schedule a live walkthrough with a Forward Deployed Engineer.
+
+## Company
+
+- [About](https://www.bland.ai/about): Company background and team.
+- [Careers](https://www.bland.ai/careers): Open roles at Bland.
+- [Partners](https://www.bland.ai/partners): Integration and channel partners.
+
+## Optional
+
+- [llms-full.txt](https://www.bland.ai/llms-full.txt): Full content companion file for AI ingestion.
+
+## Contact
+
+For corrections or updates, contact support@bland.ai.
+
+---
+
+Last updated: 2026-05-15

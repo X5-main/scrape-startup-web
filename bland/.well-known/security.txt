@@ -1,0 +1,4 @@
+Contact: mailto:security@bland.ai
+Expires: 2027-04-05T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://www.bland.ai/trust-security

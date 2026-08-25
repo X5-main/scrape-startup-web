@@ -1,0 +1,35 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,649793,e=>{"use strict";var t=e.i(855118);let r=(...e)=>e.filter((e,t,r)=>!!e&&""!==e.trim()&&r.indexOf(e)===t).join(" ").trim();var n={xmlns:"http://www.w3.org/2000/svg",width:24,height:24,viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:2,strokeLinecap:"round",strokeLinejoin:"round"};let a=(0,t.forwardRef)(({color:e="currentColor",size:a=24,strokeWidth:o=2,absoluteStrokeWidth:i,className:s="",children:l,iconNode:d,...c},p)=>(0,t.createElement)("svg",{ref:p,...n,width:a,height:a,stroke:e,strokeWidth:i?24*Number(o)/Number(a):o,className:r("lucide",s),...c},[...d.map(([e,r])=>(0,t.createElement)(e,r)),...Array.isArray(l)?l:[l]]));e.s(["default",0,(e,n)=>{let o=(0,t.forwardRef)(({className:o,...i},s)=>(0,t.createElement)(a,{ref:s,iconNode:n,className:r(`lucide-${e.replace(/([a-z0-9])([A-Z])/g,"$1-$2").toLowerCase()}`,o),...i}));return o.displayName=`${e}`,o}],649793)},565993,e=>{"use strict";var t=e.i(746882),r=e.i(855118);let n=["cURL","JavaScript","CLI","MCP"],a=e=>({text:e,type:"string"}),o=e=>({text:e,type:"comment"}),i=e=>({text:e,type:"function"}),s=e=>({text:e,type:"flag"}),l=e=>({text:e}),d={cURL:{raw:`curl -X POST https://api.bland.ai/v1/calls \\
+  -H "Authorization: $BLAND_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "phone_number": "+14155552120",
+    "task": "Qualify refi lead",
+    "voice": "june"
+  }'`,lines:[[i("curl"),s(" -X POST"),l(" https://api.bland.ai/v1/calls \\")],[s("  -H"),l(" "),a('"Authorization: $BLAND_API_KEY"'),l(" \\")],[s("  -H"),l(" "),a('"Content-Type: application/json"'),l(" \\")],[s("  -d"),l(" "),a("'{")],[a('    "phone_number": "+14155552120",')],[a('    "task": "Qualify refi lead",')],[a('    "voice": "june"')],[a("  }'")]]},JavaScript:{raw:`// Server-side only. Never put your API key in a browser bundle.
+await fetch("https://api.bland.ai/v1/calls", {
+  method: "POST",
+  headers: {
+    "Authorization": "YOUR_API_KEY",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    phone_number: "+14155552120",
+    task: "Qualify refi lead",
+    voice: "june",
+  }),
+});`,lines:[[o("// Server-side only. Never put your API key in a browser bundle.")],[{text:"await",type:"keyword"},l(" "),i("fetch"),l("("),a('"https://api.bland.ai/v1/calls"'),l(", {")],[l("  method: "),a('"POST"'),l(",")],[l("  headers: {")],[l("    "),a('"Authorization"'),l(": "),a('"YOUR_API_KEY"'),l(",")],[l("    "),a('"Content-Type"'),l(": "),a('"application/json"'),l(",")],[l("  },")],[l("  body: JSON."),i("stringify"),l("({")],[l("    phone_number: "),a('"+14155552120"'),l(",")],[l("    task: "),a('"Qualify refi lead"'),l(",")],[l("    voice: "),a('"june"'),l(",")],[l("  }),")],[l("});")]]},CLI:{raw:`# Install the CLI
+npm install -g bland-cli
+bland auth login --key $BLAND_API_KEY
+
+# Send a call from your terminal
+bland call send +14155552120 \\
+  --task "Qualify refi lead" \\
+  --voice june`,lines:[[o("# Install the CLI")],[i("npm"),l(" install -g bland-cli")],[i("bland"),l(" auth login "),s("--key"),l(" $BLAND_API_KEY")],[],[o("# Send a call from your terminal")],[i("bland"),l(" call send +14155552120 \\")],[l("  "),s("--task"),l(" "),a('"Qualify refi lead"'),l(" \\")],[l("  "),s("--voice"),l(" june")]]},MCP:{raw:`// Add Bland to Claude Code, Cursor, or any MCP-aware editor
+{
+  "mcpServers": {
+    "bland": {
+      "command": "npx",
+      "args": ["bland-cli", "mcp"]
+    }
+  }
+}`,lines:[[o("// Add Bland to Claude Code, Cursor, or any MCP-aware editor")],[l("{")],[l("  "),a('"mcpServers"'),l(": {")],[l("    "),a('"bland"'),l(": {")],[l("      "),a('"command"'),l(": "),a('"npx"'),l(",")],[l("      "),a('"args"'),l(": ["),a('"bland-cli"'),l(", "),a('"mcp"'),l("]")],[l("    }")],[l("  }")],[l("}")]]}},c={keyword:"text-[var(--color-sage)]",string:"text-[var(--color-amber)]",comment:"text-secondary italic",function:"text-dark font-medium",number:"text-[var(--color-indigo)]",flag:"text-[var(--color-sage)]"};function p(e,r){return e.type?(0,t.jsx)("span",{className:c[e.type],children:e.text},r):(0,t.jsx)("span",{children:e.text},r)}e.s(["default",0,function(){let[e,a]=(0,r.useState)("cURL"),[o,i]=(0,r.useState)(!1),s=(0,r.useMemo)(()=>d[e],[e]),l=String(s.lines.length).length;async function c(){try{await navigator.clipboard.writeText(s.raw),i(!0),setTimeout(()=>i(!1),1400)}catch{}}return(0,t.jsxs)("div",{className:"relative rounded-card border border-border-soft bg-white overflow-hidden",children:[(0,t.jsxs)("div",{className:"flex items-center justify-between gap-3 px-3 py-2 border-b border-border-soft bg-fog",children:[(0,t.jsx)("div",{className:"flex items-center gap-1 overflow-x-auto",children:n.map(r=>{let n=r===e;return(0,t.jsx)("button",{onClick:()=>a(r),className:["font-body text-[13px] font-medium px-3 py-1.5 rounded-badge transition-colors whitespace-nowrap",n?"bg-white text-dark border border-border-soft":"text-secondary hover:text-dark border border-transparent"].join(" "),"aria-pressed":n,children:r},r)})}),(0,t.jsxs)("button",{onClick:c,className:"inline-flex items-center gap-1.5 font-body text-[12px] font-medium text-secondary hover:text-dark transition-colors px-2.5 py-1.5 rounded-badge","aria-label":"Copy code",children:[(0,t.jsx)("svg",{width:"12",height:"12",viewBox:"0 0 12 12",fill:"none","aria-hidden":!0,children:o?(0,t.jsx)("path",{d:"M2.5 6.2L4.7 8.4L9.5 3.6",stroke:"currentColor",strokeWidth:"1.4",strokeLinecap:"round",strokeLinejoin:"round"}):(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)("rect",{x:"3.5",y:"3.5",width:"6",height:"7",rx:"1",stroke:"currentColor",strokeWidth:"1.1"}),(0,t.jsx)("path",{d:"M3.5 2.5 H7.5 a1 1 0 0 1 1 1",stroke:"currentColor",strokeWidth:"1.1",strokeLinecap:"round",fill:"none"})]})}),o?"Copied":"Copy code"]})]}),(0,t.jsxs)("div",{className:"bg-white flex font-mono text-[13px] leading-[1.7] overflow-x-auto",style:{fontFamily:'"Söhne Mono", Menlo, Consolas, monospace'},children:[(0,t.jsx)("div",{"aria-hidden":!0,className:"select-none text-secondary opacity-50 text-right pl-5 pr-4 py-5 border-r border-border-soft bg-fog/40",style:{minWidth:`${l+2}ch`},children:s.lines.map((e,r)=>(0,t.jsx)("div",{children:r+1},r))}),(0,t.jsx)("div",{className:"flex-1 py-5 pl-5 pr-6 min-w-0",children:s.lines.map((e,r)=>(0,t.jsx)("div",{className:"min-h-[1.7em] whitespace-pre",children:0===e.length?" ":e.map(p)},r))})]})]})}])},834915,e=>{"use strict";var t=e.i(855118);e.s(["useScrollProgress",0,function(e,r){let n=(0,t.useRef)(r);(0,t.useEffect)(()=>{n.current=r}),(0,t.useEffect)(()=>{let t=e.current;if(!t)return;let r=0,a=-1,o=()=>{r=0;let e=t.getBoundingClientRect(),o=t.offsetHeight-window.innerHeight,i=o<=0?0:Math.max(0,Math.min(1,-e.top/o));i!==a&&(a=i,t.style.setProperty("--progress",i.toFixed(4)),n.current?.(t,i))},i=()=>{r||(r=requestAnimationFrame(o))};return o(),window.addEventListener("scroll",i,{passive:!0}),window.addEventListener("resize",i,{passive:!0}),()=>{window.removeEventListener("scroll",i),window.removeEventListener("resize",i),r&&cancelAnimationFrame(r)}},[e])}])}]);
