@@ -19,6 +19,7 @@ Usage: python3 mirror_site.py <start-url> <output-dir> [--depth N]
 """
 
 import argparse
+import glob
 import html
 import html.parser
 import os
@@ -57,6 +58,13 @@ def _looks_like_css(text_or_bytes):
 # import "./x" | import x from "./x" | import("./x") | import(`./x`)
 # Backticks: Framer rolldown bundles use template-literal chunk imports.
 JS_IMPORT_RE = re.compile(r"""(?:import(?:\(|\s+[^;'"]*?\s+from)?\s*["'`]([^"'`]+)["'`])""")
+# Turbopack chunk-registration refs are RELATIVE string literals
+# ("static/chunks/X.js") inside already-fetched chunks — invisible to
+# JS_IMPORT_RE (they are not import() calls). D52 coderabbit.ai: 28 dynamic
+# chunks were missed by the closure scan, the replica threw ChunkLoadError,
+# and the page rendered as Next's error shell. See Mirror.turbo_abs().
+TURBO_REL_RE = re.compile(
+    r"""["'](static/chunks/[A-Za-z0-9_\-/]+\.(?:js|mjs|css))["']""")
 
 _HTML_MEDIA_RE = re.compile(
     r"""["']([^"'\n]{1,2048}?\.(?:mp4|webm|mp3|ogg|mov))["']""",
@@ -209,8 +217,46 @@ class Mirror:
             return False
         return any(host == h or host.endswith("." + h) for h in self.asset_hosts)
 
+
     def absolute(self, base, url):
         return urllib.parse.urljoin(base, url)
+
+    def turbo_abs(self, url, ref):
+        """Turbopack chunk-registration refs inside stored chunks are
+        relative string literals ("static/chunks/X.js"); they resolve
+        against the site's /_next/ base, not the chunk's own directory
+        (urljoin would produce .../chunks/static/chunks/X.js — a 404).
+        Proven mapping (D52 coderabbit.ai, Next.js Turbopack prod):
+        ref "static/chunks/X.js" -> https://<origin>/_next/static/chunks/X.js,
+        with the parent chunk's ?dpl=<token> query preserved verbatim: the
+        dpl build token is what Turbopack's loader actually fetches with,
+        and the crawler's query-folding store keys the asset as
+        NAME__dpl-dpl-<token>.js — dropping the query yields a key that
+        never exists and (on some dpl builds) a live 404.
+        """
+        p = urllib.parse.urlparse(url)
+        abs_url = self.absolute(url, "/_next/" + ref)
+        if p.query:
+            abs_url = abs_url + "?" + p.query
+        return abs_url
+
+    def _disk_missing(self, dest):
+        """True if a store key is absent from disk, honoring the
+        query-folding convention: an asset fetched as ?dpl=<token> is
+        stored as NAME__dpl-dpl-<token>.ext (single NAME__dpl-<token>
+        per url_path_key), so the plain PATH form of such a key never
+        exists on disk even though the asset is present (D52: 36
+        Turbopack dpl chunks verified present via twin glob). Normalizes
+        away any already-applied fold suffix before the twin glob."""
+        if os.path.exists(dest):
+            return False
+        base, ext = os.path.splitext(dest)
+        # Strip an already-applied fold suffix so the twin glob starts
+        # from the PLAIN name (else it pattern-matches nothing).
+        base = re.sub(r"__dpl(?:-dpl)?-[A-Za-z0-9]+$", "", base)
+        if ext and glob.glob(base + "__dpl*" + ext):
+            return False
+        return True
 
     def is_html_like(self, url):
         path = urllib.parse.urlparse(url).path
@@ -294,19 +340,35 @@ class Mirror:
         return "srcset=" + q + ", ".join(out) + q
 
     # ---- asset discovery ----------------------------------------------
-    def queue_css_refs(self, url, text):
-        """CSS url() refs -> allowed assets."""
-        for m in CSS_URL_RE.finditer(text):
-            ref = m.group(2)
-            abs_url = self.absolute(url, ref)
-            if self.allowed(abs_url) and abs_url not in self.assets_seen:
-                self.assets_seen.add(abs_url)
-                self.queue.append((abs_url, -1))
-
     def queue_js_imports(self, url, text):
         """JS import()/import-from refs -> same-host chunk assets."""
         for m in JS_IMPORT_RE.finditer(text):
             ref = m.group(1)
+            abs_url = self.absolute(url, ref)
+            if self.allowed(abs_url) and abs_url not in self.assets_seen:
+                self.assets_seen.add(abs_url)
+                self.queue.append((abs_url, -1))
+        # D52: Turbopack chunks register dynamic-import deps as plain
+        # relative "static/chunks/X.js" string literals (no import()
+        # syntax), so JS_IMPORT_RE misses them entirely and the replica
+        # 404s on ChunkLoadError at runtime. Scan every stored chunk
+        # for the relative-ref shape and queue the resolved /_next/ URLs
+        # for closure — nested chunks are found as each one is fetched.
+        for m in TURBO_REL_RE.finditer(text):
+            ref = m.group(1)
+            abs_url = self.turbo_abs(url, ref)
+            if self.allowed(abs_url) and abs_url not in self.assets_seen:
+                self.assets_seen.add(abs_url)
+                self.queue.append((abs_url, -1))
+
+    def queue_css_refs(self, url, text):
+        """CSS url() refs -> allowed assets."""
+        for m in CSS_URL_RE.finditer(text):
+            ref = m.group(2)
+            if "\n" in ref or not ref.strip():
+                continue
+            if ref.startswith("data:"):
+                continue
             abs_url = self.absolute(url, ref)
             if self.allowed(abs_url) and abs_url not in self.assets_seen:
                 self.assets_seen.add(abs_url)
@@ -494,7 +556,8 @@ class Mirror:
                     for m in JS_IMPORT_RE.finditer(text):
                         ref = m.group(1)
                         nxt = text[m.end():m.end() + 1]
-                        if ":" in ref or "+" in ref or "${" in ref or nxt == "+":
+                        if (":" in ref or "+" in ref or "${" in ref or nxt == "+"
+                                or "," in ref or "{" in ref or "}" in ref):
                             # scheme-ish string fragments (Turbopack emits
                             # minified `case"@import":case":` switch labels
                             # that the import regex crosses): never a valid
@@ -507,6 +570,19 @@ class Mirror:
                         if self.allowed(abs_url):
                             dest = os.path.join(self.out, url_path_key(abs_url))
                             if not os.path.exists(dest):
+                                missing.add(abs_url)
+                    # D52: Turbopack dynamic-import deps registered as plain
+                    # relative "static/chunks/X.js" string literals — not
+                    # import() calls, invisible to JS_IMPORT_RE above.
+                    for m in TURBO_REL_RE.finditer(text):
+                        ref = m.group(1)
+                        abs_url = self.turbo_abs(base, ref)
+                        if self.allowed(abs_url):
+                            dest = os.path.join(
+                                self.out, url_path_key(abs_url))
+                            # dpl-folded twin check: the asset may be stored
+                            # as NAME__dpl-dpl-<token>.js (query-folding)
+                            if self._disk_missing(dest):
                                 missing.add(abs_url)
                 if is_css:
                     for m in CSS_URL_RE.finditer(text):

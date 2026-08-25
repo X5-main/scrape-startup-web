@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <style>
+    @font-face{font-family:Geist;font-style:normal;font-weight:600;src:url(data:font/woff2;base64,d09GMk9UVE8AAAP0AAwAAAAABjAAAAOpAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAADYR+GhYbcBwoBmAAPAE2AiQDDAQGBYIIByAbWwXILgbs5ouHh2stZ0qA1ZQwNldTSW/PYlrNnq/L6v3mIPLMhuaauFlHn+xOtgOCZEzvv4AjVM2EJOHmAB2rKRZuM66ZBZYVssLMj41Cyx3dPQTBL2BuC6PAAwzhvn2Z7SDggWUQQobd6ib7WxgGSRkmSVBQk/uFL5xQoIFpizVqN//X1H9rjLZs0NHEJ3K5oioKG4WtdcADm+2NorUTZBS00W03RVQSiVHZhfBFUJBZdv/BY8cFlu8PH/zHyhwUFG6g6WAsJMYiduNiXrXQc/3VKQaN2/8qwQjgQp8RoEkLA4yo9uogLsjSxefdIR4Q25jm4jwA8P8mm1jFvribNj11OnqhjOlcjZyLUedmVOyUEdLzd3ei3oX8RfVUuCs7dR8ZIqqH8jH02AoQIPis/XOg34Stohq1Ueq3Kxq9Zqle1xVkY4BxCEKQoLUOjtjlat2ErrqJrld5YoWcu1YHi+zOtaacf2uZK7z/s1S77j1Ur8YldK5ad6MOXIKimCqoTp2VfrdWB4ymQ0tnZFic9wKDaNU1+HL69E9/syIPjlSuahZ/h1l4NPToH8rf300bdf//8X1Dtf+tkaGUwKHK7bOlYtHKhdghxU2ySsGOR0nF7cIr0Y8QGyGpboqGvmjKLwe+M8xFuNxl0YqH/HVOMPmTiVki5hztL5rQEps1QSYrSpUPKeKcLGYp7GBklAidrgtEHbPddx83gnA9j4FZaOyrlk8o9JWLpUiFpzdYKOdLMWmexdch8EU3BXweBAe7T4s5XB7M8DmyfCiKyjkyLjCH+b/4VzeZSvnqlOueuT2ErU5bPm1+ftDMxJFl0927vE2fu9TdYgsQQA+6ACHsNQJoeQjD5rMKKmB62DpuBEzxAHxUZQf9x4yADFCExzSJjLHXBPy4YOboO/RtBW6cCIPOs3hevKiWAM7zINP4bGU1EMi5JOUC+e3QLsJCA8+WvKlyoboIVywoKmzqSx2FTXhtwVoANshuAVzwAAbgANY4BFk8H0iME7YavQeOWrKM4qxTydzn9uHYqwl/Zcd9AODlaf2AK/qeM1lz464BJGwFfhtvrWWE8RcNQLxcLk5gNU9J8NGDAG4pREU4VNSAGOwoFYypVQpOmKZ6flwhSGP4NZEBkK2/wcYaJ1C5/oYbLM1Iw3So0t8YYw020gguQgUJESJMvGzDTDbKIGO5CBc04g5DLB/hzZFC+c4efKV81YrEnweVdR5ovGFajZll3SXA8ez1JU0DAA==)format('woff2')}
+  </style>
+  <rect width="64" height="64" rx="18" fill="#9A3412"/>
+  <circle cx="51" cy="14" r="17" fill="#FDBA74" fill-opacity=".28"/>
+  <circle cx="16" cy="50" r="16" fill="#431407" fill-opacity=".34"/>
+  <text x="32" y="35" fill="#FFF7ED" font-family="Geist, Arial, sans-serif" font-size="22" font-weight="600" text-anchor="middle">NK</text>
+</svg>

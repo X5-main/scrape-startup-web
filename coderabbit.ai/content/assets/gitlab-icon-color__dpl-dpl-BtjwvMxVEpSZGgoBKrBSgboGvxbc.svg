@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" role="img" aria-label="GitLab">
+  <path fill="#E24329" fill-rule="evenodd" d="M7.51995 14.4477 10.2893 5.92224H4.75061L7.51995 14.4477Z" clip-rule="evenodd"/>
+  <path fill="#FC6D26" fill-rule="evenodd" d="M7.52007 14.4477 4.75073 5.92224H.869324L7.52007 14.4477Z" clip-rule="evenodd"/>
+  <path fill="#FCA326" fill-rule="evenodd" d="m.86862 5.92224-.8413312 2.59215a.572.572 0 0 0 .2082182.6411L7.51937 14.4477.86862 5.92224Z" clip-rule="evenodd"/>
+  <path fill="#E24329" fill-rule="evenodd" d="M.869324 5.92225H4.75049L3.08264.791069c-.08578-.26415-.45945-.26415-.54522 0L.869324 5.92225Z" clip-rule="evenodd"/>
+  <path fill="#FC6D26" fill-rule="evenodd" d="m7.51917 14.4477 2.76933-8.52546h3.8814L7.51917 14.4477Z" clip-rule="evenodd"/>
+  <path fill="#FCA326" fill-rule="evenodd" d="m14.1699 5.92224.8413 2.5898a.572.572 0 0 1-.2082.6411L7.51917 14.4477l6.65073-8.52546Z" clip-rule="evenodd"/>
+  <path fill="#E24329" fill-rule="evenodd" d="M14.1708 5.92234h-3.8814L11.9575.788811c.0858-.26415.4595-.26415.5452 0l1.6681 5.133529Z" clip-rule="evenodd"/>
+</svg>
