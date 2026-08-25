@@ -121,14 +121,15 @@ _SRCSET_RE = re.compile(rb'\bsrcSet=("[^"]*"|\'[^\']*\')')
 # `'<img src="' + thumbUrl(id)` became `/videos/https://img.youtube.com/...`);
 # the browser's own parser also ends a script/style at the first close tag, so
 # a .*? span is byte-faithful.
-# lyzr (D46): JS builds <img>/<video> markup from template literals and data
-# blobs holding absolute URLs (`src="${d.logo}"`, `'<img src="' + thumbUrl(..)`).
-# A byte-global src=/href= rewrite corrupted those refs into
-# `/agent-tracker/https://www.lyzr.ai/...` 404s. Span-mask script/style BODIES
-# for lyzr; every other mirror keeps the original global restore pass
-# (Next.js RSC payload contents were historically load-bearing for hydration).
+# lyzr (D46) and micro1 (D55): JS builds <img>/<video> markup from template
+# literals and data blobs holding URLs (`src="${d.logo}"`, `src="${b(s.src)}"`).
+# A byte-global src=/href= rewrite corrupted those refs (`/agent-tracker/https://…`,
+# `/benchmark/<page>/${…}`) into 404s. Span-mask script/style BODIES; the other
+# mirrors keep the original global restore pass because their Next.js RSC
+# payload contents were historically load-bearing for hydration — micro1 is
+# Webflow static (no RSC), so on-disk script bodies ARE the live bytes.
 _NON_MARKUP_RE = re.compile(rb'(<(?:script|style)\b[^>]*>)(.*?)(</(?:script|style)\s*>)', re.S)
-_MASK_SCRIPT_BODIES = bool(re.search(r"lyzr\.ai", ORIGIN))
+_MASK_SCRIPT_BODIES = bool(re.search(r"lyzr\.ai", ORIGIN)) or os.path.basename(DOCROOT).startswith("micro1")
 
 
 def _restore_live_html(body, pagedir="/"):

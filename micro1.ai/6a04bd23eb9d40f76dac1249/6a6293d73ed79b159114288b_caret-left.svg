@@ -1,0 +1,16 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 13.2069 13.2069" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="CaretLeft" clip-path="url(#clip0_0_48)">
+<g id="Vector">
+</g>
+<path id="Vector_2" d="M4.95258 2.47656L9.07975 6.60373L4.95258 10.7309" stroke="url(#paint0_linear_0_48)" stroke-width="1.32069" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_48" x1="6.42657" y1="-0.962746" x2="10.0011" y2="-0.16847" gradientUnits="userSpaceOnUse">
+<stop stop-color="#7065F0"/>
+<stop offset="1" stop-color="#E2E2FD"/>
+</linearGradient>
+<clipPath id="clip0_0_48">
+<rect width="13.2069" height="13.2069" fill="white"/>
+</clipPath>
+</defs>
+</svg>
