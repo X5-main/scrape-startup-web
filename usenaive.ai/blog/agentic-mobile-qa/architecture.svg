@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#7a8a99"/>
+    </marker>
+    <g id="phone">
+      <rect x="0" y="0" width="34" height="60" rx="7" fill="#eef3ee" stroke="#bcdcc8" stroke-width="1.5"/>
+      <g transform="translate(9,20) scale(0.66)"><path d="M18.4395 5.5586c-.675 1.1664-1.352 2.3318-2.0274 3.498-.0366-.0155-.0742-.0286-.1113-.043-1.8249-.6957-3.484-.8-4.42-.787-1.8551.0185-3.3544.4643-4.2597.8203-.084-.1494-1.7526-3.021-2.0215-3.4864a1.1451 1.1451 0 0 0-.1406-.1914c-.3312-.364-.9054-.4859-1.379-.203-.475.282-.7136.9361-.3886 1.5019 1.9466 3.3696-.0966-.2158 1.9473 3.3593.0172.031-.4946.2642-1.3926 1.0177C2.8987 12.176.452 14.772 0 18.9902h24c-.119-1.1108-.3686-2.099-.7461-3.0683-.7438-1.9118-1.8435-3.2928-2.7402-4.1836a12.1048 12.1048 0 0 0-2.1309-1.6875c.6594-1.122 1.312-2.2559 1.9649-3.3848.2077-.3615.1886-.7956-.0079-1.1191a1.1001 1.1001 0 0 0-.8515-.5332c-.5225-.0536-.9392.3128-1.0488.5449zm-.0391 8.461c.3944.5926.324 1.3306-.1563 1.6503-.4799.3197-1.188.0985-1.582-.4941-.3944-.5927-.324-1.3307.1563-1.6504.4727-.315 1.1812-.1086 1.582.4941zM7.207 13.5273c.4803.3197.5506 1.0577.1563 1.6504-.394.5926-1.1038.8138-1.584.4941-.48-.3197-.5503-1.0577-.1563-1.6504.4008-.6021 1.1087-.8106 1.584-.4941z" fill="#3DDC84"/></g>
+    </g>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="520" fill="#fbf9f6"/>
+  <rect x="0" y="0" width="960" height="8" fill="#2f7d4f"/>
+  <text x="40" y="52" font-size="24" font-weight="700" fill="#1f2937">Agentic mobile-QA platform</text>
+  <text x="40" y="76" font-size="14" fill="#6b7280">one tenant user per customer - isolated cloud phones - approval-gated, metered</text>
+
+  <!-- Control plane -->
+  <rect x="40" y="104" width="250" height="120" rx="14" fill="#ffffff" stroke="#d8c5e2" stroke-width="1.5"/>
+  <text x="60" y="132" font-size="14" font-weight="700" fill="#5b3d7a">Your QA platform</text>
+  <text x="60" y="156" font-size="13" fill="#333">control plane (nv_sk_ key)</text>
+  <text x="60" y="182" font-size="12.5" fill="#6566f1">naive.users.create()</text>
+  <text x="60" y="202" font-size="12.5" fill="#6566f1">naive.accountKits.assignUser()</text>
+
+  <!-- Tenants -->
+  <rect x="40" y="256" width="250" height="220" rx="14" fill="#f6f3f0" stroke="#e2d9cf" stroke-width="1.5"/>
+  <text x="60" y="284" font-size="13" font-weight="700" fill="#1f2937">Tenant users</text>
+
+  <rect x="60" y="300" width="210" height="72" rx="10" fill="#eef3ee" stroke="#bcdcc8" stroke-width="1.5"/>
+  <text x="76" y="324" font-size="13" font-weight="700" fill="#2f7d4f">Acme</text>
+  <text x="76" y="346" font-size="11.5" fill="#333">naive.forUser(acmeId)</text>
+  <text x="76" y="362" font-size="11.5" fill="#333">.mobile</text>
+
+  <rect x="60" y="386" width="210" height="72" rx="10" fill="#eef3ee" stroke="#bcdcc8" stroke-width="1.5"/>
+  <text x="76" y="410" font-size="13" font-weight="700" fill="#2f7d4f">Beta</text>
+  <text x="76" y="432" font-size="11.5" fill="#333">naive.forUser(betaId)</text>
+  <text x="76" y="448" font-size="11.5" fill="#333">.mobile</text>
+
+  <!-- Approval gate -->
+  <rect x="360" y="150" width="230" height="120" rx="14" fill="#faf1ea" stroke="#e7c9b0" stroke-width="1.5"/>
+  <text x="380" y="178" font-size="14" font-weight="700" fill="#b4582f">Approval gate</text>
+  <text x="380" y="202" font-size="12" fill="#333">provision / run / terminate</text>
+  <text x="380" y="222" font-size="12" fill="#333">-&gt; 202 pending_approval</text>
+  <text x="380" y="246" font-size="12" fill="#b4582f">human approves -&gt; replay</text>
+
+  <!-- Mobilerun operator -->
+  <rect x="360" y="300" width="230" height="120" rx="14" fill="#ffffff" stroke="#bcdcc8" stroke-width="1.5"/>
+  <text x="380" y="328" font-size="14" font-weight="700" fill="#2f7d4f">Mobilerun operator</text>
+  <text x="380" y="352" font-size="12" fill="#333">Naive holds the operator key</text>
+  <text x="380" y="372" font-size="12" fill="#333">your agent never does</text>
+  <text x="380" y="396" font-size="12" fill="#6b7280">metered per device-minute</text>
+
+  <!-- Isolated phones -->
+  <rect x="640" y="104" width="280" height="196" rx="14" fill="#f6f3f0" stroke="#e2d9cf" stroke-width="1.5"/>
+  <text x="660" y="132" font-size="13" font-weight="700" fill="#1f2937">Isolated cloud phones</text>
+  <use href="#phone" x="668" y="152"/>
+  <use href="#phone" x="712" y="152"/>
+  <text x="668" y="238" font-size="11.5" fill="#2f7d4f">Acme fleet</text>
+  <use href="#phone" x="820" y="152"/>
+  <text x="808" y="238" font-size="11.5" fill="#2f7d4f">Beta fleet</text>
+  <text x="660" y="266" font-size="11.5" fill="#6b7280">recorded against (company, user)</text>
+  <text x="660" y="286" font-size="11.5" fill="#6b7280">cross-tenant id -&gt; not_found</text>
+
+  <!-- OpenRouter verdict -->
+  <rect x="640" y="330" width="280" height="146" rx="14" fill="#f3eef9" stroke="#d8c5e2" stroke-width="1.5"/>
+  <g transform="translate(660,350) scale(0.9)"><path d="M16.778 1.844v1.919q-.569-.026-1.138-.032-.708-.008-1.415.037c-1.93.126-4.023.728-6.149 2.237-2.911 2.066-2.731 1.95-4.14 2.75-.396.223-1.342.574-2.185.798-.841.225-1.753.333-1.751.333v4.229s.768.108 1.61.333c.842.224 1.789.575 2.185.799 1.41.798 1.228.683 4.14 2.75 2.126 1.509 4.22 2.11 6.148 2.236.88.058 1.716.041 2.555.005v1.918l7.222-4.168-7.222-4.17v2.176c-.86.038-1.611.065-2.278.021-1.364-.09-2.417-.357-3.979-1.465-2.244-1.593-2.866-2.027-3.68-2.508.889-.518 1.449-.906 3.822-2.59 1.56-1.109 2.614-1.377 3.978-1.466.667-.044 1.418-.017 2.278.02v2.176L24 6.014Z" fill="#6566f1"/></g>
+  <text x="692" y="368" font-size="13" font-weight="700" fill="#5b3d7a">Verdict via OpenRouter</text>
+  <text x="660" y="398" font-size="12" fill="#333">naive.llm.chat()</text>
+  <text x="660" y="418" font-size="12" fill="#333">response_format json_schema</text>
+  <text x="660" y="438" font-size="12" fill="#333">-&gt; passed / summary / step</text>
+  <text x="660" y="462" font-size="11.5" fill="#6b7280">credits_used per customer</text>
+
+  <!-- arrows -->
+  <path d="M290 164 L356 200" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr)"/>
+  <path d="M290 336 L356 350" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr)"/>
+  <path d="M590 220 L636 300" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr)"/>
+  <path d="M590 350 L636 210" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr)"/>
+  <path d="M590 380 L636 400" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr)"/>
+</svg>

@@ -1,0 +1,52 @@
+<svg width="880" height="360" viewBox="0 0 880 360" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="880" height="360" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="879" height="359" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">EXECUTION-TIME PERMISSION ENFORCEMENT</text>
+
+  <!-- within policy -->
+  <text x="32" y="80" font-size="12" fill="#777777">WITHIN POLICY / under the per-trip cap</text>
+  <rect x="32" y="92" width="170" height="58" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="117" y="116" font-size="12.5" fill="#000000" text-anchor="middle">agent issues card</text>
+  <text x="117" y="134" font-size="10.5" fill="#777777" text-anchor="middle">cards.create(...)</text>
+
+  <rect x="250" y="92" width="170" height="58" rx="10" fill="#eaf4ec" stroke="#b8d9c0"/>
+  <text x="335" y="116" font-size="12.5" fill="#000000" text-anchor="middle">approved by policy</text>
+  <text x="335" y="134" font-size="10.5" fill="#3f7d52" text-anchor="middle">requiresApproval: false</text>
+
+  <rect x="468" y="92" width="170" height="58" rx="10" fill="#eaf4ec" stroke="#b8d9c0"/>
+  <text x="553" y="116" font-size="12.5" fill="#000000" text-anchor="middle">card issued</text>
+  <text x="553" y="134" font-size="10.5" fill="#3f7d52" text-anchor="middle">hard cap = trip budget</text>
+
+  <path d="M202 121H244" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M244 121l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+  <path d="M420 121H462" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M462 121l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- out of policy -->
+  <text x="32" y="206" font-size="12" fill="#777777">OUT OF POLICY / over the cap or a flagged toolkit</text>
+  <rect x="32" y="218" width="170" height="58" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="117" y="242" font-size="12.5" fill="#000000" text-anchor="middle">agent issues card</text>
+  <text x="117" y="260" font-size="10.5" fill="#777777" text-anchor="middle">cards.create(...)</text>
+
+  <rect x="250" y="218" width="170" height="58" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="335" y="242" font-size="12.5" fill="#000000" text-anchor="middle">frozen by API</text>
+  <text x="335" y="260" font-size="10.5" fill="#b4582f" text-anchor="middle">202 pending_approval</text>
+
+  <rect x="468" y="218" width="170" height="58" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="553" y="242" font-size="12.5" fill="#000000" text-anchor="middle">manager decides</text>
+  <text x="553" y="260" font-size="10.5" fill="#777777" text-anchor="middle">approve to replay / deny</text>
+
+  <rect x="686" y="218" width="162" height="58" rx="10" fill="#eaf4ec" stroke="#b8d9c0"/>
+  <text x="767" y="242" font-size="12.5" fill="#000000" text-anchor="middle">executed</text>
+  <text x="767" y="260" font-size="10.5" fill="#3f7d52" text-anchor="middle">recorded in the queue</text>
+
+  <path d="M202 247H244" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M244 247l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+  <path d="M420 247H462" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M462 247l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+  <path d="M638 247H680" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M680 247l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <text x="32" y="320" font-size="11.5" fill="#999999">The same SDK call resolves to a result or a frozen approval. The model never gets to choose which.</text>
+</svg>

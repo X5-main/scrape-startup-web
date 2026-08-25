@@ -1,0 +1,49 @@
+<svg width="880" height="408" viewBox="0 0 880 408" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="880" height="408" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="879" height="407" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">EXECUTION-TIME ENFORCEMENT - THE GATE RUNS WHEN THE AGENT ACTS</text>
+
+  <!-- agent box -->
+  <rect x="32" y="150" width="170" height="92" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="117" y="184" font-size="14" fill="#000000" text-anchor="middle">Agent acts</text>
+  <text x="117" y="206" font-size="10.5" fill="#777777" text-anchor="middle">connections.execute()</text>
+  <text x="117" y="222" font-size="10.5" fill="#777777" text-anchor="middle">connections.connect()</text>
+
+  <!-- arrow to kit eval -->
+  <path d="M202 196H250" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M250 196l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- AccountKit evaluation -->
+  <rect x="252" y="156" width="180" height="80" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+  <text x="342" y="186" font-size="13" fill="#000000" text-anchor="middle">AccountKit check</text>
+  <text x="342" y="207" font-size="10.5" fill="#999999" text-anchor="middle">inside Naive,</text>
+  <text x="342" y="221" font-size="10.5" fill="#999999" text-anchor="middle">on every call</text>
+
+  <!-- three outcome arrows -->
+  <path d="M432 178C470 178 470 96 508 96" stroke="#b4582f" stroke-opacity="0.55" stroke-width="1.6" fill="none"/>
+  <path d="M508 96l-8 -4v8z" fill="#b4582f" fill-opacity="0.55"/>
+  <path d="M432 196H508" stroke="#b4582f" stroke-opacity="0.55" stroke-width="1.6"/>
+  <path d="M508 196l-8 -4v8z" fill="#b4582f" fill-opacity="0.55"/>
+  <path d="M432 214C470 214 470 300 508 300" stroke="#3f7d4e" stroke-opacity="0.6" stroke-width="1.6" fill="none"/>
+  <path d="M508 300l-8 -4v8z" fill="#3f7d4e" fill-opacity="0.6"/>
+
+  <!-- outcome 1: forbidden -->
+  <rect x="510" y="66" width="338" height="62" rx="10" fill="#f5e9e4" stroke="#e7c3b5"/>
+  <text x="528" y="92" font-size="12.5" fill="#b4582f">app not in the kit's allowlist</text>
+  <text x="528" y="113" font-size="11.5" fill="#000000">-&gt; throws error code "forbidden"</text>
+
+  <!-- outcome 2: pending_approval -->
+  <rect x="510" y="166" width="338" height="62" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="528" y="192" font-size="12.5" fill="#b4582f">connect in approvalToolkits</text>
+  <text x="528" y="213" font-size="11.5" fill="#000000">-&gt; 202 pending_approval -> human -> replay</text>
+
+  <!-- outcome 3: allowed -->
+  <rect x="510" y="270" width="338" height="62" rx="10" fill="#eef4ee" stroke="#bcd6bc"/>
+  <text x="528" y="296" font-size="12.5" fill="#3f7d4e">permitted by the kit</text>
+  <text x="528" y="317" font-size="11.5" fill="#000000">-&gt; executes on the customer's own account</text>
+
+  <!-- footnote -->
+  <rect x="32" y="356" width="816" height="34" rx="9" fill="#f3f1ee" stroke="rgba(0,0,0,0.1)"/>
+  <text x="48" y="378" font-size="11.5" fill="#555555">A prompt-injected ticket can ask for anything - the agent still can't call a tool its plan doesn't grant.</text>
+</svg>

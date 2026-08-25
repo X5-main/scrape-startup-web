@@ -1,0 +1,56 @@
+<svg width="960" height="420" viewBox="0 0 960 420" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="960" height="420" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="959" height="419" rx="16" fill="none" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="0" y="0" width="960" height="6" rx="3" fill="#2f7d4f"/>
+
+  <text x="28" y="46" font-size="13" letter-spacing="2" fill="#6b6560">EXECUTION-TIME ENFORCEMENT: SAME CODE, DIFFERENT KIT</text>
+
+  <!-- Agent -->
+  <rect x="24" y="176" width="184" height="92" rx="12" fill="#f3eef9" stroke="#d8c5e2"/>
+  <text x="116" y="212" font-size="12.5" fill="#6b4a8a" text-anchor="middle">Agent proposes</text>
+  <text x="116" y="234" font-size="10.5" fill="#6b4a8a" text-anchor="middle">client.domains</text>
+  <text x="116" y="250" font-size="10.5" fill="#6b4a8a" text-anchor="middle">.purchase(domain)</text>
+
+  <!-- Defense: gate -->
+  <rect x="258" y="74" width="210" height="92" rx="12" fill="#faf1ea" stroke="#e7c9b0"/>
+  <text x="363" y="102" font-size="12.5" fill="#b4582f" text-anchor="middle">kit: Brand Defense</text>
+  <text x="363" y="124" font-size="11" fill="#b4582f" text-anchor="middle">domains requiresApproval</text>
+  <text x="363" y="146" font-size="11" fill="#b4582f" text-anchor="middle">-&gt; 202 pending_approval</text>
+
+  <!-- Human -->
+  <rect x="510" y="74" width="150" height="92" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="585" y="112" font-size="12.5" fill="#1c1a17" text-anchor="middle">Human review</text>
+  <text x="585" y="134" font-size="10.5" fill="#999999" text-anchor="middle">approvals queue</text>
+
+  <!-- Approve -->
+  <rect x="702" y="52" width="234" height="52" rx="10" fill="#eef3ee" stroke="#bcdcc8"/>
+  <text x="719" y="74" font-size="11.5" fill="#2f7d4f">approve -&gt; replay purchase</text>
+  <text x="719" y="92" font-size="11.5" fill="#2f7d4f">-&gt; checkout -&gt; registered</text>
+
+  <!-- Deny -->
+  <rect x="702" y="116" width="234" height="42" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="719" y="142" font-size="11.5" fill="#6b6560">deny -&gt; nothing spent</text>
+
+  <!-- Monitoring: forbidden -->
+  <rect x="258" y="286" width="330" height="92" rx="12" fill="#f6eeee" stroke="#d9b8b8"/>
+  <text x="423" y="314" font-size="12.5" fill="#9a3b3b" text-anchor="middle">kit: Monitoring Only</text>
+  <text x="423" y="336" font-size="11" fill="#9a3b3b" text-anchor="middle">domains disabled</text>
+  <text x="423" y="358" font-size="11" fill="#9a3b3b" text-anchor="middle">-&gt; forbidden (primitive_disabled_by_kit)</text>
+
+  <!-- arrows from agent -->
+  <path d="M208 200C232 200 232 120 252 120" stroke="#b4582f" stroke-opacity="0.6" stroke-width="1.6" fill="none"/>
+  <path d="M252 120l-8 -4v8z" fill="#b4582f" fill-opacity="0.6"/>
+  <path d="M208 244C232 244 232 332 252 332" stroke="#9a3b3b" stroke-opacity="0.6" stroke-width="1.6" fill="none"/>
+  <path d="M252 332l-8 -4v8z" fill="#9a3b3b" fill-opacity="0.6"/>
+
+  <!-- gate -> human -->
+  <path d="M468 120H504" stroke="#1c1a17" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M504 120l-8 -4v8z" fill="#1c1a17" fill-opacity="0.4"/>
+  <!-- human -> approve/deny -->
+  <path d="M660 104C682 104 682 78 696 78" stroke="#2f7d4f" stroke-opacity="0.55" stroke-width="1.6" fill="none"/>
+  <path d="M696 78l-8 -4v8z" fill="#2f7d4f" fill-opacity="0.55"/>
+  <path d="M660 136C682 136 682 137 696 137" stroke="#1c1a17" stroke-opacity="0.3" stroke-width="1.6" fill="none"/>
+  <path d="M696 137l-8 -4v8z" fill="#1c1a17" fill-opacity="0.3"/>
+
+  <text x="28" y="404" font-size="11.5" fill="#999999">The agent never holds the registrar credential or the payment method. The gate lives on the server, not in the prompt.</text>
+</svg>

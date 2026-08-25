@@ -1,0 +1,45 @@
+<svg width="880" height="360" viewBox="0 0 880 360" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="880" height="360" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="879" height="359" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">EXECUTION-TIME ENFORCEMENT: ONE SEND CALL, TWO OUTCOMES</text>
+
+  <!-- agent call -->
+  <rect x="32" y="138" width="186" height="84" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="125" y="170" font-size="13" fill="#000000" text-anchor="middle">Agent calls</text>
+  <text x="125" y="190" font-size="11" fill="#777777" text-anchor="middle">email.send({ ... })</text>
+  <text x="125" y="206" font-size="10.5" fill="#999999" text-anchor="middle">on forUser(customer)</text>
+
+  <!-- meter -->
+  <rect x="268" y="130" width="206" height="100" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="371" y="160" font-size="14" fill="#000000" text-anchor="middle">Naive meter</text>
+  <text x="371" y="182" font-size="11" fill="#777777" text-anchor="middle">usage(email) vs</text>
+  <text x="371" y="198" font-size="11" fill="#777777" text-anchor="middle">plan.quotas.email</text>
+  <text x="371" y="216" font-size="10.5" fill="#999999" text-anchor="middle">per billing period</text>
+
+  <!-- arrow call -> meter -->
+  <path d="M218 180H262" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M262 180l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- under quota -->
+  <rect x="556" y="70" width="292" height="92" rx="10" fill="#eef3ee" stroke="#bcd2bd"/>
+  <text x="572" y="100" font-size="13" fill="#2f6b3a">under quota</text>
+  <text x="572" y="122" font-size="11" fill="#3f7a4a">200 sent → delivered from</text>
+  <text x="572" y="138" font-size="11" fill="#3f7a4a">acme@you.usenaive.ai</text>
+  <text x="572" y="154" font-size="10.5" fill="#5a8a63">usage event recorded · 0.016 credits</text>
+
+  <!-- over quota -->
+  <rect x="556" y="196" width="292" height="96" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="572" y="226" font-size="13" fill="#b4582f">over quota</text>
+  <text x="572" y="248" font-size="11" fill="#b4582f">429 rate_limited</text>
+  <text x="572" y="264" font-size="11" fill="#b4582f">{ used: 1000, limit: 1000 }</text>
+  <text x="572" y="280" font-size="10.5" fill="#c06b41">nothing sent · no credit charged</text>
+
+  <!-- arrows meter -> outcomes -->
+  <path d="M474 168C512 168 512 116 552 116" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6" fill="none"/>
+  <path d="M552 116l-8 -4 1 8z" fill="#000000" fill-opacity="0.4"/>
+  <path d="M474 192C512 192 512 244 552 244" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6" fill="none"/>
+  <path d="M552 244l-8 -4 1 8z" fill="#000000" fill-opacity="0.4"/>
+
+  <text x="32" y="330" font-size="11.5" fill="#999999">The Free plan's quota and the Pro plan's quota are the same code path  only the subscribed plan differs. Upgrade lifts the ceiling instantly.</text>
+</svg>

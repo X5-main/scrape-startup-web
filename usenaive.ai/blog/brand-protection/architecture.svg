@@ -1,0 +1,57 @@
+<svg width="960" height="360" viewBox="0 0 960 360" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="960" height="360" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="959" height="359" rx="16" fill="none" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="0" y="0" width="960" height="6" rx="3" fill="#2f7d4f"/>
+
+  <text x="28" y="46" font-size="13" letter-spacing="2" fill="#6b6560">MULTI-TENANT BRAND-PROTECTION PIPELINE</text>
+
+  <!-- 1 Brand tenant -->
+  <rect x="24" y="108" width="160" height="120" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="104" y="138" font-size="13" fill="#1c1a17" text-anchor="middle">Brand tenant</text>
+  <text x="104" y="160" font-size="11" fill="#6b6560" text-anchor="middle">Northwind Ledger</text>
+  <text x="104" y="182" font-size="11" fill="#6b6560" text-anchor="middle">forUser(id)</text>
+  <text x="104" y="204" font-size="10.5" fill="#999999" text-anchor="middle">kit: Brand Defense</text>
+
+  <!-- 2 Detection agent -->
+  <rect x="212" y="108" width="160" height="120" rx="12" fill="#f3eef9" stroke="#d8c5e2"/>
+  <text x="292" y="138" font-size="13" fill="#6b4a8a" text-anchor="middle">Detection agent</text>
+  <text x="292" y="162" font-size="11" fill="#6b4a8a" text-anchor="middle">enumerate lookalikes</text>
+  <text x="292" y="182" font-size="11" fill="#6b4a8a" text-anchor="middle">screen availability</text>
+  <text x="292" y="206" font-size="10.5" fill="#8f7bb0" text-anchor="middle">free, autonomous</text>
+
+  <!-- 3 OpenRouter -->
+  <rect x="400" y="108" width="160" height="120" rx="12" fill="#f3eef9" stroke="#d8c5e2"/>
+  <g transform="translate(468,126) scale(0.92)">
+    <path d="M16.778 1.844v1.919q-.569-.026-1.138-.032-.708-.008-1.415.037c-1.93.126-4.023.728-6.149 2.237-2.911 2.066-2.731 1.95-4.14 2.75-.396.223-1.342.574-2.185.798-.841.225-1.753.333-1.751.333v4.229s.768.108 1.61.333c.842.224 1.789.575 2.185.799 1.41.798 1.228.683 4.14 2.75 2.126 1.509 4.22 2.11 6.148 2.236.88.058 1.716.041 2.555.005v1.918l7.222-4.168-7.222-4.17v2.176c-.86.038-1.611.065-2.278.021-1.364-.09-2.417-.357-3.979-1.465-2.244-1.593-2.866-2.027-3.68-2.508.889-.518 1.449-.906 3.822-2.59 1.56-1.109 2.614-1.377 3.978-1.466.667-.044 1.418-.017 2.278.02v2.176L24 6.014Z" fill="#6566f1"/>
+  </g>
+  <text x="480" y="172" font-size="13" fill="#6b4a8a" text-anchor="middle">OpenRouter</text>
+  <text x="480" y="192" font-size="10.5" fill="#6b4a8a" text-anchor="middle">web_search tool</text>
+  <text x="480" y="210" font-size="10.5" fill="#8f7bb0" text-anchor="middle">structured verdict</text>
+
+  <!-- 4 Approval gate -->
+  <rect x="588" y="108" width="160" height="120" rx="12" fill="#faf1ea" stroke="#e7c9b0"/>
+  <text x="668" y="138" font-size="13" fill="#b4582f" text-anchor="middle">Approval gate</text>
+  <text x="668" y="162" font-size="11" fill="#b4582f" text-anchor="middle">domains.purchase</text>
+  <text x="668" y="182" font-size="11" fill="#b4582f" text-anchor="middle">202 pending</text>
+  <text x="668" y="206" font-size="10.5" fill="#c78a63" text-anchor="middle">human approves</text>
+
+  <!-- 5 Registered -->
+  <rect x="776" y="108" width="160" height="120" rx="12" fill="#eef3ee" stroke="#bcdcc8"/>
+  <text x="856" y="138" font-size="13" fill="#2f7d4f" text-anchor="middle">Domain</text>
+  <text x="856" y="158" font-size="13" fill="#2f7d4f" text-anchor="middle">registered</text>
+  <text x="856" y="184" font-size="11" fill="#2f7d4f" text-anchor="middle">checkout</text>
+  <text x="856" y="204" font-size="10.5" fill="#5a9a73" text-anchor="middle">real spend, signed off</text>
+
+  <!-- arrows -->
+  <path d="M184 168H206" stroke="#1c1a17" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M206 168l-8 -4v8z" fill="#1c1a17" fill-opacity="0.4"/>
+  <path d="M372 168H394" stroke="#1c1a17" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M394 168l-8 -4v8z" fill="#1c1a17" fill-opacity="0.4"/>
+  <path d="M560 168H582" stroke="#1c1a17" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M582 168l-8 -4v8z" fill="#1c1a17" fill-opacity="0.4"/>
+  <path d="M748 168H770" stroke="#b4582f" stroke-opacity="0.7" stroke-width="1.6"/>
+  <path d="M770 168l-8 -4v8z" fill="#b4582f" fill-opacity="0.7"/>
+
+  <text x="28" y="300" font-size="11.5" fill="#6b6560">Detection and investigation run autonomously. The only step that waits on a human is the one that spends money.</text>
+  <text x="28" y="322" font-size="11.5" fill="#999999">One agent code base; each brand is an isolated tenant whose AccountKit decides what its agent may do.</text>
+</svg>

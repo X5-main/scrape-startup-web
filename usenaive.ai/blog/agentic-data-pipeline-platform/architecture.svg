@@ -1,0 +1,72 @@
+<svg width="960" height="452" viewBox="0 0 960 452" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="960" height="452" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="959" height="451" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="28" y="38" font-size="13" letter-spacing="2" fill="#777777">AGENT-GENERATED CODE, RUN IN AN ISOLATED PER-TENANT CONTAINER</text>
+
+  <!-- Tenant -->
+  <rect x="24" y="104" width="150" height="88" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="99" y="136" font-size="14" fill="#000000" text-anchor="middle">Tenant</text>
+  <text x="99" y="156" font-size="10.5" fill="#777777" text-anchor="middle">tenant user</text>
+  <text x="99" y="174" font-size="10" fill="#999999" text-anchor="middle">forUser(t.id)</text>
+
+  <!-- arrow tenant -> kit -->
+  <path d="M174 148H196" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M196 148l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Account Kit -->
+  <rect x="196" y="96" width="168" height="104" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="280" y="122" font-size="13" fill="#000000" text-anchor="middle">Account Kit</text>
+  <text x="280" y="145" font-size="10.5" fill="#2f7d4f" text-anchor="middle">compute: enabled</text>
+  <text x="280" y="163" font-size="10.5" fill="#b4582f" text-anchor="middle">compute: approval</text>
+  <text x="280" y="181" font-size="10.5" fill="#2f7d4f" text-anchor="middle">queue + llm: on</text>
+
+  <!-- arrow kit -> llm -->
+  <path d="M364 148H386" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M386 148l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- LLM OpenRouter -->
+  <rect x="386" y="104" width="170" height="88" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="471" y="132" font-size="13" fill="#000000" text-anchor="middle">LLM (OpenRouter)</text>
+  <text x="471" y="152" font-size="10" fill="#777777" text-anchor="middle">plain English - to - code</text>
+  <text x="471" y="172" font-size="9.5" fill="#999999" text-anchor="middle">claude-sonnet-4.6</text>
+
+  <!-- arrow llm -> compute -->
+  <path d="M556 148H578" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M578 148l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Compute job -->
+  <rect x="578" y="82" width="358" height="132" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+  <text x="757" y="108" font-size="14" fill="#000000" text-anchor="middle">Isolated container (job)</text>
+  <rect x="596" y="122" width="322" height="34" rx="8" fill="#eef1f6" stroke="#c8d2e2"/>
+  <text x="608" y="143" font-size="10.5" fill="#000000">image: python:3.12-slim</text>
+  <rect x="596" y="164" width="322" height="38" rx="8" fill="#eaf3ee" stroke="#bcdcc8"/>
+  <text x="608" y="182" font-size="10.5" fill="#000000">command: python -c &lt;generated transform&gt;</text>
+  <text x="608" y="196" font-size="9.5" fill="#2f7d4f">Naive owns the cluster + cloud credentials</text>
+
+  <!-- arrow compute down to approval -->
+  <path d="M757 214V240" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M757 240l-4 -7h8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Queue -->
+  <rect x="24" y="256" width="330" height="80" rx="12" fill="#f3eef6" stroke="#d8c5e2"/>
+  <text x="189" y="286" font-size="13" fill="#000000" text-anchor="middle">Durable queue</text>
+  <text x="189" y="308" font-size="10.5" fill="#6f4a86" text-anchor="middle">send -&gt; receive -&gt; ack, at-least-once</text>
+  <text x="189" y="325" font-size="9.5" fill="#999999" text-anchor="middle">one pipeline spec per message</text>
+
+  <!-- Approval gate -->
+  <rect x="592" y="256" width="330" height="80" rx="12" fill="#faf1ea" stroke="#e7c9b0"/>
+  <text x="757" y="286" font-size="13" fill="#000000" text-anchor="middle">Approval gate</text>
+  <text x="757" y="308" font-size="10.5" fill="#b4582f" text-anchor="middle">create + exec -&gt; 202 pending_approval</text>
+  <text x="757" y="325" font-size="9.5" fill="#8a6d2f" text-anchor="middle">a human approves, the API replays</text>
+
+  <!-- arrow queue -> llm (up) implied by backend consumer; dashed -->
+  <path d="M189 256V214" stroke="#000000" stroke-opacity="0.3" stroke-width="1.4" stroke-dasharray="4 4"/>
+  <path d="M189 214l-4 7h8z" fill="#000000" fill-opacity="0.3"/>
+
+  <!-- Logs band -->
+  <rect x="24" y="356" width="898" height="44" rx="10" fill="#eaf3ee" stroke="#bcdcc8"/>
+  <text x="473" y="383" font-size="11" fill="#2f7d4f" text-anchor="middle">Per-tenant logs: every run, exec, and shell session is transcript-logged and scoped to one tenant user</text>
+
+  <text x="28" y="426" font-size="11" fill="#999999">One operator key (nv_sk_...) runs every tenant. Each container, queue, and secret is scoped to one tenant user - no shared cloud key.</text>
+</svg>

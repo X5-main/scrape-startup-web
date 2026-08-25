@@ -1,0 +1,75 @@
+<svg width="880" height="470" viewBox="0 0 880 470" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="880" height="470" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="879" height="469" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">ONE TENANT USER PER SALES REP - ISOLATED + GOVERNED</text>
+
+  <!-- Your SaaS -->
+  <rect x="32" y="74" width="158" height="80" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="111" y="104" font-size="14" fill="#000000" text-anchor="middle">Your sales app</text>
+  <text x="111" y="124" font-size="11" fill="#777777" text-anchor="middle">rep signs up</text>
+  <text x="111" y="140" font-size="11" fill="#777777" text-anchor="middle">nv_sk_ server key</text>
+
+  <!-- arrow app -> control -->
+  <path d="M190 114H236" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M236 114l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Control plane -->
+  <rect x="238" y="70" width="214" height="88" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="345" y="98" font-size="14" fill="#000000" text-anchor="middle">Control plane</text>
+  <text x="345" y="119" font-size="11" fill="#777777" text-anchor="middle">naive.users.create()</text>
+  <text x="345" y="136" font-size="11" fill="#777777" text-anchor="middle">accountKits.assignUser()</text>
+  <text x="345" y="151" font-size="10.5" fill="#999999" text-anchor="middle">SDR kit = the rep's policy</text>
+
+  <!-- arrow control -> scoped -->
+  <path d="M452 114H498" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M498 114l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- stacked per-rep scoped clients -->
+  <rect x="516" y="92" width="316" height="138" rx="12" fill="#efedeb" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="506" y="80" width="316" height="138" rx="12" fill="#f3f1ee" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="496" y="68" width="316" height="138" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+
+  <text x="512" y="92" font-size="13" fill="#000000">naive.forUser(rep).* scoped client</text>
+  <text x="512" y="115" font-size="11" fill="#555555">connections -&gt; rep's own Gmail + HubSpot</text>
+  <text x="512" y="135" font-size="11" fill="#555555">llm -&gt; OpenRouter chat (claude / gpt)</text>
+  <text x="512" y="155" font-size="11" fill="#555555">cards -&gt; capped virtual card for tooling</text>
+  <text x="512" y="175" font-size="11" fill="#555555">vault -&gt; rep's API keys, KMS-encrypted</text>
+  <rect x="512" y="184" width="284" height="24" rx="6" fill="#eef4ee" stroke="#bcd6bc"/>
+  <text x="522" y="200" font-size="11" fill="#3f7d4e">every call filtered by the rep's AccountKit</text>
+
+  <!-- Approvals gate -->
+  <rect x="238" y="266" width="214" height="92" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="345" y="294" font-size="14" fill="#000000" text-anchor="middle">Approvals queue</text>
+  <text x="345" y="315" font-size="11" fill="#b4582f" text-anchor="middle">connect app + issue card</text>
+  <text x="345" y="331" font-size="11" fill="#b4582f" text-anchor="middle">-&gt; 202 pending_approval</text>
+  <text x="345" y="348" font-size="10.5" fill="#999999" text-anchor="middle">human approves -&gt; API replays</text>
+
+  <!-- arrow scoped -> approvals (gated) -->
+  <path d="M560 206C560 250 470 250 452 300" stroke="#b4582f" stroke-opacity="0.6" stroke-width="1.6" fill="none"/>
+  <path d="M452 300l8 -3 -6 -6z" fill="#b4582f" fill-opacity="0.6"/>
+  <text x="470" y="250" font-size="10.5" fill="#b4582f">execution-time gate</text>
+
+  <!-- third party row -->
+  <rect x="496" y="270" width="100" height="76" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="546" y="300" font-size="12" fill="#000000" text-anchor="middle">Gmail</text>
+  <text x="546" y="318" font-size="10" fill="#777777" text-anchor="middle">send from</text>
+  <text x="546" y="332" font-size="10" fill="#777777" text-anchor="middle">rep inbox</text>
+
+  <rect x="606" y="270" width="100" height="76" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="656" y="300" font-size="12" fill="#000000" text-anchor="middle">HubSpot</text>
+  <text x="656" y="318" font-size="10" fill="#777777" text-anchor="middle">log contact</text>
+  <text x="656" y="332" font-size="10" fill="#777777" text-anchor="middle">+ activity</text>
+
+  <rect x="716" y="270" width="116" height="76" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="774" y="300" font-size="12" fill="#000000" text-anchor="middle">Virtual card</text>
+  <text x="774" y="318" font-size="10" fill="#777777" text-anchor="middle">$200 cap,</text>
+  <text x="774" y="332" font-size="10" fill="#777777" text-anchor="middle">per rep</text>
+
+  <!-- arrow scoped -> apps -->
+  <path d="M620 230V264" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M620 264l-4 -7h8z" fill="#000000" fill-opacity="0.4"/>
+
+  <text x="32" y="430" font-size="11.5" fill="#999999">Rep A's agent can never touch Rep B's inbox, CRM, or card - isolation is the default, not something you build.</text>
+  <text x="32" y="450" font-size="11.5" fill="#999999">No per-user OAuth store, no token encryption, no approval workflow to maintain. The primitives are the moat.</text>
+</svg>

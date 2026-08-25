@@ -1,0 +1,85 @@
+<svg width="900" height="486" viewBox="0 0 900 486" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="486" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="485" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+  <rect x="0" y="0" width="900" height="6" rx="3" fill="#2f7d4f"/>
+
+  <text x="32" y="48" font-size="13" letter-spacing="2" fill="#777777">ONE TENANT USER PER CLIENT - ISOLATED, SCHEDULED, SELF-REMEMBERING</text>
+
+  <!-- Your app -->
+  <rect x="32" y="78" width="156" height="82" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="110" y="108" font-size="14" fill="#000000" text-anchor="middle">Your app</text>
+  <text x="110" y="128" font-size="11" fill="#777777" text-anchor="middle">client onboards</text>
+  <text x="110" y="144" font-size="11" fill="#777777" text-anchor="middle">nv_sk_ server key</text>
+
+  <!-- arrow app -> control -->
+  <path d="M188 119H232" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M232 119l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Control plane -->
+  <rect x="234" y="74" width="214" height="90" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="341" y="102" font-size="14" fill="#000000" text-anchor="middle">Control plane</text>
+  <text x="341" y="123" font-size="11" fill="#777777" text-anchor="middle">naive.users.create()</text>
+  <text x="341" y="140" font-size="11" fill="#777777" text-anchor="middle">accountKits (the policy)</text>
+  <text x="341" y="156" font-size="10.5" fill="#999999" text-anchor="middle">Active vs Reporting tier</text>
+
+  <!-- arrow control -> scoped -->
+  <path d="M448 119H492" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M492 119l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- stacked per-client scoped containers -->
+  <rect x="512" y="98" width="356" height="176" rx="12" fill="#efedeb" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="502" y="86" width="356" height="176" rx="12" fill="#f3f1ee" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="492" y="74" width="376" height="176" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="508" y="98" font-size="13" fill="#000000">naive.forUser(clientId) - Hermes container</text>
+
+  <rect x="508" y="110" width="176" height="46" rx="8" fill="#f2eef8" stroke="#d8c5e2"/>
+  <text x="516" y="130" font-size="11.5" fill="#5a3d86">cron</text>
+  <text x="516" y="147" font-size="10" fill="#7a5aa6">recurring dunning run</text>
+
+  <rect x="692" y="110" width="168" height="46" rx="8" fill="#f2eef8" stroke="#d8c5e2"/>
+  <text x="700" y="130" font-size="11.5" fill="#5a3d86">memory</text>
+  <text x="700" y="147" font-size="10" fill="#7a5aa6">escalation stage / run</text>
+
+  <rect x="508" y="164" width="114" height="40" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="565" y="188" font-size="10.5" fill="#555555" text-anchor="middle">llm - OpenRouter</text>
+  <rect x="630" y="164" width="100" height="40" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="680" y="188" font-size="10.5" fill="#555555" text-anchor="middle">email send</text>
+  <rect x="738" y="164" width="122" height="40" rx="8" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="799" y="182" font-size="10.5" fill="#555555" text-anchor="middle">connections</text>
+  <text x="799" y="196" font-size="9.5" fill="#999999" text-anchor="middle">Stripe / inbox</text>
+
+  <rect x="508" y="212" width="352" height="26" rx="6" fill="#eef4ee" stroke="#bcd6bc"/>
+  <text x="518" y="229" font-size="11" fill="#3f7d4e">every call filtered by the client's AccountKit</text>
+
+  <!-- Approvals gate -->
+  <rect x="234" y="286" width="214" height="94" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="341" y="314" font-size="14" fill="#000000" text-anchor="middle">Approvals queue</text>
+  <text x="341" y="335" font-size="11" fill="#b4582f" text-anchor="middle">connect Stripe</text>
+  <text x="341" y="351" font-size="11" fill="#b4582f" text-anchor="middle">-&gt; 202 pending_approval</text>
+  <text x="341" y="369" font-size="10.5" fill="#999999" text-anchor="middle">human approves -&gt; API replays</text>
+
+  <!-- arrow scoped -> approvals (gated) -->
+  <path d="M560 250C560 300 470 300 452 322" stroke="#b4582f" stroke-opacity="0.6" stroke-width="1.6" fill="none"/>
+  <path d="M452 322l8 -3 -6 -6z" fill="#b4582f" fill-opacity="0.6"/>
+  <text x="470" y="292" font-size="10.5" fill="#b4582f">execution-time gate</text>
+
+  <!-- debtor -->
+  <rect x="492" y="300" width="180" height="80" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="582" y="330" font-size="12" fill="#000000" text-anchor="middle">Debtor</text>
+  <text x="582" y="350" font-size="10.5" fill="#777777" text-anchor="middle">gets the next reminder</text>
+  <text x="582" y="366" font-size="10.5" fill="#777777" text-anchor="middle">from client's own inbox</text>
+
+  <!-- reporting tier -->
+  <rect x="688" y="300" width="180" height="80" rx="10" fill="#f6eeee" stroke="#d9b8b8"/>
+  <text x="778" y="326" font-size="12" fill="#000000" text-anchor="middle">Reporting-Only tier</text>
+  <text x="778" y="346" font-size="10.5" fill="#9a3b3b" text-anchor="middle">connect / send</text>
+  <text x="778" y="362" font-size="10.5" fill="#9a3b3b" text-anchor="middle">-&gt; forbidden</text>
+
+  <!-- arrow scoped -> debtor -->
+  <path d="M600 250V298" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M600 298l-4 -7h8z" fill="#000000" fill-opacity="0.4"/>
+
+  <text x="32" y="430" font-size="11.5" fill="#999999">Client A's agent can never read Client B's ledger, memory, or connected Stripe - isolation is the default, not something you build.</text>
+  <text x="32" y="450" font-size="11.5" fill="#999999">cron fires inside each client's own container; memory persists per client. One kit flips the gate for everyone on it.</text>
+  <text x="32" y="470" font-size="11.5" fill="#999999">Reassign the kit and the policy moves with the client - no code change.</text>
+</svg>

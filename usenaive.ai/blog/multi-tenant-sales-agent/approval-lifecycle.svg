@@ -1,0 +1,49 @@
+<svg width="880" height="300" viewBox="0 0 880 300" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="880" height="300" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="879" height="299" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">EXECUTION-TIME PERMISSION ENFORCEMENT</text>
+
+  <!-- 1 agent attempt -->
+  <rect x="32" y="92" width="170" height="92" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="117" y="120" font-size="13" fill="#000000" text-anchor="middle">1. Agent acts</text>
+  <text x="117" y="142" font-size="10.5" fill="#777777" text-anchor="middle">cards.create()</text>
+  <text x="117" y="158" font-size="10.5" fill="#777777" text-anchor="middle">on rep's behalf</text>
+  <text x="117" y="174" font-size="10.5" fill="#999999" text-anchor="middle">action frozen</text>
+
+  <!-- arrow -->
+  <path d="M202 138H244" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M244 138l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- 2 pending -->
+  <rect x="246" y="92" width="186" height="92" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="339" y="120" font-size="13" fill="#000000" text-anchor="middle">2. 202 returned</text>
+  <text x="339" y="142" font-size="10.5" fill="#b4582f" text-anchor="middle">status:</text>
+  <text x="339" y="158" font-size="10.5" fill="#b4582f" text-anchor="middle">pending_approval</text>
+  <text x="339" y="174" font-size="10.5" fill="#999999" text-anchor="middle">+ approval_id</text>
+
+  <!-- arrow -->
+  <path d="M432 138H474" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M474 138l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- 3 human -->
+  <rect x="476" y="92" width="170" height="92" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="561" y="120" font-size="13" fill="#000000" text-anchor="middle">3. Human decides</text>
+  <text x="561" y="142" font-size="10.5" fill="#777777" text-anchor="middle">approvals.approve()</text>
+  <text x="561" y="158" font-size="10.5" fill="#777777" text-anchor="middle">or .deny(reason)</text>
+  <text x="561" y="174" font-size="10.5" fill="#999999" text-anchor="middle">manager / the rep</text>
+
+  <!-- arrow -->
+  <path d="M646 138H688" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M688 138l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- 4 replay -->
+  <rect x="690" y="92" width="158" height="92" rx="10" fill="#eef4ee" stroke="#bcd6bc"/>
+  <text x="769" y="120" font-size="13" fill="#000000" text-anchor="middle">4. API replays</text>
+  <text x="769" y="142" font-size="10.5" fill="#3f7d4e" text-anchor="middle">status: executed</text>
+  <text x="769" y="158" font-size="10.5" fill="#3f7d4e" text-anchor="middle">result recorded</text>
+  <text x="769" y="174" font-size="10.5" fill="#999999" text-anchor="middle">card issued</text>
+
+  <text x="32" y="234" font-size="11.5" fill="#999999">The API does the freezing and the replay. You never hold a half-finished action or hand-roll a side-channel approval flow.</text>
+  <text x="32" y="256" font-size="11.5" fill="#999999">Gated per primitive on the AccountKit. Calls on your own default user run un-gated; agent calls on real tenant users are gated.</text>
+</svg>

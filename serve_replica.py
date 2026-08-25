@@ -245,7 +245,10 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
         parsed = urllib.parse.urlsplit(self.path)
         q = urllib.parse.parse_qs(parsed.query)
         ver = q.get("v", [""])[0]
-        if ver and ver.isdigit():
+        if ver:
+            # Version stamps are not always numeric (usenaive
+            # `hotel-du-louvre-map.png?v=20260720-grey`); resolve the fold
+            # whenever a `__v-<ver>` twin exists on disk, no twin -> unchanged.
             vmap = _v_alternatives(parsed.path.lstrip("/"), ver)
             if vmap:
                 self.path = "/" + vmap

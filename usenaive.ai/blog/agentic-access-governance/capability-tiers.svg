@@ -1,0 +1,57 @@
+<svg width="900" height="430" viewBox="0 0 900 430" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="430" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="429" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="40" font-size="13" letter-spacing="2" fill="#777777">ONE CONNECTED GITHUB + SLACK, THREE TIERS  (per-tool filter)</text>
+
+  <!-- Audit -->
+  <rect x="32" y="64" width="270" height="320" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="52" y="96" font-size="16" fill="#000">Audit</text>
+  <text x="52" y="116" font-size="11" fill="#777777">read-only inventory</text>
+  <rect x="52" y="132" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="66" y="150" font-size="10.5" fill="#3c6b3c">GITHUB_LIST_ORGANIZATION_MEMBERS</text>
+  <rect x="52" y="166" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="66" y="184" font-size="10.5" fill="#3c6b3c">GITHUB_LIST_REPOSITORY_COLLABORATORS</text>
+  <rect x="52" y="200" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="66" y="218" font-size="10.5" fill="#3c6b3c">SLACK_LIST_ALL_USERS</text>
+  <rect x="52" y="246" width="230" height="28" rx="6" fill="#fdeeee" stroke="#e6bcbc"/>
+  <text x="66" y="264" font-size="10.5" fill="#a23a3a">ADD / INVITE  -> forbidden</text>
+  <rect x="52" y="280" width="230" height="28" rx="6" fill="#fdeeee" stroke="#e6bcbc"/>
+  <text x="66" y="298" font-size="10.5" fill="#a23a3a">REMOVE  -> forbidden</text>
+  <text x="52" y="344" font-size="10.5" fill="#777777">tools.github.enable: [LIST...]</text>
+  <text x="52" y="362" font-size="10.5" fill="#777777">tools.slack.enable: [LIST...]</text>
+
+  <!-- Onboard -->
+  <rect x="316" y="64" width="270" height="320" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="336" y="96" font-size="16" fill="#000">Onboard</text>
+  <text x="336" y="116" font-size="11" fill="#777777">read + add, never remove</text>
+  <rect x="336" y="132" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="350" y="150" font-size="10.5" fill="#3c6b3c">GITHUB_ADD_A_REPOSITORY_COLLABORATOR</text>
+  <rect x="336" y="166" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="350" y="184" font-size="10.5" fill="#3c6b3c">GITHUB_ADD_OR_UPDATE_TEAM_MEMBER...</text>
+  <rect x="336" y="200" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="350" y="218" font-size="10.5" fill="#3c6b3c">SLACK_SEND_MESSAGE</text>
+  <rect x="336" y="246" width="230" height="28" rx="6" fill="#fdeeee" stroke="#e6bcbc"/>
+  <text x="350" y="264" font-size="10.5" fill="#a23a3a">GITHUB_REMOVE_AN_ORGANIZATION...</text>
+  <rect x="336" y="280" width="230" height="28" rx="6" fill="#fdeeee" stroke="#e6bcbc"/>
+  <text x="350" y="298" font-size="10.5" fill="#a23a3a">SLACK_REMOVE_USER...  -> forbidden</text>
+  <text x="336" y="344" font-size="10.5" fill="#777777">tools.github.disable: [REMOVE...]</text>
+  <text x="336" y="362" font-size="10.5" fill="#777777">tools.slack.disable: [REMOVE...]</text>
+
+  <!-- Lifecycle -->
+  <rect x="600" y="64" width="270" height="320" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.18)"/>
+  <text x="620" y="96" font-size="16" fill="#000">Lifecycle</text>
+  <text x="620" y="116" font-size="11" fill="#777777">full joiner-mover-leaver</text>
+  <rect x="620" y="132" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="634" y="150" font-size="10.5" fill="#3c6b3c">ADD / INVITE  (all enabled)</text>
+  <rect x="620" y="166" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="634" y="184" font-size="10.5" fill="#3c6b3c">GITHUB_REMOVE_AN_ORGANIZATION...</text>
+  <rect x="620" y="200" width="230" height="28" rx="6" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="634" y="218" font-size="10.5" fill="#3c6b3c">SLACK_REMOVE_USER_FROM_WORKSPACE</text>
+  <rect x="620" y="246" width="230" height="62" rx="6" fill="#fdf6e9" stroke="#e6d3a8"/>
+  <text x="634" y="270" font-size="10.5" fill="#8a6d1f">connect a new admin -></text>
+  <text x="634" y="288" font-size="10.5" fill="#8a6d1f">202 pending_approval</text>
+  <text x="634" y="302" font-size="9.5" fill="#8a6d1f">(human signs off, then replays)</text>
+  <text x="620" y="344" font-size="10.5" fill="#777777">no tools filter</text>
+  <text x="620" y="362" font-size="10.5" fill="#777777">approvalToolkits: [github, slack]</text>
+</svg>

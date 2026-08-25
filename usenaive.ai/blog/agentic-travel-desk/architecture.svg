@@ -1,0 +1,79 @@
+<svg width="900" height="470" viewBox="0 0 900 470" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="470" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="469" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">ONE REQUEST, ONE GOVERNED TRIP</text>
+
+  <!-- Employee -->
+  <rect x="32" y="70" width="158" height="72" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="111" y="100" font-size="15" fill="#000000" text-anchor="middle">Employee</text>
+  <text x="111" y="120" font-size="10.5" fill="#777777" text-anchor="middle">"2 nights in Lisbon,</text>
+  <text x="111" y="134" font-size="10.5" fill="#777777" text-anchor="middle">near the office"</text>
+
+  <!-- Travel Desk agent -->
+  <rect x="238" y="58" width="200" height="96" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+  <text x="338" y="86" font-size="14" fill="#000000" text-anchor="middle">Travel Desk agent</text>
+  <text x="338" y="107" font-size="10.5" fill="#777777" text-anchor="middle">naive.forUser(employeeId)</text>
+  <text x="338" y="123" font-size="10.5" fill="#777777" text-anchor="middle">scoped to one tenant user,</text>
+  <text x="338" y="139" font-size="10.5" fill="#777777" text-anchor="middle">governed by one Account Kit</text>
+
+  <path d="M190 106H232" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M232 106l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Research -->
+  <rect x="486" y="50" width="382" height="52" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="504" y="73" font-size="13" fill="#000000">1. Research / Travel primitive</text>
+  <text x="504" y="91" font-size="10.5" fill="#777777">Google Hotels (live) + TripAdvisor (async) via /v1/business</text>
+
+  <!-- Rank -->
+  <rect x="486" y="112" width="382" height="52" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="504" y="135" font-size="13" fill="#000000">2. Rank / LLM primitive</text>
+  <text x="504" y="153" font-size="10.5" fill="#777777">OpenRouter via naive.llm.chat (fallback chain + JSON schema)</text>
+
+  <path d="M438 106H482" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M482 106l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Policy gate -->
+  <rect x="238" y="196" width="200" height="92" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="338" y="222" font-size="14" fill="#000000" text-anchor="middle">Account Kit policy</text>
+  <text x="338" y="242" font-size="10.5" fill="#b4582f" text-anchor="middle">enforced at execution time</text>
+  <text x="338" y="259" font-size="10.5" fill="#777777" text-anchor="middle">server-side, not in the prompt</text>
+  <text x="338" y="275" font-size="10.5" fill="#777777" text-anchor="middle">cards: requiresApproval</text>
+
+  <path d="M338 164V192" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M338 192l-4 -7h8z" fill="#000000" fill-opacity="0.4"/>
+
+  <!-- pending approval -->
+  <rect x="486" y="186" width="190" height="52" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="581" y="209" font-size="12.5" fill="#000000" text-anchor="middle">202 pending_approval</text>
+  <text x="581" y="227" font-size="10.5" fill="#777777" text-anchor="middle">frozen until a human acts</text>
+
+  <!-- Manager -->
+  <rect x="706" y="186" width="162" height="52" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="787" y="209" font-size="13" fill="#000000" text-anchor="middle">Manager approves</text>
+  <text x="787" y="227" font-size="10.5" fill="#777777" text-anchor="middle">API replays the action</text>
+
+  <path d="M438 232H482" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M482 232l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+  <path d="M676 212H702" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M702 212l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Card -->
+  <rect x="486" y="300" width="382" height="58" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+  <text x="504" y="324" font-size="13" fill="#000000">3. Pay / per-trip virtual card</text>
+  <text x="504" y="343" font-size="10.5" fill="#777777">spending_limit_cents is a hard ceiling the network enforces</text>
+
+  <path d="M787 238V286C787 296 700 300 690 314" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6" fill="none"/>
+  <path d="M690 314l8 -3 -6 -5z" fill="#000000" fill-opacity="0.4"/>
+
+  <!-- Itinerary -->
+  <rect x="32" y="300" width="406" height="58" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="50" y="324" font-size="13" fill="#000000">4. Confirm / from the employee's own Gmail</text>
+  <text x="50" y="343" font-size="10.5" fill="#777777">connections.execute("gmail", "GMAIL_SEND_EMAIL") per user</text>
+
+  <path d="M486 329H442" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M442 329l7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <text x="32" y="404" font-size="11.5" fill="#999999">Every employee is an isolated tenant user. The spend ceiling lives on the card; the human gate lives in the API.</text>
+  <text x="32" y="424" font-size="11.5" fill="#999999">A jailbroken prompt cannot move either. That is the part you cannot rebuild with a plain model wrapper.</text>
+</svg>

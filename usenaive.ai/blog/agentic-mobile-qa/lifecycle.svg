@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="arr5" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#7a8a99"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="360" fill="#fbf9f6"/>
+  <rect x="0" y="0" width="960" height="8" fill="#2f7d4f"/>
+  <text x="40" y="52" font-size="22" font-weight="700" fill="#1f2937">The meter, and what stops it</text>
+  <text x="40" y="76" font-size="14" fill="#6b7280">no upstream auto-stop - the Account Kit + approval queue are the spend control</text>
+
+  <!-- provision -->
+  <rect x="40" y="110" width="200" height="96" rx="12" fill="#faf1ea" stroke="#e7c9b0" stroke-width="1.5"/>
+  <text x="60" y="138" font-size="13" font-weight="700" fill="#b4582f">provision()</text>
+  <text x="60" y="162" font-size="12" fill="#333">approval-gated</text>
+  <text x="60" y="184" font-size="12" fill="#b4582f">human approves</text>
+
+  <!-- meter running -->
+  <rect x="290" y="110" width="200" height="96" rx="12" fill="#eef3ee" stroke="#bcdcc8" stroke-width="1.5"/>
+  <text x="310" y="138" font-size="13" font-weight="700" fill="#2f7d4f">meter running</text>
+  <text x="310" y="162" font-size="12" fill="#333">credits/min from</text>
+  <text x="310" y="184" font-size="12" fill="#333">the tenant's credits</text>
+
+  <!-- runs -->
+  <rect x="540" y="110" width="200" height="96" rx="12" fill="#faf1ea" stroke="#e7c9b0" stroke-width="1.5"/>
+  <text x="560" y="138" font-size="13" font-weight="700" fill="#b4582f">run() flows</text>
+  <text x="560" y="162" font-size="12" fill="#333">approval-gated</text>
+  <text x="560" y="184" font-size="12" fill="#6b7280">on-device vision agent</text>
+
+  <!-- terminate -->
+  <rect x="790" y="110" width="140" height="96" rx="12" fill="#eef3ee" stroke="#bcdcc8" stroke-width="1.5"/>
+  <text x="808" y="138" font-size="13" font-weight="700" fill="#2f7d4f">terminate()</text>
+  <text x="808" y="162" font-size="12" fill="#333">stops the</text>
+  <text x="808" y="184" font-size="12" fill="#333">meter</text>
+
+  <path d="M240 158 L286 158" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr5)"/>
+  <path d="M490 158 L536 158" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr5)"/>
+  <path d="M740 158 L786 158" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr5)"/>
+
+  <!-- backstops -->
+  <rect x="40" y="248" width="890" height="82" rx="12" fill="#ffffff" stroke="#c9d3dc" stroke-width="1.5"/>
+  <text x="60" y="276" font-size="13" font-weight="700" fill="#1f2937">Backstops (platform-enforced)</text>
+  <text x="60" y="302" font-size="12" fill="#333">credit exhaustion auto-terminates the device</text>
+  <text x="500" y="302" font-size="12" fill="#333">NAIVE_MOBILE_MAX_RUNTIME_MINUTES failsafe</text>
+  <text x="60" y="322" font-size="11.5" fill="#6b7280">a disabled mobile primitive on the kit refuses provision/run before any device exists</text>
+</svg>

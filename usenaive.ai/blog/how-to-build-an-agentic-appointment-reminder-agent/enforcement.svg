@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">
+  <rect width="960" height="470" fill="#fbf9f6"/>
+  <text x="40" y="46" font-size="21" font-weight="700" fill="#1c1a17">Four walls a stolen API key still can't cross</text>
+  <text x="40" y="72" font-size="13" fill="#6b645b">Enforcement is at execution time  -  not a prompt, not a code review convention</text>
+
+  <!-- wall 1 -->
+  <rect x="40" y="100" width="430" height="150" rx="12" fill="#f3eef6" stroke="#d8c5e2"/>
+  <text x="62" y="130" font-size="14" font-weight="700" fill="#1c1a17">1  -  Primitive gate (AccountKit)</text>
+  <text x="62" y="156" font-size="12" fill="#4b463f">primitives_config.phone.enabled = false</text>
+  <text x="62" y="178" font-size="12" fill="#4b463f">every phone call -&gt; forbidden</text>
+  <text x="62" y="200" font-size="12" fill="#4b463f">code: primitive_disabled_by_kit</text>
+  <text x="62" y="228" font-size="12" fill="#6b645b">the agent can't even reach the carrier</text>
+
+  <!-- wall 2 -->
+  <rect x="490" y="100" width="430" height="150" rx="12" fill="#fbeee6" stroke="#e7c3b5"/>
+  <text x="512" y="130" font-size="14" font-weight="700" fill="#b4582f">2  -  Approval on provision</text>
+  <text x="512" y="156" font-size="12" fill="#4b463f">phone.provision spends credits +</text>
+  <text x="512" y="178" font-size="12" fill="#4b463f">registers a carrier brand -&gt; gated</text>
+  <text x="512" y="200" font-size="12" fill="#4b463f">agent call -&gt; 202 PendingApproval</text>
+  <text x="512" y="228" font-size="12" fill="#6b645b">a human approves before a number exists</text>
+
+  <!-- wall 3 -->
+  <rect x="40" y="268" width="430" height="150" rx="12" fill="#eef1f6" stroke="#c8d2e2"/>
+  <text x="62" y="298" font-size="14" font-weight="700" fill="#1c1a17">3  -  Per-agent scope</text>
+  <text x="62" y="324" font-size="12" fill="#4b463f">assign(id, agent, [ "send_sms" ])</text>
+  <text x="62" y="346" font-size="12" fill="#4b463f">agent without send_sms -&gt; forbidden</text>
+  <text x="62" y="368" font-size="12" fill="#4b463f">unassign(id, agent) = instant revoke</text>
+  <text x="62" y="396" font-size="12" fill="#6b645b">numbers are identity, scoped per agent</text>
+
+  <!-- wall 4 -->
+  <rect x="490" y="268" width="430" height="150" rx="12" fill="#eaf3ee" stroke="#bcdcc8"/>
+  <text x="512" y="298" font-size="14" font-weight="700" fill="#2f7d4f">4  -  Carrier compliance gate</text>
+  <text x="512" y="324" font-size="12" fill="#4b463f">outbound blocked until 10DLC</text>
+  <text x="512" y="346" font-size="12" fill="#4b463f">campaign status = active</text>
+  <text x="512" y="368" font-size="12" fill="#4b463f">early send -&gt; compliance_pending</text>
+  <text x="512" y="396" font-size="12" fill="#6b645b">no message sent, no credit charged</text>
+</svg>

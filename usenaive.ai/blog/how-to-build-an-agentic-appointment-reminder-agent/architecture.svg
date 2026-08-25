@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">
+  <rect width="960" height="600" fill="#fbf9f6"/>
+  <text x="40" y="46" font-size="21" font-weight="700" fill="#1c1a17">Appointment reminder agent  -  request path</text>
+  <text x="40" y="72" font-size="13" fill="#6b645b">Every action resolves through the governance gateway before it touches a carrier</text>
+
+  <!-- app -->
+  <rect x="40" y="100" width="220" height="72" rx="12" fill="#eef1f6" stroke="#c8d2e2"/>
+  <text x="150" y="132" font-size="14" font-weight="700" fill="#1c1a17" text-anchor="middle">Clinic scheduler app</text>
+  <text x="150" y="153" font-size="12" fill="#4b463f" text-anchor="middle">naive.forUser(location.id)</text>
+
+  <!-- gateway -->
+  <rect x="320" y="96" width="600" height="80" rx="12" fill="#f3eef6" stroke="#d8c5e2"/>
+  <text x="620" y="128" font-size="14" font-weight="700" fill="#1c1a17" text-anchor="middle">Governance gateway</text>
+  <text x="620" y="150" font-size="12" fill="#4b463f" text-anchor="middle">AccountKit primitive gate  |  approval queue  |  per-agent scope  |  metering</text>
+
+  <line x1="260" y1="136" x2="320" y2="136" stroke="#8a8178" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- identity chain -->
+  <text x="40" y="222" font-size="13" font-weight="700" fill="#6b645b">1  -  Business identity (the moat)</text>
+  <rect x="40" y="236" width="270" height="120" rx="12" fill="#eaf3ee" stroke="#bcdcc8"/>
+  <text x="60" y="264" font-size="13" font-weight="700" fill="#2f7d4f">verification.start</text>
+  <text x="60" y="284" font-size="11.5" fill="#4b463f">KYC every member  -&gt;  pass</text>
+  <text x="60" y="308" font-size="13" font-weight="700" fill="#2f7d4f">formation.submit / execute</text>
+  <text x="60" y="328" font-size="11.5" fill="#4b463f">LLC filed  -&gt;  EIN issued</text>
+  <text x="60" y="348" font-size="11.5" fill="#4b463f">= registered brand for 10DLC</text>
+
+  <!-- provision -->
+  <text x="345" y="222" font-size="13" font-weight="700" fill="#6b645b">2  -  Number + carrier campaign</text>
+  <rect x="345" y="236" width="270" height="120" rx="12" fill="#fbeee6" stroke="#e7c3b5"/>
+  <text x="365" y="264" font-size="13" font-weight="700" fill="#b4582f">phone.provision({ ein })</text>
+  <text x="365" y="284" font-size="11.5" fill="#4b463f">approval-gated -&gt; PendingApproval</text>
+  <text x="365" y="304" font-size="11.5" fill="#4b463f">registers 10DLC campaign</text>
+  <text x="365" y="328" font-size="11.5" fill="#4b463f">inbound live now</text>
+  <text x="365" y="348" font-size="11.5" fill="#4b463f">outbound: campaign -&gt; active</text>
+
+  <!-- agent -->
+  <text x="650" y="222" font-size="13" font-weight="700" fill="#6b645b">3  -  Scoped reminder agent</text>
+  <rect x="650" y="236" width="270" height="120" rx="12" fill="#eef1f6" stroke="#c8d2e2"/>
+  <text x="670" y="264" font-size="13" font-weight="700" fill="#1c1a17">phone.assign(id, agent,</text>
+  <text x="670" y="284" font-size="13" font-weight="700" fill="#1c1a17">  [ "send_sms" ])</text>
+  <text x="670" y="308" font-size="11.5" fill="#4b463f">only this agent can send</text>
+  <text x="670" y="328" font-size="11.5" fill="#4b463f">no send_sms -&gt; forbidden</text>
+  <text x="670" y="348" font-size="11.5" fill="#4b463f">unassign = instant revoke</text>
+
+  <line x1="175" y1="356" x2="175" y2="392" stroke="#8a8178" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="480" y1="356" x2="480" y2="392" stroke="#8a8178" stroke-width="1.5" marker-end="url(#a)"/>
+  <line x1="785" y1="356" x2="785" y2="392" stroke="#8a8178" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- runtime loop -->
+  <rect x="40" y="396" width="410" height="150" rx="12" fill="#ffffff" stroke="#e0d9cf"/>
+  <text x="60" y="424" font-size="13" font-weight="700" fill="#1c1a17">Outbound  -  reminders</text>
+  <text x="60" y="448" font-size="11.5" fill="#4b463f">phone.send({ from, to, body })</text>
+  <text x="60" y="470" font-size="11.5" fill="#4b463f">before approval -&gt; compliance_pending</text>
+  <text x="60" y="490" font-size="11.5" fill="#4b463f">no message sent, no credit charged</text>
+  <text x="60" y="516" font-size="11.5" fill="#4b463f">"Reminder: cleaning Fri 2:00pm. Reply</text>
+  <text x="60" y="534" font-size="11.5" fill="#4b463f">C to confirm, R to reschedule."</text>
+
+  <rect x="480" y="396" width="440" height="150" rx="12" fill="#ffffff" stroke="#e0d9cf"/>
+  <text x="500" y="424" font-size="13" font-weight="700" fill="#1c1a17">Inbound  -  replies</text>
+  <text x="500" y="448" font-size="11.5" fill="#4b463f">phone.messages(id) / phone.read(msgId)</text>
+  <text x="500" y="472" font-size="13" font-weight="700" fill="#2f7d4f">llm.chat (OpenRouter, json_schema)</text>
+  <text x="500" y="492" font-size="11.5" fill="#4b463f">classify -&gt; { intent, new_slot }</text>
+  <text x="500" y="516" font-size="11.5" fill="#4b463f">confirm -&gt; mark booked  |  reschedule</text>
+  <text x="500" y="534" font-size="11.5" fill="#4b463f">-&gt; offer slot  |  STOP -&gt; opt out</text>
+
+  <line x1="450" y1="471" x2="480" y2="471" stroke="#8a8178" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+      <path d="M0 0 L9 4.5 L0 9 z" fill="#8a8178"/>
+    </marker>
+  </defs>
+</svg>

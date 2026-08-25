@@ -1,0 +1,71 @@
+<svg width="900" height="520" viewBox="0 0 900 520" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="520" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="519" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="42" font-size="13" letter-spacing="2" fill="#777777">PER-COMPANY ISOLATION + PER-TOOL EXECUTION-TIME AUTHORITY</text>
+
+  <!-- Your backend -->
+  <rect x="32" y="64" width="180" height="92" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="122" y="98" font-size="14" fill="#000000" text-anchor="middle">Your SaaS backend</text>
+  <text x="122" y="120" font-size="11" fill="#777777" text-anchor="middle">one workspace key</text>
+  <text x="122" y="138" font-size="11" fill="#777777" text-anchor="middle">nv_sk_... (server only)</text>
+
+  <!-- Control plane -->
+  <rect x="252" y="58" width="206" height="104" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="355" y="86" font-size="14" fill="#000000" text-anchor="middle">Control plane</text>
+  <text x="355" y="108" font-size="11" fill="#777777" text-anchor="middle">users.create()</text>
+  <text x="355" y="126" font-size="11" fill="#777777" text-anchor="middle">accountKits.create()</text>
+  <text x="355" y="144" font-size="11" fill="#777777" text-anchor="middle">accountKits.assignUser()</text>
+
+  <path d="M212 110H244" stroke="#000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M244 110l-7 -4v8z" fill="#000" fill-opacity="0.45"/>
+
+  <!-- Company tenant -->
+  <rect x="498" y="58" width="370" height="104" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+  <text x="518" y="84" font-size="14" fill="#000000">Company = tenant user</text>
+  <text x="518" y="105" font-size="11" fill="#777777">naive.forUser(companyId)</text>
+  <rect x="518" y="118" width="330" height="30" rx="7" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="534" y="137" font-size="11" fill="#3c6b3c">governed by Account Kit (Audit / Onboard / Lifecycle)</text>
+
+  <path d="M458 110H490" stroke="#000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M490 110l-7 -4v8z" fill="#000" fill-opacity="0.45"/>
+
+  <!-- scoped data plane -->
+  <text x="32" y="200" font-size="12" letter-spacing="1" fill="#999999">SCOPED DATA PLANE    forUser(company)</text>
+
+  <rect x="32" y="214" width="406" height="58" rx="9" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="48" y="240" font-size="13" fill="#000">llm</text>
+  <text x="48" y="258" font-size="10.5" fill="#777777">OpenRouter planning  300+ models, one key</text>
+
+  <rect x="456" y="214" width="412" height="58" rx="9" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="472" y="240" font-size="13" fill="#000">connections</text>
+  <text x="472" y="258" font-size="10.5" fill="#777777">execute(toolkit, TOOL_SLUG, args)  per-user OAuth</text>
+
+  <!-- enforcement boundary -->
+  <text x="32" y="306" font-size="12" letter-spacing="1" fill="#999999">EXECUTION-TIME ENFORCEMENT  (inside Naive, per tool)</text>
+
+  <rect x="32" y="320" width="406" height="74" rx="9" fill="#fdeeee" stroke="#e6bcbc"/>
+  <text x="48" y="346" font-size="12.5" fill="#a23a3a">forbidden  (tool_not_allowed)</text>
+  <text x="48" y="366" font-size="10.5" fill="#a23a3a">GITHUB_REMOVE_AN_ORGANIZATION_MEMBER on Onboard</text>
+  <text x="48" y="383" font-size="10.5" fill="#a23a3a">tier -> blocked, never reaches GitHub</text>
+
+  <rect x="456" y="320" width="412" height="74" rx="9" fill="#fdf6e9" stroke="#e6d3a8"/>
+  <text x="472" y="346" font-size="12.5" fill="#8a6d1f">202 pending_approval</text>
+  <text x="472" y="366" font-size="10.5" fill="#8a6d1f">connections.connect for a new company's admin</text>
+  <text x="472" y="383" font-size="10.5" fill="#8a6d1f">-> frozen until a human approves, then replays</text>
+
+  <!-- target orgs -->
+  <text x="32" y="430" font-size="12" letter-spacing="1" fill="#999999">EACH COMPANY'S OWN ACCOUNTS</text>
+
+  <rect x="32" y="444" width="200" height="52" rx="9" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <g transform="translate(48,460) scale(0.85)"><path fill="#181717" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></g>
+  <text x="88" y="475" font-size="12" fill="#000">GitHub org</text>
+
+  <rect x="248" y="444" width="200" height="52" rx="9" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <g transform="translate(264,460) scale(0.85)"><path fill="#611f69" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zM18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312zM15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/></g>
+  <text x="304" y="475" font-size="12" fill="#000">Slack workspace</text>
+
+  <rect x="498" y="444" width="370" height="52" rx="9" fill="#f4f1ee" stroke="rgba(0,0,0,0.1)"/>
+  <text x="683" y="468" font-size="11" fill="#777777" text-anchor="middle">Acme's agent can never touch Globex's org</text>
+  <text x="683" y="485" font-size="11" fill="#777777" text-anchor="middle">scoped + audited per company</text>
+</svg>

@@ -1,0 +1,77 @@
+<svg width="880" height="486" viewBox="0 0 880 486" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="880" height="486" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="879" height="485" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">ONE TENANT USER PER CUSTOMER - ISOLATED + GOVERNED BY PLAN</text>
+
+  <!-- Your support app -->
+  <rect x="32" y="74" width="158" height="84" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="111" y="104" font-size="14" fill="#000000" text-anchor="middle">Your support app</text>
+  <text x="111" y="124" font-size="11" fill="#777777" text-anchor="middle">customer signs up</text>
+  <text x="111" y="140" font-size="11" fill="#777777" text-anchor="middle">nv_sk_ server key</text>
+
+  <!-- arrow app -> control -->
+  <path d="M190 116H236" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M236 116l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- Control plane -->
+  <rect x="238" y="70" width="214" height="92" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="345" y="98" font-size="14" fill="#000000" text-anchor="middle">Control plane</text>
+  <text x="345" y="119" font-size="11" fill="#777777" text-anchor="middle">naive.users.create()</text>
+  <text x="345" y="136" font-size="11" fill="#777777" text-anchor="middle">accountKits.assignUser()</text>
+  <text x="345" y="152" font-size="10.5" fill="#999999" text-anchor="middle">plan tier = the customer's kit</text>
+
+  <!-- arrow control -> scoped -->
+  <path d="M452 116H498" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M498 116l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+
+  <!-- stacked per-customer scoped clients -->
+  <rect x="516" y="92" width="324" height="150" rx="12" fill="#efedeb" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="506" y="80" width="324" height="150" rx="12" fill="#f3f1ee" stroke="rgba(0,0,0,0.10)"/>
+  <rect x="496" y="68" width="324" height="150" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+
+  <text x="512" y="92" font-size="13" fill="#000000">naive.forUser(customer).* scoped client</text>
+  <text x="512" y="115" font-size="11" fill="#555555">connections -&gt; customer's own Gmail / Slack / Stripe</text>
+  <text x="512" y="135" font-size="11" fill="#555555">llm -&gt; OpenRouter chat (claude / gpt)</text>
+  <text x="512" y="155" font-size="11" fill="#555555">vault -&gt; customer's secrets, KMS-encrypted</text>
+  <text x="512" y="175" font-size="11" fill="#555555">logs -&gt; per-customer audit trail</text>
+  <rect x="512" y="188" width="300" height="24" rx="6" fill="#eef4ee" stroke="#bcd6bc"/>
+  <text x="522" y="204" font-size="11" fill="#3f7d4e">every call filtered by the customer's AccountKit (plan)</text>
+
+  <!-- Approvals gate -->
+  <rect x="238" y="278" width="214" height="96" rx="10" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="345" y="306" font-size="14" fill="#000000" text-anchor="middle">Approvals queue</text>
+  <text x="345" y="327" font-size="11" fill="#b4582f" text-anchor="middle">connect Stripe (payments)</text>
+  <text x="345" y="343" font-size="11" fill="#b4582f" text-anchor="middle">-&gt; 202 pending_approval</text>
+  <text x="345" y="360" font-size="10.5" fill="#999999" text-anchor="middle">human approves -&gt; API replays</text>
+
+  <!-- arrow scoped -> approvals (gated) -->
+  <path d="M560 218C560 262 470 264 452 312" stroke="#b4582f" stroke-opacity="0.6" stroke-width="1.6" fill="none"/>
+  <path d="M452 312l8 -3 -6 -6z" fill="#b4582f" fill-opacity="0.6"/>
+  <text x="466" y="262" font-size="10.5" fill="#b4582f">execution-time gate</text>
+
+  <!-- third party row -->
+  <rect x="496" y="282" width="104" height="80" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="548" y="312" font-size="12" fill="#000000" text-anchor="middle">Gmail</text>
+  <text x="548" y="330" font-size="10" fill="#777777" text-anchor="middle">read inbox,</text>
+  <text x="548" y="344" font-size="10" fill="#777777" text-anchor="middle">send reply</text>
+
+  <rect x="610" y="282" width="104" height="80" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="662" y="312" font-size="12" fill="#000000" text-anchor="middle">Slack</text>
+  <text x="662" y="330" font-size="10" fill="#777777" text-anchor="middle">escalate to</text>
+  <text x="662" y="344" font-size="10" fill="#777777" text-anchor="middle">their team</text>
+
+  <rect x="724" y="282" width="104" height="80" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="776" y="312" font-size="12" fill="#000000" text-anchor="middle">Stripe</text>
+  <text x="776" y="330" font-size="10" fill="#b4582f" text-anchor="middle">refund on</text>
+  <text x="776" y="344" font-size="10" fill="#b4582f" text-anchor="middle">Resolve only</text>
+
+  <!-- arrow scoped -> apps -->
+  <path d="M620 218V272" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M620 272l-4 -7h8z" fill="#000000" fill-opacity="0.4"/>
+
+  <!-- isolation footnote -->
+  <rect x="32" y="406" width="796" height="52" rx="10" fill="#f3f1ee" stroke="rgba(0,0,0,0.1)"/>
+  <text x="48" y="430" font-size="11.5" fill="#555555">forUser("cust_a") and forUser("cust_b") see entirely separate connections, secrets, and logs.</text>
+  <text x="48" y="448" font-size="11.5" fill="#555555">Customer A's agent can never read Customer B's inbox or refund on their Stripe - the boundary is structural.</text>
+</svg>

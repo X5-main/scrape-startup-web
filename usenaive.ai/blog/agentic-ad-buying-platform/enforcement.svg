@@ -1,0 +1,54 @@
+<svg width="960" height="360" viewBox="0 0 960 360" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="960" height="360" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="959" height="359" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="28" y="38" font-size="13" letter-spacing="2" fill="#777777">FOUR WALLS AROUND AUTONOMOUS SPEND</text>
+
+  <!-- Wall 1: kit gate -->
+  <rect x="24" y="72" width="216" height="240" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="132" y="104" font-size="13" fill="#000000" text-anchor="middle">Kit gate</text>
+  <rect x="42" y="124" width="180" height="66" rx="8" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="132" y="150" font-size="10.5" fill="#000000" text-anchor="middle">cards: enabled = false</text>
+  <text x="132" y="170" font-size="10.5" fill="#b4582f" text-anchor="middle">forbidden</text>
+  <text x="132" y="184" font-size="9" fill="#777777" text-anchor="middle">primitive_disabled_by_kit</text>
+  <text x="132" y="222" font-size="10" fill="#777777" text-anchor="middle">Plan feature, toggled</text>
+  <text x="132" y="238" font-size="10" fill="#777777" text-anchor="middle">per client. No card,</text>
+  <text x="132" y="254" font-size="10" fill="#777777" text-anchor="middle">no spend, instantly.</text>
+  <text x="132" y="290" font-size="10" fill="#999999" text-anchor="middle">before issuance</text>
+
+  <!-- Wall 2: issuer ceiling -->
+  <rect x="252" y="72" width="216" height="240" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="360" y="104" font-size="13" fill="#000000" text-anchor="middle">Issuer ceiling</text>
+  <rect x="270" y="124" width="180" height="66" rx="8" fill="#fff8ee" stroke="#e7d3ad"/>
+  <text x="360" y="150" font-size="10.5" fill="#000000" text-anchor="middle">swipe &gt; remaining_cents</text>
+  <text x="360" y="170" font-size="10.5" fill="#8a6d2f" text-anchor="middle">declined at network</text>
+  <text x="360" y="184" font-size="9" fill="#777777" text-anchor="middle">no retry harder</text>
+  <text x="360" y="222" font-size="10" fill="#777777" text-anchor="middle">The card network,</text>
+  <text x="360" y="238" font-size="10" fill="#777777" text-anchor="middle">not your prompt,</text>
+  <text x="360" y="254" font-size="10" fill="#777777" text-anchor="middle">enforces the cap.</text>
+  <text x="360" y="290" font-size="10" fill="#999999" text-anchor="middle">at authorization</text>
+
+  <!-- Wall 3: assignment -->
+  <rect x="480" y="72" width="216" height="240" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="588" y="104" font-size="13" fill="#000000" text-anchor="middle">Assignment</text>
+  <rect x="498" y="124" width="180" height="66" rx="8" fill="#eef1f6" stroke="#c8d2e2"/>
+  <text x="588" y="150" font-size="10.5" fill="#000000" text-anchor="middle">card bound to one agent</text>
+  <text x="588" y="170" font-size="10.5" fill="#2f5a86" text-anchor="middle">assign / unassign</text>
+  <text x="588" y="184" font-size="9" fill="#777777" text-anchor="middle">scoped credentials</text>
+  <text x="588" y="222" font-size="10" fill="#777777" text-anchor="middle">Only the assigned</text>
+  <text x="588" y="238" font-size="10" fill="#777777" text-anchor="middle">agent can pull PAN.</text>
+  <text x="588" y="254" font-size="10" fill="#777777" text-anchor="middle">Revoke = instant.</text>
+  <text x="588" y="290" font-size="10" fill="#999999" text-anchor="middle">at credential fetch</text>
+
+  <!-- Wall 4: approval -->
+  <rect x="708" y="72" width="228" height="240" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="822" y="104" font-size="13" fill="#000000" text-anchor="middle">Approval gate</text>
+  <rect x="726" y="124" width="192" height="66" rx="8" fill="#f3eef6" stroke="#d8c5e2"/>
+  <text x="822" y="150" font-size="10.5" fill="#000000" text-anchor="middle">create / top-up</text>
+  <text x="822" y="170" font-size="10.5" fill="#6f4a86" text-anchor="middle">202 pending_approval</text>
+  <text x="822" y="184" font-size="9" fill="#777777" text-anchor="middle">not an error</text>
+  <text x="822" y="222" font-size="10" fill="#777777" text-anchor="middle">Minting money or</text>
+  <text x="822" y="238" font-size="10" fill="#777777" text-anchor="middle">raising the cap</text>
+  <text x="822" y="254" font-size="10" fill="#777777" text-anchor="middle">waits for a human.</text>
+  <text x="822" y="290" font-size="10" fill="#999999" text-anchor="middle">before funds move</text>
+</svg>

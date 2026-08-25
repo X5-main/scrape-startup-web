@@ -1,0 +1,51 @@
+<svg width="900" height="430" viewBox="0 0 900 430" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="430" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="429" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+  <rect x="0" y="0" width="900" height="6" rx="3" fill="#2f7d4f"/>
+
+  <text x="32" y="48" font-size="13" letter-spacing="2" fill="#777777">SAME AGENT CODE - THE ACCOUNT KIT DECIDES AT EXECUTION TIME</text>
+
+  <!-- shared call -->
+  <rect x="32" y="76" width="300" height="70" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="48" y="104" font-size="12.5" fill="#000000">client.connections.connect("stripe")</text>
+  <text x="48" y="126" font-size="10.5" fill="#777777">one line - resolved server-side per subject</text>
+
+  <!-- arrow down split -->
+  <path d="M182 146V176" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M182 176l-4 -7h8z" fill="#000000" fill-opacity="0.4"/>
+
+  <!-- Active tier (approval) -->
+  <rect x="32" y="184" width="404" height="196" rx="12" fill="#faf1ea" stroke="#e7c9b0"/>
+  <text x="52" y="212" font-size="13" fill="#000000">Collections-Active kit</text>
+  <text x="52" y="233" font-size="11" fill="#b4582f">connections.requiresApproval: true</text>
+
+  <rect x="52" y="248" width="364" height="44" rx="8" fill="#ffffff" stroke="#e7c9b0"/>
+  <text x="64" y="268" font-size="11" fill="#b4582f">1. API freezes the connect</text>
+  <text x="64" y="284" font-size="10.5" fill="#777777">202 { status: "pending_approval", approval_id }</text>
+
+  <rect x="52" y="300" width="364" height="30" rx="8" fill="#ffffff" stroke="#e7c9b0"/>
+  <text x="64" y="320" font-size="11" fill="#b4582f">2. human approves -&gt; API replays the exact call</text>
+
+  <rect x="52" y="338" width="364" height="30" rx="8" fill="#eef4ee" stroke="#bcd6bc"/>
+  <text x="64" y="358" font-size="11" fill="#3f7d4e">3. returns redirectUrl - client finishes OAuth</text>
+
+  <!-- Reporting tier (forbidden) -->
+  <rect x="464" y="184" width="404" height="196" rx="12" fill="#f6eeee" stroke="#d9b8b8"/>
+  <text x="484" y="212" font-size="13" fill="#000000">Reporting-Only kit</text>
+  <text x="484" y="233" font-size="11" fill="#9a3b3b">connections disabled (empty allowlist)</text>
+
+  <rect x="484" y="248" width="364" height="44" rx="8" fill="#ffffff" stroke="#d9b8b8"/>
+  <text x="496" y="268" font-size="11" fill="#9a3b3b">API refuses before anything runs</text>
+  <text x="496" y="284" font-size="10.5" fill="#777777">NaiveError { status: 403, code: "forbidden" }</text>
+
+  <rect x="484" y="300" width="364" height="68" rx="8" fill="#ffffff" stroke="#d9b8b8"/>
+  <text x="496" y="322" font-size="11" fill="#9a3b3b">no connect, no send - by policy</text>
+  <text x="496" y="342" font-size="10.5" fill="#777777">you don't branch in your app;</text>
+  <text x="496" y="358" font-size="10.5" fill="#777777">the kit is the branch</text>
+
+  <!-- split arrows -->
+  <path d="M182 176C182 182 234 182 234 182" stroke="#b4582f" stroke-opacity="0.55" stroke-width="1.6" fill="none"/>
+  <path d="M182 176C300 176 620 176 666 182" stroke="#9a3b3b" stroke-opacity="0.5" stroke-width="1.6" fill="none"/>
+
+  <text x="32" y="410" font-size="11.5" fill="#999999">Gating is decided server-side, so an agent can't bypass it by switching transports (SDK, REST, or MCP).</text>
+</svg>

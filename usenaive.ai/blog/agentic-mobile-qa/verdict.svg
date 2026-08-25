@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="arr4" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#7a8a99"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="360" fill="#fbf9f6"/>
+  <rect x="0" y="0" width="960" height="8" fill="#2f7d4f"/>
+  <text x="40" y="52" font-size="22" font-weight="700" fill="#1f2937">Turn a run into a strict verdict</text>
+  <text x="40" y="76" font-size="14" fill="#6b7280">naive.llm.chat over OpenRouter - response_format json_schema, strict</text>
+
+  <!-- input -->
+  <rect x="40" y="110" width="250" height="180" rx="14" fill="#ffffff" stroke="#c9d3dc" stroke-width="1.5"/>
+  <text x="60" y="138" font-size="13" font-weight="700" fill="#1f2937">Run artifacts</text>
+  <text x="60" y="166" font-size="12" fill="#333">task.result</text>
+  <text x="60" y="188" font-size="12" fill="#333">trajectory (ordered steps)</text>
+  <text x="60" y="210" font-size="12" fill="#333">screenshots</text>
+  <text x="60" y="248" font-size="11.5" fill="#6b7280">produced by the on-device</text>
+  <text x="60" y="266" font-size="11.5" fill="#6b7280">vision agent (mobile.run)</text>
+
+  <!-- llm -->
+  <rect x="355" y="110" width="250" height="180" rx="14" fill="#f3eef9" stroke="#d8c5e2" stroke-width="1.5"/>
+  <g transform="translate(375,128) scale(0.85)"><path d="M16.778 1.844v1.919q-.569-.026-1.138-.032-.708-.008-1.415.037c-1.93.126-4.023.728-6.149 2.237-2.911 2.066-2.731 1.95-4.14 2.75-.396.223-1.342.574-2.185.798-.841.225-1.753.333-1.751.333v4.229s.768.108 1.61.333c.842.224 1.789.575 2.185.799 1.41.798 1.228.683 4.14 2.75 2.126 1.509 4.22 2.11 6.148 2.236.88.058 1.716.041 2.555.005v1.918l7.222-4.168-7.222-4.17v2.176c-.86.038-1.611.065-2.278.021-1.364-.09-2.417-.357-3.979-1.465-2.244-1.593-2.866-2.027-3.68-2.508.889-.518 1.449-.906 3.822-2.59 1.56-1.109 2.614-1.377 3.978-1.466.667-.044 1.418-.017 2.278.02v2.176L24 6.014Z" fill="#6566f1"/></g>
+  <text x="404" y="146" font-size="13" font-weight="700" fill="#5b3d7a">llm.chat (OpenRouter)</text>
+  <text x="375" y="178" font-size="12" fill="#333">model: claude-sonnet-4.6</text>
+  <text x="375" y="200" font-size="12" fill="#333">models: [ ..., gpt-5.2 ]</text>
+  <text x="375" y="222" font-size="12" fill="#333">response_format: json_schema</text>
+  <text x="375" y="244" font-size="12" fill="#333">strict: true</text>
+  <text x="375" y="272" font-size="11.5" fill="#6566f1">billed from usage.cost -&gt; credits</text>
+
+  <!-- verdict -->
+  <rect x="670" y="110" width="250" height="180" rx="14" fill="#eef3ee" stroke="#bcdcc8" stroke-width="1.5"/>
+  <text x="690" y="138" font-size="13" font-weight="700" fill="#2f7d4f">Typed verdict</text>
+  <text x="690" y="166" font-size="12" fill="#333">passed: boolean</text>
+  <text x="690" y="188" font-size="12" fill="#333">summary: string</text>
+  <text x="690" y="210" font-size="12" fill="#333">observed_total: string</text>
+  <text x="690" y="232" font-size="12" fill="#333">failing_step: integer</text>
+  <text x="690" y="270" font-size="11.5" fill="#6b7280">stored against the run</text>
+
+  <path d="M290 200 L351 200" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr4)"/>
+  <path d="M605 200 L666 200" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr4)"/>
+</svg>

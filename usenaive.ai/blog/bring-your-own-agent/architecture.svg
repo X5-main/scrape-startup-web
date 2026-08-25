@@ -1,0 +1,75 @@
+<svg width="900" height="480" viewBox="0 0 900 480" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="480" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="479" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="44" font-size="13" letter-spacing="2" fill="#777777">DELEGATE A SCOPED, REVOCABLE MCP SESSION -- NOT YOUR WORKSPACE KEY</text>
+
+  <!-- Your SaaS backend -->
+  <rect x="32" y="74" width="186" height="120" rx="10" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="125" y="104" font-size="14" fill="#000000" text-anchor="middle">Your SaaS backend</text>
+  <text x="125" y="126" font-size="11" fill="#777777" text-anchor="middle">one workspace key</text>
+  <text x="125" y="142" font-size="11" fill="#777777" text-anchor="middle">nv_sk_live_...</text>
+  <text x="125" y="164" font-size="10.5" fill="#999999" text-anchor="middle">server-only,</text>
+  <text x="125" y="179" font-size="10.5" fill="#999999" text-anchor="middle">never leaves your VPC</text>
+
+  <!-- Control plane / mint -->
+  <rect x="32" y="262" width="186" height="150" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="125" y="290" font-size="13" fill="#000000" text-anchor="middle">Mint per-user session</text>
+  <text x="125" y="312" font-size="11" fill="#777777" text-anchor="middle">forUser(id)</text>
+  <text x="125" y="328" font-size="11" fill="#777777" text-anchor="middle">.sessions.create()</text>
+  <text x="125" y="350" font-size="10.5" fill="#999999" text-anchor="middle">returns:</text>
+  <text x="125" y="366" font-size="10.5" fill="#999999" text-anchor="middle">mcp.url + headers</text>
+  <text x="125" y="382" font-size="10.5" fill="#999999" text-anchor="middle">Bearer nv_sess_...</text>
+  <text x="125" y="400" font-size="10.5" fill="#999999" text-anchor="middle">TTL 15m, revocable</text>
+
+  <path d="M125 194V258" stroke="#000000" stroke-opacity="0.4" stroke-width="1.6"/>
+  <path d="M125 258l-4 -7h8z" fill="#000000" fill-opacity="0.4"/>
+
+  <!-- Naive MCP boundary -->
+  <rect x="318" y="74" width="246" height="338" rx="12" fill="#f3f1ee" stroke="rgba(0,0,0,0.16)"/>
+  <text x="441" y="104" font-size="14" fill="#000000" text-anchor="middle">Naive hosted MCP server</text>
+  <text x="441" y="124" font-size="10.5" fill="#999999" text-anchor="middle">/mcp/sse/&lt;session_id&gt;</text>
+
+  <rect x="342" y="146" width="198" height="110" rx="9" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="441" y="172" font-size="12" fill="#000000" text-anchor="middle">Account Kit policy</text>
+  <text x="441" y="192" font-size="10.5" fill="#777777" text-anchor="middle">primitives_config</text>
+  <text x="441" y="208" font-size="10.5" fill="#777777" text-anchor="middle">connections allowlist</text>
+  <text x="441" y="224" font-size="10.5" fill="#777777" text-anchor="middle">requiresApproval</text>
+  <text x="441" y="244" font-size="10.5" fill="#999999" text-anchor="middle">enforced at call time</text>
+
+  <rect x="342" y="272" width="198" height="116" rx="9" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="441" y="298" font-size="12" fill="#000000" text-anchor="middle">Fused toolset</text>
+  <text x="441" y="318" font-size="10.5" fill="#777777" text-anchor="middle">native primitives +</text>
+  <text x="441" y="334" font-size="10.5" fill="#777777" text-anchor="middle">3rd-party connections</text>
+  <text x="441" y="354" font-size="10.5" fill="#999999" text-anchor="middle">filtered to what THIS</text>
+  <text x="441" y="370" font-size="10.5" fill="#999999" text-anchor="middle">user's kit allows</text>
+
+  <path d="M218 326H314" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M314 326l-7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+  <text x="266" y="318" font-size="10" fill="#777777" text-anchor="middle">hand off</text>
+  <text x="266" y="344" font-size="10" fill="#777777" text-anchor="middle">url+token</text>
+
+  <!-- Untrusted runtimes -->
+  <rect x="664" y="74" width="206" height="338" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.16)"/>
+  <text x="767" y="104" font-size="13" fill="#000000" text-anchor="middle">Untrusted runtime</text>
+  <text x="767" y="123" font-size="10.5" fill="#999999" text-anchor="middle">the customer's own agent</text>
+
+  <rect x="688" y="142" width="158" height="58" rx="9" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="767" y="167" font-size="11.5" fill="#000000" text-anchor="middle">Claude Desktop</text>
+  <text x="767" y="186" font-size="10" fill="#999999" text-anchor="middle">mcpServers config</text>
+
+  <rect x="688" y="214" width="158" height="58" rx="9" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="767" y="239" font-size="11.5" fill="#000000" text-anchor="middle">Cursor</text>
+  <text x="767" y="258" font-size="10" fill="#999999" text-anchor="middle">.cursor/mcp.json</text>
+
+  <rect x="688" y="286" width="158" height="58" rx="9" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="767" y="311" font-size="11.5" fill="#000000" text-anchor="middle">Custom MCP worker</text>
+  <text x="767" y="330" font-size="10" fill="#999999" text-anchor="middle">@modelcontextprotocol</text>
+
+  <text x="767" y="372" font-size="10.5" fill="#777777" text-anchor="middle">connects with SSE + Bearer;</text>
+  <text x="767" y="388" font-size="10.5" fill="#777777" text-anchor="middle">no workspace key, ever</text>
+
+  <path d="M660 243H568" stroke="#000000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M568 243l7 -4v8z" fill="#000000" fill-opacity="0.45"/>
+  <text x="614" y="235" font-size="10" fill="#777777" text-anchor="middle">SSE</text>
+</svg>

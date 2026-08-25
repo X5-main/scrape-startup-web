@@ -1,0 +1,36 @@
+<svg width="900" height="340" viewBox="0 0 900 340" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="340" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="339" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="40" font-size="13" letter-spacing="2" fill="#777777">SAME LOOP, SAME PROMPT  ->  THE ACCOUNT KIT DECIDES WHAT THE AGENT MAY ACTUALLY DO</text>
+
+  <!-- Free -->
+  <rect x="40" y="70" width="390" height="232" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="64" y="104" font-size="16" fill="#000">Free tier kit</text>
+  <text x="64" y="126" font-size="11" fill="#777777">read-only assistant</text>
+
+  <rect x="64" y="142" width="342" height="30" rx="7" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="80" y="161" font-size="11" fill="#3c6b3c">GMAIL_FETCH_EMAILS        runs</text>
+  <rect x="64" y="178" width="342" height="30" rx="7" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="80" y="197" font-size="11" fill="#3c6b3c">SLACK_FIND_USER...        runs</text>
+  <rect x="64" y="214" width="342" height="30" rx="7" fill="#f6eeee" stroke="#d9b8b8"/>
+  <text x="80" y="233" font-size="11" fill="#9a3b3b">GMAIL_SEND_EMAIL          forbidden</text>
+  <rect x="64" y="250" width="342" height="30" rx="7" fill="#f6eeee" stroke="#d9b8b8"/>
+  <text x="80" y="269" font-size="11" fill="#9a3b3b">SLACK_SEND_MESSAGE        forbidden</text>
+
+  <!-- Pro -->
+  <rect x="470" y="70" width="390" height="232" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="494" y="104" font-size="16" fill="#000">Pro tier kit</text>
+  <text x="494" y="126" font-size="11" fill="#777777">full read + write</text>
+
+  <rect x="494" y="142" width="342" height="30" rx="7" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="510" y="161" font-size="11" fill="#3c6b3c">GMAIL_FETCH_EMAILS        runs</text>
+  <rect x="494" y="178" width="342" height="30" rx="7" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="510" y="197" font-size="11" fill="#3c6b3c">GMAIL_SEND_EMAIL          runs</text>
+  <rect x="494" y="214" width="342" height="30" rx="7" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="510" y="233" font-size="11" fill="#3c6b3c">SLACK_SEND_MESSAGE        runs</text>
+  <rect x="494" y="250" width="342" height="30" rx="7" fill="#f6f1e6" stroke="#d8c79a"/>
+  <text x="510" y="269" font-size="11" fill="#8a6d1f">connect new app           202 approval</text>
+
+  <text x="40" y="324" font-size="11" fill="#777777">Promote a user by reassigning the kit. The new policy takes effect on the very next tool call - no redeploy.</text>
+</svg>

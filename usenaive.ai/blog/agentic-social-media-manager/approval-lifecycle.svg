@@ -1,0 +1,41 @@
+<svg width="900" height="220" viewBox="0 0 900 220" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="220" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="219" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="40" font-size="13" letter-spacing="2" fill="#777777">REVIEW TIER  THE PUBLISH FREEZES, THEN REPLAYS ON APPROVAL</text>
+
+  <!-- 1 agent -->
+  <rect x="32" y="72" width="170" height="80" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="117" y="104" font-size="13" fill="#000000" text-anchor="middle">agent.social</text>
+  <text x="117" y="122" font-size="13" fill="#000000" text-anchor="middle">.createPost()</text>
+  <text x="117" y="142" font-size="10.5" fill="#777777" text-anchor="middle">publish requested</text>
+
+  <path d="M202 112H242" stroke="#000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M242 112l-7 -4v8z" fill="#000" fill-opacity="0.45"/>
+
+  <!-- 2 frozen -->
+  <rect x="244" y="72" width="186" height="80" rx="10" fill="#fdf6e9" stroke="#e7d4a8"/>
+  <text x="337" y="104" font-size="13" fill="#8a6d1f" text-anchor="middle">202 pending_approval</text>
+  <text x="337" y="124" font-size="10.5" fill="#8a6d1f" text-anchor="middle">approval_id returned</text>
+  <text x="337" y="141" font-size="10.5" fill="#8a6d1f" text-anchor="middle">nothing is live yet</text>
+
+  <path d="M430 112H470" stroke="#000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M470 112l-7 -4v8z" fill="#000" fill-opacity="0.45"/>
+
+  <!-- 3 human -->
+  <rect x="472" y="72" width="186" height="80" rx="10" fill="#ffffff" stroke="rgba(0,0,0,0.12)"/>
+  <text x="565" y="100" font-size="13" fill="#000000" text-anchor="middle">human decides</text>
+  <text x="565" y="120" font-size="10.5" fill="#3c6b3c" text-anchor="middle">approvals.approve(id)</text>
+  <text x="565" y="138" font-size="10.5" fill="#b4403a" text-anchor="middle">approvals.deny(id, reason)</text>
+
+  <path d="M658 112H698" stroke="#000" stroke-opacity="0.45" stroke-width="1.6"/>
+  <path d="M698 112l-7 -4v8z" fill="#000" fill-opacity="0.45"/>
+
+  <!-- 4 replay -->
+  <rect x="700" y="72" width="168" height="80" rx="10" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="784" y="104" font-size="13" fill="#3c6b3c" text-anchor="middle">API replays</text>
+  <text x="784" y="122" font-size="13" fill="#3c6b3c" text-anchor="middle">the frozen post</text>
+  <text x="784" y="142" font-size="10.5" fill="#3c6b3c" text-anchor="middle">-> live on the account</text>
+
+  <text x="32" y="188" font-size="11" fill="#999999">The agent never reconstructs the request  on approve, Naive runs the exact action it froze. Deny writes a reason to the audit log.</text>
+</svg>

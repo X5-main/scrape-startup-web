@@ -1,0 +1,54 @@
+<svg width="960" height="360" viewBox="0 0 960 360" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="960" height="360" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="959" height="359" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="28" y="38" font-size="13" letter-spacing="2" fill="#777777">FOUR WALLS AROUND AGENT-RUN COMPUTE</text>
+
+  <!-- Wall 1: kit gate -->
+  <rect x="24" y="72" width="216" height="248" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="132" y="104" font-size="13" fill="#000000" text-anchor="middle">Kit gate</text>
+  <rect x="42" y="124" width="180" height="70" rx="8" fill="#fdeee9" stroke="#e7c3b5"/>
+  <text x="132" y="150" font-size="10.5" fill="#000000" text-anchor="middle">compute: enabled = false</text>
+  <text x="132" y="170" font-size="10.5" fill="#b4582f" text-anchor="middle">forbidden</text>
+  <text x="132" y="185" font-size="9" fill="#777777" text-anchor="middle">primitive_disabled_by_kit</text>
+  <text x="132" y="226" font-size="10" fill="#777777" text-anchor="middle">Compute is a plan</text>
+  <text x="132" y="242" font-size="10" fill="#777777" text-anchor="middle">feature, toggled per</text>
+  <text x="132" y="258" font-size="10" fill="#777777" text-anchor="middle">tenant. No container.</text>
+  <text x="132" y="298" font-size="10" fill="#999999" text-anchor="middle">before creation</text>
+
+  <!-- Wall 2: no cloud keys -->
+  <rect x="252" y="72" width="216" height="248" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="360" y="104" font-size="13" fill="#000000" text-anchor="middle">No cloud keys</text>
+  <rect x="270" y="124" width="180" height="70" rx="8" fill="#eef1f6" stroke="#c8d2e2"/>
+  <text x="360" y="150" font-size="10.5" fill="#000000" text-anchor="middle">Naive owns the cluster</text>
+  <text x="360" y="170" font-size="10.5" fill="#2f5a86" text-anchor="middle">scoped to the tenant</text>
+  <text x="360" y="185" font-size="9" fill="#777777" text-anchor="middle">no AWS key returned</text>
+  <text x="360" y="226" font-size="10" fill="#777777" text-anchor="middle">The agent brings an</text>
+  <text x="360" y="242" font-size="10" fill="#777777" text-anchor="middle">image, never a raw</text>
+  <text x="360" y="258" font-size="10" fill="#777777" text-anchor="middle">cloud credential.</text>
+  <text x="360" y="298" font-size="10" fill="#999999" text-anchor="middle">at provisioning</text>
+
+  <!-- Wall 3: approval -->
+  <rect x="480" y="72" width="216" height="248" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="588" y="104" font-size="13" fill="#000000" text-anchor="middle">Approval gate</text>
+  <rect x="498" y="124" width="180" height="70" rx="8" fill="#faf1ea" stroke="#e7c9b0"/>
+  <text x="588" y="150" font-size="10.5" fill="#000000" text-anchor="middle">create / exec / shell</text>
+  <text x="588" y="170" font-size="10.5" fill="#b4582f" text-anchor="middle">202 pending_approval</text>
+  <text x="588" y="185" font-size="9" fill="#777777" text-anchor="middle">not an error</text>
+  <text x="588" y="226" font-size="10" fill="#777777" text-anchor="middle">Spinning up compute</text>
+  <text x="588" y="242" font-size="10" fill="#777777" text-anchor="middle">or opening a shell</text>
+  <text x="588" y="258" font-size="10" fill="#777777" text-anchor="middle">waits for a human.</text>
+  <text x="588" y="298" font-size="10" fill="#999999" text-anchor="middle">at execution time</text>
+
+  <!-- Wall 4: isolation + revoke -->
+  <rect x="708" y="72" width="228" height="248" rx="12" fill="#ffffff" stroke="rgba(0,0,0,0.14)"/>
+  <text x="822" y="104" font-size="13" fill="#000000" text-anchor="middle">Isolation + revoke</text>
+  <rect x="726" y="124" width="192" height="70" rx="8" fill="#eaf3ee" stroke="#bcdcc8"/>
+  <text x="822" y="150" font-size="10.5" fill="#000000" text-anchor="middle">per-tenant + logged</text>
+  <text x="822" y="170" font-size="10.5" fill="#2f7d4f" text-anchor="middle">destroy = teardown</text>
+  <text x="822" y="185" font-size="9" fill="#777777" text-anchor="middle">transcript-logged shell</text>
+  <text x="822" y="226" font-size="10" fill="#777777" text-anchor="middle">One tenant cannot see</text>
+  <text x="822" y="242" font-size="10" fill="#777777" text-anchor="middle">another's containers,</text>
+  <text x="822" y="258" font-size="10" fill="#777777" text-anchor="middle">queues, or secrets.</text>
+  <text x="822" y="298" font-size="10" fill="#999999" text-anchor="middle">for the lifetime</text>
+</svg>

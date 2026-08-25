@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <defs>
+    <marker id="arr2" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#7a8a99"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="420" fill="#fbf9f6"/>
+  <rect x="0" y="0" width="960" height="8" fill="#2f7d4f"/>
+  <text x="40" y="52" font-size="22" font-weight="700" fill="#1f2937">One code path, two Account Kits</text>
+  <text x="40" y="76" font-size="14" fill="#6b7280">the same forUser(id).mobile call, gated differently per customer at execution time</text>
+
+  <!-- shared code -->
+  <rect x="360" y="104" width="240" height="72" rx="12" fill="#ffffff" stroke="#c9d3dc" stroke-width="1.5"/>
+  <text x="380" y="132" font-size="13" font-weight="700" fill="#1f2937">Your agent code</text>
+  <text x="380" y="158" font-size="12" fill="#333">forUser(id).mobile.provision()</text>
+
+  <!-- Automated kit -->
+  <rect x="60" y="220" width="380" height="160" rx="14" fill="#eef3ee" stroke="#bcdcc8" stroke-width="1.5"/>
+  <text x="82" y="250" font-size="15" font-weight="700" fill="#2f7d4f">QA - Automated</text>
+  <text x="82" y="278" font-size="12.5" fill="#333">mobile: { enabled: true,</text>
+  <text x="82" y="296" font-size="12.5" fill="#333">        requiresApproval: true }</text>
+  <text x="82" y="314" font-size="12.5" fill="#333">llm: { enabled: true }</text>
+  <text x="82" y="344" font-size="12.5" fill="#2f7d4f">-&gt; provision/run gated for a human</text>
+  <text x="82" y="364" font-size="12.5" fill="#2f7d4f">-&gt; approve, then the device boots</text>
+
+  <!-- Viewer kit -->
+  <rect x="520" y="220" width="380" height="160" rx="14" fill="#f6eeee" stroke="#d9b8b8" stroke-width="1.5"/>
+  <text x="542" y="250" font-size="15" font-weight="700" fill="#9a3b3b">QA - Viewer</text>
+  <text x="542" y="278" font-size="12.5" fill="#333">mobile: { enabled: false }</text>
+  <text x="542" y="296" font-size="12.5" fill="#333">llm: { enabled: true }</text>
+  <text x="542" y="326" font-size="12.5" fill="#9a3b3b">-&gt; provision/run throws forbidden</text>
+  <text x="542" y="346" font-size="12.5" fill="#9a3b3b">   (primitive_disabled_by_kit)</text>
+  <text x="542" y="366" font-size="12.5" fill="#9a3b3b">-&gt; nothing reaches Mobilerun</text>
+
+  <path d="M420 178 L250 216" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr2)"/>
+  <path d="M540 178 L710 216" stroke="#7a8a99" stroke-width="1.6" fill="none" marker-end="url(#arr2)"/>
+</svg>

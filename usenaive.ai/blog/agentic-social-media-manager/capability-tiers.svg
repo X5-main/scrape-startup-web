@@ -1,0 +1,47 @@
+<svg width="900" height="360" viewBox="0 0 900 360" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'SF Mono','IBM Plex Mono',ui-monospace,monospace">
+  <rect width="900" height="360" rx="16" fill="#fbf9f6"/>
+  <rect x="0.5" y="0.5" width="899" height="359" rx="16" fill="none" stroke="rgba(0,0,0,0.1)"/>
+
+  <text x="32" y="42" font-size="13" letter-spacing="2" fill="#777777">SAME AGENT CODE  THE KIT DECIDES THE PUBLISH AUTHORITY</text>
+
+  <!-- shared code bar -->
+  <rect x="32" y="60" width="836" height="40" rx="9" fill="#efedeb" stroke="rgba(0,0,0,0.12)"/>
+  <text x="48" y="85" font-size="12.5" fill="#333333">agent.social.createPost({ platform, content, publish_now: true })    identical for every brand</text>
+
+  <!-- Draft -->
+  <rect x="32" y="124" width="268" height="200" rx="12" fill="#ffffff" stroke="#e3b9b9"/>
+  <text x="52" y="154" font-size="15" fill="#000000">Draft</text>
+  <rect x="52" y="166" width="228" height="40" rx="7" fill="#f6f4f1" stroke="rgba(0,0,0,0.1)"/>
+  <text x="64" y="183" font-size="10.5" fill="#555555">primitives_config:</text>
+  <text x="64" y="199" font-size="10.5" fill="#555555">social: &#123; enabled: false &#125;</text>
+  <text x="52" y="234" font-size="11" fill="#777777">agent writes copy with llm,</text>
+  <text x="52" y="250" font-size="11" fill="#777777">but has no path to publish</text>
+  <rect x="52" y="270" width="228" height="34" rx="8" fill="#fbecec" stroke="#e3b9b9"/>
+  <text x="166" y="291" font-size="12" fill="#b4403a" text-anchor="middle">-> forbidden</text>
+
+  <!-- Review -->
+  <rect x="316" y="124" width="268" height="200" rx="12" fill="#ffffff" stroke="#e7d4a8"/>
+  <text x="336" y="154" font-size="15" fill="#000000">Review</text>
+  <rect x="336" y="166" width="228" height="40" rx="7" fill="#f6f4f1" stroke="rgba(0,0,0,0.1)"/>
+  <text x="348" y="183" font-size="10.5" fill="#555555">social: &#123; enabled: true,</text>
+  <text x="348" y="199" font-size="10.5" fill="#555555">requiresApproval: true &#125;</text>
+  <text x="336" y="234" font-size="11" fill="#777777">publish freezes; a human</text>
+  <text x="336" y="250" font-size="11" fill="#777777">approves, then it replays</text>
+  <rect x="336" y="270" width="228" height="34" rx="8" fill="#fdf6e9" stroke="#e7d4a8"/>
+  <text x="450" y="291" font-size="12" fill="#8a6d1f" text-anchor="middle">-> 202 pending_approval</text>
+
+  <!-- Autopilot -->
+  <rect x="600" y="124" width="268" height="200" rx="12" fill="#ffffff" stroke="#bcd3bc"/>
+  <text x="620" y="154" font-size="15" fill="#000000">Autopilot</text>
+  <rect x="620" y="166" width="228" height="40" rx="7" fill="#f6f4f1" stroke="rgba(0,0,0,0.1)"/>
+  <text x="632" y="183" font-size="10.5" fill="#555555">social: &#123; enabled: true,</text>
+  <text x="632" y="199" font-size="10.5" fill="#555555">requiresApproval: false &#125;</text>
+  <text x="620" y="234" font-size="11" fill="#777777">the post ships immediately</text>
+  <text x="620" y="250" font-size="11" fill="#777777">on the brand's account</text>
+  <rect x="620" y="270" width="228" height="34" rx="8" fill="#eef3ee" stroke="#bcd3bc"/>
+  <text x="734" y="291" font-size="12" fill="#3c6b3c" text-anchor="middle">-> publishes</text>
+
+  <path d="M166 100V120" stroke="#000" stroke-opacity="0.35" stroke-width="1.4"/>
+  <path d="M450 100V120" stroke="#000" stroke-opacity="0.35" stroke-width="1.4"/>
+  <path d="M734 100V120" stroke="#000" stroke-opacity="0.35" stroke-width="1.4"/>
+</svg>
