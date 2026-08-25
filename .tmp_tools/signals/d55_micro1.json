@@ -17,6 +17,7 @@
   "boilerplate": [],
   "candidate": "d55_micro1",
   "canvas": 0,
+  "captured_at": "2026-08-25T21:45:45.763183+00:00",
   "dark_body": true,
   "dark_scheme": false,
   "display_fonts": [
@@ -36,6 +37,6 @@
   "nav": 3,
   "score": 5.2,
   "source": "micro1.ai/index.html",
-  "tex_chars": 3116,
+  "text_chars": 3116,
   "verdict": "JUDGE (capture+vision)"
 }

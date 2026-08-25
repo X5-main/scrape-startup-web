@@ -8,12 +8,13 @@ Usage:
         path  = local HTML file (e.g. mirror index.html — byte-faithful)
         url   = live page (--live not needed; http(s):// auto-fetches)
 
-Writes:  .tmp_tools/signals/<name>.json   (stats + score + verdict + boilerplate)
+Writes:  .tmp_tools/signals/<name>.json   (stats + score + verdict + boilerplate + captured_at UTC)
 Prints:  full stats + score (same as design_signal.py CLI).
 """
 import json
 import os
 import sys
+from datetime import datetime, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -30,8 +31,9 @@ def main(argv):
     record = {
         "candidate": name,
         "source": path,
+        "captured_at": datetime.now(timezone.utc).isoformat(),
         "html_bytes": stats["html_bytes"],
-        "tex_chars": stats["text_chars"],
+        "text_chars": stats["text_chars"],
         "h1": stats["h1"],
         "h2": stats["h2"],
         "h3": stats["h3"],
