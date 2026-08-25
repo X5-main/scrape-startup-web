@@ -1,0 +1,418 @@
+/* =============================================
+   <video-player> custom element styles
+   Usage:
+     <link rel="stylesheet" href="/assets/css/custom-video-player.css" />
+     <script src="/assets/js/custom-video-player.js" defer></script>
+     <video-player src="/path/to/config.json"></video-player>
+     <video-player theme="dark" src="/path/to/config.json"></video-player>
+
+   The default theme is light (white pill UI on the video). Add
+   `theme="dark"` for dark pill UI with light text.
+
+   All CSS variables are scoped to the element so they don't leak to the
+   host page. Override any of them per-instance with inline style if needed.
+   ============================================= */
+
+video-player {
+  /* ——— Light theme (default) ——— */
+  --cv-surface: #1a1a1e;
+  --cv-pill-bg: #fff;
+  --cv-pill-filter: blur(10px) brightness(1.25);
+  --cv-ink: #111;
+  --cv-time: rgba(0, 0, 0, 0.65);
+  --cv-track-bg: rgba(0, 0, 0, 0.25);
+  --cv-track-fill: rgba(0, 0, 0, 0.75);
+  --cv-edge: rgba(255, 255, 255, 0.15);
+  --cv-btn-hover-bg: rgba(0, 0, 0, 0.5);
+  --cv-btn-hover-ink: #fff;
+
+  /* ——— Structural (theme-agnostic) ——— */
+  --cv-label-radius: var(--border-radius, 0.1875rem);
+  --cv-button-radius: var(--button-border-radius, 999px);
+  --cv-stroke-weight: var(--stroke-weight, 1.5px);
+  --cv-pill-h: 30px;
+  --cv-pill-px: 0.65rem;
+  --cv-nudge: 1px;
+  --cv-font-ui: 'FK Grotesk Neue', system-ui, sans-serif;
+  --cv-font-mono: 'FK Grotesk', 'SF Mono', ui-monospace, monospace;
+
+  position: relative;
+  display: block;
+  /* max-width: 56rem; */
+  margin: 0 auto;
+  border-radius: var(--border-radius, 0.1875rem);
+  overflow: hidden;
+  background: var(--cv-surface);
+  outline: var(--cv-stroke-weight) solid var(--cv-edge);
+  outline-offset: -1px;
+  font-family: var(--cv-font-ui);
+
+  video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+  }
+
+  /* Pre-upgrade placeholder: keep the box stable until the component defines itself. */
+  &:not(:defined) { aspect-ratio: 16 / 9; }
+
+  /* ——— Glass "pill" surface: shared by every floating UI element ——— */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    height: var(--cv-pill-h);
+    padding: 0 var(--cv-pill-px);
+    border-radius: var(--border-radius, 0.1875rem);
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    color: var(--cv-ink);
+    background: var(--cv-pill-bg);
+    backdrop-filter: var(--cv-pill-filter);
+    -webkit-backdrop-filter: var(--cv-pill-filter);
+    border: none;
+    outline: var(--cv-stroke-weight) solid var(--cv-edge);
+    outline-offset: -1px;
+  }
+
+  /* The HTML `hidden` attribute should always take an element out of layout.
+     The `.pill` rule above (display: inline-flex) has the same specificity as
+     the UA's `[hidden] { display: none }`, so without this explicit rule the
+     JS-toggled `el.hidden = true` on the download / youtube / mute /
+     fullscreen pills leaves them invisible (opacity: 0) but still occupying
+     space, throwing off the absolute layout of the .links cluster. Nested
+     here, this compiles to `video-player [hidden]` (specificity 0,0,1,1)
+     which beats `.pill` cleanly. */
+  [hidden] { display: none; }
+
+  /* Text-only pill variants (title + dynamic overlays) */
+  .pill.title,
+  .pill.overlay {
+    font-size: 0.8125rem;
+    padding-top: 2px;
+    position: relative;
+    top: var(--cv-nudge);
+  }
+  .pill.title { max-width: min(100%, 28rem); }
+
+  /* ——— Top-left: title / overlay pills ——— */
+  .pills {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: calc(100% - 8rem);
+    pointer-events: none;
+    
+  }
+  .pillsPlaying { display: none; }
+  &.isPlaying .pillsPlaying { display: flex; }
+  &.isPlaying .pillsPaused { display: none; }
+
+  /* Autoplay players boot in a paused state for a beat before playback
+     starts (and pass through it again when tabbed figures swap panels).
+     Delay the reveal of the paused-state chrome so it only appears when
+     the player is genuinely paused, instead of flashing during those
+     transitions. `backwards` keeps it invisible through the delay, and
+     since `display: none` (while playing) cancels the animation, it
+     re-runs on every return to the paused state. */
+  &.isAutoplay .pillsPaused,
+  &.isAutoplay .centerPlay {
+    animation: cv-paused-ui-reveal 0.15s ease 0.5s backwards;
+  }
+
+  /* ——— Top-right: external links ——— */
+  .links {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+      .link {
+        gap: 0.35rem;
+        text-decoration: none;
+        opacity: 0;
+        transform: translateY(-4px);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          color 0.15s ease,
+          background 0.15s ease,
+          backdrop-filter 0.15s ease,
+          outline-color 0.15s ease;
+      }
+      .link:hover {
+        /* box-shadow: inset 0.2em 0.2em 0.2em 0 rgba(255,255,255,0.15), inset -0.2em -0.2em 0.2em 0 rgba(0,0,0,0.15); */
+      }
+  .link.youtube { 
+    color: #fff; 
+    background: #e62117; 
+    border-radius: var(--button-border-radius, 999px);
+  }
+  .link.youtube:hover {
+    filter: brightness(1.1);
+  }
+  .link > span {
+    position: relative;
+    top: var(--cv-nudge);
+  }
+  &:hover .link:not([hidden]),
+  &:focus-within .link:not([hidden]) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ——— Center play button (paused only) ——— */
+      .centerPlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 3;
+        transform: translate(-50%, -50%);
+        justify-content: center;
+        gap: 0.4rem;
+        cursor: pointer;
+        border-radius: var(--button-border-radius, 999px);
+        transition:
+          color 0.15s ease,
+          background 0.15s ease,
+          backdrop-filter 0.15s ease,
+          outline-color 0.15s ease;
+      }
+      .centerPlay:hover {
+        /* box-shadow: inset 0.2em 0.2em 0.2em 0 rgba(255,255,255,0.15), inset -0.2em -0.2em 0.2em 0 rgba(0,0,0,0.15); */
+      }
+
+      /* Hover = flip to the opposite theme's palette.
+         (In light mode, these pills adopt the dark palette on hover;
+          the dark-theme block below does the reverse.) */
+      .centerPlay:hover,
+      .link.download:hover {
+        --cv-pill-bg: rgba(24, 24, 27, 0.72);
+        --cv-pill-filter: blur(10px) brightness(0.65);
+        --cv-ink: #f4f4f5;
+        --cv-edge: rgba(255, 255, 255, 0.12);
+        color: var(--cv-ink);
+      }
+  .centerPlay > span {
+    position: relative;
+    top: var(--cv-nudge);
+  }
+  &.isPlaying .centerPlay { display: none; }
+
+  .link svg,
+  .centerPlay svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  /* ——— Bottom chrome bar ——— */
+  .chromeBar {
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 4;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    /* Delay the pointer-events swap by the duration of the slide-in so hit-testing
+       can't oscillate against a transforming target (which caused a first-hover
+       flicker on the 22px buttons inside the backdrop-filtered pill). */
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      pointer-events 0s linear 0.2s;
+  }
+  &:hover .chromeBar,
+  &:focus-within .chromeBar {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  &.noControls .chromeBar { display: none; }
+
+  .chromeLeft  { display: flex; align-items: center; gap: 0.45rem; flex-shrink: 0; }
+  .chromeRight { display: flex; align-items: center; gap: 0.5rem;  flex-shrink: 0; }
+  .actions     { display: flex; align-items: center; gap: 0.15rem; flex-shrink: 0; }
+
+  .time {
+    font-family: var(--cv-font-mono);
+    font-variation-settings: 'mono' 100;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-medium);
+    font-variant-numeric: tabular-nums;
+    color: var(--cv-time);
+    line-height: 1.2;
+    white-space: nowrap;
+    position: relative;
+    top: var(--cv-nudge);
+  }
+
+  /* ——— Icon buttons (play, mute, fullscreen) ——— */
+  .btn {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    color: var(--cv-ink);
+    background: transparent;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover {
+    background: var(--cv-btn-hover-bg);
+    color: var(--cv-btn-hover-ink);
+    /* box-shadow: inset 0.2em 0.2em 0.2em 0 rgba(255,255,255,0.15), inset -0.2em -0.2em 0.2em 0 rgba(0,0,0,0.15); */
+  }
+  .btn[hidden] { display: none; }
+  .btn svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 3px;
+  }
+  .btnPlay svg { padding: 4px; }
+
+  /* Icon toggle visibility (two icons per toggleable button).
+     Selectors scoped to .btn to out-specific the .btn svg layout rule above. */
+  .btn .iconPause,
+  .btn .iconExitFullscreen,
+  .btn .iconVolumeMuted                   { display: none; }
+  &:fullscreen .btn .iconEnterFullscreen  { display: none; }
+  &:fullscreen .btn .iconExitFullscreen   { display: block; }
+  &.isMuted    .btn .iconVolumeOn         { display: none; }
+  &.isMuted    .btn .iconVolumeMuted      { display: block; }
+  &.isPlaying  .btn .iconPlay             { display: none; }
+  &.isPlaying  .btn .iconPause            { display: block; }
+
+  /* ——— Timeline / scrub ——— */
+  .timelineWrap {
+    flex: 1;
+    min-width: 4rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.15rem;
+  }
+  .timeline {
+    position: relative;
+    width: 100%;
+    height: 0.875rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .track {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    border-radius: var(--button-border-radius, 999px);
+    background: var(--cv-track-bg);
+    overflow: hidden;
+  }
+  .fill {
+    height: 100%;
+    width: 0;
+    background: var(--cv-track-fill);
+    pointer-events: none;
+  }
+  .scrub {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* ——— Responsive ——— */
+  /* Mobile: hide bottom chrome + external links; let title pill use full width */
+  @media (max-width: 560px) {
+    .chromeBar,
+    .links { display: none; }
+    .pills { max-width: calc(100% - 1.5rem); }
+  }
+  @media (max-width: 480px) {
+    .pillsPlaying .overlay:not(:first-child) { display: none; }
+  }
+}
+
+/* =============================================
+   Dark theme: <video-player theme="dark" ...>
+   Pure palette swap — no layout/structural changes.
+   ============================================= */
+@media (prefers-color-scheme: dark) {
+  video-player:not([theme="light"]) {
+    --cv-pill-bg: rgba(24, 24, 27, 0.72);
+    --cv-pill-filter: blur(10px) brightness(0.65);
+    --cv-ink: #f4f4f5;
+    --cv-time: rgba(255, 255, 255, 0.7);
+    --cv-track-bg: rgba(255, 255, 255, 0.22);
+    --cv-track-fill: rgba(255, 255, 255, 0.85);
+    --cv-edge: rgba(255, 255, 255, 0.12);
+    --cv-btn-hover-bg: rgba(255, 255, 255, 0.18);
+    --cv-btn-hover-ink: #fff;
+  }
+
+  video-player:not([theme="light"]) .centerPlay:hover,
+  video-player:not([theme="light"]) .link.download:hover {
+    --cv-pill-bg: #fff;
+    --cv-pill-filter: blur(10px) brightness(1.25);
+    --cv-ink: #111;
+    --cv-edge: rgba(255, 255, 255, 0.15);
+  }
+}
+
+video-player[theme="dark"] {
+  --cv-pill-bg: rgba(24, 24, 27, 0.72);
+  --cv-pill-filter: blur(10px) brightness(0.65);
+  --cv-ink: #f4f4f5;
+  --cv-time: rgba(255, 255, 255, 0.7);
+  --cv-track-bg: rgba(255, 255, 255, 0.22);
+  --cv-track-fill: rgba(255, 255, 255, 0.85);
+  --cv-edge: rgba(255, 255, 255, 0.12);
+  --cv-btn-hover-bg: rgba(255, 255, 255, 0.18);
+  --cv-btn-hover-ink: #fff;
+}
+
+/* Dark theme hover = flip to the light palette for these two pills. */
+video-player[theme="dark"] .centerPlay:hover,
+video-player[theme="dark"] .link.download:hover {
+  --cv-pill-bg: #fff;
+  --cv-pill-filter: blur(10px) brightness(1.25);
+  --cv-ink: #111;
+  --cv-edge: rgba(255, 255, 255, 0.15);
+}
+
+/* Delayed reveal of paused-state chrome on autoplay players (see .isAutoplay). */
+@keyframes cv-paused-ui-reveal {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

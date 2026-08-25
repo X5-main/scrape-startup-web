@@ -1,0 +1,4301 @@
+/* =============================================
+   Design Tokens
+   ============================================= */
+
+:root {
+  color-scheme: light;
+
+  /* Brand palette: OKLCH channels, used as `oklch(var(--color-name) / alpha)`. */
+  --color-black: 0.1998 0.002 106.58;
+  --color-red: 0.533 0.219 29.141;
+  --color-orange: 0.658 0.232 34.864;
+  --color-kraft: 0.821 0.11 74.464;
+  --color-yellow: 0.867 0.175 90.575;
+  --color-green: 0.58 0.182 141.557;
+  --color-blue: 0.552 0.235 261.982;
+  --color-clay: 0.882 0.008 61.44;
+
+  /* Theme palette. Keep neutrals semantic so dark mode can invert in one place. */
+  --foreground-rgb: 0 0 0;
+  --background-rgb: 255 255 255;
+  --foreground-color: rgb(var(--foreground-rgb));
+  --background-color: rgb(var(--background-rgb));
+  --text-strong: rgb(var(--foreground-rgb) / 0.85);
+  --text-muted: rgb(var(--foreground-rgb) / 0.7);
+  --text-subtle: rgb(var(--foreground-rgb) / 0.6);
+  --text-faint: rgb(var(--foreground-rgb) / 0.5);
+  --text-hairline: rgb(var(--foreground-rgb) / 0.25);
+  --text-placeholder: rgb(var(--foreground-rgb) / 0.35);
+  --surface-hover: rgb(var(--foreground-rgb) / 0.02);
+  --surface-subtle: rgb(var(--foreground-rgb) / 0.03);
+  --surface-muted: rgb(var(--foreground-rgb) / 0.04);
+  --surface-strong: rgb(var(--foreground-rgb) / 0.05);
+  --surface-label: rgb(var(--foreground-rgb) / 0.06);
+  --border-color: rgb(var(--foreground-rgb) / 0.15);
+  --border-color-strong: rgb(var(--foreground-rgb) / 0.15);
+  --focus-color: rgb(var(--foreground-rgb) / 0.3);
+  --active-outline-color: rgb(var(--foreground-rgb) / 0.85);
+  --shadow-color: rgb(var(--foreground-rgb) / 0.4);
+  --rule-opacity: 0.1;
+
+  /* Layout, radii, type weights. */
+  --grid-columns: 18;
+  --grid-gutter: 20px;
+  --grid-column-width: calc(100% / var(--grid-columns));
+  --stroke-weight: 1px;
+  --border: var(--stroke-weight) solid var(--border-color);
+  --border-radius: 0.1875rem;
+  --button-border-radius: 999px;
+  --font-fk-grotesk-neue: 'FK Grotesk Neue', sans-serif;
+  --font-fk-grotesk: 'FK Grotesk', sans-serif;
+  --font-weight-light: 250;
+  --font-weight-regular: 350;
+  --font-weight-medium: 400;
+  --font-weight-bold: 500;
+  --box-outline: var(--stroke-weight) solid oklch(var(--color-clay) / 0.05);
+
+  /* Type scale. Values are rems anchored to the px sizes in the comments. */
+  --type-xs: 0.625rem;  /* 10px */
+  --type-sm: 0.75rem;   /* 12px */
+  --type-reg: 0.875rem; /* 14px */
+  --type-lg: 1rem;      /* 16px */
+  --type-xl: 1.125rem;  /* 18px */
+
+  --ch-em-ratio: 0.5;
+  --ch-xs: calc(var(--ch-em-ratio) * var(--type-xs));
+  --ch-sm: calc(var(--ch-em-ratio) * var(--type-sm));
+  --ch-reg: calc(var(--ch-em-ratio) * var(--type-reg));
+  --ch-lg: calc(var(--ch-em-ratio) * var(--type-lg));
+  --ch-xl: calc(var(--ch-em-ratio) * var(--type-xl));
+  --measure: calc(100 * var(--ch-reg));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --foreground-rgb: 252 252 252;
+    --background-rgb: 0 0 0;
+    --border-color: rgb(var(--foreground-rgb) / 0.16);
+    --border-color-strong: rgb(var(--foreground-rgb) / 0.22);
+    --focus-color: rgb(var(--foreground-rgb) / 0.38);
+    --surface-hover: rgb(var(--foreground-rgb) / 0.06);
+    --surface-subtle: rgb(var(--foreground-rgb) / 0.07);
+    --surface-muted: rgb(var(--foreground-rgb) / 0.08);
+    --surface-strong: rgb(var(--foreground-rgb) / 0.1);
+    --surface-label: rgb(var(--foreground-rgb) / 0.12);
+    --border-color: rgb(var(--foreground-rgb) / 0.2);
+    --box-outline: var(--stroke-weight) solid rgb(var(--foreground-rgb) / 0.12);
+    --rule-opacity: 0.16;
+    --font-weight-light: 150;
+    --font-weight-regular: 250;
+    --font-weight-medium: 300;
+    --font-weight-bold: 400;
+  }
+}
+
+/* =============================================
+   Fonts
+   ============================================= */
+
+@font-face {
+  font-family: 'FK Grotesk Neue';
+  src:
+    url('../fonts/fk-grotesk-neue/fk-grotesk-neue.woff2') format('woff2'),
+    url('../fonts/fk-grotesk-neue/fk-grotesk-neue.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'FK Grotesk';
+  src:
+    url('../fonts/fk-grotesk/fk-grotesk.woff2') format('woff2'),
+    url('../fonts/fk-grotesk/fk-grotesk.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =============================================
+   Base
+   ============================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: inherit;
+  font-size: inherit;
+  text-wrap: pretty;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background-color: oklch(var(--color-yellow));
+}
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    width: 100%;
+    font-family: var(--font-fk-grotesk-neue), sans-serif;
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+    line-height: 18px;
+    color: var(--foreground-color);
+    /* background-color: oklch(var(--color-clay)/0.4); */
+    background-color: #eee;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body {
+      /* background-color: oklch(from oklch(var(--color-clay)) calc(l - 0.65) c h); */
+      background-color: #181818;
+    }
+  }
+
+/* =============================================
+   Typography
+   ============================================= */
+
+.type-xs { font-size: var(--type-xs); }
+.type-sm { font-size: var(--type-sm); }
+.type-reg { font-size: var(--type-reg); }
+.type-lg { font-size: var(--type-lg); }
+.type-xl { font-size: var(--type-xl); }
+
+.measure {
+  max-width: var(--measure);
+}
+
+h1 {
+  font-size: var(--type-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+h1.section-title {
+  margin: 5rem 0 1.5rem 0;
+}
+
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+.monoish {
+  font-family: var(--font-fk-grotesk), 'SF Mono', ui-monospace, monospace;
+  font-variation-settings: 'mono' 52;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.monospace {
+  font-family: var(--font-fk-grotesk), 'SF Mono', ui-monospace, monospace;
+  font-variation-settings: 'mono' 100;
+}
+
+.gen-0 {
+  font-feature-settings: "zero" 1, "case" 1;
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: nowrap;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+.gen-1 {
+  font-feature-settings: "case" 1, "ss04" 1;
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: nowrap;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+/* =============================================
+   Layout Shell
+   ============================================= */
+
+  main {
+    width: 100%;
+    max-width: 1480px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    container-type: inline-size;
+    background-color: var(--background-color);
+  }
+  nav {
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    width: calc(var(--grid-column-width) * 2);
+    padding: 0 20px;
+    border-left: var(--border);
+    border-right: var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: left;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  nav .copyright {
+    font-size: var(--type-xs);
+    line-height: 12px;
+    opacity: 0.35;
+  }
+  nav .copyright span {
+    display: block;
+  }
+
+  nav a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  nav .header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  nav .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  nav .social-links {
+    gap: 5px;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  .social-links li a {
+    outline: none;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .social-links li a > span {
+    min-width: 0;
+  }
+
+  .social-link-arrow {
+    width: 1em;
+    height: 1em;
+    margin-left: auto;
+    flex: none;
+    opacity: 0;
+    visibility: hidden;
+    color: currentColor;
+    transition: none;
+  }
+
+  .social-links li a:hover .social-link-arrow,
+  .social-links li a:focus-visible .social-link-arrow {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  /* Inline brand glyphs (from icons.js). They use fill: currentColor, so they
+     pick up the link's text color. */
+  .social-icon {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    position: relative;
+    top: -0.5px;
+  }
+
+  .introduction {
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    padding: 0 0 0 20px;
+    width: calc(var(--grid-column-width) * 4);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr auto;
+    column-gap: var(--simplicity-curve-gap);
+    --curve-bottom-inset: 8px;
+    --simplicity-curve-gap: 8px;
+  }
+
+  .introduction .top-content {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    align-self: start;
+    padding-right: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .simplicity-text {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+    white-space: nowrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .introduction-curve {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    width: 100%;
+    height: calc(100% - var(--curve-bottom-inset));
+    align-self: start;
+    display: block;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .introduction-curve path {
+    stroke: var(--border-color);
+    stroke-width: var(--stroke-weight);
+    fill: none;
+    shape-rendering: geometricPrecision;
+  }
+
+  .symbol {
+    height: 30px;
+    /* Color the fill directly (not via the inherited link color) so it never
+       shows the default link blue. No transition here: a `transition: color`
+       animates blue -> black on first paint, which reads as a flash. */
+    fill: var(--foreground-color);
+  }
+
+  .nav-symbol-link:hover .symbol {
+    fill: oklch(var(--color-yellow));
+  }
+
+  .wordmark {
+    height: 29px;
+  }
+
+  .home-wordmark--lockup {
+    display: none;
+  }
+
+  /* <Brand name="wordmark" /> renders both variants; show the one that
+     matches the current color scheme. Default (light scheme) shows the
+     dark mark; a dark scheme shows the light mark. */
+  .wordmark-variant--light {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .wordmark-variant--dark {
+      display: none;
+    }
+
+    .wordmark-variant--light {
+      display: revert;
+    }
+
+    .home-wordmark--lockup.wordmark-variant--light {
+      display: none;
+    }
+  }
+
+  .homepage-content {
+    width: calc(var(--grid-column-width) * 12);
+    padding: 0 20px;
+  }
+
+  .top-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  /* =============================================
+     Rules, Buttons, And Global Media
+     ============================================= */
+
+  .vertical-rule {
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    width: var(--stroke-weight);
+    background-color: var(--foreground-color);
+    opacity: var(--rule-opacity);
+  }
+
+  .vertical-rule-arrow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 10px;
+    height: 5px;
+    transform: translateX(-50%);
+    overflow: visible;
+    /* Toggled by /assets/js/vertical-rule-arrow.js: opacity drops to 0 once
+       the page is scrolled to the bottom (no more "down there" to point to),
+       returns when the user scrolls back up. */
+    transition: opacity 250ms ease;
+  }
+
+  .vertical-rule-arrow.is-faded {
+    opacity: 0;
+  }
+
+  .vertical-rule-arrow path {
+    stroke: var(--foreground-color);
+    stroke-width: var(--stroke-weight);
+    fill: none;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+  }
+
+  nav .header ul {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
+  nav .header ul li a {
+    padding: 4px 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-radius: var(--button-border-radius);
+  }
+
+  .nav-link-arrow {
+    width: 1em;
+    height: 1em;
+    flex: none;
+    opacity: 0;
+    visibility: hidden;
+    color: currentColor;
+    transition: none;
+  }
+
+  nav .header ul li a.selected {
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+  }
+
+  nav .header ul li a.selected .nav-link-arrow,
+  nav .header ul li a:hover .nav-link-arrow {
+    opacity: 0.35;
+    visibility: visible;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  nav .header ul li a:hover .nav-link-arrow {
+    opacity: 1;
+  }
+
+  nav .header ul li a:hover {
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+    font-weight: var(--font-weight-bold);
+  }
+
+  nav .header ul li a.yellow {
+    background-color: oklch(var(--color-yellow)/0.2);
+    outline: var(--stroke-weight) solid oklch(var(--color-yellow)/0.25);
+    outline-offset: -1px;
+  }
+
+  nav .header ul li a.yellow:hover {
+    background-color: oklch(var(--color-yellow));
+    color: #000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    nav .header ul li a.yellow {
+      background-color: oklch(var(--color-yellow)/0.3);
+      outline: var(--stroke-weight) solid oklch(var(--color-yellow)/0.15);
+    }
+  }
+
+  nav .header ul li a.orange {
+    background-color: oklch(var(--color-orange)/0.05);
+    color: oklch(var(--color-orange));
+    outline: var(--stroke-weight) solid oklch(var(--color-orange)/0.15);
+    outline-offset: -1px;
+  }
+
+  nav .header ul li a.orange:hover {
+    background-color: oklch(var(--color-orange));
+    color: #fff;
+  }
+
+  
+
+  .button {
+    padding: 4px 12px;
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    width: fit-content;
+    max-width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    border-radius: var(--button-border-radius);
+    border: none;
+    text-decoration: none;
+    background-color: transparent;
+    color: inherit;
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+  }
+
+  .button-dark {
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+  }
+
+  .button-optical-adjustment {
+    position: relative;
+    left: -3px;
+  }
+
+  .button-small {
+    padding: 5px 8px 4px 8px;
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+  }
+
+  .button-icon {
+    display: block;
+    width: 1em;
+    height: 1em;
+    flex: none;
+  }
+
+  .button.yellow {
+    background-color: oklch(var(--color-yellow)/0.2);
+    outline: var(--stroke-weight) solid oklch(var(--color-yellow)/0.25);
+    outline-offset: -1px;
+  }
+  .button.yellow:hover {
+    background-color: oklch(var(--color-yellow));
+    color: #000;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .button.yellow {
+      background-color: oklch(var(--color-yellow)/0.3);
+      outline: var(--stroke-weight) solid oklch(var(--color-yellow)/0.15);
+    }
+  }
+
+  /* Blog post category pill: icon + label. The glyph is outlined by default and
+     fills solid on hover (matching the blog index category filters). */
+  .button-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .button-category-icon {
+    width: 10px;
+    height: 10px;
+    flex: none;
+  }
+
+  .button-category:hover .button-category-icon {
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .button-xsmall {
+    padding: 4px 8px 3px 8px;
+    font-size: var(--type-xs);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+  }
+
+  /* =============================================
+     Homepage — videos
+     ============================================= */
+
+  video {
+    border-radius: var(--border-radius);
+    max-width: 100%;
+    display: block;
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+  }
+
+  /* On short viewports we want this section to fill the screen (the hero reel
+     shrinks via flex to make room for the caption + video-row). On tall
+     viewports we DON'T want to lock it to the viewport — once the hero hits
+     its 720px cap, any extra vertical space would push "Recent Highlights"
+     below the fold. Using max-height (instead of height) lets the section
+     shrink to its natural content height in that case, so highlights flow
+     in immediately after the hero. */
+  .above-fold {
+    max-height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Double-buffered hero reel: two stacked <video> layers. The next clip is
+     preloaded in the hidden layer, then swapped in instantly (opacity, no
+     transition) for a clean jump cut with no poster flash between clips.
+
+     flex-basis: 720px gives the hero a preferred height equal to its cap so
+     .above-fold has a real "natural" size on tall viewports (otherwise a
+     flex-basis of 0 would collapse the hero to its min-height since the
+     parent no longer forces a fixed size). flex-shrink: 1 still lets it
+     shrink down to min-height: 240px on short screens. */
+  .hero-video {
+    position: relative;
+    display: block;
+    margin-top: 30px;
+    width: 100%;
+    flex: 1 1 720px;
+    min-height: 240px;
+    max-height: 720px;
+  }
+
+  .hero-video-link,
+  .index-video-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .hero-video-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+
+  .hero-video-layer.is-active {
+    opacity: 1;
+  }
+
+  .video-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .video-row video {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .index-video-link {
+    flex: 1;
+    min-width: 0;
+    display: block;
+  }
+
+  .index-video-link video {
+    width: 100%;
+  }
+
+  .above-fold + h1 {
+    margin-top: 40px;
+  }
+
+  /* =============================================
+     Blog post layout
+     ============================================= */
+
+  .post-details {
+    width: calc(var(--grid-column-width) * 4);
+    border-right: var(--border);
+    padding: 0 20px;
+    height: calc(100vh - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: sticky;
+    top: 20px;
+    gap: 20px;
+  }
+
+  .post-details-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  /* Author + read time/listen. Split out of the header so it can drop below
+     the cover on the stacked (tablet/mobile) layouts. */
+  .post-byline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .post-date {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .post-author {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .post-title {
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .post-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+  }
+
+  .data-size-image {
+    background-color: #000;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+    margin-bottom: 10px;
+  }
+
+  .data-size-image img {
+    outline: none;
+  }
+
+  .post-full-width {
+    width: calc(100% + 100cqi / 6 + 2px);
+    max-width: none;
+    position: relative;
+    z-index: 1;
+    background-color: var(--background-color);
+  }
+
+  /* Mask the inner rule (left of the footnotes column) in the 20px gaps
+     directly above and below a breakout element, so the rule doesn't poke out
+     beside it. The bands stop short of the right edge (right: 20px) so they
+     never reach — and never obscure — the far-right rule. */
+  .post-full-width::before,
+  .post-full-width::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 20px;
+    height: 20px;
+    background: var(--background-color);
+    pointer-events: none;
+  }
+
+  .post-full-width::before {
+    top: -20px;
+  }
+
+  .post-full-width::after {
+    bottom: -20px;
+  }
+
+  /* The lead/cover image. It is a direct child of <main> so it can be
+     repositioned relative to the table-of-contents sidebar at each
+     breakpoint (above the body on desktop; above the TOC on tablet/mobile). */
+  .post-cover {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .post-content {
+    width: calc(var(--grid-column-width) * 9);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .post-content p {
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-regular);
+    max-width: 70ch;
+    line-height: 1.4;
+  }
+
+  .post-content p.indented {
+    border-left: var(--border);
+    padding-left: 20px;
+  }
+
+  .post-content .indented-section {
+    padding: 20px;
+    background-color: var(--surface-strong);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .post-content a {
+    color: inherit;
+    text-decoration-color: var(--text-hairline);
+  }
+
+  .post-content a:hover {
+    color: oklch(var(--color-blue));
+    text-decoration-color: oklch(var(--color-blue)/0.65);
+  }
+
+  .post-content a.button:hover {
+    color: var(--background-color);
+    text-decoration: none;
+  }
+
+  .post-footnotes {
+    width: calc(var(--grid-column-width) * 3);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .post-postscript {
+    width: calc(var(--grid-column-width) * 9);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .post-postscript .post-heading {
+    margin: 0;
+  }
+
+  .post-postscript p {
+    max-width: 70ch;
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+  }
+
+  .post-postscript a {
+    color: inherit;
+    text-decoration-color: var(--text-hairline);
+  }
+
+  .post-postscript a:hover {
+    color: oklch(var(--color-blue));
+    text-decoration-color: oklch(var(--color-blue) / 0.65);
+  }
+
+  .post-read-listen {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  /* Hide the Listen button site-wide until the audio feature ships. The
+     markup stays in place across post templates so we can re-enable by
+     deleting this rule. */
+  .post-read-listen .button {
+    display: none;
+  }
+
+  .label {
+    font-size: var(--type-xs);
+    height: 18px;
+    font-weight: var(--font-weight-medium);
+    background-color: var(--surface-label);
+    padding: 4.5px 6px 3px 6px;
+    border-radius: var(--border-radius);
+    line-height: 1;
+  }
+
+  .table-of-contents {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  @media (max-width: 1199px) {
+    .table-of-contents {
+      margin: 20px;
+      outline: var(--stroke-weight) solid var(--border-color);
+      outline-offset: -1px;
+      border-radius: var(--border-radius);
+      padding: 20px !important;
+    }
+
+    .post-footnotes:has(> *) {
+      margin: 20px;
+      outline: var(--stroke-weight) solid var(--border-color);
+      outline-offset: -1px;
+      border-radius: var(--border-radius);
+      padding: 20px !important;
+      gap: 10px;
+    }
+
+    .post-footnotes:has(> *)::before {
+      content: "Footnotes";
+      display: block;
+      font-size: var(--type-sm);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  .table-of-contents-title {
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .table-of-contents-list {
+    padding: 0;
+    padding-left: 14px;
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+  }
+
+  .table-of-contents-list ol {
+    list-style-type: lower-alpha;
+    padding-left: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5px;
+  }
+
+  .table-of-contents-list li::marker {
+    color: var(--text-hairline);
+  }
+
+  .table-of-contents-list li a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.1s ease-in-out;
+    display: grid;
+  }
+
+  .table-of-contents-list li a::before {
+    content: attr(data-toc-label);
+    grid-area: 1 / 1;
+    visibility: hidden;
+    font-weight: var(--font-weight-bold);
+    text-wrap: balance;
+    pointer-events: none;
+  }
+
+  .toc-link-text {
+    grid-area: 1 / 1;
+    min-width: 0;
+    text-wrap: balance;
+    transition: font-weight 0.16s ease-in-out;
+  }
+
+  .table-of-contents-list li a:hover {
+    /* font-weight: var(--font-weight-bold); */
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: oklch(var(--color-blue)/0.65);
+    color: oklch(var(--color-blue));
+  }
+
+  /* Scroll-spy: scrollspy.js adds .is-active to the link for the section
+     currently in view (desktop only — the class is cleared below 1200px). */
+  .table-of-contents-list li a.is-active .toc-link-text {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .post-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border: var(--stroke-weight) solid var(--border-color-strong);
+    border-radius: var(--border-radius);
+  }
+
+  .post-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 0;
+    font-size: var(--type-sm);
+    font-variant-numeric: tabular-nums lining-nums;
+    table-layout: fixed;
+    min-width: 560px;
+    background-color: var(--background-color);
+  }
+
+  .post-table tr {
+    border-bottom: var(--stroke-weight) solid var(--border-color-strong);
+  }
+
+  .post-table th, .post-table td {
+    padding: 6px 8px 3px 8px;
+    border: none;
+    border-right: var(--stroke-weight) solid var(--border-color-strong);
+    text-align: left;
+  }
+
+  .post-table td {
+    padding: 6px 8px 3px 8px;
+    vertical-align: middle;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+  }
+
+  .post-table td:first-child {
+    width: 20%;
+  }
+
+  .post-table td:nth-child(2) {
+    width: 20%;
+  }
+
+  .post-table-scroll .post-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .post-table th {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .post-table th:last-of-type, .post-table td:last-of-type {
+    border-right: none;
+  }
+
+  .post-table tr:last-of-type {
+    border-bottom: none;
+  }
+
+  /* Same idea as :last-of-type above, but resilient to row filtering: drop
+     the bottom border on the last *visible* row too. Without this, hiding a
+     row at the bottom of the careers table leaves the new last-visible row
+     with its own 1px border that stacks against the .post-table-scroll
+     wrapper border, reading as a doubled-up line. */
+  .post-table tbody tr:not([hidden]):not(:has(~ tr:not([hidden]))) {
+    border-bottom: none;
+  }
+
+  .post-table thead tr {
+    border-bottom: var(--stroke-weight) solid var(--border-color-strong) !important;
+  }
+
+  .citation {
+    background-color: var(--surface-strong);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    font-size: var(--type-sm);
+    width: 100%;
+  }
+
+  .citation-indent {
+    display: inline-block;
+    padding-left: 2ch;
+  }
+
+  /* Section subheadings within the body */
+  .post-heading {
+    font-size: var(--type-xl);
+    font-weight: var(--font-weight-bold);
+    margin-top: 1rem;
+  }
+
+  .post-subheading {
+    font-size: var(--type-lg);
+    line-height: 1.4;
+    margin-top: 0.5rem;
+  }
+
+  /* Heading anchor icons (built by /assets/js/heading-anchors.js): a faint
+     link icon to the right of the heading text that appears on hover. Only
+     the icon itself is clickable, not the heading text. */
+  .heading-anchor {
+    display: inline-block;
+    width: 0.65em;
+    height: 0.65em;
+    margin-left: 0.4em;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  /* Keep the icon muted; outranks the generic .post-content a color rules
+     (inherit at rest, blue on hover). */
+  a.heading-anchor,
+  .post-content a.heading-anchor,
+  .post-content a.heading-anchor:hover {
+    color: var(--text-placeholder);
+  }
+
+  .heading-anchor svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .post-heading:hover .heading-anchor,
+  .post-subheading:hover .heading-anchor,
+  .heading-anchor:focus-visible {
+    opacity: 1;
+  }
+
+  /* Responsive 16:9 wrapper for embedded iframes (YouTube, Vimeo, etc.).
+     Pair with .post-full-width when the embed should break out beyond the
+     content column. */
+  .post-video-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: var(--surface-muted);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+  }
+  .post-video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .post-media-placeholder {
+    min-height: 180px;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    outline: var(--stroke-weight) dashed var(--border-color);
+    outline-offset: -1px;
+    background: var(--surface-muted);
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .post-media-placeholder span {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-bold);
+    background-color: var(--background-color);
+    border-radius: var(--button-border-radius);
+    padding: 6px 10px 4px;
+  }
+
+  .post-media-placeholder small {
+    max-width: min(52ch, calc(100% - 40px));
+    font-size: var(--type-sm);
+    line-height: 1.4;
+    background-color: var(--background-color);
+    border-radius: var(--button-border-radius);
+    padding: 5px 9px 3px;
+  }
+
+  .thousand-hands-post .post-media-placeholder-figure:not(.post-full-width),
+  .thousand-hands-post .post-media-placeholder-group,
+  .thousand-hands-post .video-grid-2x2 {
+    width: 100%;
+  }
+
+  /* Subdued, smaller-type body paragraph for asides / disclaimers
+     (e.g. "Note: there are expected bounds…" at the end of a post). */
+  .post-note {
+    font-size: var(--type-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Inline callout: bolded body copy that punctuates a section without
+     becoming a heading. */
+  .post-content p.post-aside {
+    font-size: var(--type-xl);
+    line-height: 1.4;
+    color: var(--text-strong);
+  }
+
+  .post-content p.post-aside strong {
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* Two-up media grid for posts that compare clips side-by-side
+     (e.g. /blog/physical-commonsense). Drops to a single column at
+     the breakpoint where the post column itself narrows. */
+  .video-grid-1x2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    min-width: 0;
+    max-width: 100%;
+    margin: 1rem 0 1.5rem;
+  }
+  .video-grid-1x2 > * {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background-color: var(--surface-muted);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+  }
+  .video-grid-1x2 iframe,
+  .video-grid-1x2 video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+  }
+
+  /* Two-up grid used by /blog/gen-1 to pair "1x speed" and "50x speed"
+     clips of the same task. Uses the same blowout-protection pattern
+     and falls back to a single column on narrow viewports. */
+  .video-grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .video-grid-2x2 > .post-figure {
+    margin: 0;
+  }
+
+  /* Lazy-loading "More videos" grid used at the bottom of /blog/gen-1.
+     Each cell is a YouTube facade (poster image + play button) that
+     swaps to an iframe on click — see /assets/js/yt-grid.js. */
+  .yt-facade-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  @media (max-width: 1023px) {
+    .yt-facade-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (max-width: 639px) {
+    .yt-facade-grid {
+      grid-template-columns: 1fr;
+    }
+    .video-grid-2x2,
+    .video-grid-1x2 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .yt-facade,
+  .yt-facade-grid > iframe {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    background: var(--foreground-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+  }
+  .yt-facade-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.2s ease;
+  }
+  .yt-facade:hover .yt-facade-thumb,
+  .yt-facade:focus-visible .yt-facade-thumb {
+    filter: brightness(1.08);
+  }
+  .yt-facade-play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+  }
+  .yt-facade-play svg {
+    width: 22%;
+    max-width: 68px;
+    height: auto;
+    filter: drop-shadow(0 2px 6px var(--shadow-color));
+    transition: transform 0.2s ease;
+  }
+  .yt-facade:hover .yt-facade-play svg {
+    transform: scale(1.08);
+  }
+  .yt-facade:hover .yt-facade-play svg path:first-of-type {
+    fill: #f00;
+    opacity: 1;
+  }
+
+  /* Lead "abstract" paragraph at the top of long research posts.
+     Subtly highlighted, slightly larger body text. */
+  .post-abstract {
+    background: var(--surface-strong);
+    padding: 1.25rem 1.5rem;
+    font-size: var(--type-xl) !important;
+    line-height: 1.5;
+    border-radius: var(--border-radius);
+  }
+
+  /* Section-divider icon: small SVG above a labelled task heading
+     (e.g. "Kitting Auto Parts" on /blog/gen-1). */
+  .post-section-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 2.5rem 0 1.5rem;
+    width: 100%;
+  }
+  .post-section-icon img {
+    width: 4rem;
+    height: 4rem;
+  }
+  .post-section-icon span {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* Side-by-side video race used to compare GEN-0 vs GEN-1 task speeds.
+     Each cell shows a label, the video, and a stopwatch that ticks while
+     the clip plays and turns green when it ends — see assets/js/video-race.js. */
+  .video-race { position: relative; }
+  .video-race-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    min-width: 0;
+  }
+  .video-race-cell video {
+    width: 100%;
+    border-radius: var(--border-radius);
+    background-color: var(--surface-muted);
+  }
+  .video-race-meta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 1.625rem;
+  }
+  .video-race-cell:nth-child(odd) .video-race-meta {
+    align-self: flex-end;
+  }
+  .video-race-cell:nth-child(even) .video-race-meta {
+    align-self: flex-start;
+  }
+  .video-race-label {
+    font-size: var(--type-sm);
+    color: var(--text-muted);
+    text-align: center;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+  }
+  .video-race-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: var(--type-reg);
+    color: var(--text-strong);
+    background: var(--surface-label);
+    padding: 0.2rem 0.75rem;
+    border-radius: var(--button-border-radius);
+    font-variant-numeric: tabular-nums;
+    transition: background 0.3s ease;
+  }
+  .video-race-timer .timer-icon { font-style: normal; }
+  .video-race-timer .timer-value { min-width: 5ch; text-align: left; }
+  .video-race-timer.stopped {
+    background: rgba(34, 197, 94, 0.25);
+  }
+
+  @media (max-width: 639px) {
+    .video-race-cell .video-race-meta {
+      align-self: center;
+    }
+  }
+
+  /* Wrapper for a Chart.js canvas figure (see /blog/gen-1 figures.js). */
+  .post-figure-chart {
+    background: var(--surface-subtle);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin: 1rem 0 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  .post-figure-chart canvas {
+    width: min(100%, 60rem) !important;
+    max-width: 100%;
+    height: auto !important;
+    aspect-ratio: 4 / 3;
+    display: block;
+  }
+
+  /* One-line dek/standfirst that appears directly under a post title.
+     Larger than body, italicized, slightly muted. */
+  .post-subtitle {
+    font-size: var(--type-lg);
+    font-style: italic;
+  }
+
+  /* Caption shown above or below a post media element. */
+  .post-caption {
+    font-size: var(--type-sm);
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0 0 0.5rem;
+    max-width: 80ch;
+    text-wrap: pretty;
+  }
+  .post-figure > .post-caption + img,
+  .post-figure > .post-caption + video,
+  .post-figure > .post-caption + video-player {
+    margin-top: 0;
+  }
+  .post-figure > img + .post-caption,
+  .post-figure > video + .post-caption,
+  .post-figure > video-player + .post-caption {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  /* Block equation rendered by MathJax. Adds the same horizontal rhythm as
+     a paragraph but centers the formula. MathJax v3 (svg) replaces the
+     inner $$…$$ with an inline-block <mjx-container>. min-width:0 prevents
+     a wide formula from forcing the parent grid track wider than the
+     layout column (the same fix applied to .video-gallery below). */
+  .post-equation {
+    margin: 1rem 0 1.5rem;
+    text-align: center;
+    overflow-x: auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Video gallery used on data-rich research posts (e.g. /blog/gen-0).
+     A horizontally-scrolling strip of clickable <video> thumbnails sits
+     above a single large <video> player; clicking a thumbnail swaps the
+     source and caption (see assets/js/video-gallery.js). */
+  .video-gallery-container {
+    margin: 1rem 0 1.5rem;
+    /* Required to break the CSS-grid min-content floor: without these,
+       the gallery's intrinsic minimum width (8 thumbnails × 140px) would
+       push the parent .post-full-width track wider than the layout. */
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .video-gallery {
+    display: grid;
+    grid-auto-flow: column;
+    /* minmax(0, 1fr) lets columns shrink below their content width so the
+       8-thumbnail strip always fits the parent. */
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 8px;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+
+  /* On narrow viewports, fall back to a horizontally scrollable strip
+     so each thumbnail stays large enough to recognise. */
+  @media (max-width: 767px) {
+    .video-gallery {
+      grid-auto-columns: minmax(120px, 1fr);
+    }
+  }
+
+  .gallery-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background-color: var(--surface-muted);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+    transition: outline-color 120ms ease, opacity 120ms ease;
+    opacity: 0.85;
+  }
+  .gallery-video:hover {
+    opacity: 1;
+  }
+  .gallery-video.active {
+    outline: var(--stroke-weight) solid var(--active-outline-color);
+    opacity: 1;
+  }
+
+  .main-video-container {
+    margin-top: 12px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--surface-muted);
+    margin-bottom: 10px;
+  }
+  .main-video-container video {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Anchored targets clear the 20px sticky inset when jumped to */
+  .post-title,
+  .post-heading,
+  .post-subheading,
+  .post-footnote {
+    scroll-margin-top: 20px;
+  }
+
+  /* Horizontal divider between body sections */
+  .post-content hr {
+    width: 100%;
+    border: none;
+    border-top: var(--border);
+  }
+
+  .post-content ul {
+    padding-left: 15px;
+  }
+
+  .post-content li + li {
+    margin-top: 8px;
+  }
+
+  /* Inline footnote reference markers, e.g. text<sup>3</sup> */
+  .post-ref {
+    font-size: 0.7em;
+    vertical-align: super;
+    line-height: 0;
+  }
+
+  .post-ref a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .post-ref a:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Footnotes / references column. On desktop each note is positioned by
+     assets/js/footnotes.js to sit beside the paragraph that references it;
+     in the stacked tablet/mobile layout they flow in order. */
+  .post-footnote {
+    position: relative;
+    display: block;
+    padding-left: 1.35rem;
+    font-size: var(--type-sm);
+    line-height: 16px;
+    margin-bottom: 16px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Prose footnotes (e.g. a <div> note) can contain their own links; style
+     them like the whole-anchor footnotes so all references look the same. */
+  .post-footnote a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .post-footnote-marker {
+    position: absolute;
+    top: -0.1em;
+    left: 0;
+    width: 1rem;
+    text-align: right;
+    font-size: 0.85em;
+    line-height: 1;
+    color: var(--text-faint);
+  }
+
+  .post-footnote-body {
+    display: block;
+  }
+
+  .post-footnote-title {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: var(--text-hairline);
+    text-underline-offset: 2px;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  }
+
+  .post-footnote:hover .post-footnote-title,
+  .post-footnote:hover .post-footnote-title *,
+  .post-footnote:focus-visible .post-footnote-title,
+  .post-footnote:focus-visible .post-footnote-title * {
+    color: oklch(var(--color-blue));
+    text-decoration-color: oklch(var(--color-blue)/0.65);
+  }
+
+  /* =============================================
+     Careers
+     ============================================= */
+
+  /* Sticky left sidebar: page intro + (careers) position filters, with the
+     back link pinned to the bottom. Mirrors the homepage introduction column.
+     Shared by the careers and contact pages. */
+  .careers-sidebar,
+  .contact-sidebar {
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    width: calc(var(--grid-column-width) * 4);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .careers-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .careers-intro h1 {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .careers-intro p {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+    max-width: 34ch;
+  }
+
+  .careers-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .careers-filters-title {
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 4px;
+  }
+
+  /* Native <select> reset to a bordered field with a chevron affordance
+     (inline SVG data URI, matching the down-arrow in icons.js). */
+  .careers-select select {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 100%;
+    padding: 9px 32px 8px 12px;
+    font-family: inherit;
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    color: inherit;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'/%3E%3Cpolyline points='19 12 12 19 5 12'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+  }
+
+  .careers-select select:focus-visible {
+    outline: var(--stroke-weight) solid var(--focus-color);
+    outline-offset: -1px;
+  }
+
+  .careers-clear-filters {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    padding: 5px 10px 4px;
+    font-family: inherit;
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    color: var(--text-subtle);
+    background: transparent;
+    border: var(--border);
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+  }
+
+  .careers-clear-filters[hidden] {
+    display: none;
+  }
+
+  .careers-clear-filters:hover {
+    color: var(--background-color);
+    background: var(--foreground-color);
+  }
+
+  .careers-clear-filters:focus-visible {
+    outline: var(--stroke-weight) solid var(--focus-color);
+    outline-offset: 1px;
+  }
+
+  .careers-clear-icon {
+    width: 12px;
+    height: 12px;
+    flex: none;
+  }
+
+  .careers-sidebar-footer,
+  .contact-sidebar-footer,
+  .blog-sidebar-footer {
+    margin-top: auto;
+  }
+
+  /* Content column. Mirrors homepage-content width. Shared by careers/contact. */
+  .careers-content,
+  .contact-content {
+    width: calc(var(--grid-column-width) * 12);
+    padding: 0 20px;
+  }
+
+  .careers-count {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-subtle);
+    margin-bottom: 16px;
+  }
+
+  .careers-empty {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-faint);
+    margin-top: 16px;
+  }
+
+  /* Filtered-out rows (toggled by careers.js via the hidden attribute). */
+  .careers-table tbody tr[hidden] {
+    display: none;
+  }
+
+  /* Positions table — built on .post-table, with a bold role column and
+     lighter header labels. Rows are clickable (see careers.js). */
+  .careers-table {
+    min-width: 720px;
+  }
+
+  .careers-table td {
+    padding: 8px 8px 6px 8px;
+  }
+
+  .careers-table thead th {
+    font-size: var(--type-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-faint);
+  }
+
+  .careers-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+  }
+
+  .careers-table tbody tr:hover {
+    background-color: var(--surface-muted);
+  }
+
+  .careers-table tbody tr:focus-visible {
+    outline: var(--stroke-weight) solid var(--focus-color);
+    outline-offset: -1px;
+  }
+
+  /* With table-layout: fixed, column widths are taken from the first row
+     (the <thead> cells), so the widths must live on the th. */
+  .careers-table th:first-child {
+    width: 32%;
+  }
+
+  .careers-table th:nth-child(2),
+  .careers-table th:nth-child(3),
+  .careers-table th:nth-child(4),
+  .careers-table th:last-child {
+    width: 17%;
+  }
+
+  .careers-table td:first-child {
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* "SFO or BOS" location chips */
+  .location-options {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .location-options .or {
+    font-size: var(--type-xs);
+    color: var(--text-faint);
+  }
+
+  /* =============================================
+     Job listing (single role) — blog-post-like layout:
+     nav (2) | details sidebar (4) | rule | content (8) | rule
+     ============================================= */
+
+  .job-details {
+    width: calc(var(--grid-column-width) * 4);
+    padding: 0 20px;
+    height: calc(100vh - 40px);
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .job-title {
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* 2-column × 4-row info table built on .post-table so the chrome matches
+     the careers index (outer border via .post-table-scroll, themed surface,
+     hairline row borders). The overrides below adapt it to its narrow
+     sidebar context. Two of .post-table's rules actively fight the look we
+     want and have to be defeated explicitly:
+       1. `.post-table td:nth-child(2) { width: 20% }` (meant for the wide
+          careers/blog index tables) outranks a plain `.job-meta td`, so we
+          match its specificity here to land 50/50 columns.
+       2. `.post-table th:last-of-type { border-right: none }` strips the
+          divider off our <th> (it's the only <th> in its row, so it's also
+          :last-of-type). Put the right border back on .job-meta th. */
+  .job-meta {
+    min-width: 0;
+  }
+
+  .job-meta th,
+  .job-meta td:nth-child(2) {
+    width: 50%;
+  }
+
+  .job-meta th,
+  .job-meta td {
+    vertical-align: top;
+  }
+
+  /* Qualify with .post-table so the selector hits specificity (0,2,1) — tied
+     with `.post-table th:last-of-type` and `.post-table th` and, being later
+     in source order, wins. Without the double-class qualifier the border-right
+     gets stripped (our <th> is also :last-of-type since it's the only <th>
+     in its row) and font-weight gets overridden back to var(--font-weight-bold). */
+  .post-table.job-meta th {
+    font-size: var(--type-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-faint);
+    border-right: var(--stroke-weight) solid var(--border-color-strong);
+  }
+
+  /* Apply sits directly under the meta. The desktop back link is pinned to the
+     bottom of the sticky sidebar; stacked breakpoints use the copy after the
+     job description. */
+  .job-back {
+    align-self: flex-start;
+    margin: auto 20px 0;
+  }
+
+  .job-back-sidebar {
+    display: none;
+    margin: auto 0 0;
+  }
+
+  .job-content {
+    width: calc(var(--grid-column-width) * 8);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  /* Ashby description HTML: paragraphs, headings, lists, links. */
+  .job-content p,
+  .job-content li {
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+    max-width: 70ch;
+  }
+
+  .job-content h1,
+  .job-content h2,
+  .job-content h3 {
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .job-content h2 strong {
+    margin-top: 20px;
+    display: block;
+  }
+
+  .job-content h2:first-child strong:first-child {
+    margin-top: 0;
+  }
+
+  .job-content ul,
+  .job-content ol {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .job-content strong {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .job-content a {
+    color: inherit;
+    text-decoration-color: var(--text-hairline);
+  }
+
+  .job-content a:hover {
+    color: oklch(var(--color-blue));
+    text-decoration-color: oklch(var(--color-blue)/0.65);
+  }
+
+  /* =============================================
+     Contact
+     ============================================= */
+
+  .contact-intro {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .contact-intro h1 {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .contact-intro p {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 520px;
+  }
+
+  .contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .contact-label {
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .contact-label .required {
+    color: oklch(var(--color-yellow));
+    margin-left: 2px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+    color: inherit;
+    background-color: transparent;
+    border: var(--border);
+    border-radius: var(--border-radius);
+  }
+
+  .contact-form textarea {
+    min-height: 96px;
+    resize: vertical;
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: var(--text-placeholder);
+  }
+
+  .contact-form input:focus-visible,
+  .contact-form textarea:focus-visible {
+    outline: var(--stroke-weight) solid var(--focus-color);
+    outline-offset: -1px;
+  }
+
+  /* The form only needs a few columns, so the content column is narrower than
+     the usual 12 and closes with its own rule. The far-right rule is pushed out
+     to the page edge, leaving empty space between the two.
+     Same pattern applies to the individual job listing — .job-content is 8
+     columns and the empty band on the right gets a closing rule against the
+     page edge. */
+  .contact-content {
+    width: calc(var(--grid-column-width) * 7);
+  }
+
+  .contact-layout > .vertical-rule:last-child,
+  .job-layout > .vertical-rule:last-child {
+    margin-left: auto;
+  }
+
+  /* =============================================
+     Blog index
+     ============================================= */
+
+  .blog-sidebar {
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 40px);
+    width: calc(var(--grid-column-width) * 4);
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .blog-sidebar-title {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  /* Category filter list — pill links matching the main nav. */
+  .blog-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+  }
+
+  .blog-categories a {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4.5px 12px 3.5px 12px;
+    border-radius: var(--button-border-radius);
+    text-decoration: none;
+    color: inherit;
+    font-size: var(--type-sm);
+  }
+
+  .blog-categories a > span {
+    min-width: 0;
+  }
+
+  .blog-category-arrow {
+    width: 1em;
+    height: 1em;
+    margin-left: auto;
+    flex: none;
+    opacity: 0;
+    visibility: hidden;
+    color: currentColor;
+    transition: none;
+  }
+
+  .blog-categories a:hover {
+    font-weight: var(--font-weight-bold);
+  }
+
+  
+
+  .blog-category-icon {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    position: relative;
+    top: -0.5px;
+    opacity: 0.35;
+  }
+
+  .blog-empty {
+    color: var(--text-faint);
+    font-size: var(--type-reg);
+  }
+
+  .blog-categories a.selected {
+    font-weight: var(--font-weight-bold);
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+  }
+
+  .blog-categories a:hover {
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+  }
+
+  .blog-categories a.selected .blog-category-arrow,
+  .blog-categories a:hover .blog-category-arrow {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  .blog-categories a.selected .blog-category-icon {
+    fill: currentColor;
+    stroke: none;
+    opacity: 1;
+  }
+
+  .blog-categories a:hover .blog-category-icon {
+    opacity: 1;
+  }
+
+  /* The category glyphs render outlined by default; fill them solid on hover.
+     These override the SVG's fill="none"/stroke="currentColor" attributes. */
+  .blog-categories a:hover .blog-category-icon {
+    fill: currentColor;
+    stroke: none;
+  }
+
+  .blog-search-form {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .blog-search {
+    width: 100%;
+    padding: 8px 12px 6px;
+    /* Right padding makes room for the trailing submit/clear button so the
+       typed value never slides under it. The 32px = 24px button + 8px gap. */
+    padding-right: 32px;
+    font-family: inherit;
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-regular);
+    color: inherit;
+    background-color: transparent;
+    border: var(--border);
+    border-radius: var(--border-radius);
+  }
+
+  .blog-search::placeholder {
+    color: var(--text-placeholder);
+  }
+
+  .blog-search:focus-visible {
+    outline: var(--stroke-weight) solid var(--focus-color);
+    outline-offset: -1px;
+  }
+
+  /* Trailing button. Lives inside the form, absolutely positioned over the
+     input's right padding. Hidden by default; blog-search.js toggles between
+     "submit" (arrow) and "clear" (X) states based on whether the typed value
+     matches the currently-applied query. Submit is type="submit" so Enter
+     also works; clear is type="button" so Enter on a settled query is a no-op. */
+  .blog-search-button {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--button-border-radius);
+    color: var(--text-faint);
+    cursor: pointer;
+  }
+
+  .blog-search-button:hover {
+    color: var(--foreground-color);
+  }
+
+  .blog-search-button:focus-visible {
+    outline: var(--stroke-weight) solid var(--focus-color);
+    outline-offset: 1px;
+  }
+
+  .blog-search-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-search-icon-svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+
+  /* CSS resets the user-agent [hidden] { display: none } rule on these
+     elements because the class rules above set explicit display values that
+     outrank a bare attribute selector. The combined class+attribute selector
+     here has higher specificity than `.blog-search-button` / `.blog-search-icon`
+     alone, so toggling `button.hidden` / `iconClear.hidden` from JS actually
+     hides them. */
+  .blog-search-button[hidden],
+  .blog-search-icon[hidden] {
+    display: none;
+  }
+
+  .blog-content {
+    width: calc(var(--grid-column-width) * 12);
+    padding: 0 20px;
+  }
+
+  .blog-content-title {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-subtle);
+    margin-bottom: 16px;
+  }
+
+  .blog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Each entry is a single clickable card linking to the post. */
+  .blog-entry {
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    padding: 20px;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.1s ease-in-out;
+  }
+
+  /* Higher specificity (class + attribute) than the bare `.blog-entry` rule
+     above, so toggling `el.hidden = true` from blog-search.js actually hides
+     the card. Without this, `display: flex` defeats the user-agent
+     `[hidden] { display: none }` rule and the card stays visible. */
+  .blog-entry[hidden] {
+    display: none;
+  }
+
+  .blog-entry:hover {
+    background-color: var(--surface-hover);
+  }
+
+  .blog-entry-body {
+    width: 50%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .blog-entry-title {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.3;
+  }
+
+  .blog-entry-excerpt {
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+    color: var(--text-subtle);
+    max-width: 48ch;
+  }
+
+  .blog-entry-meta {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: var(--type-sm);
+    color: var(--text-faint);
+  }
+
+  /* Cover lives at 1/3 the card width and is pinned to the right edge with
+     `margin-left: auto`, leaving the body at 50% on the left. The aspect-ratio
+     + max-height combo lets the cover stay 16:9 on narrow cards while
+     clamping its height on very wide cards so it never towers over the
+     two-or-three-line text block. */
+  .blog-entry-thumb {
+    flex: none;
+    width: calc(100% / 3);
+    max-height: 200px;
+    margin-left: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--border-radius);
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+    overflow: hidden;
+  }
+
+  .blog-entry-thumb-gen1p5cover {
+    align-self: center;
+  }
+
+  .blog-entry-thumb img,
+  .blog-entry-thumb video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .orbit-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    background-color: rgb(14, 30, 48);
+    border-radius: var(--border-radius);
+  }
+
+  .orbit-card-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+
+  .orbit-card-subtitle {
+    position: absolute;
+    left: 50%;
+    z-index: 3;
+    transform: translateX(-50%);
+    pointer-events: none;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .orbit-card-canvas {
+    position: relative;
+    z-index: 2;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .gen1p5cover-card {
+    --font-weight-bold: 500;
+    --font-weight-medium: 400;
+    position: relative;
+    container-type: inline-size;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    background: #e35e49;
+  }
+
+  .gen1p5cover-card-label,
+  .gen1p5cover-card-subtitle {
+    position: absolute;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    pointer-events: none;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .gen1p5cover-card-label {
+    top: 51%;
+    transform: translate(-50%, calc(-50% + 1px));
+    /* Match the GEN-1 card's 48% label size, 0.55 mobile multiplier,
+       and 1.2 card label scale within the shared 16:9 thumbnail. */
+    font-size: 17.82cqi;
+    font-family: "FK Grotesk Neue", sans-serif;
+    font-weight: var(--font-weight-bold);
+    line-height: inherit;
+    letter-spacing: -0.02em;
+  }
+
+  .gen1p5cover-card-label-suffix {
+    margin-left: -0.08em;
+    font-size: inherit;
+  }
+
+  .gen1p5cover-card-subtitle {
+    bottom: 5%;
+    width: 90%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 2.2cqi;
+    font-weight: var(--font-weight-medium);
+    line-height: 1.1;
+  }
+
+  .gen1p5cover-card-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+  }
+
+  .gen1p5cover-card.gen1p5cover-unavailable .gen1p5cover-card-canvas {
+    display: none;
+  }
+
+  /* =============================================
+     Homepage — recent posts + CTA
+     ============================================= */
+
+  .home-highlights {
+    margin-top: 20px;
+  }
+
+  .home-see-all {
+    margin-top: 20px;
+  }
+
+  .home-cta {
+    --cta-photo-min-width: 7rem;
+    --cta-photo-max-width: 14rem;
+    --cta-photo-content-distance: 1.25rem;
+    --cta-photo-gap: 0.75rem;
+    --cta-photo-edge-bleed: 2rem;
+    --cta-photo-min-count: 7;
+    --cta-photo-max-count: 9;
+
+    margin-top: 40px;
+    position: relative;
+    min-height: clamp(172px, 18vw, 240px);
+    padding: clamp(34px, 5vw, 58px) 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    color: var(--background-color);
+    background: var(--foreground-color);
+    isolation: isolate;
+  }
+
+  .home-cta-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .home-cta-photo {
+    position: absolute;
+    left: var(--cta-photo-left, 0);
+    top: var(--cta-photo-top, 0);
+    width: var(--cta-photo-width, 18%);
+    aspect-ratio: var(--cta-photo-ratio, 4 / 3);
+    object-fit: cover;
+    opacity: 0;
+    border-radius: var(--border-radius);
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+  }
+
+  .home-cta-photo.is-placed {
+    opacity: 1;
+  }
+
+  .home-cta-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .home-cta-title {
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .home-cta-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .home-cta .button {
+    color: var(--background-color);
+    outline-color: rgb(var(--background-rgb) / 0.65);
+  }
+
+  .home-cta .button:hover {
+    color: var(--foreground-color);
+    background-color: var(--background-color);
+  }
+
+  .home-cta-button-primary {
+    color: var(--foreground-color) !important;
+    background-color: var(--background-color);
+    opacity: 0.9;
+  }
+
+  .home-cta-button-primary:hover {
+    color: var(--foreground-color) !important;
+    background-color: var(--background-color) !important;
+    opacity: 1;
+  }
+
+  @media (max-width: 1023px) {
+    .home-cta {
+      min-height: clamp(260px, 40vw, 360px);
+      padding: clamp(62px, 9vw, 96px) 20px;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .home-cta {
+      --cta-photo-min-width: 4.5rem;
+      --cta-photo-max-width: 8.5rem;
+      --cta-photo-content-distance: 1rem;
+      --cta-photo-gap: 0.5rem;
+      --cta-photo-min-count: 3;
+      --cta-photo-max-count: 5;
+
+      min-height: 300px;
+      padding: 84px 20px;
+    }
+  }
+
+  /* =============================================
+     About
+     ============================================= */
+
+  .about-main {
+    width: calc(var(--grid-column-width) * 8);
+    padding: 0 20px;
+  }
+
+  /* Supplementary right columns sit beside the (long) main copy and stay
+     pinned while it scrolls. */
+  .about-investors,
+  .about-media {
+    width: calc(var(--grid-column-width) * 4);
+    padding: 0 20px;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+  }
+
+  /* Small column headers: "About Generalist", "Our Investors", "External Media". */
+  .about-label {
+    font-size: var(--type-reg);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-subtle);
+    margin-bottom: 20px;
+  }
+
+  .about-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+    background-color: var(--background-color);
+    margin-bottom: 20px;
+  }
+
+  /* The lead photo breaks out to the right across the rule and into the
+     investors column (4 cols + the 2px rule), the same way full-width figures
+     in blog posts span into the footnotes column. The investors content is
+     pushed down (below) so it starts beneath the photo. */
+  .about-photo.about-full-width {
+    width: calc(100% + (100cqi * 4 / 18) + 2px);
+    max-width: none;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Mask the inner rule in the 20px gaps directly above/below the breakout so
+     it doesn't poke out beside the photo. Stops short of the right edge so it
+     never reaches the investors/media rule. */
+  .about-photo.about-full-width::before,
+  .about-photo.about-full-width::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 20px;
+    height: 20px;
+    background: var(--background-color);
+    pointer-events: none;
+  }
+
+  .about-photo.about-full-width::before {
+    top: -20px;
+  }
+
+  .about-photo.about-full-width::after {
+    bottom: -30px;
+    height: 30px;
+  }
+
+  /* Start the investors column below the photo. Height tracks the breakout
+     photo: width = 100cqi*12/18 - 38px, height = width * 2/3, plus the photo's
+     30px bottom margin so "Our Investors" aligns with the "About Generalist"
+     label across the rule. */
+  .about-investors {
+    margin-top: calc((100cqi * 2 / 3 - 38px) * 2 / 3 + 30px);
+  }
+
+  .about-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 70ch;
+  }
+
+  .about-body p {
+    font-size: var(--type-lg);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+  }
+
+  .about-body strong {
+    font-weight: var(--font-weight-bold);
+  }
+
+  .about-body p a { 
+    color: inherit;
+    text-decoration-color: var(--text-hairline);
+  }
+
+  .about-body p a:hover {
+    color: oklch(var(--color-blue));
+    text-decoration-color: oklch(var(--color-blue)/0.65);
+  }
+
+  .about-back {
+    display: none;
+  }
+
+  .about-investors p {
+    font-size: var(--type-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.4;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    max-width: 28ch;
+  }
+
+  .about-logos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .about-logo {
+    height: 24px;
+    width: auto;
+  }
+
+  .about-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: var(--border-radius);
+    outline: var(--stroke-weight) solid var(--border-color);
+    outline-offset: -1px;
+    background-color: var(--surface-muted);
+  }
+
+  /* =============================================
+     Responsive
+     ============================================= */
+
+  /* Hamburger toggle — hidden until mobile. The checkbox + label live as
+     siblings before <main> so `:checked ~ main nav` can drive the overlay
+     with no JavaScript. */
+  .nav-toggle-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-toggle-label {
+    display: none;
+  }
+
+  .mobile-header-brand {
+    display: none;
+  }
+
+  .mobile-header-background {
+    display: none;
+  }
+
+  /* ----- Desktop blog grid: ≥ 1200px -----
+     The blog post uses a 6-track grid (nav | TOC | content | rule |
+     footnotes | rule) so the cover image can occupy its own top row,
+     spanning the content + footnotes area, while the table-of-contents
+     sidebar runs full height on the left. The content track is 1fr so it
+     absorbs the sub-pixel width of the two rule tracks. */
+  @media (min-width: 1200px) {
+    .post-layout {
+      display: grid;
+      grid-template-columns:
+        calc(var(--grid-column-width) * 2)
+        calc(var(--grid-column-width) * 4)
+        1fr
+        auto
+        calc(var(--grid-column-width) * 3)
+        auto;
+      grid-template-rows: auto auto auto;
+      align-items: start;
+    }
+
+    .post-layout > nav {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      width: auto;
+    }
+
+    .post-layout > .post-details {
+      grid-column: 2;
+      grid-row: 1 / -1;
+      width: auto;
+    }
+
+    .post-layout > .post-cover {
+      grid-column: 3;
+      grid-row: 1;
+      margin-bottom: 20px;
+    }
+
+    /* Opt-in: a cover that also has .post-full-width spans the content +
+       footnotes area. Use margins (not padding) here so the element's box —
+       and therefore the masking bands — stays inset from the far-right rule
+       and never obscures it. A plain .post-cover keeps the base padding. */
+    .post-layout > .post-cover.post-full-width {
+      grid-column: 3 / -1;
+      width: auto;
+      padding: 0;
+      margin: 0 20px;
+    }
+
+    .post-layout > .post-content {
+      grid-column: 3;
+      grid-row: 2;
+      width: auto;
+    }
+
+    /* Inner rule (between content and footnotes) — full height too */
+    .post-layout > .vertical-rule {
+      grid-column: 4;
+      grid-row: 1 / -1;
+    }
+
+    .post-layout > .post-footnotes {
+      grid-column: 5;
+      grid-row: 2;
+      width: auto;
+    }
+
+    .post-layout > .post-postscript {
+      grid-column: 3;
+      grid-row: 3;
+      width: auto;
+      padding-top: 20px;
+    }
+
+    /* Outer rule (far right edge) — spans full height, like the nav and
+       table-of-contents borders on the left. */
+    .post-layout > .vertical-rule:last-child {
+      grid-column: 6;
+      grid-row: 1 / -1;
+    }
+
+    /* "Back to Blog" stays pinned to the bottom of the sticky sidebar. */
+    .post-details-footer {
+      margin-top: auto;
+    }
+
+    .job-back-sidebar {
+      display: inline-flex;
+    }
+
+    .job-back-stacked {
+      display: none;
+    }
+  }
+
+  /* ----- Tablet: ≤ 1199px -----
+     The nav stays on the left; every other column collapses into a single
+     stacked column. The far-right vertical rule remains (spanning full
+     height); any inner rules and the homepage "Simplicity Scales" curve
+     are hidden.
+     Knob: --tablet-nav-cols sets how many of the 18 grid columns the nav
+     occupies. Try 4, 5, or 6 to see what feels right. */
+  @media (max-width: 1199px) {
+    main {
+      --tablet-nav-cols: 4;
+      display: grid;
+      grid-template-columns: calc(100cqi * var(--tablet-nav-cols) / 18) 1fr auto;
+      grid-template-rows: repeat(2, auto);
+      align-items: start;
+    }
+
+    nav {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      width: 100%;
+    }
+
+    /* Hide inner rules; keep only the last one, spanning the right edge. */
+    main > .vertical-rule {
+      display: none;
+    }
+
+    main > .vertical-rule:last-child {
+      display: block;
+      grid-column: 3;
+      grid-row: 1 / -1;
+    }
+
+    /* Homepage */
+    .introduction {
+      grid-column: 2;
+      grid-row: 1;
+      position: static;
+      height: auto;
+      width: auto;
+      display: block;
+      padding: 0 20px;
+    }
+
+    .introduction .top-content {
+      padding-right: 0;
+    }
+
+    .simplicity-text,
+    .introduction-curve {
+      display: none;
+    }
+
+    .homepage-content {
+      grid-column: 2;
+      grid-row: 2;
+      width: auto;
+    }
+
+    .above-fold {
+      height: auto;
+      max-height: none;
+      margin-top: 20px;
+    }
+
+    .hero-video {
+      flex: none;
+      height: auto;
+      min-height: 0;
+      max-height: none;
+      aspect-ratio: 16 / 9;
+      margin-top: 10px;
+    }
+
+    /* Careers / Contact / Blog index / Job listing — sidebar stacks above the
+       content. */
+    .careers-sidebar,
+    .contact-sidebar,
+    .blog-sidebar,
+    .job-details {
+      grid-column: 2;
+      grid-row: 1;
+      position: static;
+      height: auto;
+      width: auto;
+      padding: 0 20px;
+    }
+
+    .careers-sidebar-footer,
+    .contact-sidebar-footer,
+    .blog-sidebar-footer {
+      margin-top: 20px;
+    }
+
+    /* Stacked: the "All Roles" link flows after the content instead of pinning. */
+    .job-back {
+      margin: 20px 20px 0;
+    }
+
+    .careers-content,
+    .contact-content,
+    .blog-content,
+    .job-content {
+      grid-column: 2;
+      grid-row: 2;
+      width: auto;
+      margin-top: 20px;
+    }
+
+    /* About — main copy, then investors, then external media stack in column 2. */
+    .about-main {
+      grid-column: 2;
+      grid-row: 1;
+      width: auto;
+    }
+
+    /* Stacked single column: the photo no longer breaks out into a sibling
+       column, so reset it to full width and drop the masking bands. */
+    .about-photo.about-full-width {
+      width: 100%;
+    }
+
+    .about-photo.about-full-width::before,
+    .about-photo.about-full-width::after {
+      display: none;
+    }
+
+    .about-investors {
+      grid-column: 2;
+      grid-row: 2;
+      width: auto;
+      position: static;
+      padding: 0 20px;
+      margin-top: 0;
+    }
+
+    .about-media {
+      grid-column: 2;
+      grid-row: 3;
+      width: auto;
+      position: static;
+      padding: 0 20px;
+    }
+
+    .about-back {
+      display: inline-flex;
+      grid-column: 2;
+      grid-row: 4;
+      align-self: start;
+      justify-self: start;
+      margin: 20px 20px 0;
+    }
+
+    /* Blog post — the category/date header stays above the cover; the byline
+       (author, read time, listen) and the table of contents drop below it. The
+       .post-details wrapper dissolves (display: contents) so its parts can
+       be placed individually around the cover. */
+    .post-layout {
+      grid-template-rows: repeat(8, auto);
+      grid-auto-rows: min-content;
+      align-content: start;
+      row-gap: 0;
+    }
+
+    .post-details {
+      display: contents;
+    }
+
+    .post-details-header {
+      grid-column: 2;
+      grid-row: 1;
+      padding: 0 20px;
+    }
+
+    .post-cover {
+      grid-column: 2;
+      grid-row: 2;
+      margin-bottom: 20px;
+    }
+
+    .post-byline {
+      grid-column: 2;
+      grid-row: 3;
+      padding: 0 20px;
+    }
+
+    .table-of-contents {
+      grid-column: 2;
+      grid-row: 4;
+      padding: 0 20px;
+    }
+
+    .post-content {
+      grid-column: 2;
+      grid-row: 5;
+      width: auto;
+    }
+
+    .post-footnotes {
+      grid-column: 2;
+      grid-row: 6;
+      width: auto;
+    }
+
+    .post-postscript {
+      grid-column: 2;
+      grid-row: 7;
+      width: auto;
+      padding: 0 20px;
+    }
+
+    .post-details-footer {
+      grid-column: 2;
+      grid-row: 8;
+      padding: 0 20px;
+    }
+
+    .post-full-width {
+      width: 100%;
+    }
+
+    .post-full-width::before,
+    .post-full-width::after {
+      display: none;
+    }
+
+    .fundraise-post .post-byline,
+    .fundraise-post .post-content,
+    .gtc-demo-post .post-byline,
+    .gtc-demo-post .post-content,
+    .robots-build-post .post-byline,
+    .robots-build-post .post-content,
+    .research-preview-post .post-byline,
+    .research-preview-post .post-content,
+    .gen-0-post .post-byline,
+    .gen-0-post .post-content,
+    .gen-1-post .post-byline,
+    .gen-1-post .post-content,
+    .beyond-world-models-post .post-byline,
+    .physical-commonsense-post .post-byline {
+      display: contents;
+    }
+
+    .fundraise-post .post-author,
+    .fundraise-post .post-read-listen,
+    .fundraise-post .post-content > *,
+    .gtc-demo-post .post-author,
+    .gtc-demo-post .post-read-listen,
+    .gtc-demo-post .post-content > *,
+    .robots-build-post .post-author,
+    .robots-build-post .post-read-listen,
+    .robots-build-post .post-content > *,
+    .research-preview-post .post-author,
+    .research-preview-post .post-read-listen,
+    .research-preview-post .post-content > *,
+    .gen-0-post .post-author,
+    .gen-0-post .post-read-listen,
+    .gen-0-post .post-content > *,
+    .gen-1-post .post-author,
+    .gen-1-post .post-read-listen,
+    .gen-1-post .post-content > *,
+    .beyond-world-models-post .post-author,
+    .beyond-world-models-post .post-read-listen,
+    .physical-commonsense-post .post-author,
+    .physical-commonsense-post .post-read-listen {
+      box-sizing: border-box;
+      grid-column: 2;
+      width: auto;
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+
+    .fundraise-post .post-content > *,
+    .gtc-demo-post .post-content > *,
+    .robots-build-post .post-content > *,
+    .research-preview-post .post-content > *,
+    .gen-0-post .post-content > *,
+    .gen-1-post .post-content > * {
+      order: 80;
+    }
+
+    .beyond-world-models-post .post-content,
+    .physical-commonsense-post .post-content {
+      grid-row: auto;
+      order: 80;
+    }
+
+    .fundraise-post .post-footnotes,
+    .gtc-demo-post .post-footnotes,
+    .robots-build-post .post-footnotes,
+    .research-preview-post .post-footnotes,
+    .gen-0-post .post-footnotes,
+    .gen-1-post .post-footnotes,
+    .beyond-world-models-post .post-footnotes,
+    .physical-commonsense-post .post-footnotes {
+      grid-row: auto;
+      order: 90;
+    }
+
+    .fundraise-post .post-details-footer,
+    .gtc-demo-post .post-details-footer,
+    .robots-build-post .post-details-footer,
+    .research-preview-post .post-details-footer,
+    .gen-0-post .post-details-footer,
+    .gen-1-post .post-details-footer,
+    .beyond-world-models-post .post-details-footer,
+    .physical-commonsense-post .post-details-footer {
+      grid-row: auto;
+      order: 99;
+    }
+
+    .fundraise-post .post-author,
+    .gtc-demo-post .post-author,
+    .robots-build-post .post-author,
+    .research-preview-post .post-author,
+    .gen-0-post .post-author,
+    .gen-1-post .post-author,
+    .beyond-world-models-post .post-author,
+    .physical-commonsense-post .post-author {
+      grid-row: 2;
+      order: 2;
+    }
+
+    .fundraise-post .post-title,
+    .gtc-demo-post .post-title,
+    .robots-build-post .post-title,
+    .research-preview-post .post-title,
+    .gen-0-post .post-title,
+    .beyond-world-models-post .post-title,
+    .physical-commonsense-post .post-title {
+      grid-row: 3;
+      order: 3;
+      margin-top: 20px;
+      margin-bottom: 20px !important;
+    }
+
+    .fundraise-post .post-read-listen,
+    .gtc-demo-post .post-read-listen,
+    .robots-build-post .post-read-listen,
+    .research-preview-post .post-read-listen,
+    .gen-0-post .post-read-listen,
+    .beyond-world-models-post .post-read-listen,
+    .physical-commonsense-post .post-read-listen {
+      grid-row: 4;
+      order: 4;
+    }
+
+    .gen-1-post .post-read-listen {
+      grid-row: 3;
+      order: 3;
+    }
+
+    .fundraise-post .fundraise-hero-figure,
+    .gen-0-post .gen-0-hero-video {
+      grid-row: 5;
+      order: 5;
+      margin-top: 20px;
+    }
+
+    .beyond-world-models-post .post-cover,
+    .physical-commonsense-post .post-cover {
+      grid-column: 2;
+      grid-row: 5;
+      order: 5;
+      width: auto;
+      margin-top: 20px;
+      margin-bottom: 0;
+      padding: 0 20px;
+    }
+
+    .gen-1-post .gen-1-orbit-hero {
+      grid-row: 4;
+      order: 4;
+      margin-top: 20px;
+    }
+
+    .fundraise-post .table-of-contents,
+    .gen-0-post .table-of-contents,
+    .beyond-world-models-post .table-of-contents,
+    .physical-commonsense-post .table-of-contents {
+      grid-row: 6;
+      order: 6;
+      margin-bottom: 0;
+    }
+
+    .gtc-demo-post .table-of-contents,
+    .robots-build-post .table-of-contents,
+    .research-preview-post .table-of-contents,
+    .gen-1-post .table-of-contents {
+      grid-row: 5;
+      order: 5;
+      margin-bottom: 0;
+    }
+
+    .fundraise-post .post-content > *:not(.post-title):not(.fundraise-hero-figure),
+    .gtc-demo-post .post-content > *:not(.post-title),
+    .robots-build-post .post-content > *:not(.post-title),
+    .research-preview-post .post-content > *:not(.post-title),
+    .gen-0-post .post-content > *:not(.post-title):not(.gen-0-hero-video),
+    .gen-1-post .post-content > *:not(.gen-1-orbit-hero) {
+      margin-top: 20px;
+    }
+
+    /* Shared tablet post order:
+       category/date, author, title, read time, optional hero, TOC, body,
+       footnotes, back link. This intentionally wins over older post-specific
+       ordering rules above. */
+    .post-layout .post-byline,
+    .post-layout .post-cover,
+    .post-layout .post-content {
+      display: contents;
+    }
+
+    .post-layout .post-details-header,
+    .post-layout .post-author,
+    .post-layout .post-title,
+    .post-layout .post-read-listen,
+    .post-layout .post-hero-media,
+    .post-layout .table-of-contents,
+    .post-layout .post-content > *:not(.post-title):not(.post-hero-media),
+    .post-layout .post-footnotes,
+    .post-layout .post-postscript,
+    .post-layout .post-details-footer {
+      grid-column: 2;
+      grid-row: auto !important;
+      box-sizing: border-box;
+    }
+
+    .post-layout .post-details-header {
+      order: 1;
+      padding: 0 20px;
+      margin-bottom: 0;
+    }
+
+    .post-layout .post-author {
+      order: 2;
+      width: calc(100% - 40px);
+      margin: 0 20px;
+    }
+
+    .post-layout .post-title {
+      order: 3;
+      width: calc(100% - 40px);
+      margin: 20px 20px 0 !important;
+    }
+
+    .post-layout .post-read-listen {
+      order: 4;
+      width: calc(100% - 40px);
+      margin: 20px 20px 0;
+    }
+
+    .post-layout .post-hero-media {
+      order: 5;
+      width: calc(100% - 40px);
+      margin: 20px 20px 0;
+      margin-bottom: 0 !important;
+      padding: 0;
+    }
+
+    .post-layout .table-of-contents {
+      order: 6;
+      width: auto;
+      margin: 20px;
+    }
+
+    .post-layout .post-content > *:not(.post-title):not(.post-hero-media) {
+      order: 7;
+      width: calc(100% - 40px);
+      margin-right: 20px;
+      margin-left: 20px;
+      margin-top: 0 !important;
+      margin-bottom: 0;
+    }
+
+    .post-layout .post-content > a.button.button {
+      width: fit-content;
+      max-width: calc(100% - 40px);
+    }
+
+    .post-layout .post-content > *:not(.post-title):not(.post-hero-media) + * {
+      margin-top: 20px !important;
+    }
+
+    .post-layout .post-footnotes {
+      order: 8;
+      width: auto;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .post-layout .post-postscript {
+      order: 9;
+      width: calc(100% - 40px);
+      margin: 20px 20px 0;
+      padding: 0;
+    }
+
+    .post-layout .post-details-footer {
+      order: 10;
+      padding: 0 20px;
+      margin-top: 20px;
+    }
+
+  }
+
+  @media (min-width: 640px) and (max-width: 1199px) {
+    .job-layout {
+      grid-template-rows: repeat(3, auto);
+    }
+
+    .job-layout .job-details {
+      grid-row: 1;
+    }
+
+    .job-layout .job-content {
+      grid-row: 2;
+    }
+
+    .job-layout .job-back {
+      grid-column: 2;
+      grid-row: 3;
+      justify-self: start;
+      align-self: start;
+      margin: 20px 20px 0;
+    }
+
+    .contact-layout {
+      grid-template-rows: repeat(3, auto);
+    }
+
+    .contact-layout .contact-sidebar {
+      display: contents;
+    }
+
+    .contact-layout .contact-intro,
+    .contact-layout .contact-sidebar-footer {
+      grid-column: 2;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
+
+    .contact-layout .contact-intro {
+      grid-row: 1;
+      margin-bottom: 20px;
+    }
+
+    .contact-layout .contact-content {
+      grid-row: 2;
+    }
+
+    .contact-layout .contact-sidebar-footer {
+      grid-row: 3;
+      margin-top: 20px;
+    }
+
+    .careers-layout {
+      grid-template-rows: repeat(4, auto);
+    }
+
+    .careers-layout .careers-sidebar {
+      display: contents;
+    }
+
+    .careers-layout .careers-intro,
+    .careers-layout .careers-filters,
+    .careers-layout .careers-sidebar-footer {
+      grid-column: 2;
+      box-sizing: border-box;
+      padding: 0 20px;
+    }
+
+    .careers-layout .careers-intro {
+      grid-row: 1;
+      margin-bottom: 20px;
+    }
+
+    .careers-layout .careers-filters {
+      grid-row: 2;
+      margin-bottom: 20px;
+    }
+
+    .careers-layout .careers-content {
+      grid-row: 3;
+    }
+
+    .careers-layout .careers-sidebar-footer {
+      grid-row: 4;
+      margin-top: 20px;
+    }
+
+    .careers-layout .careers-table {
+      min-width: 0;
+    }
+
+    .careers-layout .careers-table th:nth-child(3),
+    .careers-layout .careers-table th:nth-child(4),
+    .careers-layout .careers-table td:nth-child(3),
+    .careers-layout .careers-table td:nth-child(4) {
+      display: none;
+    }
+
+    .careers-layout .careers-table th:first-child {
+      width: 44%;
+    }
+
+    .careers-layout .careers-table th:nth-child(2),
+    .careers-layout .careers-table th:last-child {
+      width: 28%;
+    }
+
+    .blog-index-layout {
+      grid-template-rows: repeat(5, auto);
+    }
+
+    .blog-index-layout .blog-sidebar {
+      display: contents;
+    }
+
+    .blog-index-layout .blog-sidebar-title,
+    .blog-index-layout .blog-categories,
+    .blog-index-layout .blog-search-form,
+    .blog-index-layout .blog-sidebar-footer {
+      grid-column: 2;
+      box-sizing: border-box;
+    }
+
+    .blog-index-layout .blog-sidebar-title {
+      grid-row: 1;
+      padding: 0 20px;
+      margin-bottom: 24px;
+    }
+
+    .blog-index-layout .blog-categories {
+      grid-row: 2;
+      width: calc(100% - 40px);
+      margin: 0 20px 24px;
+    }
+
+    .blog-index-layout .blog-search-form {
+      grid-row: 3;
+      width: calc(100% - 40px);
+      margin: 0 20px 24px;
+    }
+
+    .blog-index-layout .blog-content {
+      grid-row: 4;
+    }
+
+    .blog-index-layout .blog-sidebar-footer {
+      grid-row: 5;
+      padding: 0 20px;
+      margin-top: 20px;
+    }
+
+    .post-layout > nav {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: calc((100vw - 40px) * var(--tablet-nav-cols) / 18);
+      height: calc(100vh - 40px);
+    }
+
+    .post-layout > .vertical-rule:last-child {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      height: calc(100vh - 40px);
+    }
+  }
+
+  /* ----- Mobile: ≤ 639px ----- */
+  @media (max-width: 639px) {
+    :root {
+      --mobile-header-height: 76px;
+      --mobile-header-padding: 20px;
+      --mobile-page-gutter: 10px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      padding-top: calc(var(--mobile-header-height));
+      padding-right: var(--mobile-page-gutter);
+      padding-left: var(--mobile-page-gutter);
+    }
+
+    /* Hamburger icon (top-right) */
+    .nav-toggle-label {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: fixed;
+      top: calc((var(--mobile-header-height) - 48px) / 2);
+      right: calc(var(--mobile-header-padding) - 10px);
+      z-index: 140;
+      width: 48px;
+      height: 48px;
+      padding: 12px 10px;
+      cursor: pointer;
+    }
+
+    .mobile-header-brand {
+      display: block;
+      position: fixed;
+      top: var(--mobile-header-padding);
+      left: var(--mobile-header-padding);
+      z-index: 130;
+      width: min(14rem, calc(100vw - 7rem));
+      color: var(--foreground-color);
+      text-decoration: none;
+    }
+
+    .mobile-header-background {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 120;
+      height: var(--mobile-header-height);
+      background-color: rgb(var(--background-rgb));
+      pointer-events: none;
+    }
+
+    .mobile-header-lockup.wordmark-variant--dark {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .mobile-header-lockup.wordmark-variant--light {
+      display: none;
+      width: 100%;
+      height: auto;
+    }
+
+    .nav-toggle-label span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+
+    .introduction .home-wordmark--standalone {
+      display: none;
+    }
+
+    /* Hamburger morphs into an X when the nav is open */
+    .nav-toggle-input:checked ~ .nav-toggle-label span:nth-child(1) {
+      transform: translateY(11px) rotate(45deg);
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-label span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle-input:checked ~ .nav-toggle-label span:nth-child(3) {
+      transform: translateY(-11px) rotate(-45deg);
+    }
+
+    /* Nav becomes a fullscreen overlay, hidden until toggled */
+    nav {
+      position: fixed;
+      inset: 0;
+      width: auto;
+      height: 100vh;
+      padding: calc(var(--mobile-header-height) + 20px) 30px 30px;
+      background: var(--background-color);
+      border: none;
+      z-index: 100;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out, visibility 0.2s;
+    }
+
+    nav .header {
+      width: 100%;
+    }
+
+    nav .header .nav-symbol-link {
+      display: none;
+    }
+
+    nav .header ul {
+      width: 100%;
+      margin: 0;
+      gap: 8px;
+    }
+
+    nav .header ul li a {
+      min-height: 52px;
+      padding: 14px 16px;
+      font-size: var(--type-lg);
+      align-items: center;
+    }
+
+    nav .social-links {
+      width: 100%;
+      margin: 0;
+      gap: 8px;
+    }
+
+    nav .social-links li a {
+      min-height: 48px;
+      padding: 12px 16px;
+      font-size: var(--type-lg);
+    }
+
+    .button-small {
+      padding: 4px 12px;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: normal;
+    }
+
+    .post-cover {
+      margin-bottom: 20px;
+    }
+
+    .nav-toggle-input:checked ~ main nav {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Single full-width column. .post-details dissolves so its parts can be
+       ordered around the cover: metadata, cover, TOC, body, footnotes, link. */
+    .post-details {
+      display: contents;
+    }
+
+    .introduction,
+    .homepage-content,
+    .post-cover,
+    .post-details-header,
+    .post-byline,
+    .table-of-contents,
+    .post-content,
+    .post-footnotes,
+    .post-postscript,
+    .post-details-footer,
+    .careers-sidebar,
+    .careers-content,
+    .contact-sidebar,
+    .contact-content,
+    .blog-sidebar,
+    .blog-content,
+    .job-details,
+    .job-content,
+    .about-main,
+    .about-investors,
+    .about-media {
+      grid-column: auto;
+      grid-row: auto;
+      width: 100%;
+      padding: 0 var(--mobile-page-gutter);
+    }
+
+    .post-content {
+      margin-bottom: 20px;
+    }
+
+    .top-content {
+      margin-bottom: 20px;
+    }
+    
+    .post-footnote {
+      position: relative;
+      left: -0.5rem;
+    }
+
+    .hero-video {
+      margin-top: 10px;
+    }
+
+    .above-fold {
+      margin-bottom: 40px;
+    }
+
+    .table-of-contents {
+      box-sizing: border-box;
+      width: calc(100% - (var(--mobile-page-gutter) * 2));
+      margin: 20px var(--mobile-page-gutter);
+      padding: 20px !important;
+      max-width: 100%;
+    }
+
+    .post-footnotes:has(> *) {
+      box-sizing: border-box;
+      width: calc(100% - (var(--mobile-page-gutter) * 2));
+      margin: 20px var(--mobile-page-gutter);
+      padding: 20px !important;
+      max-width: 100%;
+      gap: 10px;
+      outline: var(--stroke-weight) solid var(--border-color);
+      outline-offset: -1px;
+      border-radius: var(--border-radius);
+    }
+
+    .post-footnotes:has(> *)::before {
+      content: "Footnotes";
+      display: block;
+      font-size: var(--type-sm);
+      font-weight: var(--font-weight-medium);
+    }
+
+    /* Careers index — mobile: intro, role-only table, then back link. */
+    .careers-sidebar {
+      display: contents;
+    }
+
+    .careers-intro {
+      order: 1;
+      padding: 0 var(--mobile-page-gutter);
+      margin-bottom: 20px;
+    }
+
+    .careers-filters {
+      display: none;
+    }
+
+    .careers-content {
+      order: 2;
+    }
+
+    .careers-sidebar-footer {
+      order: 3;
+      padding: 0 var(--mobile-page-gutter);
+      margin-top: 20px;
+    }
+
+    .contact-sidebar {
+      display: contents;
+    }
+
+    .contact-intro {
+      order: 1;
+      padding: 0 var(--mobile-page-gutter);
+    }
+
+    .contact-content {
+      order: 2;
+    }
+
+    .contact-sidebar-footer {
+      order: 3;
+      padding: 0 var(--mobile-page-gutter);
+      margin-top: 20px;
+    }
+
+    .job-details {
+      order: 1;
+    }
+
+    .job-content {
+      order: 2;
+    }
+
+    .job-back {
+      order: 3;
+      margin: 20px var(--mobile-page-gutter) 0;
+    }
+
+    .careers-table {
+      min-width: 0;
+    }
+
+    .careers-table th,
+    .careers-table td {
+      width: 100% !important;
+    }
+
+    .careers-table th:nth-child(n + 2),
+    .careers-table td:nth-child(n + 2) {
+      display: none;
+    }
+
+    .careers-table th:first-child,
+    .careers-table td:first-child {
+      border-right: none;
+    }
+
+    /* Blog index — mobile: hide filters/search/title, keep back link last. */
+    .blog-sidebar {
+      display: contents;
+    }
+
+    .blog-categories,
+    .blog-search-form,
+    .blog-content-title {
+      display: none;
+    }
+
+    .blog-sidebar-title {
+      order: 1;
+      padding: 0 var(--mobile-page-gutter);
+      margin-bottom: 20px;
+    }
+
+    .blog-content {
+      order: 2;
+    }
+
+    .blog-sidebar-footer {
+      order: 3;
+      padding: 0 var(--mobile-page-gutter);
+      margin-top: 20px;
+    }
+
+    .about-back {
+      display: inline-flex;
+      order: 4;
+      align-self: flex-start;
+      width: auto;
+      margin: 20px var(--mobile-page-gutter) 0;
+    }
+
+    /* Blog index — stack each entry's image below its text. */
+    .blog-entry {
+      flex-direction: column;
+    }
+
+    .blog-entry-body {
+      width: 100%;
+    }
+
+    .blog-entry-thumb {
+      width: 100%;
+      max-height: none;
+      margin-left: 0;
+    }
+
+    .post-details-header { order: 1; }
+    .post-cover { order: 2; }
+    .post-byline { order: 3; }
+    .table-of-contents { order: 4; }
+    .post-content { order: 5; }
+    .post-footnotes { order: 6; }
+    .post-postscript { order: 7; }
+    .post-details-footer {
+      order: 99;
+      margin-top: 20px;
+    }
+
+    .fundraise-post .post-byline,
+    .fundraise-post .post-content,
+    .gtc-demo-post .post-byline,
+    .gtc-demo-post .post-content,
+    .robots-build-post .post-byline,
+    .robots-build-post .post-content,
+    .research-preview-post .post-byline,
+    .research-preview-post .post-content,
+    .gen-0-post .post-byline,
+    .gen-0-post .post-content,
+    .gen-1-post .post-byline,
+    .gen-1-post .post-content,
+    .beyond-world-models-post .post-cover,
+    .beyond-world-models-post .post-byline,
+    .physical-commonsense-post .post-cover,
+    .physical-commonsense-post .post-byline {
+      display: contents;
+    }
+
+    .fundraise-post .post-author,
+    .fundraise-post .post-read-listen,
+    .fundraise-post .post-content > *,
+    .gtc-demo-post .post-author,
+    .gtc-demo-post .post-read-listen,
+    .gtc-demo-post .post-content > *,
+    .robots-build-post .post-author,
+    .robots-build-post .post-read-listen,
+    .robots-build-post .post-content > *,
+    .research-preview-post .post-author,
+    .research-preview-post .post-read-listen,
+    .research-preview-post .post-content > *,
+    .gen-0-post .post-author,
+    .gen-0-post .post-read-listen,
+    .gen-0-post .post-content > *,
+    .gen-1-post .post-author,
+    .gen-1-post .post-read-listen,
+    .gen-1-post .post-content > *,
+    .beyond-world-models-post .post-author,
+    .beyond-world-models-post .post-read-listen,
+    .beyond-world-models-post .post-cover > *,
+    .physical-commonsense-post .post-author,
+    .physical-commonsense-post .post-read-listen,
+    .physical-commonsense-post .post-cover > * {
+      box-sizing: border-box;
+      width: calc(100% - (var(--mobile-page-gutter) * 2));
+      margin-right: var(--mobile-page-gutter);
+      margin-left: var(--mobile-page-gutter);
+    }
+
+    .fundraise-post .post-content > * {
+      order: 8;
+    }
+
+    .gtc-demo-post .post-content > *,
+    .robots-build-post .post-content > *,
+    .research-preview-post .post-content > * {
+      order: 7;
+    }
+
+    .gen-0-post .post-content > * {
+      order: 8;
+    }
+
+    .gen-1-post .post-content > * {
+      order: 7;
+    }
+
+    .beyond-world-models-post .post-content,
+    .physical-commonsense-post .post-content {
+      order: 8;
+    }
+
+    .beyond-world-models-post .post-cover > *,
+    .physical-commonsense-post .post-cover > * {
+      order: 8;
+    }
+
+    .fundraise-post .post-footnotes,
+    .gtc-demo-post .post-footnotes,
+    .robots-build-post .post-footnotes,
+    .research-preview-post .post-footnotes,
+    .gen-0-post .post-footnotes,
+    .gen-1-post .post-footnotes,
+    .beyond-world-models-post .post-footnotes,
+    .physical-commonsense-post .post-footnotes {
+      order: 90;
+    }
+
+    .fundraise-post .post-author {
+      order: 3;
+    }
+
+    .gtc-demo-post .post-author,
+    .robots-build-post .post-author,
+    .research-preview-post .post-author {
+      order: 3;
+    }
+
+    .gen-0-post .post-author {
+      order: 3;
+    }
+
+    .gen-1-post .post-author {
+      order: 3;
+      margin-bottom: 20px;
+    }
+
+    .beyond-world-models-post .post-author,
+    .physical-commonsense-post .post-author {
+      order: 3;
+    }
+
+    .fundraise-post .post-title {
+      order: 4;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .gtc-demo-post .post-title,
+    .robots-build-post .post-title,
+    .research-preview-post .post-title {
+      order: 4;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .gen-0-post .post-title {
+      order: 4;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .beyond-world-models-post .post-title,
+    .physical-commonsense-post .post-title {
+      order: 4;
+      margin-top: 20px;
+      margin-bottom: 20px !important;
+    }
+
+    .fundraise-post .post-read-listen {
+      order: 5;
+    }
+
+    .gtc-demo-post .post-read-listen,
+    .robots-build-post .post-read-listen,
+    .research-preview-post .post-read-listen {
+      order: 5;
+    }
+
+    .gen-0-post .post-read-listen {
+      order: 5;
+    }
+
+    .gen-1-post .post-read-listen {
+      order: 4;
+    }
+
+    .beyond-world-models-post .post-read-listen,
+    .physical-commonsense-post .post-read-listen {
+      order: 5;
+    }
+
+    .fundraise-post .fundraise-hero-figure {
+      order: 6;
+      margin-top: 20px;
+    }
+
+    .gen-0-post .gen-0-hero-video {
+      order: 6;
+      margin-top: 20px;
+    }
+
+    .gen-1-post .gen-1-orbit-hero {
+      order: 5;
+      margin-top: 20px;
+    }
+
+    .beyond-world-models-post .post-cover > .post-image,
+    .physical-commonsense-post .post-cover > .post-image {
+      order: 6;
+      margin-top: 20px;
+    }
+
+    .fundraise-post .table-of-contents {
+      order: 7;
+      margin-bottom: 0;
+    }
+
+    .gen-0-post .table-of-contents {
+      order: 7;
+      margin-bottom: 0;
+    }
+
+    .gen-1-post .table-of-contents {
+      order: 6;
+      margin-bottom: 0;
+    }
+
+    .gtc-demo-post .table-of-contents,
+    .robots-build-post .table-of-contents,
+    .research-preview-post .table-of-contents {
+      order: 6;
+      margin-bottom: 0;
+    }
+
+    .beyond-world-models-post .table-of-contents,
+    .physical-commonsense-post .table-of-contents {
+      order: 7;
+    }
+
+    .beyond-world-models-post .table-of-contents {
+      margin-bottom: 20px;
+    }
+
+    .physical-commonsense-post .table-of-contents {
+      margin-bottom: 20px;
+    }
+
+    .gtc-demo-post .post-content > *:not(.post-title),
+    .robots-build-post .post-content > *:not(.post-title),
+    .research-preview-post .post-content > *:not(.post-title) {
+      margin-top: 20px;
+    }
+
+    .gen-0-post .post-content > *:not(.post-title):not(.gen-0-hero-video) {
+      margin-top: 20px;
+    }
+
+    .gen-1-post .post-content > *:not(.gen-1-orbit-hero) {
+      margin-top: 20px;
+    }
+
+    .fundraise-post .post-content > *:not(.post-title):not(.fundraise-hero-figure) {
+      margin-top: 20px;
+    }
+
+    /* Shared mobile post order mirrors tablet. */
+    .post-layout .post-byline,
+    .post-layout .post-cover,
+    .post-layout .post-content {
+      display: contents;
+    }
+
+    .post-layout .post-details-header,
+    .post-layout .post-author,
+    .post-layout .post-title,
+    .post-layout .post-read-listen,
+    .post-layout .post-hero-media,
+    .post-layout .table-of-contents,
+    .post-layout .post-content > *:not(.post-title):not(.post-hero-media),
+    .post-layout .post-footnotes,
+    .post-layout .post-postscript,
+    .post-layout .post-details-footer {
+      box-sizing: border-box;
+      width: calc(100% - (var(--mobile-page-gutter) * 2));
+      margin-right: var(--mobile-page-gutter);
+      margin-left: var(--mobile-page-gutter);
+    }
+
+    .post-layout .post-details-header {
+      order: 1;
+      width: 100%;
+      margin-right: 0;
+      margin-left: 0;
+      margin-bottom: 0;
+      padding: 0 var(--mobile-page-gutter);
+    }
+
+    .post-layout .post-author {
+      order: 2;
+    }
+
+    .post-layout .post-title {
+      order: 3;
+      margin-top: 20px !important;
+      margin-bottom: 0 !important;
+      margin-left: 10px !important;
+    }
+    
+    .post-layout .post-details-footer {
+      margin-left: -10px !important;
+    }
+    .post-layout .post-read-listen {
+      order: 4;
+      margin-top: 20px;
+    }
+
+    .post-layout .post-hero-media {
+      order: 5;
+      margin-top: 20px;
+      margin-bottom: 0 !important;
+      padding: 0;
+    }
+
+    .post-layout .table-of-contents {
+      order: 6;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .post-layout .post-content > *:not(.post-title):not(.post-hero-media) {
+      order: 7;
+      margin-top: 0 !important;
+      margin-bottom: 0;
+    }
+
+    .post-layout .post-content > a.button.button {
+      width: fit-content;
+      max-width: calc(100% - (var(--mobile-page-gutter) * 2));
+    }
+
+    .post-layout .post-content > *:not(.post-title):not(.post-hero-media) + * {
+      margin-top: 20px !important;
+    }
+
+    .post-layout .post-footnotes {
+      order: 8;
+    }
+
+    .post-layout .post-postscript {
+      order: 9;
+      margin-top: 20px;
+      padding: 0;
+    }
+
+    .post-layout .post-details-footer {
+      order: 10;
+      margin-top: 20px;
+    }
+
+    /* All vertical rules disappear on mobile */
+    main > .vertical-rule,
+    main > .vertical-rule:last-child {
+      display: none;
+    }
+
+    .video-row {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 639px) and (prefers-color-scheme: dark) {
+    .mobile-header-lockup.wordmark-variant--dark {
+      display: none;
+    }
+
+    .mobile-header-lockup.wordmark-variant--light {
+      display: block;
+    }
+  }

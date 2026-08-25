@@ -1,0 +1,131 @@
+.organic-space,
+.mechanical-space {
+  width: 100%;
+  height: 100%;
+  min-width: 1px;
+  min-height: 1px;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.organic-space[data-theme="light"],
+.mechanical-space[data-theme="light"] {
+  background: #fff;
+}
+
+.organic-space canvas,
+.mechanical-space canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.possibility-space-fallback,
+.possibility-space-fallback img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.possibility-space-fallback {
+  position: absolute;
+  inset: 0;
+}
+
+.possibility-space-fallback img {
+  object-fit: cover;
+}
+
+.organic-space[data-organic-space-mounted="true"] .possibility-space-fallback,
+.mechanical-space[data-mechanical-space-mounted="true"] .possibility-space-fallback {
+  display: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .organic-space[data-theme="auto"],
+  .mechanical-space[data-theme="auto"] {
+    background: #fff;
+  }
+}
+
+.possibility-spaces {
+  box-sizing: border-box;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "organic nature-copy"
+    "mechanical-copy mechanical";
+  gap: 1rem;
+  align-items: center;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background: var(--background-color);
+  color: var(--foreground-color);
+}
+
+.possibility-spaces-organic {
+  grid-area: organic;
+}
+
+.possibility-spaces-nature-copy {
+  grid-area: nature-copy;
+}
+
+.possibility-spaces-mechanical-copy {
+  grid-area: mechanical-copy;
+}
+
+.possibility-spaces-mechanical-copy .post-subheading {
+  text-wrap: balance;
+}
+
+.possibility-spaces-mechanical {
+  grid-area: mechanical;
+}
+
+.possibility-spaces-visual {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--background-color);
+}
+
+.possibility-spaces-copy {
+  min-width: 0;
+  color: var(--foreground-color);
+}
+
+.possibility-spaces-copy > .post-subheading {
+  margin: 0 0 16px;
+  color: inherit;
+}
+
+.possibility-spaces-copy > p {
+  max-width: none;
+  margin: 0;
+  color: inherit;
+}
+
+.possibility-spaces-copy a {
+  color: inherit;
+}
+
+@media (max-width: 767px) {
+  .possibility-spaces {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "organic"
+      "nature-copy"
+      "mechanical"
+      "mechanical-copy";
+    gap: 24px;
+  }
+
+  .possibility-spaces-visual {
+    width: 75%;
+    justify-self: center;
+  }
+}

@@ -57,6 +57,11 @@ def _looks_like_css(text_or_bytes):
 # import "./x" | import x from "./x" | import("./x") | import(`./x`)
 # Backticks: Framer rolldown bundles use template-literal chunk imports.
 JS_IMPORT_RE = re.compile(r"""(?:import(?:\(|\s+[^;'"]*?\s+from)?\s*["'`]([^"'`]+)["'`])""")
+
+_HTML_MEDIA_RE = re.compile(
+    r"""["']([^"'\n]{1,2048}?\.(?:mp4|webm|mp3|ogg|mov))["']""",
+    re.IGNORECASE,
+)
 STYLE_BLOCK_RE = re.compile(r"<style[^>]*>(.*?)</style>", re.S)
 INLINE_STYLE_RE = re.compile(r'style="([^"]*)"')
 # A srcset candidate is `URL [descriptor]`. The URL may contain literal
@@ -457,6 +462,7 @@ class Mirror:
     def verify_no_missing_chunks(self):
         """Every relative JS/CSS ref in a stored asset must exist on disk."""
         missing = set()
+        checked = 0
         for root, _dirs, files in os.walk(self.out):
             for name in files:
                 path = os.path.join(root, name)
@@ -474,7 +480,15 @@ class Mirror:
                 # which never pass an extension gate alone
                 is_css = name.endswith(".css") or (not is_js
                                                    and _looks_like_css(text))
-                if not (is_js or is_css):
+                is_html = name.endswith(".html") and not is_css
+                if is_html:
+                    # D51: inline-JSON media refs (e.g. <script data-hero-videos>
+                    # hero reel) and <video src> are invisible to the JS/CSS
+                    # chunk sweeps
+                    hmm, hm = self._html_media_refs(path, key)
+                    missing.update(hmm)
+                    checked += hm
+                if not (is_js or is_css or is_html):
                     continue
                 if is_js:
                     for m in JS_IMPORT_RE.finditer(text):
@@ -523,6 +537,45 @@ class Mirror:
                 print(f"    {u}")
         else:
             print("  no missing referenced assets")
+        if checked:
+            print(f"  html media refs checked: {checked}")
+
+    def _html_media_refs(self, path, key):
+        """Media URLs referenced from one stored HTML page: <video src>,
+        <source src>, and quoted .mp4/.webm/.mov strings inside inline
+        JSON payloads, e.g. <script data-hero-videos='[{...}]'> — a ref
+        class no JS/CSS chunk sweep sees. D51 generalistai: the hero reel
+        (13 mp4s) lived only in that JSON, so the replica's fetch() 404'd
+        and the hero died (ready=0, paused) until the mp4s were fetched
+        into the mirror. Returns (missing_urls, checked_count)."""
+        base = self.src_for.get(key)
+        if not base:
+            return [], 0
+        try:
+            text = open(path, encoding="utf-8", errors="replace").read()
+        except OSError:
+            return [], 0
+        missing, checked, seen = [], 0, set()
+        for m in _HTML_MEDIA_RE.finditer(text):
+            raw = m.group(1)
+            if raw.startswith(("data:", "blob:", "javascript:", "#")):
+                continue
+            if "${" in raw or raw[0] in "+`":
+                # JS template interpolation (`+dir+'/clip.mp4'`), not a
+                # static path; cannot resolve
+                continue
+            if not raw.split("?")[0].split("#")[0]:
+                continue
+            abs_url = raw if raw.startswith("http") \
+                else self.absolute(base, raw)
+            if not self.allowed(abs_url):
+                continue
+            checked += 1
+            dest = os.path.join(self.out, url_path_key(abs_url))
+            if not os.path.exists(dest) and raw not in seen:
+                seen.add(raw)
+                missing.append(raw)
+        return missing, checked
 
 # ---- sitemap seeding ----------------------------------------------
     def fetch_sitemap_locs(self, url, acc):

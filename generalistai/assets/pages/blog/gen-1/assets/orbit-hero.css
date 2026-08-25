@@ -1,0 +1,68 @@
+/* Animated 3D-orbit hero banner used at the top of /blog/gen-1.
+   The animation script (orbit-animation.js) draws into #orbit-canvas and
+   sets the hero's background, label/subtitle font sizes, and label/subtitle
+   positioning offsets at runtime; this stylesheet only handles the static
+   layering (centered absolute label + subtitle stacked above the canvas).
+
+   Selectors are scoped to the unique IDs used by orbit-animation.js so they
+   only ever apply on this post.
+
+   Important: orbit-animation.js writes a fixed pixel value to
+   canvas.style.width based on parentElement.clientWidth. Without min-width
+   protection, that pixel width becomes the canvas's min-content size and
+   feeds back through #orbit-hero → .post-full-width (a flex item of
+   .post-content with default `min-width: auto`), forcing the flex track —
+   and therefore the whole post column — wider than the layout. The
+   `min-width: 0; max-width: 100%` rules below break that feedback loop. */
+
+.post-full-width:has(#orbit-hero) {
+  /* The breakout track has an explicit `width: calc(100% + 100cqi / 6 + 2px)`,
+     but as a flex item of .post-content it defaults to `min-width: auto`
+     (= its content's min-content size). Without this override, the canvas's
+     fixed pixel width would inflate that min-content and push the flex track
+     wider than the explicit calc. Keep `max-width` alone — clamping to 100%
+     here would defeat the breakout. */
+  min-width: 0;
+}
+
+#orbit-hero {
+  --font-weight-bold: 500;
+  --font-weight-medium: 400;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  min-width: 0;
+  max-width: 100%;
+  /* background-color is set inline by orbit-animation.js (default rgb(14, 30, 48)) */
+}
+
+#orbit-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+#orbit-subtitle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+  white-space: nowrap;
+  text-align: center;
+}
+
+#orbit-canvas {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: var(--border-radius);
+}
