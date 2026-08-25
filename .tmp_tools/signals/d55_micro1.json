@@ -1,0 +1,41 @@
+{
+  "animation_hits": [
+    [
+      "gsap",
+      ""
+    ],
+    [
+      "lottie",
+      ""
+    ],
+    [
+      "swiper",
+      ""
+    ]
+  ],
+  "bg_luminance": 0.315,
+  "boilerplate": [],
+  "candidate": "d55_micro1",
+  "canvas": 0,
+  "dark_body": true,
+  "dark_scheme": false,
+  "display_fonts": [
+    "inherit",
+    "outfit"
+  ],
+  "font_faces": 0,
+  "font_links": 0,
+  "footer": 1,
+  "h1": 1,
+  "h2": 7,
+  "h3": 3,
+  "html_bytes": 147487,
+  "iframe": 0,
+  "imgs": 19,
+  "logo_wall": 3,
+  "nav": 3,
+  "score": 5.2,
+  "source": "micro1.ai/index.html",
+  "tex_chars": 3116,
+  "verdict": "JUDGE (capture+vision)"
+}
