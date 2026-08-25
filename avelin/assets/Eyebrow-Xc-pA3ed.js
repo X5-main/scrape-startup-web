@@ -1,0 +1,1 @@
+import{j as e}from"./index-DKDbF_0U.js";const s={cyan:"text-avelin-cyan",gold:"text-avelin-gold",purple:"text-avelin-purple"},o=({children:t,color:a="cyan"})=>e.jsxs("div",{className:`flex items-center gap-2 font-mono-ui text-[11px] tracking-[0.2em] uppercase ${s[a]}`,children:[e.jsx("span",{className:"opacity-60",children:"//"}),t]});export{o as E};

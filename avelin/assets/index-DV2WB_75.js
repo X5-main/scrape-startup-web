@@ -1,0 +1,1 @@
+import{j as e}from"./index-DKDbF_0U.js";const t=({error:s})=>e.jsxs("div",{className:"min-h-screen text-white flex items-center justify-center px-5",children:[e.jsx("p",{className:"text-red-400",children:"Failed to load articles. Please try again later."}),e.jsx("span",{className:"sr-only",children:s.message})]});export{t as errorComponent};

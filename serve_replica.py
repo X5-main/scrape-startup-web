@@ -56,6 +56,16 @@ _origin_file = os.path.join(DOCROOT, ".origin")
 if os.path.isfile(_origin_file):
     ORIGIN = open(_origin_file, encoding="utf-8").read().strip()
 
+# avelin.ai redirect graph (live probes 2026-08-25: /docs ->307 /docs/README,
+# /docs/ ->307 /docs, /docs/README/ ->307 /docs/README). The docs SPA needs
+# the real URL to resolve the doc; emit the same chain from the ORIGIN-gated
+# hook in do_GET. Other mirrors have no map, so this is inert for them.
+_REDIRECTS = {
+    "/docs": "/docs/README",
+    "/docs/": "/docs",
+    "/docs/README/": "/docs/README",
+}
+
 
 def _restore_ref(url, pagedir="/"):
     """Return the live-absolute byte form for a mirrored URL, or None to keep.
@@ -343,6 +353,16 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             self.send_header("Content-Length", str(len(body)))
             self.end_headers()
             self.wfile.write(body)
+            return
+        if parsed.path in _REDIRECTS and "avelin.ai" in ORIGIN:
+            # avelin.ai: `/docs` (and trailing-slash/README variants) 307 on live;
+            # the docs SPA resolves content by URL path, so serving the redirect
+            # target's bytes at a redirect path makes the client render its own
+            # "Document not found" view. Mirror the 307 chain for parity.
+            self.send_response(307)
+            self.send_header("Location", _REDIRECTS[parsed.path])
+            self.send_header("Content-Length", "0")
+            self.end_headers()
             return
         full = self.translate_path(self.path)
         if _S3_AVAILABLE and os.path.isfile(full) and self._s3_redirect(full):

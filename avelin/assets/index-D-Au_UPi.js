@@ -1,0 +1,1 @@
+import{j as t}from"./index-DKDbF_0U.js";const n=()=>t.jsx("div",{className:"min-h-screen text-white flex items-center justify-center",children:t.jsx("p",{children:"Not found"})});export{n as notFoundComponent};
