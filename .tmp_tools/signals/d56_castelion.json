@@ -1,0 +1,37 @@
+{
+  "animation_hits": [
+    [
+      "gsap",
+      ""
+    ],
+    [
+      "splide",
+      ""
+    ]
+  ],
+  "bg_luminance": 0.212,
+  "boilerplate": [],
+  "candidate": "d56_castelion",
+  "canvas": 0,
+  "captured_at": "2026-08-25T21:56:40.091867+00:00",
+  "dark_body": true,
+  "dark_scheme": false,
+  "display_fonts": [
+    "inherit"
+  ],
+  "font_faces": 0,
+  "font_links": 0,
+  "footer": 1,
+  "h1": 1,
+  "h2": 13,
+  "h3": 47,
+  "html_bytes": 116317,
+  "iframe": 0,
+  "imgs": 10,
+  "logo_wall": 3,
+  "nav": 3,
+  "score": 6.5,
+  "source": "https://www.castelion.com/",
+  "text_chars": 24563,
+  "verdict": "JUDGE (capture+vision)"
+}

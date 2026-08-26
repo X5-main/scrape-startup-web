@@ -1,0 +1,37 @@
+{
+  "animation_hits": [
+    [
+      "gsap",
+      ""
+    ],
+    [
+      "swiper",
+      ""
+    ]
+  ],
+  "bg_luminance": null,
+  "boilerplate": [],
+  "candidate": "d56_airbound",
+  "canvas": 0,
+  "captured_at": "2026-08-25T21:53:39.979554+00:00",
+  "dark_body": false,
+  "dark_scheme": false,
+  "display_fonts": [
+    "inherit"
+  ],
+  "font_faces": 1,
+  "font_links": 0,
+  "footer": 0,
+  "h1": 4,
+  "h2": 3,
+  "h3": 10,
+  "html_bytes": 102436,
+  "iframe": 0,
+  "imgs": 30,
+  "logo_wall": 1,
+  "nav": 1,
+  "score": 4.9,
+  "source": "https://www.airbound.com/",
+  "text_chars": 4924,
+  "verdict": "JUDGE (capture+vision)"
+}

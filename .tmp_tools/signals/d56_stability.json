@@ -1,0 +1,36 @@
+{
+  "animation_hits": [
+    [
+      "three",
+      ""
+    ]
+  ],
+  "bg_luminance": null,
+  "boilerplate": [
+    "squarespace"
+  ],
+  "candidate": "d56_stability",
+  "canvas": 4,
+  "captured_at": "2026-08-25T21:53:40.749979+00:00",
+  "dark_body": false,
+  "dark_scheme": false,
+  "display_fonts": [
+    "archivo",
+    "figtree"
+  ],
+  "font_faces": 14,
+  "font_links": 0,
+  "footer": 1,
+  "h1": 0,
+  "h2": 13,
+  "h3": 1,
+  "html_bytes": 525381,
+  "iframe": 0,
+  "imgs": 58,
+  "logo_wall": 5,
+  "nav": 4,
+  "score": 6.9,
+  "source": "https://stability.ai/",
+  "text_chars": 6351,
+  "verdict": "JUDGE (capture+vision)"
+}

@@ -1,0 +1,31 @@
+{
+  "animation_hits": [
+    [
+      "swiper",
+      ""
+    ]
+  ],
+  "bg_luminance": null,
+  "boilerplate": [],
+  "candidate": "d56_letara",
+  "canvas": 0,
+  "captured_at": "2026-08-25T21:56:38.902885+00:00",
+  "dark_body": false,
+  "dark_scheme": false,
+  "display_fonts": [],
+  "font_faces": 0,
+  "font_links": 0,
+  "footer": 0,
+  "h1": 1,
+  "h2": 3,
+  "h3": 0,
+  "html_bytes": 88970,
+  "iframe": 0,
+  "imgs": 40,
+  "logo_wall": 1,
+  "nav": 15,
+  "score": 2.1,
+  "source": "https://www.letaranext.com/",
+  "text_chars": 2048,
+  "verdict": "SKIP (looks template-thin)"
+}

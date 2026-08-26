@@ -1,0 +1,36 @@
+{
+  "animation_hits": [
+    [
+      "gsap",
+      ""
+    ]
+  ],
+  "bg_luminance": 1.0,
+  "boilerplate": [],
+  "candidate": "d56_generalintuition",
+  "canvas": 0,
+  "captured_at": "2026-08-25T21:53:27.279177+00:00",
+  "dark_body": false,
+  "dark_scheme": true,
+  "display_fonts": [
+    "alphalyrae",
+    "geist wght",
+    "geistmono wght",
+    "geistmonolight"
+  ],
+  "font_faces": 1,
+  "font_links": 0,
+  "footer": 0,
+  "h1": 2,
+  "h2": 5,
+  "h3": 4,
+  "html_bytes": 80556,
+  "iframe": 0,
+  "imgs": 17,
+  "logo_wall": 2,
+  "nav": 0,
+  "score": 5.4,
+  "source": "https://www.generalintuition.com/",
+  "text_chars": 6579,
+  "verdict": "JUDGE (capture+vision)"
+}
