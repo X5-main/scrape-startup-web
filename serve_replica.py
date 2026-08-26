@@ -58,13 +58,27 @@ if os.path.isfile(_origin_file):
 
 # avelin.ai redirect graph (live probes 2026-08-25: /docs ->307 /docs/README,
 # /docs/ ->307 /docs, /docs/README/ ->307 /docs/README). The docs SPA needs
-# the real URL to resolve the doc; emit the same chain from the ORIGIN-gated
-# hook in do_GET. Other mirrors have no map, so this is inert for them.
 _REDIRECTS = {
     "/docs": "/docs/README",
     "/docs/": "/docs",
     "/docs/README/": "/docs/README",
 }
+
+
+def _ringg_redirect(path):
+    """ringg.ai Next.js middleware graph (live probes 2026-08-26): every
+    trailing-slash path 308s to its no-slash twin, and /blogs/<slug> 308s to
+    /blog/<slug>. The sitemap's stale locs 404 terminal on live after the hop
+    (blog/use-cases/industries slugs) — the mirror stores no file for them, so
+    replicating the 308 keeps the terminal 404 exactly where live terminal-404s.
+    Inert for other origins: caller gates on ORIGIN == "ringg.ai"."""
+    if not path or path == "/":
+        return None
+    if path.endswith("/"):
+        return path[:-1]
+    if path.startswith("/blogs/"):
+        return "/blog" + path[len("/blogs"):]
+    return None
 
 
 def _restore_ref(url, pagedir="/"):
@@ -355,6 +369,14 @@ class ReplicaHandler(SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(body)
             return
+        if "ringg.ai" in ORIGIN:
+            loc = _ringg_redirect(parsed.path)
+            if loc:
+                self.send_response(308)
+                self.send_header("Location", loc)
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
         if parsed.path in _REDIRECTS and "avelin.ai" in ORIGIN:
             # avelin.ai: `/docs` (and trailing-slash/README variants) 307 on live;
             # the docs SPA resolves content by URL path, so serving the redirect

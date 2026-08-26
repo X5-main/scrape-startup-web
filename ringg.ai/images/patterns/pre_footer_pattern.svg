@@ -1,0 +1,12 @@
+<svg width="1010" height="272" viewBox="0 0 1010 272" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="1010" height="272" fill="url(#pattern0_1749_6105)" fill-opacity="0.08"/>
+<defs>
+<pattern id="pattern0_1749_6105" patternUnits="userSpaceOnUse" viewBox="-13916 -6669 24 8" width="2.9227723225508586%" height="3.6176471149220188%" x="-0.615" y="-0.615" patternContentUnits="objectBoundingBox">
+<g id="pattern0_1749_6105_inner">
+<path d="M-13916 -6677C-13923.2 -6670.96 -13932.7 -6675.51 -13940 -6669" stroke="white" stroke-linecap="round"/>
+</g>
+<use xlink:href="#pattern0_1749_6105_inner" transform="translate(24 0)"/>
+<use xlink:href="#pattern0_1749_6105_inner" transform="translate(0 8)"/>
+<use xlink:href="#pattern0_1749_6105_inner" transform="translate(24 8)"/>
+</pattern></defs>
+</svg>
